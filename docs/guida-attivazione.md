@@ -1,5 +1,7 @@
 # Guida pratica: GitHub e aggiornamenti giornalieri
 
+**Stato verificato il 5 novembre 2026:** repository [nightlydeveloper8/eu-hr-internships](https://github.com/nightlydeveloper8/eu-hr-internships) caricato; due raccolte manuali riuscite; sito automatico pubblicato su [people-placement-eu.pages.dev](https://people-placement-eu.pages.dev/). Il secondo aggiornamento del catalogo ha attivato e completato una nuova pubblicazione Cloudflare. Il primo avvio programmato resta da verificare il 6 novembre dopo le 07:17 svizzere. I passaggi 1–3 sotto sono conservati come riferimento per ripetere la configurazione. Le notifiche personali restano da configurare nell'account.
+
 Il sito e il programma di raccolta sono già realizzati. Restano da collegare i tuoi account per far partire gli aggiornamenti online, senza tenere acceso il computer. Non è necessario programmare per questi passaggi.
 
 ## 1. Collega GitHub in questa app

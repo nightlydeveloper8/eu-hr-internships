@@ -10,7 +10,7 @@ This records tested deliverables and remaining gates; a numbered phase is not cl
 | 3 Normalisation | Country/city handling, stable IDs, canonical URL deduplication, conservative reconciliation | Unit tests pass; cross-ATS duplicate URLs can remain |
 | 4 Classification | Ten HR areas, multilingual signals, explicit language evidence, 50 manually labelled examples | Regression set passes; small sample is not population accuracy |
 | 5 Interface | Search, all specified filters, ordering, local bookmarks, coverage dialog, responsive styling | Browser checks recorded in QA report |
-| 6 Automation/deployment | Public GitHub repository; passing validation and first manual daily collection; bot data commit and retained artifact; separate public Sites deployment | GitHub schedule configured; first scheduled run and Cloudflare Git deployment still require verification. See `publication.md` for evidence |
+| 6 Automation/deployment | Public GitHub repository; passing validation and first manual daily collection; bot data commit and retained artifact; separate public Sites deployment | Cloudflare production site and automatic deployment from a second bot collection commit verified; first actual scheduled execution remains to be observed. See `publication.md` for evidence |
 | 7 QA | Python/JS regression tests, real catalog validation, direct-link HEAD checks, browser QA | Observed results recorded in QA report |
 | 8 Expansion | 27-country employer backlog, blocked-source statuses and discovery audit | Started; source expansion remains ongoing |
 
