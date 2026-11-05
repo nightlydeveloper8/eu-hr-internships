@@ -1,0 +1,69 @@
+import { matches, rankJobs, stale, safeUrl } from './logic.js';
+const $ = id => document.getElementById(id);
+const defaults = {q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
+const filters = {...defaults};
+let catalog, coverage, registry, limit = 20, saved = new Set(), persistent = true;
+try { const stored = JSON.parse(localStorage.getItem('people-placement:saved') || '[]'); if (Array.isArray(stored)) saved = new Set(stored.filter(x => typeof x === 'string')); } catch {persistent = false;}
+const bindings = {'search':'q','country':'country','category':'category','workplace-language':'workplace','english':'english','ad-language':'ad','type':'type','work-mode':'workMode','include-unverified':'unverified','sort':'sort'};
+function el(tag, cls, text) { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; }
+function option(select, value, text) { const o = document.createElement('option'); o.value = value; o.textContent = text; select.append(o); }
+function date(value) { if (!value) return 'Unknown'; const d = new Date(value); return Number.isFinite(d.valueOf()) ? d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : 'Unknown'; }
+function displayMode(mode) { return {'hybrid':'Hybrid','on-site':'On-site','remote':'Remote','unspecified':'Arrangement unspecified'}[mode] || 'Arrangement unspecified'; }
+function syncControls() { for (const [id,key] of Object.entries(bindings)) { if ($(id).type === 'checkbox') $(id).checked = filters[key]; else $(id).value = filters[key]; } for (const input of document.querySelectorAll('[name="mode"]')) input.checked = input.value === filters.mode; }
+function updateSaved() { $('saved-count').textContent = saved.size; $('saved-nav').setAttribute('aria-pressed',filters.saved); }
+function save(id, button) { if (saved.has(id)) saved.delete(id); else saved.add(id); try {localStorage.setItem('people-placement:saved',JSON.stringify([...saved]));} catch {persistent = false; notice();} updateSaved(); if (filters.saved) render(); else {button.setAttribute('aria-pressed',saved.has(id)); button.textContent = saved.has(id) ? '♥' : '♡'; button.setAttribute('aria-label',`${saved.has(id) ? 'Unsave' : 'Save'} this internship`);} }
+function reset() { Object.assign(filters,defaults); limit=20; syncControls();render(); }
+function card(job) {
+  const article = el('article','job-card');
+  const heading = el('div','card-heading'); heading.append(el('div','company-monogram',job.employer[0]));
+  const titleWrap = el('div'); const company = el('div','company-line',job.employer); company.append(el('span','country-tag',job.countries.map(c=>c).join(' · '))); titleWrap.append(company);
+  const h3 = el('h3'); const titleLink = el('a','',job.title); titleLink.href = safeUrl(job.url) || '#'; titleLink.target = '_blank'; titleLink.rel = 'noopener noreferrer'; h3.append(titleLink); titleWrap.append(h3);heading.append(titleWrap);
+  const bookmark = el('button','save-button',saved.has(job.id) ? '♥' : '♡'); bookmark.type='button';bookmark.setAttribute('aria-label',`${saved.has(job.id) ? 'Unsave' : 'Save'} ${job.title}`);bookmark.setAttribute('aria-pressed',saved.has(job.id)); bookmark.addEventListener('click',()=>save(job.id,bookmark));heading.append(bookmark);article.append(heading);
+  const locations = el('div','job-location');locations.append(el('span','',`⌖ ${job.city || catalog.countries[job.country]}`),el('span','',`◷ ${job.duration || 'Duration unspecified'}`),el('span','',`◌ ${displayMode(job.work_mode)}`));article.append(locations);
+  const tags = el('div','job-tags');tags.append(el('span','tag',catalog.categories[job.category]));
+  const langs = job.workplace_languages;
+  if (langs.some(l=>l.code==='en')) tags.append(el('span','tag english','✓ English confirmed'));
+  for (const code of [...new Set(langs.map(l=>l.code))].filter(c=>c!=='en')) tags.append(el('span','tag',`${catalog.languages[code]} ${langs.find(l=>l.code===code)?.requirement==='preferred' ? 'preferred' : 'stated'}`));
+  if (!langs.length) tags.append(el('span','tag','Workplace language unspecified'));
+  if (job.status!=='open') tags.append(el('span','tag unverified','Link / availability unverified'));
+  article.append(tags);
+  const bottom = el('div','card-bottom'); bottom.append(el('p','',job.published_at ? `Posted ${date(job.published_at)}` : `Found ${date(job.first_discovered_at)} · Posting date unknown`));
+  const apply = el('a','apply-link');apply.append(el('span','', 'View at employer'),el('span','', '↗'));apply.href=safeUrl(job.apply_url)||safeUrl(job.url)||'#';apply.target='_blank';apply.rel='noopener noreferrer';apply.setAttribute('aria-label',`View ${job.title} at ${job.employer}`);bottom.append(apply);article.append(bottom);
+  const details=el('details','job-details');details.append(el('summary','','Language evidence & practical details'));
+  const dl=el('dl');function row(k,v,cls){dl.append(el('dt','',k),el('dd',cls,v));}
+  row('Internship type',`${job.internship_type.replaceAll('-',' ')} · ${job.internship_confidence}`);
+  row('Advertisement',job.advertisement_language.code ? `${catalog.languages[job.advertisement_language.code]}${job.advertisement_language.confidence==='uncertain' ? ' · estimated' : ''}` : 'Unknown');
+  for (const lang of langs) row(catalog.languages[lang.code],`“${lang.evidence}”${lang.requirement==='preferred' ? ' · preferred' : ''}`,'evidence');
+  if (!langs.length) row('Workplace language','No explicit statement extracted. Check the original posting.');
+  row('Student enrolment',job.enrollment||'Unspecified. Check the employer’s requirements.');row('Source',`${job.source_name} · ${job.source_type}`);row('Last seen on board',date(job.last_seen_at));row('Link last verified',job.last_verified_at ? date(job.last_verified_at) : 'Not yet verified');
+  details.append(dl);article.append(details);return article;
+}
+function urlState() { const params=new URLSearchParams();for(const [k,v] of Object.entries(filters)) if(v!==defaults[k]) params.set(k,String(v)); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
+function render() {
+  const jobs=rankJobs(catalog.jobs.filter(j=>matches(j,filters,saved)),filters);$('result-count').textContent=jobs.length;$('result-label').textContent=filters.saved ? (jobs.length===1 ? 'saved opportunity' : 'saved opportunities') : jobs.length===1 ? 'opportunity' : 'opportunities';
+  $('scope-label').textContent=filters.country ? catalog.countries[filters.country] : filters.mode==='nl' ? 'The Netherlands first, then the rest of the EU' : 'Across all 27 European Union countries';
+  const host=$('jobs');host.replaceChildren();host.setAttribute('aria-busy','false');
+  if (!jobs.length) {const empty=el('div','empty-state');empty.append(el('div','empty-icon',filters.saved?'♡':'◎'),el('h3','',filters.saved?'Your next chapter, saved here.':'A little room to explore.'),el('p','',filters.saved?'Save internships with the heart button. Your shortlist stays in this browser.':'No matching opportunities in our current collection. Try another country or widen your filters.'));const clear=el('button','', 'Show all opportunities');clear.addEventListener('click',reset);empty.append(clear);host.append(empty);}else for(const job of jobs.slice(0,limit)) host.append(card(job));
+  $('load-more').hidden=jobs.length<=limit;
+  $('active-filters').replaceChildren();
+  for(const [key,value] of Object.entries(filters)){if(value===defaults[key]||['mode','sort'].includes(key))continue;let label={q:`“${value}”`,country:catalog.countries[value],category:catalog.categories[value],workplace:`Work: ${catalog.languages[value]}`,ad:`Ad: ${catalog.languages[value]}`,english:'English confirmed',saved:'Saved only',unverified:'Including unverified',type:String(value).replaceAll('-',' '),workMode:displayMode(value)}[key]||String(value);const chip=el('button','chip',label+' ×');chip.type='button';chip.setAttribute('aria-label',`Remove ${label} filter`);chip.addEventListener('click',()=>{filters[key]=defaults[key];syncControls();render();});$('active-filters').append(chip);}
+  updateSaved();urlState();
+}
+function notice() { const messages=[];if(stale(catalog.updated_at)) messages.push('The collection is older than 36 hours. Check the employer’s posting for current availability.');if(catalog.update_status==='partial')messages.push('Some sources could not be refreshed. Their previous records were retained.');if(catalog.update_status==='failed')messages.push('The last collection failed. Previously collected opportunities are shown.');if(!persistent)messages.push('Browser storage is unavailable. Saved jobs will last only for this visit.');$('data-notice').hidden=!messages.length;$('data-notice').textContent=messages.join(' '); }
+function showCoverage() {if(!$('coverage-table').children.length){for(const c of coverage.countries){const tr=el('tr');tr.append(el('td','',c.name),el('td','',c.listings),el('td','',c.sources_with_observed_jobs));$('coverage-table').append(tr);}const q=coverage.quality;for(const text of [`${q.open} verified open links`,`${q.confirmed_english} with English evidence`,`${q.sources_succeeded}/${q.sources_attempted} sources refreshed`])$('quality-summary').append(el('span','',text));const reports=new Map(coverage.sources.map(s=>[s.id,s]));for(const source of registry){const report=reports.get(source.id);const p=el('p','',`${source.employer} · ${source.adapter} · ${source.enabled ? report?.status||'not checked' : source.status||'discovery only'}`);p.append(el('small','',report?.error||source.review_notes||`${report?.collected??0} public jobs collected; ${report?.matching??0} matching HR internships`));const a=el('a','','Employer board ↗');a.href=safeUrl(source.career_url)||'#';a.target='_blank';a.rel='noopener noreferrer';p.append(a);$('source-health').append(p);}}$('coverage-dialog').showModal(); }
+async function init(){try {const responses=await Promise.all(['catalog','coverage','sources'].map(name=>fetch(`./data/${name}.json`,{cache:'no-cache'})));if(responses.some(r=>!r.ok))throw new Error('Data could not be loaded');[catalog,coverage,registry]=await Promise.all(responses.map(r=>r.json()));
+  if(catalog.schema_version!==1||!Array.isArray(catalog.jobs))throw new Error('Unsupported dataset');
+  for(const [code,name] of Object.entries(catalog.countries).sort((a,b)=>a[1].localeCompare(b[1])))option($('country'),code,name);
+  for(const [code,name] of Object.entries(catalog.categories))option($('category'),code,name);
+  for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}
+  for(const job of catalog.jobs)job.search_terms=[...job.countries.map(c=>catalog.countries[c]),...job.categories.map(c=>catalog.categories[c])];
+  const params=new URLSearchParams(location.search);for(const [key,def]of Object.entries(defaults)){if(!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
+  for(const [id,key]of Object.entries(bindings))if($(id).tagName==='SELECT'&&![...$(id).options].some(o=>o.value===filters[key]))filters[key]=defaults[key];if(!['eu','nl'].includes(filters.mode))filters.mode='nl';
+  syncControls();for(const [id,key]of Object.entries(bindings))$(id).addEventListener(id==='search'?'input':'change',()=>{filters[key]=$(id).type==='checkbox'?$(id).checked:$(id).value;limit=20;render();});
+  for(const radio of document.querySelectorAll('[name="mode"]'))radio.addEventListener('change',()=>{filters.mode=radio.value;render();});$('reset').addEventListener('click',reset);$('saved-nav').addEventListener('click',()=>{filters.saved=!filters.saved;render();$('opportunities').scrollIntoView();});$('load-more').addEventListener('click',()=>{limit+=20;render();});
+  $('filter-toggle').addEventListener('click',()=>{const open=$('filters').classList.toggle('is-open');$('filter-toggle').setAttribute('aria-expanded',open);if(open)$('filters').scrollIntoView({block:'start'});});
+  $('filters-done').addEventListener('click',()=>{$('filters').classList.remove('is-open');$('filter-toggle').setAttribute('aria-expanded','false');document.querySelector('.results').scrollIntoView({block:'start'});});
+  $('coverage-nav').addEventListener('click',showCoverage);$('coverage-inline').addEventListener('click',showCoverage);$('close-dialog').addEventListener('click',()=>$('coverage-dialog').close());$('coverage-dialog').addEventListener('click',e=>{if(e.target===$('coverage-dialog')){const rect=e.target.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)e.target.close();}});
+  $('updated-label').textContent=`Last collected ${date(catalog.updated_at)}`;notice();render();
+} catch(error){$('jobs').setAttribute('aria-busy','false');$('jobs').replaceChildren(el('div','empty-state','We couldn’t load the employer collection. Please refresh or download the dataset using the link below.'));$('updated-label').textContent='Data unavailable';console.error(error);}}
+init();

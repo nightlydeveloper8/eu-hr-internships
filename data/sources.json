@@ -1,0 +1,1012 @@
+[
+  {
+    "id": "smartrecruiters-deltaelectronics",
+    "adapter": "smartrecruiters",
+    "board": "DeltaElectronics",
+    "employer": "Delta Electronics",
+    "enabled": false,
+    "career_url": "https://careers.smartrecruiters.com/DeltaElectronics",
+    "allowed_hosts": [
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "NL",
+      "DE",
+      "PL",
+      "SK"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "smartrecruiters-averydennison",
+    "adapter": "smartrecruiters",
+    "board": "AveryDennison",
+    "employer": "Avery Dennison",
+    "enabled": false,
+    "career_url": "https://careers.smartrecruiters.com/AveryDennison",
+    "allowed_hosts": [
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "NL",
+      "FR",
+      "DE",
+      "BE",
+      "LU",
+      "IE",
+      "IT",
+      "ES",
+      "PL",
+      "RO",
+      "HU"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "smartrecruiters-jacobsdouweegberts",
+    "adapter": "smartrecruiters",
+    "board": "JACOBSDOUWEEGBERTS",
+    "employer": "JDE Peet’s",
+    "enabled": false,
+    "career_url": "https://careers.smartrecruiters.com/JACOBSDOUWEEGBERTS",
+    "allowed_hosts": [
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "NL",
+      "FR",
+      "DE",
+      "BE",
+      "CZ",
+      "PL",
+      "ES",
+      "PT",
+      "SE",
+      "DK"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "greenhouse-adyen",
+    "adapter": "greenhouse",
+    "board": "adyen",
+    "employer": "Adyen",
+    "enabled": true,
+    "career_url": "https://job-boards.greenhouse.io/adyen",
+    "allowed_hosts": [
+      "boards.greenhouse.io",
+      "job-boards.greenhouse.io",
+      "careers.adyen.com"
+    ],
+    "target_countries": [
+      "NL",
+      "DE",
+      "FR",
+      "ES",
+      "IT",
+      "SE"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "greenhouse-picnic",
+    "adapter": "greenhouse",
+    "board": "picnic",
+    "employer": "Picnic",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/picnic",
+    "allowed_hosts": [
+      "boards.greenhouse.io",
+      "job-boards.greenhouse.io",
+      "picnic.app"
+    ],
+    "target_countries": [
+      "NL",
+      "DE",
+      "FR"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Initial board token returned 404; not a validated source."
+  },
+  {
+    "id": "greenhouse-mollie",
+    "adapter": "greenhouse",
+    "board": "mollie",
+    "employer": "Mollie",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/mollie",
+    "allowed_hosts": [
+      "boards.greenhouse.io",
+      "job-boards.greenhouse.io",
+      "jobs.mollie.com"
+    ],
+    "target_countries": [
+      "NL",
+      "DE",
+      "FR",
+      "BE",
+      "PT"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Initial board token returned 404; not a validated source."
+  },
+  {
+    "id": "lever-emma-sleep",
+    "adapter": "lever",
+    "board": "emma-sleep",
+    "employer": "Emma – The Sleep Company",
+    "enabled": true,
+    "career_url": "https://jobs.lever.co/emma-sleep",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co"
+    ],
+    "target_countries": [
+      "DE",
+      "PT",
+      "ES",
+      "FR",
+      "IT"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "lever-veepee",
+    "adapter": "lever",
+    "board": "veepee",
+    "employer": "Veepee",
+    "enabled": true,
+    "career_url": "https://jobs.lever.co/veepee",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co"
+    ],
+    "target_countries": [
+      "FR",
+      "BE",
+      "ES",
+      "IT"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "lever-backmarket",
+    "adapter": "lever",
+    "board": "backmarket",
+    "employer": "Back Market",
+    "enabled": false,
+    "career_url": "https://jobs.lever.co/backmarket",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co"
+    ],
+    "target_countries": [
+      "FR",
+      "ES",
+      "DE"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Initial board token returned 404; not a validated source."
+  },
+  {
+    "id": "ashby-choco",
+    "adapter": "ashby",
+    "board": "choco",
+    "employer": "Choco",
+    "enabled": false,
+    "career_url": "https://jobs.ashbyhq.com/choco",
+    "allowed_hosts": [
+      "jobs.ashbyhq.com"
+    ],
+    "target_countries": [
+      "DE",
+      "FR",
+      "ES",
+      "BE"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "ashby-reedsy",
+    "adapter": "ashby",
+    "board": "reedsy",
+    "employer": "Reedsy",
+    "enabled": false,
+    "career_url": "https://jobs.ashbyhq.com/reedsy",
+    "allowed_hosts": [
+      "jobs.ashbyhq.com"
+    ],
+    "target_countries": [
+      "FR",
+      "NL",
+      "PL",
+      "PT",
+      "ES"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "ashby-zefir",
+    "adapter": "ashby",
+    "board": "zefir",
+    "employer": "Zefir",
+    "enabled": false,
+    "career_url": "https://jobs.ashbyhq.com/zefir",
+    "allowed_hosts": [
+      "jobs.ashbyhq.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "ashby-scoreplay",
+    "adapter": "ashby",
+    "board": "scoreplay",
+    "employer": "ScorePlay",
+    "enabled": false,
+    "career_url": "https://jobs.ashbyhq.com/scoreplay",
+    "allowed_hosts": [
+      "jobs.ashbyhq.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "ashby-emidat",
+    "adapter": "ashby",
+    "board": "emidat",
+    "employer": "Emidat",
+    "enabled": false,
+    "career_url": "https://jobs.ashbyhq.com/emidat",
+    "allowed_hosts": [
+      "jobs.ashbyhq.com"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "ashby-payrails",
+    "adapter": "ashby",
+    "board": "payrails",
+    "employer": "Payrails",
+    "enabled": false,
+    "career_url": "https://jobs.ashbyhq.com/payrails",
+    "allowed_hosts": [
+      "jobs.ashbyhq.com"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "permission_basis": "Documented unauthenticated public ATS GET API; listed jobs only; robots checked at runtime",
+    "reviewed_on": "2026-11-05",
+    "status": "access-review-required",
+    "review_notes": "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
+  },
+  {
+    "id": "discovery-at",
+    "employer": "Red Bull",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "AT"
+    ],
+    "career_url": "https://jobs.redbull.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-be",
+    "employer": "AB InBev",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "BE"
+    ],
+    "career_url": "https://careers.ab-inbev.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-bg",
+    "employer": "SAP",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "BG"
+    ],
+    "career_url": "https://jobs.sap.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-hr",
+    "employer": "Infobip",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "HR"
+    ],
+    "career_url": "https://www.infobip.com/careers",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-cy",
+    "employer": "Wargaming",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "CY"
+    ],
+    "career_url": "https://wargaming.com/en/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-cz",
+    "employer": "SAP",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "CZ"
+    ],
+    "career_url": "https://jobs.sap.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-dk",
+    "employer": "LEGO",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "DK"
+    ],
+    "career_url": "https://www.lego.com/en-us/careers",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-ee",
+    "employer": "Bolt",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "EE"
+    ],
+    "career_url": "https://bolt.eu/en/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-fi",
+    "employer": "Nokia",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "FI"
+    ],
+    "career_url": "https://www.nokia.com/about-us/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-fr",
+    "employer": "L’Oréal",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "FR"
+    ],
+    "career_url": "https://careers.loreal.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-de",
+    "employer": "Bosch",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "DE"
+    ],
+    "career_url": "https://www.bosch.com/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-gr",
+    "employer": "Coca-Cola HBC",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "GR"
+    ],
+    "career_url": "https://careers.coca-colahellenic.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-hu",
+    "employer": "Bosch",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "HU"
+    ],
+    "career_url": "https://www.bosch.com/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-ie",
+    "employer": "Kerry",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "IE"
+    ],
+    "career_url": "https://jobs.kerry.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-it",
+    "employer": "Pirelli",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "IT"
+    ],
+    "career_url": "https://jobs.pirelli.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-lv",
+    "employer": "airBaltic",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "LV"
+    ],
+    "career_url": "https://careers.airbaltic.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-lt",
+    "employer": "Vinted",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "LT"
+    ],
+    "career_url": "https://careers.vinted.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-lu",
+    "employer": "SES",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "LU"
+    ],
+    "career_url": "https://www.ses.com/careers",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-mt",
+    "employer": "Kindred",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "MT"
+    ],
+    "career_url": "https://careers.kindredgroup.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-nl",
+    "employer": "Rituals",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "NL"
+    ],
+    "career_url": "https://careers.rituals.com/en-NL/offices/interns/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-pl",
+    "employer": "Allegro",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "PL"
+    ],
+    "career_url": "https://jobs.allegro.eu/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-pt",
+    "employer": "EDP",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "PT"
+    ],
+    "career_url": "https://www.edp.com/en/careers",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-ro",
+    "employer": "Bosch",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "RO"
+    ],
+    "career_url": "https://www.bosch.com/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-sk",
+    "employer": "ESET",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "SK"
+    ],
+    "career_url": "https://www.eset.com/int/about/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-si",
+    "employer": "Krka",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "SI"
+    ],
+    "career_url": "https://www.krka.biz/careers/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-es",
+    "employer": "SEAT",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "ES"
+    ],
+    "career_url": "https://www.seatjobs.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "discovery-se",
+    "employer": "H&M",
+    "enabled": false,
+    "adapter": "pending-review",
+    "target_countries": [
+      "SE"
+    ],
+    "career_url": "https://career.hm.com/",
+    "status": "discovery-only",
+    "review_notes": "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+  },
+  {
+    "id": "greenhouse-talentprograms",
+    "adapter": "greenhouse",
+    "board": "talentprograms",
+    "employer": "Hunter Douglas – Talent Programs",
+    "enabled": true,
+    "career_url": "https://job-boards.greenhouse.io/talentprograms",
+    "allowed_hosts": [
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.hellofresh.com",
+      "careers.deliveryhero.com",
+      "www.personio.com",
+      "www.sennder.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "permission_basis": "Public documented job-board API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "greenhouse-catawiki",
+    "adapter": "greenhouse",
+    "board": "catawiki",
+    "employer": "Catawiki",
+    "enabled": true,
+    "career_url": "https://job-boards.greenhouse.io/catawiki",
+    "allowed_hosts": [
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.hellofresh.com",
+      "careers.deliveryhero.com",
+      "www.personio.com",
+      "www.sennder.com"
+    ],
+    "target_countries": [
+      "NL",
+      "PT",
+      "DE",
+      "FR"
+    ],
+    "permission_basis": "Public documented job-board API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "greenhouse-hellofresh",
+    "adapter": "greenhouse",
+    "board": "hellofresh",
+    "employer": "HelloFresh",
+    "enabled": true,
+    "career_url": "https://job-boards.greenhouse.io/hellofresh",
+    "allowed_hosts": [
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.hellofresh.com",
+      "careers.deliveryhero.com",
+      "www.personio.com",
+      "www.sennder.com"
+    ],
+    "target_countries": [
+      "NL",
+      "DE",
+      "FR",
+      "ES",
+      "IT",
+      "SE",
+      "DK"
+    ],
+    "permission_basis": "Public documented job-board API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "greenhouse-personio",
+    "adapter": "greenhouse",
+    "board": "personio",
+    "employer": "Personio",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/personio",
+    "allowed_hosts": [
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.hellofresh.com",
+      "careers.deliveryhero.com",
+      "www.personio.com",
+      "www.sennder.com"
+    ],
+    "target_countries": [
+      "DE",
+      "NL",
+      "IE",
+      "ES"
+    ],
+    "permission_basis": "Public documented job-board API; runtime robots check",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Board token returned 404; no data collected."
+  },
+  {
+    "id": "greenhouse-sennder",
+    "adapter": "greenhouse",
+    "board": "sennder",
+    "employer": "sennder",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/sennder",
+    "allowed_hosts": [
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.hellofresh.com",
+      "careers.deliveryhero.com",
+      "www.personio.com",
+      "www.sennder.com"
+    ],
+    "target_countries": [
+      "DE",
+      "NL",
+      "IT",
+      "ES",
+      "FR",
+      "PL"
+    ],
+    "permission_basis": "Public documented job-board API; runtime robots check",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Board token returned 404; no data collected."
+  },
+  {
+    "id": "greenhouse-deliveryhero",
+    "adapter": "greenhouse",
+    "board": "deliveryhero",
+    "employer": "Delivery Hero",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/deliveryhero",
+    "allowed_hosts": [
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.hellofresh.com",
+      "careers.deliveryhero.com",
+      "www.personio.com",
+      "www.sennder.com"
+    ],
+    "target_countries": [
+      "DE",
+      "SE",
+      "GR"
+    ],
+    "permission_basis": "Public documented job-board API; runtime robots check",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Board token returned 404; no data collected."
+  },
+  {
+    "id": "greenhouse-dim",
+    "adapter": "greenhouse",
+    "board": "dim",
+    "employer": "DIM",
+    "enabled": true,
+    "career_url": "https://job-boards.greenhouse.io/dim",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "FR",
+      "DE",
+      "IT"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "lever-pigment",
+    "adapter": "lever",
+    "board": "pigment",
+    "employer": "Pigment",
+    "enabled": true,
+    "career_url": "https://jobs.lever.co/pigment",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "lever-malt",
+    "adapter": "lever",
+    "board": "malt",
+    "employer": "Malt",
+    "enabled": true,
+    "career_url": "https://jobs.lever.co/malt",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "FR",
+      "DE",
+      "ES",
+      "BE",
+      "NL"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "greenhouse-doctolib",
+    "adapter": "greenhouse",
+    "board": "doctolib",
+    "employer": "Doctolib",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/doctolib",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "FR",
+      "DE",
+      "IT"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Board returned 404 during validation. No current data collected."
+  },
+  {
+    "id": "greenhouse-backmarket",
+    "adapter": "greenhouse",
+    "board": "backmarket",
+    "employer": "Back Market",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/backmarket",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "FR",
+      "DE",
+      "ES"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Board returned 404 during validation. No current data collected."
+  },
+  {
+    "id": "greenhouse-qonto",
+    "adapter": "greenhouse",
+    "board": "qonto",
+    "employer": "Qonto",
+    "enabled": false,
+    "career_url": "https://job-boards.greenhouse.io/qonto",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "FR",
+      "DE",
+      "ES",
+      "IT"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Board returned 404 during validation. No current data collected."
+  },
+  {
+    "id": "lever-teamlewis",
+    "adapter": "lever",
+    "board": "teamlewis",
+    "employer": "TEAM LEWIS",
+    "enabled": false,
+    "career_url": "https://jobs.lever.co/teamlewis",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "NL",
+      "DE",
+      "FR",
+      "ES",
+      "IT"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05",
+    "status": "endpoint-review-required",
+    "review_notes": "Board returned 404 during validation. No current data collected."
+  },
+  {
+    "id": "greenhouse-dept",
+    "adapter": "greenhouse",
+    "board": "dept",
+    "employer": "DEPT®",
+    "enabled": true,
+    "career_url": "https://job-boards.greenhouse.io/dept",
+    "allowed_hosts": [
+      "jobs.lever.co",
+      "jobs.eu.lever.co",
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.doctolib.com",
+      "www.backmarket.com",
+      "jobs.lever.co",
+      "www.deptagency.com"
+    ],
+    "target_countries": [
+      "NL",
+      "DE",
+      "DK",
+      "IE",
+      "ES"
+    ],
+    "permission_basis": "Public documented ATS GET API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  }
+]

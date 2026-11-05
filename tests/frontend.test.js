@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {matches,rankJobs,stale,safeUrl} from '../src/logic.js';
+const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed'},{code:'nl',confidence:'confirmed'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
+const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
+test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
+test('English ad alone never matches English workplace filter',()=>{assert.equal(matches({...base,workplace_languages:[]},{...f,english:true}),false);});
+test('closed always hidden and unverified optional',()=>{assert.equal(matches({...base,status:'closed'},{...f,unverified:true}),false);assert.equal(matches({...base,status:'unverified'},f),false);assert.ok(matches({...base,status:'unverified'},{...f,unverified:true}));});
+test('saved jobs filter uses local IDs',()=>{assert.ok(matches(base,{...f,saved:true},new Set(['1'])));assert.equal(matches(base,{...f,saved:true}),false);});
+test('Netherlands priority is independent from country filtering',()=>{const newer={...base,id:'2',countries:['FR'],published_at:'2026-11-02'};assert.equal(rankJobs([newer,base],f)[0].id,'1');assert.equal(rankJobs([newer,base],{...f,mode:'eu',sort:'recent'})[0].id,'2');assert.ok(matches(newer,f));});
+test('keyword relevance ranks title matches',()=>{const other={...base,id:'2',title:'HR Intern',city:'Talent City'};assert.equal(rankJobs([other,base],{...f,q:'talent'})[0].id,'1');});
+test('accent-insensitive keyword search',()=>{assert.ok(matches({...base,title:'Stage Chargé de Recrutement'},{...f,q:'charge recrutement'}));});
+test('all multi-country locations match independently',()=>{assert.ok(matches({...base,countries:['FR','NL']},{...f,country:'FR'}));});
+test('unknown dates sort after known recency',()=>{assert.equal(rankJobs([{...base,id:'2',published_at:null},base],{...f,sort:'recent'})[0].id,'1');});
+test('stale and malformed timestamps warn',()=>{const clock=Date.parse('2026-11-05T12:00:00Z');assert.ok(stale('2026-11-01',clock));assert.ok(stale(null,clock));assert.ok(stale('invalid',clock));assert.equal(stale('2026-11-05T10:00:00Z',clock),false);});
+test('unsafe link protocols rejected',()=>{assert.equal(safeUrl('javascript:alert(1)'),null);assert.equal(safeUrl('http://example.com'),null);assert.equal(safeUrl('https://a:b@example.com'),null);assert.equal(safeUrl('https://jobs.lever.co/a/1'),'https://jobs.lever.co/a/1');});

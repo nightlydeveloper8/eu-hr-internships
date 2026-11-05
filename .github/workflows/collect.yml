@@ -1,0 +1,70 @@
+name: Daily employer collection
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: employer-catalog
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test before collection
+        run: |
+          python -m unittest discover -s tests -v
+          node --test tests/frontend.test.js
+          python scripts/evaluate.py
+      - name: Collect public employer boards and verify links
+        run: python -m collector.pipeline
+      - name: Validate collected data and static export
+        run: |
+          python -m collector.pipeline --validate
+          python scripts/build.py
+      - name: Retain collection reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-and-coverage
+          path: |
+            data/catalog.json
+            data/coverage.json
+            docs/evaluation-report.json
+          retention-days: 14
+      - name: Commit verified export
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/catalog.json data/coverage.json docs/evaluation-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh employer internship catalog'
+            git push
+          fi
+      - name: Report source health or workflow failure
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          JOB_STATUS: ${{ job.status }}
+        with:
+          script: |
+            const fs = require('fs');
+            let data;
+            try { data = JSON.parse(fs.readFileSync('data/catalog.json','utf8')); } catch {}
+            const unhealthy = process.env.JOB_STATUS !== 'success' || data?.update_status !== 'ok';
+            const title = '[monitor] Employer collection needs attention';
+            const {data: issues} = await github.rest.issues.listForRepo({...context.repo,state:'open',creator:'github-actions[bot]',per_page:100});
+            const existing = issues.find(i=>i.title===title);
+            const body = `Collection status: ${data?.update_status || 'failed'}. See the [workflow run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) and the coverage artifact. Failed sources preserve previous records. Enable GitHub issue and Actions notifications for email alerts.`;
+            if(unhealthy && !existing) await github.rest.issues.create({...context.repo,title,body});
+            if(!unhealthy && existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,state:'closed'});
