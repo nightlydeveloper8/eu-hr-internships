@@ -24,19 +24,19 @@ Le fasce sono categorie di ricerca, non un'attestazione giuridica di PMI: la [de
 
 ## 3. Raccoglitori riutilizzabili, per sistema di recruiting
 
-La crescita deve avvenire soprattutto attraverso adattatori riutilizzabili per famiglie di siti. Ogni datore mantiene identificativo, dominio e perimetro verificati: il riconoscimento del fornitore non abilita automaticamente una bacheca non controllata.
+La crescita deve avvenire soprattutto attraverso adattatori riutilizzabili per famiglie di siti. Ogni datore mantiene identificativo, dominio e perimetro verificati: il riconoscimento usa identificativi presenti in collegamenti pubblicati dal datore e verifica l’accesso durante ogni raccolta. Non vengono inventati identificativi di bacheca.
 
 | Livello | Raccolta richiesta | Stato nel progetto |
 |---|---|---|
 | API e feed pubblici | Tutte le posizioni pubblicate, tutte le pagine, campi completi | Greenhouse, Lever, Personio XML e Recruitee operativi su datori verificati; altre integrazioni richiedono revisione |
 | Sitemap e JobPosting | Tutte le URL di lavoro nel perimetro dichiarato e lettura di ogni pagina | Lettura prima del filtro implementata; prova live su 84 pagine |
-| HTML ordinario | Elenchi, paginazione, schede e campi visibili con selettori verificati | Inventario di collegamenti implementato; estrattori senza JobPosting da ampliare |
-| Siti dinamici | Browser che esegue JavaScript, segue filtri e «carica altro», poi estrae dati e testo visibili | Da implementare e provare nel processo di raccolta |
+| HTML ordinario | Elenchi, paginazione, schede e campi visibili con selettori verificati | Estrattore generale di schede visibili implementato; i formati non leggibili restano esplicitamente incompleti |
+| Siti dinamici | Browser che esegue JavaScript, segue filtri e «carica altro», poi estrae dati e testo visibili | Playwright installato sul runner, browser isolato e paginazione automatica implementati e provati |
 | Accesso non disponibile | Fonte ufficiale alternativa, autorizzazione se necessaria o blocco documentato | Non conteggiato come raccolta funzionante |
 
 Esempi di piattaforme da esaminare per connettori riutilizzabili: Workday, SuccessFactors, Taleo, iCIMS, SmartRecruiters, Teamtailor, Inrecruiting e altri sistemi locali. Non si presume che ciascun fornitore offra un'API pubblica utilizzabile: scegliere il canale effettivamente disponibile, documentato o visibile nel browser, rispettando le regole di accesso.
 
-I browser devono far parte del processo eseguibile sul runner, con dipendenze riproducibili e controlli sul risultato. Aprire manualmente una pagina una volta non costituisce un adattatore né un monitoraggio automatico. [Playwright supporta l'esecuzione in CI](https://playwright.dev/docs/ci); questo livello non è ancora installato o attivato nel collector.
+I browser devono far parte del processo eseguibile sul runner, con dipendenze riproducibili e controlli sul risultato. Aprire manualmente una pagina una volta non costituisce un adattatore né un monitoraggio automatico. [Playwright supporta l'esecuzione in CI](https://playwright.dev/docs/ci); questo livello è ora installato e attivato nel collector, con versione delle dipendenze fissata e prova del browser eseguita.
 
 ## 4. Profondità dell'inventario
 
@@ -60,9 +60,9 @@ L'estrazione di sede, lingue, iscrizione universitaria e altri requisiti deriva 
 
 Inventario giornaliero dei canali; prevedere controlli più frequenti per le fonti utili solo dopo misura dei tempi e dei limiti. La frequenza maggiore non è attivata da questa revisione.
 
-Per scalare a migliaia di datori, aggiungere aggiornamenti incrementali: identificativi dei job, date di modifica, ETag e Last-Modified quando affidabili, cache di metadati consentiti, verifica periodica completa e coda dei dettagli nuovi o cambiati. Separare la concorrenza tra aziende dai limiti per singolo host. Queste ottimizzazioni non sono ancora implementate nel client.
+Il raccoglitore conserva una cache tecnica dei dettagli per massimo 48 ore di riuso e una coda delle pagine ancora da leggere. Privilegia le pagine non ancora in cache e conserva le attività interrotte. La concorrenza tra aziende è distinta dai limiti per dominio nello stesso gruppo di esecuzione. ETag e Last-Modified non sono ancora usati come prova generale di invariabilità.
 
-La nuova lettura integrale aumenta le richieste sulle sitemap. Prima di estendere il numero di datori misurare tempi e budget del runner: il workflow è stato portato a un limite di 60 minuti per verificare la raccolta ampliata. Non tagliare silenziosamente l'inventario per rispettare il timeout; usare partizioni e checkpoint quando necessari. La disponibilità entro eventuali piani gratuiti va verificata sul carico reale.
+La lettura approfondita aumenta le richieste. Il workflow ripartisce ora l’intero registro in otto gruppi, ciascuno con sei letture concorrenti e un limite di 55 minuti. Ogni azienda ha inoltre un budget autonomo di tempo e richieste: il lavoro residuo viene segnalato e conservato per il tentativo successivo. La disponibilità entro eventuali piani gratuiti va verificata sul carico reale.
 
 Il sito pubblicato resta statico; raccolta e rendering si eseguono nel processo separato. Il codice e i dati locali devono essere pubblicati nel repository eseguito dai workflow prima che le modifiche arrivino al servizio remoto.
 
@@ -84,12 +84,13 @@ File operativi:
 - `docs/country-research-progress.json`: avanzamento basato sulle raccolte effettive recenti.
 - `docs/company-integration-queue.json`: ogni datore e attività necessaria per la raccolta.
 - `data/coverage.json`: inventari, pagine lette, errori e paesi osservati.
+- `data/employer-collection.json`: esito di raccolta per ciascuna azienda, distinto dalla configurazione.
 
-La fotografia di partenza è 842 datori nel registro e 40 canali configurati e già eseguiti. Dei restanti 802, 501 hanno una pagina carriera da integrare e 301 richiedono prima la scoperta del canale. Questi sono lavori aperti, non 802 fonti operative.
+La fotografia iniziale era 842 datori nel registro e 40 canali di raccolta. Sono stati aggiunti 802 raccoglitori generali: tutte le 842 aziende sono ora assegnate al processo automatico. Per le 301 aziende prive di pagina carriera, la scoperta parte dal sito censito. Configurazione, tentativo, lettura riuscita e copertura incompleta restano conteggi distinti nel report aziendale.
 
 ## Verifiche già eseguite in questa revisione
 
-Corretta la lettura dei job prima del filtro sugli slug e la gestione delle pagine parzialmente fallite; corretto il conteggio nazionale per usare esecuzioni recenti con copertura effettivamente osservata; generata la coda di integrazione per tutti i datori. Prova live: 84 pagine su due fonti, senza errori, con catalogo rimasto a 22 opportunità. Browser, nuovi fornitori ATS, estrazione HTML senza JSON-LD, paginazione generalizzata e cache incrementale richiedono ancora implementazione e verifica.
+Corretta la lettura dei job prima del filtro sugli slug e la gestione delle pagine parzialmente fallite; corretto il conteggio nazionale per usare esecuzioni recenti con copertura effettivamente osservata; generata la coda di integrazione per tutti i datori. La precedente prova su 84 pagine strutturate è stata estesa al raccoglitore generale, all’HTML visibile, alla paginazione con browser e ai checkpoint. Sono passati 85 test Python, 12 test dell’interfaccia e 52 esempi di classificazione senza regressioni. Le prove su ALL IN GROUP e AXS logistiek hanno estratto e verificato due nuovi stage HR da portali prima non integrati. Il test di fusione degli otto gruppi verifica un esito per tutte le 842 aziende e conserva il catalogo in caso di errore generale. Gli esiti effettivi del primo ciclo completo sono nel report aziendale, senza assumere che ogni sito sia leggibile.
 
 
 ## Raccolta sull’intero registro: implementazione
