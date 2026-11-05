@@ -35,10 +35,10 @@ class BudgetClient(Client):
 
 class PageCache:
     """Technical cache only: never copied to the public static dataset."""
-    def __init__(self,source_id,root=None):
+    def __init__(self,source_id,root=None,revision=1):
         root=Path(root or os.environ.get('COLLECTOR_CACHE_DIR','.cache/collector'))
         self.root=root/hashlib.sha256(source_id.encode()).hexdigest()[:24];self.root.mkdir(parents=True,exist_ok=True)
-        self.hits=0;self.writes=0
+        self.hits=0;self.writes=0;self.revision=revision
     def path(self,url):return self.root/(hashlib.sha256(url.encode()).hexdigest()+'.json.gz')
     def exists(self,url):return self.path(url).exists()
     def timestamp(self,url):
@@ -47,13 +47,14 @@ class PageCache:
     def get(self,url,lastmod=None,max_age_hours=72):
         try:
             with gzip.open(self.path(url),'rt',encoding='utf-8') as f:value=json.load(f)
+            if value.get('revision',1)!=self.revision:return None
             age=(datetime.now(timezone.utc)-datetime.fromisoformat(value['stored_at'])).total_seconds()/3600
             if age>max_age_hours or (lastmod and value.get('lastmod')!=lastmod):return None
             self.hits+=1;return value['record']
         except (OSError,ValueError,KeyError,TypeError):return None
     def put(self,url,record,lastmod=None):
         path=self.path(url);tmp=path.with_suffix('.tmp')
-        with gzip.open(tmp,'wt',encoding='utf-8') as f:json.dump(dict(stored_at=datetime.now(timezone.utc).isoformat(),lastmod=lastmod,record=record),f,ensure_ascii=False)
+        with gzip.open(tmp,'wt',encoding='utf-8') as f:json.dump(dict(revision=self.revision,stored_at=datetime.now(timezone.utc).isoformat(),lastmod=lastmod,record=record),f,ensure_ascii=False)
         os.replace(tmp,path);self.writes+=1
     def state(self):
         try:return json.loads((self.root/'frontier.json').read_text())

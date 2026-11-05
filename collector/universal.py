@@ -37,8 +37,12 @@ class Document(HTMLParser):
         a=dict(attrs);parent=self.stack[-1] if self.stack else {};ignored=parent.get('ignored',False) or tag in ('script','style','noscript','svg')
         main=parent.get('main',False) or tag in ('main','article') or a.get('role')=='main' or bool(re.search(r'entry-content|job-description|job-detail|vacancy-detail',a.get('class','')))
         footer=parent.get('footer',False) or tag in ('footer','nav','header')
-        location=not footer and bool(re.search(r'location|standort|locatie|job-city|job-address|workplace|joblocal',a.get('class','')+' '+a.get('itemprop',''),re.I))
-        node=dict(tag=tag,ignored=ignored,main=main,footer=footer,location=location or (parent.get('location',False) and not footer))
+        location=not footer and bool(re.search(r'(?:^|\s)(?:location|job[-_]?location|vacancy[-_]location|standort|locatie|job[-_]city|job[-_]address|workplace|joblocal|addressLocality)(?:\s|$)',a.get('class','')+' '+a.get('itemprop',''),re.I))
+        if not footer and re.search(r'map-marker|location-dot|icon-location|icon-pin',a.get('class','')+' '+a.get('data-icon',''),re.I):
+            for ancestor in reversed(self.stack):
+                if ancestor['tag'] in ('li','dd') or re.search(r'icon-box-wrapper|icon-list-item',ancestor.get('class','')):
+                    ancestor['location']=True;break
+        node=dict(tag=tag,**{'class':a.get('class','')},ignored=ignored,main=main,footer=footer,location=location or (parent.get('location',False) and not footer))
         if tag not in ('meta','link','input','br','hr','img','source','wbr','area','base','embed','param'):self.stack.append(node)
         if tag=='a' and a.get('href'):self.anchor=[a['href'],'',a.get('rel','')]
         if tag=='h1':self.heading=[]
@@ -100,9 +104,12 @@ def job_from_visible(doc,source,is_job=False):
     text=doc.text
     if CHALLENGE.search(text[:3000]):return None
     # Geography comes only from labelled or semantically marked job locations.
-    marked=plain(' '.join(doc.locations))[:600]
+    marked=plain(' '.join(doc.locations))
+    if len(marked)>160:marked=''
     labelled=re.search(r'(?:location|standort|locatie|luogo di lavoro|sede di lavoro|localisation|ubicaci[oó]n|miejsce pracy|plaats|勤務地)\s*[:：\-]?\s*([^\n.;]{2,150})',' '.join(doc.main),re.I)
     location=marked or (labelled.group(1) if labelled else '')
+    location=re.split(r'\blocation\s*:\s*',location,flags=re.I)[-1].strip()
+    if len(location)>160:location=''
     url=safe_url(doc.url)
     if not url:return None
     return dict(source_id=source['id'],external_id=url,employer=source['employer'],title=title,text=text,location=location,city=location or None,country=None,url=url,apply_url=url,language=None,published_at=None,employment='',work_mode=None,needs_page=False,extraction_method='visible-html',geography_unresolved=not bool(country_codes(location)))
@@ -112,7 +119,7 @@ class Inventory(list):
 
 class Crawler:
     def __init__(self,source,client):
-        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id']);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0
+        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=2);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False

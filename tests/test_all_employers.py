@@ -139,3 +139,18 @@ class CrawlFairnessTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):
    c=Crawler(source(),FakeClient({}));detail=('https://example.org/jobs/3',True,2);about=('https://example.org/careers/our-values',False,2)
    self.assertLess(c.priority(detail),c.priority(about))
+
+class VisibleLocationTests(unittest.TestCase):
+ def test_elementor_template_class_is_not_job_location(self):
+  d=Document(b'<main class="elementor-location-single"><h1>HR Intern</h1><p>Work with our team in Amsterdam and other offices.</p></main>','https://example.org/jobs/1')
+  self.assertEqual(job_from_visible(d,source())['location'],'')
+ def test_published_map_marker_labels_only_its_compact_job_location(self):
+  d=Document(b'<main><h1>HR Intern</h1><div class="elementor-icon-box-wrapper"><svg class="e-fas-map-marker-alt"></svg><div><span>Rotterdam</span></div></div><p>Other company text</p></main>','https://example.org/jobs/1')
+  self.assertEqual(job_from_visible(d,source())['location'],'Rotterdam')
+
+class ExtractionCacheVersionTests(unittest.TestCase):
+ def test_extractor_change_does_not_reuse_old_normalized_content(self):
+  with tempfile.TemporaryDirectory() as d:
+   a=PageCache('example',d);a.put('https://example.org/jobs/1',{'location':'old template text'})
+   b=PageCache('example',d,revision=2);self.assertIsNone(b.get('https://example.org/jobs/1'))
+   b.put('https://example.org/jobs/1',{'location':'Rotterdam'});self.assertEqual(b.get('https://example.org/jobs/1')['location'],'Rotterdam')

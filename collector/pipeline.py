@@ -159,7 +159,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         report.update(status='partial' if source['id'] in partial_sources else 'ok',matching=len(staged),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
-        if cache:report['cache_hits']=cache.hits
+        if cache:report['cache_hits']=max(cache.hits,inventory_stats.get('cache_hits',0))
         if source['adapter'] in ('employer-sitemap','employer-index'):
             report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
         LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
