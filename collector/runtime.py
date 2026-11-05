@@ -20,6 +20,10 @@ class BudgetClient(Client):
     def check(self):
         if self.remaining()<.05:raise CollectionBudgetExceeded('Time budget exhausted; checkpoint retained')
         if self.requests>=self.max_requests:raise CollectionBudgetExceeded('Request budget exhausted; checkpoint retained')
+    def pause(self,seconds):
+        if seconds>=self.remaining():raise CollectionBudgetExceeded('Required host delay exceeds remaining budget; checkpoint retained')
+        time.sleep(seconds)
+
     def request(self,url,method='GET',robots=True,timeout=12,attempts=1):
         canonical_url(url);self.check();lock=host_lock(urlsplit(url).netloc)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')

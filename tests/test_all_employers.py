@@ -4,7 +4,7 @@ from unittest.mock import patch
 from collector.daily import provision,shard_for,merge,employer_report
 from collector.pipeline import read,ROOT,process_source,now
 from collector.universal import Document,job_from_json,job_from_visible,Crawler,Inventory
-from collector.runtime import PageCache,CollectionBudgetExceeded
+from collector.runtime import PageCache,CollectionBudgetExceeded,BudgetClient
 
 class FakeClient:
  def __init__(self,pages):self.pages=pages;self.calls=[]
@@ -71,3 +71,18 @@ class AllEmployerTests(unittest.TestCase):
   companies=[dict(id='a',name='A',source_ids=['a'],target_countries=['IT']),dict(id='b',name='B',source_ids=['b'],target_countries=['IT'])];sources=[dict(id='a',enabled=True),dict(id='b',enabled=True)]
   parts=[dict(report=dict(id='a',status='partial',records_inspected=3,checked_at=now(),matching=1))]
   r=employer_report(companies,sources,parts,now());self.assertEqual(r['summary']['configured'],2);self.assertEqual(r['summary']['attempted'],1);self.assertEqual(r['summary']['not-attempted'],1);self.assertEqual(r['summary']['partial'],1)
+
+class BudgetDelayTests(unittest.TestCase):
+ def test_long_host_delay_never_stalls_other_employers(self):
+  c=BudgetClient(seconds=1)
+  with patch('collector.runtime.time.sleep') as sleep:
+   with self.assertRaises(CollectionBudgetExceeded):c.pause(300)
+   sleep.assert_not_called()
+
+class RenderingFallbackTests(unittest.TestCase):
+ def test_complete_jsonld_is_read_without_unnecessary_browser(self):
+  s=source();s['no_browser']=False
+  body='<script type="application/ld+json">'+json.dumps(posting())+'</script>'
+  with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}),patch('collector.rendering.render_pages',side_effect=RuntimeError('must not be called')) as browser:
+   rows=Crawler(s,FakeClient({'https://example.org':body})).run()
+  self.assertEqual(len(rows),1);browser.assert_not_called()

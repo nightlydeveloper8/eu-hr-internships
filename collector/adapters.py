@@ -17,11 +17,13 @@ class Client:
         self.delay, self.last, self.robots = delay, {}, {}
         self.host_delays = {}
 
+    def pause(self,seconds):time.sleep(seconds)
+
     def request(self, url, method='GET', robots=True, timeout=35, attempts=3):
         host = urlsplit(url).netloc
         if robots and not self.permitted(url): raise ValueError('robots.txt disallows '+url)
         for attempt in range(attempts):
-            time.sleep(max(0,self.host_delays.get(host,self.delay)-(time.monotonic()-self.last.get(host,0))))
+            self.pause(max(0,self.host_delays.get(host,self.delay)-(time.monotonic()-self.last.get(host,0))))
             self.last[host]=time.monotonic()
             try:
                 with urlopen(Request(url,headers={'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},method=method),timeout=timeout) as response:
@@ -32,10 +34,10 @@ class Client:
                 retry = exc.headers.get('Retry-After','')
                 pause = min(60,int(retry)) if retry.isdigit() else 2**(attempt+1)
                 LOG.warning('Retry HTTP %s: %s',exc.code,host)
-                time.sleep(pause)
+                self.pause(pause)
             except (URLError,TimeoutError):
                 if attempt==attempts-1: raise
-                time.sleep(2**(attempt+1))
+                self.pause(2**(attempt+1))
 
     def permitted(self,url):
         p=urlsplit(url); origin=p.scheme+'://'+p.netloc

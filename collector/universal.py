@@ -155,12 +155,15 @@ class Crawler:
             target=safe_url(embedded.rstrip(');,'))
             if target and provider_host(urlsplit(target).hostname) and self.allow(target,observed=True):doc.frames.append(target)
         docs=[doc]
-        js_shell=len(doc.text)<350 or (not doc.jobposts() and not job_from_visible(doc,self.source) and not any(JOBPATH.search(u) or CAREER.search(label+' '+u) for u,label,_ in doc.links))
+        js_shell=not doc.jobposts() and not job_from_visible(doc,self.source,is_job) and (len(doc.text)<350 or not any(JOBPATH.search(u) or CAREER.search(label+' '+u) for u,label,_ in doc.links))
         has_more=any(re.search(r'load more|show more|carica|mostra|mehr|volgende|voir plus',b,re.I) for b in doc.buttons)
         if render or (not self.source.get('no_browser') and (js_shell or has_more)):
             from .rendering import render_pages
-            rendered,complete=render_pages(final,self.client,lambda u:self.allow(u),limit=self.source.get('max_render_pages',4))
-            docs.extend(Document(b,u) for u,b in rendered);self.rendered+=len(rendered);self.incomplete|=not complete;self.used_methods.add('browser')
+            try:
+                rendered,complete=render_pages(final,self.client,lambda u:self.allow(u),limit=self.source.get('max_render_pages',4))
+                docs.extend(Document(b,u) for u,b in rendered);self.rendered+=len(rendered);self.incomplete|=not complete;self.used_methods.add('browser')
+            except Exception as exc:
+                self.incomplete=True;self.errors.append(dict(url=final,error='Rendered read: '+str(exc)[:160]))
         result=dict(records=[],links=[],empty=False)
         for d in docs:
             posts=d.jobposts()

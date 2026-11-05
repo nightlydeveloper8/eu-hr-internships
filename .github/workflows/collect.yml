@@ -80,6 +80,7 @@ jobs:
           name: employer-shard-${{ matrix.shard }}
           path: .staging/results/shard-${{ matrix.shard }}.json
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 7
   publish:
     needs: [test, collect]
