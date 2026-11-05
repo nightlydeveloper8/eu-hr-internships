@@ -17,7 +17,7 @@ People Placement is a static, registration-free EU HR internship directory. Pyth
 
 ## Data boundaries
 
-Full descriptions are held in memory for deterministic classification and discarded. Public metadata includes at most brief language, duration and enrollment evidence. Raw descriptions and personal recruiter details are not exported. No aggregator supplies catalog records. Coverage is measured by integrated sources and observed job countries, never assumed from employer size or headquarters.
+Full descriptions are processed for deterministic classification. A private, ignored technical cache holds normalized public records for reuse for up to 48 hours; GitHub cache retention is separately managed by GitHub. Cache contents are never copied into the public dataset or site. Public metadata includes at most brief language, duration and enrollment evidence. Raw descriptions and personal recruiter details are not exported. No aggregator supplies catalog records. Coverage is measured by integrated sources and observed job countries, never assumed from employer size or headquarters.
 
 ## Research sources
 

@@ -78,65 +78,75 @@ def validate_catalog(data):
 
 def record_countries(record):
     if 'countries' in record:
-        return sorted({c for c in record['countries'] if c in COUNTRIES})
+        return sorted({code for c in record['countries'] for code in country_codes('',c)})
     return country_codes(record['location'],record.get('country'))
 
-def run(source_ids=None,verify=True,output=ROOT/'data'):
-    registry=read(ROOT/'data/sources.json',[])
-    selected=[s for s in registry if s.get('enabled') and (not source_ids or s['id'] in source_ids)]
-    prior=read(output/'catalog.json',{'jobs':[],'updated_at':None})
-    prior_report=read(output/'coverage.json',{'sources':[]})
-    report_by_id={r['id']:r for r in prior_report.get('sources',[])}
-    stamp=now(); client=Client(); current=[]; successful=set(); closure_eligible=set(); reports=[]; partial_sources=set()
-    for source in selected:
-        LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
-        report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
-        try:
-            records=collect(source,client)
-            prev_count=report_by_id.get(source['id'],{}).get('collected',0)
-            if prev_count>=20 and len(records)<prev_count*0.4: raise ValueError('Bulk disappearance quarantined; review source before next run')
-            report['collected']=len(records)
-            staged=[];page_errors=[];inspected=[]
-            for record in records:
-                # Inventory hints and URL slugs are not job titles. Read structured
-                # pages before filtering, including opaque IDs and untranslated URLs.
-                if record.get('needs_page'):
-                    try:
-                        record=enrich(record,source,client)
-                    except Exception as exc:
-                        page_errors.append(dict(url=record['url'],error=str(exc)[:180]))
-                        continue
-                else:
-                    role=classify_role(record['title'],record['text'],record.get('employment',''))
-                    if role:record=enrich(record,source,client)
-                inspected.append(record)
+def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
+    current=[];successful=set();closure_eligible=set();partial_sources=set()
+    LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
+    report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
+    try:
+        records=collect(source,client)
+        inventory_stats=getattr(records,'stats',{})
+        source=dict(source,allowed_hosts=sorted(set(source['allowed_hosts'])|set(inventory_stats.get('allowed_hosts',[]))))
+        if prev_count>=20 and len(records)<prev_count*0.4 and inventory_stats.get('complete',True): raise ValueError('Bulk disappearance quarantined; review source before next run')
+        report['collected']=len(records)
+        staged=[];page_errors=[];inspected=[]
+        if cache:records=sorted(records,key=lambda r:cache.exists(r['url']) if r.get('needs_page') else False)
+        for record in records:
+            # Inventory hints and URL slugs are not job titles. Read structured
+            # pages before filtering, including opaque IDs and untranslated URLs.
+            if record.get('needs_page'):
+                try:
+                    cached=cache.get(record['url'],max_age_hours=48) if cache else None
+                    record=cached or enrich(record,source,client)
+                    if cache and not cached:cache.put(record['url'],record)
+                except Exception as exc:
+                    page_errors.append(dict(url=record['url'],error=str(exc)[:180]))
+                    from .runtime import CollectionBudgetExceeded
+                    if isinstance(exc,CollectionBudgetExceeded):break
+                    continue
+            else:
                 role=classify_role(record['title'],record['text'],record.get('employment',''))
-                countries=record_countries(record)
-                if not role or not countries:continue
-                url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
-                verified=None; link_status='not-checked'
-                if verify:
-                    try:
-                        # HEAD avoids downloading/reproducing descriptions. No fallback on access restrictions.
-                        for target in set((url,apply)):
-                            _,_,final=client.request(target,method='HEAD')
-                            allowed_url(final,source)
-                        verified=stamp; link_status='verified'
-                    except Exception as exc:
-                        LOG.warning('Link unverified %s: %s',url,str(exc)[:150]); link_status='unverified'
-                langs=workplace_languages(record['text'])
-                staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
-            current.extend(staged); successful.add(source['id'])
-            if page_errors:partial_sources.add(source['id'])
-            if not page_errors and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
-            report.update(status='partial' if page_errors else 'ok',matching=len(staged),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
-            if source['adapter'] in ('employer-sitemap','employer-index'):
-                report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
-            LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
-        except Exception as exc:
-            report.update(status='failed',error=str(exc)[:400])
-            LOG.error('%s failed; previous data retained: %s',source['id'],exc)
-        reports.append(report)
+                if role:record=enrich(record,source,client)
+            inspected.append(record)
+            role=classify_role(record['title'],record['text'],record.get('employment',''))
+            countries=record_countries(record)
+            if not role or not countries:continue
+            url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
+            verified=None; link_status='not-checked'
+            if verify:
+                try:
+                    # HEAD avoids downloading/reproducing descriptions. No fallback on access restrictions.
+                    for target in set((url,apply)):
+                        _,_,final=client.request(target,method='HEAD')
+                        allowed_url(final,source)
+                    verified=stamp; link_status='verified'
+                except Exception as exc:
+                    LOG.warning('Link unverified %s: %s',url,str(exc)[:150]); link_status='unverified'
+            langs=workplace_languages(record['text'])
+            staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
+        current.extend(staged); successful.add(source['id'])
+        if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
+        if not page_errors and inventory_stats.get('complete',True) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
+        report.update(status='partial' if source['id'] in partial_sources else 'ok',matching=len(staged),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
+        report.update(inventory_stats)
+        if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
+        if cache:report['cache_hits']=cache.hits
+        if source['adapter'] in ('employer-sitemap','employer-index'):
+            report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
+        LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
+    except Exception as exc:
+        report.update(status='failed',error=str(exc)[:400])
+        LOG.error('%s failed; previous data retained: %s',source['id'],exc)
+    return dict(report=report,jobs=current,closure_eligible=sorted(closure_eligible))
+
+def finalize(registry,selected,prior,prior_report,parts,stamp,output):
+    reports=[p['report'] for p in parts];current=[j for p in parts for j in p['jobs']]
+    successful={r['id'] for r in reports if r['status'] in ('ok','partial') and (r.get('records_inspected',0) or r.get('explicit_empty') or r['status']=='ok')}
+    partial_sources={r['id'] for r in reports if r['status']=='partial'}
+    closure_eligible={sid for p in parts for sid in p['closure_eligible']}
+    report_by_id={r['id']:r for r in prior_report.get('sources',[])}
     jobs=deduplicate(reconcile(prior['jobs'],current,closure_eligible,stamp))
     from .company_registry import region_codes_for_job
     companies=read(ROOT/'data/companies.json',[])
@@ -155,6 +165,16 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
     write(output/'coverage.json',coverage); write(output/'catalog.json',result)
     LOG.info('Catalog: %s records, %s/%s sources succeeded',len(jobs),len(successful),len(selected))
     return result,coverage
+
+def run(source_ids=None,verify=True,output=ROOT/'data'):
+    registry=read(ROOT/'data/sources.json',[])
+    selected=[s for s in registry if s.get('enabled') and (not source_ids or s['id'] in source_ids)]
+    prior=read(output/'catalog.json',{'jobs':[],'updated_at':None})
+    prior_report=read(output/'coverage.json',{'sources':[]})
+    counts={r['id']:r.get('collected',0) for r in prior_report.get('sources',[])}
+    stamp=now();client=Client()
+    parts=[process_source(source,client,stamp,counts.get(source['id'],0),verify) for source in selected]
+    return finalize(registry,selected,prior,prior_report,parts,stamp,output)
 
 def main():
     parser=argparse.ArgumentParser(); parser.add_argument('--sources',nargs='*'); parser.add_argument('--no-verify',action='store_true'); parser.add_argument('--validate',action='store_true'); args=parser.parse_args()

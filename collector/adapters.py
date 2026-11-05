@@ -17,24 +17,24 @@ class Client:
         self.delay, self.last, self.robots = delay, {}, {}
         self.host_delays = {}
 
-    def request(self, url, method='GET', robots=True):
+    def request(self, url, method='GET', robots=True, timeout=35, attempts=3):
         host = urlsplit(url).netloc
         if robots and not self.permitted(url): raise ValueError('robots.txt disallows '+url)
-        for attempt in range(3):
+        for attempt in range(attempts):
             time.sleep(max(0,self.host_delays.get(host,self.delay)-(time.monotonic()-self.last.get(host,0))))
             self.last[host]=time.monotonic()
             try:
-                with urlopen(Request(url,headers={'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},method=method),timeout=35) as response:
+                with urlopen(Request(url,headers={'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},method=method),timeout=timeout) as response:
                     if urlsplit(response.url).scheme != 'https': raise ValueError('Unsafe redirect')
                     return response.read(20_000_000), response.status, response.url
             except HTTPError as exc:
-                if exc.code not in (429,500,502,503,504) or attempt==2: raise
+                if exc.code not in (429,500,502,503,504) or attempt==attempts-1: raise
                 retry = exc.headers.get('Retry-After','')
                 pause = min(60,int(retry)) if retry.isdigit() else 2**(attempt+1)
                 LOG.warning('Retry HTTP %s: %s',exc.code,host)
                 time.sleep(pause)
             except (URLError,TimeoutError):
-                if attempt==2: raise
+                if attempt==attempts-1: raise
                 time.sleep(2**(attempt+1))
 
     def permitted(self,url):
@@ -66,6 +66,9 @@ def _record(source, job_id,title,location,text,url,apply=None,**extra):
 def collect(source,client):
     kind,board=source['adapter'],quote(source.get('board',''),safe='')
     out=[]
+    if kind=='universal-employer':
+        from .universal import collect_universal
+        return collect_universal(source,client)
     if kind in ('personio-xml','recruitee'):
         from .public_feeds import personio_records,recruitee_records
         return (personio_records if kind=='personio-xml' else recruitee_records)(source,client)
@@ -76,7 +79,9 @@ def collect(source,client):
         from .employer_pages import sitemap_records
         return sitemap_records(source,client)
     elif kind=='greenhouse':
-        data=client.json(f'https://boards-api.greenhouse.io/v1/boards/{board}/jobs?content=true')
+        api_host=source.get('api_host','boards-api.greenhouse.io')
+        if api_host not in ('boards-api.greenhouse.io','boards-api.eu.greenhouse.io'):raise ValueError('Unknown Greenhouse region')
+        data=client.json(f'https://{api_host}/v1/boards/{board}/jobs?content=true')
         jobs=data['jobs']
         if not isinstance(jobs,list) or data.get('meta',{}).get('total',len(jobs))!=len(jobs): raise ValueError('Incomplete Greenhouse board')
         for j in jobs:

@@ -4,21 +4,22 @@ on:
     branches: [main]
     paths:
       - 'collector/**'
+      - 'data/companies.json'
       - 'data/sources.json'
+      - 'requirements-collector.txt'
       - '.github/workflows/collect.yml'
   schedule:
     - cron: '17 6 * * *'
   workflow_dispatch:
 permissions:
-  contents: write
-  issues: write
+  contents: read
 concurrency:
   group: employer-catalog
   cancel-in-progress: ${{ github.event_name == 'push' }}
 jobs:
-  collect:
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,19 +28,85 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test before collection
+      - name: Verify extraction, all-employer assignment and public export
         run: |
           python -m unittest discover -s tests -v
           node --test tests/frontend.test.js
           python scripts/evaluate.py
-      - name: Collect public employer boards and verify links
-        run: python -m collector.pipeline
-      - name: Validate collected data and static export
+          python -m collector.daily provision
+          python scripts/company_coverage.py
+          python scripts/build.py
+  collect:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    env:
+      COLLECTOR_CACHE_DIR: .cache/collector
+      PLAYWRIGHT_BROWSERS_PATH: .cache/ms-playwright
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-collector.txt
+      - name: Install public-page reader
         run: |
+          pip install -r requirements-collector.txt
+          python -m playwright install --with-deps chromium
+      - name: Restore employer page checkpoints
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/collector
+          key: employer-pages-v1-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: employer-pages-v1-${{ matrix.shard }}-
+      - name: Collect every assigned employer and verify matching links
+        run: python -m collector.daily collect --shard ${{ matrix.shard }} --shards 8 --workers 6
+      - name: Save employer page checkpoints for the next morning
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/collector
+          key: employer-pages-v1-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Retain employer results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: employer-shard-${{ matrix.shard }}
+          path: .staging/results/shard-${{ matrix.shard }}.json
+          if-no-files-found: error
+          retention-days: 7
+  publish:
+    needs: [test, collect]
+    if: ${{ always() && needs.test.result == 'success' && !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: employer-shard-*
+          path: .staging/results
+          merge-multiple: true
+      - name: Require a result for every employer, merge and validate
+        run: |
+          python -m collector.daily merge --shards 8
           python scripts/company_coverage.py
           python -m collector.pipeline --validate
+          python scripts/evaluate.py
           python scripts/build.py
-      - name: Retain collection reports
+      - name: Retain catalog and per-employer outcomes
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -48,17 +115,19 @@ jobs:
             data/catalog.json
             data/coverage.json
             data/company-coverage.json
+            data/employer-collection.json
             docs/evaluation-report.json
             docs/country-research-progress.json
             docs/company-integration-queue.json
           retention-days: 14
-      - name: Commit verified export
+      - name: Publish collected records and honest coverage
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/catalog.json data/coverage.json data/company-coverage.json docs/evaluation-report.json docs/country-research-progress.json docs/company-integration-queue.json
+          git add data/catalog.json data/coverage.json data/company-coverage.json data/employer-collection.json data/companies.json data/sources.json docs/evaluation-report.json docs/country-research-progress.json docs/company-integration-queue.json docs/company-discovery-queue.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Refresh employer internship catalog'
+            git commit -m 'Refresh all-employer HR internship collection'
+            git pull --rebase origin main
             git push
           fi
       - name: Report source health or workflow failure
@@ -71,11 +140,13 @@ jobs:
             const fs = require('fs');
             if(process.env.JOB_STATUS === 'cancelled') return;
             let data;
-            try { data = JSON.parse(fs.readFileSync('data/catalog.json','utf8')); } catch {}
-            const unhealthy = process.env.JOB_STATUS !== 'success' || data?.update_status !== 'ok';
+            try { data = JSON.parse(fs.readFileSync('data/employer-collection.json','utf8')); } catch {}
+            const summary = data?.summary || {};
+            const unhealthy = process.env.JOB_STATUS !== 'success' || !data || (summary['blocked-or-failed'] || 0) > 0 || (summary['not-attempted'] || 0) > 0;
             const title = '[monitor] Employer collection needs attention';
             const {data: issues} = await github.rest.issues.listForRepo({...context.repo,state:'open',creator:'github-actions[bot]',per_page:100});
             const existing = issues.find(i=>i.title===title);
-            const body = `Collection status: ${data?.update_status || 'failed'}. See the [workflow run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) and the coverage artifact. Failed sources preserve previous records. Enable GitHub issue and Actions notifications for email alerts.`;
+            const body = `Employer collection: ${JSON.stringify(summary)}. See the [workflow run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) and per-employer coverage artifact. Previous records are preserved for partial or failed sources.`;
             if(unhealthy && !existing) await github.rest.issues.create({...context.repo,title,body});
+            if(unhealthy && existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,body});
             if(!unhealthy && existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,state:'closed'});

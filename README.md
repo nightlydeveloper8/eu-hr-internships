@@ -48,7 +48,7 @@ python3 scripts/build.py
 
 `data/catalog.json` is the public catalog; `data/coverage.json` contains source runs, observed country coverage and quality counters. `data/sources.json` is the expandable registry. The inspectable regression set is `data/evaluation.json`; its score is in `docs/evaluation-report.json`. Homepage checks for discovery candidates are in `docs/source-discovery-audit.json`. A reachable homepage does not imply permission, integration or current HR internships.
 
-The pipeline first collects **all public records** from each enabled board, then filters on internship signals, HR title and EU geography. SmartRecruiters would enrich candidate records through the documented detail endpoint after the full board is collected. Full descriptions exist only in memory and are not exported. Brief evidence excerpts support language and enrolment metadata.
+The pipeline first collects **all public records** from each enabled board, then filters on internship signals, HR title and EU geography. SmartRecruiters would enrich candidate records through the documented detail endpoint after the full board is collected. Full descriptions are processed in memory; extracted public job text may be retained in an ignored, compressed technical cache for up to 48 hours between reads. It is never included in the public export. Brief evidence excerpts support language and enrolment metadata.
 
 ## Data and confidence
 

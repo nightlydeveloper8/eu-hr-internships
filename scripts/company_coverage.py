@@ -10,6 +10,10 @@ ROOT=Path(__file__).resolve().parents[1]
 def generate():
     companies=read(ROOT/'data/companies.json',[]);geography=read(ROOT/'data/geography.json',{});sources=read(ROOT/'data/sources.json',[]);jobs=read(ROOT/'data/catalog.json',{}).get('jobs',[])
     report=coverage_report(companies,geography,sources,jobs,now())
+    outcomes=read(ROOT/'data/employer-collection.json',{})
+    report['collection_outcomes']=outcomes.get('summary',{})
+    report['collection_checked_at']=outcomes.get('generated_at')
+    report['monitored_companies_definition']='Automatic collectors configured; extraction success is reported separately in collection_outcomes'
     plan=read(ROOT/'data/employer-research-plan.json',{})
     runs=read(ROOT/'data/coverage.json',{}).get('sources',[])
     progress=country_research_progress(companies,sources,plan,runs,report['generated_at'])

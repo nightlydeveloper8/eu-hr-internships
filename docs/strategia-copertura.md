@@ -90,3 +90,8 @@ La fotografia di partenza è 842 datori nel registro e 40 canali configurati e g
 ## Verifiche già eseguite in questa revisione
 
 Corretta la lettura dei job prima del filtro sugli slug e la gestione delle pagine parzialmente fallite; corretto il conteggio nazionale per usare esecuzioni recenti con copertura effettivamente osservata; generata la coda di integrazione per tutti i datori. Prova live: 84 pagine su due fonti, senza errori, con catalogo rimasto a 22 opportunità. Browser, nuovi fornitori ATS, estrazione HTML senza JSON-LD, paginazione generalizzata e cache incrementale richiedono ancora implementazione e verifica.
+
+
+## Raccolta sull’intero registro: implementazione
+
+Ogni azienda deve avere un raccoglitore attivo. Il flusso `collector.daily` aggiunge automaticamente un raccoglitore generale alle nuove aziende prive di connettore specifico e ripartisce la raccolta giornaliera su otto gruppi. La copertura configurata è distinta dagli esiti verificati per azienda. Procedura e limiti sono descritti in [raccolta-tutte-aziende.md](raccolta-tutte-aziende.md). Il traguardo di 100 aziende operative per paese rimane misurato sulle letture recenti e sulle sedi effettivamente osservate, senza trasformare i candidati o i tentativi falliti in copertura riuscita.
