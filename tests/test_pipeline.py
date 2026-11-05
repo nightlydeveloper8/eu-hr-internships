@@ -95,3 +95,17 @@ class AdapterTests(unittest.TestCase):
             opened.assert_not_called()
 
 if __name__=='__main__':unittest.main()
+
+
+class HostRateLimitTests(unittest.TestCase):
+    def test_crawl_delay_does_not_leak_between_employers(self):
+        c=Client(delay=.35)
+        def robots(url,**kwargs):
+            text='User-agent: *\nCrawl-delay: 2\n' if 'slow.example' in url else 'User-agent: *\nAllow: /\n'
+            return text.encode(),200,url
+        with patch.object(c,'request',side_effect=robots):
+            self.assertTrue(c.permitted('https://slow.example/jobs'))
+            self.assertTrue(c.permitted('https://fast.example/jobs'))
+        self.assertEqual(c.host_delays['slow.example'],2)
+        self.assertEqual(c.delay,.35)
+        self.assertEqual(c.host_delays.get('fast.example',c.delay),.35)

@@ -14,7 +14,7 @@ permissions:
   issues: write
 concurrency:
   group: employer-catalog
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 jobs:
   collect:
     runs-on: ubuntu-latest
@@ -69,6 +69,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            if(process.env.JOB_STATUS === 'cancelled') return;
             let data;
             try { data = JSON.parse(fs.readFileSync('data/catalog.json','utf8')); } catch {}
             const unhealthy = process.env.JOB_STATUS !== 'success' || data?.update_status !== 'ok';

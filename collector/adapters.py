@@ -15,12 +15,13 @@ AGENT = 'PeoplePlacementBot/1.0 (public HR internship discovery; source: README.
 class Client:
     def __init__(self, delay=0.35):
         self.delay, self.last, self.robots = delay, {}, {}
+        self.host_delays = {}
 
     def request(self, url, method='GET', robots=True):
         host = urlsplit(url).netloc
         if robots and not self.permitted(url): raise ValueError('robots.txt disallows '+url)
         for attempt in range(3):
-            time.sleep(max(0,self.delay-(time.monotonic()-self.last.get(host,0))))
+            time.sleep(max(0,self.host_delays.get(host,self.delay)-(time.monotonic()-self.last.get(host,0))))
             self.last[host]=time.monotonic()
             try:
                 with urlopen(Request(url,headers={'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},method=method),timeout=35) as response:
@@ -51,7 +52,7 @@ class Client:
             self.robots[origin]=parser
         parser=self.robots[origin]
         delay=parser.crawl_delay(AGENT) or parser.crawl_delay('*')
-        if delay: self.delay=max(self.delay,delay)
+        if delay: self.host_delays[p.netloc]=max(self.delay,delay)
         return parser.can_fetch(AGENT,url)
 
     def json(self,url):
