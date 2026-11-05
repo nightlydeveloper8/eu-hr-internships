@@ -119,7 +119,7 @@ class Inventory(list):
 
 class Crawler:
     def __init__(self,source,client):
-        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=2);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0
+        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=2);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set()
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
@@ -165,6 +165,15 @@ class Crawler:
         if not safe_url(final):raise ValueError('Unsafe final URL')
         # A declared employer redirect is public provenance for its final host.
         self.allowed.add(urlsplit(final).hostname);self.pages+=1
+        if body.lstrip().startswith(b'{'):
+            try:payload=json.loads(body)
+            except ValueError:payload=None
+            if payload is not None:
+                from .public_json import smartrecruiters_job
+                result=smartrecruiters_job(payload,final,self.source)
+                if result is not None:
+                    self.used_methods.add('public-smartrecruiters-json');self.closed_urls.update(result.get('closed_urls',[]))
+                    self.inventory|=bool(result['records']);return result
         if body.startswith(b'\x1f\x8b'):
             with gzip.GzipFile(fileobj=BytesIO(body)) as zipped:body=zipped.read(20_000_001)
             if len(body)>20_000_000:raise ValueError('Sitemap decompression limit')
@@ -247,7 +256,7 @@ class Crawler:
         try:
             while queue:
                 self.client.check()
-                if time.monotonic()>=self.scan_deadline:self.incomplete=True;break
+                if time.monotonic()>=self.scan_deadline or (hasattr(self.client,'max_requests') and self.client.requests>=self.client.max_requests*.8):self.incomplete=True;break
                 if self.pages>=max_pages:self.incomplete=True;break
                 url,is_job,depth=queue.popleft()
                 if url in self.urls_seen:continue
@@ -271,7 +280,7 @@ class Crawler:
         self.state['allowed_hosts']=sorted(self.allowed);self.state['pending']=remaining[:2000];self.cache.save_state(self.state)
         unresolved=sum(bool(r.get('geography_unresolved')) for r in self.records.values())
         complete=(bool(self.completed_feeds) and self.inventory or self.empty) and not self.incomplete and not self.errors and not remaining and not unresolved
-        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed))
+        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),verified_closed_urls=sorted(self.closed_urls),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed))
         if not self.inventory and not self.empty:stats['error']='No verified job inventory or explicit empty vacancy list found; discovery continues automatically'
         return Inventory(self.records.values(),stats)
 

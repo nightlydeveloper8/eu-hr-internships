@@ -109,3 +109,17 @@ class HostRateLimitTests(unittest.TestCase):
         self.assertEqual(c.host_delays['slow.example'],2)
         self.assertEqual(c.delay,.35)
         self.assertEqual(c.host_delays.get('fast.example',c.delay),.35)
+
+class UnverifiedDuplicateTests(unittest.TestCase):
+ def test_unverified_language_mirrors_do_not_block_the_entire_catalog(self):
+  rows=[job(last_verified_at=None),job(id='def',last_verified_at=None,url='https://jobs.lever.co/a/1?utm_source=x')]
+  self.assertEqual(len(deduplicate(rows)),1)
+ def test_verified_copy_supersedes_unverified_without_losing_identity(self):
+  a=job(last_verified_at=None);b=job(id='def',last_verified_at='2026-11-05T12:00:00+00:00')
+  result=deduplicate([a,b]);self.assertEqual(result[0]['id'],'abc');self.assertEqual(result[0]['last_verified_at'],b['last_verified_at'])
+
+class PublishedATSAliasTests(unittest.TestCase):
+ def test_intervieweb_query_alias_and_language_routes_share_posting_id(self):
+  a=job(source_id='despar',url='https://despar.intervieweb.it/jobs/hr-stage-11939/it',last_verified_at=None)
+  b=job(id='def',source_id='despar',url='https://despar.intervieweb.it/app.php?module=annunci&l=hr-stage-11939&lang=de',last_verified_at=None)
+  self.assertEqual(len(deduplicate([a,b])),1)

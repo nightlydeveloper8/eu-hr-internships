@@ -154,3 +154,9 @@ class ExtractionCacheVersionTests(unittest.TestCase):
    a=PageCache('example',d);a.put('https://example.org/jobs/1',{'location':'old template text'})
    b=PageCache('example',d,revision=2);self.assertIsNone(b.get('https://example.org/jobs/1'))
    b.put('https://example.org/jobs/1',{'location':'Rotterdam'});self.assertEqual(b.get('https://example.org/jobs/1')['location'],'Rotterdam')
+
+class BulkReductionTests(unittest.TestCase):
+ def test_valid_new_stage_survives_a_large_inventory_drop(self):
+  s=source();r=job_from_json(posting(),'https://example.org/jobs/1',s)
+  with patch('collector.pipeline.collect',return_value=[r]):p=process_source(s,FakeClient({}),now(),prev_count=100)
+  self.assertEqual(len(p['jobs']),1);self.assertEqual(p['report']['status'],'partial');self.assertEqual(p['closure_eligible'],[])

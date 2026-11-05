@@ -1,4 +1,4 @@
-"""Only unauthenticated, documented, public/listed job-board GET endpoints."""
+"""Public recruiting interfaces and employer-published job metadata; unauthenticated reads only."""
 import json
 import logging
 import re
@@ -46,7 +46,13 @@ class Client:
             try:
                 body,_,_=self.request(origin+'/robots.txt',robots=False)
                 robots_text=body.decode('utf-8','replace')
-                if re.search(r'<(?:!doctype|html)\b',robots_text,re.I):raise ValueError('robots.txt returned HTML; access review required')
+                if re.search(r'<(?:!doctype|html)\b',robots_text,re.I):
+                    title=re.search(r'<title[^>]*>(.*?)</title>',robots_text,re.I|re.S)
+                    challenge=(title.group(1) if title else '')+' '+plain(robots_text[:3500])
+                    if re.search(r'access denied|just a moment|verify (?:you are|that you are) human|making sure you|security verification|anubis|cdn-cgi/challenge-platform',challenge,re.I):raise ValueError('robots.txt returned an access challenge')
+                    # RFC 9309 sections 2.3.1.1 and 2.3.1.5 require following
+                    # parseable directives; malformed lines are not a disallow.
+                    LOG.warning('robots.txt has invalid HTML lines: %s; parsing valid directives',origin)
                 parser.parse(robots_text.splitlines())
             except HTTPError as exc:
                 if exc.code in (404,410): parser.parse([])
@@ -68,6 +74,9 @@ def _record(source, job_id,title,location,text,url,apply=None,**extra):
 def collect(source,client):
     kind,board=source['adapter'],quote(source.get('board',''),safe='')
     out=[]
+    if kind=='amazon-search':
+        from .amazon import search_records
+        return search_records(source,client)
     if kind=='universal-employer':
         from .universal import collect_universal
         return collect_universal(source,client)

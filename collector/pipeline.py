@@ -6,7 +6,7 @@ import logging
 import os
 import re
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
 from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, advertisement_language, extract_metadata
 
@@ -57,6 +57,10 @@ def posting_url_identity(job):
         match=re.search(r'/\d+/(\d+)$',p.path);identifier=match.group(1) if match else None
     elif host.endswith('.intervieweb.it'):
         match=re.search(r'/jobs/[^/]*-(\d+)(?:/[a-z]{2})?/?$',p.path);identifier=match.group(1) if match else None
+        if not identifier and p.path.endswith('/app.php'):
+            query=parse_qs(p.query)
+            if query.get('module')==['annunci']:
+                match=re.search(r'-(\d+)$',(query.get('l') or [''])[0]);identifier=match.group(1) if match else None
     if identifier:return 'posting:'+job['source_id']+':'+host+':'+identifier
     return None
 
@@ -77,7 +81,7 @@ def deduplicate(jobs):
             combined_countries=sorted(set(existing.get('countries',[]))|set(job.get('countries',[])))
             existing['duplicate_source_ids']=sorted(set(existing.get('duplicate_source_ids',[])+[job['source_id']]))
             # Keep stable ID/first discovery, use freshest verified metadata.
-            if job.get('last_verified_at','')>existing.get('last_verified_at',''):
+            if (job.get('last_verified_at') or '')>(existing.get('last_verified_at') or ''):
                 stable,first=existing['id'],existing['first_discovered_at']
                 existing.update(job); existing['id'],existing['first_discovered_at']=stable,first
             if combined_countries:existing['countries']=combined_countries;existing['country']=combined_countries[0]
@@ -114,7 +118,10 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         records=collect(source,client)
         inventory_stats=getattr(records,'stats',{})
         source=dict(source,allowed_hosts=sorted(set(source['allowed_hosts'])|set(inventory_stats.get('allowed_hosts',[]))))
-        if prev_count>=20 and len(records)<prev_count*0.4 and inventory_stats.get('complete',True): raise ValueError('Bulk disappearance quarantined; review source before next run')
+        bulk_disappearance=prev_count>=20 and len(records)<prev_count*0.4 and inventory_stats.get('complete',True)
+        if bulk_disappearance:
+            partial_sources.add(source['id']);report['bulk_disappearance_quarantined']=True
+            report['error']='Large inventory reduction; new valid matches accepted, absence-based closure disabled pending review'
         report['collected']=len(records)
         staged=[];page_errors=[];inspected=[]
         if cache:
@@ -155,9 +162,10 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
-        if not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
+        if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
         report.update(status='partial' if source['id'] in partial_sources else 'ok',matching=len(staged),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
+        if bulk_disappearance:report['status']='partial'
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
         if cache:report['cache_hits']=max(cache.hits,inventory_stats.get('cache_hits',0))
         if source['adapter'] in ('employer-sitemap','employer-index'):
@@ -175,6 +183,9 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     closure_eligible={sid for p in parts for sid in p['closure_eligible']}
     report_by_id={r['id']:r for r in prior_report.get('sources',[])}
     jobs=deduplicate(apply_listing_reviews(reconcile(prior['jobs'],current,closure_eligible,stamp),read(ROOT/'data/listing-reviews.json',[])))
+    explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
+    for job in jobs:
+        if canonical_url(job['url']) in explicitly_closed:job['status']='closed';job['closure_reason']='Official recruiting page explicitly disables applications'
     from .company_registry import region_codes_for_job
     companies=read(ROOT/'data/companies.json',[])
     for job in jobs:job['region_codes']=region_codes_for_job(job,companies)
@@ -192,6 +203,7 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     counts=Counter(c for j in jobs if j['status']!='closed' for c in j['countries'])
     all_reports=list(report_by_id.values())
     coverage={'generated_at':stamp,'exhaustive':False,'sources':all_reports,'countries':[{'code':c,'name':n,'listings':counts[c],'sources_with_observed_jobs':sum(c in r.get('observed_countries',[]) for r in all_reports if r['status']=='ok'),'discovery_candidates':sum(c in s.get('target_countries',[]) for s in registry if not s.get('enabled'))} for c,n in COUNTRIES.items()],'quality':{'total':len(jobs),'open':sum(j['status']=='open' for j in jobs),'unverified':sum(j['status']=='unverified' for j in jobs),'confirmed_english':sum(any(l['code']=='en' for l in j['workplace_languages']) for j in jobs if j['status']!='closed'),'sources_succeeded':len(successful),'sources_attempted':len(selected),'sources_partial':len(partial_sources)}}
+    coverage['quality'].update(verified_internships=sum(j['status']=='open' and j['internship_type']=='internship' for j in jobs),verified_working_students=sum(j['status']=='open' and j['internship_type']=='working-student' for j in jobs),verified_traineeships=sum(j['status']=='open' and j['internship_type']=='traineeship' for j in jobs))
     # Validate both documents before either is exported; the build copies only a successful run.
     write(output/'coverage.json',coverage); write(output/'catalog.json',result)
     LOG.info('Catalog: %s records, %s/%s sources succeeded',len(jobs),len(successful),len(selected))

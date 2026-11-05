@@ -9,7 +9,7 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from pathlib import Path
 from urllib.parse import urlsplit
-from .pipeline import ROOT,read,write,now,process_source,finalize
+from .pipeline import ROOT,read,write,now,process_source,finalize,deduplicate
 from .classify import COUNTRIES,canonical_url
 from .runtime import BudgetClient,PageCache
 LOG=logging.getLogger(__name__)
@@ -47,6 +47,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     known={}
     for job in read(ROOT/'data/catalog.json',{}).get('jobs',[]):
         if job.get('status')!='closed':known.setdefault(job['source_id'],[]).append(job['url'])
+    selected.sort(key=lambda s:(s['id'] not in known,s['adapter']=='universal-employer',-counts.get(s['id'],0),s['id']))
     stamp=now();parts=[]
     company_for={sid:c for c in companies for sid in c.get('source_ids',[])}
     def work(source):
@@ -78,6 +79,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     return payload
 
 def employer_report(companies,sources,parts,stamp):
+    unique_matches=Counter(j['source_id'] for j in deduplicate([j for p in parts for j in p.get('jobs',[])]) if j.get('status')!='closed')
     reports={p['report']['id']:p['report'] for p in parts};enabled={s['id'] for s in sources if s.get('enabled')};rows=[]
     for c in companies:
         ids=sorted(enabled.intersection(c['source_ids']));runs=[reports[i] for i in ids if i in reports]
@@ -86,7 +88,7 @@ def employer_report(companies,sources,parts,stamp):
         elif any(r.get('records_inspected',0) for r in runs):state='partial'
         elif any(r['status']=='partial' for r in runs):state='discovery-incomplete'
         else:state='blocked-or-failed'
-        rows.append(dict(company_id=c['id'],name=c['name'],candidate_countries=c.get('target_countries',[]),state=state,source_ids=ids,attempted=len(runs)==len(ids) and bool(ids),checked_at=max((r['checked_at'] for r in runs),default=None),public_job_records=sum(r.get('records_inspected',0) for r in runs),matching_hr_positions=sum(r.get('matching',0) for r in runs),pages_read=sum(r.get('pages_read',0) for r in runs),pending_urls=sum(r.get('pending_urls',0) for r in runs),errors=[dict(source_id=r['id'],error=r.get('error') or str(r.get('page_errors',[])[:3])) for r in runs if r.get('error') or r.get('page_errors')],next_attempt='next daily run'))
+        rows.append(dict(company_id=c['id'],name=c['name'],candidate_countries=c.get('target_countries',[]),state=state,source_ids=ids,attempted=len(runs)==len(ids) and bool(ids),checked_at=max((r['checked_at'] for r in runs),default=None),public_job_records=sum(r.get('records_inspected',0) for r in runs),matching_hr_positions=sum(unique_matches[sid] for sid in ids),pages_read=sum(r.get('pages_read',0) for r in runs),pending_urls=sum(r.get('pending_urls',0) for r in runs),errors=[dict(source_id=r['id'],error=r.get('error') or str(r.get('page_errors',[])[:3])) for r in runs if r.get('error') or r.get('page_errors')],next_attempt='next daily run'))
     summary=dict(Counter(r['state'] for r in rows));summary.update(companies=len(companies),configured=sum(bool(enabled.intersection(c['source_ids'])) for c in companies),attempted=sum(r['attempted'] for r in rows))
     countries=[dict(code=code,name=name,companies_identified=sum(code in r['candidate_countries'] for r in rows),states=dict(Counter(r['state'] for r in rows if code in r['candidate_countries']))) for code,name in COUNTRIES.items()]
     return dict(generated_at=stamp,exhaustive=False,summary=summary,country_counting='Candidate country membership; multi-country employers counted once per country. Actual job locations require published evidence.',countries=countries,employers=rows)

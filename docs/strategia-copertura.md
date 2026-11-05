@@ -4,6 +4,8 @@ Revisione del 5 novembre 2026. Sostituisce la precedente soglia di 300 sedi conf
 
 ## 1. Il risultato da ottenere
 
+L’obiettivo primario è rendere disponibili agli studenti stage HR realmente aperti, distinti, con una sede verificata e una candidatura utilizzabile. La mappatura delle aziende serve questo risultato. I tentativi automatici, i nomi censiti e i test tecnici non sono indicatori di opportunità disponibili. Gli indicatori principali sono gli stage verificati per paese, le nuove opportunità pubblicate, la freschezza delle verifiche e i requisiti di candidatura leggibili.
+
 Un datore conta verso la soglia nazionale solo quando un raccoglitore ha completato una verifica recente, entro 48 ore, e l'inventario effettivamente letto dimostra la copertura del paese. Un nome, una homepage raggiungibile o una fonte abilitata senza esecuzione non soddisfano il requisito.
 
 Le aziende senza stage correnti restano parte del monitoraggio: zero stage è un risultato valido quando il canale è stato letto correttamente. Un elenco vuoto senza prova del perimetro geografico non dimostra invece copertura di un paese. Per questi casi servirà documentare il filtro nazionale o altro perimetro ufficiale e verificarlo.
@@ -14,7 +16,7 @@ Il conteggio nazionale usa gruppi distinti per le affiliazioni già documentate.
 
 ## 2. Due ricerche complementari
 
-**Partire dalle posizioni:** cercare stage HR nelle lingue locali attraverso motori di ricerca, portali universitari e bacheche consultabili nei modi consentiti. Individuare l'annuncio originale e risalire al datore e all'intero canale ufficiale, che verrà poi monitorato. Gli aggregatori servono alla scoperta; un risultato di ricerca non prova la disponibilità attuale.
+**Priorità: partire dalle posizioni.** Cercare stage HR nelle lingue locali attraverso motori di ricerca, portali universitari e bacheche consultabili nei modi consentiti. Individuare l'annuncio originale e risalire al datore e all'intero canale ufficiale, che verrà poi monitorato. Gli aggregatori servono alla scoperta; un risultato di ricerca non prova la disponibilità attuale.
 
 **Partire dai datori:** mappare imprese attraverso associazioni territoriali, distretti industriali, camere di commercio, agenzie regionali, career centre e programmi studenti. Per ogni nuovo datore cercare subito il canale di recruiting e l'adattatore. Evitare nuovi lotti concentrati sullo stesso paese quando la verifica dei canali precedenti rimane indietro.
 
@@ -90,7 +92,7 @@ La fotografia iniziale era 842 datori nel registro e 40 canali di raccolta. Sono
 
 ## Verifiche già eseguite in questa revisione
 
-Corretta la lettura dei job prima del filtro sugli slug e la gestione delle pagine parzialmente fallite; corretto il conteggio nazionale per usare esecuzioni recenti con copertura effettivamente osservata; generata la coda di integrazione per tutti i datori. La precedente prova su 84 pagine strutturate è stata estesa al raccoglitore generale, all’HTML visibile, alla paginazione con browser e ai checkpoint. Sono passati 98 test Python, 12 test dell’interfaccia e 52 esempi di classificazione senza regressioni. Le prove su ALL IN GROUP e AXS logistiek hanno estratto e verificato due nuovi stage HR da portali prima non integrati. Il test di fusione degli otto gruppi verifica un esito per tutte le 842 aziende e conserva il catalogo in caso di errore generale. Gli esiti effettivi del primo ciclo completo sono nel report aziendale, senza assumere che ogni sito sia leggibile.
+Corretta la lettura dei job prima del filtro sugli slug e la gestione delle pagine parzialmente fallite; corretto il conteggio nazionale per usare esecuzioni recenti con copertura effettivamente osservata; generata la coda di integrazione per tutti i datori. La precedente prova su 84 pagine strutturate è stata estesa al raccoglitore generale, all’HTML visibile, alla paginazione con browser e ai checkpoint. Sono passati 113 test Python, 12 test dell’interfaccia e 52 esempi di classificazione senza regressioni. Le prove su ALL IN GROUP e AXS logistiek hanno estratto e verificato due nuovi stage HR da portali prima non integrati. Il test di fusione degli otto gruppi verifica un esito per tutte le 842 aziende e conserva il catalogo in caso di errore generale. Gli esiti effettivi del primo ciclo completo sono nel report aziendale, senza assumere che ogni sito sia leggibile.
 
 
 ## Raccolta sull’intero registro: implementazione
@@ -99,3 +101,16 @@ Ogni azienda deve avere un raccoglitore attivo. Il flusso `collector.daily` aggi
 
 
 Il primo ciclo completo ha tentato tutte le 842 aziende. La revisione degli annunci distingue gli stage dai ruoli per studenti e dai traineeship, rimuove gli articoli informativi e unifica le traduzioni con lo stesso identificativo ufficiale. «Praktijk» e «intern» nel senso olandese di ruolo interno non vengono assunti come prove di tirocinio. Le schede già trovate hanno precedenza nella lettura giornaliera; una verifica più vecchia di 48 ore diventa non verificata. Le sitemap dichiarate in robots.txt costituiscono un ulteriore canale di scoperta, senza inventare percorsi.
+
+
+## Revisione centrata sulle candidature
+
+La prima raccolta non ha raggiunto una copertura adeguata. Le aziende tentate restano una misura del lavoro svolto, distinta dai risultati utili agli studenti. La ricerca mirata delle offerte originali ha individuato canali pubblici che il raccoglitore interpretava male.
+
+Il connettore Amazon legge la rappresentazione JSON della ricerca ufficiale e confronta totale, posizione di paginazione e identificativi. Il primo inventario verificato comprende 37 risultati globali e 27 stage HR in UE. Le sedi e i requisiti derivano dai campi pubblicati. Il connettore SmartRecruiters legge anche la rappresentazione JSON della singola scheda ufficiale e scarta le candidature esplicitamente disattivate. I collegamenti scoperti sono inseriti nei canali automatici. Le fonti già produttive hanno precedenza nell’esecuzione giornaliera.
+
+È stato corretto un errore che interrompeva la pubblicazione quando due duplicati avevano la verifica del collegamento mancante. Gli otto risultati salvati dal ciclo remoto sono stati recuperati, controllati contro il registro originale e riconciliati con il catalogo. Una forte riduzione dell’inventario impedisce chiusure automatiche per assenza, senza impedire la pubblicazione dei nuovi stage validi.
+
+Le risposte malformate di robots.txt vengono analizzate per le direttive effettivamente presenti, secondo [RFC 9309, sezioni 2.3.1.1 e 2.3.1.5](https://www.rfc-editor.org/rfc/rfc9309.html#section-2.3.1.5). I divieti espliciti, le restrizioni di accesso e le verifiche anti-bot continuano a fermare la lettura.
+
+La fotografia aggiornata, con tipi distinti e risultati per paese, è in `docs/jobs-first-results-2026-11-05.json`. Non costituisce il raggiungimento dell’obiettivo nazionale o la conclusione della copertura europea.

@@ -55,10 +55,10 @@ class EmployerPageTests(unittest.TestCase):
         body='<article data-cmp-contentfragment-model="x/danone-job-model" key="other" title="Wrong" description="Not the job"></article><article data-cmp-contentfragment-model="x/danone-job-model" key="hr-intern" title="HR Intern" description="Je spreekt vloeiend Engels." country="Netherlands" city="Utrecht" locale="nl_NL" recruiteremail="private@example.com"></article>'
         result=page_record({'url':url},s,FakeClient({url:body}));self.assertEqual(result['title'],'HR Intern');self.assertEqual(result['language'],'nl_NL');self.assertNotIn('recruiteremail',result)
 
-    def test_html_robots_is_not_treated_as_permission(self):
+    def test_invalid_robots_lines_do_not_invent_a_disallow(self):
         c=Client(delay=0)
         with patch.object(c,'request',return_value=(b'<!doctype html><html>Home</html>',200,'https://x/robots.txt')):
-            with self.assertRaises(ValueError):c.permitted('https://x/jobs')
+            self.assertTrue(c.permitted('https://x/jobs'))
 
     def test_procurement_sourcing_is_excluded(self):
         self.assertIsNone(classify_role('INTERNSHIP - Global Feed Sustainable Sourcing'))

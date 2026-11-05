@@ -1,6 +1,6 @@
 # Raccolta automatica dell'intero registro
 
-Il comando `python -m collector.daily provision` collega ogni azienda priva di una fonte attiva al raccoglitore generale. La trasformazione è ripetibile senza duplicare aziende o fonti. Il registro corrente contiene 842 aziende e 842 fonti attive: 40 connettori specifici e 802 raccoglitori generali.
+Il comando `python -m collector.daily provision` collega ogni azienda priva di una fonte attiva al raccoglitore generale. La trasformazione è ripetibile senza duplicare aziende o fonti. Il registro cresce con i canali che pubblicano opportunità verificate. Alla prima estensione conteneva 842 aziende; il recupero delle offerte e i nuovi canali sono rendicontati nel report aggiornato, senza assimilare il numero di aziende al numero di stage.
 
 Ogni mattina il flusso GitHub Actions avvia otto gruppi indipendenti, ciascuno con sei letture concorrenti. L'orario programmato è 06:17 UTC: 07:17 in Svizzera d'inverno, 08:17 d'estate. Il servizio di pianificazione può partire in ritardo. Il computer personale non deve restare acceso.
 
@@ -26,3 +26,6 @@ Il risultato viene pubblicato solo dopo avere ricevuto esattamente un esito per 
 Il report contiene per ogni azienda data del tentativo, annunci letti, corrispondenze HR, pagine in attesa e problemi. Il dettaglio tecnico delle fonti resta in `data/coverage.json`. Il numero di raccoglitori configurati non è presentato come numero di siti letti con successo. I conteggi per paese del report aziendale usano i paesi candidati e possono sovrapporsi; le quote operative per paese richiedono invece annunci e sede effettivamente osservati.
 
 L'automazione amplia anche la copertura futura: quando si aggiunge un'azienda al registro, il tentativo di raccolta viene predisposto automaticamente al successivo avvio. Le fonti ancora bloccate vengono ritentate e rimangono nel report degli interventi necessari.
+
+
+Il confronto dei risultati privilegia gli stage verificati e candidabili per paese. Amazon dispone di un connettore per la ricerca pubblica completa; le schede SmartRecruiters sono lette anche nella rappresentazione JSON, verificando che le candidature siano abilitate. Gli accordi obbligatori con l’università sono evidenziati quando pubblicati. Gli esiti recuperati dal ciclo remoto rimangono tracciati con il riferimento all’esecuzione originale.

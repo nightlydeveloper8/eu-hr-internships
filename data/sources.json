@@ -3512,11 +3512,13 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://jobs.smartrecruiters.com/AveryDennison/744000155814550-internship-hr-talent-acquisition-employer-branding",
       "https://careers.smartrecruiters.com/AveryDennison"
     ],
     "career_url": "https://careers.smartrecruiters.com/AveryDennison",
     "allowed_hosts": [
-      "careers.smartrecruiters.com"
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
     ],
     "target_countries": [
       "BE",
@@ -4726,10 +4728,13 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://jobs.smartrecruiters.com/BoschGroup/744000155452020-hr-internship-administration-training-organization-",
       "https://www.bosch.com/careers"
     ],
     "career_url": "https://www.bosch.com/careers/",
     "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com",
       "www.bosch.com"
     ],
     "target_countries": [
@@ -12381,6 +12386,9 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://careers.loreal.com/fr/emploi/paris/stage-rh-6-mois-de-janvier-a-juin-2027-region-parisienne-master-1-ou-2-1700-brut-mensuels-nombreuse/3456/36074467072",
+      "https://careers.loreal.com/en/job/clichy/stage-6-mois-a-partir-de-janvier-2027-projet-transformation-digitale-and-ia-juridique-rh/3456/46447903872",
+      "https://careers.loreal.com/fr/emploi/caudry/usine-de-caudry-s1-stage-5-mois-a-partir-de-mai-2027-ressources-humaines-master-2-1-700-mois-h-f/3456/45305415168",
       "https://careers.loreal.com"
     ],
     "career_url": "https://careers.loreal.com/",
@@ -12392,11 +12400,16 @@
     ],
     "max_pages": 70,
     "max_requests": 110,
-    "collection_seconds": 120,
+    "collection_seconds": 180,
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "automatic-collection-pending",
+    "known_job_urls": [
+      "https://careers.loreal.com/fr/emploi/paris/stage-rh-6-mois-de-janvier-a-juin-2027-region-parisienne-master-1-ou-2-1700-brut-mensuels-nombreuse/3456/36074467072",
+      "https://careers.loreal.com/en/job/clichy/stage-6-mois-a-partir-de-janvier-2027-projet-transformation-digitale-and-ia-juridique-rh/3456/46447903872",
+      "https://careers.loreal.com/fr/emploi/caudry/usine-de-caudry-s1-stage-5-mois-a-partir-de-mai-2027-ressources-humaines-master-2-1-700-mois-h-f/3456/45305415168"
+    ]
   },
   {
     "id": "auto-la-calce-del-brenta-s-r-l",
@@ -15389,6 +15402,8 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://www.careers.philips.com/nl/en/drachten",
+      "https://www.careers.philips.com/global/en/job/594564/Intern-Manufacturing-People-Partnering",
       "https://www.careers.philips.com/global/en"
     ],
     "career_url": "https://www.careers.philips.com/global/en",
@@ -21367,6 +21382,214 @@
     ],
     "target_countries": [
       "DE"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "amazon-hr-internships",
+    "employer": "Amazon",
+    "adapter": "amazon-search",
+    "enabled": true,
+    "career_url": "https://www.amazon.jobs/de/search?base_query=human+resources+intern&invalid_location=false",
+    "search_urls": [
+      "https://www.amazon.jobs/de/search?base_query=human+resources+intern&invalid_location=false"
+    ],
+    "allowed_hosts": [
+      "amazon.jobs",
+      "www.amazon.jobs"
+    ],
+    "target_countries": [
+      "CZ",
+      "DE",
+      "FR",
+      "ES",
+      "IT",
+      "LU",
+      "PL"
+    ],
+    "collection_seconds": 180,
+    "max_requests": 100,
+    "permission_basis": "Public Amazon.jobs search response, observed on the official recruiting website; complete paginated inventory; robots checked at runtime"
+  },
+  {
+    "id": "auto-smcp",
+    "company_id": "smcp",
+    "employer": "SMCP",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.smartrecruiters.com/SMCP/744000150973440--janvier-2027-stage-rh-charge-e-de-recrutement-h-f",
+      "https://careers.smartrecruiters.com/SMCP"
+    ],
+    "career_url": "https://careers.smartrecruiters.com/SMCP",
+    "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-altarea",
+    "company_id": "altarea",
+    "employer": "ALTAREA",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.smartrecruiters.com/altarea/744000149884227",
+      "https://careers.smartrecruiters.com/altarea"
+    ],
+    "career_url": "https://careers.smartrecruiters.com/altarea",
+    "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-salomon",
+    "company_id": "salomon",
+    "employer": "Salomon",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.smartrecruiters.com/Salomon/744000154123609-stage-assistant-e-rh-generaliste-m-f-x-",
+      "https://careers.smartrecruiters.com/Salomon"
+    ],
+    "career_url": "https://careers.smartrecruiters.com/Salomon",
+    "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-sia",
+    "company_id": "sia",
+    "employer": "Sia",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.smartrecruiters.com/sia/744000150702789-internship-junior-hr-assessment-consultant",
+      "https://careers.smartrecruiters.com/sia"
+    ],
+    "career_url": "https://careers.smartrecruiters.com/sia",
+    "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-interlogement-93",
+    "company_id": "interlogement-93",
+    "employer": "Interlogement 93",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.smartrecruiters.com/Interlogement93/744000152430750-stage-charge-e-de-mission-developpement-rh",
+      "https://careers.smartrecruiters.com/Interlogement93"
+    ],
+    "career_url": "https://careers.smartrecruiters.com/Interlogement93",
+    "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-accor",
+    "company_id": "accor",
+    "employer": "Accor",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.smartrecruiters.com/AccorCorpo/744000153563639-stage-charge-e-de-missions-ressources-humaines-division-luxury-lifestyle-orient-express-f-m-x-",
+      "https://careers.smartrecruiters.com/AccorCorpo"
+    ],
+    "career_url": "https://careers.smartrecruiters.com/AccorCorpo",
+    "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-devoteam",
+    "company_id": "devoteam",
+    "employer": "Devoteam",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.smartrecruiters.com/Devoteam/744000156731782-stage-talent-acquisition-specialist-h-f-",
+      "https://careers.smartrecruiters.com/Devoteam"
+    ],
+    "career_url": "https://careers.smartrecruiters.com/Devoteam",
+    "allowed_hosts": [
+      "careers.smartrecruiters.com",
+      "jobs.smartrecruiters.com"
+    ],
+    "target_countries": [
+      "FR"
     ],
     "max_pages": 70,
     "max_requests": 110,
