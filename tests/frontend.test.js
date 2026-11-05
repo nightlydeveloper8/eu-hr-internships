@@ -14,3 +14,5 @@ test('all multi-country locations match independently',()=>{assert.ok(matches({.
 test('unknown dates sort after known recency',()=>{assert.equal(rankJobs([{...base,id:'2',published_at:null},base],{...f,sort:'recent'})[0].id,'1');});
 test('stale and malformed timestamps warn',()=>{const clock=Date.parse('2026-11-05T12:00:00Z');assert.ok(stale('2026-11-01',clock));assert.ok(stale(null,clock));assert.ok(stale('invalid',clock));assert.equal(stale('2026-11-05T10:00:00Z',clock),false);});
 test('unsafe link protocols rejected',()=>{assert.equal(safeUrl('javascript:alert(1)'),null);assert.equal(safeUrl('http://example.com'),null);assert.equal(safeUrl('https://a:b@example.com'),null);assert.equal(safeUrl('https://jobs.lever.co/a/1'),'https://jobs.lever.co/a/1');});
+
+test('regional filters require an explicitly mapped region',()=>{assert.ok(matches({...base,region_codes:['NL35']},{...f,region:'NL35'}));assert.equal(matches(base,{...f,region:'NL35'}),false);assert.equal(matches({...base,region_codes:['NL35']},{...f,region:'NL32'}),false);});

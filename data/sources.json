@@ -1008,5 +1008,59 @@
     ],
     "permission_basis": "Public documented ATS GET API; runtime robots check",
     "reviewed_on": "2026-11-05"
+  },
+  {
+    "id": "employer-danone",
+    "employer": "Danone",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.danone.com",
+    "sitemaps": [
+      "https://careers.danone.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.danone\\.com/en-global/jobs/[^/]+-\\d+-[a-z]{2}-[a-z]{2}\\.html$",
+    "allowed_hosts": [
+      "careers.danone.com"
+    ],
+    "target_countries": [
+      "NL",
+      "FR",
+      "DE",
+      "BE",
+      "ES",
+      "IT",
+      "PL"
+    ],
+    "page_format": "danone",
+    "permission_basis": "Official public employer sitemap and structured page metadata; robots checked every run; only discovery metadata exported",
+    "reviewed_on": "2026-11-05",
+    "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
+  },
+  {
+    "id": "employer-unilever",
+    "employer": "Unilever",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.unilever.com",
+    "sitemaps": [
+      "https://careers.unilever.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.unilever\\.com/en/job/",
+    "allowed_hosts": [
+      "careers.unilever.com"
+    ],
+    "target_countries": [
+      "NL",
+      "FR",
+      "DE",
+      "BE",
+      "ES",
+      "IT",
+      "PL"
+    ],
+    "page_format": "jsonld",
+    "permission_basis": "Official public employer sitemap and structured page metadata; robots checked every run; only discovery metadata exported",
+    "reviewed_on": "2026-11-05",
+    "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
   }
 ]

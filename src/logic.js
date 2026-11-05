@@ -3,6 +3,7 @@ export function matches(job, filters, saved = new Set()) {
   if (job.status === 'closed' || (!filters.unverified && job.status !== 'open')) return false;
   if (filters.saved && !saved.has(job.id)) return false;
   if (filters.country && !job.countries.includes(filters.country)) return false;
+  if (filters.region && !(job.region_codes || []).includes(filters.region)) return false;
   if (filters.category && !job.categories.includes(filters.category)) return false;
   if (filters.workplace && !job.workplace_languages.some(l => l.code === filters.workplace && l.confidence === 'confirmed')) return false;
   if (filters.english && !job.workplace_languages.some(l => l.code === 'en' && l.confidence === 'confirmed')) return false;

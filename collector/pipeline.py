@@ -82,7 +82,7 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
     prior=read(output/'catalog.json',{'jobs':[],'updated_at':None})
     prior_report=read(output/'coverage.json',{'sources':[]})
     report_by_id={r['id']:r for r in prior_report.get('sources',[])}
-    stamp=now(); client=Client(); current=[]; successful=set(); reports=[]
+    stamp=now(); client=Client(); current=[]; successful=set(); closure_eligible=set(); reports=[]
     for source in selected:
         LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
         report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
@@ -94,9 +94,12 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
             staged=[]
             for record in records:
                 role=classify_role(record['title'],record['text'],record.get('employment',''))
-                countries=country_codes(record['location'],record.get('country'))
-                if not role or not countries: continue
+                if not role:continue
                 record=enrich(record,source,client)
+                # A URL slug is only a triage hint: classify the actual structured title.
+                role=classify_role(record['title'],record['text'],record.get('employment',''))
+                countries=country_codes(record['location'],record.get('country'))
+                if not role or not countries:continue
                 url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
                 verified=None; link_status='not-checked'
                 if verify:
@@ -111,13 +114,19 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
                 langs=workplace_languages(record['text'])
                 staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
             current.extend(staged); successful.add(source['id'])
+            if source['adapter']!='employer-sitemap':closure_eligible.add(source['id'])
             report.update(status='ok',matching=len(staged),observed_countries=sorted({c for r in records for c in country_codes(r['location'],r.get('country'))}))
+            if source['adapter']=='employer-sitemap':
+                report.update(snapshot_kind='public-sitemap-url-inventory',discovery_scope=source.get('discovery_scope'),observed_countries=sorted({c for j in staged for c in j['countries']}))
             LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
         except Exception as exc:
             report.update(status='failed',error=str(exc)[:400])
             LOG.error('%s failed; previous data retained: %s',source['id'],exc)
         reports.append(report)
-    jobs=deduplicate(reconcile(prior['jobs'],current,successful,stamp))
+    jobs=deduplicate(reconcile(prior['jobs'],current,closure_eligible,stamp))
+    from .company_registry import region_codes_for_job
+    companies=read(ROOT/'data/companies.json',[])
+    for job in jobs:job['region_codes']=region_codes_for_job(job,companies)
     # Preserve historical verification when API is present but this run's HEAD is temporarily blocked.
     old={j['id']:j for j in prior['jobs']}
     for j in jobs:

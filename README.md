@@ -2,6 +2,15 @@
 
 A static, registration-free directory of HR internships from official employer job boards. All 27 EU countries are selectable. Netherlands-first ranking is enabled by default. The initial collection is deliberately small and is **not exhaustive**.
 
+
+## Employer-first expansion (5 November 2026)
+
+The first ten-board sample was too small to represent EU opportunities. The project now includes a 64-employer research registry, official NUTS 2024 names/codes for all 27 countries, an auditable seed workplace in each of the twelve Dutch provinces, regional coverage/gap reports and a public `employers.html` explorer. Twelve employers currently have collection configured; the rest are research/integration candidates. Regional job filters use confirmed company/city mappings only. The Dutch province seed is a starting point, not a completed employer census.
+
+Danone and Unilever now contribute directly through their public sitemaps and structured employer pages. The expansion validation collected 16 HR internships, including four in the Netherlands, across five countries. Counts change with collection. Sitemap URL slugs are triage hints; final structured titles and countries must pass classification. Opaque or unlisted URLs can be missed, and sitemap absence cannot close a posting. Explicit source scopes are stored in the registry.
+
+See [the Italian coverage strategy](docs/strategia-copertura.md). Run `python3 scripts/company_coverage.py` to regenerate reports and the regional discovery queue. `python3 scripts/company_coverage.py --inspect-country NL --limit 10` can propose ATS channels from declared official career pages, without auto-enabling them. Geography is versioned and imported separately using `python3 scripts/import_geography.py`; it is not re-downloaded every day. There are no new runtime dependencies or recurring AI calls.
+
 ## What is implemented
 
 - Python collectors for Greenhouse, Lever (global and EU), Ashby and SmartRecruiters; pagination and fixture tests for all four.
@@ -65,7 +74,7 @@ As checked on 5 November 2026:
 - **Lever:** documented public board GET endpoints, all pages collected with a per-host delay. The implementation honors the advertised crawl delay.
 - **SmartRecruiters:** its public API documentation exists, but `api.smartrecruiters.com/robots.txt` disallows general bots. Three employers are registered but collection is disabled. Do not impersonate the specially permitted crawler.
 - **Ashby:** the documented public posting API exists, but the robots endpoint returned HTTP 401. Six sources are conservatively disabled pending permission/access clarification. No authentication workaround is attempted.
-- Other employer career pages are discovery-only candidates across all 27 countries. No page scraping, feeds or sitemaps are enabled without a separate permission and terms review.
+- Other employer career pages are discovery-only candidates across all 27 countries. Only the specifically reviewed Danone and Unilever page/sitemap connectors are enabled; other page/feed connectors require review.
 
 Official references: [Greenhouse](https://docs.greenhouse.io/job-board), [Lever](https://github.com/lever/postings-api), [Ashby](https://developers.ashbyhq.com/docs/public-job-posting-api), [SmartRecruiters](https://developers.smartrecruiters.com/docs/endpoints).
 
@@ -107,6 +116,6 @@ Alternatively build locally and upload the `dist` directory in the Pages dashboa
 
 The portable application has no paid dependencies or recurring AI inference. The intended setup uses a public GitHub repository with standard Linux runners and Cloudflare Pages Free; review the providers’ current free-tier limits during account setup. No paid plan, domain or API key is required by the code. The separate Sites publication uses the account’s available hosting; it is not the configured unattended Cloudflare Pages target.
 
-Coverage is a small sample and initially concentrated in the Netherlands, France, Belgium and Portugal. Rule evaluation is a small regression check, not a statistical quality guarantee. Dutch workplace opportunities may currently be absent even though Dutch filters work. No full-market crawler, PDF parsing, advanced NLP, structured-page/feed/sitemap connectors or live browser automation is used by the daily collector. These are expansion work, not features claimed complete.
+Coverage is a small sample and initially concentrated in the Netherlands, France, Belgium and Portugal. Rule evaluation is a small regression check, not a statistical quality guarantee. Dutch workplace opportunities may currently be absent even though Dutch filters work. No full-market crawler, PDF parsing, advanced NLP, general-purpose feed connector or live browser automation is used by the daily collector. These are expansion work, not features claimed complete.
 
 GitHub repository creation, live scheduled-run verification and Cloudflare Pages account linkage require the owner’s external account access. See `docs/status.md` for observed implementation and deployment status.

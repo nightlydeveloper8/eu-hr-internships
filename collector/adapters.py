@@ -1,6 +1,7 @@
 """Only unauthenticated, documented, public/listed job-board GET endpoints."""
 import json
 import logging
+import re
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit, quote
@@ -41,7 +42,9 @@ class Client:
             parser=RobotFileParser()
             try:
                 body,_,_=self.request(origin+'/robots.txt',robots=False)
-                parser.parse(body.decode('utf-8','replace').splitlines())
+                robots_text=body.decode('utf-8','replace')
+                if re.search(r'<(?:!doctype|html)\b',robots_text,re.I):raise ValueError('robots.txt returned HTML; access review required')
+                parser.parse(robots_text.splitlines())
             except HTTPError as exc:
                 if exc.code in (404,410): parser.parse([])
                 else: raise ValueError('robots.txt unavailable: '+str(exc.code))
@@ -60,9 +63,12 @@ def _record(source, job_id,title,location,text,url,apply=None,**extra):
     return dict(source_id=source['id'],external_id=str(job_id),employer=source['employer'],title=plain(title),location=plain(location),text=plain(text),url=url,apply_url=apply or url,**extra)
 
 def collect(source,client):
-    kind,board=source['adapter'],quote(source['board'],safe='')
+    kind,board=source['adapter'],quote(source.get('board',''),safe='')
     out=[]
-    if kind=='greenhouse':
+    if kind=='employer-sitemap':
+        from .employer_pages import sitemap_records
+        return sitemap_records(source,client)
+    elif kind=='greenhouse':
         data=client.json(f'https://boards-api.greenhouse.io/v1/boards/{board}/jobs?content=true')
         jobs=data['jobs']
         if not isinstance(jobs,list) or data.get('meta',{}).get('total',len(jobs))!=len(jobs): raise ValueError('Incomplete Greenhouse board')
@@ -108,6 +114,9 @@ def collect(source,client):
     return out
 
 def enrich(record,source,client):
+    if source['adapter']=='employer-sitemap':
+        from .employer_pages import page_record
+        return page_record(record,source,client)
     if source['adapter']!='smartrecruiters': return record
     j=client.json(f'https://api.smartrecruiters.com/v1/companies/{quote(source["board"],safe="")}/postings/{record["external_id"]}')
     if j.get('active') is False or j.get('visibility','PUBLIC')!='PUBLIC': raise ValueError('Inactive or private posting')

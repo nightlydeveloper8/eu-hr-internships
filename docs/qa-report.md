@@ -1,5 +1,15 @@
 # QA report — 5 November 2026
 
+## Employer-first expansion validation
+
+- 45 Python unit tests and 12 JavaScript tests pass. The manually labelled regression set now contains 52 examples. These include employer sitemap inventories, nested maps, host and size limits, JSON-LD expiry, actual-title reclassification, the Danone page format, robots returning HTML, procurement-sourcing false positives, workplace-language extraction, all-EU geography, province completeness and region filters.
+- A complete live run succeeded for 12/12 enabled employer sources and exported 16 HR internships: Netherlands 4, France 8, Germany 2, Belgium 1, Portugal 1. Danone and Unilever contribute nine newly collected valid postings.
+- Browser validation verified the Netherlands/Utrecht filter returns the Danone HRBP internship, country selection presents all twelve Dutch provinces, the employer registry reports 64 companies with twelve monitoring configurations, and the Limburg filter returns the documented dsm-firmenich Maastricht workplace with integration pending. Mobile checks at 390px showed no horizontal overflow and correct regional filtering.
+- The regional inventory has official EU27 NUTS 2024 names/codes (244 level-2 and 1,165 level-3 units), plus a documented workplace in each Dutch province. Most EU subregions still await employer research.
+- The earlier section below records the initial seven-listing snapshot. Its account-connection limitations are historical; subsequent GitHub and Cloudflare activation is recorded in publication.md.
+
+## Initial snapshot checks
+
 ## Automated checks observed
 
 - 28 Python unit tests passed, including all four adapter fixtures, complete pagination, malformed/incomplete responses, EU Lever region, unlisted Ashby exclusion, robots denial, safe URLs, failed-source preservation, daily closure idempotency, reappearance, canonical/application-link deduplication and multilingual extraction.

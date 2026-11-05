@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T13:05:42.815449+00:00",
+  "generated_at": "2026-11-05T13:27:28.997292+00:00",
   "exhaustive": false,
   "sources": [
     {
@@ -30,7 +30,7 @@
       "id": "greenhouse-adyen",
       "employer": "Adyen",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 249,
       "status": "ok",
       "matching": 0,
@@ -65,7 +65,7 @@
       "id": "lever-emma-sleep",
       "employer": "Emma – The Sleep Company",
       "adapter": "lever",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 69,
       "status": "ok",
       "matching": 1,
@@ -79,7 +79,7 @@
       "id": "lever-veepee",
       "employer": "Veepee",
       "adapter": "lever",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 110,
       "status": "ok",
       "matching": 2,
@@ -152,7 +152,7 @@
       "id": "greenhouse-talentprograms",
       "employer": "Hunter Douglas – Talent Programs",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 13,
       "status": "ok",
       "matching": 1,
@@ -164,7 +164,7 @@
       "id": "greenhouse-catawiki",
       "employer": "Catawiki",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 45,
       "status": "ok",
       "matching": 0,
@@ -183,7 +183,7 @@
       "id": "greenhouse-hellofresh",
       "employer": "HelloFresh",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 388,
       "status": "ok",
       "matching": 0,
@@ -226,7 +226,7 @@
       "id": "greenhouse-dim",
       "employer": "DIM",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 31,
       "status": "ok",
       "matching": 1,
@@ -238,7 +238,7 @@
       "id": "lever-pigment",
       "employer": "Pigment",
       "adapter": "lever",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 129,
       "status": "ok",
       "matching": 1,
@@ -254,7 +254,7 @@
       "id": "lever-malt",
       "employer": "Malt",
       "adapter": "lever",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 27,
       "status": "ok",
       "matching": 1,
@@ -299,7 +299,7 @@
       "id": "greenhouse-dept",
       "employer": "DEPT®",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T13:05:42.815449+00:00",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
       "collected": 163,
       "status": "ok",
       "matching": 0,
@@ -310,6 +310,36 @@
         "HU",
         "NL"
       ]
+    },
+    {
+      "id": "employer-danone",
+      "employer": "Danone",
+      "adapter": "employer-sitemap",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
+      "collected": 768,
+      "status": "ok",
+      "matching": 8,
+      "observed_countries": [
+        "DE",
+        "FR",
+        "NL"
+      ],
+      "snapshot_kind": "public-sitemap-url-inventory",
+      "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
+    },
+    {
+      "id": "employer-unilever",
+      "employer": "Unilever",
+      "adapter": "employer-sitemap",
+      "checked_at": "2026-11-05T13:27:28.997292+00:00",
+      "collected": 265,
+      "status": "ok",
+      "matching": 1,
+      "observed_countries": [
+        "NL"
+      ],
+      "snapshot_kind": "public-sitemap-url-inventory",
+      "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
     }
   ],
   "countries": [
@@ -379,15 +409,15 @@
     {
       "code": "FR",
       "name": "France",
-      "listings": 4,
-      "sources_with_observed_jobs": 8,
+      "listings": 8,
+      "sources_with_observed_jobs": 9,
       "discovery_candidates": 15
     },
     {
       "code": "DE",
       "name": "Germany",
-      "listings": 0,
-      "sources_with_observed_jobs": 8,
+      "listings": 2,
+      "sources_with_observed_jobs": 9,
       "discovery_candidates": 17
     },
     {
@@ -449,8 +479,8 @@
     {
       "code": "NL",
       "name": "Netherlands",
-      "listings": 1,
-      "sources_with_observed_jobs": 7,
+      "listings": 4,
+      "sources_with_observed_jobs": 9,
       "discovery_candidates": 10
     },
     {
@@ -504,11 +534,11 @@
     }
   ],
   "quality": {
-    "total": 7,
-    "open": 7,
+    "total": 16,
+    "open": 16,
     "unverified": 0,
-    "confirmed_english": 6,
-    "sources_succeeded": 10,
-    "sources_attempted": 10
+    "confirmed_english": 13,
+    "sources_succeeded": 12,
+    "sources_attempted": 12
   }
 }

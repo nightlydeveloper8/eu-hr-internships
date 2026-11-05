@@ -7,7 +7,7 @@ from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 COUNTRIES = dict(AT='Austria', BE='Belgium', BG='Bulgaria', HR='Croatia', CY='Cyprus', CZ='Czechia', DK='Denmark', EE='Estonia', FI='Finland', FR='France', DE='Germany', GR='Greece', HU='Hungary', IE='Ireland', IT='Italy', LV='Latvia', LT='Lithuania', LU='Luxembourg', MT='Malta', NL='Netherlands', PL='Poland', PT='Portugal', RO='Romania', SK='Slovakia', SI='Slovenia', ES='Spain', SE='Sweden')
 LANGUAGES = dict(en='English', nl='Dutch', fr='French', de='German', es='Spanish', it='Italian', pt='Portuguese', pl='Polish', sv='Swedish', da='Danish', fi='Finnish', el='Greek', cs='Czech', ro='Romanian', hu='Hungarian', bg='Bulgarian', hr='Croatian', sk='Slovak', sl='Slovenian', et='Estonian', lv='Latvian', lt='Lithuanian', mt='Maltese', ga='Irish', uk='Ukrainian')
 CATEGORIES = {
- 'talent-acquisition': ('Talent acquisition & recruitment', r'talent acquisition|recruit(?:ment|ing|er)?|recrutement|recrutamento|reclutamiento|reclutamento|werving|rekrut|personalgewinnung|sourc(?:ing|er)'),
+ 'talent-acquisition': ('Talent acquisition & recruitment', r'talent acquisition|recruit(?:ment|ing|er)?|recrutement|recrutamento|reclutamiento|reclutamento|werving|rekrut|personalgewinnung|(?:talent|candidate) sourc(?:ing|er)'),
  'people-operations': ('People operations & culture', r'people (?:operations|ops|and culture|& culture|& organisation|& organization|process)|personalkultur'),
  'learning-development': ('Learning & development', r'learning (?:and|&) development|\bl&d\b|people development|talent development|personalentwicklung|formation rh|formazione del personale'),
  'employer-branding': ('Employer branding', r'employer brand|marque employeur|arbeidsmarktcommunicatie'),
@@ -16,7 +16,7 @@ CATEGORIES = {
  'employee-experience': ('Employee experience & engagement', r'(?:employee|people) (?:experience|engagement)|mitarbeiterbindung'),
  'organizational-development': ('Organizational development', r'organi[sz]ational development|organi[sz]ation development|organisationsentwicklung'),
  'hr-administration': ('HR administration', r'hr admin|personnel admin|administration du personnel|personaladministration|personeelsadministratie|amministrazione del personale'),
- 'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
+ 'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
 INTERNSHIP = r'\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijk|\bprakt[yi]k|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bstaz\b|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 CITY_COUNTRIES = {
@@ -80,7 +80,7 @@ def workplace_languages(text):
         s = fold(sentence)
         # Application language / language classes / marketing are not workplace evidence.
         if re.search(r'(?:applications?|cv|resume|cover letter).{0,45}(?:in english|in french)|language (?:classes|courses)|(?:english|french|german).{0,15}(?:lessons|classes|courses)',s): continue
-        cue = r'\bfluen|proficien|command of|(?:official|corporate|company|business|main|working) language|working (?:proficiency|in)|work in|communication skills|communicat\w* (?:in|skills)|spea[kc]|written and (?:verbal|spoken)|oral and written|writ\w* strong|comfortable.{0,30}english|maitrise|courant|biling|kenntnisse|beherrschen|vloeiend|beheers|niveau|livello|conoscenza|dominio|competencia'
+        cue = r'\bfluen|proficien|command of|(?:official|corporate|company|business|main|working) language|working (?:proficiency|in)|work in|communication(?: and \w+)? skills|communicat\w* (?:in|skills)|spea[kc]|written and (?:verbal|spoken)|oral and written|writ\w* strong|comfortable.{0,30}english|maitrise|courant|biling|kenntnisse|beherrschen|vloeiend|beheers|niveau|livello|conoscenza|dominio|competencia'
         if not re.search(cue,s): continue
         for code,pattern in LANG_ALIASES.items():
             m = re.search(r'\b(?:'+pattern+r')\b',s)
@@ -97,6 +97,7 @@ def workplace_languages(text):
     return evidence
 
 def advertisement_language(text, hint=None):
+    if hint:hint=hint.replace('_','-')
     if hint and hint.lower().split('-')[0] in LANGUAGES:
         return {'code':hint.lower().split('-')[0], 'confidence':'confirmed','method':'source metadata'}
     words = set(re.findall(r'\b\w+\b',fold(text)))
@@ -110,7 +111,7 @@ def extract_metadata(text, work_mode=None):
     duration = None
     for sentence in re.split(r'(?<=[.!?])\s+',text):
         if re.search(r'holiday|vacation|annual leave|time off|paid leave|conges|vakantie|urlaub',sentence,re.I): continue
-        if not re.search(r'intern|duration|placement|trainee|available|availability|stage|praktik|duree|durata|duur|period of',sentence,re.I): continue
+        if not re.search(r'intern|duration|placement|trainee|available|availability|stag|praktik|durée|duree|durata|duur|beschikbaar|periode|period of',sentence,re.I): continue
         duration = re.search(r'\b\d+(?:\s*[-–]\s*\d+)?\s*(?:months?|maanden|mois|monate|meses|mesi|weeks?|weken)\b',sentence,re.I)
         if duration: break
     enrollment = next((s for s in re.split(r'(?<=[.!?])\s+',text) if re.search(r'enroll|ingeschreven|inscrit|immatrikul|convention de stage',s,re.I)),None)
