@@ -65,6 +65,12 @@ def _record(source, job_id,title,location,text,url,apply=None,**extra):
 def collect(source,client):
     kind,board=source['adapter'],quote(source.get('board',''),safe='')
     out=[]
+    if kind in ('personio-xml','recruitee'):
+        from .public_feeds import personio_records,recruitee_records
+        return (personio_records if kind=='personio-xml' else recruitee_records)(source,client)
+    if kind=='employer-index':
+        from .employer_pages import index_records
+        return index_records(source,client)
     if kind=='employer-sitemap':
         from .employer_pages import sitemap_records
         return sitemap_records(source,client)
@@ -114,7 +120,7 @@ def collect(source,client):
     return out
 
 def enrich(record,source,client):
-    if source['adapter']=='employer-sitemap':
+    if source['adapter'] in ('employer-sitemap','employer-index'):
         from .employer_pages import page_record
         return page_record(record,source,client)
     if source['adapter']!='smartrecruiters': return record

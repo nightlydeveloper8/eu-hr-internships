@@ -1,85 +1,92 @@
-# Strategia: partire dalle aziende, per territorio
+# Strategia di raccolta approfondita degli stage HR
 
-## Diagnosi
+Revisione del 5 novembre 2026. Sostituisce la precedente soglia di 300 sedi confermate: la prima soglia richiesta è ora **100 datori con raccolta operativa per ciascuno dei 27 paesi UE**. Non è un limite al registro né una quota di stage da pubblicare. L'ampliamento successivo continua oltre 100.
 
-Il primo catalogo conteneva sette stage in quattro paesi, provenienti da appena dieci bacheche aziendali. Non era una misura del mercato europeo. La selezione delle aziende era guidata soprattutto dalla facilità tecnica di collegare alcuni ATS e lasciava fuori importanti datori di lavoro. Le fonti erano già ufficiali, ma il campione era insufficiente.
+## 1. Il risultato da ottenere
 
-L'obiettivo diventa costruire e mantenere un universo di datori di lavoro, poi controllarne i canali ufficiali. Il numero di annunci è un risultato della copertura e della stagione, non una quota da raggiungere includendo offerte dubbie.
+Un datore conta verso la soglia nazionale solo quando un raccoglitore ha completato una verifica recente, entro 48 ore, e l'inventario effettivamente letto dimostra la copertura del paese. Un nome, una homepage raggiungibile o una fonte abilitata senza esecuzione non soddisfano il requisito.
 
-## 1. Territori comparabili, nomi locali conservati
+Le aziende senza stage correnti restano parte del monitoraggio: zero stage è un risultato valido quando il canale è stato letto correttamente. Un elenco vuoto senza prova del perimetro geografico non dimostra invece copertura di un paese. Per questi casi servirà documentare il filtro nazionale o altro perimetro ufficiale e verificarlo.
 
-`data/geography.json` importa i nomi e i codici ufficiali Eurostat NUTS 2024 per tutti i 27 paesi: 244 aree di livello 2 e 1.165 di livello 3. Sono unità statistiche; non equivalgono tutte a regioni/province amministrative. Nei Paesi Bassi le 12 province corrispondono al livello 2. Le suddivisioni di livello 3 permettono di misurare ulteriori lacune, senza inventare una lista universale di province.
+Ogni azienda individuata deve avere un'attività di integrazione. L'obiettivo è trasformare l'intero universo dei candidati in monitoraggio delle offerte; la coda non viene presentata come se fosse già raccolta. Dove l'accesso non è disponibile si registra il blocco, si cerca una fonte ufficiale alternativa e si cercano altri datori per raggiungere i 100 operativi del paese.
 
-Fonte riproducibile: [tabella Eurostat/GISCO](https://gisco-services.ec.europa.eu/distribution/v2/nuts/csv/NUTS_AT_2024.csv). Sono usati solo nomi e codici, senza geometrie di confine. La versione è esplicita e l'importazione verifica la gerarchia e tutti i 27 paesi.
+Il conteggio nazionale usa gruppi distinti per le affiliazioni già documentate. Un gruppo può contribuire a più paesi solo con prove di raccolta in ciascuno. I 2.700 rapporti datore–paese del primo traguardo non sono necessariamente 2.700 gruppi unici europei.
 
-## 2. Registro persistente delle aziende
+## 2. Due ricerche complementari
 
-`data/companies.json` registra ogni datore una volta, con pagina carriera ufficiale, provenienza della ricerca, paesi da approfondire, sedi documentate, regione, eventuale piccola area, canali di recruiting, priorità e prova di un effettivo stage HR quando disponibile.
+**Partire dalle posizioni:** cercare stage HR nelle lingue locali attraverso motori di ricerca, portali universitari e bacheche consultabili nei modi consentiti. Individuare l'annuncio originale e risalire al datore e all'intero canale ufficiale, che verrà poi monitorato. Gli aggregatori servono alla scoperta; un risultato di ricerca non prova la disponibilità attuale.
 
-**Una sede aziendale non dimostra che esista uno stage.** Un paese candidato non è una sede verificata. Un'azienda individuata non è necessariamente già monitorata. Queste distinzioni compaiono nel registro pubblico e nel rapporto di copertura.
+**Partire dai datori:** mappare imprese attraverso associazioni territoriali, distretti industriali, camere di commercio, agenzie regionali, career centre e programmi studenti. Per ogni nuovo datore cercare subito il canale di recruiting e l'adattatore. Evitare nuovi lotti concentrati sullo stesso paese quando la verifica dei canali precedenti rimane indietro.
 
-Il primo ampliamento contiene 64 aziende e almeno una sede documentata per ciascuna provincia olandese. Dodici aziende hanno un canale di raccolta abilitato. Le altre restano una coda di integrazione, non sessantaquattro fonti già funzionanti.
+Le imprese con 50–249 e 250–999 addetti sono centrali, insieme a piccole aziende con funzione HR o programmi studenti documentati. La notorietà del marchio e la facilità tecnica non determinano l'universo della ricerca. Dimensioni sconosciute rimangono sconosciute. La quota operativa del piano dedica almeno il 60% delle ricerche alle fasce 50–999, cercando almeno il 35% nella fascia 50–249; questo non autorizza ad attribuire dimensioni prive di evidenza.
 
-## 3. Come individuare aziende per ogni area
+Le fasce sono categorie di ricerca, non un'attestazione giuridica di PMI: la [definizione della Commissione](https://single-market-economy.ec.europa.eu/smes/sme-fundamentals/sme-definition_en) comprende anche requisiti finanziari e rapporti societari.
 
-Per ogni territorio usare, nell'ordine:
+## 3. Raccoglitori riutilizzabili, per sistema di recruiting
 
-1. Agenzie regionali di sviluppo e investimento: elenchi di imprese, insediamenti industriali, headquarters, shared-service centre e distretti produttivi.
-2. Camere di commercio e associazioni industriali: elenchi pubblici e consentiti, senza contatti personali né registri a pagamento.
-3. Università e career centre: aziende partner, employer day, programmi di tirocinio e convenzioni pubbliche.
-4. Siti ufficiali delle aziende: sedi effettive, team HR, programmi studenti e storico di stage. Le ricerche web servono a scoprire queste pagine, non a sostituire la fonte originale.
+La crescita deve avvenire soprattutto attraverso adattatori riutilizzabili per famiglie di siti. Ogni datore mantiene identificativo, dominio e perimetro verificati: il riconoscimento del fornitore non abilita automaticamente una bacheca non controllata.
 
-Considerare grandi aziende, imprese medie con un team HR, aziende industriali locali, logistica, servizi, sanità, università, enti e scale-up. Limitarsi ai marchi più famosi può aumentare la concentrazione sulle stesse opportunità molto visibili. Non attribuire un numero di candidati o un'etichetta “poca concorrenza” senza dati dell'azienda.
+| Livello | Raccolta richiesta | Stato nel progetto |
+|---|---|---|
+| API e feed pubblici | Tutte le posizioni pubblicate, tutte le pagine, campi completi | Greenhouse, Lever, Personio XML e Recruitee operativi su datori verificati; altre integrazioni richiedono revisione |
+| Sitemap e JobPosting | Tutte le URL di lavoro nel perimetro dichiarato e lettura di ogni pagina | Lettura prima del filtro implementata; prova live su 84 pagine |
+| HTML ordinario | Elenchi, paginazione, schede e campi visibili con selettori verificati | Inventario di collegamenti implementato; estrattori senza JobPosting da ampliare |
+| Siti dinamici | Browser che esegue JavaScript, segue filtri e «carica altro», poi estrae dati e testo visibili | Da implementare e provare nel processo di raccolta |
+| Accesso non disponibile | Fonte ufficiale alternativa, autorizzazione se necessaria o blocco documentato | Non conteggiato come raccolta funzionante |
 
-Obiettivo operativo iniziale: portare le province olandesi verso **15–25 datori verificati ciascuna**, con sedi e canali reali. Si tratta di un obiettivo di ricerca, non di una garanzia di offerte e non di una soglia uniforme da imporre a territori con economie differenti. Poi estendere la stessa ricerca agli altri paesi e alle aree meno coperte. Evitare di contare molte sedi dello stesso gruppo come aziende indipendenti.
+Esempi di piattaforme da esaminare per connettori riutilizzabili: Workday, SuccessFactors, Taleo, iCIMS, SmartRecruiters, Teamtailor, Inrecruiting e altri sistemi locali. Non si presume che ciascun fornitore offra un'API pubblica utilizzabile: scegliere il canale effettivamente disponibile, documentato o visibile nel browser, rispettando le regole di accesso.
 
-`docs/company-discovery-queue.json`, generato dallo script di copertura, ordina le aree con priorità ai Paesi Bassi e rende visibili quelle ancora da ricercare. Le query sono compiti da eseguire e verificare, non ricerca già completata. Una ricerca esaustiva di tutte le aziende di ogni area europea resta lavoro da svolgere.
+I browser devono far parte del processo eseguibile sul runner, con dipendenze riproducibili e controlli sul risultato. Aprire manualmente una pagina una volta non costituisce un adattatore né un monitoraggio automatico. [Playwright supporta l'esecuzione in CI](https://playwright.dev/docs/ci); questo livello non è ancora installato o attivato nel collector.
 
-## 4. Collegare il canale più stabile di ogni azienda
+## 4. Profondità dell'inventario
 
-Ordine di preferenza:
+La raccolta deve raggiungere tutte le pagine del canale dichiarato, comprese paginazione, «carica altro», filtri nazionali e portali ATS esterni collegati dal datore. Limitare la navigazione ai domini e alle sezioni revisionati; seguire collegamenti realmente osservati, senza inventare identificativi o percorsi di offerte.
 
-1. API pubblica e documentata dell'ATS aziendale.
-2. Feed ufficiale o elenco strutturato dell'azienda.
-3. Sitemap ufficiale e pagine `JobPosting` JSON-LD.
-4. Adattatore specifico per la pagina aziendale, quando consentito e testabile.
-5. Stato di revisione manuale quando l'accesso richiede autenticazione, presenta restrizioni o non è sufficientemente chiaro.
+Per le sitemap, **lo slug non decide se aprire un annuncio**. Una URL numerica può contenere uno stage HR. Per gli elenchi, un'etichetta generica sul pulsante non può sostituire il titolo reale. La nuova pipeline legge le pagine strutturate inventariate prima della classificazione; la prova su Tyche Bank e Var Group ha letto 7 e 77 annunci senza errori.
 
-Il rilevatore in `company_registry.py` può proporre un ATS dai collegamenti della pagina carriera dichiarata. Non indovina identificativi e non abilita automaticamente fonti prive della verifica di accesso.
+La scoperta da sitemap non garantisce che il datore inserisca tutte le offerte nella sitemap. Affiancare inventario, elenchi e conteggi pubblicati dal sito, e misurare gli scostamenti. Un limite di sicurezza o una pagina mancante non può essere presentato come inventario completo.
 
-I nuovi adattatori Danone e Unilever inventariano tutte le URL di lavoro nell'ambito dichiarato delle rispettive sitemap. Gli slug descrittivi aiutano a selezionare le pagine da approfondire; il titolo e la sede estratti dalla pagina ufficiale decidono l'inclusione finale. URL opache, pagine non presenti nella sitemap e sinonimi non ancora riconosciuti sono lacune dichiarate. La scomparsa da una sitemap non chiude un annuncio: non è una prova sufficiente di chiusura.
+I siti JavaScript possono avere un HTML iniziale privo degli annunci; questo richiede il rendering e una seconda estrazione di link e dati. [Google documenta questa distinzione](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics). Se manca JSON-LD, estrarre il contenuto visibile delle sezioni dell'offerta con un adattatore verificato, non fermarsi alla sola assenza di dati strutturati.
 
-Danone richiede un parser dei frammenti pubblici presenti nel documento, Unilever pubblica `JobPosting` JSON-LD. Nessun browser automatizzato, endpoint autenticato o aggiramento di protezioni è necessario per questi due canali. I robots vengono verificati a ogni esecuzione. Se robots restituisce HTML invece di regole leggibili, il canale richiede revisione.
+## 5. Selezione HR e stage dopo la lettura
 
-## 5. Controlli, freschezza e qualità
+Generare candidati con titolo, descrizione, categoria HR, dipartimento, tipo contrattuale e termini nelle lingue locali. Esempi: HR, Human Resources, People Operations, Talent Acquisition, Personalwesen, Recruiting, risorse umane, ressources humaines, recursos humanos; internship, stage, tirocinio, Praktikum, prácticas e termini equivalenti.
 
-- La raccolta giornaliera esistente continua a controllare tutte le fonti abilitate e pubblica insieme catalogo e copertura aziendale.
-- La prima scoperta e la data di pubblicazione restano separate: un annuncio appena trovato può essere vecchio. Il sito consente già l'ordinamento per prima scoperta.
-- Dopo aver misurato tempi, limiti dei datori e consumo delle risorse, i canali prioritari potranno passare a controlli ogni sei ore. Questa frequenza più alta non è attivata da questo ampliamento.
-- Estrarre lingua e iscrizione universitaria solo da affermazioni esplicite. La lingua dell'interfaccia del sito non determina quella del testo dell'annuncio.
-- Usare casi negativi reali nella valutazione: per esempio “Global Feed Sustainable Sourcing” riguarda acquisti/fornitori, non Talent Acquisition.
-- Conservare gli annunci e segnalare problemi quando una fonte fallisce. Una pagina mancante o un parser cambiato non deve cancellare il catalogo.
+L'allargamento serve a trovare candidati da verificare, non a includere automaticamente ogni ruolo che menzioni la funzione HR o una parola «intern». Il testo deve descrivere attività HR e un'opportunità di stage esplicita. Ruoli permanenti che citano stagisti, software HR venduto ai clienti e sourcing negli acquisti sono casi negativi. Working student e apprendistato rimangono tipi distinti. I casi ambigui vanno in revisione.
 
-## 6. Misure di avanzamento
+L'estrazione di sede, lingue, iscrizione universitaria e altri requisiti deriva da affermazioni esplicite. Le sedi del gruppo e i paesi candidati non vengono assegnati a ogni offerta. I paesi dichiarati nei dati strutturati restano disponibili anche quando le città hanno nomi non ancora riconosciuti.
 
-Controllare per paese, regione e piccola area:
+## 6. Frequenza, carico e aggiornamenti
 
-- aziende individuate e sedi confermate;
-- aziende con monitoraggio abilitato e fonti riuscite;
-- aree ancora non ricercate o senza collegamenti funzionanti;
-- offerte effettive, nuove scoperte, lingue esplicite e campi sconosciuti;
-- ultimo controllo riuscito e cause dei blocchi.
+Inventario giornaliero dei canali; prevedere controlli più frequenti per le fonti utili solo dopo misura dei tempi e dei limiti. La frequenza maggiore non è attivata da questa revisione.
 
-Il rapporto `data/company-coverage.json` e la pagina `/employers.html` permettono di ispezionare l'avanzamento. Il filtro per regione degli annunci include solo corrispondenze sede/città documentate; non assegna tutte le offerte di un gruppo alla sua sede principale. Le piccole aree senza una sede assegnata restano esplicitamente senza ricerca/conferma, anche se la regione superiore ha già aziende.
+Per scalare a migliaia di datori, aggiungere aggiornamenti incrementali: identificativi dei job, date di modifica, ETag e Last-Modified quando affidabili, cache di metadati consentiti, verifica periodica completa e coda dei dettagli nuovi o cambiati. Separare la concorrenza tra aziende dai limiti per singolo host. Queste ottimizzazioni non sono ancora implementate nel client.
 
-## Comandi di manutenzione
+La nuova lettura integrale aumenta le richieste sulle sitemap. Prima di estendere il numero di datori misurare tempi e budget del runner: il workflow è stato portato a un limite di 60 minuti per verificare la raccolta ampliata. Non tagliare silenziosamente l'inventario per rispettare il timeout; usare partizioni e checkpoint quando necessari. La disponibilità entro eventuali piani gratuiti va verificata sul carico reale.
 
-```sh
-python3 scripts/import_geography.py
-python3 scripts/company_coverage.py
-python3 scripts/company_coverage.py --inspect-country NL --limit 10
-python3 -m collector.pipeline
-python3 scripts/company_coverage.py
-```
+Il sito pubblicato resta statico; raccolta e rendering si eseguono nel processo separato. Il codice e i dati locali devono essere pubblicati nel repository eseguito dai workflow prima che le modifiche arrivino al servizio remoto.
 
-L'importazione geografica è un'operazione di manutenzione: non viene scaricata ogni giorno. La ricerca di nuove aziende resta distinta dalla raccolta giornaliera delle offerte già collegate. Non sono richiesti database a pagamento, API di ricerca a pagamento o inferenza AI periodica.
+## 7. Errori e disponibilità
+
+Gli errori su una pagina devono comparire nel rapporto. Le pagine lette correttamente possono produrre nuovi risultati; una fonte incompleta resta «partial» e non soddisfa la soglia nazionale di raccolta completa. Le offerte precedenti vengono conservate se manca una verifica affidabile della chiusura.
+
+Per le sitemap la semplice scomparsa non prova la chiusura. Usare prove come stato ufficiale dell'annuncio, scadenza esplicita, rimozione confermata o politica di assenza ripetuta su inventari completi, secondo il canale. Una risposta HTTP 200, da sola, non prova la disponibilità.
+
+## 8. Cruscotto che misura raccolta effettiva
+
+Per datore registrare: canale, adattatore, ultimo tentativo, ultimo successo, perimetro geografico, posizioni inventariate, pagine lette, errori, offerte HR valide e prossima attività di integrazione. Gli stati devono distinguere scoperta del canale, integrazione richiesta, raccolta operativa e raccolta degradata.
+
+Per paese: datori candidati, datori monitorati recentemente nel paese, divario rispetto a 100, fonti complete/parziali/bloccate, stage aperti, dimensioni e settori quando documentati. Le sedi confermate restano un dato distinto; la verifica dell'anagrafica non deve impedire l'inserimento di uno stage con sede ufficiale già verificata nell'annuncio.
+
+File operativi:
+
+- `data/employer-research-plan.json`: prima soglia 100 e obiettivi successivi per i 27 paesi.
+- `docs/country-research-progress.json`: avanzamento basato sulle raccolte effettive recenti.
+- `docs/company-integration-queue.json`: ogni datore e attività necessaria per la raccolta.
+- `data/coverage.json`: inventari, pagine lette, errori e paesi osservati.
+
+La fotografia di partenza è 842 datori nel registro e 40 canali configurati e già eseguiti. Dei restanti 802, 501 hanno una pagina carriera da integrare e 301 richiedono prima la scoperta del canale. Questi sono lavori aperti, non 802 fonti operative.
+
+## Verifiche già eseguite in questa revisione
+
+Corretta la lettura dei job prima del filtro sugli slug e la gestione delle pagine parzialmente fallite; corretto il conteggio nazionale per usare esecuzioni recenti con copertura effettivamente osservata; generata la coda di integrazione per tutti i datori. Prova live: 84 pagine su due fonti, senza errori, con catalogo rimasto a 22 opportunità. Browser, nuovi fornitori ATS, estrazione HTML senza JSON-LD, paginazione generalizzata e cache incrementale richiedono ancora implementazione e verifica.

@@ -1,0 +1,42 @@
+[
+  {
+    "company_id": "tyche-bank",
+    "host": "careers.tychebank.it",
+    "status": "ok",
+    "source": {
+      "id": "employer-tyche-bank",
+      "employer": "Tyche Bank",
+      "adapter": "employer-sitemap",
+      "allowed_hosts": [
+        "careers.tychebank.it"
+      ],
+      "sitemaps": [
+        "https://careers.tychebank.it/sitemap.xml"
+      ],
+      "job_url_pattern": "^https://careers\\.tychebank\\.it/(?:[a-z]{2}/)?jobs/\\d+-"
+    },
+    "records": 7,
+    "candidate_urls": [
+      "https://careers.tychebank.it/jobs/8592225-hr-intern"
+    ]
+  },
+  {
+    "company_id": "var-group",
+    "host": "www.careers.vargroup.com",
+    "status": "ok",
+    "source": {
+      "id": "employer-var-group",
+      "employer": "Var Group",
+      "adapter": "employer-sitemap",
+      "allowed_hosts": [
+        "www.careers.vargroup.com"
+      ],
+      "sitemaps": [
+        "https://www.careers.vargroup.com/sitemap.xml"
+      ],
+      "job_url_pattern": "^https://www\\.careers\\.vargroup\\.com/(?:[a-z]{2}/)?jobs/\\d+-"
+    },
+    "records": 77,
+    "candidate_urls": []
+  }
+]

@@ -97,9 +97,10 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(region_codes_for_job(dict(base,city='Remote'),self.c),[])
         self.assertEqual(region_codes_for_job(dict(base,employer='Unrelated'),self.c),[])
 
-    def test_queue_prioritises_netherlands_and_marks_targets(self):
+    def test_queue_covers_eu_without_fixed_netherlands_priority(self):
         report=coverage_report(self.c,self.g,self.s,[],'2026-11-05');queue=discovery_queue(self.g,report)
-        self.assertEqual(queue[0]['country'],'NL');self.assertEqual(len({x['country'] for x in queue}),27)
+        self.assertEqual(len({x['country'] for x in queue}),27)
+        self.assertEqual(sum(x['target_companies'] or 0 for x in queue if x['country']=='NL'),100)
         self.assertTrue(all(x['status']=='research-required' for x in queue))
 
     def test_career_page_proposes_ats_without_enabling(self):

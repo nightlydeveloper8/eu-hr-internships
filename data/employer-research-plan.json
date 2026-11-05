@@ -1,0 +1,562 @@
+{
+  "version": 3,
+  "reviewed_on": "2026-11-05",
+  "scope": "EU27",
+  "baseline_per_country": 100,
+  "counting_basis": "Distinct employers with a recent successful complete collection whose inspected job inventory or reviewed country scope proves coverage of the country. Candidate names, homepage checks and configured-but-unrun sources do not count.",
+  "medium_business_research_share_minimum": 0.6,
+  "employee_bands": [
+    "10-49",
+    "50-249",
+    "250-999",
+    "1000+",
+    "unknown"
+  ],
+  "size_evidence_required": true,
+  "countries": [
+    {
+      "code": "AT",
+      "name": "Austria",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "Mittelstand Unternehmen",
+        "Personal Praktikum"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "PME entreprises kmo bedrijven",
+        "stage ressources humaines HR stage"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "средни предприятия",
+        "стаж човешки ресурси"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "HR",
+      "name": "Croatia",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "srednja poduzeća",
+        "praksa ljudski resursi"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "μεσαίες επιχειρήσεις",
+        "πρακτική ανθρώπινο δυναμικό"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "CZ",
+      "name": "Czechia",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "střední podniky",
+        "stáž personalistika"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "mellemstore virksomheder",
+        "praktik HR"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "EE",
+      "name": "Estonia",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "keskmise suurusega ettevõtted",
+        "personalitöö praktika"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "keskisuuret yritykset",
+        "henkilöstöhallinto harjoittelu"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "research_terms": [
+        "PME ETI entreprises",
+        "stage ressources humaines"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "research_terms": [
+        "Mittelstand Unternehmen",
+        "Praktikum Personalwesen"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "GR",
+      "name": "Greece",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "μεσαίες επιχειρήσεις",
+        "πρακτική ανθρώπινο δυναμικό"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "HU",
+      "name": "Hungary",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "középvállalatok",
+        "HR gyakornok"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "medium sized companies",
+        "human resources internship"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "research_terms": [
+        "medie imprese distretto industriale",
+        "stage risorse umane"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "LV",
+      "name": "Latvia",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "vidējie uzņēmumi",
+        "personāla prakse"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "LT",
+      "name": "Lithuania",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "vidutinės įmonės",
+        "personalo praktika"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "PME entreprises Mittelstand",
+        "stage ressources humaines Praktikum Personal"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "medium sized companies",
+        "human resources internship"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "middelgrote bedrijven",
+        "HR stage personeelszaken"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "research_terms": [
+        "średnie przedsiębiorstwa",
+        "staż dział HR"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "médias empresas",
+        "estágio recursos humanos"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "întreprinderi mijlocii",
+        "stagiu resurse umane"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "SK",
+      "name": "Slovakia",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "stredné podniky",
+        "stáž ľudské zdroje"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "SI",
+      "name": "Slovenia",
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "research_terms": [
+        "srednja podjetja",
+        "praksa kadrovska služba"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "research_terms": [
+        "medianas empresas polígono industrial",
+        "prácticas recursos humanos"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "research_terms": [
+        "medelstora företag",
+        "praktik HR personal"
+      ],
+      "source_classes": [
+        "regional-development-agencies",
+        "chambers-and-sector-associations",
+        "industrial-parks-and-clusters",
+        "university-and-vocational-employer-partners",
+        "official-employer-sites"
+      ],
+      "status": "planned",
+      "baseline_career_channels_target": 100,
+      "baseline_monitored_employers_target": 100
+    }
+  ],
+  "medium_50_249_research_share_minimum": 0.35,
+  "baseline_metric": "companies_monitored_in_country",
+  "collection_freshness_hours": 48,
+  "universe_policy": "Every discovered employer must have an integration task; all admitted monitoring targets require an extractor, or an explicit access block with replacement for the country milestone."
+}

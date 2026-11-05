@@ -18,7 +18,7 @@ CATEGORIES = {
  'hr-administration': ('HR administration', r'hr admin|personnel admin|administration du personnel|personaladministration|personeelsadministratie|amministrazione del personale'),
  'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
-INTERNSHIP = r'\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijk|\bprakt[yi]k|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bstaz\b|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
+INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijk|\bprakt[yi]k|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bstaz\b|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 CITY_COUNTRIES = {
  'NL': 'amsterdam|rotterdam|utrecht|eindhoven|hoofddorp|oegstgeest|amersfoort|wageningen|haarlem|zaandam|leiden|den haag|hilversum|breda|delft|nijmegen|groningen|tilburg|enschede|apeldoorn|arnhem|den bosch',
  'DE':'berlin|munich|munchen|hamburg|frankfurt|cologne|koln|dusseldorf|stuttgart|leipzig|karlsruhe|walldorf|heidelberg', 'FR':'paris|rueil.malmaison|neuilly|nanterre|saint.ouen|saint.denis|lyon|marseille|bordeaux|lille|toulouse|nantes|boulogne|issy|clichy',
@@ -46,6 +46,7 @@ def canonical_url(url):
 def country_codes(location, explicit=None):
     iso3 = dict(zip('AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE'.split(),COUNTRIES))
     if explicit:
+        explicit={'nederland':'NL','deutschland':'DE','osterreich':'AT'}.get(fold(explicit),explicit)
         explicit = iso3.get(explicit.upper(),next((c for c,n in COUNTRIES.items() if fold(n)==fold(explicit)),explicit))
     if explicit and explicit.upper() in COUNTRIES:
         return [explicit.upper()]
@@ -54,6 +55,8 @@ def country_codes(location, explicit=None):
     value = fold(location)
     codes = [c for c,n in COUNTRIES.items() if re.search(r'\b'+re.escape(fold(n))+r'\b',value)]
     if codes: return codes
+    if re.search(r'\bdeutschland(?:weit)?\b',value):return ['DE']
+    if re.search(r'\bnederland\b',value):return ['NL']
     # Reject known non-EU locations before city matching (e.g. Paris, Texas).
     if re.search(r'united (?:states|kingdom)|\busa\b|\buk\b|switzerland|canada|india|australia|singapore|brazil|london|zurich|toronto|san francisco|new york|\btexas\b',value): return []
     return [c for c, cities in CITY_COUNTRIES.items() if re.search(r'\b(?:'+fold(cities)+r')\b',value)]
@@ -62,12 +65,13 @@ def classify_role(title, text='', employment=''):
     title, text, employment = map(fold,(plain(title),plain(text),plain(employment)))
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title)]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
+    if not cats and re.search(r'people (?:&|and) events',title) and re.search(r'personalbetreuung|personalentwicklung|human resources|hr administration',text):cats=['hr-generalist']
     # Department metadata alone cannot turn a sustainability/software role into HR.
     if not cats: return None
     # Internal, international and interview must never count as 'intern'.
     signal = re.search(INTERNSHIP,title+' '+employment)
     if not signal: return None
-    kind = 'working-student' if re.search(r'werkstudent|working.student|student assistant',title+' '+employment) else 'traineeship' if re.search(r'trainee',title+' '+employment) else 'internship'
+    kind = 'working-student' if re.search(r'werkstud(?:ent|ierende)|working.student|student assistant',title+' '+employment) else 'traineeship' if re.search(r'trainee',title+' '+employment) else 'internship'
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
 LANG_ALIASES = {

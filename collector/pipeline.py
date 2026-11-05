@@ -76,13 +76,18 @@ def validate_catalog(data):
             assert lang['code'] in LANGUAGES and lang['confidence']=='confirmed' and lang['evidence']
     return True
 
+def record_countries(record):
+    if 'countries' in record:
+        return sorted({c for c in record['countries'] if c in COUNTRIES})
+    return country_codes(record['location'],record.get('country'))
+
 def run(source_ids=None,verify=True,output=ROOT/'data'):
     registry=read(ROOT/'data/sources.json',[])
     selected=[s for s in registry if s.get('enabled') and (not source_ids or s['id'] in source_ids)]
     prior=read(output/'catalog.json',{'jobs':[],'updated_at':None})
     prior_report=read(output/'coverage.json',{'sources':[]})
     report_by_id={r['id']:r for r in prior_report.get('sources',[])}
-    stamp=now(); client=Client(); current=[]; successful=set(); closure_eligible=set(); reports=[]
+    stamp=now(); client=Client(); current=[]; successful=set(); closure_eligible=set(); reports=[]; partial_sources=set()
     for source in selected:
         LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
         report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
@@ -91,14 +96,22 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
             prev_count=report_by_id.get(source['id'],{}).get('collected',0)
             if prev_count>=20 and len(records)<prev_count*0.4: raise ValueError('Bulk disappearance quarantined; review source before next run')
             report['collected']=len(records)
-            staged=[]
+            staged=[];page_errors=[];inspected=[]
             for record in records:
+                # Inventory hints and URL slugs are not job titles. Read structured
+                # pages before filtering, including opaque IDs and untranslated URLs.
+                if record.get('needs_page'):
+                    try:
+                        record=enrich(record,source,client)
+                    except Exception as exc:
+                        page_errors.append(dict(url=record['url'],error=str(exc)[:180]))
+                        continue
+                else:
+                    role=classify_role(record['title'],record['text'],record.get('employment',''))
+                    if role:record=enrich(record,source,client)
+                inspected.append(record)
                 role=classify_role(record['title'],record['text'],record.get('employment',''))
-                if not role:continue
-                record=enrich(record,source,client)
-                # A URL slug is only a triage hint: classify the actual structured title.
-                role=classify_role(record['title'],record['text'],record.get('employment',''))
-                countries=country_codes(record['location'],record.get('country'))
+                countries=record_countries(record)
                 if not role or not countries:continue
                 url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
                 verified=None; link_status='not-checked'
@@ -114,10 +127,11 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
                 langs=workplace_languages(record['text'])
                 staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
             current.extend(staged); successful.add(source['id'])
-            if source['adapter']!='employer-sitemap':closure_eligible.add(source['id'])
-            report.update(status='ok',matching=len(staged),observed_countries=sorted({c for r in records for c in country_codes(r['location'],r.get('country'))}))
-            if source['adapter']=='employer-sitemap':
-                report.update(snapshot_kind='public-sitemap-url-inventory',discovery_scope=source.get('discovery_scope'),observed_countries=sorted({c for j in staged for c in j['countries']}))
+            if page_errors:partial_sources.add(source['id'])
+            if not page_errors and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
+            report.update(status='partial' if page_errors else 'ok',matching=len(staged),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
+            if source['adapter'] in ('employer-sitemap','employer-index'):
+                report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
             LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
         except Exception as exc:
             report.update(status='failed',error=str(exc)[:400])
@@ -131,12 +145,12 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
     old={j['id']:j for j in prior['jobs']}
     for j in jobs:
         if not j.get('last_verified_at') and j['id'] in old: j['last_verified_at']=old[j['id']].get('last_verified_at')
-    result={'schema_version':1,'updated_at':stamp if successful else prior.get('updated_at'),'last_attempt_at':stamp,'update_status':'ok' if len(successful)==len(selected) and selected else 'partial' if successful else 'failed','countries':COUNTRIES,'languages':LANGUAGES,'categories':{k:v[0] for k,v in CATEGORIES.items()},'jobs':jobs}
+    result={'schema_version':1,'updated_at':stamp if successful else prior.get('updated_at'),'last_attempt_at':stamp,'update_status':'ok' if len(successful)==len(selected) and selected and not partial_sources else 'partial' if successful else 'failed','countries':COUNTRIES,'languages':LANGUAGES,'categories':{k:v[0] for k,v in CATEGORIES.items()},'jobs':jobs}
     validate_catalog(result)
     report_by_id.update({r['id']:r for r in reports})
     counts=Counter(c for j in jobs if j['status']!='closed' for c in j['countries'])
     all_reports=list(report_by_id.values())
-    coverage={'generated_at':stamp,'exhaustive':False,'sources':all_reports,'countries':[{'code':c,'name':n,'listings':counts[c],'sources_with_observed_jobs':sum(c in r.get('observed_countries',[]) for r in all_reports if r['status']=='ok'),'discovery_candidates':sum(c in s.get('target_countries',[]) for s in registry if not s.get('enabled'))} for c,n in COUNTRIES.items()],'quality':{'total':len(jobs),'open':sum(j['status']=='open' for j in jobs),'unverified':sum(j['status']=='unverified' for j in jobs),'confirmed_english':sum(any(l['code']=='en' for l in j['workplace_languages']) for j in jobs if j['status']!='closed'),'sources_succeeded':len(successful),'sources_attempted':len(selected)}}
+    coverage={'generated_at':stamp,'exhaustive':False,'sources':all_reports,'countries':[{'code':c,'name':n,'listings':counts[c],'sources_with_observed_jobs':sum(c in r.get('observed_countries',[]) for r in all_reports if r['status']=='ok'),'discovery_candidates':sum(c in s.get('target_countries',[]) for s in registry if not s.get('enabled'))} for c,n in COUNTRIES.items()],'quality':{'total':len(jobs),'open':sum(j['status']=='open' for j in jobs),'unverified':sum(j['status']=='unverified' for j in jobs),'confirmed_english':sum(any(l['code']=='en' for l in j['workplace_languages']) for j in jobs if j['status']!='closed'),'sources_succeeded':len(successful),'sources_attempted':len(selected),'sources_partial':len(partial_sources)}}
     # Validate both documents before either is exported; the build copies only a successful run.
     write(output/'coverage.json',coverage); write(output/'catalog.json',result)
     LOG.info('Catalog: %s records, %s/%s sources succeeded',len(jobs),len(successful),len(selected))

@@ -9,7 +9,7 @@ import json
 import re
 from urllib.parse import urlsplit, unquote
 import xml.etree.ElementTree as ET
-from .classify import canonical_url, plain
+from .classify import canonical_url, plain, country_codes
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -89,12 +89,53 @@ def page_record(record,source,client,clock=None):
             if not isinstance(a,dict):continue
             c=a.get('addressCountry');c=c.get('name') if isinstance(c,dict) else c
             if c:countries.append(c)
-            if a.get('addressLocality'):cities.append(a['addressLocality'])
+            locality=a.get('addressLocality') or source.get('reviewed_locality_fields',{}).get(a.get('streetAddress'))
+            if locality:cities.append(locality)
         employer=data.get('hiringOrganization',{}).get('name')
         if employer and not any(token in employer.lower() for token in source.get('employer_tokens',[source['employer'].lower()])):raise ValueError('Unexpected hiring organisation')
+        if countries:result['countries']=sorted({code for country in countries for code in country_codes('',country)})
         result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=data.get('datePosted'),employment=' '.join(data.get('employmentType',[])) if isinstance(data.get('employmentType'),list) else data.get('employmentType',''),work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
     else:raise ValueError('No supported JobPosting structured data; no page-text guessing')
     if not result['title'] or not result['text']:raise ValueError('Missing structured title/description')
     # Job page is the official application entry point. Never invent an apply URL.
     result['url']=approved(final,source);result['apply_url']=result['url'];result['needs_page']=False
     return result
+
+class JobLinksParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True);self.links=[];self.current=None
+    def handle_starttag(self,tag,attrs):
+        if tag=='a':
+            attrs=dict(attrs);self.current=[attrs.get('href',''),'']
+    def handle_data(self,data):
+        if self.current:self.current[1]+=' '+data
+    def handle_endtag(self,tag):
+        if tag=='a' and self.current:
+            self.links.append(self.current);self.current=None
+
+def index_records(source,client):
+    """Inventory actual links in reviewed official lists; never infer job paths."""
+    from urllib.parse import urljoin
+    records={};pattern=re.compile(source['job_url_pattern'])
+    for url in source['index_urls']:
+        body,_,final=client.request(approved(url,source));approved(final,source)
+        parser=JobLinksParser();parser.feed(body.decode('utf-8','replace'))
+        structured_titles={}
+        if source.get('include_index_jobposting'):
+            structured=PageParser();structured.feed(body.decode('utf-8','replace'))
+            for script in structured.scripts:
+                for posting in walk_json(script):
+                    title=plain(posting.get('title'))
+                    structured_titles[approved(final,source)]=title
+                    parser.links.append([final,title])
+        for href,label in parser.links:
+            target=urljoin(final,href.strip())
+            if not pattern.search(target):continue
+            target=approved(target,source)
+            key=re.search(source['job_id_pattern'],target).group(1) if source.get('job_id_pattern') else target
+            title=structured_titles.get(target,plain(label))
+            if key in records and len(records[key]['title'])>=len(title):continue
+            records[key]=dict(source_id=source['id'],external_id=key,employer=source['employer'],title=title,location='',text='',url=target,apply_url=target,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True)
+        if len(records)>source.get('max_job_urls',5000):raise ValueError('Job index safety limit')
+    if not records:raise ValueError('No matching links; list layout needs review')
+    return list(records.values())

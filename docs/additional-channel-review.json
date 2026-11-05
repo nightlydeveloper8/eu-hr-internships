@@ -1,0 +1,148 @@
+[
+  {
+    "company_id": "futrue-neurosciences-gmbh",
+    "adapter": "personio-xml",
+    "feed_url": "https://futrue.jobs.personio.de/xml",
+    "status": "review-required",
+    "reason": "robots.txt disallows https://futrue.jobs.personio.de/xml"
+  },
+  {
+    "company_id": "markteffect",
+    "adapter": "personio-xml",
+    "feed_url": "https://markteffect.jobs.personio.com/xml",
+    "status": "review-required",
+    "reason": "HTTP Error 404: Not Found"
+  },
+  {
+    "company_id": "ifp-consulting",
+    "adapter": "personio-xml",
+    "feed_url": "https://ifp-consulting-gmbh-co-kg.jobs.personio.com/xml",
+    "status": "ok",
+    "final_url": "https://ifp-consulting-gmbh-co-kg.jobs.personio.com/xml",
+    "records": 4
+  },
+  {
+    "company_id": "menlo-systems-gmbh",
+    "adapter": "personio-xml",
+    "feed_url": "https://menlo-systems-gmbh.jobs.personio.de/xml",
+    "status": "ok",
+    "final_url": "https://menlo-systems-gmbh.jobs.personio.de/xml",
+    "records": 8
+  },
+  {
+    "company_id": "qwitto-gmbh",
+    "adapter": "personio-xml",
+    "feed_url": "https://qwitto-gmbh.jobs.personio.de/xml",
+    "status": "ok",
+    "final_url": "https://qwitto-gmbh.jobs.personio.de/xml",
+    "records": 2
+  },
+  {
+    "company_id": "flow-traders",
+    "adapter": "greenhouse",
+    "feed_url": "https://boards-api.greenhouse.io/v1/boards/flowtraders/jobs?content=true",
+    "status": "ok",
+    "final_url": "https://boards-api.greenhouse.io/v1/boards/flowtraders/jobs?content=true",
+    "records": 44
+  },
+  {
+    "company_id": "leyton",
+    "adapter": "employer-sitemap",
+    "feed_url": "https://leytonglobal-france.teamtailor.com/robots.txt",
+    "status": "ok",
+    "final_url": "https://leytonglobal-france.teamtailor.com/robots.txt",
+    "sitemaps": [
+      "https://leytonglobal-france.teamtailor.com/sitemap.xml"
+    ],
+    "records": 8,
+    "job_url_pattern": "^https://leytonglobal\\-france\\.teamtailor\\.com/(?:[a-z]{2}/)?jobs/\\d+-",
+    "jobposting_sample": true
+  },
+  {
+    "company_id": "vlisco-netherlands-b-v",
+    "adapter": "employer-sitemap",
+    "feed_url": "https://careers.vlisco.com/robots.txt",
+    "status": "ok",
+    "final_url": "https://careers.vlisco.com/robots.txt",
+    "sitemaps": [
+      "https://careers.vlisco.com/sitemap.xml"
+    ],
+    "records": 10,
+    "job_url_pattern": "^https://careers\\.vlisco\\.com/(?:[a-z]{2}/)?jobs/\\d+-",
+    "jobposting_sample": true
+  },
+  {
+    "company_id": "gac-group",
+    "adapter": "employer-sitemap",
+    "feed_url": "https://careers.group-gac.com/robots.txt",
+    "status": "ok",
+    "final_url": "https://careers.group-gac.com/robots.txt",
+    "sitemaps": [
+      "https://careers.group-gac.com/sitemap.xml"
+    ],
+    "records": 5,
+    "job_url_pattern": "^https://careers\\.group\\-gac\\.com/(?:[a-z]{2}/)?jobs/\\d+-",
+    "jobposting_sample": true
+  },
+  {
+    "company_id": "renaissance-fusion",
+    "adapter": "employer-sitemap",
+    "feed_url": "https://renfusion.eu/robots.txt",
+    "status": "review-required",
+    "final_url": "https://renfusion.eu/robots.txt",
+    "reason": "No matching job URLs; source layout needs review"
+  },
+  {
+    "company_id": "spark-cleantech",
+    "adapter": "employer-sitemap",
+    "feed_url": "https://careers.spark-cleantech.eu/robots.txt",
+    "status": "ok",
+    "final_url": "https://careers.spark-cleantech.eu/robots.txt",
+    "sitemaps": [
+      "https://careers.spark-cleantech.eu/sitemap.xml"
+    ],
+    "records": 8,
+    "job_url_pattern": "^https://careers\\.spark\\-cleantech\\.eu/(?:[a-z]{2}/)?jobs/\\d+-",
+    "jobposting_sample": true
+  },
+  {
+    "company_id": "social-deal-b-v",
+    "adapter": "recruitee",
+    "feed_url": "https://werk.socialdeal.nl/api/offers/",
+    "status": "ok",
+    "final_url": "https://werk.socialdeal.nl/api/offers/",
+    "records": 43
+  },
+  {
+    "company_id": "multifix",
+    "adapter": "recruitee",
+    "feed_url": "https://werkenbijmultifix.nl/api/offers/",
+    "status": "ok",
+    "final_url": "https://werkenbijmultifix.nl/api/offers/",
+    "records": 7
+  },
+  {
+    "company_id": "veldsink-groep",
+    "adapter": "recruitee",
+    "feed_url": "https://werkenbijveldsinkgroep.nl/api/offers/",
+    "status": "ok",
+    "final_url": "https://werkenbijveldsinkgroep.nl/api/offers/",
+    "records": 86
+  },
+  {
+    "company_id": "inovarion",
+    "adapter": "employer-sitemap",
+    "feed_url": "https://www.inovarion.com/robots.txt",
+    "status": "review-required",
+    "final_url": "https://www.inovarion.com/robots.txt",
+    "reason": "No matching job URLs; source layout needs review"
+  },
+  {
+    "company_id": "teamviewer-germany-gmbh",
+    "adapter": "employer-sitemap",
+    "feed_url": "https://www.teamviewer.com/robots.txt",
+    "status": "review-required",
+    "final_url": "https://www.teamviewer.com/robots.txt",
+    "reason": "Sitemap safety limit; snapshot incomplete"
+  }
+]

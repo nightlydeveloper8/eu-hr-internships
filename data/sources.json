@@ -1034,7 +1034,7 @@
     "page_format": "danone",
     "permission_basis": "Official public employer sitemap and structured page metadata; robots checked every run; only discovery metadata exported",
     "reviewed_on": "2026-11-05",
-    "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs."
   },
   {
     "id": "employer-unilever",
@@ -1061,6 +1061,532 @@
     "page_format": "jsonld",
     "permission_basis": "Official public employer sitemap and structured page metadata; robots checked every run; only discovery metadata exported",
     "reviewed_on": "2026-11-05",
-    "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs."
+  },
+  {
+    "id": "employer-multraship",
+    "employer": "Multraship",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.multraship.com/en/careers",
+    "sitemaps": [
+      "https://careers.multraship.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.multraship\\.com/vacatures/[^/]+$",
+    "allowed_hosts": [
+      "careers.multraship.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "page_format": "jsonld",
+    "permission_basis": "Official public sitemap and JobPosting metadata; robots checked every run",
+    "reviewed_on": "2026-11-05",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs."
+  },
+  {
+    "id": "recruitee-edco",
+    "employer": "EDCO",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://werkenbijedco.nl/",
+    "feed_url": "https://werkenbijedco.recruitee.com/api/offers/",
+    "allowed_hosts": [
+      "werkenbijedco.nl",
+      "werkenbijedco.recruitee.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://docs.recruitee.com/reference/offers",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "recruitee-dienst-dommelvallei",
+    "employer": "Dienst Dommelvallei",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://dommelvallei.recruitee.com/",
+    "feed_url": "https://dommelvallei.recruitee.com/api/offers/",
+    "allowed_hosts": [
+      "dommelvallei.recruitee.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://docs.recruitee.com/reference/offers",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-carpus-partner-ag",
+    "employer": "Carpus+Partner AG",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.carpus.de/work-with-us",
+    "feed_url": "https://carpus.jobs.personio.de/xml",
+    "allowed_hosts": [
+      "carpus.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-drive-consulting",
+    "employer": "DRIVE Consulting",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://drive-consulting.de/karriere/",
+    "feed_url": "https://drive-consulting.jobs.personio.de/xml",
+    "allowed_hosts": [
+      "drive-consulting.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-enforto-gmbh",
+    "employer": "Enforto GmbH",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.enforto.com/careers/",
+    "feed_url": "https://evo-engineering-gmbh.jobs.personio.de/xml",
+    "allowed_hosts": [
+      "evo-engineering-gmbh.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-micronova-ag",
+    "employer": "MicroNova AG",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://karriere.micronova.de/index.html",
+    "feed_url": "https://micronova.jobs.personio.de/xml",
+    "allowed_hosts": [
+      "micronova.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "recruitee-focus-entertainment",
+    "employer": "Focus Entertainment",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://www.focus-entmt.com/en/careers",
+    "feed_url": "https://focushomeinteractive.recruitee.com/api/offers/",
+    "allowed_hosts": [
+      "focusentertainment.recruitee.com",
+      "focushomeinteractive.recruitee.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://docs.recruitee.com/reference/offers",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "recruitee-protiviti-gmbh",
+    "employer": "Protiviti GmbH",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://www.protiviti.com/de-de/careers",
+    "feed_url": "https://protiviti.recruitee.com/api/offers/",
+    "allowed_hosts": [
+      "protiviti.recruitee.com"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://docs.recruitee.com/reference/offers",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "recruitee-psv",
+    "employer": "PSV",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://www.psv.nl/club/organisatie/werken-bij",
+    "feed_url": "https://psv.recruitee.com/api/offers/",
+    "allowed_hosts": [
+      "psv.recruitee.com",
+      "werkenbij.psv.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://docs.recruitee.com/reference/offers",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-qaware",
+    "employer": "QAware",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.qaware.de/karriere",
+    "feed_url": "https://qaware.jobs.personio.de/xml",
+    "allowed_hosts": [
+      "qaware.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-qplix-gmbh",
+    "employer": "QPLIX GmbH",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.qplix.com/de/career",
+    "feed_url": "https://qplix.jobs.personio.com/xml",
+    "allowed_hosts": [
+      "qplix.jobs.personio.com"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-tng-technology-consulting-gmbh",
+    "employer": "TNG Technology Consulting GmbH",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.tngtech.com/en/careers/",
+    "feed_url": "https://tngtech.jobs.personio.de/xml",
+    "allowed_hosts": [
+      "tngtech.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "personio-xml-usd-ag",
+    "employer": "usd AG",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.usd.de/karriere/hero-stories/",
+    "feed_url": "https://usd-ag.jobs.personio.de/xml",
+    "allowed_hosts": [
+      "usd-ag.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official career page links to public vendor feed; documented public GET endpoint; robots checked each run",
+    "documentation_url": "https://developer.personio.de/docs/integration-of-open-positions",
+    "discovery_scope": "All positions returned by the reviewed public feed; final role and explicit country/city determine inclusion; unknown locations excluded."
+  },
+  {
+    "id": "employer-bas-group",
+    "employer": "BAS Group",
+    "adapter": "employer-index",
+    "enabled": true,
+    "career_url": "https://www.werkenbijbas.com/vacatures",
+    "index_urls": [
+      "https://www.werkenbijbas.com/vacature/33110/meewerkstage-hr-4"
+    ],
+    "job_url_pattern": "^https://www\\.werkenbijbas\\.com/vacature/\\d+/",
+    "job_id_pattern": "/vacature/(\\d+)/",
+    "allowed_hosts": [
+      "www.werkenbijbas.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official public JobPosting page reviewed from search discovery; robots checked every run; only this explicit URL is monitored",
+    "discovery_scope": "Reviewed official HR job page plus related job links present on that page; each structured page is read before classification. Not a complete BAS vacancy inventory; main index remains dynamic.",
+    "include_index_jobposting": true,
+    "employer_tokens": [
+      "bas"
+    ],
+    "reviewed_locality_fields": {
+      "Veghel": "Veghel"
+    }
+  },
+  {
+    "id": "personio-xml-ifp-consulting",
+    "employer": "ifp consulting",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.ifpconsulting.de/karriere/",
+    "allowed_hosts": [
+      "ifp-consulting-gmbh-co-kg.jobs.personio.com"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data.",
+    "feed_url": "https://ifp-consulting-gmbh-co-kg.jobs.personio.com/xml"
+  },
+  {
+    "id": "personio-xml-menlo-systems-gmbh",
+    "employer": "Menlo Systems GmbH",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://www.menlosystems.com/career/",
+    "allowed_hosts": [
+      "menlo-systems-gmbh.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data.",
+    "feed_url": "https://menlo-systems-gmbh.jobs.personio.de/xml"
+  },
+  {
+    "id": "personio-xml-qwitto-gmbh",
+    "employer": "qwitto GmbH",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://qwitto.com/qwitto-career/",
+    "allowed_hosts": [
+      "qwitto-gmbh.jobs.personio.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data.",
+    "feed_url": "https://qwitto-gmbh.jobs.personio.de/xml"
+  },
+  {
+    "id": "greenhouse-flow-traders",
+    "employer": "Flow Traders",
+    "adapter": "greenhouse",
+    "enabled": true,
+    "career_url": "https://www.flowtraders.com/careers/",
+    "allowed_hosts": [
+      "boards-api.greenhouse.io",
+      "job-boards.greenhouse.io"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data.",
+    "board": "flowtraders"
+  },
+  {
+    "id": "employer-sitemap-leyton",
+    "employer": "Leyton",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://leytonglobal-france.teamtailor.com/jobs",
+    "allowed_hosts": [
+      "leytonglobal-france.teamtailor.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+    "sitemaps": [
+      "https://leytonglobal-france.teamtailor.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://leytonglobal\\-france\\.teamtailor\\.com/(?:[a-z]{2}/)?jobs/\\d+-"
+  },
+  {
+    "id": "employer-sitemap-vlisco-netherlands-b-v",
+    "employer": "Vlisco Netherlands B.V.",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.vlisco.com/jobs",
+    "allowed_hosts": [
+      "careers.vlisco.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+    "sitemaps": [
+      "https://careers.vlisco.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.vlisco\\.com/(?:[a-z]{2}/)?jobs/\\d+-"
+  },
+  {
+    "id": "employer-sitemap-gac-group",
+    "employer": "GAC GROUP",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.group-gac.com/#jobs",
+    "allowed_hosts": [
+      "careers.group-gac.com"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+    "sitemaps": [
+      "https://careers.group-gac.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.group\\-gac\\.com/(?:[a-z]{2}/)?jobs/\\d+-"
+  },
+  {
+    "id": "employer-sitemap-spark-cleantech",
+    "employer": "Spark Cleantech",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.spark-cleantech.eu/",
+    "allowed_hosts": [
+      "careers.spark-cleantech.eu"
+    ],
+    "target_countries": [
+      "FR"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+    "sitemaps": [
+      "https://careers.spark-cleantech.eu/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.spark\\-cleantech\\.eu/(?:[a-z]{2}/)?jobs/\\d+-"
+  },
+  {
+    "id": "recruitee-social-deal-b-v",
+    "employer": "Social Deal B.V.",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://werk.socialdeal.nl/alle-vacatures",
+    "allowed_hosts": [
+      "werk.socialdeal.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data.",
+    "feed_url": "https://werk.socialdeal.nl/api/offers/"
+  },
+  {
+    "id": "recruitee-multifix",
+    "employer": "MULTIFIX",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://werkenbijmultifix.nl/vacatures",
+    "allowed_hosts": [
+      "werkenbijmultifix.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data.",
+    "feed_url": "https://werkenbijmultifix.nl/api/offers/"
+  },
+  {
+    "id": "recruitee-veldsink-groep",
+    "employer": "Veldsink Groep",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://werkenbijveldsinkgroep.nl/vacaturepagina-veldsink-groep-did",
+    "allowed_hosts": [
+      "werkenbijveldsinkgroep.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+    "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data.",
+    "feed_url": "https://werkenbijveldsinkgroep.nl/api/offers/"
+  },
+  {
+    "id": "employer-tyche-bank",
+    "employer": "Tyche Bank",
+    "adapter": "employer-sitemap",
+    "allowed_hosts": [
+      "careers.tychebank.it"
+    ],
+    "sitemaps": [
+      "https://careers.tychebank.it/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.tychebank\\.it/(?:[a-z]{2}/)?jobs/\\d+-",
+    "enabled": true,
+    "career_url": "https://careers.tychebank.it/",
+    "target_countries": [
+      "IT"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official declared public sitemap and JobPosting; robots checked every run",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs."
+  },
+  {
+    "id": "employer-var-group",
+    "employer": "Var Group",
+    "adapter": "employer-sitemap",
+    "allowed_hosts": [
+      "www.careers.vargroup.com"
+    ],
+    "sitemaps": [
+      "https://www.careers.vargroup.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://www\\.careers\\.vargroup\\.com/(?:[a-z]{2}/)?jobs/\\d+-",
+    "enabled": true,
+    "career_url": "https://www.careers.vargroup.com/en-GB",
+    "target_countries": [
+      "IT"
+    ],
+    "reviewed_on": "2026-11-05",
+    "permission_basis": "Official declared public sitemap and JobPosting; robots checked every run",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs."
   }
 ]

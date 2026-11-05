@@ -1,8 +1,10 @@
 {
-  "generated_at": "2026-11-05T13:35:08.698304+00:00",
+  "generated_at": "2026-11-05T20:49:04.097033+00:00",
   "exhaustive": false,
-  "company_count": 64,
-  "monitored_companies": 12,
+  "company_count": 842,
+  "career_pages_recorded": 541,
+  "career_pages_verified_this_mapping": 471,
+  "monitored_companies": 40,
   "regions": [
     {
       "code": "AT11",
@@ -2469,12 +2471,15 @@
       "name": "Oberbayern",
       "country": "DE",
       "level": 2,
-      "companies_located": 0,
-      "companies_monitored": 0,
-      "open_listings": 0,
+      "companies_located": 2,
+      "companies_monitored": 2,
+      "open_listings": 2,
       "listing_mapping": "confirmed employer/city match",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "qplix-gmbh",
+        "tng-technology-consulting-gmbh"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "DE211",
@@ -9417,12 +9422,14 @@
       "name": "Ile-de-France",
       "country": "FR",
       "level": 2,
-      "companies_located": 0,
-      "companies_monitored": 0,
-      "open_listings": 0,
+      "companies_located": 1,
+      "companies_monitored": 1,
+      "open_listings": 1,
       "listing_mapping": "confirmed employer/city match",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "focus-entertainment"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "FR101",
@@ -12669,12 +12676,20 @@
       "name": "Veneto",
       "country": "IT",
       "level": 2,
-      "companies_located": 0,
+      "companies_located": 7,
       "companies_monitored": 0,
       "open_listings": 0,
       "listing_mapping": "confirmed employer/city match",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "ad-system-italia-s-r-l",
+        "arredo-3-s-r-l",
+        "eurofibre-s-r-l",
+        "nico-velo-s-p-a",
+        "nuova-tesi-system-s-r-l",
+        "polo-s-p-a",
+        "salco-s-r-l"
+      ],
+      "status": "employers-identified"
     },
     {
       "code": "ITH31",
@@ -12825,12 +12840,14 @@
       "name": "Emilia-Romagna",
       "country": "IT",
       "level": 2,
-      "companies_located": 0,
-      "companies_monitored": 0,
-      "open_listings": 0,
+      "companies_located": 1,
+      "companies_monitored": 1,
+      "open_listings": 1,
       "listing_mapping": "confirmed employer/city match",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "tyche-bank"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "ITH51",
@@ -13634,11 +13651,12 @@
       "name": "Drenthe",
       "country": "NL",
       "level": 2,
-      "companies_located": 1,
+      "companies_located": 2,
       "companies_monitored": 0,
       "open_listings": 0,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
+        "balance-point-control",
         "resato-hydrogen-technology"
       ],
       "status": "employers-identified"
@@ -13796,13 +13814,14 @@
       "name": "Flevoland",
       "country": "NL",
       "level": 2,
-      "companies_located": 2,
+      "companies_located": 3,
       "companies_monitored": 0,
       "open_listings": 0,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
         "alfen",
-        "alliander"
+        "alliander",
+        "asg"
       ],
       "status": "employers-identified"
     },
@@ -13923,14 +13942,18 @@
       "name": "Zeeland",
       "country": "NL",
       "level": 2,
-      "companies_located": 1,
-      "companies_monitored": 0,
+      "companies_located": 5,
+      "companies_monitored": 1,
       "open_listings": 0,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
-        "dow"
+        "bomont",
+        "damen",
+        "dow",
+        "multraship",
+        "zeelandia"
       ],
-      "status": "employers-identified"
+      "status": "monitoring"
     },
     {
       "code": "NL341",
@@ -14075,14 +14098,15 @@
       "name": "Noord-Brabant",
       "country": "NL",
       "level": 2,
-      "companies_located": 1,
-      "companies_monitored": 0,
-      "open_listings": 0,
+      "companies_located": 2,
+      "companies_monitored": 1,
+      "open_listings": 1,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
-        "asml"
+        "asml",
+        "bas-group"
       ],
-      "status": "employers-identified"
+      "status": "monitoring"
     },
     {
       "code": "NL411",
@@ -16947,164 +16971,434 @@
     {
       "code": "AT",
       "name": "Austria",
-      "companies_identified": 1,
-      "regions_with_employers": 0
+      "companies_identified": 2,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 1,
+      "baseline_gap": 99,
+      "expansion_gap": 799,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "BE",
       "name": "Belgium",
-      "companies_identified": 9,
-      "regions_with_employers": 0
+      "companies_identified": 13,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 5,
+      "baseline_gap": 95,
+      "expansion_gap": 795,
+      "size_unknown": 13,
+      "status": "integration-required"
     },
     {
       "code": "BG",
       "name": "Bulgaria",
-      "companies_identified": 1,
-      "regions_with_employers": 0
+      "companies_identified": 2,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 1,
+      "baseline_gap": 99,
+      "expansion_gap": 499,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "HR",
       "name": "Croatia",
-      "companies_identified": 1,
-      "regions_with_employers": 0
+      "companies_identified": 2,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 1,
+      "baseline_gap": 99,
+      "expansion_gap": 499,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "CY",
       "name": "Cyprus",
       "companies_identified": 1,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 1,
+      "status": "integration-required"
     },
     {
       "code": "CZ",
       "name": "Czechia",
       "companies_identified": 2,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 800,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "DK",
       "name": "Denmark",
       "companies_identified": 4,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 2,
+      "baseline_gap": 98,
+      "expansion_gap": 798,
+      "size_unknown": 4,
+      "status": "integration-required"
     },
     {
       "code": "EE",
       "name": "Estonia",
       "companies_identified": 1,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 1,
+      "status": "integration-required"
     },
     {
       "code": "FI",
       "name": "Finland",
       "companies_identified": 1,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 800,
+      "size_unknown": 1,
+      "status": "integration-required"
     },
     {
       "code": "FR",
       "name": "France",
-      "companies_identified": 24,
-      "regions_with_employers": 0
+      "companies_identified": 119,
+      "regions_with_employers": 1,
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "companies_located": 1,
+      "companies_with_located_career_channel": 1,
+      "located_employers_with_monitoring_configured": 1,
+      "companies_monitored_in_country": 10,
+      "baseline_gap": 90,
+      "expansion_gap": 1490,
+      "size_unknown": 119,
+      "status": "integration-required"
     },
     {
       "code": "DE",
       "name": "Germany",
-      "companies_identified": 25,
-      "regions_with_employers": 0
+      "companies_identified": 255,
+      "regions_with_employers": 1,
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "companies_located": 2,
+      "companies_with_located_career_channel": 2,
+      "located_employers_with_monitoring_configured": 2,
+      "companies_monitored_in_country": 20,
+      "baseline_gap": 80,
+      "expansion_gap": 1480,
+      "size_unknown": 255,
+      "status": "integration-required"
     },
     {
       "code": "GR",
       "name": "Greece",
       "companies_identified": 2,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "HU",
       "name": "Hungary",
-      "companies_identified": 2,
-      "regions_with_employers": 0
+      "companies_identified": 4,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 2,
+      "baseline_gap": 98,
+      "expansion_gap": 798,
+      "size_unknown": 4,
+      "status": "integration-required"
     },
     {
       "code": "IE",
       "name": "Ireland",
-      "companies_identified": 4,
-      "regions_with_employers": 0
+      "companies_identified": 5,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 1,
+      "baseline_gap": 99,
+      "expansion_gap": 799,
+      "size_unknown": 5,
+      "status": "integration-required"
     },
     {
       "code": "IT",
       "name": "Italy",
-      "companies_identified": 13,
-      "regions_with_employers": 0
+      "companies_identified": 326,
+      "regions_with_employers": 2,
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "companies_located": 10,
+      "companies_with_located_career_channel": 8,
+      "located_employers_with_monitoring_configured": 1,
+      "companies_monitored_in_country": 5,
+      "baseline_gap": 95,
+      "expansion_gap": 1495,
+      "size_unknown": 326,
+      "status": "integration-required"
     },
     {
       "code": "LV",
       "name": "Latvia",
       "companies_identified": 1,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 1,
+      "status": "integration-required"
     },
     {
       "code": "LT",
       "name": "Lithuania",
       "companies_identified": 1,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 1,
+      "status": "integration-required"
     },
     {
       "code": "LU",
       "name": "Luxembourg",
       "companies_identified": 2,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "MT",
       "name": "Malta",
       "companies_identified": 1,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 1,
+      "status": "integration-required"
     },
     {
       "code": "NL",
       "name": "Netherlands",
-      "companies_identified": 28,
-      "regions_with_employers": 12
+      "companies_identified": 179,
+      "regions_with_employers": 12,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 20,
+      "companies_with_located_career_channel": 5,
+      "located_employers_with_monitoring_configured": 5,
+      "companies_monitored_in_country": 17,
+      "baseline_gap": 83,
+      "expansion_gap": 783,
+      "size_unknown": 179,
+      "status": "integration-required"
     },
     {
       "code": "PL",
       "name": "Poland",
-      "companies_identified": 8,
-      "regions_with_employers": 0
+      "companies_identified": 11,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 3,
+      "baseline_gap": 97,
+      "expansion_gap": 1497,
+      "size_unknown": 11,
+      "status": "integration-required"
     },
     {
       "code": "PT",
       "name": "Portugal",
       "companies_identified": 6,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 2,
+      "baseline_gap": 98,
+      "expansion_gap": 798,
+      "size_unknown": 6,
+      "status": "integration-required"
     },
     {
       "code": "RO",
       "name": "Romania",
       "companies_identified": 2,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 800,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "SK",
       "name": "Slovakia",
       "companies_identified": 2,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 2,
+      "status": "integration-required"
     },
     {
       "code": "SI",
       "name": "Slovenia",
       "companies_identified": 1,
-      "regions_with_employers": 0
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 0,
+      "baseline_gap": 100,
+      "expansion_gap": 500,
+      "size_unknown": 1,
+      "status": "integration-required"
     },
     {
       "code": "ES",
       "name": "Spain",
-      "companies_identified": 18,
-      "regions_with_employers": 0
+      "companies_identified": 21,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 1500,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 5,
+      "baseline_gap": 95,
+      "expansion_gap": 1495,
+      "size_unknown": 21,
+      "status": "integration-required"
     },
     {
       "code": "SE",
       "name": "Sweden",
-      "companies_identified": 5,
-      "regions_with_employers": 0
+      "companies_identified": 6,
+      "regions_with_employers": 0,
+      "baseline_target": 100,
+      "expansion_target": 800,
+      "companies_located": 0,
+      "companies_with_located_career_channel": 0,
+      "located_employers_with_monitoring_configured": 0,
+      "companies_monitored_in_country": 3,
+      "baseline_gap": 97,
+      "expansion_gap": 797,
+      "size_unknown": 6,
+      "status": "integration-required"
     }
   ],
   "limitations": [
