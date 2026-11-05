@@ -6,6 +6,9 @@ from collections import deque
 from datetime import datetime,timezone
 from html.parser import HTMLParser
 import json,re,time
+import xml.etree.ElementTree as ET
+from io import BytesIO
+import gzip
 from urllib.parse import urlsplit,urljoin,parse_qs
 from .classify import canonical_url,plain,fold,classify_role,country_codes
 from .employer_pages import PageParser,walk_json
@@ -83,10 +86,14 @@ def job_from_json(data,url,source):
     if not job_url:return None
     employment=data.get('employmentType','');employment=' '.join(str(x) for x in employment) if isinstance(employment,list) else str(employment or '')
     record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=None,published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting')
+    identifier=data.get('identifier')
+    if isinstance(identifier,dict):identifier=identifier.get('value')
+    if isinstance(identifier,(str,int)) and str(identifier).strip():record['posting_identifier']=str(identifier).strip()
     if declared:record['countries']=sorted(set(countries))
     return record
 
 def job_from_visible(doc,source,is_job=False):
+    if re.search(r'/(?:blogs?|news|stories|events|insights|articles?)(?:/|$)',urlsplit(doc.url).path,re.I):return None
     title=next((h for h in doc.h1 if classify_role(h)),None)
     if not title and is_job and len(doc.h1)==1 and len(doc.text)>200:title=doc.h1[0]
     if not title:return None
@@ -105,7 +112,7 @@ class Inventory(list):
 
 class Crawler:
     def __init__(self,source,client):
-        self.source=source;self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id']);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set()
+        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id']);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
@@ -131,6 +138,7 @@ class Crawler:
         elif host.endswith('.recruitee.com') and host not in ('www.recruitee.com','careers-analytics.recruitee.com'):adapter='recruitee';feed='https://'+host+'/api/offers/'
         if not adapter:return False
         key=(adapter,board or feed)
+        if key in self.completed_feeds:return True
         if key in self.feeds:return False
         self.feeds.add(key);s=dict(self.source,adapter=adapter,board=board or '',allowed_hosts=list(self.allowed))
         if host=='jobs.eu.lever.co':s['region']='eu'
@@ -149,7 +157,26 @@ class Crawler:
         body,_,final=self.client.request(url)
         if not safe_url(final):raise ValueError('Unsafe final URL')
         # A declared employer redirect is public provenance for its final host.
-        self.allowed.add(urlsplit(final).hostname);self.pages+=1;doc=Document(body,final)
+        self.allowed.add(urlsplit(final).hostname);self.pages+=1
+        if body.startswith(b'\x1f\x8b'):
+            with gzip.GzipFile(fileobj=BytesIO(body)) as zipped:body=zipped.read(20_000_001)
+            if len(body)>20_000_000:raise ValueError('Sitemap decompression limit')
+        if re.search(br'<(?:[a-z]+:)?(?:urlset|sitemapindex)\b',body[:1000],re.I):
+            if b'<!DOCTYPE' in body.upper():raise ValueError('Sitemap DOCTYPE not allowed')
+            root=ET.fromstring(body);index=root.tag.rsplit('}',1)[-1]=='sitemapindex';links=[];self.sitemaps_read+=1;self.used_methods.add('robots-declared-sitemap')
+            for node in root.iter():
+                if node.tag.rsplit('}',1)[-1]!='loc' or not node.text:continue
+                target=safe_url(urljoin(final,node.text.strip()))
+                if not target or not self.allow(target):continue
+                path=urlsplit(target).path
+                if re.search(r'/(?:blogs?|news|stories|events|insights|articles?)(?:/|$)',path,re.I):continue
+                if index:
+                    if self.sitemaps_read<5 and (CAREER.search(path) or re.search(r'(?:page|job|vacan|career|stellen|posizion)',path,re.I)):links.append(dict(url=target,job=False))
+                    else:self.incomplete=True
+                elif CAREER.search(path) or JOBPATH.search(target):links.append(dict(url=target,job=True))
+            if len(links)>2000:self.incomplete=True
+            return dict(records=[],links=links[:2000],empty=False)
+        doc=Document(body,final)
         if CHALLENGE.search(doc.text[:3000]):raise ValueError('Access challenge; no bypass attempted')
         for embedded in re.findall(r'https://[^\s<>\"\']+',body.decode('utf-8','replace').replace('\\/','/')):
             target=safe_url(embedded.rstrip(');,'))
@@ -165,6 +192,12 @@ class Crawler:
             except Exception as exc:
                 self.incomplete=True;self.errors.append(dict(url=final,error='Rendered read: '+str(exc)[:160]))
         result=dict(records=[],links=[],empty=False)
+        origin=urlsplit(final).scheme+'://'+urlsplit(final).netloc
+        if origin not in self.sitemap_origins:
+            self.sitemap_origins.add(origin);robots=getattr(self.client,'robots',{}).get(origin)
+            for sitemap in (robots.site_maps() or []) if robots else []:
+                target=safe_url(sitemap)
+                if target and self.allow(target):result['links'].append(dict(url=target,job=False))
         for d in docs:
             posts=d.jobposts()
             for post in posts:
@@ -180,7 +213,7 @@ class Crawler:
                 if not self.allow(target,observed=True):continue
                 label=plain(label)
                 path=urlsplit(target).path
-                if re.search(r'privacy|datenschutz|cookies?|impressum|contact|kontakt|login|register|/apply(?:[/?]|$)|/application|job-alert|talent-community',path,re.I):continue
+                if re.search(r'/(?:blogs?|news|stories|events|insights|articles?)(?:/|$)|privacy|datenschutz|cookies?|impressum|contact|kontakt|login|register|/apply(?:[/?]|$)|/application|job-alert|talent-community',path,re.I):continue
                 job=bool(JOBPATH.search(target) or classify_role(label))
                 if job or CAREER.search(label+' '+path) or (path in ('','/') and CAREER.search(urlsplit(target).hostname)) or 'next' in rel or NEXT.fullmatch(label.strip()):result['links'].append(dict(url=target,job=job,priority=0 if classify_role(label+' '+path.replace('-',' ')) else 1 if ('next' in rel or NEXT.fullmatch(label.strip()) or not job) else 2))
             for href in d.frames:
@@ -189,9 +222,18 @@ class Crawler:
             result['empty']|=bool(EMPTY.search(d.text))
         if is_job:self.cache.put(url,result)
         return result
+    def priority(self,entry):
+        url,is_job,depth=entry;path=urlsplit(url).path
+        if url in self.known_urls:priority=0
+        elif classify_role(path.replace('-',' ')):priority=1
+        elif not is_job and (depth==0 or re.search(r'/(?:jobs|careers|vacatures|karriere|stellenangebote|lavoraconnoi)/?$',path,re.I)):priority=2
+        elif is_job:priority=4 if self.cache.exists(url) else 3
+        else:priority=5
+        return (priority,self.cache.timestamp(url),depth)
+
     def run(self):
         seeds=[u for u in [self.state.get('preferred_career_url')]+self.source['start_urls'] if u and safe_url(u)]
-        queue=deque((u,False,0) for u in dict.fromkeys(seeds));pending=self.state.get('pending',[])
+        queue=deque((u,True,0) for u in self.source.get('known_job_urls',[]) if self.allow(u));queue.extend((u,False,0) for u in dict.fromkeys(seeds));pending=self.state.get('pending',[])
         for entry in pending:
             if self.allow(entry.get('url','')):queue.append((entry['url'],entry.get('job',True),entry.get('depth',1)))
         max_pages=self.source.get('max_pages',60)
@@ -214,7 +256,7 @@ class Crawler:
                             queue.append((link['url'],link['job'],depth+1))
                             if not link['job'] and CAREER.search(link['url']):self.state['preferred_career_url']=link['url']
                     # New pages precede cached details so a large employer resumes fairly.
-                    if len(queue)>2:queue=deque(dict.fromkeys(sorted(queue,key=lambda x:(self.cache.exists(x[0]),0 if classify_role(urlsplit(x[0]).path.replace('-',' ')) else 1 if not x[1] else 2,x[2]))))
+                    if len(queue)>2:queue=deque(dict.fromkeys(sorted(queue,key=self.priority)))
                 except CollectionBudgetExceeded:self.urls_seen.discard(url);queue.appendleft((url,is_job,depth));raise
                 except Exception as exc:self.errors.append(dict(url=url,error=str(exc)[:180]))
         except CollectionBudgetExceeded as exc:self.incomplete=True;self.errors.append(dict(url='collection-budget',error=str(exc)))
@@ -222,7 +264,7 @@ class Crawler:
         self.state['allowed_hosts']=sorted(self.allowed);self.state['pending']=remaining[:2000];self.cache.save_state(self.state)
         unresolved=sum(bool(r.get('geography_unresolved')) for r in self.records.values())
         complete=(bool(self.completed_feeds) and self.inventory or self.empty) and not self.incomplete and not self.errors and not remaining and not unresolved
-        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,pages_read=self.pages,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed))
+        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed))
         if not self.inventory and not self.empty:stats['error']='No verified job inventory or explicit empty vacancy list found; discovery continues automatically'
         return Inventory(self.records.values(),stats)
 

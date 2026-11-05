@@ -86,3 +86,56 @@ class RenderingFallbackTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}),patch('collector.rendering.render_pages',side_effect=RuntimeError('must not be called')) as browser:
    rows=Crawler(s,FakeClient({'https://example.org':body})).run()
   self.assertEqual(len(rows),1);browser.assert_not_called()
+
+class QualityRegressionTests(unittest.TestCase):
+ def test_praktijk_is_a_business_practice_and_praktijkstage_is_an_internship(self):
+  from collector.classify import classify_role
+  self.assertIsNone(classify_role('HR Adviseur | Internationale praktijk'))
+  self.assertIsNotNone(classify_role('HR praktijkstage'))
+ def test_dutch_internal_payroll_job_is_not_an_internship(self):
+  from collector.classify import classify_role
+  self.assertIsNone(classify_role('Payroll Specialist Intern','Jij coördineert salarisverwerking voor 1200 medewerkers. Vast contract.'))
+  self.assertIsNotNone(classify_role('HR Intern','Jij bent student en zoekt een stage.'))
+ def test_recruiter_advice_article_is_not_a_vacancy(self):
+  d=Document(b'<main><h1>Recruiter Q&amp;A: Internships and Career Advice</h1><div class="location">Germany</div></main>','https://example.org/blogs/recruiter-interview')
+  self.assertIsNone(job_from_visible(d,source()))
+ def test_language_mirrors_merge_but_distinct_official_ids_remain(self):
+  from collector.pipeline import deduplicate
+  base=dict(id='a',source_id='loreal',employer='Loreal',first_discovered_at=now(),last_verified_at=now(),country='DE',countries=['DE'])
+  a=dict(base,url='https://careers.loreal.com/en/job/hr-intern/3456/45385292416')
+  b=dict(base,id='b',url='https://careers.loreal.com/fr/emploi/hr-intern/3456/45385292416')
+  c=dict(base,id='c',url='https://careers.loreal.com/en/job/hr-intern/3456/45385292417')
+  self.assertEqual(len(deduplicate([a,b,c])),2)
+ def test_intervieweb_languages_and_published_tracking_links_merge(self):
+  from collector.pipeline import deduplicate
+  base=dict(id='a',source_id='despar',first_discovered_at=now(),last_verified_at=now(),country='IT',countries=['IT'])
+  a=dict(base,url='https://despar.intervieweb.it/jobs/hr-stage-11939/it')
+  b=dict(base,id='b',url='https://despar.intervieweb.it/jobs/hr-stage-11939/de?d=qrcode')
+  self.assertEqual(len(deduplicate([a,b])),1)
+ def test_reviewed_false_positive_cannot_reappear_from_previous_partial_catalog(self):
+  from collector.pipeline import apply_listing_reviews
+  jobs=[dict(url='https://example.org/jobs/1'),dict(url='https://example.org/jobs/2')]
+  rows=apply_listing_reviews(jobs,[dict(url='https://example.org/jobs/1',decision='excluded')]);self.assertEqual(rows,[jobs[1]])
+ def test_sitemap_discovers_opaque_postings_without_guessing_urls(self):
+  from urllib.robotparser import RobotFileParser
+  r=RobotFileParser();r.parse(['User-agent: *','Allow: /','Sitemap: https://example.org/jobs-map.xml'])
+  pages={'https://example.org':'<h1>Example</h1>','https://example.org/jobs-map.xml':'<urlset><url><loc>https://example.org/jobs/9901</loc></url></urlset>','https://example.org/jobs/9901':'<script type="application/ld+json">'+json.dumps(posting())+'</script>'}
+  client=FakeClient(pages);client.robots={'https://example.org':r}
+  with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):rows=Crawler(source(),client).run()
+  self.assertEqual(len(rows),1);self.assertIn('https://example.org/jobs/9901',client.calls)
+ def test_known_hr_offers_are_revisited_before_discovery(self):
+  s=source();s['known_job_urls']=['https://example.org/jobs/9901'];client=FakeClient({'https://example.org/jobs/9901':'<script type="application/ld+json">'+json.dumps(posting())+'</script>','https://example.org':'<h1>Example</h1>'})
+  with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):rows=Crawler(s,client).run()
+  self.assertEqual(client.calls[0],'https://example.org/jobs/9901');self.assertEqual(len(rows),1)
+
+class CrawlFairnessTests(unittest.TestCase):
+ def test_stale_cached_pages_rotate_instead_of_restarting_at_the_first_url(self):
+  import os
+  with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):
+   c=Crawler(source(),FakeClient({}));old='https://example.org/jobs/2';new='https://example.org/jobs/1'
+   c.cache.put(old,{});c.cache.put(new,{});os.utime(c.cache.path(old),(10,10));os.utime(c.cache.path(new),(20,20))
+   self.assertEqual(sorted([(new,True,1),(old,True,1)],key=c.priority)[0][0],old)
+ def test_job_details_precede_deep_company_navigation(self):
+  with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):
+   c=Crawler(source(),FakeClient({}));detail=('https://example.org/jobs/3',True,2);about=('https://example.org/careers/our-values',False,2)
+   self.assertLess(c.priority(detail),c.priority(about))

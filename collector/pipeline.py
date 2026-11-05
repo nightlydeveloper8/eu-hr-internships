@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import json
 import logging
 import os
+import re
 from pathlib import Path
 from urllib.parse import urlsplit
 from .adapters import Client, collect, enrich
@@ -30,7 +31,7 @@ def reconcile(previous,current,successful,stamp):
     merged={j['id']:dict(j) for j in previous}
     for job in current:
         old=merged.get(job['id'],{})
-        job['first_discovered_at']=old.get('first_discovered_at',stamp)
+        job['first_discovered_at']=old.get('first_discovered_at',job.get('first_discovered_at',stamp))
         job['missing_count']=0
         job.pop('missing_since',None)
         merged[job['id']]=job
@@ -45,17 +46,41 @@ def reconcile(previous,current,successful,stamp):
         job['status']='closed' if job['missing_count']>=3 and elapsed>=48*3600 else 'unverified'
     return list(merged.values())
 
+def posting_identity(job):
+    if job.get('source_posting_id'):return 'posting:'+job['source_id']+':'+str(job['source_posting_id'])
+    return posting_url_identity(job)
+
+def posting_url_identity(job):
+    p=urlsplit(job['url']);host=p.hostname or '';identifier=None
+    # Public platform URLs expose stable IDs shared by their language mirrors.
+    if host=='careers.loreal.com':
+        match=re.search(r'/\d+/(\d+)$',p.path);identifier=match.group(1) if match else None
+    elif host.endswith('.intervieweb.it'):
+        match=re.search(r'/jobs/[^/]*-(\d+)(?:/[a-z]{2})?/?$',p.path);identifier=match.group(1) if match else None
+    if identifier:return 'posting:'+job['source_id']+':'+host+':'+identifier
+    return None
+
+def apply_listing_reviews(jobs,reviews):
+    excluded={canonical_url(r['url']) for r in reviews if r.get('decision')=='excluded'}
+    return [j for j in jobs if canonical_url(j['url']) not in excluded]
+
 def deduplicate(jobs):
     by_url={}
     for job in sorted(jobs,key=lambda j:j.get('first_discovered_at','')):
         keys={canonical_url(job['url']),canonical_url(job.get('apply_url') or job['url'])}
+        identity=posting_identity(job)
+        if identity:keys.add(identity)
+        url_identity=posting_url_identity(job)
+        if url_identity:keys.add(url_identity)
         existing=next((by_url[k] for k in keys if k in by_url),None)
         if existing is not None:
+            combined_countries=sorted(set(existing.get('countries',[]))|set(job.get('countries',[])))
             existing['duplicate_source_ids']=sorted(set(existing.get('duplicate_source_ids',[])+[job['source_id']]))
             # Keep stable ID/first discovery, use freshest verified metadata.
             if job.get('last_verified_at','')>existing.get('last_verified_at',''):
                 stable,first=existing['id'],existing['first_discovered_at']
                 existing.update(job); existing['id'],existing['first_discovered_at']=stable,first
+            if combined_countries:existing['countries']=combined_countries;existing['country']=combined_countries[0]
         else: existing=dict(job)
         for key in keys: by_url[key]=existing
     return list({id(value):value for value in by_url.values()}.values())
@@ -92,7 +117,9 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         if prev_count>=20 and len(records)<prev_count*0.4 and inventory_stats.get('complete',True): raise ValueError('Bulk disappearance quarantined; review source before next run')
         report['collected']=len(records)
         staged=[];page_errors=[];inspected=[]
-        if cache:records=sorted(records,key=lambda r:cache.exists(r['url']) if r.get('needs_page') else False)
+        if cache:
+            known=set(source.get('known_job_urls',[]))
+            records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
         for record in records:
             # Inventory hints and URL slugs are not job titles. Read structured
             # pages before filtering, including opaque IDs and untranslated URLs.
@@ -125,10 +152,10 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 except Exception as exc:
                     LOG.warning('Link unverified %s: %s',url,str(exc)[:150]); link_status='unverified'
             langs=workplace_languages(record['text'])
-            staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
+            staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
-        if not page_errors and inventory_stats.get('complete',True) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
+        if not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
         report.update(status='partial' if source['id'] in partial_sources else 'ok',matching=len(staged),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
@@ -147,7 +174,7 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     partial_sources={r['id'] for r in reports if r['status']=='partial'}
     closure_eligible={sid for p in parts for sid in p['closure_eligible']}
     report_by_id={r['id']:r for r in prior_report.get('sources',[])}
-    jobs=deduplicate(reconcile(prior['jobs'],current,closure_eligible,stamp))
+    jobs=deduplicate(apply_listing_reviews(reconcile(prior['jobs'],current,closure_eligible,stamp),read(ROOT/'data/listing-reviews.json',[])))
     from .company_registry import region_codes_for_job
     companies=read(ROOT/'data/companies.json',[])
     for job in jobs:job['region_codes']=region_codes_for_job(job,companies)
@@ -156,6 +183,10 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     for j in jobs:
         if not j.get('last_verified_at') and j['id'] in old: j['last_verified_at']=old[j['id']].get('last_verified_at')
     result={'schema_version':1,'updated_at':stamp if successful else prior.get('updated_at'),'last_attempt_at':stamp,'update_status':'ok' if len(successful)==len(selected) and selected and not partial_sources else 'partial' if successful else 'failed','countries':COUNTRIES,'languages':LANGUAGES,'categories':{k:v[0] for k,v in CATEGORIES.items()},'jobs':jobs}
+    for job in jobs:
+        try:age=(datetime.fromisoformat(stamp)-datetime.fromisoformat(job.get('last_verified_at') or job['last_seen_at'])).total_seconds()
+        except (ValueError,TypeError,KeyError):age=float('inf')
+        if job['status']=='open' and age>48*3600:job['status']='unverified';job['link_status']='stale'
     validate_catalog(result)
     report_by_id.update({r['id']:r for r in reports})
     counts=Counter(c for j in jobs if j['status']!='closed' for c in j['countries'])

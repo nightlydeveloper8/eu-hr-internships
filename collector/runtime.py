@@ -41,6 +41,9 @@ class PageCache:
         self.hits=0;self.writes=0
     def path(self,url):return self.root/(hashlib.sha256(url.encode()).hexdigest()+'.json.gz')
     def exists(self,url):return self.path(url).exists()
+    def timestamp(self,url):
+        try:return self.path(url).stat().st_mtime
+        except OSError:return 0
     def get(self,url,lastmod=None,max_age_hours=72):
         try:
             with gzip.open(self.path(url),'rt',encoding='utf-8') as f:value=json.load(f)

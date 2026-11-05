@@ -18,7 +18,7 @@ CATEGORIES = {
  'hr-administration': ('HR administration', r'hr admin|personnel admin|administration du personnel|personaladministration|personeelsadministratie|amministrazione del personale'),
  'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
-INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijk|\bprakt[yi]k|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bstaz\b|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
+INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bstaz\b|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 CITY_COUNTRIES = {
  'NL': 'amsterdam|rotterdam|utrecht|eindhoven|hoofddorp|oegstgeest|amersfoort|wageningen|haarlem|zaandam|leiden|den haag|hilversum|breda|delft|nijmegen|groningen|tilburg|enschede|apeldoorn|arnhem|den bosch',
  'DE':'berlin|munich|munchen|hamburg|frankfurt|cologne|koln|dusseldorf|stuttgart|leipzig|karlsruhe|walldorf|heidelberg', 'FR':'paris|rueil.malmaison|neuilly|nanterre|saint.ouen|saint.denis|lyon|marseille|bordeaux|lille|toulouse|nantes|boulogne|issy|clichy',
@@ -68,6 +68,10 @@ def classify_role(title, text='', employment=''):
     if not cats and re.search(r'people (?:&|and) events',title) and re.search(r'personalbetreuung|personalentwicklung|human resources|hr administration',text):cats=['hr-generalist']
     # Department metadata alone cannot turn a sustainability/software role into HR.
     if not cats: return None
+    # Dutch 'intern' can mean an in-house permanent employee. Require actual
+    # student/placement evidence when the surrounding text is Dutch.
+    if re.search(r'\bintern\b',title) and re.search(r'\b(?:jij|jouw|werkervaring|salarisverwerking|medewerkers)\b',text):
+        if not re.search(r'\bstag(?:e|iair|iaire|iairs|iaires)|\binternship|\bstudent|\bmeewerk|\bafstudeer|\binschrev',title+' '+text):return None
     # Internal, international and interview must never count as 'intern'.
     signal = re.search(INTERNSHIP,title+' '+employment)
     if not signal: return None

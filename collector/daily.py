@@ -44,9 +44,13 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     if source_ids and set(source_ids)-{s['id'] for s in enabled}:raise ValueError('Unknown or disabled source IDs: '+str(sorted(set(source_ids)-{s['id'] for s in enabled})))
     selected=[s for s in enabled if shard_for(s['id'],shards)==shard and (not source_ids or s['id'] in source_ids)]
     counts={r['id']:r.get('collected',0) for r in read(ROOT/'data/coverage.json',{}).get('sources',[])}
+    known={}
+    for job in read(ROOT/'data/catalog.json',{}).get('jobs',[]):
+        if job.get('status')!='closed':known.setdefault(job['source_id'],[]).append(job['url'])
     stamp=now();parts=[]
     company_for={sid:c for c in companies for sid in c.get('source_ids',[])}
     def work(source):
+        source=dict(source,known_job_urls=known.get(source['id'],[]))
         started=time.monotonic();client=BudgetClient(seconds=seconds or source.get('collection_seconds',180 if source['adapter'] in ('employer-sitemap','employer-index') else 120),max_requests=source.get('max_requests',180))
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
         if part['report']['status']=='failed' and source['adapter']!='universal-employer' and client.remaining()>15:
