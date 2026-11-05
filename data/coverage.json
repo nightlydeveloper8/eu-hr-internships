@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T17:54:28.167088+00:00",
+  "generated_at": "2026-11-05T21:06:46.152573+00:00",
   "exhaustive": false,
   "sources": [
     {
@@ -30,7 +30,7 @@
       "id": "greenhouse-adyen",
       "employer": "Adyen",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 252,
       "status": "ok",
       "matching": 0,
@@ -43,7 +43,11 @@
         "NL",
         "PL",
         "SE"
-      ]
+      ],
+      "records_inspected": 252,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "greenhouse-picnic",
@@ -65,7 +69,7 @@
       "id": "lever-emma-sleep",
       "employer": "Emma – The Sleep Company",
       "adapter": "lever",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 70,
       "status": "ok",
       "matching": 1,
@@ -73,13 +77,17 @@
         "DE",
         "FR",
         "PT"
-      ]
+      ],
+      "records_inspected": 70,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "lever-veepee",
       "employer": "Veepee",
       "adapter": "lever",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 107,
       "status": "ok",
       "matching": 2,
@@ -90,7 +98,11 @@
         "FR",
         "IT",
         "NL"
-      ]
+      ],
+      "records_inspected": 107,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "lever-backmarket",
@@ -152,19 +164,23 @@
       "id": "greenhouse-talentprograms",
       "employer": "Hunter Douglas – Talent Programs",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 13,
       "status": "ok",
       "matching": 1,
       "observed_countries": [
         "NL"
-      ]
+      ],
+      "records_inspected": 13,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "greenhouse-catawiki",
       "employer": "Catawiki",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 45,
       "status": "ok",
       "matching": 0,
@@ -177,14 +193,18 @@
         "NL",
         "PL",
         "PT"
-      ]
+      ],
+      "records_inspected": 45,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "greenhouse-hellofresh",
       "employer": "HelloFresh",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
-      "collected": 384,
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
+      "collected": 386,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
@@ -196,7 +216,11 @@
         "NL",
         "PL",
         "SE"
-      ]
+      ],
+      "records_inspected": 386,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "greenhouse-personio",
@@ -226,20 +250,24 @@
       "id": "greenhouse-dim",
       "employer": "DIM",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 31,
       "status": "ok",
       "matching": 1,
       "observed_countries": [
         "FR"
-      ]
+      ],
+      "records_inspected": 31,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "lever-pigment",
       "employer": "Pigment",
       "adapter": "lever",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
-      "collected": 129,
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
+      "collected": 127,
       "status": "ok",
       "matching": 1,
       "observed_countries": [
@@ -248,20 +276,28 @@
         "FR",
         "NL",
         "SE"
-      ]
+      ],
+      "records_inspected": 127,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "lever-malt",
       "employer": "Malt",
       "adapter": "lever",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
-      "collected": 28,
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
+      "collected": 29,
       "status": "ok",
       "matching": 1,
       "observed_countries": [
         "DE",
         "FR"
-      ]
+      ],
+      "records_inspected": 29,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "greenhouse-doctolib",
@@ -299,8 +335,8 @@
       "id": "greenhouse-dept",
       "employer": "DEPT®",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
-      "collected": 161,
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
+      "collected": 160,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
@@ -309,186 +345,456 @@
         "HR",
         "HU",
         "NL"
-      ]
+      ],
+      "records_inspected": 160,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "employer-danone",
       "employer": "Danone",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
-      "collected": 780,
-      "status": "ok",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
+      "collected": 779,
+      "status": "partial",
       "matching": 8,
       "observed_countries": [
+        "AT",
+        "BE",
+        "BG",
         "DE",
+        "ES",
+        "FI",
         "FR",
-        "NL"
+        "GR",
+        "HU",
+        "IE",
+        "IT",
+        "LT",
+        "LV",
+        "NL",
+        "PL",
+        "RO",
+        "SE",
+        "SK"
       ],
-      "snapshot_kind": "public-sitemap-url-inventory",
-      "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
+      "records_inspected": 764,
+      "page_failures": 15,
+      "page_errors": [
+        {
+          "url": "https://careers.danone.com/en-global/jobs/.-27568-en-us.html",
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/.-27569-en-us.html",
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/biotics-fermentation-technician-10250-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/brand-manager-26915-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/cash-flow-reporting-finance-analyst-28359-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/customer-service-analyst-28549-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/energy-mainteinance-technician-28558-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/head-of-tax-morocco-h-f-27707-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/it-data-business-partner-operations-27997-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/leader-cellule-production-25512-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/mes-deployment-project-manager-12-months-29137-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/plant-manager-29086-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/product-developer-29044-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/quality-specialist-co-manufacturing-supply-chain-23657-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/responsable-magasin-matieres-premieres-28612-en-us.html",
+          "error": "Missing structured title/description"
+        }
+      ],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "employer-unilever",
       "employer": "Unilever",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 254,
-      "status": "ok",
+      "status": "partial",
       "matching": 1,
       "observed_countries": [
-        "NL"
+        "BE",
+        "DE",
+        "ES",
+        "FI",
+        "FR",
+        "NL",
+        "PL",
+        "RO"
       ],
-      "snapshot_kind": "public-sitemap-url-inventory",
-      "discovery_scope": "All matching job URLs in the employer sitemap are inventoried. Descriptive URL slugs triage HR internship candidates; final structured title and location must qualify. Opaque/non-listed URLs may be missed. Sitemap absence never closes jobs."
+      "records_inspected": 229,
+      "page_failures": 25,
+      "page_errors": [
+        {
+          "url": "https://careers.unilever.com/en/job/6th-of-october-city/brand-manager-foods-knorr/34155/102594217120",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/aguai/operador-de-paletizacao/34155/102861217232",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/aguai/operador-tecnico-fabrica-aguai-sp/34155/100443676672",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/aguai/tecnico-de-qualidade-1-fabrica-aguai-sp/34155/102637534576",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/bangkok/hrbp-manager/34155/102883108944",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/bengaluru/senior-executive-icrr/34155/102516970864",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/catalonia/key-account-manager-regional-1ul-spain-hpc-east-and-south/34155/102629228800",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/cavite/innovations-suit-engineer/34155/102195358672",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/chicago/controls-and-automation-engineer/34155/101883164368",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/chicago/forklift-operator/34155/102296787552",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/dubai/digital-specialist/34155/102602761280",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/ho-chi-minh-city/project-engineer/34155/101341223472",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/hoboken/federal-tax-manager/34155/101664311024",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/hoboken/transportation-excellence-specialist/34155/102883108592",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/igarassu/operador-de-maquinas-1-vaga-afirmativa-destinada-a-mulheres-com-deficiencia-pcd/34155/102245914384",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/istanbul/assistant-supply-planning-manager/34155/102758002912",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/montreal/key-account-manager-mckesson-uniprix-pc-and-b-and-w/34155/101664310960",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/montreal/territory-development-manager-unilever-food-service/34155/102332087360",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/mumbai/brand-design-manager/34155/102452171392",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/north-rocks/supply-chain-finance-business-partner-foods-anz/34155/102790617840",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/valinhos/auxiliar-de-producao-fabrica-de-valinhos-sp-vaga-exclusiva-para-pessoas-com-deficiencia/34155/102473561648",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/valinhos/operador-de-producao-fabrica-valinhos-vaga-exclusiva-para-pessoas-com-deficiencia/34155/102559525616",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/vinhedo/auxiliar-de-controle-de-qualidade-fabrica-vinhedo/34155/102569310160",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/vinhedo/inspetor-de-qualidade-fabrica-vinhedo/34155/102569310144",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        },
+        {
+          "url": "https://careers.unilever.com/en/job/vinhedo/tecnico-de-laboratorio-de-qualidade-fabrica-vinhedo/34155/102569310240",
+          "error": "No supported JobPosting structured data; no page-text guessing"
+        }
+      ],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "employer-multraship",
       "employer": "Multraship",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 18,
-      "status": "ok",
+      "status": "partial",
       "matching": 0,
-      "observed_countries": [],
-      "snapshot_kind": "public-sitemap-url-inventory",
-      "discovery_scope": "Dutch vacancy URLs in official sitemap; descriptive slugs triaged, official structured title and location determine inclusion. Opaque or unlisted URLs may be missed; sitemap absence never closes jobs."
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 13,
+      "page_failures": 5,
+      "page_errors": [
+        {
+          "url": "https://careers.multraship.com/vacatures/bootman-schipper",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.multraship.com/vacatures/bootman-schipper-montis",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.multraship.com/vacatures/manager-dispatch",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.multraship.com/vacatures/matroos",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.multraship.com/vacatures/schipper-dagdienst",
+          "error": "Unexpected hiring organisation"
+        }
+      ],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "recruitee-edco",
       "employer": "EDCO",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 20,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "NL"
-      ]
+      ],
+      "records_inspected": 20,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "recruitee-dienst-dommelvallei",
       "employer": "Dienst Dommelvallei",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 11,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "NL"
-      ]
+      ],
+      "records_inspected": 11,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-carpus-partner-ag",
       "employer": "Carpus+Partner AG",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 11,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 11,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-drive-consulting",
       "employer": "DRIVE Consulting",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 14,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 14,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-enforto-gmbh",
       "employer": "Enforto GmbH",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 2,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 2,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-micronova-ag",
       "employer": "MicroNova AG",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 12,
       "status": "ok",
       "matching": 0,
-      "observed_countries": []
+      "observed_countries": [],
+      "records_inspected": 12,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "recruitee-focus-entertainment",
       "employer": "Focus Entertainment",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 9,
       "status": "ok",
       "matching": 1,
       "observed_countries": [
         "FR",
         "NL"
-      ]
+      ],
+      "records_inspected": 9,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "recruitee-protiviti-gmbh",
       "employer": "Protiviti GmbH",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 8,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 8,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "recruitee-psv",
       "employer": "PSV",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 16,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "NL"
-      ]
+      ],
+      "records_inspected": 16,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-qaware",
       "employer": "QAware",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 6,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 6,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-qplix-gmbh",
       "employer": "QPLIX GmbH",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 29,
       "status": "ok",
       "matching": 1,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 29,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-tng-technology-consulting-gmbh",
       "employer": "TNG Technology Consulting GmbH",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 15,
       "status": "ok",
       "matching": 2,
@@ -498,129 +804,209 @@
         "DE",
         "ES",
         "HU"
-      ]
+      ],
+      "records_inspected": 15,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-usd-ag",
       "employer": "usd AG",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 8,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 8,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "employer-bas-group",
       "employer": "BAS Group",
       "adapter": "employer-index",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 5,
       "status": "ok",
       "matching": 1,
-      "observed_countries": []
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 5,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "Reviewed official HR job page plus related job links present on that page; each structured page is read before classification. Not a complete BAS vacancy inventory; main index remains dynamic.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "personio-xml-ifp-consulting",
       "employer": "ifp consulting",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 4,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 4,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-menlo-systems-gmbh",
       "employer": "Menlo Systems GmbH",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 8,
       "status": "ok",
       "matching": 0,
-      "observed_countries": []
+      "observed_countries": [],
+      "records_inspected": 8,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "personio-xml-qwitto-gmbh",
       "employer": "qwitto GmbH",
       "adapter": "personio-xml",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 2,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "DE"
-      ]
+      ],
+      "records_inspected": 2,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "greenhouse-flow-traders",
       "employer": "Flow Traders",
       "adapter": "greenhouse",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 44,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "NL"
-      ]
+      ],
+      "records_inspected": 44,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "employer-sitemap-leyton",
       "employer": "Leyton",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 8,
       "status": "ok",
       "matching": 0,
-      "observed_countries": [],
-      "snapshot_kind": "public-sitemap-url-inventory",
-      "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data."
+      "observed_countries": [
+        "FR"
+      ],
+      "records_inspected": 8,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "employer-sitemap-vlisco-netherlands-b-v",
       "employer": "Vlisco Netherlands B.V.",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 10,
       "status": "ok",
       "matching": 0,
-      "observed_countries": [],
-      "snapshot_kind": "public-sitemap-url-inventory",
-      "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data."
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 10,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "employer-sitemap-gac-group",
       "employer": "GAC GROUP",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 5,
-      "status": "ok",
+      "status": "partial",
       "matching": 0,
       "observed_countries": [],
-      "snapshot_kind": "public-sitemap-url-inventory",
-      "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data."
+      "records_inspected": 0,
+      "page_failures": 5,
+      "page_errors": [
+        {
+          "url": "https://careers.group-gac.com/jobs/8059114-consultant-ip-box-f-h",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.group-gac.com/jobs/8059192-consultant-ip-box-f-h",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.group-gac.com/jobs/8166647-developpeur-backend-senior-f-h",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.group-gac.com/jobs/8310798-charge-paie-et-administration-du-personnel-f-h",
+          "error": "Unexpected hiring organisation"
+        },
+        {
+          "url": "https://careers.group-gac.com/jobs/8648969-consultant-e-senior-ia-agentique-ai-lead",
+          "error": "Unexpected hiring organisation"
+        }
+      ],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "employer-sitemap-spark-cleantech",
       "employer": "Spark Cleantech",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 8,
       "status": "ok",
       "matching": 0,
-      "observed_countries": [],
-      "snapshot_kind": "public-sitemap-url-inventory",
-      "discovery_scope": "Reviewed public feed or declared sitemap; explicit roles and locations determine inclusion; access errors preserve prior data."
+      "observed_countries": [
+        "FR"
+      ],
+      "records_inspected": 8,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "recruitee-social-deal-b-v",
       "employer": "Social Deal B.V.",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 43,
       "status": "ok",
       "matching": 0,
@@ -628,37 +1014,49 @@
         "BE",
         "DE",
         "NL"
-      ]
+      ],
+      "records_inspected": 43,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "recruitee-multifix",
       "employer": "MULTIFIX",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 7,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "NL"
-      ]
+      ],
+      "records_inspected": 7,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "recruitee-veldsink-groep",
       "employer": "Veldsink Groep",
       "adapter": "recruitee",
-      "checked_at": "2026-11-05T17:20:30.539052+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 86,
       "status": "ok",
       "matching": 0,
       "observed_countries": [
         "NL"
-      ]
+      ],
+      "records_inspected": 86,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false
     },
     {
       "id": "employer-tyche-bank",
       "employer": "Tyche Bank",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:54:28.167088+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 7,
       "status": "ok",
       "matching": 1,
@@ -670,14 +1068,14 @@
       "page_errors": [],
       "page_errors_truncated": false,
       "snapshot_kind": "public-job-page-inventory",
-      "discovery_scope": "All matching job URLs in declared public sitemap; descriptive slugs triage; actual structured title and address determine inclusion. Opaque or unlisted URLs may be missed; sitemap absence never closes jobs.",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
       "page_discovery_mode": "read-all-inventoried-job-pages"
     },
     {
       "id": "employer-var-group",
       "employer": "Var Group",
       "adapter": "employer-sitemap",
-      "checked_at": "2026-11-05T17:54:28.167088+00:00",
+      "checked_at": "2026-11-05T21:06:46.152573+00:00",
       "collected": 77,
       "status": "ok",
       "matching": 0,
@@ -689,7 +1087,7 @@
       "page_errors": [],
       "page_errors_truncated": false,
       "snapshot_kind": "public-job-page-inventory",
-      "discovery_scope": "All matching job URLs in declared public sitemap; descriptive slugs triage; actual structured title and address determine inclusion. Opaque or unlisted URLs may be missed; sitemap absence never closes jobs.",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
       "page_discovery_mode": "read-all-inventoried-job-pages"
     }
   ],
@@ -761,14 +1159,14 @@
       "code": "FR",
       "name": "France",
       "listings": 9,
-      "sources_with_observed_jobs": 10,
+      "sources_with_observed_jobs": 11,
       "discovery_candidates": 15
     },
     {
       "code": "DE",
       "name": "Germany",
       "listings": 5,
-      "sources_with_observed_jobs": 20,
+      "sources_with_observed_jobs": 19,
       "discovery_candidates": 17
     },
     {
@@ -889,8 +1287,8 @@
     "open": 22,
     "unverified": 0,
     "confirmed_english": 14,
-    "sources_succeeded": 2,
-    "sources_attempted": 2,
-    "sources_partial": 0
+    "sources_succeeded": 40,
+    "sources_attempted": 40,
+    "sources_partial": 4
   }
 }
