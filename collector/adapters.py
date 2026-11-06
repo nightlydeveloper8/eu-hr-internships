@@ -36,7 +36,7 @@ class Client:
                 LOG.warning('Retry HTTP %s: %s',exc.code,host)
                 self.pause(pause)
             except (URLError,TimeoutError) as exc:
-                if 'TLSV1_ALERT_PROTOCOL_VERSION' in str(exc):
+                if any(error in str(exc) for error in ('TLSV1_ALERT_PROTOCOL_VERSION','TLSV1_ALERT_INTERNAL_ERROR')):
                     from .tls_transport import request as modern_tls_request
                     return modern_tls_request(url,method,{'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},timeout)
                 if attempt==attempts-1: raise

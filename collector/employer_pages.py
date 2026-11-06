@@ -80,7 +80,24 @@ def page_record(record,source,client,clock=None):
         if not fragment:raise ValueError('Matching Danone job fragment not found; page may be closed')
         title=plain(fragment['title'])
         result.update(title=title,location=plain(fragment.get('city',''))+', '+plain(fragment.get('country','')),city=fragment.get('city'),country=fragment.get('country'),text=plain(fragment.get('descriptionheader','')+' '+fragment.get('description','')),language=fragment.get('locale'),published_at=datetime.fromtimestamp(int(fragment['posted'])/1000,timezone.utc).isoformat() if fragment.get('posted','').isdigit() else None,employment=fragment.get('positiontype',''),work_mode={'Hybrid':'hybrid','On-site':'on-site','Remote':'remote'}.get(fragment.get('workfromhome')))
+    elif source.get('page_format')=='odoo-visible':
+        from .universal import Document
+        from .applications import odoo_application
+        doc=Document(body,final)
+        if len(doc.h1)!=1 or len(doc.text)<200:raise ValueError('Reviewed Odoo vacancy title/description missing')
+        form=odoo_application(doc,source,client,doc.h1[0])
+        match=re.search(r'\bLocatie\s+(.+?)\s+Afdeling\b',form.text)
+        place=source.get('reviewed_workplace_labels',{}).get(match.group(1) if match else '')
+        if not place:raise ValueError('Unreviewed Odoo job workplace label')
+        # The form's workplace label resolves to its reviewed campus address,
+        # which must still be published on the original vacancy page.
+        if place['address_evidence'] not in plain(' '.join(doc.body)):
+            raise ValueError('Reviewed campus address no longer published')
+        result.update(title=doc.h1[0],text=doc.text,city=place['city'],country=place['country'],countries=[place['country']],location=place['city']+', '+place['country'],language='nl')
     elif data:
+        identifier=data.get('identifier')
+        if isinstance(identifier,dict):identifier=identifier.get('value')
+        if isinstance(identifier,(str,int)):result['posting_identifier']=str(identifier)
         expires=data.get('validThrough')
         if expires:
             try:
@@ -109,23 +126,33 @@ def page_record(record,source,client,clock=None):
 
 class JobLinksParser(HTMLParser):
     def __init__(self):
-        super().__init__(convert_charrefs=True);self.links=[];self.current=None
+        super().__init__(convert_charrefs=True);self.links=[];self.anchors=[]
     def handle_starttag(self,tag,attrs):
         if tag=='a':
-            attrs=dict(attrs);self.current=[attrs.get('href',''),'']
+            attrs=dict(attrs);self.anchors.append([attrs.get('href',''),''])
     def handle_data(self,data):
-        if self.current:self.current[1]+=' '+data
+        for anchor in self.anchors:anchor[1]+=' '+data
     def handle_endtag(self,tag):
-        if tag=='a' and self.current:
-            self.links.append(self.current);self.current=None
+        if tag=='a' and self.anchors:self.links.append(self.anchors.pop())
 
 def index_records(source,client):
     """Inventory actual links in reviewed official lists; never infer job paths."""
     from urllib.parse import urljoin
     records={};pattern=re.compile(source['job_url_pattern'])
-    for url in source['index_urls']:
+    pending=list(source['index_urls']);seen=set();declared_total=None
+    for url in pending:
+        url=approved(url,source)
+        if url in seen:continue
+        if len(seen)>=source.get('max_index_pages',20):raise ValueError('Index pagination safety limit; incomplete inventory')
+        seen.add(url)
         body,_,final=client.request(approved(url,source));approved(final,source)
         parser=JobLinksParser();parser.feed(body.decode('utf-8','replace'))
+        if source.get('index_job_count_pattern'):
+            match=re.search(source['index_job_count_pattern'],plain(body.decode('utf-8','replace')))
+            if not match:raise ValueError('Reviewed published job count missing')
+            count=int(match.group(1))
+            if declared_total is not None and declared_total!=count:raise ValueError('Published count changed during pagination')
+            declared_total=count
         structured_titles={}
         if source.get('include_index_jobposting'):
             structured=PageParser();structured.feed(body.decode('utf-8','replace'))
@@ -136,6 +163,9 @@ def index_records(source,client):
                     parser.links.append([final,title])
         for href,label in parser.links:
             target=urljoin(final,href.strip())
+            if source.get('index_page_pattern') and re.search(source['index_page_pattern'],target):
+                target=approved(target,source)
+                if target not in seen and target not in pending:pending.append(target)
             if not pattern.search(target):continue
             target=approved(target,source)
             key=re.search(source['job_id_pattern'],target).group(1) if source.get('job_id_pattern') else target
@@ -144,4 +174,11 @@ def index_records(source,client):
             records[key]=dict(source_id=source['id'],external_id=key,employer=source['employer'],title=title,location='',text='',url=target,apply_url=target,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True)
         if len(records)>source.get('max_job_urls',5000):raise ValueError('Job index safety limit')
     if not records:raise ValueError('No matching links; list layout needs review')
+    if declared_total is not None and declared_total!=len(records):raise ValueError('Job links differ from the published inventory count')
+    if source.get('report_index_scope'):
+        from .universal import Inventory
+        complete=source.get('inventory_scope_complete',False)
+        return Inventory(records.values(),dict(status='ok' if complete else 'partial',complete=complete,
+            closure_complete=False,pages_read=len(seen),job_urls_discovered=len(records),
+            declared_job_count=declared_total,discovery_scope=source.get('discovery_scope')))
     return list(records.values())

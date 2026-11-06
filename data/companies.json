@@ -19878,14 +19878,27 @@
   },
   {
     "id": "essity-italy",
-    "name": "Essity Italy",
-    "website_url": "https://www.essity.it/",
-    "career_url": null,
+    "name": "Essity",
+    "website_url": "https://www.essity.com/",
+    "career_url": "https://www.essity.nl/werken-bij-essity-in-nederland/vacatures/?country=NLD",
     "evidence_url": "https://eventi.unibo.it/careerday/aziende-partecipanti-2026/view/2649",
     "target_countries": [
-      "IT"
+      "IT",
+      "NL"
     ],
-    "workplaces": [],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Hoogezand",
+        "municipality": "Midden-Groningen",
+        "municipality_code": "GM1952",
+        "settlement_code": "WP1018",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.essity.nl/Images/Factheet-Essity%20Netherlands-2018_tcm343-67675.pdf",
+        "checked_on": "2026-11-06"
+      }
+    ],
     "source_ids": [
       "auto-essity-italy"
     ],
@@ -19898,7 +19911,34 @@
       "status": "review-required",
       "reason": "robots.txt returned HTML; access review required"
     },
-    "checked_at": "2026-11-05"
+    "checked_at": "2026-11-05",
+    "aliases": [
+      "Essity Italy"
+    ],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 500,
+        "employees_text": "FNV primary workforce report dated March 2026 identifies approximately 500 employees at Hoogezand. Employer fact sheet separately documented 455 in 2018.",
+        "scope": "establishment",
+        "source_url": "https://www.fnv.nl/nieuwsbericht/sectornieuws/procesindustrie/2026/03/woensdag-de-hele-dag-door-acties-bij-essity",
+        "source_date": "2026-03"
+      },
+      "employer_type": "private",
+      "group_name": "Essity",
+      "notes": [
+        "Existing registry entry is Essity Italy: reuse group after reviewing employer identity, add Dutch workplace/country and preserve Italian source. Current local count comes from union primary source, not the employer; dated employer fact sheet corroborates threshold only."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 500,
+      "employees_text": "FNV primary workforce report dated March 2026 identifies approximately 500 employees at Hoogezand. Employer fact sheet separately documented 455 in 2018.",
+      "scope": "establishment",
+      "source_url": "https://www.fnv.nl/nieuwsbericht/sectornieuws/procesindustrie/2026/03/woensdag-de-hele-dag-door-acties-bij-essity",
+      "source_date": "2026-03"
+    }
   },
   {
     "id": "eszet-group",
@@ -23867,7 +23907,7 @@
   {
     "id": "gasunie",
     "name": "Gasunie",
-    "career_url": "https://www.gasunie.nl/nl/vacatures",
+    "career_url": "https://www.werkenbijgasunie.nl/vacatures",
     "evidence_url": "https://www.gasunie.nl/organisatie/investor-relations/financiele-informatie/%248412/%2413213/Gasunie%20Jaarverslag%202022.pdf",
     "target_countries": [
       "NL"
@@ -23876,11 +23916,13 @@
       {
         "country": "NL",
         "region_code": "NL11",
-        "subregion_code": null,
         "city": "Groningen",
-        "evidence_url": "https://www.gasunie.nl/organisatie/investor-relations/financiele-informatie/%248412/%2413213/Gasunie%20Jaarverslag%202022.pdf",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
         "location_confidence": "confirmed",
-        "checked_on": "2026-11-05"
+        "evidence_url": "https://www.werkenbijgasunie.nl/vacatures",
+        "checked_on": "2026-11-06"
       }
     ],
     "source_ids": [
@@ -23888,7 +23930,31 @@
     ],
     "priority": "high",
     "hr_internship_evidence": "not-yet-confirmed",
-    "review_status": "research-required"
+    "review_status": "research-required",
+    "aliases": [],
+    "website_url": "https://www.gasunie.nl",
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 3000,
+        "employees_text": "Official careers profile reports growth to 3,000 colleagues across Gasunie; local Groningen headcount not given.",
+        "scope": "group",
+        "source_url": "https://www.werkenbijgasunie.nl/over-gasunie/waarom-werken-bij-gasunie",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Gasunie",
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 3000,
+      "employees_text": "Official careers profile reports growth to 3,000 colleagues across Gasunie; local Groningen headcount not given.",
+      "scope": "group",
+      "source_url": "https://www.werkenbijgasunie.nl/over-gasunie/waarom-werken-bij-gasunie",
+      "source_date": null
+    }
   },
   {
     "id": "gattinoni-business-travel-s-r-l",
@@ -33747,7 +33813,7 @@
     "id": "koninklijke-oosterhof-holman",
     "name": "Koninklijke Oosterhof Holman",
     "website_url": "https://www.oosterhof-holman.nl/",
-    "career_url": null,
+    "career_url": "https://www.oosterhof-holman.nl/vacatures/",
     "evidence_url": "https://www.wrk.frl/bedrijven/koninklijke-oosterhof-holman",
     "target_countries": [
       "NL"
@@ -33761,6 +33827,17 @@
         "municipality_code": "GM0080",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.wrk.frl/bedrijven/koninklijke-oosterhof-holman"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Grijpskerk",
+        "municipality": "Westerkwartier",
+        "municipality_code": "GM1969",
+        "settlement_code": "WP2118",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.oosterhof-holman.nl/vestigingen/",
+        "checked_on": "2026-11-06"
       }
     ],
     "source_ids": [
@@ -33782,6 +33859,30 @@
       },
       "employer_type": "private",
       "group_name": null
+    },
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 400,
+        "employees_text": "Employer-owned public profile describes around 400 employees across its company locations; Grijpskerk hosts the headquarters.",
+        "scope": "employer_group",
+        "source_url": "https://nl.linkedin.com/posts/koninklijke-oosterhof-holman_veilig-van-start-elke-dag-is-bij-oosterhof-activity-7434265688526983168-kFSA",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Reuse existing employer, add Grijpskerk workplace; existing Fryslân footprint must remain. Company-owned LinkedIn post is size source; trade association article independently corroborates scale."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 400,
+      "employees_text": "Employer-owned public profile describes around 400 employees across its company locations; Grijpskerk hosts the headquarters.",
+      "scope": "employer_group",
+      "source_url": "https://nl.linkedin.com/posts/koninklijke-oosterhof-holman_veilig-van-start-elke-dag-is-bij-oosterhof-activity-7434265688526983168-kFSA",
+      "source_date": null
     }
   },
   {
@@ -48191,9 +48292,9 @@
   },
   {
     "id": "rijksuniversiteit-groningen-campus-fryslan",
-    "name": "Rijksuniversiteit Groningen – Campus Fryslân",
-    "website_url": "https://www.rug.nl/cf/over-campus-fryslan/vacatures/",
-    "career_url": "https://www.rug.nl/cf/over-campus-fryslan/vacatures/",
+    "name": "Rijksuniversiteit Groningen",
+    "website_url": "https://www.rug.nl",
+    "career_url": "https://www.rug.nl/about-ug/work-with-us/job-opportunities/",
     "evidence_url": "https://www.wrk.frl/bedrijven/rijksuniversiteit-groningen-campus-fryslan",
     "target_countries": [
       "NL"
@@ -48207,6 +48308,17 @@
         "municipality_code": "GM0080",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.wrk.frl/bedrijven/rijksuniversiteit-groningen-campus-fryslan"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.rug.nl/about-ug/contact/",
+        "checked_on": "2026-11-06"
       }
     ],
     "source_ids": [
@@ -48215,7 +48327,11 @@
     "priority": "high",
     "hr_internship_evidence": "not-yet-confirmed",
     "review_status": "research-required",
-    "aliases": [],
+    "aliases": [
+      "RUG",
+      "Rijksuniversiteit Groningen – Campus Fryslân",
+      "University of Groningen"
+    ],
     "friesland_research": {
       "checked_on": "2026-11-06",
       "size": {
@@ -48228,6 +48344,32 @@
       },
       "employer_type": "private",
       "group_name": null
+    },
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 5437,
+        "employees_text": "2024 report gives 5,437.5 FTE excluding UMCG R&E and student assistants; this is a capacity measure, not headcount.",
+        "scope": "employer",
+        "source_url": "https://www.rug.nl/about-ug/profile/facts-and-figures/rug-annualreport-2024-def.pdf",
+        "source_date": "2024",
+        "measurement": "FTE",
+        "fte": 5437.5
+      },
+      "employer_type": "education",
+      "group_name": "Rijksuniversiteit Groningen",
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 5437,
+      "employees_text": "2024 report gives 5,437.5 FTE excluding UMCG R&E and student assistants; this is a capacity measure, not headcount.",
+      "scope": "employer",
+      "source_url": "https://www.rug.nl/about-ug/profile/facts-and-figures/rug-annualreport-2024-def.pdf",
+      "source_date": "2024",
+      "measurement": "FTE",
+      "fte": 5437.5
     }
   },
   {
@@ -62673,6 +62815,7 @@
     "hr_internship_evidence": "not-yet-confirmed",
     "review_status": "research-required",
     "aliases": [
+      "Royal Wagenborg",
       "Royal Wagenborg passenger services",
       "WPD"
     ],
@@ -65984,6 +66127,1568 @@
       },
       "employer_type": "private",
       "group_name": null
+    }
+  },
+  {
+    "id": "hanos",
+    "name": "HANOS",
+    "website_url": "https://www.hanos.nl",
+    "career_url": "https://www.werkenbijhanos.nl/werkgebieden/HR",
+    "evidence_url": "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-hanos"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 4000,
+        "employees_text": "Employer sustainability page reports more than 4,000 staff across HANOS; local branch size is not specified.",
+        "scope": "group",
+        "source_url": "https://www.hanos.nl/nl/mvo",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "HANOS",
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 4000,
+      "employees_text": "Employer sustainability page reports more than 4,000 staff across HANOS; local branch size is not specified.",
+      "scope": "group",
+      "source_url": "https://www.hanos.nl/nl/mvo",
+      "source_date": null
+    }
+  },
+  {
+    "id": "ikea-ingka-group",
+    "name": "IKEA (Ingka Group)",
+    "website_url": "https://www.ikea.com",
+    "career_url": "https://jobs.ikea.com/en/location/jobs/22908/2750405-2755249-2755251/4/1",
+    "evidence_url": "https://jobs.ikea.com/en/job/groningen/hr-stage/24107/102900957200",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://jobs.ikea.com/en/job/groningen/hr-stage/24107/102900957200",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-ikea-ingka-group"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [
+      "IKEA",
+      "Ingka External",
+      "Ingka Group"
+    ],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 160000,
+        "employees_text": "Ingka reports more than 160,000 co-workers globally; not the headcount of Groningen store or RCMP.",
+        "scope": "group",
+        "source_url": "https://www.ingka.com/newsroom/ikea-recognised-for-building-a-more-inclusive-workplace/",
+        "source_date": "2025-10-15"
+      },
+      "employer_type": "private",
+      "group_name": "Ingka Group",
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 160000,
+      "employees_text": "Ingka reports more than 160,000 co-workers globally; not the headcount of Groningen store or RCMP.",
+      "scope": "group",
+      "source_url": "https://www.ingka.com/newsroom/ikea-recognised-for-building-a-more-inclusive-workplace/",
+      "source_date": "2025-10-15"
+    }
+  },
+  {
+    "id": "fotofabriek",
+    "name": "Fotofabriek",
+    "website_url": "https://www.fotofabriek.nl",
+    "career_url": "https://www.werkenbijfotofabriek.nl/jobs",
+    "evidence_url": "https://www.werkenbijfotofabriek.nl/contact",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijfotofabriek.nl/contact",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-fotofabriek"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [
+      "Fotofabriek.nl"
+    ],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 200,
+        "employees_text": "Official employer profile reports 200 employees; employer belongs to Chris Russell.",
+        "scope": "employer",
+        "source_url": "https://www.werkenbijfotofabriek.nl/over-ons",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Chris Russell",
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 200,
+      "employees_text": "Official employer profile reports 200 employees; employer belongs to Chris Russell.",
+      "scope": "employer",
+      "source_url": "https://www.werkenbijfotofabriek.nl/over-ons",
+      "source_date": null
+    }
+  },
+  {
+    "id": "universitair-medisch-centrum-groningen",
+    "name": "Universitair Medisch Centrum Groningen",
+    "website_url": "https://www.umcg.nl",
+    "career_url": "https://werkenbijumcg.nl/vacatures",
+    "evidence_url": "https://werkenbijumcg.nl/umcg-als-werkgever/over-het-umcg",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijumcg.nl/umcg-als-werkgever/over-het-umcg",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Haren",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1266",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijumcg.nl/umcg-als-werkgever/over-het-umcg",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-universitair-medisch-centrum-groningen"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [
+      "UMCG"
+    ],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 13000,
+        "employees_text": "Employer profile reports over 13,000 colleagues across UMCG, not solely its city-centre hospital.",
+        "scope": "employer",
+        "source_url": "https://werkenbijumcg.nl/umcg-als-werkgever/over-het-umcg",
+        "source_date": null
+      },
+      "employer_type": "healthcare",
+      "group_name": null,
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 13000,
+      "employees_text": "Employer profile reports over 13,000 colleagues across UMCG, not solely its city-centre hospital.",
+      "scope": "employer",
+      "source_url": "https://werkenbijumcg.nl/umcg-als-werkgever/over-het-umcg",
+      "source_date": null
+    }
+  },
+  {
+    "id": "hanze",
+    "name": "Hanze",
+    "website_url": "https://www.hanze.nl",
+    "career_url": "https://werkenbijhanze.nl/",
+    "evidence_url": "https://www.hanze.nl/binaries/_cb_1725455358034/content/assets/hanze/nl/over-hanze/anbi-formulier-belastingdienst---2023---website.pdf",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.hanze.nl/binaries/_cb_1725455358034/content/assets/hanze/nl/over-hanze/anbi-formulier-belastingdienst---2023---website.pdf",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-hanze"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [
+      "Hanzehogeschool Groningen"
+    ],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 2720,
+        "employees_text": "2023 statutory disclosure reports an average 2,720 paid FTE, distinct from headcount and students.",
+        "scope": "employer",
+        "source_url": "https://www.hanze.nl/binaries/_cb_1725455358034/content/assets/hanze/nl/over-hanze/anbi-formulier-belastingdienst---2023---website.pdf",
+        "source_date": "2023",
+        "measurement": "FTE",
+        "fte": 2720
+      },
+      "employer_type": "education",
+      "group_name": null,
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 2720,
+      "employees_text": "2023 statutory disclosure reports an average 2,720 paid FTE, distinct from headcount and students.",
+      "scope": "employer",
+      "source_url": "https://www.hanze.nl/binaries/_cb_1725455358034/content/assets/hanze/nl/over-hanze/anbi-formulier-belastingdienst---2023---website.pdf",
+      "source_date": "2023",
+      "measurement": "FTE",
+      "fte": 2720
+    }
+  },
+  {
+    "id": "belsimpel-gomibo-group",
+    "name": "Belsimpel | Gomibo Group",
+    "website_url": "https://www.belsimpel.nl",
+    "career_url": "https://werkenbijbelsimpel.nl/vacatures/",
+    "evidence_url": "https://www.belsimpel.nl/klantenservice/overbelsimpel/werken-bij-belsimpel",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.belsimpel.nl/klantenservice/overbelsimpel/werken-bij-belsimpel",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-belsimpel-gomibo-group"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [
+      "Belsimpel",
+      "Gomibo Group"
+    ],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 700,
+        "employees_text": "Official employer page reports over 700 colleagues across two offices and a store in Groningen.",
+        "scope": "group",
+        "source_url": "https://www.belsimpel.nl/klantenservice/overbelsimpel/werken-bij-belsimpel",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Gomibo Group",
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 700,
+      "employees_text": "Official employer page reports over 700 colleagues across two offices and a store in Groningen.",
+      "scope": "group",
+      "source_url": "https://www.belsimpel.nl/klantenservice/overbelsimpel/werken-bij-belsimpel",
+      "source_date": null
+    }
+  },
+  {
+    "id": "veiligheidsregio-groningen",
+    "name": "Veiligheidsregio Groningen",
+    "website_url": "https://veiligheidsregiogroningen.nl",
+    "career_url": "https://veiligheidsregiogroningen.nl/werken-bij/#vacatures",
+    "evidence_url": "https://veiligheidsregiogroningen.nl/contact/belangrijke-contactgegevens/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://veiligheidsregiogroningen.nl/contact/belangrijke-contactgegevens/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-veiligheidsregio-groningen"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 250,
+        "employees_text": "Institutional recognised-learning-employer profile distinguishes about 250 professional/day-service employees from approximately 750 volunteers.",
+        "scope": "paid_employer",
+        "source_url": "https://stagemarkt.nl/leerbedrijven/profiel_e1d4e64c-8e7f-e311-b227-00505699040c",
+        "source_date": null,
+        "source_type": "institutional_employer_profile"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 250,
+      "employees_text": "Institutional recognised-learning-employer profile distinguishes about 250 professional/day-service employees from approximately 750 volunteers.",
+      "scope": "paid_employer",
+      "source_url": "https://stagemarkt.nl/leerbedrijven/profiel_e1d4e64c-8e7f-e311-b227-00505699040c",
+      "source_date": null,
+      "source_type": "institutional_employer_profile"
+    }
+  },
+  {
+    "id": "gemeente-groningen",
+    "name": "Gemeente Groningen",
+    "website_url": "https://gemeente.groningen.nl",
+    "career_url": "https://www.werkenbijgroningen.nl/",
+    "evidence_url": "https://gemeente.groningen.nl/contact",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://gemeente.groningen.nl/contact",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-groningen"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": null,
+        "scope": null,
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": []
+    }
+  },
+  {
+    "id": "global-tickets",
+    "name": "Global-Tickets",
+    "website_url": "https://www.global-tickets.com",
+    "career_url": "https://jobs.global-tickets.com/l/nl/jobs/",
+    "evidence_url": "https://jobs.global-tickets.com/o/human-resources-intern-recruitment?lang=nl",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Groningen",
+        "municipality": "Groningen",
+        "municipality_code": "GM0014",
+        "settlement_code": "WP1070",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://jobs.global-tickets.com/l/nl/jobs/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-global-tickets"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [
+      "TD Entertainment"
+    ],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": null,
+        "scope": null,
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "TD Entertainment",
+      "notes": [
+        "The current official careers board documents Groningen. The former HR internship URL returns 404 and is excluded from active vacancies."
+      ]
+    }
+  },
+  {
+    "id": "delamine",
+    "name": "Delamine",
+    "website_url": "https://delamine.com/",
+    "career_url": "https://delamine.com/",
+    "evidence_url": "https://www.vnci.nl/leden/lid?organisationid=196653",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Farmsum",
+        "municipality": "Eemsdelta",
+        "municipality_code": "GM1979",
+        "settlement_code": "WP3235",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.vnci.nl/leden/lid?organisationid=196653",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-delamine"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 70,
+        "employees_text": "Employer profile reports 70 staff across sales, marketing, logistics and production; Delfzijl is the production site, Amersfoort the head office.",
+        "scope": "employer",
+        "source_url": "https://delamine.com/delamine/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Independent Nouryon/Tosoh joint venture; 70 is employer-wide, not the Farmsum plant headcount. Career channel requires discovery from official site."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 70,
+      "employees_text": "Employer profile reports 70 staff across sales, marketing, logistics and production; Delfzijl is the production site, Amersfoort the head office.",
+      "scope": "employer",
+      "source_url": "https://delamine.com/delamine/",
+      "source_date": null
+    }
+  },
+  {
+    "id": "royal-wagenborg",
+    "name": "Royal Wagenborg",
+    "website_url": "https://www.wagenborg.com/",
+    "career_url": "https://www.careersatwagenborg.com/",
+    "evidence_url": "https://www.wagenborg.com/about-us",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Delfzijl",
+        "municipality": "Eemsdelta",
+        "municipality_code": "GM1979",
+        "settlement_code": "WP3234",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.wagenborg.com/about-us",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-wagenborg-passagiersdiensten"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 3000,
+        "employees_text": "Official group profile describes approximately 3,000 professionals worldwide and a head office in Delfzijl.",
+        "scope": "group",
+        "source_url": "https://www.wagenborg.com/about-us",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Royal Wagenborg",
+      "notes": [
+        "Existing wagenborg-passagiersdiensten belongs to the same group. Keep group identity shared; do not count a second distinct group. Official linked recruiting platform shares Royal Wagenborg feed."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 3000,
+      "employees_text": "Official group profile describes approximately 3,000 professionals worldwide and a head office in Delfzijl.",
+      "scope": "group",
+      "source_url": "https://www.wagenborg.com/about-us",
+      "source_date": null
+    }
+  },
+  {
+    "id": "royal-niestern-sander",
+    "name": "Royal Niestern Sander",
+    "website_url": "https://www.niesternsander.com/",
+    "career_url": "https://careersatwagenborg.com/",
+    "evidence_url": "https://www.niesternsander.com/about-us",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Farmsum",
+        "municipality": "Eemsdelta",
+        "municipality_code": "GM1979",
+        "settlement_code": "WP3235",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.niesternsander.com/about-us",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Delfzijl",
+        "municipality": "Eemsdelta",
+        "municipality_code": "GM1979",
+        "settlement_code": "WP3234",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.niesternsander.com/about-us",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Eemshaven",
+        "municipality": "Het Hogeland",
+        "municipality_code": "GM1966",
+        "settlement_code": "WP3473",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.niesternsander.com/about-us",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-wagenborg-passagiersdiensten"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 160,
+        "employees_text": "Employer facts list 160 skilled employees across its yards; Farmsum, Delfzijl and Eemshaven are named operating locations.",
+        "scope": "employer",
+        "source_url": "https://www.niesternsander.com/about-us",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Royal Wagenborg",
+      "notes": [
+        "Distinct shipyard employer within Royal Wagenborg; recruitment links to shared group platform."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 160,
+      "employees_text": "Employer facts list 160 skilled employees across its yards; Farmsum, Delfzijl and Eemshaven are named operating locations.",
+      "scope": "employer",
+      "source_url": "https://www.niesternsander.com/about-us",
+      "source_date": null
+    }
+  },
+  {
+    "id": "groningen-seaports",
+    "name": "Groningen Seaports",
+    "website_url": "https://www.groningen-seaports.com/",
+    "career_url": "https://werkenbij.groningen-seaports.com/",
+    "evidence_url": "https://www.groningen-seaports.com/contact/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Delfzijl",
+        "municipality": "Eemsdelta",
+        "municipality_code": "GM1979",
+        "settlement_code": "WP3234",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.groningen-seaports.com/contact/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Eemshaven",
+        "municipality": "Het Hogeland",
+        "municipality_code": "GM1966",
+        "settlement_code": "WP3473",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.groningen-seaports.com/contact/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-groningen-seaports"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 108,
+        "employees_text": "2025 annual report: 108 employees (104.5 FTE), compared with 104 in 2024.",
+        "scope": "employer",
+        "source_url": "https://jaarverslag.groningen-seaports.com/2025/",
+        "source_date": "2025"
+      },
+      "employer_type": "public_company",
+      "group_name": null,
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 108,
+      "employees_text": "2025 annual report: 108 employees (104.5 FTE), compared with 104 in 2024.",
+      "scope": "employer",
+      "source_url": "https://jaarverslag.groningen-seaports.com/2025/",
+      "source_date": "2025"
+    }
+  },
+  {
+    "id": "heiploeg",
+    "name": "Heiploeg",
+    "website_url": "https://heiploeg.com/",
+    "career_url": "https://heiploeg.com/nl-nl/vacatures",
+    "evidence_url": "https://heiploeg.com/en-us/company",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Zoutkamp",
+        "municipality": "Het Hogeland",
+        "municipality_code": "GM1966",
+        "settlement_code": "WP3430",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://heiploeg.com/en-us/company",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-heiploeg"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 400,
+        "employees_text": "Official local hiring page describes more than 400 employees in production; Zoutkamp is the principal site. This excludes the separate worldwide figure of approximately 2,500.",
+        "scope": "establishment",
+        "source_url": "https://heiploeg.com/nl-nl/vakantiewerk",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Parlevliet & Van der Plas",
+      "notes": [
+        "Local employee statement is separate from temporary holiday recruitment; do not add holiday workers to the 400."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 400,
+      "employees_text": "Official local hiring page describes more than 400 employees in production; Zoutkamp is the principal site. This excludes the separate worldwide figure of approximately 2,500.",
+      "scope": "establishment",
+      "source_url": "https://heiploeg.com/nl-nl/vakantiewerk",
+      "source_date": null
+    }
+  },
+  {
+    "id": "de-zijlen",
+    "name": "De Zijlen",
+    "website_url": "https://dezijlen.nl/",
+    "career_url": "https://dezijlen.nl/werken-bij/",
+    "evidence_url": "https://dezijlen.nl/wp-content/uploads/2024/12/Anbi-De-Zijlen.pdf",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Tolbert",
+        "municipality": "Westerkwartier",
+        "municipality_code": "GM1969",
+        "settlement_code": "WP2345",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://dezijlen.nl/wp-content/uploads/2024/12/Anbi-De-Zijlen.pdf",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-de-zijlen"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1566,
+        "employees_text": "2024 annual report distinguishes 1,566 employees (1,030 FTE), 423 volunteers and 97 interns.",
+        "scope": "employer",
+        "source_url": "https://dezijlen.nl/wp-content/uploads/2025/05/De-Zijlen-Bestuursverslag-2024.pdf",
+        "source_date": "2024"
+      },
+      "employer_type": "healthcare",
+      "group_name": null,
+      "notes": [
+        "Headcount covers all locations; not assigned to Tolbert alone. A newer 2025 report is published and can replace this dated headcount after verification."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 1566,
+      "employees_text": "2024 annual report distinguishes 1,566 employees (1,030 FTE), 423 volunteers and 97 interns.",
+      "scope": "employer",
+      "source_url": "https://dezijlen.nl/wp-content/uploads/2025/05/De-Zijlen-Bestuursverslag-2024.pdf",
+      "source_date": "2024"
+    }
+  },
+  {
+    "id": "stichting-vredewold",
+    "name": "Stichting Vredewold",
+    "website_url": "https://www.vredewold.nl/",
+    "career_url": "https://www.vredewold.nl/werken-bij/",
+    "evidence_url": "https://www.vredewold.nl/over-ons/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Leek",
+        "municipality": "Westerkwartier",
+        "municipality_code": "GM1969",
+        "settlement_code": "WP2341",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.vredewold.nl/over-ons/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-stichting-vredewold"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 300,
+        "employees_text": "Official organisation page identifies more than 300 paid employees and approximately 100 volunteers separately.",
+        "scope": "employer",
+        "source_url": "https://www.vredewold.nl/over-ons/",
+        "source_date": null
+      },
+      "employer_type": "healthcare",
+      "group_name": null,
+      "notes": [
+        "2024 annual report provides 320 employees and 158.5 FTE; webpage uses the conservative 300+ wording."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 300,
+      "employees_text": "Official organisation page identifies more than 300 paid employees and approximately 100 volunteers separately.",
+      "scope": "employer",
+      "source_url": "https://www.vredewold.nl/over-ons/",
+      "source_date": null
+    }
+  },
+  {
+    "id": "royal-bodewes",
+    "name": "Royal Bodewes",
+    "website_url": "https://royalbodewes.com/",
+    "career_url": "https://royalbodewes.com/careers/",
+    "evidence_url": "https://royalbodewes.com/careers/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Hoogezand",
+        "municipality": "Midden-Groningen",
+        "municipality_code": "GM1952",
+        "settlement_code": "WP1018",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://royalbodewes.com/careers/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-royal-bodewes"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 100,
+        "employees_text": "Official careers counter specifies 100+ workers; underlying public HTML has Workers next to data-to-value=100.",
+        "scope": "employer",
+        "source_url": "https://royalbodewes.com/careers/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Counter initial text is 0 before animation. The 100 target was verified in public HTML, not inferred from the displayed initial 0. Address: Werfkade 22, 9601 LG Hoogezand."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 100,
+      "employees_text": "Official careers counter specifies 100+ workers; underlying public HTML has Workers next to data-to-value=100.",
+      "scope": "employer",
+      "source_url": "https://royalbodewes.com/careers/",
+      "source_date": null
+    }
+  },
+  {
+    "id": "royal-avebe",
+    "name": "Royal Avebe",
+    "website_url": "https://www.avebe.com/",
+    "career_url": "https://www.werkenbijavebe.nl/vacatures",
+    "evidence_url": "https://www.avebe.com/locations/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Veendam",
+        "municipality": "Veendam",
+        "municipality_code": "GM0047",
+        "settlement_code": "WP1240",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.avebe.com/locations/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Foxhol",
+        "municipality": "Midden-Groningen",
+        "municipality_code": "GM1952",
+        "settlement_code": "WP1017",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.avebe.com/locations/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Ter Apelkanaal",
+        "municipality": "Westerwolde",
+        "municipality_code": "GM1950",
+        "settlement_code": "WP2297",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.avebe.com/locations/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-royal-avebe"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1285,
+        "employees_text": "2023/2024 audited statement reports an average 1,285 employees, including 285 outside the Netherlands.",
+        "scope": "group",
+        "source_url": "https://publications.avebe.com/en/integrated-annual-report-20232024/financial-statements/notes-to-the-consolidated-profit-and-loss-account",
+        "source_date": "2023/2024"
+      },
+      "employer_type": "private",
+      "group_name": "Royal Avebe",
+      "notes": [
+        "Headcount is group-wide and historical. Newer 2024/2025 report is available; no local headcounts are inferred. Exclude Gasselternijveen and Valthermond from Groningen province because they are in Drenthe."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 1285,
+      "employees_text": "2023/2024 audited statement reports an average 1,285 employees, including 285 outside the Netherlands.",
+      "scope": "group",
+      "source_url": "https://publications.avebe.com/en/integrated-annual-report-20232024/financial-statements/notes-to-the-consolidated-profit-and-loss-account",
+      "source_date": "2023/2024"
+    }
+  },
+  {
+    "id": "ommelander-ziekenhuis-groningen",
+    "name": "Ommelander Ziekenhuis Groningen",
+    "website_url": "https://www.ommelanderziekenhuis.nl/",
+    "career_url": "https://www.ommelanderziekenhuis.nl/werken-bij",
+    "evidence_url": "https://www.ommelanderziekenhuis.nl/over-ons/de-organisatie/waar-staan-we-voor",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Scheemda",
+        "municipality": "Oldambt",
+        "municipality_code": "GM1895",
+        "settlement_code": "WP1893",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.ommelanderziekenhuis.nl/over-ons/de-organisatie/waar-staan-we-voor",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-ommelander-ziekenhuis-groningen"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1500,
+        "employees_text": "Official organisation profile describes 1,500 colleagues working from the hospital in Scheemda.",
+        "scope": "employer",
+        "source_url": "https://www.ommelanderziekenhuis.nl/over-ons/de-organisatie/waar-staan-we-voor",
+        "source_date": null
+      },
+      "employer_type": "healthcare",
+      "group_name": null,
+      "notes": [
+        "Older UMCG ownership references should be checked against current group identity before merging group totals; a cooperation statement alone is insufficient."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 1500,
+      "employees_text": "Official organisation profile describes 1,500 colleagues working from the hospital in Scheemda.",
+      "scope": "employer",
+      "source_url": "https://www.ommelanderziekenhuis.nl/over-ons/de-organisatie/waar-staan-we-voor",
+      "source_date": null
+    }
+  },
+  {
+    "id": "afeer",
+    "name": "Afeer",
+    "website_url": "https://www.afeer.nl/",
+    "career_url": "https://www.afeer.nl/over-afeer/",
+    "evidence_url": "https://www.afeer.nl/contact/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Winschoten",
+        "municipality": "Oldambt",
+        "municipality_code": "GM1895",
+        "settlement_code": "WP1471",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.afeer.nl/contact/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Oude Pekela",
+        "municipality": "Pekela",
+        "municipality_code": "GM0765",
+        "settlement_code": "WP1397",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.afeer.nl/contact/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Vlagtwedde",
+        "municipality": "Westerwolde",
+        "municipality_code": "GM1950",
+        "settlement_code": "WP2298",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.afeer.nl/contact/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Blijham",
+        "municipality": "Westerwolde",
+        "municipality_code": "GM1950",
+        "settlement_code": "WP2232",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.afeer.nl/contact/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-afeer"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 50,
+        "employees_text": "2024 annual report says Afeer organises work for more than 750 employees with a disability, the large majority directly employed by Afeer. This establishes the 50+ threshold; 750 is not represented as an exact payroll total.",
+        "scope": "employer",
+        "source_url": "https://www.afeer.nl/app/uploads/2025/08/Jaarverslag-en-jaarrekening-2024.pdf?x71146=",
+        "source_date": "2024"
+      },
+      "employer_type": "public_social_enterprise",
+      "group_name": null,
+      "notes": [
+        "50 is a conservative qualification floor, not observed total headcount. Separate trajectories/placements with other employers from direct payroll. The current employer is Afeer, formerly Synergon."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 50,
+      "employees_text": "2024 annual report says Afeer organises work for more than 750 employees with a disability, the large majority directly employed by Afeer. This establishes the 50+ threshold; 750 is not represented as an exact payroll total.",
+      "scope": "employer",
+      "source_url": "https://www.afeer.nl/app/uploads/2025/08/Jaarverslag-en-jaarrekening-2024.pdf?x71146=",
+      "source_date": "2024"
+    }
+  },
+  {
+    "id": "solidus",
+    "name": "Solidus",
+    "website_url": "https://solidus.com/",
+    "career_url": "https://solidus.com/careers/",
+    "evidence_url": "https://solidus.com/wp-content/uploads/2025/03/Solidus-Brochure-Fish-Seafood-EN-Digital-May-2025.pdf",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Oude Pekela",
+        "municipality": "Pekela",
+        "municipality_code": "GM0765",
+        "settlement_code": "WP1397",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://solidus.com/wp-content/uploads/2025/03/Solidus-Brochure-Fish-Seafood-EN-Digital-May-2025.pdf",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Bad Nieuweschans",
+        "municipality": "Oldambt",
+        "municipality_code": "GM1895",
+        "settlement_code": "WP1420",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://solidus.com/wp-content/uploads/2025/03/Solidus-Brochure-Fish-Seafood-EN-Digital-May-2025.pdf",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-solidus"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1500,
+        "employees_text": "Official careers profile describes more than 1,500 people across European mills, converting plants and sales offices.",
+        "scope": "group",
+        "source_url": "https://solidus.com/careers/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Solidus",
+      "notes": [
+        "2025 brochure named both Oude Pekela and Bad Nieuweschans mills; older brochure headcount 1,400 is superseded by live careers page."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 1500,
+      "employees_text": "Official careers profile describes more than 1,500 people across European mills, converting plants and sales offices.",
+      "scope": "group",
+      "source_url": "https://solidus.com/careers/",
+      "source_date": null
+    }
+  },
+  {
+    "id": "treant",
+    "name": "Treant",
+    "website_url": "https://www.treant.nl/",
+    "career_url": "https://www.werkenbijtreant.nl/",
+    "evidence_url": "https://www.treant.nl/zorg/locaties/ziekenhuislocaties/refaja/parkeren-en-bereikbaarheid",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Stadskanaal",
+        "municipality": "Stadskanaal",
+        "municipality_code": "GM0037",
+        "settlement_code": "WP3074",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.treant.nl/zorg/locaties/ziekenhuislocaties/refaja/parkeren-en-bereikbaarheid",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-treant"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 6000,
+        "employees_text": "Official employer vacancy describes approximately 6,000 employees, separately from approximately 270 medical specialists.",
+        "scope": "employer_group",
+        "source_url": "https://www.treant.nl/werken-leren/vacatures/vacatures/anios-interne-geneeskunde",
+        "source_date": null
+      },
+      "employer_type": "healthcare",
+      "group_name": "Treant",
+      "notes": [
+        "Refaja hospital in Stadskanaal is verified by the official location directions. Group staff also work in Drenthe. Recruiting URL is the employer careers site listed by its ZorgpleinNoord organisation profile."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 6000,
+      "employees_text": "Official employer vacancy describes approximately 6,000 employees, separately from approximately 270 medical specialists.",
+      "scope": "employer_group",
+      "source_url": "https://www.treant.nl/werken-leren/vacatures/vacatures/anios-interne-geneeskunde",
+      "source_date": null
+    }
+  },
+  {
+    "id": "wedeka",
+    "name": "Wedeka",
+    "website_url": "https://wedeka.nl/",
+    "career_url": "https://wedeka.nl/werken/",
+    "evidence_url": "https://wedeka.nl/contact/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Stadskanaal",
+        "municipality": "Stadskanaal",
+        "municipality_code": "GM0037",
+        "settlement_code": "WP3074",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://wedeka.nl/contact/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Veendam",
+        "municipality": "Veendam",
+        "municipality_code": "GM0047",
+        "settlement_code": "WP1240",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://wedeka.nl/contact/",
+        "checked_on": "2026-11-06"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Ter Apel",
+        "municipality": "Westerwolde",
+        "municipality_code": "GM1950",
+        "settlement_code": "WP2296",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://wedeka.nl/contact/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-wedeka"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1187,
+        "employees_text": "2025 annual report explicitly identifies 1,187 people with a distance to the labour market directly employed at 31 December 2025; 500 trajectory participants are reported separately.",
+        "scope": "employer",
+        "source_url": "https://wedeka.nl/wp-content/uploads/2026/10/Jaarstukken-2025.pdf",
+        "source_date": "2025"
+      },
+      "employer_type": "public_social_enterprise",
+      "group_name": null,
+      "notes": [
+        "Do not use total people in trajectories as employee headcount. Locations include Oosterkade 31 Stadskanaal, Phoenixweg 2 Veendam and Drenthweg 3 Ter Apel.",
+        "Latest 2025 audited report supersedes undated website wording of 1,300; headcount here is a documented employee subgroup and therefore a conservative employer minimum."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 1187,
+      "employees_text": "2025 annual report explicitly identifies 1,187 people with a distance to the labour market directly employed at 31 December 2025; 500 trajectory participants are reported separately.",
+      "scope": "employer",
+      "source_url": "https://wedeka.nl/wp-content/uploads/2026/10/Jaarstukken-2025.pdf",
+      "source_date": "2025"
+    }
+  },
+  {
+    "id": "nedmag",
+    "name": "Nedmag",
+    "website_url": "https://www.nedmag.nl/",
+    "career_url": "https://www.nedmag.nl/over-ons/werken-bij",
+    "evidence_url": "https://www.nedmag.nl/omgeving",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Veendam",
+        "municipality": "Veendam",
+        "municipality_code": "GM0047",
+        "settlement_code": "WP1240",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.nedmag.nl/omgeving",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-nedmag"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 150,
+        "employees_text": "Official organisation and careers pages describe approximately 150 employees across its locations near Veendam.",
+        "scope": "employer",
+        "source_url": "https://www.nedmag.nl/over-ons/team",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "General internship enquiries are welcomed, but no HR-specific programme or vacancy was verified in this employer-only research."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 150,
+      "employees_text": "Official organisation and careers pages describe approximately 150 employees across its locations near Veendam.",
+      "scope": "employer",
+      "source_url": "https://www.nedmag.nl/over-ons/team",
+      "source_date": null
+    }
+  },
+  {
+    "id": "mobacc-group",
+    "name": "Mobacc Group",
+    "website_url": "https://www.mobacc.com/",
+    "career_url": "https://www.mobacc.com/career/",
+    "evidence_url": "https://www.mobacc.com/careers/medewerker-technische-dienst/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Veendam",
+        "municipality": "Veendam",
+        "municipality_code": "GM0047",
+        "settlement_code": "WP1240",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.mobacc.com/careers/medewerker-technische-dienst/",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-mobacc-group"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": null,
+        "scope": null,
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Stinoil Holding",
+      "notes": [
+        "Current official vacancy confirms Veendam offices/factory and Mobacc/Pharmaspray relationship. Recruiter Nomilk2day reports circa 250 employees, but no first-party headcount was verified; keep size unknown. Recruiter URL: https://nomilk2day.nl/bedrijven/mobacc-group"
+      ]
+    }
+  },
+  {
+    "id": "gemeente-pekela",
+    "name": "Gemeente Pekela",
+    "website_url": "https://www.pekela.nl/",
+    "career_url": "https://www.pekela.nl/Homepage/Werken_bij_gemeente_Pekela",
+    "evidence_url": "https://organisaties.overheid.nl/37361/Gemeente_Pekela",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Oude Pekela",
+        "municipality": "Pekela",
+        "municipality_code": "GM0765",
+        "settlement_code": "WP1397",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://organisaties.overheid.nl/37361/Gemeente_Pekela",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-pekela"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 51,
+        "employees_text": "Employer-owned public organisation profile states the 51–200 employee band.",
+        "scope": "employer",
+        "source_url": "https://nl.linkedin.com/company/gemeente-pekela",
+        "source_date": null
+      },
+      "employer_type": "government",
+      "group_name": null,
+      "notes": [
+        "Official budget 2025 separately reports occupied FTE per 1,000 residents, but an exact payroll total was not derived. LinkedIn band is employer-reported, not an audited headcount."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 51,
+      "employees_text": "Employer-owned public organisation profile states the 51–200 employee band.",
+      "scope": "employer",
+      "source_url": "https://nl.linkedin.com/company/gemeente-pekela",
+      "source_date": null
+    }
+  },
+  {
+    "id": "gemeente-westerwolde",
+    "name": "Gemeente Westerwolde",
+    "website_url": "https://www.westerwolde.nl/",
+    "career_url": "https://www.westerwolde.nl/vacatures-en-stages",
+    "evidence_url": "https://www.westerwolde.nl/contact-en-openingstijden",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL11",
+        "city": "Sellingen",
+        "municipality": "Westerwolde",
+        "municipality_code": "GM1950",
+        "settlement_code": "WP2295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.westerwolde.nl/contact-en-openingstijden",
+        "checked_on": "2026-11-06"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-westerwolde"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "groningen_research": {
+      "checked_on": "2026-11-06",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": null,
+        "scope": null,
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "government",
+      "group_name": null,
+      "notes": [
+        "Third-party organisation profiles repeat 250+ colleagues, but the official page only calls this a small organisation; keep size unknown until employer staffing evidence is checked. Official vacancy page links Werken voor Groningen."
+      ]
     }
   }
 ]

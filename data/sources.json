@@ -8517,15 +8517,17 @@
   {
     "id": "auto-essity-italy",
     "company_id": "essity-italy",
-    "employer": "Essity Italy",
+    "employer": "Essity",
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://www.essity.nl/werken-bij-essity-in-nederland/vacatures?country=NLD",
       "https://www.essity.it"
     ],
-    "career_url": "https://www.essity.it",
+    "career_url": "https://www.essity.nl/werken-bij-essity-in-nederland/vacatures/?country=NLD",
     "allowed_hosts": [
-      "www.essity.it"
+      "www.essity.it",
+      "www.essity.nl"
     ],
     "target_countries": [
       "IT"
@@ -9504,11 +9506,13 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://www.werkenbijgasunie.nl/vacatures",
       "https://www.gasunie.nl/nl/vacatures"
     ],
-    "career_url": "https://www.gasunie.nl/nl/vacatures",
+    "career_url": "https://www.werkenbijgasunie.nl/vacatures",
     "allowed_hosts": [
-      "www.gasunie.nl"
+      "www.gasunie.nl",
+      "www.werkenbijgasunie.nl"
     ],
     "target_countries": [
       "NL"
@@ -25495,10 +25499,10 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
-      "https://www.oosterhof-holman.nl/",
+      "https://www.oosterhof-holman.nl/vacatures",
       "https://www.oosterhof-holman.nl"
     ],
-    "career_url": "https://www.oosterhof-holman.nl",
+    "career_url": "https://www.oosterhof-holman.nl/vacatures/",
     "allowed_hosts": [
       "www.oosterhof-holman.nl"
     ],
@@ -27887,7 +27891,7 @@
   {
     "id": "auto-wagenborg-passagiersdiensten",
     "company_id": "wagenborg-passagiersdiensten",
-    "employer": "Wagenborg Passagiersdiensten",
+    "employer": "Royal Wagenborg",
     "adapter": "recruitee",
     "enabled": true,
     "start_urls": [
@@ -30768,14 +30772,14 @@
   {
     "id": "auto-rijksuniversiteit-groningen-campus-fryslan",
     "company_id": "rijksuniversiteit-groningen-campus-fryslan",
-    "employer": "Rijksuniversiteit Groningen – Campus Fryslân",
+    "employer": "Rijksuniversiteit Groningen",
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
-      "https://www.rug.nl/cf/over-campus-fryslan/vacatures/",
+      "https://www.rug.nl/about-ug/work-with-us/job-opportunities",
       "https://www.rug.nl/cf/over-campus-fryslan/vacatures"
     ],
-    "career_url": "https://www.rug.nl/cf/over-campus-fryslan/vacatures/",
+    "career_url": "https://www.rug.nl/about-ug/work-with-us/job-opportunities/",
     "allowed_hosts": [
       "www.rug.nl"
     ],
@@ -44656,6 +44660,682 @@
     "career_url": "https://www.veenhoop.nl/werken-bij/",
     "allowed_hosts": [
       "www.veenhoop.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-hanos",
+    "company_id": "hanos",
+    "employer": "HANOS",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijhanos.nl/werkgebieden/HR",
+      "https://www.hanos.nl"
+    ],
+    "career_url": "https://www.werkenbijhanos.nl/werkgebieden/HR",
+    "allowed_hosts": [
+      "www.hanos.nl",
+      "www.werkenbijhanos.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 100,
+    "collection_seconds": 160,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official employer-published public listings and linked application pages; robots and approved hosts checked on every read; no forms submitted",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://www.werkenbijhanos.nl/werkgebieden/HR"
+    ],
+    "job_url_pattern": "^https://www\\.werkenbijhanos\\.nl/vacatures/[^/?]+-\\d+$",
+    "application_check": "hanos-rendered",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "All four observed job links in the official HR department list; excludes other departments and group brands.",
+    "access_reviewed_on": "2026-11-06"
+  },
+  {
+    "id": "auto-ikea-ingka-group",
+    "company_id": "ikea-ingka-group",
+    "employer": "IKEA (Ingka Group)",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.ikea.com/en/location/jobs/22908/2750405-2755249-2755251/4/1",
+      "https://www.ikea.com"
+    ],
+    "career_url": "https://jobs.ikea.com/en/location/jobs/22908/2750405-2755249-2755251/4/1",
+    "allowed_hosts": [
+      "jobs.ikea.com",
+      "ikea.avature.net"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 100,
+    "collection_seconds": 180,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official employer-published public listings and linked application pages; robots and approved hosts checked on every read; no forms submitted",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://jobs.ikea.com/en/location/jobs/22908/2750405-2755249-2755251/4/1"
+    ],
+    "job_url_pattern": "^https://jobs\\.ikea\\.com/en/job/groningen/[^/]+/\\d+/\\d+$",
+    "index_job_count_pattern": "(\\d+) jobs in Groningen",
+    "employer_tokens": [
+      "ingka"
+    ],
+    "application_check": "avature-linked",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Official Groningen city list, all observed postings; link count must equal the live published total. Province sites outside the city require separate discovery.",
+    "access_reviewed_on": "2026-11-06"
+  },
+  {
+    "id": "auto-fotofabriek",
+    "company_id": "fotofabriek",
+    "employer": "Fotofabriek",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijfotofabriek.nl/jobs",
+      "https://www.fotofabriek.nl"
+    ],
+    "career_url": "https://www.werkenbijfotofabriek.nl/jobs",
+    "allowed_hosts": [
+      "www.fotofabriek.nl",
+      "www.werkenbijfotofabriek.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 140,
+    "collection_seconds": 240,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official employer-published public listings and linked application pages; robots and approved hosts checked on every read; no forms submitted",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://www.werkenbijfotofabriek.nl/jobs"
+    ],
+    "job_url_pattern": "^https://www\\.werkenbijfotofabriek\\.nl/jobs/detail/[^/?]+-\\d+$",
+    "job_id_pattern": "-(\\d+)$",
+    "index_page_pattern": "^https://www\\.werkenbijfotofabriek\\.nl/jobs/page/\\d+\\?",
+    "page_format": "odoo-visible",
+    "reviewed_workplace_labels": {
+      "Fotofabriek": {
+        "city": "Groningen",
+        "country": "NL",
+        "address_evidence": "Osloweg 75, 9723 BJ Groningen"
+      }
+    },
+    "application_check": "odoo",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Official HTML vacancy list and all observed numbered pages; each form identifies vacancy and workplace label, resolved to the published Groningen campus address.",
+    "access_reviewed_on": "2026-11-06"
+  },
+  {
+    "id": "auto-universitair-medisch-centrum-groningen",
+    "company_id": "universitair-medisch-centrum-groningen",
+    "employer": "Universitair Medisch Centrum Groningen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbijumcg.nl/vacatures",
+      "https://www.umcg.nl"
+    ],
+    "career_url": "https://werkenbijumcg.nl/vacatures",
+    "allowed_hosts": [
+      "werkenbijumcg.nl",
+      "www.umcg.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-hanze",
+    "company_id": "hanze",
+    "employer": "Hanze",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbijhanze.nl",
+      "https://www.hanze.nl"
+    ],
+    "career_url": "https://werkenbijhanze.nl/",
+    "allowed_hosts": [
+      "werkenbijhanze.nl",
+      "www.hanze.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-belsimpel-gomibo-group",
+    "company_id": "belsimpel-gomibo-group",
+    "employer": "Belsimpel | Gomibo Group",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbijbelsimpel.nl/vacatures",
+      "https://www.belsimpel.nl"
+    ],
+    "career_url": "https://werkenbijbelsimpel.nl/vacatures/",
+    "allowed_hosts": [
+      "werkenbijbelsimpel.nl",
+      "www.belsimpel.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-veiligheidsregio-groningen",
+    "company_id": "veiligheidsregio-groningen",
+    "employer": "Veiligheidsregio Groningen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://veiligheidsregiogroningen.nl/werken-bij",
+      "https://veiligheidsregiogroningen.nl"
+    ],
+    "career_url": "https://veiligheidsregiogroningen.nl/werken-bij/#vacatures",
+    "allowed_hosts": [
+      "veiligheidsregiogroningen.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-groningen",
+    "company_id": "gemeente-groningen",
+    "employer": "Gemeente Groningen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijgroningen.nl",
+      "https://gemeente.groningen.nl"
+    ],
+    "career_url": "https://www.werkenbijgroningen.nl/",
+    "allowed_hosts": [
+      "gemeente.groningen.nl",
+      "www.werkenbijgroningen.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-global-tickets",
+    "company_id": "global-tickets",
+    "employer": "Global-Tickets",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.global-tickets.com/l/nl/jobs",
+      "https://www.global-tickets.com"
+    ],
+    "career_url": "https://jobs.global-tickets.com/l/nl/jobs/",
+    "allowed_hosts": [
+      "jobs.global-tickets.com",
+      "www.global-tickets.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-delamine",
+    "company_id": "delamine",
+    "employer": "Delamine",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://delamine.com"
+    ],
+    "career_url": "https://delamine.com/",
+    "allowed_hosts": [
+      "delamine.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-groningen-seaports",
+    "company_id": "groningen-seaports",
+    "employer": "Groningen Seaports",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbij.groningen-seaports.com",
+      "https://www.groningen-seaports.com"
+    ],
+    "career_url": "https://werkenbij.groningen-seaports.com/",
+    "allowed_hosts": [
+      "werkenbij.groningen-seaports.com",
+      "www.groningen-seaports.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-heiploeg",
+    "company_id": "heiploeg",
+    "employer": "Heiploeg",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://heiploeg.com/nl-nl/vacatures",
+      "https://heiploeg.com"
+    ],
+    "career_url": "https://heiploeg.com/nl-nl/vacatures",
+    "allowed_hosts": [
+      "heiploeg.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-de-zijlen",
+    "company_id": "de-zijlen",
+    "employer": "De Zijlen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://dezijlen.nl/werken-bij",
+      "https://dezijlen.nl"
+    ],
+    "career_url": "https://dezijlen.nl/werken-bij/",
+    "allowed_hosts": [
+      "dezijlen.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-stichting-vredewold",
+    "company_id": "stichting-vredewold",
+    "employer": "Stichting Vredewold",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.vredewold.nl/werken-bij",
+      "https://www.vredewold.nl"
+    ],
+    "career_url": "https://www.vredewold.nl/werken-bij/",
+    "allowed_hosts": [
+      "www.vredewold.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-royal-bodewes",
+    "company_id": "royal-bodewes",
+    "employer": "Royal Bodewes",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://royalbodewes.com/careers",
+      "https://royalbodewes.com"
+    ],
+    "career_url": "https://royalbodewes.com/careers/",
+    "allowed_hosts": [
+      "royalbodewes.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-royal-avebe",
+    "company_id": "royal-avebe",
+    "employer": "Royal Avebe",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijavebe.nl/vacatures",
+      "https://www.avebe.com"
+    ],
+    "career_url": "https://www.werkenbijavebe.nl/vacatures",
+    "allowed_hosts": [
+      "www.avebe.com",
+      "www.werkenbijavebe.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-ommelander-ziekenhuis-groningen",
+    "company_id": "ommelander-ziekenhuis-groningen",
+    "employer": "Ommelander Ziekenhuis Groningen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.ommelanderziekenhuis.nl/werken-bij",
+      "https://www.ommelanderziekenhuis.nl"
+    ],
+    "career_url": "https://www.ommelanderziekenhuis.nl/werken-bij",
+    "allowed_hosts": [
+      "www.ommelanderziekenhuis.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-afeer",
+    "company_id": "afeer",
+    "employer": "Afeer",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.afeer.nl/over-afeer",
+      "https://www.afeer.nl"
+    ],
+    "career_url": "https://www.afeer.nl/over-afeer/",
+    "allowed_hosts": [
+      "www.afeer.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-solidus",
+    "company_id": "solidus",
+    "employer": "Solidus",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://solidus.com/careers",
+      "https://solidus.com"
+    ],
+    "career_url": "https://solidus.com/careers/",
+    "allowed_hosts": [
+      "solidus.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-treant",
+    "company_id": "treant",
+    "employer": "Treant",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijtreant.nl",
+      "https://www.treant.nl"
+    ],
+    "career_url": "https://www.werkenbijtreant.nl/",
+    "allowed_hosts": [
+      "www.treant.nl",
+      "www.werkenbijtreant.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-wedeka",
+    "company_id": "wedeka",
+    "employer": "Wedeka",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://wedeka.nl/werken",
+      "https://wedeka.nl"
+    ],
+    "career_url": "https://wedeka.nl/werken/",
+    "allowed_hosts": [
+      "wedeka.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-nedmag",
+    "company_id": "nedmag",
+    "employer": "Nedmag",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.nedmag.nl/over-ons/werken-bij",
+      "https://www.nedmag.nl"
+    ],
+    "career_url": "https://www.nedmag.nl/over-ons/werken-bij",
+    "allowed_hosts": [
+      "www.nedmag.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-mobacc-group",
+    "company_id": "mobacc-group",
+    "employer": "Mobacc Group",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.mobacc.com/career",
+      "https://www.mobacc.com"
+    ],
+    "career_url": "https://www.mobacc.com/career/",
+    "allowed_hosts": [
+      "www.mobacc.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-pekela",
+    "company_id": "gemeente-pekela",
+    "employer": "Gemeente Pekela",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.pekela.nl/Homepage/Werken_bij_gemeente_Pekela",
+      "https://www.pekela.nl"
+    ],
+    "career_url": "https://www.pekela.nl/Homepage/Werken_bij_gemeente_Pekela",
+    "allowed_hosts": [
+      "www.pekela.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-westerwolde",
+    "company_id": "gemeente-westerwolde",
+    "employer": "Gemeente Westerwolde",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.westerwolde.nl/vacatures-en-stages",
+      "https://www.westerwolde.nl"
+    ],
+    "career_url": "https://www.westerwolde.nl/vacatures-en-stages",
+    "allowed_hosts": [
+      "www.westerwolde.nl"
     ],
     "target_countries": [
       "NL"
