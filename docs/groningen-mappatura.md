@@ -60,3 +60,16 @@ La prova remota e l’aggiornamento del sito sono registrati separatamente in `d
 - `python3 scripts/collect_province.py groningen`: esecuzione mirata di tutti i canali provinciali.
 
 Verifica locale: 130 test Python, 12 test frontend, 52 esempi di classificazione e build statica. I test coprono paginazione, conteggi dichiarati, gruppi/feed condivisi, separazione delle province, freschezza delle verifiche e moduli con requisizione corrispondente.
+
+
+## Revisione prima del merge — 6 novembre 2026
+
+La PR #2 è ancora aperta. Main rimane al commit `a3732da8e17b39c4d86ef33774a934d573202fd4`; non è stata tentata alcuna modifica a main in questa revisione, come richiesto dall’utente. Il confronto con main conserva tutti i 1.757 datori, le 1.803 fonti e i 147 annunci precedenti: nessuna perdita di stato, paesi, codici regionali, sedi extra Groningen o metadati della Frisia. Non risultano nomi di aziende normalizzati o URL di annunci duplicati.
+
+Corretta una discordanza nei rapporti: se fallisce una scheda o il controllo della candidatura, lo stato rimane parziale e `complete`/`closure_complete` diventano falsi. L’eventuale inventario iniziale letto resta documentato separatamente in `inventory_complete`. Normalizzati soltanto i due esiti storici discordanti IKEA/Fotofabriek, mantenendo le date dei tentativi originali. Due test aggiuntivi verificano conservazione degli annunci precedenti e nuovo controllo della candidatura anche con testo in cache.
+
+Il codice corretto `4a0b5f6c0735f239e35c009c46c559ed14f6e8a1` supera 132 test Python, 12 test frontend e 52 esempi di classificazione, sia in locale sia nei controlli remoti. [Anteprima revisionata](https://336bab89.people-placement-eu.pages.dev/groningen.html): due stage, dieci comuni, due programmi distinti, filtro funzionante, nessun errore di pagina o overflow mobile; Frisia mantiene sette stage e diciotto comuni. I moduli ufficiali HANOS/Fotofabriek sono stati ricontrollati con esito positivo.
+
+La produzione pubblica è stata aperta in una sessione anonima: catalogo di 147 annunci e 27 paesi, Frisia con sette stage. Groningen non è ancora pubblicata: `/groningen.html` restituisce HTTP 200 tramite il fallback del sito, senza la pagina provinciale. L’ultima raccolta completa già in produzione è riuscita ([workflow 42221643385](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42221643385)); non include Groningen. Il ciclo remoto con Groningen e l’aggiornamento automatico della produzione rimangono da verificare dopo il merge esplicitamente autorizzato. Nessun criterio di completamento della produzione viene dichiarato soddisfatto sulla base della sola anteprima.
+
+Prove dettagliate, date UTC e verifiche ancora necessarie: `docs/groningen-remote-verification.json`.

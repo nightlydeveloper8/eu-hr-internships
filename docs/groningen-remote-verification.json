@@ -1,30 +1,58 @@
 {
-  "schema_version": 1,
-  "checked_at": "2026-11-06T14:06:18.070144+00:00",
+  "schema_version": 2,
+  "checked_at": "2026-11-06T17:24:40.769545+00:00",
   "branch": "groningen-research",
   "pull_request": "https://github.com/nightlydeveloper8/eu-hr-internships/pull/2",
-  "code_commit": "012d4b5c539d8d6e82fcaa10982f7dc2ed1d9ed1",
+  "code_commit": "4a0b5f6c0735f239e35c009c46c559ed14f6e8a1",
   "validation": {
     "status": "success",
     "run_ids": [
-      42230711788,
-      42230726788
+      42260971165,
+      42260961892
     ],
-    "python_tests": 130,
+    "python_tests": 132,
     "frontend_tests": 12,
-    "classification_examples": 52
+    "classification_examples": 52,
+    "checks": [
+      {
+        "name": "Cloudflare Pages",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/nightlydeveloper8/eu-hr-internships/runs/128040686123"
+      },
+      {
+        "name": "checks",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42260971165/job/128040485258"
+      },
+      {
+        "name": "checks",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42260961892/job/128040450837"
+      }
+    ]
   },
   "preview": {
-    "url": "https://2422063e.people-placement-eu.pages.dev/groningen.html",
-    "deployment_id": "2422063e-3145-443d-a19c-7b061fdaa051",
+    "checked_at": "2026-11-06T17:23:51.117153+00:00",
+    "url": "https://336bab89.people-placement-eu.pages.dev/groningen.html",
+    "code_commit": "4a0b5f6c0735f239e35c009c46c559ed14f6e8a1",
+    "deployment_id": "336bab89-1aba-443c-bc08-57010734bc3d",
     "status": 200,
-    "page_errors": [],
     "anonymous_fresh_browser_context": true,
-    "summary": "2 verified HR internships · 27 employers with documented size · 4 candidates awaiting size checks · 31/31 employer sites with a collection attempt within 48 hours. Updated 06/11/2026, 15:02:51.",
-    "jobs": [
-      "Groningen\n\nHR Stagiair\n\nHANOS\n\nRead the internship and apply ↗\n\nLink checked 06/11/2026, 14:50:15",
-      "Groningen\n\nStage: HRM\n\nFotofabriek\n\nRead the internship and apply ↗\n\nLink checked 06/11/2026, 14:50:15"
-    ],
+    "groningen": {
+      "jobs": 2,
+      "municipalities": 10,
+      "programmes": 2
+    },
+    "search_filter_result": "Showing 3 of 3 employers",
+    "mobile_document_overflow": false,
+    "friesland": {
+      "jobs": 7,
+      "municipalities": 18
+    },
+    "page_errors": [],
     "coverage_generated_at": "2026-11-06T14:02:51.541447+00:00",
     "coverage_summary": {
       "employers": 31,
@@ -55,14 +83,163 @@
   },
   "full_remote_collection": {
     "status": "not_executed_for_groningen",
-    "reason": "The existing daily collector runs on main pushes/schedule; updating main was rejected by automatic approval review and awaits explicit authorization."
+    "reason": "PR #2 is unmerged. The current user explicitly requires authorization before modifying main; the Groningen-inclusive collect/consolidate/publish cycle remains pending that authorization.",
+    "previous_main_runs": [
+      {
+        "id": 42221643385,
+        "name": "Daily employer collection",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42221643385",
+        "head_sha": "9226a88eaf4434a464ea4844edb02db8c8246070",
+        "event": "push",
+        "created_at": "2026-11-06T12:57:35Z",
+        "updated_at": "2026-11-06T13:15:37Z"
+      },
+      {
+        "id": 42180468791,
+        "name": "Daily employer collection",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42180468791",
+        "head_sha": "9f266173e29d5dc57166f1dff8a43d7d5ab63ae6",
+        "event": "schedule",
+        "created_at": "2026-11-06T07:22:39Z",
+        "updated_at": "2026-11-06T07:42:40Z"
+      }
+    ],
+    "verification_after_authorized_merge": [
+      "Observe the Actions run on the merged main commit, including test, all 16 collect jobs, consolidation and publish.",
+      "Verify the catalog-and-coverage artifact, bot data commit, updated Groningen/Fryslân report and preservation of prior postings on partial source errors.",
+      "Observe Cloudflare deployment for the bot commit and verify production in a fresh anonymous desktop/mobile browser."
+    ]
   },
   "production": {
-    "status": "not_published",
-    "url": "https://people-placement-eu.pages.dev/groningen.html"
+    "checked_at": "2026-11-06T17:20:38.826612+00:00",
+    "anonymous_fresh_browser_context": true,
+    "production_base": "https://people-placement-eu.pages.dev",
+    "home_status": 200,
+    "catalog_updated_at": "2026-11-06T13:15:13.450095+00:00",
+    "catalog_records": 147,
+    "countries": 27,
+    "friesland": {
+      "status": 200,
+      "verified_internships": 7,
+      "municipalities": 18,
+      "mobile_document_overflow": false
+    },
+    "groningen": {
+      "http_status": 200,
+      "provincial_page_present": false
+    },
+    "page_errors": [],
+    "status": "groningen_not_published",
+    "main_commit": "a3732da8e17b39c4d86ef33774a934d573202fd4",
+    "url": "https://people-placement-eu.pages.dev/groningen.html",
+    "interpretation": "HTTP 200 is the site fallback. No Groningen provincial page is present; this is not a successful Groningen production deployment."
   },
   "approval": {
-    "required_action": "Merge PR #2 or fast-forward main to the reviewed Groningen changes, triggering the existing production collection/deployment cycle.",
-    "rejection": "Automatic approval review rejected updating the default main branch due to potential disruption and lack of explicit authorization for that exact mutation."
+    "required_action": "Authorize merging PR #2 into main and starting/observing the existing production collection and publication workflow.",
+    "status": "awaiting_explicit_user_authorization",
+    "source": "Current user instruction: Non modificare main senza una mia autorizzazione esplicita.",
+    "historical_rejection": "The earlier attempt to update main was rejected by automatic approval review. No main update was attempted during this review."
+  },
+  "review": {
+    "status": "ready_for_merge_awaiting_explicit_authorization",
+    "pull_request_state": "open",
+    "main_modified": false,
+    "reviewed_code_commit": "4a0b5f6c0735f239e35c009c46c559ed14f6e8a1",
+    "data_integrity": {
+      "checked_at": "2026-11-06T17:22:56.977721+00:00",
+      "base_main_commit": "a3732da8e17b39c4d86ef33774a934d573202fd4",
+      "registries": {
+        "companies.json": {
+          "before": 1757,
+          "after": 1784,
+          "removed_ids": [],
+          "added": 27,
+          "lost_non_groningen_workplaces": [],
+          "changed_friesland_research": []
+        },
+        "sources.json": {
+          "before": 1803,
+          "after": 1828,
+          "removed_ids": [],
+          "added": 25
+        },
+        "catalog.json": {
+          "before": 147,
+          "after": 153,
+          "removed_ids": [],
+          "added": 6,
+          "legacy_status_changes": [],
+          "legacy_country_changes": [],
+          "lost_legacy_region_codes": []
+        }
+      },
+      "duplicate_company_names": [],
+      "duplicate_posting_urls": [],
+      "provision_idempotent": true,
+      "inconsistent_complete_source_flags": []
+    },
+    "resolved_findings": [
+      {
+        "problem": "A successful initial index could overwrite the complete flag after detail or application failures, leaving status partial with complete true.",
+        "resolution": "Preserve initial discovery evidence as inventory_complete and force complete/closure_complete false on any non-ok source outcome.",
+        "regression_tests": [
+          "Failed detail retains previous same-source and other-country postings without absence-based closure.",
+          "Cached job content still invokes fresh application verification; denied access yields unverified job and partial, incomplete source."
+        ]
+      }
+    ],
+    "historical_outcome_normalization": [
+      {
+        "source_id": "auto-ikea-ingka-group",
+        "checked_at": "2026-11-06T13:54:16.450223+00:00",
+        "page_failures": 2
+      },
+      {
+        "source_id": "auto-fotofabriek",
+        "checked_at": "2026-11-06T13:50:15.558850+00:00",
+        "page_failures": 7
+      }
+    ],
+    "normalization_note": "Only interpretation flags were corrected in the two saved partial outcomes. Original checked_at values, job records and source attempts were preserved; no new collection timestamp was invented.",
+    "current_application_checks": [
+      {
+        "job_id": "9f900cc9419de8ce264a",
+        "employer": "HANOS",
+        "url": "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+        "checked_at": "2026-11-06T17:20:39.943403+00:00",
+        "status": "verified",
+        "application": {
+          "url": "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+          "method": "rendered-official-application-form"
+        }
+      },
+      {
+        "job_id": "0aa70507b5a3cbedd17b",
+        "employer": "Fotofabriek",
+        "url": "https://www.werkenbijfotofabriek.nl/jobs/stage-hrm-306",
+        "checked_at": "2026-11-06T17:20:39.943616+00:00",
+        "status": "verified",
+        "application": {
+          "url": "https://www.werkenbijfotofabriek.nl/jobs/apply/stage-hrm-306",
+          "method": "official-vacancy-specific-form"
+        }
+      }
+    ],
+    "workflow_review": {
+      "shards": 16,
+      "workers_per_shard": 6,
+      "cron_utc": "17 6 * * *",
+      "checks": [
+        "Every enabled source receives exactly one shard assignment.",
+        "Merge rejects missing, duplicate, stale or incomplete shard payloads.",
+        "A partial/blocked source cannot close absent postings; prior records remain, subject to the existing freshness policy.",
+        "Both provincial coverage reports are regenerated by the existing publish job.",
+        "No paid service, recurring AI call, or additional production schedule was introduced."
+      ]
+    }
   }
 }
