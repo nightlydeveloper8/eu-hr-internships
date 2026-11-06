@@ -1,0 +1,46 @@
+{
+  "baseline": "1579e4f",
+  "generated_at": "2026-11-06T18:34:28.327409+00:00",
+  "scope": "Existing employers only; no catalog publication; observations at stated timestamps",
+  "offline": {
+    "before": {
+      "role_cases": 64,
+      "role_errors": [
+        "Employee Relations Intern",
+        "Praktikum Industrial Relations",
+        "Stage relazioni sindacali",
+        "Management Trainee HR",
+        "HR internship opportunities",
+        "Benefits Marketing Intern",
+        "Working Student Employee Relations",
+        "Stage formation et développement"
+      ],
+      "language_cases": 12,
+      "language_errors": [
+        "Fluent in English, Dutch is not required.",
+        "Fluent in English and preferably Dutch.",
+        "You speak English or Dutch.",
+        "We work in English.",
+        "Fluency in English is preferred.",
+        "No need to speak Dutch. We work in English.",
+        "English is the only required language.",
+        "English and Dutch are required."
+      ]
+    },
+    "after": {
+      "role_cases": 64,
+      "role_errors": [],
+      "language_cases": 12,
+      "language_errors": []
+    },
+    "limitation": "Small labelled regression sets; not population accuracy. Before-language measurement reflects the old English filter and conflated required/working field."
+  },
+  "summary": {
+    "sources": 0,
+    "sample": 0,
+    "before_head_available": 0,
+    "after_states": {},
+    "errors": 0
+  },
+  "sources": []
+}

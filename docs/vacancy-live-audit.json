@@ -1,0 +1,308 @@
+{
+  "baseline": "1579e4f",
+  "generated_at": "2026-11-06T18:42:55.335518+00:00",
+  "scope": "Existing employers only; bounded observations from multiple checks; per-source timestamps retained. No catalog publication.",
+  "summary": {
+    "sources": 4,
+    "sample": 3,
+    "before_head_available": 3,
+    "after_states": {
+      "verified": 2,
+      "incomplete": 1
+    },
+    "errors": 1
+  },
+  "sources": [
+    {
+      "source_id": "lever-emma-sleep",
+      "checked_at": "2026-11-06T18:41:01.841463+00:00",
+      "scope": "Existing source; bounded sample, not coverage or population accuracy",
+      "inventory_records": 68,
+      "sample": [
+        {
+          "title": "People Process Automation Intern",
+          "url": "https://jobs.lever.co/emma-sleep/ed8efcfe-efe9-436a-877f-16a42265911d",
+          "before_role": {
+            "categories": [
+              "people-operations"
+            ],
+            "category": "people-operations",
+            "internship_type": "internship",
+            "internship_confidence": "confirmed"
+          },
+          "after_role": {
+            "categories": [
+              "people-operations"
+            ],
+            "category": "people-operations",
+            "internship_type": "internship",
+            "internship_confidence": "confirmed"
+          },
+          "before_head_available": true,
+          "after_verification": {
+            "state": "verified",
+            "checked_at": "2026-11-06T18:41:01.841463+00:00",
+            "policy_version": 2,
+            "reason": "linked-same-vacancy-applicant-form"
+          },
+          "before_languages": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "evidence": "Who we're looking for: You are fluent in English ."
+            }
+          ],
+          "after_languages": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Who we're looking for: You are fluent in English ."
+            }
+          ],
+          "language_requirements": {
+            "requirements_status": "explicit",
+            "required_languages": [
+              "en"
+            ],
+            "alternative_languages": [],
+            "english_support": "documented",
+            "english_sufficiency": "unknown",
+            "english_sufficiency_evidence": null
+          }
+        }
+      ],
+      "errors": [],
+      "source_report": {
+        "id": "lever-emma-sleep",
+        "employer": "Emma – The Sleep Company",
+        "adapter": "lever",
+        "checked_at": "2026-11-06T18:41:01.841463+00:00",
+        "collected": 1,
+        "status": "ok",
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "PT"
+        ],
+        "records_inspected": 1,
+        "page_failures": 0,
+        "page_errors": [],
+        "page_errors_truncated": false,
+        "verified_closed_urls": [],
+        "scope": "Bounded sample, not a complete source health report"
+      },
+      "requests": 6,
+      "finished_at": "2026-11-06T18:41:30.436510+00:00"
+    },
+    {
+      "source_id": "lever-veepee",
+      "checked_at": "2026-11-06T18:32:27.085663+00:00",
+      "scope": "Existing source; bounded sample, not coverage or population accuracy",
+      "error": "The read operation timed out",
+      "requests": 2,
+      "finished_at": "2026-11-06T18:32:45.374575+00:00"
+    },
+    {
+      "source_id": "auto-fotofabriek",
+      "checked_at": "2026-11-06T18:41:01.841276+00:00",
+      "scope": "Existing source; bounded sample, not coverage or population accuracy",
+      "inventory_records": 30,
+      "sample": [
+        {
+          "title": "Stage: HRM",
+          "url": "https://www.werkenbijfotofabriek.nl/jobs/stage-hrm-306",
+          "before_role": {
+            "categories": [
+              "hr-generalist"
+            ],
+            "category": "hr-generalist",
+            "internship_type": "internship",
+            "internship_confidence": "confirmed"
+          },
+          "after_role": {
+            "categories": [
+              "hr-generalist"
+            ],
+            "category": "hr-generalist",
+            "internship_type": "internship",
+            "internship_confidence": "confirmed"
+          },
+          "before_head_available": true,
+          "after_verification": {
+            "state": "verified",
+            "checked_at": "2026-11-06T18:41:01.841276+00:00",
+            "policy_version": 2,
+            "reason": "official-vacancy-specific-form"
+          },
+          "before_languages": [],
+          "after_languages": [],
+          "language_requirements": {
+            "requirements_status": "unknown",
+            "required_languages": [],
+            "alternative_languages": [],
+            "english_support": "unknown",
+            "english_sufficiency": "unknown",
+            "english_sufficiency_evidence": null
+          }
+        }
+      ],
+      "errors": [],
+      "source_report": {
+        "id": "auto-fotofabriek",
+        "employer": "Fotofabriek",
+        "adapter": "employer-index",
+        "checked_at": "2026-11-06T18:41:01.841276+00:00",
+        "collected": 1,
+        "status": "ok",
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "NL"
+        ],
+        "records_inspected": 1,
+        "page_failures": 0,
+        "page_errors": [],
+        "page_errors_truncated": false,
+        "verified_closed_urls": [],
+        "snapshot_kind": "public-job-page-inventory",
+        "discovery_scope": "Official HTML vacancy list and all observed numbered pages; each form identifies vacancy and workplace label, resolved to the published Groningen campus address.",
+        "page_discovery_mode": "read-all-inventoried-job-pages",
+        "scope": "Bounded sample, not a complete source health report"
+      },
+      "requests": 10,
+      "finished_at": "2026-11-06T18:41:08.555115+00:00"
+    },
+    {
+      "source_id": "greenhouse-talentprograms",
+      "checked_at": "2026-11-06T18:32:33.799969+00:00",
+      "scope": "Existing source; bounded sample, not coverage or population accuracy",
+      "inventory_records": 13,
+      "sample": [
+        {
+          "title": "HRBP Intern - February 2027",
+          "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+          "before_role": {
+            "categories": [
+              "hr-generalist"
+            ],
+            "category": "hr-generalist",
+            "internship_type": "internship",
+            "internship_confidence": "confirmed"
+          },
+          "after_role": {
+            "categories": [
+              "hr-generalist"
+            ],
+            "category": "hr-generalist",
+            "internship_type": "internship",
+            "internship_confidence": "confirmed"
+          },
+          "before_head_available": true,
+          "after_verification": {
+            "state": "incomplete",
+            "checked_at": "2026-11-06T18:32:33.799969+00:00",
+            "policy_version": 2,
+            "reason": "No available vacancy-specific application entry established"
+          },
+          "before_languages": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "evidence": "Proficient in English (additional languages are a plus) ."
+            }
+          ],
+          "after_languages": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Proficient in English (additional languages are a plus) ."
+            }
+          ],
+          "language_requirements": {
+            "requirements_status": "explicit",
+            "required_languages": [
+              "en"
+            ],
+            "alternative_languages": [],
+            "english_support": "documented",
+            "english_sufficiency": "unknown"
+          }
+        }
+      ],
+      "errors": [],
+      "source_report": {
+        "id": "greenhouse-talentprograms",
+        "employer": "Hunter Douglas – Talent Programs",
+        "adapter": "greenhouse",
+        "checked_at": "2026-11-06T18:32:33.799969+00:00",
+        "collected": 1,
+        "status": "partial",
+        "matching": 1,
+        "verification_states": {
+          "incomplete": 1
+        },
+        "observed_countries": [
+          "NL"
+        ],
+        "records_inspected": 1,
+        "page_failures": 1,
+        "page_errors": [
+          {
+            "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+            "error": "Vacancy verification: No available vacancy-specific application entry established"
+          }
+        ],
+        "page_errors_truncated": false,
+        "verified_closed_urls": [],
+        "complete": false,
+        "closure_complete": false,
+        "scope": "Bounded sample, not a complete source health report"
+      },
+      "requests": 5,
+      "finished_at": "2026-11-06T18:32:35.915955+00:00"
+    }
+  ],
+  "offline": {
+    "before": {
+      "role_cases": 64,
+      "role_errors": [
+        "Employee Relations Intern",
+        "Praktikum Industrial Relations",
+        "Stage relazioni sindacali",
+        "Management Trainee HR",
+        "HR internship opportunities",
+        "Benefits Marketing Intern",
+        "Working Student Employee Relations",
+        "Stage formation et développement"
+      ],
+      "language_cases": 12,
+      "language_errors": [
+        "Fluent in English, Dutch is not required.",
+        "Fluent in English and preferably Dutch.",
+        "You speak English or Dutch.",
+        "We work in English.",
+        "Fluency in English is preferred.",
+        "No need to speak Dutch. We work in English.",
+        "English is the only required language.",
+        "English and Dutch are required."
+      ]
+    },
+    "after": {
+      "role_cases": 64,
+      "role_errors": [],
+      "language_cases": 12,
+      "language_errors": []
+    },
+    "limitation": "Small labelled regression sets; not population accuracy. Before-language measurement reflects the old English filter and conflated required/working field."
+  }
+}

@@ -48,7 +48,7 @@ def search_records(source,client):
                 try:posted=datetime.strptime(j.get('posted_date',''),'%B %d, %Y').replace(tzinfo=timezone.utc).isoformat()
                 except ValueError:pass
                 text=' '.join(plain(j.get(k,'')) for k in ('description','basic_qualifications','preferred_qualifications'))
-                records[identifier]=dict(source_id=source['id'],external_id=identifier,posting_identifier=identifier,employer=plain(j.get('company_name')) or source['employer'],title=plain(j.get('title')),text=text,location=plain(j.get('location')),city='; '.join(cities) or None,countries=sorted(countries),country=None,url=job_url,apply_url=job_url,language=None,published_at=posted,employment='',work_mode={'ONSITE':'on-site','REMOTE':'remote','HYBRID':'hybrid'}.get(next(iter(modes))) if len(modes)==1 else None,needs_page=False)
+                records[identifier]=dict(inventory_evidence='current-employer-feed',source_id=source['id'],external_id=identifier,posting_identifier=identifier,employer=plain(j.get('company_name')) or source['employer'],title=plain(j.get('title')),text=text,location=plain(j.get('location')),city='; '.join(cities) or None,countries=sorted(countries),country=None,url=job_url,apply_url=job_url,language=None,published_at=posted,employment='',work_mode={'ONSITE':'on-site','REMOTE':'remote','HYBRID':'hybrid'}.get(next(iter(modes))) if len(modes)==1 else None,needs_page=False)
             offset+=len(jobs)
             if offset==total:break
             if offset>total or offset>10000:raise ValueError('Amazon inventory count mismatch or safety limit')

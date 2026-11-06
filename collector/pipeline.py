@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
-from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, advertisement_language, extract_metadata
+from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata
 
 ROOT=Path(__file__).resolve().parents[1]
 LOG=logging.getLogger(__name__)
@@ -37,13 +37,15 @@ def reconcile(previous,current,successful,stamp):
         merged[job['id']]=job
     seen={j['id'] for j in current}
     for key,job in merged.items():
-        if key in seen or job['source_id'] not in successful: continue
+        if key in seen or job['source_id'] not in successful or job.get('status')=='closed': continue
         if job.get('last_missing_run')==stamp[:10]: continue
         job['missing_count']=job.get('missing_count',0)+1
         job['missing_since']=job.get('missing_since',stamp)
         job['last_missing_run']=stamp[:10]
         elapsed=(datetime.fromisoformat(stamp)-datetime.fromisoformat(job['missing_since'])).total_seconds()
         job['status']='closed' if job['missing_count']>=3 and elapsed>=48*3600 else 'unverified'
+        if job.get('verification'):
+            job['verification']=dict(job['verification'],state='closed' if job['status']=='closed' else 'incomplete',checked_at=stamp,reason='Missing from complete employer inventory; '+str(job['missing_count'])+' daily observations')
     return list(merged.values())
 
 def posting_identity(job):
@@ -83,26 +85,54 @@ def apply_listing_reviews(jobs,reviews):
         result.append(job)
     return result
 
+def application_identity_url(job):
+    """Only reviewed vacancy-shaped application URLs can identify mirrors."""
+    url=canonical_url(job.get('apply_url') or job['url']);p=urlsplit(url)
+    if p.hostname in ('jobs.lever.co','jobs.eu.lever.co') and re.fullmatch(r'/[^/]+/[^/]+/apply',p.path):return url
+    if re.fullmatch(r'/jobs/apply/(?:[^/]+-)?\d+',p.path):return url
+    if '/External/' in p.path and (parse_qs(p.query).get('jobId') or [''])[0]:return url
+    return None
+
+def observation_time(job):
+    values=[job.get('last_seen_at'),job.get('verification',{}).get('checked_at'),job.get('last_verified_at')]
+    parsed=[]
+    for value in values:
+        try:
+            date=datetime.fromisoformat(value.replace('Z','+00:00'))
+            if date.tzinfo:parsed.append(date.timestamp())
+        except (ValueError,TypeError,AttributeError):pass
+    return max(parsed,default=0)
+
 def deduplicate(jobs):
-    by_url={}
+    by_key={};groups=[]
     for job in sorted(jobs,key=lambda j:j.get('first_discovered_at','')):
-        keys={canonical_url(job['url']),canonical_url(job.get('apply_url') or job['url'])}
-        identity=posting_identity(job)
-        if identity:keys.add(identity)
-        url_identity=posting_url_identity(job)
-        if url_identity:keys.add(url_identity)
-        existing=next((by_url[k] for k in keys if k in by_url),None)
-        if existing is not None:
-            combined_countries=sorted(set(existing.get('countries',[]))|set(job.get('countries',[])))
-            existing['duplicate_source_ids']=sorted(set(existing.get('duplicate_source_ids',[])+[job['source_id']]))
-            # Keep stable ID/first discovery, use freshest verified metadata.
-            if (job.get('last_verified_at') or '')>(existing.get('last_verified_at') or ''):
-                stable,first=existing['id'],existing['first_discovered_at']
-                existing.update(job); existing['id'],existing['first_discovered_at']=stable,first
-            if combined_countries:existing['countries']=combined_countries;existing['country']=combined_countries[0]
-        else: existing=dict(job)
-        for key in keys: by_url[key]=existing
-    return list({id(value):value for value in by_url.values()}.values())
+        keys={canonical_url(job['url'])}
+        for identity in (posting_identity(job),posting_url_identity(job),application_identity_url(job)):
+            if identity:keys.add(identity)
+        # Exact vacancy URLs / official IDs / vacancy-specific application paths
+        # identify mirrors. A general applicant portal never does.
+        matches={by_key[k] for k in keys if k in by_key}
+        if matches:
+            index=min(matches);existing=groups[index]
+            for other in sorted(matches-{index}):
+                existing['members'].extend(groups[other]['members']);existing['keys'].update(groups[other]['keys']);groups[other]=None
+            existing['members'].append(job);existing['keys'].update(keys)
+        else:
+            index=len(groups);existing=dict(members=[job],keys=keys);groups.append(existing)
+        for key in existing['keys']:by_key[key]=index
+    result=[]
+    for group in groups:
+        if group is None:continue
+        members=group['members'];first=members[0]
+        newest=max(members,key=lambda j:(observation_time(j),j.get('status')=='closed'))
+        merged=dict(newest,id=first['id'],first_discovered_at=first.get('first_discovered_at'))
+        verified=[m.get('last_verified_at') for m in members if m.get('last_verified_at')]
+        if not merged.get('last_verified_at') and verified:merged['last_verified_at']=max(verified,key=lambda stamp:observation_time({'last_verified_at':stamp}))
+        countries=sorted({c for m in members for c in m.get('countries',[])})
+        if countries:merged.update(countries=countries,country=countries[0])
+        if len(members)>1:merged['duplicate_source_ids']=sorted({sid for m in members for sid in [m['source_id']]+m.get('duplicate_source_ids',[])})
+        result.append(merged)
+    return result
 
 def validate_catalog(data):
     assert data['schema_version']==1
@@ -116,8 +146,13 @@ def validate_catalog(data):
         assert j['internship_confidence']=='confirmed'
         canonical_url(j['url']); canonical_url(j['apply_url'])
         assert 'text' not in j and 'description' not in j
+        if 'verification' in j:
+            assert j['verification']['state'] in ('verified','incomplete','blocked','closed')
+            assert j['verification']['policy_version']==2
+            if j['status']=='open':assert j['verification']['state']=='verified' and j.get('last_verified_at')
         for lang in j['workplace_languages']:
             assert lang['code'] in LANGUAGES and lang['confidence']=='confirmed' and lang['evidence']
+            assert lang['requirement'] in ('required','required-or-working','working','alternative','preferred')
     return True
 
 def record_countries(record):
@@ -138,7 +173,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             partial_sources.add(source['id']);report['bulk_disappearance_quarantined']=True
             report['error']='Large inventory reduction; new valid matches accepted, absence-based closure disabled pending review'
         report['collected']=len(records)
-        staged=[];page_errors=[];inspected=[]
+        staged=[];page_errors=[];inspected=[];verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
         if cache:
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
@@ -151,56 +186,66 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     record=cached or enrich(record,source,client)
                     if cache and not cached:cache.put(record['url'],record)
                 except Exception as exc:
+                    from .applications import ApplicationClosed
+                    if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
                     page_errors.append(dict(url=record['url'],error=str(exc)[:180]))
                     from .runtime import CollectionBudgetExceeded
                     if isinstance(exc,CollectionBudgetExceeded):break
                     continue
             else:
                 role=classify_role(record['title'],record['text'],record.get('employment',''))
-                if role:record=enrich(record,source,client)
+                if role:
+                    try:record=enrich(record,source,client)
+                    except Exception as exc:
+                        from .applications import ApplicationClosed
+                        if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
+                        page_errors.append(dict(url=record['url'],error=str(exc)[:180]));continue
             inspected.append(record)
             role=classify_role(record['title'],record['text'],record.get('employment',''))
             countries=record_countries(record)
             if not role or not countries:continue
             url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
-            verified=None; link_status='not-checked'
-            application=None;closed=False
+            verified=None; link_status='not-checked'; application=None; closed=False
+            verification={'state':'incomplete','checked_at':stamp,'policy_version':2,'reason':'Verification disabled'}
             if verify:
+                from .verification import verify_vacancy, blocked_error
+                from .applications import ApplicationClosed
                 try:
-                    from .applications import verify_application,ApplicationClosed
-                    application=verify_application(record,source,client)
-                    if application:apply=allowed_url(application['url'],source)
-                    # HEAD avoids downloading/reproducing descriptions. No fallback on access restrictions.
-                    for target in set((url,apply)):
-                        _,_,final=client.request(target,method='HEAD')
-                        allowed_url(final,source)
+                    application=verify_vacancy(record,source,client,stamp)
+                    apply=allowed_url(application['url'],source)
                     verified=stamp; link_status='verified'
+                    verification.update(state='verified',reason=application['method'])
                 except Exception as exc:
-                    if isinstance(exc,ApplicationClosed):closed=True
-                    if source.get('application_check') and not closed:
-                        page_errors.append(dict(url=apply,error='Application availability: '+str(exc)[:150]))
-                    LOG.warning('Link unverified %s: %s',url,str(exc)[:150]); link_status='unverified'
+                    closed=isinstance(exc,ApplicationClosed)
+                    state='closed' if closed else 'blocked' if blocked_error(exc) else 'incomplete'
+                    verification.update(state=state,reason=str(exc)[:200])
+                    link_status=state
+                    if not closed:page_errors.append(dict(url=apply,error='Vacancy verification: '+str(exc)[:150]))
+                    LOG.warning('Vacancy %s %s: %s',url,state,str(exc)[:150])
             langs=workplace_languages(record['text'])
-            staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
+            staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_requirements=language_summary(record['text'],langs),language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),valid_through=application.get('valid_through') if application else record.get('valid_through'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,verification=verification,status='open' if verified else 'unverified'))
             if application:staged[-1]['application_verification']=dict(application,checked_at=stamp)
             if closed:staged[-1].update(status='closed',closure_reason='Official recruiting page explicitly disables applications')
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
         if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
-        report.update(status='partial' if source['id'] in partial_sources else 'ok',matching=len(staged),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
+        report.update(status='partial' if source['id'] in partial_sources else 'ok',matching=len(staged),verification_states=dict(Counter(j['verification']['state'] for j in staged)),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
+        report['verified_closed_urls']=sorted(verified_closed_urls)
         if bulk_disappearance:report['status']='partial'
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
         # Inventory discovery can succeed while a detail/application read fails.
         # Keep the evidence for that narrower scope without calling the source complete.
         if 'complete' in inventory_stats:report['inventory_complete']=inventory_stats['complete']
         if report['status']!='ok':report.update(complete=False,closure_complete=False)
+        if any(j['verification']['state']=='blocked' for j in staged):report['access_state']='blocked'
         if cache:report['cache_hits']=max(cache.hits,inventory_stats.get('cache_hits',0))
         if source['adapter'] in ('employer-sitemap','employer-index'):
             report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
         LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
     except Exception as exc:
-        report.update(status='failed',error=str(exc)[:400])
+        from .verification import blocked_error
+        report.update(status='failed',access_state='blocked' if blocked_error(exc) else 'error',error=str(exc)[:400])
         LOG.error('%s failed; previous data retained: %s',source['id'],exc)
     return dict(report=report,jobs=current,closure_eligible=sorted(closure_eligible))
 
@@ -213,24 +258,35 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     jobs=deduplicate(apply_listing_reviews(reconcile(prior['jobs'],current,closure_eligible,stamp),read(ROOT/'data/listing-reviews.json',[])))
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     for job in jobs:
-        if canonical_url(job['url']) in explicitly_closed:job['status']='closed';job['closure_reason']='Official recruiting page explicitly disables applications'
+        if canonical_url(job['url']) in explicitly_closed:
+            job['status']='closed';job['closure_reason']='Official recruiting page explicitly disables applications';job['verification']=dict(state='closed',checked_at=stamp,policy_version=2,reason=job['closure_reason'])
     from .company_registry import region_codes_for_job
     companies=read(ROOT/'data/companies.json',[])
     for job in jobs:job['region_codes']=region_codes_for_job(job,companies)
-    # Preserve historical verification when API is present but this run's HEAD is temporarily blocked.
+    # Preserve historical verification when API is present but this run's vacancy/application read is temporarily blocked.
     old={j['id']:j for j in prior['jobs']}
     for j in jobs:
         if not j.get('last_verified_at') and j['id'] in old: j['last_verified_at']=old[j['id']].get('last_verified_at')
     result={'schema_version':1,'updated_at':stamp if successful else prior.get('updated_at'),'last_attempt_at':stamp,'update_status':'ok' if len(successful)==len(selected) and selected and not partial_sources else 'partial' if successful else 'failed','countries':COUNTRIES,'languages':LANGUAGES,'categories':{k:v[0] for k,v in CATEGORIES.items()},'jobs':jobs}
     for job in jobs:
+        from .verification import expired
+        try:
+            if expired(job.get('valid_through'),stamp):
+                job.update(status='closed',closure_reason='Published application deadline has passed',verification=dict(state='closed',checked_at=stamp,policy_version=2,reason='Published application deadline has passed'))
+        except (ValueError,TypeError):
+            job.update(status='unverified',link_status='invalid-deadline',verification=dict(state='incomplete',checked_at=stamp,policy_version=2,reason='Invalid application deadline'))
+        # Historical HEAD checks cannot satisfy the stronger evidence policy.
+        if job['status']=='open' and job.get('verification',{}).get('policy_version')!=2:
+            job.update(status='unverified',link_status='legacy-verification',verification=dict(state='incomplete',reason='Requires vacancy/application evidence under policy v2',policy_version=2,checked_at=None))
         try:age=(datetime.fromisoformat(stamp)-datetime.fromisoformat(job.get('last_verified_at') or job['last_seen_at'])).total_seconds()
         except (ValueError,TypeError,KeyError):age=float('inf')
-        if job['status']=='open' and age>48*3600:job['status']='unverified';job['link_status']='stale'
+        if job['status']=='open' and (age<0 or age>48*3600):
+            job['status']='unverified';job['link_status']='stale';job['verification']=dict(job.get('verification',{}),state='incomplete',reason='Verification timestamp is future, invalid or older than 48 hours')
     validate_catalog(result)
     report_by_id.update({r['id']:r for r in reports})
     counts=Counter(c for j in jobs if j['status']!='closed' for c in j['countries'])
     all_reports=list(report_by_id.values())
-    coverage={'generated_at':stamp,'exhaustive':False,'sources':all_reports,'countries':[{'code':c,'name':n,'listings':counts[c],'sources_with_observed_jobs':sum(c in r.get('observed_countries',[]) for r in all_reports if r['status']=='ok'),'discovery_candidates':sum(c in s.get('target_countries',[]) for s in registry if not s.get('enabled'))} for c,n in COUNTRIES.items()],'quality':{'total':len(jobs),'open':sum(j['status']=='open' for j in jobs),'unverified':sum(j['status']=='unverified' for j in jobs),'confirmed_english':sum(any(l['code']=='en' for l in j['workplace_languages']) for j in jobs if j['status']!='closed'),'sources_succeeded':len(successful),'sources_attempted':len(selected),'sources_partial':len(partial_sources)}}
+    coverage={'generated_at':stamp,'exhaustive':False,'sources':all_reports,'countries':[{'code':c,'name':n,'listings':counts[c],'sources_with_observed_jobs':sum(c in r.get('observed_countries',[]) for r in all_reports if r['status']=='ok'),'discovery_candidates':sum(c in s.get('target_countries',[]) for s in registry if not s.get('enabled'))} for c,n in COUNTRIES.items()],'quality':{'total':len(jobs),'open':sum(j['status']=='open' for j in jobs),'unverified':sum(j['status']=='unverified' for j in jobs),'confirmed_english':sum(any(l['code']=='en' and l['requirement']!='preferred' for l in j['workplace_languages']) for j in jobs if j['status']!='closed'),'sources_succeeded':len(successful),'sources_attempted':len(selected),'sources_partial':len(partial_sources)}}
     coverage['quality'].update(verified_internships=sum(j['status']=='open' and j['internship_type']=='internship' for j in jobs),verified_working_students=sum(j['status']=='open' and j['internship_type']=='working-student' for j in jobs),verified_traineeships=sum(j['status']=='open' and j['internship_type']=='traineeship' for j in jobs))
     # Validate both documents before either is exported; the build copies only a successful run.
     write(output/'coverage.json',coverage); write(output/'catalog.json',result)

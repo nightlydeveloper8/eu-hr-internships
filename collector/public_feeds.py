@@ -15,7 +15,7 @@ def personio_records(source,client):
         offices=[j.findtext('office','')]+[x.text or '' for x in j.findall('additionalOffices/office')]
         text=' '.join(plain(x.findtext('name','')+' '+x.findtext('value','')) for x in j.findall('jobDescriptions/jobDescription'))
         job_url=approved(base+'/job/'+identifier,source)
-        out.append(dict(source_id=source['id'],external_id=identifier,employer=source['employer'],title=plain(j.findtext('name')),location='; '.join(offices),text=text,url=job_url,apply_url=job_url,language=None,published_at=None,employment=j.findtext('employmentType',''),city='; '.join(offices),country=None,work_mode=None))
+        out.append(dict(inventory_evidence='current-employer-feed',source_id=source['id'],external_id=identifier,employer=source['employer'],title=plain(j.findtext('name')),location='; '.join(offices),text=text,url=job_url,apply_url=job_url,language=None,published_at=None,employment=j.findtext('employmentType',''),city='; '.join(offices),country=None,work_mode=None))
     if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate positions')
     return out
 
@@ -36,6 +36,6 @@ def recruitee_records(source,client):
         # Keep a multi-country posting intact; downstream URL deduplication must
         # not erase any locations by collapsing country-specific copies.
         location='; '.join(cities+countries) or j.get('location','')
-        out.append(dict(source_id=source['id'],external_id=str(j['id']),employer=source['employer'],title=plain(j['title']),location=location,text=plain((j.get('description') or '')+' '+(j.get('requirements') or '')),url=url,apply_url=url,countries=countries,language=None,published_at=None,employment=j.get('employment_type_code',''),city='; '.join(cities) or j.get('city'),country=countries[0] if len(countries)==1 else None,work_mode='remote' if j.get('remote') else 'hybrid' if j.get('hybrid') else None))
+        out.append(dict(inventory_evidence='current-employer-feed',source_id=source['id'],external_id=str(j['id']),employer=source['employer'],title=plain(j['title']),location=location,text=plain((j.get('description') or '')+' '+(j.get('requirements') or '')),url=url,apply_url=url,countries=countries,language=None,published_at=None,employment=j.get('employment_type_code',''),city='; '.join(cities) or j.get('city'),country=countries[0] if len(countries)==1 else None,work_mode='remote' if j.get('remote') else 'hybrid' if j.get('hybrid') else None))
     if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate offers')
     return out

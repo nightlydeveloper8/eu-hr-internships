@@ -21,8 +21,8 @@ class ProvincialTests(unittest.TestCase):
     def test_province_separation_recent_verification_and_municipal_jobs(self):
         company=dict(id='one',name='One',source_ids=['one'],groningen_research={'size':{'qualification':'verified_50_plus'}},workplaces=[dict(region_code='NL11',city='Veendam',municipality_code='A',location_confidence='confirmed'),dict(region_code='NL11',city='Winschoten',municipality_code='B',location_confidence='confirmed')])
         geography=dict(municipalities=[dict(cbs_code=c,name=c,settlement_count=1) for c in ['A','B']])
-        base=dict(status='open',link_status='verified',internship_type='internship',source_id='one',employer='One',region_codes=['NL11'],city='Veendam',last_verified_at='2026-11-06T05:00:00+00:00')
-        jobs=[dict(base,id='current'),dict(base,id='stale',last_verified_at='2026-11-01T00:00:00+00:00'),dict(base,id='unverified',link_status='unverified'),dict(base,id='elsewhere',region_codes=['NL12']),dict(base,id='student',internship_type='working-student')]
+        base=dict(status='open',verification={'state':'verified','policy_version':2},link_status='verified',internship_type='internship',source_id='one',employer='One',region_codes=['NL11'],city='Veendam',last_verified_at='2026-11-06T05:00:00+00:00')
+        jobs=[dict(base,id='current'),dict(base,id='legacy',verification={}),dict(base,id='stale',last_verified_at='2026-11-01T00:00:00+00:00'),dict(base,id='unverified',link_status='unverified'),dict(base,id='elsewhere',region_codes=['NL12']),dict(base,id='student',internship_type='working-student')]
         result=coverage([company],[dict(id='one',enabled=True)],[dict(id='one',checked_at='2026-11-06T05:00:00+00:00',status='partial',records_inspected=2)],jobs,geography,'2026-11-06T06:00:00+00:00',research_key='groningen_research',region_code='NL11',province='Groningen')
         self.assertEqual(result['verified_hr_internship_ids'],['current'])
         self.assertEqual([m['verified_hr_internships'] for m in result['municipalities']],[1,0])
@@ -68,11 +68,16 @@ class ProvincialTests(unittest.TestCase):
     def test_odoo_requires_same_vacancy_and_applicant_fields(self):
         source=dict(allowed_hosts=['example.org'],application_check='odoo')
         page='<main><h1>HR stage</h1><a href="/jobs/apply/306">Apply</a><a href="/jobs/apply/old-241">Old link</a></main>'
-        form='<main><h1>Sollicitatieformulier</h1><form id="hr_recruitment_form" data-model_name="hr.applicant"><input name="partner_name"><input name="email_from"></form>Vacature HR stage Locatie Fotofabriek Afdeling Stages</main>'
+        form='<main><h1>Sollicitatieformulier</h1><form id="hr_recruitment_form" data-model_name="hr.applicant"><input name="partner_name"><input name="email_from"><button type="submit">Solliciteren</button></form>Vacature HR stage Locatie Fotofabriek Afdeling Stages</main>'
         client=PublicClient({'https://example.org/jobs/306':page,'https://example.org/jobs/apply/306':form})
         result=verify_application(dict(url='https://example.org/jobs/306',title='HR stage'),source,client)
         self.assertEqual(result['url'],'https://example.org/jobs/apply/306')
         self.assertNotIn('https://example.org/jobs/apply/old-241',client.calls)
+        client.pages['https://example.org/jobs/apply/306']=form.replace('<button type="submit">Solliciteren</button>','<a class="s_website_form_send" role="button" href="#">Solliciteren</a>')
+        self.assertEqual(verify_application(dict(url='https://example.org/jobs/306',title='HR stage'),source,client)['url'],'https://example.org/jobs/apply/306')
+        client.pages['https://example.org/jobs/apply/306']=form.replace('type="submit"','type="submit" disabled')
+        with self.assertRaisesRegex(ValueError,'enabled submit'):
+            verify_application(dict(url='https://example.org/jobs/306',title='HR stage'),source,client)
         client.pages['https://example.org/jobs/apply/306']=form.replace('Vacature HR stage','Vacature Other job')
         with self.assertRaisesRegex(ValueError,'same vacancy'):
             verify_application(dict(url='https://example.org/jobs/306',title='HR stage'),source,client)
@@ -130,7 +135,7 @@ class PartialAvailabilityTests(unittest.TestCase):
             result,report=finalize([source],[source],prior,{},[part],stamp,Path(directory))
         self.assertTrue(before.issubset({j['id'] for j in result['jobs']}))
         old=next(j for j in result['jobs'] if j['id']==retained['id'])
-        self.assertEqual(old['status'],'open');self.assertEqual(old.get('missing_count'),retained.get('missing_count'))
+        self.assertEqual(old['status'],'unverified');self.assertEqual(old['link_status'],'legacy-verification');self.assertEqual(old.get('missing_count'),retained.get('missing_count'))
         self.assertEqual(result['update_status'],'partial')
 
     def test_cached_job_still_checks_application_and_blocked_access_is_partial(self):
@@ -141,7 +146,7 @@ class PartialAvailabilityTests(unittest.TestCase):
         inventory=Inventory([dict(record,needs_page=True)],dict(status='ok',complete=True,closure_complete=False))
         with tempfile.TemporaryDirectory() as directory:
             cache=PageCache('review-example',directory);cache.put(record['url'],record)
-            with patch('collector.pipeline.collect',return_value=inventory),patch('collector.pipeline.enrich') as enrich,patch('collector.applications.verify_application',side_effect=ValueError('robots.txt disallows application')) as check:
+            with patch('collector.pipeline.collect',return_value=inventory),patch('collector.pipeline.enrich') as enrich,patch('collector.verification.verify_vacancy',side_effect=ValueError('robots.txt disallows application')) as check:
                 part=process_source(source,object(),now(),cache=cache)
         enrich.assert_not_called();check.assert_called_once()
         self.assertEqual(part['jobs'][0]['status'],'unverified')

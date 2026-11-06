@@ -19,6 +19,8 @@ permissions:
 concurrency:
   group: employer-catalog
   cancel-in-progress: ${{ github.event_name == 'push' }}
+env:
+  COLLECTOR_RUN_ID: ${{ github.run_id }}/${{ github.run_attempt }}
 jobs:
   test:
     runs-on: ubuntu-latest

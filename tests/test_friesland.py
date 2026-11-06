@@ -36,7 +36,8 @@ class FrieslandTests(unittest.TestCase):
         with patch.object(client,'permitted',return_value=False),patch('collector.tls_transport.request') as transport:
             with self.assertRaises(ValueError):client.request('https://example.org/jobs')
             transport.assert_not_called()
-        with patch.object(client,'permitted',return_value=True),patch('collector.adapters.urlopen',side_effect=URLError('TLSV1_ALERT_PROTOCOL_VERSION')),patch('collector.tls_transport.request',return_value=(b'ok',200,'https://example.org/jobs')) as transport:
+        with patch.object(client,'permitted',return_value=True),patch('collector.adapters.build_opener') as opener,patch('collector.tls_transport.request',return_value=(b'ok',200,'https://example.org/jobs')) as transport:
+            opener.return_value.open.side_effect=URLError('TLSV1_ALERT_PROTOCOL_VERSION')
             self.assertEqual(client.request('https://example.org/jobs')[1],200)
             transport.assert_called_once()
 
@@ -74,7 +75,7 @@ class FrieslandTests(unittest.TestCase):
         company=dict(id='one',name='One',source_ids=['one'],friesland_research={'size':{'qualification':'verified_50_plus','scope':'group'}},workplaces=[dict(region_code='NL12',city='Sneek',municipality_code='A',location_confidence='confirmed'),dict(region_code='NL12',city='Heerenveen',municipality_code='B',location_confidence='confirmed')])
         geography=dict(municipalities=[dict(cbs_code=c,name=c,settlement_count=1) for c in ['A','B','C']])
         jobs=[dict(id='local',status='open',internship_type='internship',source_id='one',employer='One',region_codes=['NL12']),dict(id='nonlocal',status='open',internship_type='internship',source_id='one',employer='One',region_codes=[]),dict(id='working-student',status='open',internship_type='working-student',source_id='one',employer='One',region_codes=['NL12'])]
-        for job in jobs:job.update(link_status='verified',last_verified_at='2026-11-06T05:00:00+00:00')
+        for job in jobs:job.update(verification={'state':'verified','policy_version':2},link_status='verified',last_verified_at='2026-11-06T05:00:00+00:00')
         r=coverage([company],[dict(id='one',enabled=True)],[dict(id='one',checked_at='2026-11-06T05:00:00+00:00',status='partial',records_inspected=2)],jobs,geography,'2026-11-06T06:00:00+00:00')
         self.assertEqual(r['summary']['employers'],1)
         self.assertEqual([m['qualified_employers'] for m in r['municipalities']],[1,1,0])

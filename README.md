@@ -123,3 +123,10 @@ The portable application has no paid dependencies or recurring AI inference. The
 Coverage is a small sample and initially concentrated in the Netherlands, France, Belgium and Portugal. Rule evaluation is a small regression check, not a statistical quality guarantee. Dutch workplace opportunities may currently be absent even though Dutch filters work. No full-market crawler, PDF parsing, advanced NLP, general-purpose feed connector or live browser automation is used by the daily collector. These are expansion work, not features claimed complete.
 
 GitHub repository creation, live scheduled-run verification and Cloudflare Pages account linkage require the owner’s external account access. See `docs/status.md` for observed implementation and deployment status.
+
+
+## Vacancy and language evidence
+
+The availability policy, before/after results, live sample, daily-run evidence and remaining limits are documented in [vacancy-reliability-report.md](docs/vacancy-reliability-report.md). A successful URL response alone no longer verifies an opening. Historical HEAD-only records remain available through “Include unverified opportunities” until recollected. No new sources or countries are added by this change.
+
+For manual multi-shard runs, supply the same unique `--run-id` to every `collector.daily collect` and `merge` invocation (or set `COLLECTOR_RUN_ID`). GitHub Actions supplies its run ID and attempt automatically; rerun all jobs together after a failed attempt.
