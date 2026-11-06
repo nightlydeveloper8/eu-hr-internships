@@ -77,9 +77,9 @@ def build(areas, links, names, province_code, nuts_code, checked_on):
             national_settlement_names=len(names), unique_provincial_settlement_codes=settlements),
         municipalities=sorted(municipalities.values(), key=lambda m: fold(m['name'])),
         ambiguous_settlement_names=ambiguous,
-        name_disambiguation=['Groningen can mean the province, municipality or city; a provincial mention alone is not a city workplace.',
-            'CBS suffixes such as Haren Gn, Harkstede GN and Lageland GN remain in statutory lookup names. Unsuffixed search variants require municipality/address confirmation.',
-            'Former municipality names (for example Delfzijl, Leek, Haren) are not current CBS municipality assignments.'],
+        name_disambiguation=['A province, municipality and settlement are distinct units; a provincial mention alone is not a city workplace.',
+            'CBS provincial suffixes remain in statutory lookup names. Unsuffixed search variants require municipality/address confirmation.',
+            'Former municipality names are not current CBS municipality assignments; use the annual GM membership.'],
         limitations=['CBS annual BAG snapshot at 1 January 2026, provisional; not live boundary geometry.',
             'Search variants are normalisations, not alternative statutory names.',
             'A complete geographic frame does not establish a complete employer census.'])

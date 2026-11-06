@@ -80,6 +80,18 @@ def page_record(record,source,client,clock=None):
         if not fragment:raise ValueError('Matching Danone job fragment not found; page may be closed')
         title=plain(fragment['title'])
         result.update(title=title,location=plain(fragment.get('city',''))+', '+plain(fragment.get('country','')),city=fragment.get('city'),country=fragment.get('country'),text=plain(fragment.get('descriptionheader','')+' '+fragment.get('description','')),language=fragment.get('locale'),published_at=datetime.fromtimestamp(int(fragment['posted'])/1000,timezone.utc).isoformat() if fragment.get('posted','').isdigit() else None,employment=fragment.get('positiontype',''),work_mode={'Hybrid':'hybrid','On-site':'on-site','Remote':'remote'}.get(fragment.get('workfromhome')))
+    elif source.get('page_format')=='reviewed-visible':
+        from .universal import Document
+        doc=Document(body,final)
+        if len(doc.h1)!=1 or len(doc.text)<200:
+            raise ValueError('Reviewed visible vacancy title/description missing')
+        places=[place for place in source.get('reviewed_workplaces',[])
+                if re.search(place['pattern'],doc.text)]
+        if len(places)!=1:raise ValueError('Visible vacancy workplace requires review')
+        place=places[0]
+        result.update(title=doc.h1[0],text=doc.text,city=place['city'],
+            country=place['country'],countries=[place['country']],
+            location=place['city']+', '+place['country'],language=source.get('reviewed_advertisement_language'))
     elif source.get('page_format')=='odoo-visible':
         from .universal import Document
         from .applications import odoo_application
@@ -144,7 +156,18 @@ def index_records(source,client):
         if url in seen:continue
         if len(seen)>=source.get('max_index_pages',20):raise ValueError('Index pagination safety limit; incomplete inventory')
         seen.add(url)
-        body,_,final=client.request(approved(url,source));approved(final,source)
+        if source.get('index_rendered'):
+            from .rendering import render_pages
+            snapshots,render_complete=render_pages(url,client,
+                lambda target: urlsplit(target).hostname in source['allowed_hosts'],
+                limit=source.get('max_render_pages',5))
+            if not snapshots or not render_complete:
+                raise ValueError('Rendered index inventory incomplete')
+            # Retain links from every observed load-more snapshot.
+            final=snapshots[-1][0];body=b'\n'.join(b for _,b in snapshots)
+        else:
+            body,_,final=client.request(approved(url,source))
+        approved(final,source)
         parser=JobLinksParser();parser.feed(body.decode('utf-8','replace'))
         if source.get('index_job_count_pattern'):
             match=re.search(source['index_job_count_pattern'],plain(body.decode('utf-8','replace')))

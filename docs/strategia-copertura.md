@@ -138,3 +138,8 @@ Dati e metodo aggiornati: [friesland-mappatura.md](friesland-mappatura.md). Pagi
 Avviato il lotto Groningen riutilizzando registro e raccolta: frame CBS completo di 10 comuni e 199 località, 31 datori provinciali, 27 qualificati ≥50 addetti e 4 dimensioni ignote. Eseguiti tutti i 30 canali distinti; i due stage con modulo verificato sono HANOS e Fotofabriek, entrambi in città Groningen e con partenza febbraio 2027. I due annunci IKEA restano non verificati perché il canale di candidatura collegato vieta la lettura al raccoglitore. I programmi generali HR rimangono separati dalle vacancy.
 
 Rapporti e interfaccia provinciali condividono ora la stessa implementazione; anche Groningen viene rigenerato e pubblicato dal workflow mattutino esistente. Nessuna nuova chiamata ricorrente a modelli. Il lotto non è un censimento esaustivo. Metodo, stati comunali, fonti e prova remota: [groningen-mappatura.md](groningen-mappatura.md).
+
+
+## Estensione provinciale: Drenthe — 6 novembre 2026
+
+Frame CBS completo di 12 comuni e 227 località. Primo lotto di 31 datori, 14 qualificati ≥50 addetti; due stage candidabili verificati presso SKK e Ziengs/Scapino ad Assen. Tentati realmente tutti i 31 canali: due inventari osservati letti, 20 parziali, cinque discovery incomplete, quattro blocchi/fallimenti. NNCZ e Scania non vengono contati fra gli stage verificati. Riutilizzati import, registro, pagina provinciale e workflow quotidiano; produzione remota da verificare dopo merge autorizzato. Nessuna nuova automazione o chiamata ricorrente AI. Dettagli: [drenthe-mappatura.md](drenthe-mappatura.md).

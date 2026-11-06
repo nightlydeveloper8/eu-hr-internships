@@ -1,0 +1,2406 @@
+{
+  "schema_version": 1,
+  "province": {
+    "official_name": "Drenthe",
+    "cbs_code": "PV22",
+    "nuts2_code": "NL13",
+    "nuts_note": "Province NUTS2 code; municipalities use CBS GM codes."
+  },
+  "checked_on": "2026-11-06",
+  "administrative_reference_date": "2026-01-01",
+  "municipality_count": 12,
+  "settlement_count": 227,
+  "composition_status": "complete-official-2026-municipal-membership",
+  "sources": {
+    "cbs_areas_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+    "cbs_settlements_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86312NED"
+  },
+  "api_sources": {
+    "municipalities": "https://opendata.cbs.nl/ODataApi/OData/86247NED/TypedDataSet",
+    "settlement_links": "https://opendata.cbs.nl/ODataApi/OData/86312NED/TypedDataSet",
+    "settlement_names": "https://opendata.cbs.nl/ODataApi/OData/86312NED/Woonplaatsen"
+  },
+  "import_audit": {
+    "national_area_rows": 342,
+    "national_settlement_rows": 2502,
+    "national_settlement_names": 2502,
+    "unique_provincial_settlement_codes": 227
+  },
+  "municipalities": [
+    {
+      "cbs_code": "GM1680",
+      "name": "Aa en Hunze",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR07",
+      "corop_name": "Noord-Drenthe",
+      "inhabitants": 26062,
+      "settlements": [
+        {
+          "code": "WP1147",
+          "name": "Amen",
+          "search_name_variants": [
+            "Amen",
+            "amen"
+          ]
+        },
+        {
+          "code": "WP1148",
+          "name": "Anderen",
+          "search_name_variants": [
+            "Anderen",
+            "anderen"
+          ]
+        },
+        {
+          "code": "WP1149",
+          "name": "Anloo",
+          "search_name_variants": [
+            "Anloo",
+            "anloo"
+          ]
+        },
+        {
+          "code": "WP1150",
+          "name": "Annen",
+          "search_name_variants": [
+            "Annen",
+            "annen"
+          ]
+        },
+        {
+          "code": "WP1151",
+          "name": "Annerveenschekanaal",
+          "search_name_variants": [
+            "Annerveenschekanaal",
+            "annerveenschekanaal"
+          ]
+        },
+        {
+          "code": "WP1153",
+          "name": "Balloërveld",
+          "search_name_variants": [
+            "Balloërveld",
+            "balloerveld"
+          ]
+        },
+        {
+          "code": "WP1152",
+          "name": "Balloo",
+          "search_name_variants": [
+            "Balloo",
+            "balloo"
+          ]
+        },
+        {
+          "code": "WP1154",
+          "name": "Deurze",
+          "search_name_variants": [
+            "Deurze",
+            "deurze"
+          ]
+        },
+        {
+          "code": "WP1155",
+          "name": "Eext",
+          "search_name_variants": [
+            "Eext",
+            "eext"
+          ]
+        },
+        {
+          "code": "WP1156",
+          "name": "Eexterveen",
+          "search_name_variants": [
+            "Eexterveen",
+            "eexterveen"
+          ]
+        },
+        {
+          "code": "WP1157",
+          "name": "Eexterveenschekanaal",
+          "search_name_variants": [
+            "Eexterveenschekanaal",
+            "eexterveenschekanaal"
+          ]
+        },
+        {
+          "code": "WP1158",
+          "name": "Eexterzandvoort",
+          "search_name_variants": [
+            "Eexterzandvoort",
+            "eexterzandvoort"
+          ]
+        },
+        {
+          "code": "WP1159",
+          "name": "Ekehaar",
+          "search_name_variants": [
+            "Ekehaar",
+            "ekehaar"
+          ]
+        },
+        {
+          "code": "WP1160",
+          "name": "Eldersloo",
+          "search_name_variants": [
+            "Eldersloo",
+            "eldersloo"
+          ]
+        },
+        {
+          "code": "WP1161",
+          "name": "Eleveld",
+          "search_name_variants": [
+            "Eleveld",
+            "eleveld"
+          ]
+        },
+        {
+          "code": "WP1162",
+          "name": "Gasselte",
+          "search_name_variants": [
+            "Gasselte",
+            "gasselte"
+          ]
+        },
+        {
+          "code": "WP1163",
+          "name": "Gasselternijveen",
+          "search_name_variants": [
+            "Gasselternijveen",
+            "gasselternijveen"
+          ]
+        },
+        {
+          "code": "WP1164",
+          "name": "Gasselternijveenschemond",
+          "search_name_variants": [
+            "Gasselternijveenschemond",
+            "gasselternijveenschemond"
+          ]
+        },
+        {
+          "code": "WP1165",
+          "name": "Gasteren",
+          "search_name_variants": [
+            "Gasteren",
+            "gasteren"
+          ]
+        },
+        {
+          "code": "WP1166",
+          "name": "Geelbroek",
+          "search_name_variants": [
+            "Geelbroek",
+            "geelbroek"
+          ]
+        },
+        {
+          "code": "WP1167",
+          "name": "Gieten",
+          "search_name_variants": [
+            "Gieten",
+            "gieten"
+          ]
+        },
+        {
+          "code": "WP1168",
+          "name": "Gieterveen",
+          "search_name_variants": [
+            "Gieterveen",
+            "gieterveen"
+          ]
+        },
+        {
+          "code": "WP1169",
+          "name": "Grolloo",
+          "search_name_variants": [
+            "Grolloo",
+            "grolloo"
+          ]
+        },
+        {
+          "code": "WP1170",
+          "name": "Marwijksoord",
+          "search_name_variants": [
+            "Marwijksoord",
+            "marwijksoord"
+          ]
+        },
+        {
+          "code": "WP1171",
+          "name": "Nieuw Annerveen",
+          "search_name_variants": [
+            "Nieuw Annerveen",
+            "nieuw annerveen"
+          ]
+        },
+        {
+          "code": "WP1172",
+          "name": "Nieuwediep",
+          "search_name_variants": [
+            "Nieuwediep",
+            "nieuwediep"
+          ]
+        },
+        {
+          "code": "WP1173",
+          "name": "Nijlande",
+          "search_name_variants": [
+            "Nijlande",
+            "nijlande"
+          ]
+        },
+        {
+          "code": "WP1174",
+          "name": "Nooitgedacht",
+          "search_name_variants": [
+            "Nooitgedacht",
+            "nooitgedacht"
+          ]
+        },
+        {
+          "code": "WP1175",
+          "name": "Oud Annerveen",
+          "search_name_variants": [
+            "Oud Annerveen",
+            "oud annerveen"
+          ]
+        },
+        {
+          "code": "WP1176",
+          "name": "Papenvoort",
+          "search_name_variants": [
+            "Papenvoort",
+            "papenvoort"
+          ]
+        },
+        {
+          "code": "WP1177",
+          "name": "Rolde",
+          "search_name_variants": [
+            "Rolde",
+            "rolde"
+          ]
+        },
+        {
+          "code": "WP1178",
+          "name": "Schipborg",
+          "search_name_variants": [
+            "Schipborg",
+            "schipborg"
+          ]
+        },
+        {
+          "code": "WP1179",
+          "name": "Schoonloo",
+          "search_name_variants": [
+            "Schoonloo",
+            "schoonloo"
+          ]
+        },
+        {
+          "code": "WP1180",
+          "name": "Spijkerboor",
+          "search_name_variants": [
+            "Spijkerboor",
+            "spijkerboor"
+          ]
+        },
+        {
+          "code": "WP1181",
+          "name": "Vredenheim",
+          "search_name_variants": [
+            "Vredenheim",
+            "vredenheim"
+          ]
+        }
+      ],
+      "settlement_count": 35,
+      "search_name_variants": [
+        "Aa en Hunze"
+      ]
+    },
+    {
+      "cbs_code": "GM0106",
+      "name": "Assen",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR07",
+      "corop_name": "Noord-Drenthe",
+      "inhabitants": 70769,
+      "settlements": [
+        {
+          "code": "WP2391",
+          "name": "Assen",
+          "search_name_variants": [
+            "Assen",
+            "assen"
+          ]
+        },
+        {
+          "code": "WP2392",
+          "name": "Loon",
+          "search_name_variants": [
+            "Loon",
+            "loon"
+          ]
+        },
+        {
+          "code": "WP2393",
+          "name": "Rhee",
+          "search_name_variants": [
+            "Rhee",
+            "rhee"
+          ]
+        },
+        {
+          "code": "WP2394",
+          "name": "Ter Aard",
+          "search_name_variants": [
+            "Ter Aard",
+            "ter aard"
+          ]
+        },
+        {
+          "code": "WP2395",
+          "name": "Ubbena",
+          "search_name_variants": [
+            "Ubbena",
+            "ubbena"
+          ]
+        },
+        {
+          "code": "WP2396",
+          "name": "Zeijerveen",
+          "search_name_variants": [
+            "Zeijerveen",
+            "zeijerveen"
+          ]
+        },
+        {
+          "code": "WP2397",
+          "name": "Zeijerveld",
+          "search_name_variants": [
+            "Zeijerveld",
+            "zeijerveld"
+          ]
+        }
+      ],
+      "settlement_count": 7,
+      "search_name_variants": [
+        "Assen"
+      ]
+    },
+    {
+      "cbs_code": "GM1681",
+      "name": "Borger-Odoorn",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR08",
+      "corop_name": "Zuidoost-Drenthe",
+      "inhabitants": 26162,
+      "settlements": [
+        {
+          "code": "WP1779",
+          "name": "1e Exloërmond",
+          "search_name_variants": [
+            "1e Exloërmond",
+            "1e exloermond"
+          ]
+        },
+        {
+          "code": "WP1780",
+          "name": "2e Exloërmond",
+          "search_name_variants": [
+            "2e Exloërmond",
+            "2e exloermond"
+          ]
+        },
+        {
+          "code": "WP1781",
+          "name": "2e Valthermond",
+          "search_name_variants": [
+            "2e Valthermond",
+            "2e valthermond"
+          ]
+        },
+        {
+          "code": "WP1782",
+          "name": "Borger",
+          "search_name_variants": [
+            "Borger",
+            "borger"
+          ]
+        },
+        {
+          "code": "WP1783",
+          "name": "Bronneger",
+          "search_name_variants": [
+            "Bronneger",
+            "bronneger"
+          ]
+        },
+        {
+          "code": "WP1784",
+          "name": "Bronnegerveen",
+          "search_name_variants": [
+            "Bronnegerveen",
+            "bronnegerveen"
+          ]
+        },
+        {
+          "code": "WP1785",
+          "name": "Buinen",
+          "search_name_variants": [
+            "Buinen",
+            "buinen"
+          ]
+        },
+        {
+          "code": "WP1786",
+          "name": "Buinerveen",
+          "search_name_variants": [
+            "Buinerveen",
+            "buinerveen"
+          ]
+        },
+        {
+          "code": "WP1787",
+          "name": "Drouwen",
+          "search_name_variants": [
+            "Drouwen",
+            "drouwen"
+          ]
+        },
+        {
+          "code": "WP1788",
+          "name": "Drouwenermond",
+          "search_name_variants": [
+            "Drouwenermond",
+            "drouwenermond"
+          ]
+        },
+        {
+          "code": "WP1789",
+          "name": "Drouwenerveen",
+          "search_name_variants": [
+            "Drouwenerveen",
+            "drouwenerveen"
+          ]
+        },
+        {
+          "code": "WP1790",
+          "name": "Ees",
+          "search_name_variants": [
+            "Ees",
+            "ees"
+          ]
+        },
+        {
+          "code": "WP1791",
+          "name": "Eesergroen",
+          "search_name_variants": [
+            "Eesergroen",
+            "eesergroen"
+          ]
+        },
+        {
+          "code": "WP1792",
+          "name": "Eeserveen",
+          "search_name_variants": [
+            "Eeserveen",
+            "eeserveen"
+          ]
+        },
+        {
+          "code": "WP1793",
+          "name": "Ellertshaar",
+          "search_name_variants": [
+            "Ellertshaar",
+            "ellertshaar"
+          ]
+        },
+        {
+          "code": "WP1794",
+          "name": "Exloërveen",
+          "search_name_variants": [
+            "Exloërveen",
+            "exloerveen"
+          ]
+        },
+        {
+          "code": "WP1795",
+          "name": "Exloo",
+          "search_name_variants": [
+            "Exloo",
+            "exloo"
+          ]
+        },
+        {
+          "code": "WP1796",
+          "name": "Klijndijk",
+          "search_name_variants": [
+            "Klijndijk",
+            "klijndijk"
+          ]
+        },
+        {
+          "code": "WP1797",
+          "name": "Nieuw-Buinen",
+          "search_name_variants": [
+            "Nieuw-Buinen",
+            "nieuw-buinen"
+          ]
+        },
+        {
+          "code": "WP1798",
+          "name": "Odoorn",
+          "search_name_variants": [
+            "Odoorn",
+            "odoorn"
+          ]
+        },
+        {
+          "code": "WP1799",
+          "name": "Odoornerveen",
+          "search_name_variants": [
+            "Odoornerveen",
+            "odoornerveen"
+          ]
+        },
+        {
+          "code": "WP1800",
+          "name": "Valthe",
+          "search_name_variants": [
+            "Valthe",
+            "valthe"
+          ]
+        },
+        {
+          "code": "WP1801",
+          "name": "Valthermond",
+          "search_name_variants": [
+            "Valthermond",
+            "valthermond"
+          ]
+        },
+        {
+          "code": "WP1802",
+          "name": "Westdorp",
+          "search_name_variants": [
+            "Westdorp",
+            "westdorp"
+          ]
+        },
+        {
+          "code": "WP1803",
+          "name": "Zandberg",
+          "search_name_variants": [
+            "Zandberg",
+            "zandberg"
+          ]
+        }
+      ],
+      "settlement_count": 25,
+      "search_name_variants": [
+        "Borger-Odoorn"
+      ]
+    },
+    {
+      "cbs_code": "GM0109",
+      "name": "Coevorden",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR08",
+      "corop_name": "Zuidoost-Drenthe",
+      "inhabitants": 35729,
+      "settlements": [
+        {
+          "code": "WP2164",
+          "name": "'t Haantje",
+          "search_name_variants": [
+            "'t Haantje",
+            "'t haantje"
+          ]
+        },
+        {
+          "code": "WP2145",
+          "name": "Aalden",
+          "search_name_variants": [
+            "Aalden",
+            "aalden"
+          ]
+        },
+        {
+          "code": "WP2146",
+          "name": "Benneveld",
+          "search_name_variants": [
+            "Benneveld",
+            "benneveld"
+          ]
+        },
+        {
+          "code": "WP2147",
+          "name": "Coevorden",
+          "search_name_variants": [
+            "Coevorden",
+            "coevorden"
+          ]
+        },
+        {
+          "code": "WP2148",
+          "name": "Dalen",
+          "search_name_variants": [
+            "Dalen",
+            "dalen"
+          ]
+        },
+        {
+          "code": "WP2149",
+          "name": "Dalerpeel",
+          "search_name_variants": [
+            "Dalerpeel",
+            "dalerpeel"
+          ]
+        },
+        {
+          "code": "WP2150",
+          "name": "Dalerveen",
+          "search_name_variants": [
+            "Dalerveen",
+            "dalerveen"
+          ]
+        },
+        {
+          "code": "WP2151",
+          "name": "De Kiel",
+          "search_name_variants": [
+            "De Kiel",
+            "de kiel"
+          ]
+        },
+        {
+          "code": "WP2152",
+          "name": "Diphoorn",
+          "search_name_variants": [
+            "Diphoorn",
+            "diphoorn"
+          ]
+        },
+        {
+          "code": "WP2153",
+          "name": "Erm",
+          "search_name_variants": [
+            "Erm",
+            "erm"
+          ]
+        },
+        {
+          "code": "WP2154",
+          "name": "Gees",
+          "search_name_variants": [
+            "Gees",
+            "gees"
+          ]
+        },
+        {
+          "code": "WP2155",
+          "name": "Geesbrug",
+          "search_name_variants": [
+            "Geesbrug",
+            "geesbrug"
+          ]
+        },
+        {
+          "code": "WP2156",
+          "name": "Holsloot",
+          "search_name_variants": [
+            "Holsloot",
+            "holsloot"
+          ]
+        },
+        {
+          "code": "WP2157",
+          "name": "Meppen",
+          "search_name_variants": [
+            "Meppen",
+            "meppen"
+          ]
+        },
+        {
+          "code": "WP2158",
+          "name": "Nieuwlande Coevorden",
+          "search_name_variants": [
+            "Nieuwlande Coevorden",
+            "nieuwlande coevorden"
+          ]
+        },
+        {
+          "code": "WP2159",
+          "name": "Noord-Sleen",
+          "search_name_variants": [
+            "Noord-Sleen",
+            "noord-sleen"
+          ]
+        },
+        {
+          "code": "WP2160",
+          "name": "Oosterhesselen",
+          "search_name_variants": [
+            "Oosterhesselen",
+            "oosterhesselen"
+          ]
+        },
+        {
+          "code": "WP2161",
+          "name": "Schoonoord",
+          "search_name_variants": [
+            "Schoonoord",
+            "schoonoord"
+          ]
+        },
+        {
+          "code": "WP2162",
+          "name": "Sleen",
+          "search_name_variants": [
+            "Sleen",
+            "sleen"
+          ]
+        },
+        {
+          "code": "WP2163",
+          "name": "Stieltjeskanaal",
+          "search_name_variants": [
+            "Stieltjeskanaal",
+            "stieltjeskanaal"
+          ]
+        },
+        {
+          "code": "WP2165",
+          "name": "Wachtum",
+          "search_name_variants": [
+            "Wachtum",
+            "wachtum"
+          ]
+        },
+        {
+          "code": "WP2166",
+          "name": "Wezup",
+          "search_name_variants": [
+            "Wezup",
+            "wezup"
+          ]
+        },
+        {
+          "code": "WP2167",
+          "name": "Wezuperbrug",
+          "search_name_variants": [
+            "Wezuperbrug",
+            "wezuperbrug"
+          ]
+        },
+        {
+          "code": "WP2168",
+          "name": "Zweeloo",
+          "search_name_variants": [
+            "Zweeloo",
+            "zweeloo"
+          ]
+        },
+        {
+          "code": "WP2169",
+          "name": "Zwinderen",
+          "search_name_variants": [
+            "Zwinderen",
+            "zwinderen"
+          ]
+        }
+      ],
+      "settlement_count": 25,
+      "search_name_variants": [
+        "Coevorden"
+      ]
+    },
+    {
+      "cbs_code": "GM1690",
+      "name": "De Wolden",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR09",
+      "corop_name": "Zuidwest-Drenthe",
+      "inhabitants": 24819,
+      "settlements": [
+        {
+          "code": "WP3160",
+          "name": "Alteveer",
+          "search_name_variants": [
+            "Alteveer",
+            "alteveer"
+          ]
+        },
+        {
+          "code": "WP3161",
+          "name": "Ansen",
+          "search_name_variants": [
+            "Ansen",
+            "ansen"
+          ]
+        },
+        {
+          "code": "WP3162",
+          "name": "de Wijk",
+          "search_name_variants": [
+            "de Wijk",
+            "de wijk"
+          ]
+        },
+        {
+          "code": "WP3163",
+          "name": "Drogteropslagen",
+          "search_name_variants": [
+            "Drogteropslagen",
+            "drogteropslagen"
+          ]
+        },
+        {
+          "code": "WP3164",
+          "name": "Echten",
+          "search_name_variants": [
+            "Echten",
+            "echten"
+          ]
+        },
+        {
+          "code": "WP3165",
+          "name": "Eursinge",
+          "search_name_variants": [
+            "Eursinge",
+            "eursinge"
+          ]
+        },
+        {
+          "code": "WP3166",
+          "name": "Kerkenveld",
+          "search_name_variants": [
+            "Kerkenveld",
+            "kerkenveld"
+          ]
+        },
+        {
+          "code": "WP3167",
+          "name": "Koekange",
+          "search_name_variants": [
+            "Koekange",
+            "koekange"
+          ]
+        },
+        {
+          "code": "WP3168",
+          "name": "Linde",
+          "search_name_variants": [
+            "Linde",
+            "linde"
+          ]
+        },
+        {
+          "code": "WP3169",
+          "name": "Ruinen",
+          "search_name_variants": [
+            "Ruinen",
+            "ruinen"
+          ]
+        },
+        {
+          "code": "WP3170",
+          "name": "Ruinerwold",
+          "search_name_variants": [
+            "Ruinerwold",
+            "ruinerwold"
+          ]
+        },
+        {
+          "code": "WP3171",
+          "name": "Veeningen",
+          "search_name_variants": [
+            "Veeningen",
+            "veeningen"
+          ]
+        },
+        {
+          "code": "WP3172",
+          "name": "Zuidwolde",
+          "search_name_variants": [
+            "Zuidwolde",
+            "zuidwolde"
+          ]
+        }
+      ],
+      "settlement_count": 13,
+      "search_name_variants": [
+        "De Wolden"
+      ]
+    },
+    {
+      "cbs_code": "GM0114",
+      "name": "Emmen",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR08",
+      "corop_name": "Zuidoost-Drenthe",
+      "inhabitants": 109881,
+      "settlements": [
+        {
+          "code": "WP1987",
+          "name": "Barger-Compascuum",
+          "search_name_variants": [
+            "Barger-Compascuum",
+            "barger-compascuum"
+          ]
+        },
+        {
+          "code": "WP1988",
+          "name": "Emmen",
+          "search_name_variants": [
+            "Emmen",
+            "emmen"
+          ]
+        },
+        {
+          "code": "WP1989",
+          "name": "Emmer-Compascuum",
+          "search_name_variants": [
+            "Emmer-Compascuum",
+            "emmer-compascuum"
+          ]
+        },
+        {
+          "code": "WP1990",
+          "name": "Erica",
+          "search_name_variants": [
+            "Erica",
+            "erica"
+          ]
+        },
+        {
+          "code": "WP1991",
+          "name": "Klazienaveen",
+          "search_name_variants": [
+            "Klazienaveen",
+            "klazienaveen"
+          ]
+        },
+        {
+          "code": "WP1992",
+          "name": "Klazienaveen-Noord",
+          "search_name_variants": [
+            "Klazienaveen-Noord",
+            "klazienaveen-noord"
+          ]
+        },
+        {
+          "code": "WP1993",
+          "name": "Nieuw-Amsterdam",
+          "search_name_variants": [
+            "Nieuw-Amsterdam",
+            "nieuw-amsterdam"
+          ]
+        },
+        {
+          "code": "WP1994",
+          "name": "Nieuw-Dordrecht",
+          "search_name_variants": [
+            "Nieuw-Dordrecht",
+            "nieuw-dordrecht"
+          ]
+        },
+        {
+          "code": "WP1995",
+          "name": "Nieuw-Schoonebeek",
+          "search_name_variants": [
+            "Nieuw-Schoonebeek",
+            "nieuw-schoonebeek"
+          ]
+        },
+        {
+          "code": "WP1996",
+          "name": "Nieuw-Weerdinge",
+          "search_name_variants": [
+            "Nieuw-Weerdinge",
+            "nieuw-weerdinge"
+          ]
+        },
+        {
+          "code": "WP1997",
+          "name": "Roswinkel",
+          "search_name_variants": [
+            "Roswinkel",
+            "roswinkel"
+          ]
+        },
+        {
+          "code": "WP1998",
+          "name": "Schoonebeek",
+          "search_name_variants": [
+            "Schoonebeek",
+            "schoonebeek"
+          ]
+        },
+        {
+          "code": "WP1999",
+          "name": "Veenoord",
+          "search_name_variants": [
+            "Veenoord",
+            "veenoord"
+          ]
+        },
+        {
+          "code": "WP2000",
+          "name": "Weiteveen",
+          "search_name_variants": [
+            "Weiteveen",
+            "weiteveen"
+          ]
+        },
+        {
+          "code": "WP2001",
+          "name": "Zandpol",
+          "search_name_variants": [
+            "Zandpol",
+            "zandpol"
+          ]
+        },
+        {
+          "code": "WP2002",
+          "name": "Zwartemeer",
+          "search_name_variants": [
+            "Zwartemeer",
+            "zwartemeer"
+          ]
+        }
+      ],
+      "settlement_count": 16,
+      "search_name_variants": [
+        "Emmen"
+      ]
+    },
+    {
+      "cbs_code": "GM0118",
+      "name": "Hoogeveen",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR09",
+      "corop_name": "Zuidwest-Drenthe",
+      "inhabitants": 56781,
+      "settlements": [
+        {
+          "code": "WP1810",
+          "name": "Alteveer gem Hoogeveen",
+          "search_name_variants": [
+            "Alteveer gem Hoogeveen",
+            "alteveer gem hoogeveen"
+          ]
+        },
+        {
+          "code": "WP1811",
+          "name": "Elim",
+          "search_name_variants": [
+            "Elim",
+            "elim"
+          ]
+        },
+        {
+          "code": "WP1812",
+          "name": "Fluitenberg",
+          "search_name_variants": [
+            "Fluitenberg",
+            "fluitenberg"
+          ]
+        },
+        {
+          "code": "WP1813",
+          "name": "Hollandscheveld",
+          "search_name_variants": [
+            "Hollandscheveld",
+            "hollandscheveld"
+          ]
+        },
+        {
+          "code": "WP1814",
+          "name": "Hoogeveen",
+          "search_name_variants": [
+            "Hoogeveen",
+            "hoogeveen"
+          ]
+        },
+        {
+          "code": "WP1815",
+          "name": "Nieuweroord",
+          "search_name_variants": [
+            "Nieuweroord",
+            "nieuweroord"
+          ]
+        },
+        {
+          "code": "WP1816",
+          "name": "Nieuwlande",
+          "search_name_variants": [
+            "Nieuwlande",
+            "nieuwlande"
+          ]
+        },
+        {
+          "code": "WP1817",
+          "name": "Noordscheschut",
+          "search_name_variants": [
+            "Noordscheschut",
+            "noordscheschut"
+          ]
+        },
+        {
+          "code": "WP1818",
+          "name": "Pesse",
+          "search_name_variants": [
+            "Pesse",
+            "pesse"
+          ]
+        },
+        {
+          "code": "WP1819",
+          "name": "Stuifzand",
+          "search_name_variants": [
+            "Stuifzand",
+            "stuifzand"
+          ]
+        },
+        {
+          "code": "WP1820",
+          "name": "Tiendeveen",
+          "search_name_variants": [
+            "Tiendeveen",
+            "tiendeveen"
+          ]
+        }
+      ],
+      "settlement_count": 11,
+      "search_name_variants": [
+        "Hoogeveen"
+      ]
+    },
+    {
+      "cbs_code": "GM0119",
+      "name": "Meppel",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR09",
+      "corop_name": "Zuidwest-Drenthe",
+      "inhabitants": 36616,
+      "settlements": [
+        {
+          "code": "WP1086",
+          "name": "Broekhuizen",
+          "search_name_variants": [
+            "Broekhuizen",
+            "broekhuizen"
+          ]
+        },
+        {
+          "code": "WP1085",
+          "name": "De Schiphorst",
+          "search_name_variants": [
+            "De Schiphorst",
+            "de schiphorst"
+          ]
+        },
+        {
+          "code": "WP1082",
+          "name": "Meppel",
+          "search_name_variants": [
+            "Meppel",
+            "meppel"
+          ]
+        },
+        {
+          "code": "WP1083",
+          "name": "Nijeveen",
+          "search_name_variants": [
+            "Nijeveen",
+            "nijeveen"
+          ]
+        },
+        {
+          "code": "WP1084",
+          "name": "Rogat",
+          "search_name_variants": [
+            "Rogat",
+            "rogat"
+          ]
+        }
+      ],
+      "settlement_count": 5,
+      "search_name_variants": [
+        "Meppel"
+      ]
+    },
+    {
+      "cbs_code": "GM1731",
+      "name": "Midden-Drenthe",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR07",
+      "corop_name": "Noord-Drenthe",
+      "inhabitants": 34402,
+      "settlements": [
+        {
+          "code": "WP3005",
+          "name": "Balinge",
+          "search_name_variants": [
+            "Balinge",
+            "balinge"
+          ]
+        },
+        {
+          "code": "WP3006",
+          "name": "Beilen",
+          "search_name_variants": [
+            "Beilen",
+            "beilen"
+          ]
+        },
+        {
+          "code": "WP3007",
+          "name": "Bovensmilde",
+          "search_name_variants": [
+            "Bovensmilde",
+            "bovensmilde"
+          ]
+        },
+        {
+          "code": "WP3008",
+          "name": "Bruntinge",
+          "search_name_variants": [
+            "Bruntinge",
+            "bruntinge"
+          ]
+        },
+        {
+          "code": "WP3009",
+          "name": "Drijber",
+          "search_name_variants": [
+            "Drijber",
+            "drijber"
+          ]
+        },
+        {
+          "code": "WP3010",
+          "name": "Elp",
+          "search_name_variants": [
+            "Elp",
+            "elp"
+          ]
+        },
+        {
+          "code": "WP3011",
+          "name": "Eursinge",
+          "search_name_variants": [
+            "Eursinge",
+            "eursinge"
+          ]
+        },
+        {
+          "code": "WP3012",
+          "name": "Garminge",
+          "search_name_variants": [
+            "Garminge",
+            "garminge"
+          ]
+        },
+        {
+          "code": "WP3013",
+          "name": "Hijken",
+          "search_name_variants": [
+            "Hijken",
+            "hijken"
+          ]
+        },
+        {
+          "code": "WP3014",
+          "name": "Hoogersmilde",
+          "search_name_variants": [
+            "Hoogersmilde",
+            "hoogersmilde"
+          ]
+        },
+        {
+          "code": "WP3015",
+          "name": "Hooghalen",
+          "search_name_variants": [
+            "Hooghalen",
+            "hooghalen"
+          ]
+        },
+        {
+          "code": "WP3016",
+          "name": "Mantinge",
+          "search_name_variants": [
+            "Mantinge",
+            "mantinge"
+          ]
+        },
+        {
+          "code": "WP3018",
+          "name": "Nieuw-Balinge",
+          "search_name_variants": [
+            "Nieuw-Balinge",
+            "nieuw-balinge"
+          ]
+        },
+        {
+          "code": "WP3017",
+          "name": "Nieuweroord",
+          "search_name_variants": [
+            "Nieuweroord",
+            "nieuweroord"
+          ]
+        },
+        {
+          "code": "WP3019",
+          "name": "Oranje",
+          "search_name_variants": [
+            "Oranje",
+            "oranje"
+          ]
+        },
+        {
+          "code": "WP3020",
+          "name": "Orvelte",
+          "search_name_variants": [
+            "Orvelte",
+            "orvelte"
+          ]
+        },
+        {
+          "code": "WP3021",
+          "name": "Smilde",
+          "search_name_variants": [
+            "Smilde",
+            "smilde"
+          ]
+        },
+        {
+          "code": "WP3022",
+          "name": "Spier",
+          "search_name_variants": [
+            "Spier",
+            "spier"
+          ]
+        },
+        {
+          "code": "WP3023",
+          "name": "Stuifzand",
+          "search_name_variants": [
+            "Stuifzand",
+            "stuifzand"
+          ]
+        },
+        {
+          "code": "WP3024",
+          "name": "Tiendeveen",
+          "search_name_variants": [
+            "Tiendeveen",
+            "tiendeveen"
+          ]
+        },
+        {
+          "code": "WP3025",
+          "name": "Westerbork",
+          "search_name_variants": [
+            "Westerbork",
+            "westerbork"
+          ]
+        },
+        {
+          "code": "WP3026",
+          "name": "Wijster",
+          "search_name_variants": [
+            "Wijster",
+            "wijster"
+          ]
+        },
+        {
+          "code": "WP3027",
+          "name": "Witteveen",
+          "search_name_variants": [
+            "Witteveen",
+            "witteveen"
+          ]
+        },
+        {
+          "code": "WP3028",
+          "name": "Zuidveld",
+          "search_name_variants": [
+            "Zuidveld",
+            "zuidveld"
+          ]
+        },
+        {
+          "code": "WP3029",
+          "name": "Zwiggelte",
+          "search_name_variants": [
+            "Zwiggelte",
+            "zwiggelte"
+          ]
+        }
+      ],
+      "settlement_count": 25,
+      "search_name_variants": [
+        "Midden-Drenthe"
+      ]
+    },
+    {
+      "cbs_code": "GM1699",
+      "name": "Noordenveld",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR07",
+      "corop_name": "Noord-Drenthe",
+      "inhabitants": 31737,
+      "settlements": [
+        {
+          "code": "WP1633",
+          "name": "Alteveer",
+          "search_name_variants": [
+            "Alteveer",
+            "alteveer"
+          ]
+        },
+        {
+          "code": "WP1634",
+          "name": "Een",
+          "search_name_variants": [
+            "Een",
+            "een"
+          ]
+        },
+        {
+          "code": "WP1635",
+          "name": "Een-West",
+          "search_name_variants": [
+            "Een-West",
+            "een-west"
+          ]
+        },
+        {
+          "code": "WP1636",
+          "name": "Foxwolde",
+          "search_name_variants": [
+            "Foxwolde",
+            "foxwolde"
+          ]
+        },
+        {
+          "code": "WP1637",
+          "name": "Huis ter Heide",
+          "search_name_variants": [
+            "Huis ter Heide",
+            "huis ter heide"
+          ]
+        },
+        {
+          "code": "WP1638",
+          "name": "Langelo",
+          "search_name_variants": [
+            "Langelo",
+            "langelo"
+          ]
+        },
+        {
+          "code": "WP1639",
+          "name": "Leutingewolde",
+          "search_name_variants": [
+            "Leutingewolde",
+            "leutingewolde"
+          ]
+        },
+        {
+          "code": "WP1640",
+          "name": "Lieveren",
+          "search_name_variants": [
+            "Lieveren",
+            "lieveren"
+          ]
+        },
+        {
+          "code": "WP1641",
+          "name": "Matsloot",
+          "search_name_variants": [
+            "Matsloot",
+            "matsloot"
+          ]
+        },
+        {
+          "code": "WP1642",
+          "name": "Nietap",
+          "search_name_variants": [
+            "Nietap",
+            "nietap"
+          ]
+        },
+        {
+          "code": "WP1643",
+          "name": "Nieuw-Roden",
+          "search_name_variants": [
+            "Nieuw-Roden",
+            "nieuw-roden"
+          ]
+        },
+        {
+          "code": "WP1644",
+          "name": "Norg",
+          "search_name_variants": [
+            "Norg",
+            "norg"
+          ]
+        },
+        {
+          "code": "WP1645",
+          "name": "Peest",
+          "search_name_variants": [
+            "Peest",
+            "peest"
+          ]
+        },
+        {
+          "code": "WP1646",
+          "name": "Peize",
+          "search_name_variants": [
+            "Peize",
+            "peize"
+          ]
+        },
+        {
+          "code": "WP1647",
+          "name": "Roden",
+          "search_name_variants": [
+            "Roden",
+            "roden"
+          ]
+        },
+        {
+          "code": "WP3633",
+          "name": "Roderesch",
+          "search_name_variants": [
+            "Roderesch",
+            "roderesch"
+          ]
+        },
+        {
+          "code": "WP1649",
+          "name": "Roderwolde",
+          "search_name_variants": [
+            "Roderwolde",
+            "roderwolde"
+          ]
+        },
+        {
+          "code": "WP3634",
+          "name": "Steenbergen",
+          "search_name_variants": [
+            "Steenbergen",
+            "steenbergen"
+          ]
+        },
+        {
+          "code": "WP1651",
+          "name": "Veenhuizen",
+          "search_name_variants": [
+            "Veenhuizen",
+            "veenhuizen"
+          ]
+        },
+        {
+          "code": "WP1652",
+          "name": "Westervelde",
+          "search_name_variants": [
+            "Westervelde",
+            "westervelde"
+          ]
+        },
+        {
+          "code": "WP1653",
+          "name": "Zuidvelde",
+          "search_name_variants": [
+            "Zuidvelde",
+            "zuidvelde"
+          ]
+        }
+      ],
+      "settlement_count": 21,
+      "search_name_variants": [
+        "Noordenveld"
+      ]
+    },
+    {
+      "cbs_code": "GM1730",
+      "name": "Tynaarlo",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR07",
+      "corop_name": "Noord-Drenthe",
+      "inhabitants": 35116,
+      "settlements": [
+        {
+          "code": "WP2914",
+          "name": "Bunne",
+          "search_name_variants": [
+            "Bunne",
+            "bunne"
+          ]
+        },
+        {
+          "code": "WP2924",
+          "name": "De Groeve",
+          "search_name_variants": [
+            "De Groeve",
+            "de groeve"
+          ]
+        },
+        {
+          "code": "WP2915",
+          "name": "De Punt",
+          "search_name_variants": [
+            "De Punt",
+            "de punt"
+          ]
+        },
+        {
+          "code": "WP2916",
+          "name": "Donderen",
+          "search_name_variants": [
+            "Donderen",
+            "donderen"
+          ]
+        },
+        {
+          "code": "WP2909",
+          "name": "Eelde",
+          "search_name_variants": [
+            "Eelde",
+            "eelde"
+          ]
+        },
+        {
+          "code": "WP2911",
+          "name": "Eelderwolde",
+          "search_name_variants": [
+            "Eelderwolde",
+            "eelderwolde"
+          ]
+        },
+        {
+          "code": "WP2926",
+          "name": "Midlaren",
+          "search_name_variants": [
+            "Midlaren",
+            "midlaren"
+          ]
+        },
+        {
+          "code": "WP2917",
+          "name": "Oudemolen",
+          "search_name_variants": [
+            "Oudemolen",
+            "oudemolen"
+          ]
+        },
+        {
+          "code": "WP2910",
+          "name": "Paterswolde",
+          "search_name_variants": [
+            "Paterswolde",
+            "paterswolde"
+          ]
+        },
+        {
+          "code": "WP2918",
+          "name": "Taarlo",
+          "search_name_variants": [
+            "Taarlo",
+            "taarlo"
+          ]
+        },
+        {
+          "code": "WP2919",
+          "name": "Tynaarlo",
+          "search_name_variants": [
+            "Tynaarlo",
+            "tynaarlo"
+          ]
+        },
+        {
+          "code": "WP2912",
+          "name": "Vries",
+          "search_name_variants": [
+            "Vries",
+            "vries"
+          ]
+        },
+        {
+          "code": "WP2920",
+          "name": "Winde",
+          "search_name_variants": [
+            "Winde",
+            "winde"
+          ]
+        },
+        {
+          "code": "WP2921",
+          "name": "Yde",
+          "search_name_variants": [
+            "Yde",
+            "yde"
+          ]
+        },
+        {
+          "code": "WP2922",
+          "name": "Zeegse",
+          "search_name_variants": [
+            "Zeegse",
+            "zeegse"
+          ]
+        },
+        {
+          "code": "WP2923",
+          "name": "Zeijen",
+          "search_name_variants": [
+            "Zeijen",
+            "zeijen"
+          ]
+        },
+        {
+          "code": "WP2925",
+          "name": "Zuidlaarderveen",
+          "search_name_variants": [
+            "Zuidlaarderveen",
+            "zuidlaarderveen"
+          ]
+        },
+        {
+          "code": "WP2913",
+          "name": "Zuidlaren",
+          "search_name_variants": [
+            "Zuidlaren",
+            "zuidlaren"
+          ]
+        }
+      ],
+      "settlement_count": 18,
+      "search_name_variants": [
+        "Tynaarlo"
+      ]
+    },
+    {
+      "cbs_code": "GM1701",
+      "name": "Westerveld",
+      "province_code": "PV22",
+      "province_name": "Drenthe",
+      "corop_code": "CR09",
+      "corop_name": "Zuidwest-Drenthe",
+      "inhabitants": 20035,
+      "settlements": [
+        {
+          "code": "WP3104",
+          "name": "Ansen",
+          "search_name_variants": [
+            "Ansen",
+            "ansen"
+          ]
+        },
+        {
+          "code": "WP3105",
+          "name": "Boschoord",
+          "search_name_variants": [
+            "Boschoord",
+            "boschoord"
+          ]
+        },
+        {
+          "code": "WP3106",
+          "name": "Darp",
+          "search_name_variants": [
+            "Darp",
+            "darp"
+          ]
+        },
+        {
+          "code": "WP3107",
+          "name": "Diever",
+          "search_name_variants": [
+            "Diever",
+            "diever"
+          ]
+        },
+        {
+          "code": "WP3108",
+          "name": "Dieverbrug",
+          "search_name_variants": [
+            "Dieverbrug",
+            "dieverbrug"
+          ]
+        },
+        {
+          "code": "WP3109",
+          "name": "Doldersum",
+          "search_name_variants": [
+            "Doldersum",
+            "doldersum"
+          ]
+        },
+        {
+          "code": "WP3110",
+          "name": "Dwingeloo",
+          "search_name_variants": [
+            "Dwingeloo",
+            "dwingeloo"
+          ]
+        },
+        {
+          "code": "WP3111",
+          "name": "Frederiksoord",
+          "search_name_variants": [
+            "Frederiksoord",
+            "frederiksoord"
+          ]
+        },
+        {
+          "code": "WP3112",
+          "name": "Geeuwenbrug",
+          "search_name_variants": [
+            "Geeuwenbrug",
+            "geeuwenbrug"
+          ]
+        },
+        {
+          "code": "WP3113",
+          "name": "Havelte",
+          "search_name_variants": [
+            "Havelte",
+            "havelte"
+          ]
+        },
+        {
+          "code": "WP3114",
+          "name": "Havelterberg",
+          "search_name_variants": [
+            "Havelterberg",
+            "havelterberg"
+          ]
+        },
+        {
+          "code": "WP3115",
+          "name": "Hoogersmilde",
+          "search_name_variants": [
+            "Hoogersmilde",
+            "hoogersmilde"
+          ]
+        },
+        {
+          "code": "WP3116",
+          "name": "Nijensleek",
+          "search_name_variants": [
+            "Nijensleek",
+            "nijensleek"
+          ]
+        },
+        {
+          "code": "WP3117",
+          "name": "Oude Willem",
+          "search_name_variants": [
+            "Oude Willem",
+            "oude willem"
+          ]
+        },
+        {
+          "code": "WP3118",
+          "name": "Pesse",
+          "search_name_variants": [
+            "Pesse",
+            "pesse"
+          ]
+        },
+        {
+          "code": "WP3119",
+          "name": "Ruinen",
+          "search_name_variants": [
+            "Ruinen",
+            "ruinen"
+          ]
+        },
+        {
+          "code": "WP3120",
+          "name": "Spier",
+          "search_name_variants": [
+            "Spier",
+            "spier"
+          ]
+        },
+        {
+          "code": "WP3121",
+          "name": "Uffelte",
+          "search_name_variants": [
+            "Uffelte",
+            "uffelte"
+          ]
+        },
+        {
+          "code": "WP3122",
+          "name": "Vledder",
+          "search_name_variants": [
+            "Vledder",
+            "vledder"
+          ]
+        },
+        {
+          "code": "WP3123",
+          "name": "Vledderveen",
+          "search_name_variants": [
+            "Vledderveen",
+            "vledderveen"
+          ]
+        },
+        {
+          "code": "WP3124",
+          "name": "Wapse",
+          "search_name_variants": [
+            "Wapse",
+            "wapse"
+          ]
+        },
+        {
+          "code": "WP3125",
+          "name": "Wapserveen",
+          "search_name_variants": [
+            "Wapserveen",
+            "wapserveen"
+          ]
+        },
+        {
+          "code": "WP3126",
+          "name": "Wateren",
+          "search_name_variants": [
+            "Wateren",
+            "wateren"
+          ]
+        },
+        {
+          "code": "WP3127",
+          "name": "Wilhelminaoord",
+          "search_name_variants": [
+            "Wilhelminaoord",
+            "wilhelminaoord"
+          ]
+        },
+        {
+          "code": "WP3128",
+          "name": "Wittelte",
+          "search_name_variants": [
+            "Wittelte",
+            "wittelte"
+          ]
+        },
+        {
+          "code": "WP3129",
+          "name": "Zorgvlied",
+          "search_name_variants": [
+            "Zorgvlied",
+            "zorgvlied"
+          ]
+        }
+      ],
+      "settlement_count": 26,
+      "search_name_variants": [
+        "Westerveld"
+      ]
+    }
+  ],
+  "ambiguous_settlement_names": [
+    {
+      "name": "Alteveer",
+      "occurrences": [
+        {
+          "name": "Alteveer",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Alteveer",
+          "municipality": "Stadskanaal",
+          "municipality_code": "GM0037",
+          "province": "Groningen",
+          "province_code": "PV20"
+        },
+        {
+          "name": "Alteveer",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Ansen",
+      "occurrences": [
+        {
+          "name": "Ansen",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Ansen",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Broekhuizen",
+      "occurrences": [
+        {
+          "name": "Broekhuizen",
+          "municipality": "Horst aan de Maas",
+          "municipality_code": "GM1507",
+          "province": "Limburg",
+          "province_code": "PV31"
+        },
+        {
+          "name": "Broekhuizen",
+          "municipality": "Meppel",
+          "municipality_code": "GM0119",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Echten",
+      "occurrences": [
+        {
+          "name": "Echten",
+          "municipality": "De Fryske Marren",
+          "municipality_code": "GM1940",
+          "province": "Fryslân",
+          "province_code": "PV21"
+        },
+        {
+          "name": "Echten",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Eursinge",
+      "occurrences": [
+        {
+          "name": "Eursinge",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Eursinge",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Hoogersmilde",
+      "occurrences": [
+        {
+          "name": "Hoogersmilde",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Hoogersmilde",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Huis ter Heide",
+      "occurrences": [
+        {
+          "name": "Huis ter Heide",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Huis ter Heide",
+          "municipality": "Zeist",
+          "municipality_code": "GM0355",
+          "province": "Utrecht",
+          "province_code": "PV26"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Nieuweroord",
+      "occurrences": [
+        {
+          "name": "Nieuweroord",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Nieuweroord",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Oudemolen",
+      "occurrences": [
+        {
+          "name": "Oudemolen",
+          "municipality": "Moerdijk",
+          "municipality_code": "GM1709",
+          "province": "Noord-Brabant",
+          "province_code": "PV30"
+        },
+        {
+          "name": "Oudemolen",
+          "municipality": "Tynaarlo",
+          "municipality_code": "GM1730",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Pesse",
+      "occurrences": [
+        {
+          "name": "Pesse",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Pesse",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Ruinen",
+      "occurrences": [
+        {
+          "name": "Ruinen",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Ruinen",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Spier",
+      "occurrences": [
+        {
+          "name": "Spier",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Spier",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Spijkerboor",
+      "occurrences": [
+        {
+          "name": "Spijkerboor",
+          "municipality": "Aa en Hunze",
+          "municipality_code": "GM1680",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Spijkerboor",
+          "municipality": "Wormerland",
+          "municipality_code": "GM0880",
+          "province": "Noord-Holland",
+          "province_code": "PV27"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Steenbergen",
+      "occurrences": [
+        {
+          "name": "Steenbergen",
+          "municipality": "Steenbergen",
+          "municipality_code": "GM0851",
+          "province": "Noord-Brabant",
+          "province_code": "PV30"
+        },
+        {
+          "name": "Steenbergen",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Stuifzand",
+      "occurrences": [
+        {
+          "name": "Stuifzand",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Stuifzand",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Tiendeveen",
+      "occurrences": [
+        {
+          "name": "Tiendeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Tiendeveen",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Vledderveen",
+      "occurrences": [
+        {
+          "name": "Vledderveen",
+          "municipality": "Stadskanaal",
+          "municipality_code": "GM0037",
+          "province": "Groningen",
+          "province_code": "PV20"
+        },
+        {
+          "name": "Vledderveen",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Zuidwolde",
+      "occurrences": [
+        {
+          "name": "Zuidwolde",
+          "municipality": "Het Hogeland",
+          "municipality_code": "GM1966",
+          "province": "Groningen",
+          "province_code": "PV20"
+        },
+        {
+          "name": "Zuidwolde",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    }
+  ],
+  "name_disambiguation": [
+    "Drenthe province, municipality and settlement are distinct units; an employer office does not locate every group vacancy.",
+    "CBS suffixes and municipality membership are retained. Zuidwolde, Echten, Alteveer and Vledderveen require municipality/address disambiguation.",
+    "A municipality-only employer record is not used to infer a vacancy city."
+  ],
+  "limitations": [
+    "CBS annual BAG snapshot at 1 January 2026, provisional; not live boundary geometry.",
+    "Search variants are normalisations, not alternative statutory names.",
+    "A complete geographic frame does not establish a complete employer census."
+  ]
+}

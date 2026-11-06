@@ -128,14 +128,18 @@ class PartialAvailabilityTests(unittest.TestCase):
         self.assertFalse(part['report']['complete']);self.assertFalse(part['report']['closure_complete'])
         self.assertEqual(part['closure_eligible'],[])
         prior=copy.deepcopy(read(ROOT/'data/catalog.json',{}))
-        retained=copy.deepcopy(prior['jobs'][0]);retained.update(id='old-same-source',source_id=source['id'],employer='Example',url='https://example.org/jobs/old',apply_url='https://example.org/jobs/old',status='open',last_verified_at=stamp,last_seen_at=stamp)
-        prior['jobs'].append(retained)
+        retained=copy.deepcopy(prior['jobs'][0]);retained.update(id='old-same-source',source_id=source['id'],employer='Example',url='https://example.org/jobs/old',apply_url='https://example.org/jobs/old',status='open',last_verified_at=stamp,last_seen_at=stamp,valid_through=None,verification={},link_status='verified')
+        proven=copy.deepcopy(retained);proven.update(id='old-proven-same-source',url='https://example.org/jobs/proven',apply_url='https://example.org/jobs/proven',verification=dict(state='verified',policy_version=2,checked_at=stamp))
+        prior['jobs'].extend([retained,proven])
         before={j['id'] for j in prior['jobs']}
         with tempfile.TemporaryDirectory() as directory:
             result,report=finalize([source],[source],prior,{},[part],stamp,Path(directory))
         self.assertTrue(before.issubset({j['id'] for j in result['jobs']}))
         old=next(j for j in result['jobs'] if j['id']==retained['id'])
         self.assertEqual(old['status'],'unverified');self.assertEqual(old['link_status'],'legacy-verification');self.assertEqual(old.get('missing_count'),retained.get('missing_count'))
+        kept_proven=next(j for j in result['jobs'] if j['id']==proven['id'])
+        self.assertEqual(kept_proven['status'],'open');self.assertEqual(kept_proven['verification'],proven['verification'])
+        self.assertEqual(kept_proven.get('missing_count'),proven.get('missing_count'))
         self.assertEqual(result['update_status'],'partial')
 
     def test_cached_job_still_checks_application_and_blocked_access_is_partial(self):
