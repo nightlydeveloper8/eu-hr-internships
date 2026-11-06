@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-06T14:06:18.070144+00:00",
+  "branch": "groningen-research",
+  "pull_request": "https://github.com/nightlydeveloper8/eu-hr-internships/pull/2",
+  "code_commit": "012d4b5c539d8d6e82fcaa10982f7dc2ed1d9ed1",
+  "validation": {
+    "status": "success",
+    "run_ids": [
+      42230711788,
+      42230726788
+    ],
+    "python_tests": 130,
+    "frontend_tests": 12,
+    "classification_examples": 52
+  },
+  "preview": {
+    "url": "https://2422063e.people-placement-eu.pages.dev/groningen.html",
+    "deployment_id": "2422063e-3145-443d-a19c-7b061fdaa051",
+    "status": 200,
+    "page_errors": [],
+    "anonymous_fresh_browser_context": true,
+    "summary": "2 verified HR internships · 27 employers with documented size · 4 candidates awaiting size checks · 31/31 employer sites with a collection attempt within 48 hours. Updated 06/11/2026, 15:02:51.",
+    "jobs": [
+      "Groningen\n\nHR Stagiair\n\nHANOS\n\nRead the internship and apply ↗\n\nLink checked 06/11/2026, 14:50:15",
+      "Groningen\n\nStage: HRM\n\nFotofabriek\n\nRead the internship and apply ↗\n\nLink checked 06/11/2026, 14:50:15"
+    ],
+    "coverage_generated_at": "2026-11-06T14:02:51.541447+00:00",
+    "coverage_summary": {
+      "employers": 31,
+      "qualified_employers": 27,
+      "distinct_groups": 30,
+      "qualified_groups": 26,
+      "size_unknown": 4,
+      "below_threshold": 0,
+      "municipalities": 10,
+      "municipalities_with_qualified_employers": 10,
+      "configured": 31,
+      "attempted_recently": 31,
+      "collection_states": {
+        "discovery-incomplete": 10,
+        "partial": 15,
+        "collected": 3,
+        "blocked-or-failed": 3
+      },
+      "qualified_collection_states": {
+        "discovery-incomplete": 10,
+        "partial": 12,
+        "collected": 3,
+        "blocked-or-failed": 2
+      },
+      "verified_hr_internships": 2,
+      "verified_hr_internships_qualified_employers": 2
+    }
+  },
+  "full_remote_collection": {
+    "status": "not_executed_for_groningen",
+    "reason": "The existing daily collector runs on main pushes/schedule; updating main was rejected by automatic approval review and awaits explicit authorization."
+  },
+  "production": {
+    "status": "not_published",
+    "url": "https://people-placement-eu.pages.dev/groningen.html"
+  },
+  "approval": {
+    "required_action": "Merge PR #2 or fast-forward main to the reviewed Groningen changes, triggering the existing production collection/deployment cycle.",
+    "rejection": "Automatic approval review rejected updating the default main branch due to potential disruption and lack of explicit authorization for that exact mutation."
+  }
+}
