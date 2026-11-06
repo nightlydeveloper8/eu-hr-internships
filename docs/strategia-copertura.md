@@ -131,3 +131,10 @@ La raccolta remota usa 16 gruppi di 6 letture concorrenti, con precedenza per i 
 La directory non è un registro completo delle imprese provinciali. Per dichiarare un censimento esaustivo serve un confronto con il registro provinciale delle sedi/occupazione o altra base completa, distinguendo sedi da gruppi e applicando lo stesso criterio dimensionale. I profili della directory interamente letti non vengono presentati come tutte le aziende della Frisia.
 
 Dati e metodo aggiornati: [friesland-mappatura.md](friesland-mappatura.md). Pagina pubblica: [stage HR in Fryslân](https://people-placement-eu.pages.dev/friesland.html).
+
+
+## Estensione provinciale: Groningen — 6 novembre 2026
+
+Avviato il lotto Groningen riutilizzando registro e raccolta: frame CBS completo di 10 comuni e 199 località, 31 datori provinciali, 27 qualificati ≥50 addetti e 4 dimensioni ignote. Eseguiti tutti i 30 canali distinti; i due stage con modulo verificato sono HANOS e Fotofabriek, entrambi in città Groningen e con partenza febbraio 2027. I due annunci IKEA restano non verificati perché il canale di candidatura collegato vieta la lettura al raccoglitore. I programmi generali HR rimangono separati dalle vacancy.
+
+Rapporti e interfaccia provinciali condividono ora la stessa implementazione; anche Groningen viene rigenerato e pubblicato dal workflow mattutino esistente. Nessuna nuova chiamata ricorrente a modelli. Il lotto non è un censimento esaustivo. Metodo, stati comunali, fonti e prova remota: [groningen-mappatura.md](groningen-mappatura.md).

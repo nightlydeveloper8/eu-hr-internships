@@ -6,6 +6,9 @@ on:
       - 'collector/**'
       - 'data/companies.json'
       - 'data/sources.json'
+      - 'data/*-geography.json'
+      - 'data/*-opportunities.json'
+      - 'scripts/company_coverage.py'
       - 'requirements-collector.txt'
       - '.github/workflows/collect.yml'
   schedule:
@@ -117,7 +120,7 @@ jobs:
             data/coverage.json
             data/company-coverage.json
             data/employer-collection.json
-            data/friesland-coverage.json
+            data/*-coverage.json
             docs/evaluation-report.json
             docs/country-research-progress.json
             docs/company-integration-queue.json
@@ -127,7 +130,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/catalog.json data/coverage.json data/company-coverage.json data/employer-collection.json data/companies.json data/sources.json docs/evaluation-report.json docs/country-research-progress.json docs/company-integration-queue.json docs/company-discovery-queue.json
-          if test -f data/friesland-coverage.json; then git add data/friesland-coverage.json; fi
+          git add data/*-coverage.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh all-employer HR internship collection'
             git pull --rebase origin main

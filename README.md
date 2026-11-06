@@ -11,6 +11,10 @@ Danone and Unilever now contribute directly through their public sitemaps and st
 
 See [the Italian coverage strategy](docs/strategia-copertura.md). Run `python3 scripts/company_coverage.py` to regenerate reports and the regional discovery queue. `python3 scripts/company_coverage.py --inspect-country NL --limit 10` can propose ATS channels from declared official career pages, without auto-enabling them. Geography is versioned and imported separately using `python3 scripts/import_geography.py`; it is not re-downloaded every day. There are no new runtime dependencies or recurring AI calls.
 
+## Groningen provincial research (6 November 2026)
+
+The initial Groningen lot uses the existing shared employer registry and daily collectors: all 10 CBS municipalities and 199 settlements, 31 researched employers (27 with documented 50+ size), and two locally verified HR internships with usable application forms. Two IKEA candidates remain unverified because the linked application channel disallows crawler access. Province reports share one implementation and keep generic HR programmes separate from vacancies. This is an expanding inventory, not an exhaustive census. See [the Groningen research report](docs/groningen-mappatura.md) and `groningen.html`.
+
 ## What is implemented
 
 - Python collectors for Greenhouse, Lever (global and EU), Ashby and SmartRecruiters; pagination and fixture tests for all four.

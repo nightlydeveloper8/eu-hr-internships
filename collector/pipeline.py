@@ -164,17 +164,26 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             if not role or not countries:continue
             url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
             verified=None; link_status='not-checked'
+            application=None;closed=False
             if verify:
                 try:
+                    from .applications import verify_application,ApplicationClosed
+                    application=verify_application(record,source,client)
+                    if application:apply=allowed_url(application['url'],source)
                     # HEAD avoids downloading/reproducing descriptions. No fallback on access restrictions.
                     for target in set((url,apply)):
                         _,_,final=client.request(target,method='HEAD')
                         allowed_url(final,source)
                     verified=stamp; link_status='verified'
                 except Exception as exc:
+                    if isinstance(exc,ApplicationClosed):closed=True
+                    if source.get('application_check') and not closed:
+                        page_errors.append(dict(url=apply,error='Application availability: '+str(exc)[:150]))
                     LOG.warning('Link unverified %s: %s',url,str(exc)[:150]); link_status='unverified'
             langs=workplace_languages(record['text'])
             staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,status='open' if verified else 'unverified'))
+            if application:staged[-1]['application_verification']=dict(application,checked_at=stamp)
+            if closed:staged[-1].update(status='closed',closure_reason='Official recruiting page explicitly disables applications')
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
         if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
