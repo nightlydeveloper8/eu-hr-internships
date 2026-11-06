@@ -1,0 +1,94 @@
+{
+  "commit": "520ff3d1c15950194ab91a9ac06291c3021c6c23",
+  "workflow_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42286683507",
+  "ci": "success",
+  "cloudflare": "success",
+  "results": [
+    {
+      "province": "drenthe",
+      "summary": "2 verified HR internships · 14 employers with documented size · 17 candidates awaiting size checks · 31/31 employer sites with a collection attempt within 48 hours. Updated 06/11/2026, 21:25:56.",
+      "jobs": 2
+    },
+    {
+      "province": "friesland",
+      "summary": "1 verified HR internships · 146 employers with documented size · 741 candidates awaiting size checks · 893/893 employer sites with a collection attempt within 48 hours. Updated 06/11/2026, 21:25:56.",
+      "jobs": 1
+    },
+    {
+      "province": "groningen",
+      "summary": "2 verified HR internships · 27 employers with documented size · 4 candidates awaiting size checks · 31/31 employer sites with a collection attempt within 48 hours. Updated 06/11/2026, 21:25:56.",
+      "jobs": 2
+    }
+  ],
+  "datasets": [
+    {
+      "file": "catalog.json",
+      "sha256": "d54f8e3767c32f2fca6a5ec37a5b5981cd96f15269d2d6445db1ca133a466d32",
+      "matches_local_json": true
+    },
+    {
+      "file": "drenthe-coverage.json",
+      "sha256": "2238f996eb4f1f033090523ceb93933c7271e9a134b4ec18e5c012818b30167d",
+      "matches_local_json": true
+    },
+    {
+      "file": "drenthe-geography.json",
+      "sha256": "b501a8eabef434561ac6da70a3033033021bcb517c89f0b7281318214919903c",
+      "matches_local_json": true
+    },
+    {
+      "file": "groningen-coverage.json",
+      "sha256": "58301b1de486a60b17594157786f92b88ac83a201a109f5e2af7e31b47ced9eb",
+      "matches_local_json": true
+    },
+    {
+      "file": "friesland-coverage.json",
+      "sha256": "8140df1cfe6232871d91cd1354d08c609205afba1eb888f72983c9efbdfd6a13",
+      "matches_local_json": true
+    }
+  ],
+  "page_errors": [],
+  "production_collection": "completed-successfully",
+  "production_url": "https://people-placement-eu.pages.dev/drenthe.html",
+  "merge_commit": "81c11359643ce301fc77b25f463a31db789f2ec9",
+  "bot_commit": "520ff3d1c15950194ab91a9ac06291c3021c6c23",
+  "previous_catalog": 228,
+  "current_catalog": 265,
+  "previous_records_missing": [],
+  "new_records": 37,
+  "drenthe_sources": 31,
+  "drenthe_sources_with_results": 31,
+  "non_success_complete_reports": 0,
+  "verified_at": "2026-11-06T20:28:03.854825+00:00",
+  "artifact": {
+    "id": 13538761526,
+    "expires_at": "2026-11-20T20:25:56Z",
+    "digest": "sha256:2db5b2b704308cc3808970cf28172dee3e8a89e91927dd65fa17ac9c8bdd87a7"
+  },
+  "drenthe_summary": {
+    "employers": 31,
+    "qualified_employers": 14,
+    "distinct_groups": 31,
+    "qualified_groups": 14,
+    "size_unknown": 17,
+    "below_threshold": 0,
+    "municipalities": 12,
+    "municipalities_with_qualified_employers": 8,
+    "configured": 31,
+    "attempted_recently": 31,
+    "collection_states": {
+      "discovery-incomplete": 4,
+      "partial": 20,
+      "blocked-or-failed": 5,
+      "collected": 2
+    },
+    "qualified_collection_states": {
+      "discovery-incomplete": 3,
+      "partial": 9,
+      "blocked-or-failed": 1,
+      "collected": 1
+    },
+    "verified_hr_internships": 2,
+    "verified_hr_internships_qualified_employers": 1
+  }
+}

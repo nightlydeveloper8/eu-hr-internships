@@ -116,3 +116,16 @@ python3 scripts/check_province_ui.py  # richiede Playwright già usato dal colle
 ```
 
 Restano da completare: azione di candidatura AFAS NNCZ; canali dinamici Center Parcs; fonti bloccate, compreso Bats; discovery residua e letture parziali; prove dimensionali dei 17 candidati; ampliamento dei datori in tutti i comuni, in particolare quelli minori; verifica remota dopo merge. La fase si ferma a Drenthe.
+
+
+## Verifica finale in produzione — 6 novembre 2026
+
+La [PR #4](https://github.com/nightlydeveloper8/eu-hr-internships/pull/4) è stata integrata dopo autorizzazione esplicita nel commit `81c11359643ce301fc77b25f463a31db789f2ec9`. Le indicazioni precedenti sulla produzione ancora da verificare sono storiche: la catena remota è ora stata osservata. Il [workflow 42286683507](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42286683507) è riuscito: test, tutti i 16 gruppi e pubblicazione, 18 job conclusi con successo.
+
+Il bot ha pubblicato il commit `520ff3d1c15950194ab91a9ac06291c3021c6c23`, poi distribuito da Cloudflare nel deployment `fa347fc0-0a0c-4dcb-bc3b-faadf07c6c5f`. Il catalogo passa da 228 a 265 record: 37 nuovi, nessuno dei 228 precedenti perso. Tutti i 1.813 datori hanno ricevuto un tentativo remoto; questo non significa lettura completa di ogni sito. Non risultano rapporti non riusciti con `complete: true`.
+
+Drenthe mantiene 31 datori, 14 qualificati e 17 dimensioni ignote, tutti con tentativo recente. Esiti remoti: **2 inventari osservati letti, 20 letture parziali, 4 scoperte incomplete, 5 blocchi/fallimenti**. I due stage verificati restano SKK e Ziengs/Scapino. NNCZ e Scania restano non verificati; i blocchi non vengono aggirati.
+
+La [pagina Drenthe in produzione](https://people-placement-eu.pages.dev/drenthe.html) è stata verificata in un browser anonimo su desktop e mobile: due stage, dodici righe comunali, ricerca dei datori e filtro provinciale funzionanti, nessun errore di pagina o overflow mobile. Anche Frisia e Groningen sono disponibili, rispettivamente con uno e due stage verificati secondo la policy corrente. Cinque dataset pubblici corrispondono ai JSON del commit del bot. Timestamp del rapporto Drenthe: `2026-11-06T20:25:56.285208+00:00`, 21:25:56 a Zurigo.
+
+La raccolta quotidiana esistente resta programmata alle 06:17 UTC (07:17 invernale / 08:17 estiva). Il prossimo avvio schedulato è futuro; non viene presentato come già osservato. Restano le lacune dei canali parziali, le candidature non confermate e la qualificazione dimensionale. Prove, hash e controlli: [drenthe-remote-verification.json](drenthe-remote-verification.json).
