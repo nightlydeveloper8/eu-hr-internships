@@ -95,4 +95,58 @@ class ProvincialTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'form unavailable'):
                 verify_application(dict(url='https://example.org/job/1',title='HR stage'),source,client)
 
+
+
+class PartialAvailabilityTests(unittest.TestCase):
+    def fixture(self):
+        from collector.universal import job_from_json
+        source=dict(id='review-example',employer='Example',adapter='employer-index',allowed_hosts=['example.org'])
+        record=job_from_json(dict(title='HR Intern',description='HR internship for a student. Fluent in English.',jobLocation={'address':{'addressLocality':'Groningen','addressCountry':'NL'}}),'https://example.org/jobs/1',source)
+        return source,record
+
+    def test_failed_detail_keeps_previous_postings_and_never_marks_source_complete(self):
+        from collector.pipeline import process_source,finalize,now
+        from collector.universal import Inventory
+        import copy
+        source,record=self.fixture();failed=dict(record,url='https://example.org/jobs/2',external_id='2',needs_page=True)
+        inventory=Inventory([record,failed],dict(status='ok',complete=True,closure_complete=False))
+        def enrich(row,*args):
+            if row['url']==failed['url']:raise ValueError('Detail page inaccessible')
+            return row
+        class Client:
+            def request(self,url,**kwargs):return b'',200,url
+        stamp=now()
+        with patch('collector.pipeline.collect',return_value=inventory),patch('collector.pipeline.enrich',side_effect=enrich):
+            part=process_source(source,Client(),stamp)
+        self.assertEqual(part['report']['status'],'partial')
+        self.assertTrue(part['report']['inventory_complete'])
+        self.assertFalse(part['report']['complete']);self.assertFalse(part['report']['closure_complete'])
+        self.assertEqual(part['closure_eligible'],[])
+        prior=copy.deepcopy(read(ROOT/'data/catalog.json',{}))
+        retained=copy.deepcopy(prior['jobs'][0]);retained.update(id='old-same-source',source_id=source['id'],employer='Example',url='https://example.org/jobs/old',apply_url='https://example.org/jobs/old',status='open',last_verified_at=stamp,last_seen_at=stamp)
+        prior['jobs'].append(retained)
+        before={j['id'] for j in prior['jobs']}
+        with tempfile.TemporaryDirectory() as directory:
+            result,report=finalize([source],[source],prior,{},[part],stamp,Path(directory))
+        self.assertTrue(before.issubset({j['id'] for j in result['jobs']}))
+        old=next(j for j in result['jobs'] if j['id']==retained['id'])
+        self.assertEqual(old['status'],'open');self.assertEqual(old.get('missing_count'),retained.get('missing_count'))
+        self.assertEqual(result['update_status'],'partial')
+
+    def test_cached_job_still_checks_application_and_blocked_access_is_partial(self):
+        from collector.pipeline import process_source,now
+        from collector.runtime import PageCache
+        from collector.universal import Inventory
+        source,record=self.fixture();source['application_check']='avature-linked'
+        inventory=Inventory([dict(record,needs_page=True)],dict(status='ok',complete=True,closure_complete=False))
+        with tempfile.TemporaryDirectory() as directory:
+            cache=PageCache('review-example',directory);cache.put(record['url'],record)
+            with patch('collector.pipeline.collect',return_value=inventory),patch('collector.pipeline.enrich') as enrich,patch('collector.applications.verify_application',side_effect=ValueError('robots.txt disallows application')) as check:
+                part=process_source(source,object(),now(),cache=cache)
+        enrich.assert_not_called();check.assert_called_once()
+        self.assertEqual(part['jobs'][0]['status'],'unverified')
+        self.assertEqual(part['report']['status'],'partial')
+        self.assertFalse(part['report']['complete']);self.assertEqual(part['closure_eligible'],[])
+
+
 if __name__=='__main__':unittest.main()

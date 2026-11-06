@@ -76098,14 +76098,15 @@
         }
       ],
       "page_errors_truncated": false,
-      "complete": true,
+      "complete": false,
       "closure_complete": false,
       "pages_read": 1,
       "job_urls_discovered": 4,
       "declared_job_count": 4,
       "discovery_scope": "Official Groningen city list, all observed postings; link count must equal the live published total. Province sites outside the city require separate discovery.",
       "snapshot_kind": "public-job-page-inventory",
-      "page_discovery_mode": "read-all-inventoried-job-pages"
+      "page_discovery_mode": "read-all-inventoried-job-pages",
+      "inventory_complete": true
     },
     {
       "id": "auto-afeer",
@@ -76293,7 +76294,7 @@
         }
       ],
       "page_errors_truncated": false,
-      "complete": true,
+      "complete": false,
       "closure_complete": false,
       "pages_read": 3,
       "job_urls_discovered": 30,
@@ -76305,7 +76306,8 @@
       "duration_seconds": 31.58,
       "requests": 62,
       "bytes_read": 2333004,
-      "shard": 0
+      "shard": 0,
+      "inventory_complete": true
     },
     {
       "id": "auto-hanze",

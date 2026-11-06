@@ -191,6 +191,10 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         report.update(inventory_stats)
         if bulk_disappearance:report['status']='partial'
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
+        # Inventory discovery can succeed while a detail/application read fails.
+        # Keep the evidence for that narrower scope without calling the source complete.
+        if 'complete' in inventory_stats:report['inventory_complete']=inventory_stats['complete']
+        if report['status']!='ok':report.update(complete=False,closure_complete=False)
         if cache:report['cache_hits']=max(cache.hits,inventory_stats.get('cache_hits',0))
         if source['adapter'] in ('employer-sitemap','employer-index'):
             report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
