@@ -53,6 +53,13 @@ def posting_identity(job):
 def posting_url_identity(job):
     p=urlsplit(job['url']);host=p.hostname or '';identifier=None
     # Public platform URLs expose stable IDs shared by their language mirrors.
+    if host=='jobs.smartrecruiters.com':
+        match=re.match(r'^/([^/]+)/(\d+)(?:-|/|$)',p.path)
+        if match:return 'posting:'+job['source_id']+':smartrecruiters:'+match.group(1).lower()+':'+match.group(2)
+    elif host=='careers-nl.jdepeets.com':
+        identifier=(parse_qs(p.query).get('id') or [''])[0]
+        if re.fullmatch(r'\d+',identifier):return 'posting:'+job['source_id']+':smartrecruiters:jacobsdouweegberts:'+identifier
+        identifier=None
     if host=='careers.loreal.com':
         match=re.search(r'/\d+/(\d+)$',p.path);identifier=match.group(1) if match else None
     elif host.endswith('.intervieweb.it'):
@@ -66,7 +73,15 @@ def posting_url_identity(job):
 
 def apply_listing_reviews(jobs,reviews):
     excluded={canonical_url(r['url']) for r in reviews if r.get('decision')=='excluded'}
-    return [j for j in jobs if canonical_url(j['url']) not in excluded]
+    pending={canonical_url(r['url']):r for r in reviews if r.get('decision')=='needs-verification'}
+    result=[]
+    for job in jobs:
+        url=canonical_url(job['url'])
+        if url in excluded:continue
+        if url in pending:
+            job=dict(job,status='unverified',link_status='review-required',review_note=pending[url]['reason'])
+        result.append(job)
+    return result
 
 def deduplicate(jobs):
     by_url={}
@@ -132,7 +147,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             # pages before filtering, including opaque IDs and untranslated URLs.
             if record.get('needs_page'):
                 try:
-                    cached=cache.get(record['url'],max_age_hours=48) if cache else None
+                    cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache else None
                     record=cached or enrich(record,source,client)
                     if cache and not cached:cache.put(record['url'],record)
                 except Exception as exc:

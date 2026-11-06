@@ -47,7 +47,8 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     known={}
     for job in read(ROOT/'data/catalog.json',{}).get('jobs',[]):
         if job.get('status')!='closed':known.setdefault(job['source_id'],[]).append(job['url'])
-    selected.sort(key=lambda s:(s['id'] not in known,s['adapter']=='universal-employer',-counts.get(s['id'],0),s['id']))
+    regional={sid:0 if c['friesland_research'].get('size',{}).get('qualification')=='verified_50_plus' else 1 for c in companies if c.get('friesland_research') for sid in c.get('source_ids',[])}
+    selected.sort(key=lambda s:(regional.get(s['id'],2),s['id'] not in known,s['adapter']=='universal-employer',-counts.get(s['id'],0),s['id']))
     stamp=now();parts=[]
     company_for={sid:c for c in companies for sid in c.get('source_ids',[])}
     def work(source):
@@ -78,8 +79,8 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
         write(output or ROOT/'.staging/results'/('shard-'+str(shard)+'.json'),payload)
     return payload
 
-def employer_report(companies,sources,parts,stamp):
-    unique_matches=Counter(j['source_id'] for j in deduplicate([j for p in parts for j in p.get('jobs',[])]) if j.get('status')!='closed')
+def employer_report(companies,sources,parts,stamp,catalog_jobs=None):
+    unique_matches=Counter(j['source_id'] for j in (catalog_jobs if catalog_jobs is not None else deduplicate([j for p in parts for j in p.get('jobs',[])])) if j.get('status')!='closed')
     reports={p['report']['id']:p['report'] for p in parts};enabled={s['id'] for s in sources if s.get('enabled')};rows=[]
     for c in companies:
         ids=sorted(enabled.intersection(c['source_ids']));runs=[reports[i] for i in ids if i in reports]
@@ -107,7 +108,7 @@ def merge(inputs,shards=8,output=ROOT/'data'):
     if seen!=expected:raise ValueError('Every enabled employer must be attempted before publishing')
     stamp=max(p['finished_at'] for p in payloads)
     result,coverage=finalize(sources,enabled,read(output/'catalog.json',{'jobs':[]}),read(output/'coverage.json',{}),parts,stamp,output)
-    employers=employer_report(companies,sources,parts,stamp)
+    employers=employer_report(companies,sources,parts,stamp,result['jobs'])
     write(output/'employer-collection.json',employers)
     LOG.info('All-employer collection: %s',employers['summary']);return result,coverage,employers
 

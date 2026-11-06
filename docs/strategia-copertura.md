@@ -114,3 +114,20 @@ Il connettore Amazon legge la rappresentazione JSON della ricerca ufficiale e co
 Le risposte malformate di robots.txt vengono analizzate per le direttive effettivamente presenti, secondo [RFC 9309, sezioni 2.3.1.1 e 2.3.1.5](https://www.rfc-editor.org/rfc/rfc9309.html#section-2.3.1.5). I divieti espliciti, le restrizioni di accesso e le verifiche anti-bot continuano a fermare la lettura.
 
 La fotografia aggiornata, con tipi distinti e risultati per paese, è in `docs/jobs-first-results-2026-11-05.json`. Non costituisce il raggiungimento dell’obiettivo nazionale o la conclusione della copertura europea.
+
+
+## Priorità territoriale: Fryslân — 6 novembre 2026
+
+La richiesta attuale dà precedenza agli stage raggiungibili dagli studenti residenti in Frisia. L'unità di ricerca è il comune: la composizione CBS 2026 comprende 18 comuni e 419 woonplaatsen. Varianti olandesi/frisone e località omonime sono gestite separatamente; non si attribuisce una sede a un comune sulla base di un nome ambiguo.
+
+La prima passata provinciale ha letto tutti i 901 profili della directory WRK e 1650 pagine sui siti ufficiali di 780 datori. Il registro integra 893 datori con presenza provinciale documentata, dei quali 146 qualificati con evidenza di almeno 50 addetti presso il datore/gruppo (145 gruppi distinti). Organico del gruppo, organico locale e personale stagionale retribuito restano distinti. I candidati senza prova dimensionale non sono contati come aziende medio-grandi.
+
+Sono verificati 7 stage HR locali distinti: Philips e BD a Drachten, Sijperda a Sneek, Royal A-ware a Heerenveen, Kenonz a Gorredijk, Haitsma/ BallastNedam a Kootstertille e Tempo-Team a Bolsward. Quattro programmi HR aperti alla richiesta di uno stage restano separati dalle vacancy. Una pagina di Kapenga con HTTP 200 è stata esclusa dopo che il pulsante ufficiale ha comunicato che la posizione è chiusa.
+
+Tutti gli 893 datori regionali integrati hanno ricevuto un tentativo reale. Non tutti i canali sono stati letti completamente: fra i 146 qualificati, 13 inventari osservati sono stati letti, 71 sono parziali, 48 hanno ancora lacune nella scoperta degli annunci e 14 sono bloccati/falliti. Questi stati non equivalgono a zero stage. Le fonti bloccate restano una coda di integrazione e cercano nuovamente i canali pubblici al ciclo successivo; non si aggirano restrizioni di accesso.
+
+La raccolta remota usa 16 gruppi di 6 letture concorrenti, con precedenza per i datori frisoni qualificati e per gli annunci già trovati. Il controllo è programmato ogni giorno alle 06:17 UTC:07:17 in inverno e 08:17 in estate nei Paesi Bassi e in Svizzera. Gli annunci già nel catalogo vengono riletti entro un massimo di 12 ore di riuso della cache; le altre schede possono usare 48 ore. Feed pubblici completi, elenchi HTML e campi visibili revisionati alimentano la stessa raccolta. Il rapporto comunale viene rigenerato e pubblicato dal medesimo ciclo.
+
+La directory non è un registro completo delle imprese provinciali. Per dichiarare un censimento esaustivo serve un confronto con il registro provinciale delle sedi/occupazione o altra base completa, distinguendo sedi da gruppi e applicando lo stesso criterio dimensionale. I profili della directory interamente letti non vengono presentati come tutte le aziende della Frisia.
+
+Dati e metodo aggiornati: [friesland-mappatura.md](friesland-mappatura.md). Pagina pubblica: [stage HR in Fryslân](https://people-placement-eu.pages.dev/friesland.html).

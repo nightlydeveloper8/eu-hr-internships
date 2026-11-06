@@ -43,7 +43,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     env:
       COLLECTOR_CACHE_DIR: .cache/collector
       PLAYWRIGHT_BROWSERS_PATH: .cache/ms-playwright
@@ -66,7 +66,7 @@ jobs:
           key: employer-pages-v1-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: employer-pages-v1-${{ matrix.shard }}-
       - name: Collect every assigned employer and verify matching links
-        run: python -m collector.daily collect --shard ${{ matrix.shard }} --shards 8 --workers 6
+        run: python -m collector.daily collect --shard ${{ matrix.shard }} --shards 16 --workers 6
       - name: Save employer page checkpoints for the next morning
         if: always()
         uses: actions/cache/save@v4
@@ -102,7 +102,7 @@ jobs:
           merge-multiple: true
       - name: Require a result for every employer, merge and validate
         run: |
-          python -m collector.daily merge --shards 8
+          python -m collector.daily merge --shards 16
           python scripts/company_coverage.py
           python -m collector.pipeline --validate
           python scripts/evaluate.py
@@ -117,6 +117,7 @@ jobs:
             data/coverage.json
             data/company-coverage.json
             data/employer-collection.json
+            data/friesland-coverage.json
             docs/evaluation-report.json
             docs/country-research-progress.json
             docs/company-integration-queue.json
@@ -126,6 +127,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/catalog.json data/coverage.json data/company-coverage.json data/employer-collection.json data/companies.json data/sources.json docs/evaluation-report.json docs/country-research-progress.json docs/company-integration-queue.json docs/company-discovery-queue.json
+          if test -f data/friesland-coverage.json; then git add data/friesland-coverage.json; fi
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh all-employer HR internship collection'
             git pull --rebase origin main

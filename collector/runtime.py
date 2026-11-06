@@ -25,7 +25,7 @@ class BudgetClient(Client):
         time.sleep(seconds)
 
     def request(self,url,method='GET',robots=True,timeout=12,attempts=1):
-        canonical_url(url);self.check();lock=host_lock(urlsplit(url).netloc)
+        url=canonical_url(url);self.check();lock=host_lock(urlsplit(url).netloc)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')
         try:
             self.check();self.requests+=1

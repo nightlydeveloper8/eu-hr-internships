@@ -35,7 +35,10 @@ class Client:
                 pause = min(60,int(retry)) if retry.isdigit() else 2**(attempt+1)
                 LOG.warning('Retry HTTP %s: %s',exc.code,host)
                 self.pause(pause)
-            except (URLError,TimeoutError):
+            except (URLError,TimeoutError) as exc:
+                if 'TLSV1_ALERT_PROTOCOL_VERSION' in str(exc):
+                    from .tls_transport import request as modern_tls_request
+                    return modern_tls_request(url,method,{'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},timeout)
                 if attempt==attempts-1: raise
                 self.pause(2**(attempt+1))
 
@@ -82,7 +85,14 @@ def collect(source,client):
         return collect_universal(source,client)
     if kind in ('personio-xml','recruitee'):
         from .public_feeds import personio_records,recruitee_records
-        return (personio_records if kind=='personio-xml' else recruitee_records)(source,client)
+        reader=personio_records if kind=='personio-xml' else recruitee_records
+        if not source.get('feed_urls'):return reader(source,client)
+        records=[]
+        for url in source['feed_urls']:
+            rows=reader(dict(source,feed_url=url),client)
+            for row in rows:row['external_id']=urlsplit(url).hostname+':'+row['external_id']
+            records.extend(rows)
+        return records
     if kind=='employer-index':
         from .employer_pages import index_records
         return index_records(source,client)

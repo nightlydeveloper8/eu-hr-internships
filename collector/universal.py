@@ -21,7 +21,8 @@ EMPTY=re.compile(r'no (?:open |current |matching |available )?(?:jobs|positions|
 CHALLENGE=re.compile(r'captcha|verify (?:you are|that you are) human|access denied|just a moment|security verification',re.I)
 PROVIDERS=('greenhouse.io','lever.co','recruitee.com','personio.de','personio.com','teamtailor.com','softgarden.de','ashbyhq.com','smartrecruiters.com','myworkdayjobs.com','myworkdaysite.com','successfactors.com','successfactors.eu','taleo.net','icims.com','intervieweb.it','inrecruiting.com','altamiraweb.com','workable.com','bamboohr.com','jobvite.com','applytojob.com','flatchr.io','welcomekit.co','oraclecloud.com','avature.net')
 LEGAL={'gmbh','co','kg','ag','spa','srl','bv','nv','sa','sas','ltd','inc','group','groep','the','and','netherlands','deutschland','italia','france'}
-def provider_host(host):return any(host==p or host.endswith('.'+p) for p in PROVIDERS)
+VENDOR_HOSTS=set(PROVIDERS)|{'www.'+p for p in PROVIDERS}|{'app.recruitee.com','blog.recruitee.com','landing.recruitee.com','support.recruitee.com','tagging-server.recruitee.com'}
+def provider_host(host):return host not in VENDOR_HOSTS and any(host.endswith('.'+p) for p in PROVIDERS)
 def safe_url(url):
     try:
         value=canonical_url(url);host=urlsplit(value).hostname
@@ -106,7 +107,7 @@ def job_from_visible(doc,source,is_job=False):
     # Geography comes only from labelled or semantically marked job locations.
     marked=plain(' '.join(doc.locations))
     if len(marked)>160:marked=''
-    labelled=re.search(r'(?:location|standort|locatie|luogo di lavoro|sede di lavoro|localisation|ubicaci[oó]n|miejsce pracy|plaats|勤務地)\s*[:：\-]?\s*([^\n.;]{2,150})',' '.join(doc.main),re.I)
+    labelled=re.search(r'\b(?:location|standort|locatie|luogo di lavoro|sede di lavoro|localisation|ubicaci[oó]n|miejsce pracy|plaats|勤務地)\b\s*[:：\-]?\s*([^\n.;]{2,150})',' '.join(doc.main),re.I)
     location=marked or (labelled.group(1) if labelled else '')
     location=re.split(r'\blocation\s*:\s*',location,flags=re.I)[-1].strip()
     if len(location)>160:location=''
@@ -119,11 +120,12 @@ class Inventory(list):
 
 class Crawler:
     def __init__(self,source,client):
-        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=2);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set()
+        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=3);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set()
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
         host=urlsplit(value).hostname
+        if host in VENDOR_HOSTS:return False
         if host in self.allowed:return True
         if observed and provider_host(host):self.allowed.add(host);return True
         return False
@@ -143,6 +145,7 @@ class Crawler:
         elif host=='jobs.ashbyhq.com' and path:adapter='ashby';board=path[0]
         elif host in ('careers.smartrecruiters.com','jobs.smartrecruiters.com') and path:adapter='smartrecruiters';board=path[0]
         elif host.endswith('.recruitee.com') and host not in ('www.recruitee.com','careers-analytics.recruitee.com'):adapter='recruitee';feed='https://'+host+'/api/offers/'
+        elif host in self.custom_recruitee:adapter='recruitee';feed='https://'+host+'/api/offers/'
         if not adapter:return False
         key=(adapter,board or feed)
         if key in self.completed_feeds:return True
@@ -158,7 +161,7 @@ class Crawler:
         except CollectionBudgetExceeded:raise
         except Exception as exc:self.errors.append(dict(url=feed or url,error='Feed: '+str(exc)[:160]));return False
     def visit(self,url,is_job=False,render=False):
-        self.client.check();cached=self.cache.get(url,max_age_hours=48) if is_job else None
+        self.client.check();cached=self.cache.get(url,max_age_hours=12 if url in self.known_urls else 48) if is_job else None
         if cached:
             self.used_methods.add('cached-job-page');return cached
         body,_,final=self.client.request(url)
@@ -194,6 +197,12 @@ class Crawler:
             return dict(records=[],links=links[:2000],empty=False)
         doc=Document(body,final)
         if CHALLENGE.search(doc.text[:3000]):raise ValueError('Access challenge; no bypass attempted')
+        # Employer-hosted Recruitee sites retain the platform credit/assets and
+        # the documented /o/ posting paths. No board identifier is invented.
+        platform_credit=any(re.search(r'https://[^/]*(?:recruitee\.com|recruiteecdn\.com)(?:/|$)',urljoin(final,href),re.I) for href,_,_ in doc.links) or bool(re.search(br'(?:src|href)=["\'][^"\']*recruitee(?:cdn)?\.com/',body,re.I))
+        if platform_credit and any(urlsplit(urljoin(final,href)).hostname==urlsplit(final).hostname and urlsplit(urljoin(final,href)).path.startswith('/o/') for href,_,_ in doc.links):
+            self.custom_recruitee.add(urlsplit(final).hostname)
+            if self.feed(final):return dict(records=[],links=[],empty=self.empty)
         for embedded in re.findall(r'https://[^\s<>\"\']+',body.decode('utf-8','replace').replace('\\/','/')):
             target=safe_url(embedded.rstrip(');,'))
             if target and provider_host(urlsplit(target).hostname) and self.allow(target,observed=True):doc.frames.append(target)
@@ -218,6 +227,10 @@ class Crawler:
             posts=d.jobposts()
             for post in posts:
                 r=job_from_json(post,d.url,self.source)
+                if not r and self.source.get('visible_description_for_structured_jobs') and plain(post.get('title')) in d.h1 and len(d.text)>200:
+                    # Reviewed AFAS template: title/address are structured, while
+                    # its description is published only in the same visible page.
+                    r=job_from_json(dict(post,description=d.text),d.url,self.source)
                 if r:result['records'].append(r)
             visible=job_from_visible(d,self.source,is_job) if not posts else None
             if visible:result['records'].append(visible)

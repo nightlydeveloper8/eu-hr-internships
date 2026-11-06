@@ -1,0 +1,3601 @@
+{
+  "schema_version": 1,
+  "province": {
+    "official_name": "Fryslân",
+    "common_dutch_name": "Friesland",
+    "italian_name": "Frisia",
+    "cbs_code": "PV21",
+    "nuts2_code": "NL12",
+    "nuts_note": "NUTS2 identifies the province only; municipal coverage below uses CBS GM codes, not NUTS3 statistical regions."
+  },
+  "checked_on": "2026-11-06",
+  "administrative_reference_date": "2026-01-01",
+  "municipality_count": 18,
+  "settlement_count": 419,
+  "composition_status": "complete-official-2026-municipal-membership",
+  "sources": {
+    "cbs_municipalities_2026": "https://www.cbs.nl/nl-nl/onze-diensten/methoden/classificaties/overig/gemeentelijke-indelingen-per-jaar/indeling-per-jaar/gemeentelijke-indeling-op-1-januari-2026",
+    "cbs_province_membership_pdf": "https://www.cbs.nl/-/media/_pdf/2026/09/2026ov027_kaart_12-provincies.pdf",
+    "province_local_government": "https://www.fryslan.frl/bestuurlijke-organisatie-en-kwaliteit-lokaal-bestuur",
+    "cbs_areas_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+    "cbs_settlements_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned",
+    "cbs_boundary_changes_2026": "https://www.cbs.nl/nl-nl/maatwerk/2026/25/gebiedswijzigingen-gemeenten-per-1-januari-2026-"
+  },
+  "api_sources": {
+    "municipalities": "https://opendata.cbs.nl/ODataApi/OData/86247NED/TypedDataSet",
+    "settlement_links": "https://opendata.cbs.nl/ODataApi/OData/86312NED/TypedDataSet",
+    "settlement_names": "https://opendata.cbs.nl/ODataApi/OData/86312NED/Woonplaatsen"
+  },
+  "municipalities": [
+    {
+      "cbs_code": "GM0059",
+      "name": "Achtkarspelen",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 28254,
+      "settlement_count": 12,
+      "settlements": [
+        {
+          "code": "WP3173",
+          "name": "Augustinusga",
+          "search_name_variants": [
+            "Augustinusga"
+          ]
+        },
+        {
+          "code": "WP3174",
+          "name": "Boelenslaan",
+          "search_name_variants": [
+            "Boelenslaan"
+          ]
+        },
+        {
+          "code": "WP3175",
+          "name": "Buitenpost",
+          "search_name_variants": [
+            "Buitenpost"
+          ]
+        },
+        {
+          "code": "WP3176",
+          "name": "Drogeham",
+          "search_name_variants": [
+            "Drogeham"
+          ]
+        },
+        {
+          "code": "WP3177",
+          "name": "Gerkesklooster",
+          "search_name_variants": [
+            "Gerkesklooster"
+          ]
+        },
+        {
+          "code": "WP3178",
+          "name": "Harkema",
+          "search_name_variants": [
+            "Harkema"
+          ]
+        },
+        {
+          "code": "WP3179",
+          "name": "Kootstertille",
+          "search_name_variants": [
+            "Kootstertille"
+          ]
+        },
+        {
+          "code": "WP3180",
+          "name": "Stroobos",
+          "search_name_variants": [
+            "Stroobos"
+          ]
+        },
+        {
+          "code": "WP3181",
+          "name": "Surhuisterveen",
+          "search_name_variants": [
+            "Surhuisterveen"
+          ]
+        },
+        {
+          "code": "WP3182",
+          "name": "Surhuizum",
+          "search_name_variants": [
+            "Surhuizum"
+          ]
+        },
+        {
+          "code": "WP3183",
+          "name": "Twijzel",
+          "search_name_variants": [
+            "Twijzel"
+          ]
+        },
+        {
+          "code": "WP3184",
+          "name": "Twijzelerheide",
+          "search_name_variants": [
+            "Twijzelerheide"
+          ]
+        }
+      ],
+      "official_name": "Achtkarspelen",
+      "search_name_variants": [
+        "Achtkarspelen"
+      ],
+      "research_centres": [
+        "Surhuisterveen",
+        "Buitenpost",
+        "Kootstertille",
+        "Gerkesklooster",
+        "Stroobos",
+        "Harkema"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0060",
+      "name": "Ameland",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 3816,
+      "settlement_count": 4,
+      "settlements": [
+        {
+          "code": "WP2587",
+          "name": "Ballum",
+          "search_name_variants": [
+            "Ballum"
+          ]
+        },
+        {
+          "code": "WP2589",
+          "name": "Buren",
+          "search_name_variants": [
+            "Buren"
+          ]
+        },
+        {
+          "code": "WP2586",
+          "name": "Hollum",
+          "search_name_variants": [
+            "Hollum"
+          ]
+        },
+        {
+          "code": "WP2588",
+          "name": "Nes",
+          "search_name_variants": [
+            "Nes"
+          ]
+        }
+      ],
+      "official_name": "Ameland",
+      "search_name_variants": [
+        "Ameland"
+      ],
+      "research_centres": [
+        "Nes",
+        "Hollum",
+        "Ballum",
+        "Buren"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM1891",
+      "name": "Dantumadiel",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 19231,
+      "settlement_count": 10,
+      "settlements": [
+        {
+          "code": "WP3265",
+          "name": "Broeksterwâld",
+          "search_name_variants": [
+            "Broeksterwâld",
+            "Broeksterwald"
+          ]
+        },
+        {
+          "code": "WP3266",
+          "name": "Damwâld",
+          "search_name_variants": [
+            "Damwâld",
+            "Damwald"
+          ]
+        },
+        {
+          "code": "WP3267",
+          "name": "De Falom",
+          "search_name_variants": [
+            "De Falom"
+          ]
+        },
+        {
+          "code": "WP3273",
+          "name": "De Westereen",
+          "search_name_variants": [
+            "De Westereen"
+          ]
+        },
+        {
+          "code": "WP3268",
+          "name": "Driezum",
+          "search_name_variants": [
+            "Driezum"
+          ]
+        },
+        {
+          "code": "WP3271",
+          "name": "Feanwâlden",
+          "search_name_variants": [
+            "Feanwâlden",
+            "Feanwalden"
+          ]
+        },
+        {
+          "code": "WP3272",
+          "name": "Readtsjerk",
+          "search_name_variants": [
+            "Readtsjerk"
+          ]
+        },
+        {
+          "code": "WP3270",
+          "name": "Rinsumageast",
+          "search_name_variants": [
+            "Rinsumageast"
+          ]
+        },
+        {
+          "code": "WP3274",
+          "name": "Sibrandahûs",
+          "search_name_variants": [
+            "Sibrandahûs",
+            "Sibrandahus"
+          ]
+        },
+        {
+          "code": "WP3269",
+          "name": "Wâlterswâld",
+          "search_name_variants": [
+            "Wâlterswâld",
+            "Walterswald"
+          ]
+        }
+      ],
+      "official_name": "Dantumadiel",
+      "search_name_variants": [
+        "Dantumadiel"
+      ],
+      "research_centres": [
+        "De Westereen",
+        "Damwâld",
+        "Feanwâlden",
+        "Rinsumageast",
+        "Broeksterwâld"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM1940",
+      "name": "De Fryske Marren",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR05",
+      "corop_name": "Zuidwest-Friesland",
+      "inhabitants": 52248,
+      "settlement_count": 51,
+      "settlements": [
+        {
+          "code": "WP2484",
+          "name": "Akmarijp",
+          "search_name_variants": [
+            "Akmarijp"
+          ]
+        },
+        {
+          "code": "WP1673",
+          "name": "Bakhuizen",
+          "search_name_variants": [
+            "Bakhuizen"
+          ]
+        },
+        {
+          "code": "WP1674",
+          "name": "Balk",
+          "search_name_variants": [
+            "Balk"
+          ]
+        },
+        {
+          "code": "WP2239",
+          "name": "Bantega",
+          "search_name_variants": [
+            "Bantega"
+          ]
+        },
+        {
+          "code": "WP2485",
+          "name": "Boornzwaag",
+          "search_name_variants": [
+            "Boornzwaag"
+          ]
+        },
+        {
+          "code": "WP2486",
+          "name": "Broek",
+          "search_name_variants": [
+            "Broek"
+          ]
+        },
+        {
+          "code": "WP2240",
+          "name": "Delfstrahuizen",
+          "search_name_variants": [
+            "Delfstrahuizen"
+          ]
+        },
+        {
+          "code": "WP2487",
+          "name": "Dijken",
+          "search_name_variants": [
+            "Dijken"
+          ]
+        },
+        {
+          "code": "WP2488",
+          "name": "Doniaga",
+          "search_name_variants": [
+            "Doniaga"
+          ]
+        },
+        {
+          "code": "WP2241",
+          "name": "Echten",
+          "search_name_variants": [
+            "Echten"
+          ]
+        },
+        {
+          "code": "WP2242",
+          "name": "Echtenerbrug",
+          "search_name_variants": [
+            "Echtenerbrug"
+          ]
+        },
+        {
+          "code": "WP2243",
+          "name": "Eesterga",
+          "search_name_variants": [
+            "Eesterga"
+          ]
+        },
+        {
+          "code": "WP1675",
+          "name": "Elahuizen",
+          "search_name_variants": [
+            "Elahuizen"
+          ]
+        },
+        {
+          "code": "WP2244",
+          "name": "Follega",
+          "search_name_variants": [
+            "Follega"
+          ]
+        },
+        {
+          "code": "WP2489",
+          "name": "Goingarijp",
+          "search_name_variants": [
+            "Goingarijp"
+          ]
+        },
+        {
+          "code": "WP1676",
+          "name": "Harich",
+          "search_name_variants": [
+            "Harich"
+          ]
+        },
+        {
+          "code": "WP2491",
+          "name": "Haskerhorne",
+          "search_name_variants": [
+            "Haskerhorne"
+          ]
+        },
+        {
+          "code": "WP2492",
+          "name": "Idskenhuizen",
+          "search_name_variants": [
+            "Idskenhuizen"
+          ]
+        },
+        {
+          "code": "WP2493",
+          "name": "Joure",
+          "search_name_variants": [
+            "Joure"
+          ]
+        },
+        {
+          "code": "WP1677",
+          "name": "Kolderwolde",
+          "search_name_variants": [
+            "Kolderwolde"
+          ]
+        },
+        {
+          "code": "WP2494",
+          "name": "Langweer",
+          "search_name_variants": [
+            "Langweer"
+          ]
+        },
+        {
+          "code": "WP2495",
+          "name": "Legemeer",
+          "search_name_variants": [
+            "Legemeer"
+          ]
+        },
+        {
+          "code": "WP2245",
+          "name": "Lemmer",
+          "search_name_variants": [
+            "Lemmer"
+          ]
+        },
+        {
+          "code": "WP1678",
+          "name": "Mirns",
+          "search_name_variants": [
+            "Mirns"
+          ]
+        },
+        {
+          "code": "WP3521",
+          "name": "Nijehaske",
+          "search_name_variants": [
+            "Nijehaske"
+          ]
+        },
+        {
+          "code": "WP1679",
+          "name": "Nijemirdum",
+          "search_name_variants": [
+            "Nijemirdum"
+          ]
+        },
+        {
+          "code": "WP2498",
+          "name": "Oldeouwer",
+          "search_name_variants": [
+            "Oldeouwer"
+          ]
+        },
+        {
+          "code": "WP2246",
+          "name": "Oosterzee",
+          "search_name_variants": [
+            "Oosterzee"
+          ]
+        },
+        {
+          "code": "WP1680",
+          "name": "Oudega",
+          "search_name_variants": [
+            "Oudega"
+          ]
+        },
+        {
+          "code": "WP3522",
+          "name": "Oudehaske",
+          "search_name_variants": [
+            "Oudehaske"
+          ]
+        },
+        {
+          "code": "WP1681",
+          "name": "Oudemirdum",
+          "search_name_variants": [
+            "Oudemirdum"
+          ]
+        },
+        {
+          "code": "WP2501",
+          "name": "Ouwster-Nijega",
+          "search_name_variants": [
+            "Ouwster-Nijega"
+          ]
+        },
+        {
+          "code": "WP2500",
+          "name": "Ouwsterhaule",
+          "search_name_variants": [
+            "Ouwsterhaule"
+          ]
+        },
+        {
+          "code": "WP1682",
+          "name": "Rijs",
+          "search_name_variants": [
+            "Rijs"
+          ]
+        },
+        {
+          "code": "WP2502",
+          "name": "Rohel",
+          "search_name_variants": [
+            "Rohel"
+          ]
+        },
+        {
+          "code": "WP2503",
+          "name": "Rotstergaast",
+          "search_name_variants": [
+            "Rotstergaast"
+          ]
+        },
+        {
+          "code": "WP2504",
+          "name": "Rotsterhaule",
+          "search_name_variants": [
+            "Rotsterhaule"
+          ]
+        },
+        {
+          "code": "WP2505",
+          "name": "Rottum",
+          "search_name_variants": [
+            "Rottum"
+          ]
+        },
+        {
+          "code": "WP1683",
+          "name": "Ruigahuizen",
+          "search_name_variants": [
+            "Ruigahuizen"
+          ]
+        },
+        {
+          "code": "WP2506",
+          "name": "Scharsterbrug",
+          "search_name_variants": [
+            "Scharsterbrug"
+          ]
+        },
+        {
+          "code": "WP2507",
+          "name": "Sint Nicolaasga",
+          "search_name_variants": [
+            "Sint Nicolaasga"
+          ]
+        },
+        {
+          "code": "WP2508",
+          "name": "Sintjohannesga",
+          "search_name_variants": [
+            "Sintjohannesga"
+          ]
+        },
+        {
+          "code": "WP1684",
+          "name": "Sloten",
+          "search_name_variants": [
+            "Sloten"
+          ]
+        },
+        {
+          "code": "WP2509",
+          "name": "Snikzwaag",
+          "search_name_variants": [
+            "Snikzwaag"
+          ]
+        },
+        {
+          "code": "WP1685",
+          "name": "Sondel",
+          "search_name_variants": [
+            "Sondel"
+          ]
+        },
+        {
+          "code": "WP2537",
+          "name": "Terherne",
+          "search_name_variants": [
+            "Terherne"
+          ]
+        },
+        {
+          "code": "WP2510",
+          "name": "Terkaple",
+          "search_name_variants": [
+            "Terkaple"
+          ]
+        },
+        {
+          "code": "WP2511",
+          "name": "Teroele",
+          "search_name_variants": [
+            "Teroele"
+          ]
+        },
+        {
+          "code": "WP2512",
+          "name": "Tjerkgaast",
+          "search_name_variants": [
+            "Tjerkgaast"
+          ]
+        },
+        {
+          "code": "WP2513",
+          "name": "Vegelinsoord",
+          "search_name_variants": [
+            "Vegelinsoord"
+          ]
+        },
+        {
+          "code": "WP1686",
+          "name": "Wijckel",
+          "search_name_variants": [
+            "Wijckel"
+          ]
+        }
+      ],
+      "official_name": "De Fryske Marren",
+      "search_name_variants": [
+        "De Fryske Marren"
+      ],
+      "research_centres": [
+        "Joure",
+        "Lemmer",
+        "Balk",
+        "Sint Nicolaasga",
+        "Oudehaske",
+        "Nijehaske",
+        "Scharsterbrug",
+        "Bakhuizen",
+        "Terherne",
+        "Langweer"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0072",
+      "name": "Harlingen",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 16270,
+      "settlement_count": 3,
+      "settlements": [
+        {
+          "code": "WP2891",
+          "name": "Harlingen",
+          "search_name_variants": [
+            "Harlingen"
+          ]
+        },
+        {
+          "code": "WP2892",
+          "name": "Midlum",
+          "search_name_variants": [
+            "Midlum"
+          ]
+        },
+        {
+          "code": "WP2893",
+          "name": "Wijnaldum",
+          "search_name_variants": [
+            "Wijnaldum"
+          ]
+        }
+      ],
+      "official_name": "Harlingen",
+      "search_name_variants": [
+        "Harlingen"
+      ],
+      "research_centres": [
+        "Harlingen",
+        "Midlum",
+        "Wijnaldum"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0074",
+      "name": "Heerenveen",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR06",
+      "corop_name": "Zuidoost-Friesland",
+      "inhabitants": 51955,
+      "settlement_count": 21,
+      "settlements": [
+        {
+          "code": "WP2525",
+          "name": "Akkrum",
+          "search_name_variants": [
+            "Akkrum"
+          ]
+        },
+        {
+          "code": "WP2532",
+          "name": "Aldeboarn",
+          "search_name_variants": [
+            "Aldeboarn"
+          ]
+        },
+        {
+          "code": "WP2193",
+          "name": "Bontebok",
+          "search_name_variants": [
+            "Bontebok"
+          ]
+        },
+        {
+          "code": "WP2190",
+          "name": "De Knipe",
+          "search_name_variants": [
+            "De Knipe"
+          ]
+        },
+        {
+          "code": "WP2185",
+          "name": "Gersloot",
+          "search_name_variants": [
+            "Gersloot"
+          ]
+        },
+        {
+          "code": "WP2490",
+          "name": "Haskerdijken",
+          "search_name_variants": [
+            "Haskerdijken"
+          ]
+        },
+        {
+          "code": "WP3523",
+          "name": "Heerenveen",
+          "search_name_variants": [
+            "Heerenveen"
+          ]
+        },
+        {
+          "code": "WP2197",
+          "name": "Hoornsterzwaag",
+          "search_name_variants": [
+            "Hoornsterzwaag"
+          ]
+        },
+        {
+          "code": "WP2196",
+          "name": "Jubbega",
+          "search_name_variants": [
+            "Jubbega"
+          ]
+        },
+        {
+          "code": "WP2192",
+          "name": "Katlijk",
+          "search_name_variants": [
+            "Katlijk"
+          ]
+        },
+        {
+          "code": "WP2183",
+          "name": "Luinjeberd",
+          "search_name_variants": [
+            "Luinjeberd"
+          ]
+        },
+        {
+          "code": "WP2191",
+          "name": "Mildam",
+          "search_name_variants": [
+            "Mildam"
+          ]
+        },
+        {
+          "code": "WP3603",
+          "name": "Nes",
+          "search_name_variants": [
+            "Nes"
+          ]
+        },
+        {
+          "code": "WP2496",
+          "name": "Nieuwebrug",
+          "search_name_variants": [
+            "Nieuwebrug"
+          ]
+        },
+        {
+          "code": "WP2194",
+          "name": "Nieuwehorne",
+          "search_name_variants": [
+            "Nieuwehorne"
+          ]
+        },
+        {
+          "code": "WP2187",
+          "name": "Nieuweschoot",
+          "search_name_variants": [
+            "Nieuweschoot"
+          ]
+        },
+        {
+          "code": "WP2189",
+          "name": "Oranjewoud",
+          "search_name_variants": [
+            "Oranjewoud"
+          ]
+        },
+        {
+          "code": "WP2195",
+          "name": "Oudehorne",
+          "search_name_variants": [
+            "Oudehorne"
+          ]
+        },
+        {
+          "code": "WP2188",
+          "name": "Oudeschoot",
+          "search_name_variants": [
+            "Oudeschoot"
+          ]
+        },
+        {
+          "code": "WP2182",
+          "name": "Terband",
+          "search_name_variants": [
+            "Terband"
+          ]
+        },
+        {
+          "code": "WP2184",
+          "name": "Tjalleberd",
+          "search_name_variants": [
+            "Tjalleberd"
+          ]
+        }
+      ],
+      "official_name": "Heerenveen",
+      "search_name_variants": [
+        "Heerenveen"
+      ],
+      "research_centres": [
+        "Heerenveen",
+        "Oudeschoot",
+        "Jubbega",
+        "Akkrum",
+        "Aldeboarn",
+        "Tjalleberd",
+        "Terband",
+        "Haskerdijken",
+        "Nieuwehorne"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0080",
+      "name": "Leeuwarden",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 130162,
+      "settlement_count": 36,
+      "settlements": [
+        {
+          "code": "WP3224",
+          "name": "Alde Leie",
+          "search_name_variants": [
+            "Alde Leie"
+          ]
+        },
+        {
+          "code": "WP2009",
+          "name": "Baard",
+          "search_name_variants": [
+            "Baard"
+          ]
+        },
+        {
+          "code": "WP2010",
+          "name": "Bears",
+          "search_name_variants": [
+            "Bears"
+          ]
+        },
+        {
+          "code": "WP3225",
+          "name": "Britsum",
+          "search_name_variants": [
+            "Britsum"
+          ]
+        },
+        {
+          "code": "WP2524",
+          "name": "Eagum",
+          "search_name_variants": [
+            "Eagum"
+          ]
+        },
+        {
+          "code": "WP2014",
+          "name": "Easterlittens",
+          "search_name_variants": [
+            "Easterlittens"
+          ]
+        },
+        {
+          "code": "WP3226",
+          "name": "Feinsum",
+          "search_name_variants": [
+            "Feinsum"
+          ]
+        },
+        {
+          "code": "WP2527",
+          "name": "Friens",
+          "search_name_variants": [
+            "Friens"
+          ]
+        },
+        {
+          "code": "WP3616",
+          "name": "Goutum",
+          "search_name_variants": [
+            "Goutum"
+          ]
+        },
+        {
+          "code": "WP3602",
+          "name": "Grou",
+          "search_name_variants": [
+            "Grou"
+          ]
+        },
+        {
+          "code": "WP1202",
+          "name": "Hempens",
+          "search_name_variants": [
+            "Hempens"
+          ]
+        },
+        {
+          "code": "WP3227",
+          "name": "Hijum",
+          "search_name_variants": [
+            "Hijum"
+          ]
+        },
+        {
+          "code": "WP2017",
+          "name": "Hilaard",
+          "search_name_variants": [
+            "Hilaard"
+          ]
+        },
+        {
+          "code": "WP2019",
+          "name": "Húns",
+          "search_name_variants": [
+            "Húns",
+            "Huns"
+          ]
+        },
+        {
+          "code": "WP2529",
+          "name": "Idaerd",
+          "search_name_variants": [
+            "Idaerd"
+          ]
+        },
+        {
+          "code": "WP2022",
+          "name": "Jellum",
+          "search_name_variants": [
+            "Jellum"
+          ]
+        },
+        {
+          "code": "WP3228",
+          "name": "Jelsum",
+          "search_name_variants": [
+            "Jelsum"
+          ]
+        },
+        {
+          "code": "WP2530",
+          "name": "Jirnsum",
+          "search_name_variants": [
+            "Jirnsum"
+          ]
+        },
+        {
+          "code": "WP2023",
+          "name": "Jorwert",
+          "search_name_variants": [
+            "Jorwert"
+          ]
+        },
+        {
+          "code": "WP3229",
+          "name": "Koarnjum",
+          "search_name_variants": [
+            "Koarnjum"
+          ]
+        },
+        {
+          "code": "WP3615",
+          "name": "Leeuwarden",
+          "search_name_variants": [
+            "Leeuwarden"
+          ]
+        },
+        {
+          "code": "WP1198",
+          "name": "Lekkum",
+          "search_name_variants": [
+            "Lekkum"
+          ]
+        },
+        {
+          "code": "WP2025",
+          "name": "Leons",
+          "search_name_variants": [
+            "Leons"
+          ]
+        },
+        {
+          "code": "WP2027",
+          "name": "Mantgum",
+          "search_name_variants": [
+            "Mantgum"
+          ]
+        },
+        {
+          "code": "WP1199",
+          "name": "Miedum",
+          "search_name_variants": [
+            "Miedum"
+          ]
+        },
+        {
+          "code": "WP2535",
+          "name": "Reduzum",
+          "search_name_variants": [
+            "Reduzum"
+          ]
+        },
+        {
+          "code": "WP1200",
+          "name": "Snakkerburen",
+          "search_name_variants": [
+            "Snakkerburen"
+          ]
+        },
+        {
+          "code": "WP3230",
+          "name": "Stiens",
+          "search_name_variants": [
+            "Stiens"
+          ]
+        },
+        {
+          "code": "WP1204",
+          "name": "Swichum",
+          "search_name_variants": [
+            "Swichum"
+          ]
+        },
+        {
+          "code": "WP1203",
+          "name": "Teerns",
+          "search_name_variants": [
+            "Teerns"
+          ]
+        },
+        {
+          "code": "WP2540",
+          "name": "Warstiens",
+          "search_name_variants": [
+            "Warstiens"
+          ]
+        },
+        {
+          "code": "WP2541",
+          "name": "Warten",
+          "search_name_variants": [
+            "Warten"
+          ]
+        },
+        {
+          "code": "WP2032",
+          "name": "Weidum",
+          "search_name_variants": [
+            "Weidum"
+          ]
+        },
+        {
+          "code": "WP2539",
+          "name": "Wergea",
+          "search_name_variants": [
+            "Wergea"
+          ]
+        },
+        {
+          "code": "WP3545",
+          "name": "Wirdum",
+          "search_name_variants": [
+            "Wirdum"
+          ]
+        },
+        {
+          "code": "WP1206",
+          "name": "Wytgaard",
+          "search_name_variants": [
+            "Wytgaard"
+          ]
+        }
+      ],
+      "official_name": "Leeuwarden",
+      "search_name_variants": [
+        "Leeuwarden"
+      ],
+      "research_centres": [
+        "Leeuwarden",
+        "Stiens",
+        "Grou",
+        "Goutum",
+        "Jirnsum",
+        "Warten",
+        "Wergea"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM1970",
+      "name": "Noardeast-Fryslân",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 45935,
+      "settlement_count": 52,
+      "settlements": [
+        {
+          "code": "WP3387",
+          "name": "Aalsum",
+          "search_name_variants": [
+            "Aalsum"
+          ]
+        },
+        {
+          "code": "WP3313",
+          "name": "Aldwâld",
+          "search_name_variants": [
+            "Aldwâld",
+            "Aldwald"
+          ]
+        },
+        {
+          "code": "WP3307",
+          "name": "Augsbuert-Lytsewâld",
+          "search_name_variants": [
+            "Augsbuert-Lytsewâld",
+            "Augsbuert-Lytsewald"
+          ]
+        },
+        {
+          "code": "WP3199",
+          "name": "Blije",
+          "search_name_variants": [
+            "Blije"
+          ]
+        },
+        {
+          "code": "WP3389",
+          "name": "Boarnwert",
+          "search_name_variants": [
+            "Boarnwert"
+          ]
+        },
+        {
+          "code": "WP3390",
+          "name": "Brantgum",
+          "search_name_variants": [
+            "Brantgum"
+          ]
+        },
+        {
+          "code": "WP3200",
+          "name": "Burdaard",
+          "search_name_variants": [
+            "Burdaard"
+          ]
+        },
+        {
+          "code": "WP3308",
+          "name": "Burum",
+          "search_name_variants": [
+            "Burum"
+          ]
+        },
+        {
+          "code": "WP3314",
+          "name": "De Trieme",
+          "search_name_variants": [
+            "De Trieme"
+          ]
+        },
+        {
+          "code": "WP3391",
+          "name": "Dokkum",
+          "search_name_variants": [
+            "Dokkum"
+          ]
+        },
+        {
+          "code": "WP3388",
+          "name": "Eanjum",
+          "search_name_variants": [
+            "Eanjum"
+          ]
+        },
+        {
+          "code": "WP3407",
+          "name": "Easternijtsjerk",
+          "search_name_variants": [
+            "Easternijtsjerk"
+          ]
+        },
+        {
+          "code": "WP3408",
+          "name": "Eastrum",
+          "search_name_variants": [
+            "Eastrum"
+          ]
+        },
+        {
+          "code": "WP3315",
+          "name": "Feankleaster",
+          "search_name_variants": [
+            "Feankleaster"
+          ]
+        },
+        {
+          "code": "WP3201",
+          "name": "Ferwert",
+          "search_name_variants": [
+            "Ferwert"
+          ]
+        },
+        {
+          "code": "WP3394",
+          "name": "Foudgum",
+          "search_name_variants": [
+            "Foudgum"
+          ]
+        },
+        {
+          "code": "WP3202",
+          "name": "Ginnum",
+          "search_name_variants": [
+            "Ginnum"
+          ]
+        },
+        {
+          "code": "WP3203",
+          "name": "Hallum",
+          "search_name_variants": [
+            "Hallum"
+          ]
+        },
+        {
+          "code": "WP3395",
+          "name": "Hantum",
+          "search_name_variants": [
+            "Hantum"
+          ]
+        },
+        {
+          "code": "WP3396",
+          "name": "Hantumerútbuorren",
+          "search_name_variants": [
+            "Hantumerútbuorren",
+            "Hantumerutbuorren"
+          ]
+        },
+        {
+          "code": "WP3397",
+          "name": "Hantumhuzen",
+          "search_name_variants": [
+            "Hantumhuzen"
+          ]
+        },
+        {
+          "code": "WP3204",
+          "name": "Hegebeintum",
+          "search_name_variants": [
+            "Hegebeintum"
+          ]
+        },
+        {
+          "code": "WP3398",
+          "name": "Hiaure",
+          "search_name_variants": [
+            "Hiaure"
+          ]
+        },
+        {
+          "code": "WP3399",
+          "name": "Holwert",
+          "search_name_variants": [
+            "Holwert"
+          ]
+        },
+        {
+          "code": "WP3392",
+          "name": "Ie",
+          "search_name_variants": [
+            "Ie"
+          ]
+        },
+        {
+          "code": "WP3393",
+          "name": "Ingwierrum",
+          "search_name_variants": [
+            "Ingwierrum"
+          ]
+        },
+        {
+          "code": "WP3205",
+          "name": "Jannum",
+          "search_name_variants": [
+            "Jannum"
+          ]
+        },
+        {
+          "code": "WP3206",
+          "name": "Jislum",
+          "search_name_variants": [
+            "Jislum"
+          ]
+        },
+        {
+          "code": "WP3400",
+          "name": "Jouswier",
+          "search_name_variants": [
+            "Jouswier"
+          ]
+        },
+        {
+          "code": "WP3309",
+          "name": "Kollum",
+          "search_name_variants": [
+            "Kollum"
+          ]
+        },
+        {
+          "code": "WP3310",
+          "name": "Kollumerpomp",
+          "search_name_variants": [
+            "Kollumerpomp"
+          ]
+        },
+        {
+          "code": "WP3311",
+          "name": "Kollumersweach",
+          "search_name_variants": [
+            "Kollumersweach"
+          ]
+        },
+        {
+          "code": "WP3207",
+          "name": "Lichtaard",
+          "search_name_variants": [
+            "Lichtaard"
+          ]
+        },
+        {
+          "code": "WP3401",
+          "name": "Ljussens",
+          "search_name_variants": [
+            "Ljussens"
+          ]
+        },
+        {
+          "code": "WP3208",
+          "name": "Marrum",
+          "search_name_variants": [
+            "Marrum"
+          ]
+        },
+        {
+          "code": "WP3402",
+          "name": "Mitselwier",
+          "search_name_variants": [
+            "Mitselwier"
+          ]
+        },
+        {
+          "code": "WP3404",
+          "name": "Moarre",
+          "search_name_variants": [
+            "Moarre"
+          ]
+        },
+        {
+          "code": "WP3403",
+          "name": "Moddergat",
+          "search_name_variants": [
+            "Moddergat"
+          ]
+        },
+        {
+          "code": "WP3312",
+          "name": "Munnekezijl",
+          "search_name_variants": [
+            "Munnekezijl"
+          ]
+        },
+        {
+          "code": "WP3405",
+          "name": "Nes",
+          "search_name_variants": [
+            "Nes"
+          ]
+        },
+        {
+          "code": "WP3406",
+          "name": "Nijewier",
+          "search_name_variants": [
+            "Nijewier"
+          ]
+        },
+        {
+          "code": "WP3409",
+          "name": "Peazens",
+          "search_name_variants": [
+            "Peazens"
+          ]
+        },
+        {
+          "code": "WP3410",
+          "name": "Raard",
+          "search_name_variants": [
+            "Raard"
+          ]
+        },
+        {
+          "code": "WP3209",
+          "name": "Reitsum",
+          "search_name_variants": [
+            "Reitsum"
+          ]
+        },
+        {
+          "code": "WP3318",
+          "name": "Sweagerbosk",
+          "search_name_variants": [
+            "Sweagerbosk"
+          ]
+        },
+        {
+          "code": "WP3411",
+          "name": "Ternaard",
+          "search_name_variants": [
+            "Ternaard"
+          ]
+        },
+        {
+          "code": "WP3412",
+          "name": "Waaxens",
+          "search_name_variants": [
+            "Waaxens"
+          ]
+        },
+        {
+          "code": "WP3316",
+          "name": "Warfstermolen",
+          "search_name_variants": [
+            "Warfstermolen"
+          ]
+        },
+        {
+          "code": "WP3317",
+          "name": "Westergeast",
+          "search_name_variants": [
+            "Westergeast"
+          ]
+        },
+        {
+          "code": "WP3413",
+          "name": "Wetsens",
+          "search_name_variants": [
+            "Wetsens"
+          ]
+        },
+        {
+          "code": "WP3414",
+          "name": "Wierum",
+          "search_name_variants": [
+            "Wierum"
+          ]
+        },
+        {
+          "code": "WP3210",
+          "name": "Wânswert",
+          "search_name_variants": [
+            "Wânswert",
+            "Wanswert"
+          ]
+        }
+      ],
+      "official_name": "Noardeast-Fryslân",
+      "search_name_variants": [
+        "Noardeast-Fryslân",
+        "Noardeast-Fryslan"
+      ],
+      "research_centres": [
+        "Dokkum",
+        "Kollum",
+        "Hallum",
+        "Marrum",
+        "Ferwert",
+        "Burdaard",
+        "Kollumersweach",
+        "Holwert",
+        "Ternaard"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0085",
+      "name": "Ooststellingwerf",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR06",
+      "corop_name": "Zuidoost-Friesland",
+      "inhabitants": 25898,
+      "settlement_count": 13,
+      "settlements": [
+        {
+          "code": "WP1753",
+          "name": "Appelscha",
+          "search_name_variants": [
+            "Appelscha"
+          ]
+        },
+        {
+          "code": "WP1754",
+          "name": "Donkerbroek",
+          "search_name_variants": [
+            "Donkerbroek"
+          ]
+        },
+        {
+          "code": "WP1755",
+          "name": "Elsloo",
+          "search_name_variants": [
+            "Elsloo"
+          ]
+        },
+        {
+          "code": "WP1756",
+          "name": "Fochteloo",
+          "search_name_variants": [
+            "Fochteloo"
+          ]
+        },
+        {
+          "code": "WP3576",
+          "name": "Haule",
+          "search_name_variants": [
+            "Haule"
+          ]
+        },
+        {
+          "code": "WP3577",
+          "name": "Haulerwijk",
+          "search_name_variants": [
+            "Haulerwijk"
+          ]
+        },
+        {
+          "code": "WP1759",
+          "name": "Langedijke",
+          "search_name_variants": [
+            "Langedijke"
+          ]
+        },
+        {
+          "code": "WP1760",
+          "name": "Makkinga",
+          "search_name_variants": [
+            "Makkinga"
+          ]
+        },
+        {
+          "code": "WP1761",
+          "name": "Nijeberkoop",
+          "search_name_variants": [
+            "Nijeberkoop"
+          ]
+        },
+        {
+          "code": "WP1762",
+          "name": "Oldeberkoop",
+          "search_name_variants": [
+            "Oldeberkoop"
+          ]
+        },
+        {
+          "code": "WP1763",
+          "name": "Oosterwolde",
+          "search_name_variants": [
+            "Oosterwolde"
+          ]
+        },
+        {
+          "code": "WP1764",
+          "name": "Ravenswoud",
+          "search_name_variants": [
+            "Ravenswoud"
+          ]
+        },
+        {
+          "code": "WP1765",
+          "name": "Waskemeer",
+          "search_name_variants": [
+            "Waskemeer"
+          ]
+        }
+      ],
+      "official_name": "Ooststellingwerf",
+      "search_name_variants": [
+        "Ooststellingwerf"
+      ],
+      "research_centres": [
+        "Oosterwolde",
+        "Appelscha",
+        "Haulerwijk",
+        "Donkerbroek",
+        "Oldeberkoop",
+        "Makkinga",
+        "Waskemeer"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0086",
+      "name": "Opsterland",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR06",
+      "corop_name": "Zuidoost-Friesland",
+      "inhabitants": 30068,
+      "settlement_count": 17,
+      "settlements": [
+        {
+          "code": "WP3342",
+          "name": "Bakkeveen",
+          "search_name_variants": [
+            "Bakkeveen"
+          ]
+        },
+        {
+          "code": "WP3343",
+          "name": "Beetsterzwaag",
+          "search_name_variants": [
+            "Beetsterzwaag"
+          ]
+        },
+        {
+          "code": "WP3344",
+          "name": "Drachten-Azeven",
+          "search_name_variants": [
+            "Drachten-Azeven"
+          ]
+        },
+        {
+          "code": "WP3345",
+          "name": "Frieschepalen",
+          "search_name_variants": [
+            "Frieschepalen"
+          ]
+        },
+        {
+          "code": "WP3346",
+          "name": "Gorredijk",
+          "search_name_variants": [
+            "Gorredijk"
+          ]
+        },
+        {
+          "code": "WP3347",
+          "name": "Hemrik",
+          "search_name_variants": [
+            "Hemrik"
+          ]
+        },
+        {
+          "code": "WP3348",
+          "name": "Jonkerslân",
+          "search_name_variants": [
+            "Jonkerslân",
+            "Jonkerslan"
+          ]
+        },
+        {
+          "code": "WP3349",
+          "name": "Langezwaag",
+          "search_name_variants": [
+            "Langezwaag"
+          ]
+        },
+        {
+          "code": "WP3350",
+          "name": "Lippenhuizen",
+          "search_name_variants": [
+            "Lippenhuizen"
+          ]
+        },
+        {
+          "code": "WP3351",
+          "name": "Luxwoude",
+          "search_name_variants": [
+            "Luxwoude"
+          ]
+        },
+        {
+          "code": "WP3352",
+          "name": "Nij Beets",
+          "search_name_variants": [
+            "Nij Beets"
+          ]
+        },
+        {
+          "code": "WP3353",
+          "name": "Olterterp",
+          "search_name_variants": [
+            "Olterterp"
+          ]
+        },
+        {
+          "code": "WP3354",
+          "name": "Siegerswoude",
+          "search_name_variants": [
+            "Siegerswoude"
+          ]
+        },
+        {
+          "code": "WP3355",
+          "name": "Terwispel",
+          "search_name_variants": [
+            "Terwispel"
+          ]
+        },
+        {
+          "code": "WP3356",
+          "name": "Tijnje",
+          "search_name_variants": [
+            "Tijnje"
+          ]
+        },
+        {
+          "code": "WP3357",
+          "name": "Ureterp",
+          "search_name_variants": [
+            "Ureterp"
+          ]
+        },
+        {
+          "code": "WP3358",
+          "name": "Wijnjewoude",
+          "search_name_variants": [
+            "Wijnjewoude"
+          ]
+        }
+      ],
+      "official_name": "Opsterland",
+      "search_name_variants": [
+        "Opsterland"
+      ],
+      "research_centres": [
+        "Gorredijk",
+        "Ureterp",
+        "Drachten-Azeven",
+        "Beetsterzwaag",
+        "Lippenhuizen",
+        "Terwispel",
+        "Nij Beets",
+        "Bakkeveen"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0088",
+      "name": "Schiermonnikoog",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 972,
+      "settlement_count": 1,
+      "settlements": [
+        {
+          "code": "WP2428",
+          "name": "Schiermonnikoog",
+          "search_name_variants": [
+            "Schiermonnikoog"
+          ]
+        }
+      ],
+      "official_name": "Schiermonnikoog",
+      "search_name_variants": [
+        "Schiermonnikoog"
+      ],
+      "research_centres": [
+        "Schiermonnikoog"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0090",
+      "name": "Smallingerland",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR06",
+      "corop_name": "Zuidoost-Friesland",
+      "inhabitants": 57188,
+      "settlement_count": 14,
+      "settlements": [
+        {
+          "code": "WP3275",
+          "name": "Boornbergum",
+          "search_name_variants": [
+            "Boornbergum"
+          ]
+        },
+        {
+          "code": "WP3276",
+          "name": "De Tike",
+          "search_name_variants": [
+            "De Tike"
+          ]
+        },
+        {
+          "code": "WP3277",
+          "name": "De Veenhoop",
+          "search_name_variants": [
+            "De Veenhoop"
+          ]
+        },
+        {
+          "code": "WP3278",
+          "name": "De Wilgen",
+          "search_name_variants": [
+            "De Wilgen"
+          ]
+        },
+        {
+          "code": "WP3279",
+          "name": "Drachten",
+          "search_name_variants": [
+            "Drachten"
+          ]
+        },
+        {
+          "code": "WP3280",
+          "name": "Drachtstercompagnie",
+          "search_name_variants": [
+            "Drachtstercompagnie"
+          ]
+        },
+        {
+          "code": "WP3281",
+          "name": "Goëngahuizen",
+          "search_name_variants": [
+            "Goëngahuizen",
+            "Goengahuizen"
+          ]
+        },
+        {
+          "code": "WP3282",
+          "name": "Houtigehage",
+          "search_name_variants": [
+            "Houtigehage"
+          ]
+        },
+        {
+          "code": "WP3283",
+          "name": "Kortehemmen",
+          "search_name_variants": [
+            "Kortehemmen"
+          ]
+        },
+        {
+          "code": "WP3284",
+          "name": "Nijega",
+          "search_name_variants": [
+            "Nijega"
+          ]
+        },
+        {
+          "code": "WP3285",
+          "name": "Opeinde",
+          "search_name_variants": [
+            "Opeinde"
+          ]
+        },
+        {
+          "code": "WP3286",
+          "name": "Oudega",
+          "search_name_variants": [
+            "Oudega"
+          ]
+        },
+        {
+          "code": "WP3287",
+          "name": "Rottevalle",
+          "search_name_variants": [
+            "Rottevalle"
+          ]
+        },
+        {
+          "code": "WP3288",
+          "name": "Smalle Ee",
+          "search_name_variants": [
+            "Smalle Ee"
+          ]
+        }
+      ],
+      "official_name": "Smallingerland",
+      "search_name_variants": [
+        "Smallingerland"
+      ],
+      "research_centres": [
+        "Drachten",
+        "Opeinde",
+        "Oudega",
+        "Rottevalle",
+        "Boornbergum",
+        "Drachtstercompagnie",
+        "Nijega"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM1900",
+      "name": "Súdwest-Fryslân",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR05",
+      "corop_name": "Zuidwest-Friesland",
+      "inhabitants": 90521,
+      "settlement_count": 89,
+      "settlements": [
+        {
+          "code": "WP2400",
+          "name": "Abbega",
+          "search_name_variants": [
+            "Abbega"
+          ]
+        },
+        {
+          "code": "WP2301",
+          "name": "Allingawier",
+          "search_name_variants": [
+            "Allingawier"
+          ]
+        },
+        {
+          "code": "WP2302",
+          "name": "Arum",
+          "search_name_variants": [
+            "Arum"
+          ]
+        },
+        {
+          "code": "WP2401",
+          "name": "Blauwhuis",
+          "search_name_variants": [
+            "Blauwhuis"
+          ]
+        },
+        {
+          "code": "WP2011",
+          "name": "Boazum",
+          "search_name_variants": [
+            "Boazum"
+          ]
+        },
+        {
+          "code": "WP2079",
+          "name": "Bolsward",
+          "search_name_variants": [
+            "Bolsward"
+          ]
+        },
+        {
+          "code": "WP2303",
+          "name": "Breezanddijk",
+          "search_name_variants": [
+            "Breezanddijk"
+          ]
+        },
+        {
+          "code": "WP2012",
+          "name": "Britswert",
+          "search_name_variants": [
+            "Britswert"
+          ]
+        },
+        {
+          "code": "WP2304",
+          "name": "Burgwerd",
+          "search_name_variants": [
+            "Burgwerd"
+          ]
+        },
+        {
+          "code": "WP2305",
+          "name": "Cornwerd",
+          "search_name_variants": [
+            "Cornwerd"
+          ]
+        },
+        {
+          "code": "WP2526",
+          "name": "Dearsum",
+          "search_name_variants": [
+            "Dearsum"
+          ]
+        },
+        {
+          "code": "WP2306",
+          "name": "Dedgum",
+          "search_name_variants": [
+            "Dedgum"
+          ]
+        },
+        {
+          "code": "WP2013",
+          "name": "Easterein",
+          "search_name_variants": [
+            "Easterein"
+          ]
+        },
+        {
+          "code": "WP2015",
+          "name": "Easterwierrum",
+          "search_name_variants": [
+            "Easterwierrum"
+          ]
+        },
+        {
+          "code": "WP2307",
+          "name": "Exmorra",
+          "search_name_variants": [
+            "Exmorra"
+          ]
+        },
+        {
+          "code": "WP2308",
+          "name": "Ferwoude",
+          "search_name_variants": [
+            "Ferwoude"
+          ]
+        },
+        {
+          "code": "WP2402",
+          "name": "Folsgare",
+          "search_name_variants": [
+            "Folsgare"
+          ]
+        },
+        {
+          "code": "WP2309",
+          "name": "Gaast",
+          "search_name_variants": [
+            "Gaast"
+          ]
+        },
+        {
+          "code": "WP2403",
+          "name": "Gaastmeer",
+          "search_name_variants": [
+            "Gaastmeer"
+          ]
+        },
+        {
+          "code": "WP2404",
+          "name": "Gauw",
+          "search_name_variants": [
+            "Gauw"
+          ]
+        },
+        {
+          "code": "WP2405",
+          "name": "Goënga",
+          "search_name_variants": [
+            "Goënga",
+            "Goenga"
+          ]
+        },
+        {
+          "code": "WP2406",
+          "name": "Greonterp",
+          "search_name_variants": [
+            "Greonterp"
+          ]
+        },
+        {
+          "code": "WP2310",
+          "name": "Hartwerd",
+          "search_name_variants": [
+            "Hartwerd"
+          ]
+        },
+        {
+          "code": "WP2407",
+          "name": "Heeg",
+          "search_name_variants": [
+            "Heeg"
+          ]
+        },
+        {
+          "code": "WP1970",
+          "name": "Hemelum",
+          "search_name_variants": [
+            "Hemelum"
+          ]
+        },
+        {
+          "code": "WP2311",
+          "name": "Hichtum",
+          "search_name_variants": [
+            "Hichtum"
+          ]
+        },
+        {
+          "code": "WP2016",
+          "name": "Hidaard",
+          "search_name_variants": [
+            "Hidaard"
+          ]
+        },
+        {
+          "code": "WP2312",
+          "name": "Hieslum",
+          "search_name_variants": [
+            "Hieslum"
+          ]
+        },
+        {
+          "code": "WP1968",
+          "name": "Hindeloopen",
+          "search_name_variants": [
+            "Hindeloopen"
+          ]
+        },
+        {
+          "code": "WP2018",
+          "name": "Hinnaard",
+          "search_name_variants": [
+            "Hinnaard"
+          ]
+        },
+        {
+          "code": "WP2408",
+          "name": "Hommerts",
+          "search_name_variants": [
+            "Hommerts"
+          ]
+        },
+        {
+          "code": "WP2410",
+          "name": "IJlst",
+          "search_name_variants": [
+            "IJlst"
+          ]
+        },
+        {
+          "code": "WP2313",
+          "name": "Idsegahuizum",
+          "search_name_variants": [
+            "Idsegahuizum"
+          ]
+        },
+        {
+          "code": "WP2409",
+          "name": "Idzega",
+          "search_name_variants": [
+            "Idzega"
+          ]
+        },
+        {
+          "code": "WP2020",
+          "name": "Iens",
+          "search_name_variants": [
+            "Iens"
+          ]
+        },
+        {
+          "code": "WP2411",
+          "name": "Indijk",
+          "search_name_variants": [
+            "Indijk"
+          ]
+        },
+        {
+          "code": "WP1973",
+          "name": "It Heidenskip",
+          "search_name_variants": [
+            "It Heidenskip"
+          ]
+        },
+        {
+          "code": "WP2021",
+          "name": "Itens",
+          "search_name_variants": [
+            "Itens"
+          ]
+        },
+        {
+          "code": "WP2412",
+          "name": "Jutrijp",
+          "search_name_variants": [
+            "Jutrijp"
+          ]
+        },
+        {
+          "code": "WP2314",
+          "name": "Kimswerd",
+          "search_name_variants": [
+            "Kimswerd"
+          ]
+        },
+        {
+          "code": "WP2315",
+          "name": "Kornwerderzand",
+          "search_name_variants": [
+            "Kornwerderzand"
+          ]
+        },
+        {
+          "code": "WP1966",
+          "name": "Koudum",
+          "search_name_variants": [
+            "Koudum"
+          ]
+        },
+        {
+          "code": "WP2413",
+          "name": "Koufurderrige",
+          "search_name_variants": [
+            "Koufurderrige"
+          ]
+        },
+        {
+          "code": "WP2024",
+          "name": "Kûbaard",
+          "search_name_variants": [
+            "Kûbaard",
+            "Kubaard"
+          ]
+        },
+        {
+          "code": "WP2316",
+          "name": "Lollum",
+          "search_name_variants": [
+            "Lollum"
+          ]
+        },
+        {
+          "code": "WP2317",
+          "name": "Longerhouw",
+          "search_name_variants": [
+            "Longerhouw"
+          ]
+        },
+        {
+          "code": "WP3505",
+          "name": "Loënga",
+          "search_name_variants": [
+            "Loënga",
+            "Loenga"
+          ]
+        },
+        {
+          "code": "WP2026",
+          "name": "Lytsewierrum",
+          "search_name_variants": [
+            "Lytsewierrum"
+          ]
+        },
+        {
+          "code": "WP2318",
+          "name": "Makkum",
+          "search_name_variants": [
+            "Makkum"
+          ]
+        },
+        {
+          "code": "WP1967",
+          "name": "Molkwerum",
+          "search_name_variants": [
+            "Molkwerum"
+          ]
+        },
+        {
+          "code": "WP1972",
+          "name": "Nijhuizum",
+          "search_name_variants": [
+            "Nijhuizum"
+          ]
+        },
+        {
+          "code": "WP2414",
+          "name": "Nijland",
+          "search_name_variants": [
+            "Nijland"
+          ]
+        },
+        {
+          "code": "WP3506",
+          "name": "Offingawier",
+          "search_name_variants": [
+            "Offingawier"
+          ]
+        },
+        {
+          "code": "WP2415",
+          "name": "Oosthem",
+          "search_name_variants": [
+            "Oosthem"
+          ]
+        },
+        {
+          "code": "WP2416",
+          "name": "Oppenhuizen",
+          "search_name_variants": [
+            "Oppenhuizen"
+          ]
+        },
+        {
+          "code": "WP2417",
+          "name": "Oudega",
+          "search_name_variants": [
+            "Oudega"
+          ]
+        },
+        {
+          "code": "WP2319",
+          "name": "Parrega",
+          "search_name_variants": [
+            "Parrega"
+          ]
+        },
+        {
+          "code": "WP2320",
+          "name": "Piaam",
+          "search_name_variants": [
+            "Piaam"
+          ]
+        },
+        {
+          "code": "WP2321",
+          "name": "Pingjum",
+          "search_name_variants": [
+            "Pingjum"
+          ]
+        },
+        {
+          "code": "WP2533",
+          "name": "Poppenwier",
+          "search_name_variants": [
+            "Poppenwier"
+          ]
+        },
+        {
+          "code": "WP2534",
+          "name": "Raerd",
+          "search_name_variants": [
+            "Raerd"
+          ]
+        },
+        {
+          "code": "WP2028",
+          "name": "Reahûs",
+          "search_name_variants": [
+            "Reahûs",
+            "Reahus"
+          ]
+        },
+        {
+          "code": "WP2029",
+          "name": "Rien",
+          "search_name_variants": [
+            "Rien"
+          ]
+        },
+        {
+          "code": "WP2418",
+          "name": "Sandfirden",
+          "search_name_variants": [
+            "Sandfirden"
+          ]
+        },
+        {
+          "code": "WP2419",
+          "name": "Scharnegoutum",
+          "search_name_variants": [
+            "Scharnegoutum"
+          ]
+        },
+        {
+          "code": "WP2322",
+          "name": "Schettens",
+          "search_name_variants": [
+            "Schettens"
+          ]
+        },
+        {
+          "code": "WP2323",
+          "name": "Schraard",
+          "search_name_variants": [
+            "Schraard"
+          ]
+        },
+        {
+          "code": "WP2536",
+          "name": "Sibrandabuorren",
+          "search_name_variants": [
+            "Sibrandabuorren"
+          ]
+        },
+        {
+          "code": "WP2420",
+          "name": "Smallebrugge",
+          "search_name_variants": [
+            "Smallebrugge"
+          ]
+        },
+        {
+          "code": "WP3504",
+          "name": "Sneek",
+          "search_name_variants": [
+            "Sneek"
+          ]
+        },
+        {
+          "code": "WP1969",
+          "name": "Stavoren",
+          "search_name_variants": [
+            "Stavoren"
+          ]
+        },
+        {
+          "code": "WP2538",
+          "name": "Tersoal",
+          "search_name_variants": [
+            "Tersoal"
+          ]
+        },
+        {
+          "code": "WP3591",
+          "name": "Tirns",
+          "search_name_variants": [
+            "Tirns"
+          ]
+        },
+        {
+          "code": "WP2422",
+          "name": "Tjalhuizum",
+          "search_name_variants": [
+            "Tjalhuizum"
+          ]
+        },
+        {
+          "code": "WP2324",
+          "name": "Tjerkwerd",
+          "search_name_variants": [
+            "Tjerkwerd"
+          ]
+        },
+        {
+          "code": "WP2423",
+          "name": "Uitwellingerga",
+          "search_name_variants": [
+            "Uitwellingerga"
+          ]
+        },
+        {
+          "code": "WP2031",
+          "name": "Waaksens",
+          "search_name_variants": [
+            "Waaksens"
+          ]
+        },
+        {
+          "code": "WP1971",
+          "name": "Warns",
+          "search_name_variants": [
+            "Warns"
+          ]
+        },
+        {
+          "code": "WP2424",
+          "name": "Westhem",
+          "search_name_variants": [
+            "Westhem"
+          ]
+        },
+        {
+          "code": "WP2325",
+          "name": "Witmarsum",
+          "search_name_variants": [
+            "Witmarsum"
+          ]
+        },
+        {
+          "code": "WP2034",
+          "name": "Wiuwert",
+          "search_name_variants": [
+            "Wiuwert"
+          ]
+        },
+        {
+          "code": "WP2425",
+          "name": "Wolsum",
+          "search_name_variants": [
+            "Wolsum"
+          ]
+        },
+        {
+          "code": "WP2036",
+          "name": "Wommels",
+          "search_name_variants": [
+            "Wommels"
+          ]
+        },
+        {
+          "code": "WP2326",
+          "name": "Wons",
+          "search_name_variants": [
+            "Wons"
+          ]
+        },
+        {
+          "code": "WP1965",
+          "name": "Workum",
+          "search_name_variants": [
+            "Workum"
+          ]
+        },
+        {
+          "code": "WP2426",
+          "name": "Woudsend",
+          "search_name_variants": [
+            "Woudsend"
+          ]
+        },
+        {
+          "code": "WP2427",
+          "name": "Ypecolsga",
+          "search_name_variants": [
+            "Ypecolsga"
+          ]
+        },
+        {
+          "code": "WP3592",
+          "name": "Ysbrechtum",
+          "search_name_variants": [
+            "Ysbrechtum"
+          ]
+        },
+        {
+          "code": "WP2327",
+          "name": "Zurich",
+          "search_name_variants": [
+            "Zurich"
+          ]
+        }
+      ],
+      "official_name": "Súdwest-Fryslân",
+      "search_name_variants": [
+        "Súdwest-Fryslân",
+        "Sudwest-Fryslan"
+      ],
+      "research_centres": [
+        "Sneek",
+        "Bolsward",
+        "IJlst",
+        "Workum",
+        "Makkum",
+        "Woudsend",
+        "Heeg",
+        "Koudum",
+        "Witmarsum",
+        "Stavoren",
+        "Wommels"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0093",
+      "name": "Terschelling",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 4834,
+      "settlement_count": 12,
+      "settlements": [
+        {
+          "code": "WP2621",
+          "name": "Baaiduinen",
+          "search_name_variants": [
+            "Baaiduinen"
+          ]
+        },
+        {
+          "code": "WP2617",
+          "name": "Formerum",
+          "search_name_variants": [
+            "Formerum"
+          ]
+        },
+        {
+          "code": "WP2623",
+          "name": "Hee",
+          "search_name_variants": [
+            "Hee"
+          ]
+        },
+        {
+          "code": "WP2615",
+          "name": "Hoorn",
+          "search_name_variants": [
+            "Hoorn"
+          ]
+        },
+        {
+          "code": "WP2622",
+          "name": "Kaard",
+          "search_name_variants": [
+            "Kaard"
+          ]
+        },
+        {
+          "code": "WP2624",
+          "name": "Kinnum",
+          "search_name_variants": [
+            "Kinnum"
+          ]
+        },
+        {
+          "code": "WP2618",
+          "name": "Landerum",
+          "search_name_variants": [
+            "Landerum"
+          ]
+        },
+        {
+          "code": "WP2616",
+          "name": "Lies",
+          "search_name_variants": [
+            "Lies"
+          ]
+        },
+        {
+          "code": "WP2619",
+          "name": "Midsland",
+          "search_name_variants": [
+            "Midsland"
+          ]
+        },
+        {
+          "code": "WP2614",
+          "name": "Oosterend",
+          "search_name_variants": [
+            "Oosterend"
+          ]
+        },
+        {
+          "code": "WP2620",
+          "name": "Striep",
+          "search_name_variants": [
+            "Striep"
+          ]
+        },
+        {
+          "code": "WP2625",
+          "name": "West-Terschelling",
+          "search_name_variants": [
+            "West-Terschelling"
+          ]
+        }
+      ],
+      "official_name": "Terschelling",
+      "search_name_variants": [
+        "Terschelling"
+      ],
+      "research_centres": [
+        "West-Terschelling",
+        "Midsland",
+        "Formerum",
+        "Hoorn",
+        "Oosterend"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0737",
+      "name": "Tytsjerksteradiel",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 32874,
+      "settlement_count": 16,
+      "settlements": [
+        {
+          "code": "WP2441",
+          "name": "Aldtsjerk",
+          "search_name_variants": [
+            "Aldtsjerk"
+          ]
+        },
+        {
+          "code": "WP2451",
+          "name": "Burgum",
+          "search_name_variants": [
+            "Burgum"
+          ]
+        },
+        {
+          "code": "WP2456",
+          "name": "Earnewâld",
+          "search_name_variants": [
+            "Earnewâld",
+            "Earnewald"
+          ]
+        },
+        {
+          "code": "WP2454",
+          "name": "Eastermar",
+          "search_name_variants": [
+            "Eastermar"
+          ]
+        },
+        {
+          "code": "WP2455",
+          "name": "Garyp",
+          "search_name_variants": [
+            "Garyp"
+          ]
+        },
+        {
+          "code": "WP2444",
+          "name": "Gytsjerk",
+          "search_name_variants": [
+            "Gytsjerk"
+          ]
+        },
+        {
+          "code": "WP2449",
+          "name": "Hurdegaryp",
+          "search_name_variants": [
+            "Hurdegaryp"
+          ]
+        },
+        {
+          "code": "WP2452",
+          "name": "Jistrum",
+          "search_name_variants": [
+            "Jistrum"
+          ]
+        },
+        {
+          "code": "WP2446",
+          "name": "Mûnein",
+          "search_name_variants": [
+            "Mûnein",
+            "Munein"
+          ]
+        },
+        {
+          "code": "WP2450",
+          "name": "Noardburgum",
+          "search_name_variants": [
+            "Noardburgum"
+          ]
+        },
+        {
+          "code": "WP2443",
+          "name": "Oentsjerk",
+          "search_name_variants": [
+            "Oentsjerk"
+          ]
+        },
+        {
+          "code": "WP2445",
+          "name": "Ryptsjerk",
+          "search_name_variants": [
+            "Ryptsjerk"
+          ]
+        },
+        {
+          "code": "WP2453",
+          "name": "Sumar",
+          "search_name_variants": [
+            "Sumar"
+          ]
+        },
+        {
+          "code": "WP2448",
+          "name": "Suwâld",
+          "search_name_variants": [
+            "Suwâld",
+            "Suwald"
+          ]
+        },
+        {
+          "code": "WP2447",
+          "name": "Tytsjerk",
+          "search_name_variants": [
+            "Tytsjerk"
+          ]
+        },
+        {
+          "code": "WP2442",
+          "name": "Wyns",
+          "search_name_variants": [
+            "Wyns"
+          ]
+        }
+      ],
+      "official_name": "Tytsjerksteradiel",
+      "search_name_variants": [
+        "Tytsjerksteradiel"
+      ],
+      "research_centres": [
+        "Burgum",
+        "Sumar",
+        "Eastermar",
+        "Gytsjerk",
+        "Oentsjerk",
+        "Noardburgum",
+        "Hurdegaryp",
+        "Garyp"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0096",
+      "name": "Vlieland",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 1202,
+      "settlement_count": 1,
+      "settlements": [
+        {
+          "code": "WP3299",
+          "name": "Vlieland",
+          "search_name_variants": [
+            "Vlieland"
+          ]
+        }
+      ],
+      "official_name": "Vlieland",
+      "search_name_variants": [
+        "Vlieland"
+      ],
+      "research_centres": [
+        "Vlieland"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM1949",
+      "name": "Waadhoeke",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR04",
+      "corop_name": "Noord-Friesland",
+      "inhabitants": 47158,
+      "settlement_count": 41,
+      "settlements": [
+        {
+          "code": "WP1364",
+          "name": "Achlum",
+          "search_name_variants": [
+            "Achlum"
+          ]
+        },
+        {
+          "code": "WP2008",
+          "name": "Baaium",
+          "search_name_variants": [
+            "Baaium"
+          ]
+        },
+        {
+          "code": "WP2724",
+          "name": "Berltsum",
+          "search_name_variants": [
+            "Berltsum"
+          ]
+        },
+        {
+          "code": "WP2722",
+          "name": "Bitgum",
+          "search_name_variants": [
+            "Bitgum"
+          ]
+        },
+        {
+          "code": "WP2723",
+          "name": "Bitgummole",
+          "search_name_variants": [
+            "Bitgummole"
+          ]
+        },
+        {
+          "code": "WP2725",
+          "name": "Blessum",
+          "search_name_variants": [
+            "Blessum"
+          ]
+        },
+        {
+          "code": "WP1371",
+          "name": "Boer",
+          "search_name_variants": [
+            "Boer"
+          ]
+        },
+        {
+          "code": "WP2726",
+          "name": "Boksum",
+          "search_name_variants": [
+            "Boksum"
+          ]
+        },
+        {
+          "code": "WP2727",
+          "name": "Deinum",
+          "search_name_variants": [
+            "Deinum"
+          ]
+        },
+        {
+          "code": "WP1372",
+          "name": "Dongjum",
+          "search_name_variants": [
+            "Dongjum"
+          ]
+        },
+        {
+          "code": "WP2729",
+          "name": "Dronryp",
+          "search_name_variants": [
+            "Dronryp"
+          ]
+        },
+        {
+          "code": "WP1378",
+          "name": "Firdgum",
+          "search_name_variants": [
+            "Firdgum"
+          ]
+        },
+        {
+          "code": "WP1366",
+          "name": "Franeker",
+          "search_name_variants": [
+            "Franeker"
+          ]
+        },
+        {
+          "code": "WP1365",
+          "name": "Herbaijum",
+          "search_name_variants": [
+            "Herbaijum"
+          ]
+        },
+        {
+          "code": "WP1363",
+          "name": "Hitzum",
+          "search_name_variants": [
+            "Hitzum"
+          ]
+        },
+        {
+          "code": "WP2728",
+          "name": "Ingelum",
+          "search_name_variants": [
+            "Ingelum"
+          ]
+        },
+        {
+          "code": "WP1376",
+          "name": "Klooster Lidlum",
+          "search_name_variants": [
+            "Klooster Lidlum"
+          ]
+        },
+        {
+          "code": "WP2730",
+          "name": "Marsum",
+          "search_name_variants": [
+            "Marsum"
+          ]
+        },
+        {
+          "code": "WP2731",
+          "name": "Menaam",
+          "search_name_variants": [
+            "Menaam"
+          ]
+        },
+        {
+          "code": "WP3333",
+          "name": "Minnertsga",
+          "search_name_variants": [
+            "Minnertsga"
+          ]
+        },
+        {
+          "code": "WP3330",
+          "name": "Nij Altoenae",
+          "search_name_variants": [
+            "Nij Altoenae"
+          ]
+        },
+        {
+          "code": "WP1375",
+          "name": "Oosterbierum",
+          "search_name_variants": [
+            "Oosterbierum"
+          ]
+        },
+        {
+          "code": "WP3328",
+          "name": "Oudebildtzijl",
+          "search_name_variants": [
+            "Oudebildtzijl"
+          ]
+        },
+        {
+          "code": "WP1368",
+          "name": "Peins",
+          "search_name_variants": [
+            "Peins"
+          ]
+        },
+        {
+          "code": "WP1374",
+          "name": "Pietersbierum",
+          "search_name_variants": [
+            "Pietersbierum"
+          ]
+        },
+        {
+          "code": "WP1370",
+          "name": "Ried",
+          "search_name_variants": [
+            "Ried"
+          ]
+        },
+        {
+          "code": "WP1369",
+          "name": "Schalsum",
+          "search_name_variants": [
+            "Schalsum"
+          ]
+        },
+        {
+          "code": "WP1373",
+          "name": "Sexbierum",
+          "search_name_variants": [
+            "Sexbierum"
+          ]
+        },
+        {
+          "code": "WP2732",
+          "name": "Skingen",
+          "search_name_variants": [
+            "Skingen"
+          ]
+        },
+        {
+          "code": "WP2733",
+          "name": "Slappeterp",
+          "search_name_variants": [
+            "Slappeterp"
+          ]
+        },
+        {
+          "code": "WP2030",
+          "name": "Spannum",
+          "search_name_variants": [
+            "Spannum"
+          ]
+        },
+        {
+          "code": "WP3331",
+          "name": "St.-Annaparochie",
+          "search_name_variants": [
+            "St.-Annaparochie"
+          ]
+        },
+        {
+          "code": "WP3332",
+          "name": "St.-Jacobiparochie",
+          "search_name_variants": [
+            "St.-Jacobiparochie"
+          ]
+        },
+        {
+          "code": "WP1362",
+          "name": "Tzum",
+          "search_name_variants": [
+            "Tzum"
+          ]
+        },
+        {
+          "code": "WP1377",
+          "name": "Tzummarum",
+          "search_name_variants": [
+            "Tzummarum"
+          ]
+        },
+        {
+          "code": "WP3334",
+          "name": "Vrouwenparochie",
+          "search_name_variants": [
+            "Vrouwenparochie"
+          ]
+        },
+        {
+          "code": "WP3329",
+          "name": "Westhoek",
+          "search_name_variants": [
+            "Westhoek"
+          ]
+        },
+        {
+          "code": "WP2734",
+          "name": "Wier",
+          "search_name_variants": [
+            "Wier"
+          ]
+        },
+        {
+          "code": "WP2033",
+          "name": "Winsum",
+          "search_name_variants": [
+            "Winsum"
+          ]
+        },
+        {
+          "code": "WP2035",
+          "name": "Wjelsryp",
+          "search_name_variants": [
+            "Wjelsryp"
+          ]
+        },
+        {
+          "code": "WP1367",
+          "name": "Zweins",
+          "search_name_variants": [
+            "Zweins"
+          ]
+        }
+      ],
+      "official_name": "Waadhoeke",
+      "search_name_variants": [
+        "Waadhoeke"
+      ],
+      "research_centres": [
+        "Franeker",
+        "St.-Annaparochie",
+        "St.-Jacobiparochie",
+        "Menaam",
+        "Dronryp",
+        "Berltsum",
+        "Marsum",
+        "Tzummarum",
+        "Sexbierum",
+        "Minnertsga"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    },
+    {
+      "cbs_code": "GM0098",
+      "name": "Weststellingwerf",
+      "province_code": "PV21",
+      "province_name": "Fryslân",
+      "corop_code": "CR06",
+      "corop_name": "Zuidoost-Friesland",
+      "inhabitants": 26622,
+      "settlement_count": 26,
+      "settlements": [
+        {
+          "code": "WP1720",
+          "name": "Blesdijke",
+          "search_name_variants": [
+            "Blesdijke"
+          ]
+        },
+        {
+          "code": "WP1721",
+          "name": "Boijl",
+          "search_name_variants": [
+            "Boijl"
+          ]
+        },
+        {
+          "code": "WP1722",
+          "name": "De Blesse",
+          "search_name_variants": [
+            "De Blesse"
+          ]
+        },
+        {
+          "code": "WP1723",
+          "name": "De Hoeve",
+          "search_name_variants": [
+            "De Hoeve"
+          ]
+        },
+        {
+          "code": "WP1724",
+          "name": "Langelille",
+          "search_name_variants": [
+            "Langelille"
+          ]
+        },
+        {
+          "code": "WP1725",
+          "name": "Munnekeburen",
+          "search_name_variants": [
+            "Munnekeburen"
+          ]
+        },
+        {
+          "code": "WP1726",
+          "name": "Nijeholtpade",
+          "search_name_variants": [
+            "Nijeholtpade"
+          ]
+        },
+        {
+          "code": "WP1727",
+          "name": "Nijeholtwolde",
+          "search_name_variants": [
+            "Nijeholtwolde"
+          ]
+        },
+        {
+          "code": "WP1728",
+          "name": "Nijelamer",
+          "search_name_variants": [
+            "Nijelamer"
+          ]
+        },
+        {
+          "code": "WP1729",
+          "name": "Nijetrijne",
+          "search_name_variants": [
+            "Nijetrijne"
+          ]
+        },
+        {
+          "code": "WP1730",
+          "name": "Noordwolde",
+          "search_name_variants": [
+            "Noordwolde"
+          ]
+        },
+        {
+          "code": "WP1731",
+          "name": "Oldeholtpade",
+          "search_name_variants": [
+            "Oldeholtpade"
+          ]
+        },
+        {
+          "code": "WP1732",
+          "name": "Oldeholtwolde",
+          "search_name_variants": [
+            "Oldeholtwolde"
+          ]
+        },
+        {
+          "code": "WP1733",
+          "name": "Oldelamer",
+          "search_name_variants": [
+            "Oldelamer"
+          ]
+        },
+        {
+          "code": "WP1734",
+          "name": "Oldetrijne",
+          "search_name_variants": [
+            "Oldetrijne"
+          ]
+        },
+        {
+          "code": "WP1735",
+          "name": "Oosterstreek",
+          "search_name_variants": [
+            "Oosterstreek"
+          ]
+        },
+        {
+          "code": "WP1736",
+          "name": "Peperga",
+          "search_name_variants": [
+            "Peperga"
+          ]
+        },
+        {
+          "code": "WP1737",
+          "name": "Scherpenzeel",
+          "search_name_variants": [
+            "Scherpenzeel"
+          ]
+        },
+        {
+          "code": "WP1738",
+          "name": "Slijkenburg",
+          "search_name_variants": [
+            "Slijkenburg"
+          ]
+        },
+        {
+          "code": "WP1739",
+          "name": "Sonnega",
+          "search_name_variants": [
+            "Sonnega"
+          ]
+        },
+        {
+          "code": "WP1740",
+          "name": "Spanga",
+          "search_name_variants": [
+            "Spanga"
+          ]
+        },
+        {
+          "code": "WP1741",
+          "name": "Steggerda",
+          "search_name_variants": [
+            "Steggerda"
+          ]
+        },
+        {
+          "code": "WP1742",
+          "name": "Ter Idzard",
+          "search_name_variants": [
+            "Ter Idzard"
+          ]
+        },
+        {
+          "code": "WP1743",
+          "name": "Vinkega",
+          "search_name_variants": [
+            "Vinkega"
+          ]
+        },
+        {
+          "code": "WP1744",
+          "name": "Wolvega",
+          "search_name_variants": [
+            "Wolvega"
+          ]
+        },
+        {
+          "code": "WP1745",
+          "name": "Zandhuizen",
+          "search_name_variants": [
+            "Zandhuizen"
+          ]
+        }
+      ],
+      "official_name": "Weststellingwerf",
+      "search_name_variants": [
+        "Weststellingwerf"
+      ],
+      "research_centres": [
+        "Wolvega",
+        "Noordwolde",
+        "De Blesse",
+        "Steggerda",
+        "Blesdijke",
+        "Oldeholtpade",
+        "Scherpenzeel",
+        "Munnekeburen",
+        "Boijl"
+      ],
+      "research_centres_basis": "Operational selection for employer searches; membership verified by CBS 86312NED. This is not a population or employer-size ranking.",
+      "evidence_urls": [
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+        "https://www.cbs.nl/nl-nl/cijfers/detail/86312ned"
+      ],
+      "checked_on": "2026-11-06"
+    }
+  ],
+  "ambiguous_settlement_names": [
+    {
+      "name": "Nes",
+      "municipalities": [
+        "Ameland",
+        "Heerenveen",
+        "Noardeast-Fryslân"
+      ],
+      "note": "Province and locality alone do not identify a unique municipality; verify postcode/street or official employer address."
+    },
+    {
+      "name": "Oudega",
+      "municipalities": [
+        "De Fryske Marren",
+        "Smallingerland",
+        "Súdwest-Fryslân"
+      ],
+      "note": "Province and locality alone do not identify a unique municipality; verify postcode/street or official employer address."
+    }
+  ],
+  "boundary_pitfalls": [
+    {
+      "locality": "Drachten-Azeven",
+      "municipality": "Opsterland",
+      "cbs_code": "GM0086",
+      "note": "Do not automatically assign to Smallingerland because of the Drachten name."
+    },
+    {
+      "locality": "Nijehaske",
+      "municipality": "De Fryske Marren",
+      "cbs_code": "GM1940",
+      "note": "Do not automatically assign to Heerenveen based on its business-area association."
+    },
+    {
+      "locality": "Oudehaske",
+      "municipality": "De Fryske Marren",
+      "cbs_code": "GM1940"
+    },
+    {
+      "locality": "Akkrum",
+      "municipality": "Heerenveen",
+      "cbs_code": "GM0074"
+    },
+    {
+      "locality": "Aldeboarn",
+      "municipality": "Heerenveen",
+      "cbs_code": "GM0074"
+    },
+    {
+      "locality": "Zurich",
+      "municipality": "Súdwest-Fryslân",
+      "cbs_code": "GM1900",
+      "note": "This locality is in Friesland, Netherlands; it must not be confused with Zürich, Switzerland. Require explicit address evidence."
+    }
+  ],
+  "limitations": [
+    "The municipal list is verified against official CBS 2026 membership and the provincial page stating 18 municipalities; the latter labels its map 2025.",
+    "CBS 86247NED is definitive for the administrative classification at 1 January 2026, updated 14 July 2026.",
+    "The 419 BAG settlements use the CBS annual snapshot: existing on 1 January 2026 according to the February 2026 BAG extract. CBS marks settlement data provisional and subject to later BAG changes.",
+    "This file is a complete municipal and annual-settlement research frame, not a claim of a complete employer census.",
+    "Bilingual historical names, industrial-park marketing names, postal addresses and municipality boundaries are not interchangeable. Normalised search variants remove diacritics only and are not alternative statutory names.",
+    "Research centres are selected to organise employer searches, while every official settlement remains available in settlements.",
+    "Company workplaces require official address evidence; common locality names can also occur outside Friesland. No exact boundary geometry or geocoding is supplied."
+  ]
+}

@@ -51,6 +51,7 @@ def region_codes_for_job(job,companies):
     for company in companies:
         if employer not in {company_key(n) for n in [company['name']]+company.get('aliases',[])}:continue
         for place in company.get('workplaces',[]):
+            if not place.get('city'):continue
             if place.get('location_confidence')!='confirmed' or place['country'] not in job['countries']:continue
             if re.search(r'\b'+re.escape(fold(place['city']))+r'\b',city) and place.get('region_code'):codes.add(place['region_code'])
     return sorted(codes)

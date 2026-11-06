@@ -2,7 +2,7 @@ import hashlib
 import html
 import re
 import unicodedata
-from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode, quote
 
 COUNTRIES = dict(AT='Austria', BE='Belgium', BG='Bulgaria', HR='Croatia', CY='Cyprus', CZ='Czechia', DK='Denmark', EE='Estonia', FI='Finland', FR='France', DE='Germany', GR='Greece', HU='Hungary', IE='Ireland', IT='Italy', LV='Latvia', LT='Lithuania', LU='Luxembourg', MT='Malta', NL='Netherlands', PL='Poland', PT='Portugal', RO='Romania', SK='Slovakia', SI='Slovenia', ES='Spain', SE='Sweden')
 LANGUAGES = dict(en='English', nl='Dutch', fr='French', de='German', es='Spanish', it='Italian', pt='Portuguese', pl='Polish', sv='Swedish', da='Danish', fi='Finnish', el='Greek', cs='Czech', ro='Romanian', hu='Hungarian', bg='Bulgarian', hr='Croatian', sk='Slovak', sl='Slovenian', et='Estonian', lv='Latvian', lt='Lithuanian', mt='Maltese', ga='Irish', uk='Ukrainian')
@@ -41,7 +41,7 @@ def canonical_url(url):
     if p.hostname in ('localhost','127.0.0.1','::1') or re.match(r'^\d+\.\d+\.\d+\.\d+$',p.hostname):
         raise ValueError('IP addresses are not job hosts')
     query = [(k,v) for k,v in parse_qsl(p.query) if not k.startswith('utm_') and k not in ('trid','oga','gh_src','lever-source','lever-origin')]
-    return urlunsplit(('https',p.netloc.lower(),p.path.rstrip('/'),urlencode(query),''))
+    return urlunsplit(('https',p.netloc.lower(),quote(p.path.rstrip('/'),safe="/%:@!$&'()*+,;=-._~"),urlencode(query),''))
 
 def country_codes(location, explicit=None):
     iso3 = dict(zip('AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE'.split(),COUNTRIES))

@@ -25,7 +25,10 @@ class PageParser(HTMLParser):
         if self._json:self._body.append(data)
     def handle_endtag(self,tag):
         if tag=='script' and self._json:
-            try:self.scripts.append(json.loads(''.join(self._body)))
+            raw=''.join(self._body).strip()
+            raw=re.sub(r'^\s*//\s*<!\[CDATA\[\s*','',raw)
+            raw=re.sub(r'\s*//\s*\]\]>\s*$','',raw)
+            try:self.scripts.append(json.loads(raw))
             except (ValueError,TypeError):pass
             self._json=False
 
@@ -68,7 +71,10 @@ def page_record(record,source,client,clock=None):
     parser=PageParser();parser.feed(body.decode('utf-8','replace'))
     data=next((j for script in parser.scripts for j in walk_json(script)),None)
     result=dict(record);stamp=clock or datetime.now(timezone.utc)
-    if source.get('page_format')=='danone':
+    if source.get('page_format')=='aware':
+        from .reviewed_html import aware_record
+        result=aware_record(body,record,source)
+    elif source.get('page_format')=='danone':
         slug=urlsplit(record['url']).path.rsplit('/',1)[-1].removesuffix('.html')
         fragment=next((f for f in parser.fragments if f.get('key')==slug),None)
         if not fragment:raise ValueError('Matching Danone job fragment not found; page may be closed')
