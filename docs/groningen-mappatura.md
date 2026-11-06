@@ -1,5 +1,7 @@
 # Groningen: prima raccolta degli stage HR
 
+Stato aggiornato al 6 novembre 2026, 19:10 Europe/Zurich: **PR #2 integrata, raccolta remota completa e pubblicazione automatica in produzione verificate**. Le sezioni di revisione prima del merge sono storiche; le prove finali sono nella sezione conclusiva e nel rapporto JSON.
+
 Verifica del 6 novembre 2026. Inventario iniziale in ampliamento, non censimento esaustivo.
 
 ## Risultati per gli studenti
@@ -73,3 +75,20 @@ Il codice corretto `4a0b5f6c0735f239e35c009c46c559ed14f6e8a1` supera 132 test Py
 La produzione pubblica è stata aperta in una sessione anonima: catalogo di 147 annunci e 27 paesi, Frisia con sette stage. Groningen non è ancora pubblicata: `/groningen.html` restituisce HTTP 200 tramite il fallback del sito, senza la pagina provinciale. L’ultima raccolta completa già in produzione è riuscita ([workflow 42221643385](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42221643385)); non include Groningen. Il ciclo remoto con Groningen e l’aggiornamento automatico della produzione rimangono da verificare dopo il merge esplicitamente autorizzato. Nessun criterio di completamento della produzione viene dichiarato soddisfatto sulla base della sola anteprima.
 
 Prove dettagliate, date UTC e verifiche ancora necessarie: `docs/groningen-remote-verification.json`.
+
+
+## Verifica finale in produzione — 6 novembre 2026
+
+La [PR #2](https://github.com/nightlydeveloper8/eu-hr-internships/pull/2) è stata integrata dopo autorizzazione esplicita nel commit `e8a692d630079f8aadb1c3c1542370a28ecb6686`. Il [workflow 42264583427](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42264583427) è concluso con successo: test, tutti i 16 gruppi, consolidamento, validazione e pubblicazione. I log confermano 132 test Python, 12 test frontend e 52 esempi di classificazione.
+
+Il bot ha pubblicato il [commit 119c6fb825b4b25c1f01bfb51e0d49a914cecc52](https://github.com/nightlydeveloper8/eu-hr-internships/commit/119c6fb825b4b25c1f01bfb51e0d49a914cecc52). L’[artefatto catalog-and-coverage](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42264583427/artifacts/13527423064), conservato da GitHub per 14 giorni, contiene nove file tutti identici al commit del bot. Cloudflare ha distribuito automaticamente quel commit nel deployment `ca0da97e-4a3b-44cd-930c-c433179c9cb7`.
+
+La [produzione Groningen](https://people-placement-eu.pages.dev/groningen.html) è stata aperta in una sessione anonima dopo il deployment del bot. La pagina provinciale effettiva è presente all’URL ordinario, con due stage verificati, dieci comuni, due programmi distinti e filtro funzionante. Moduli ufficiali HANOS e Fotofabriek ricontrollati senza inviare candidature. Desktop e mobile non presentano errori di pagina né overflow del documento; anche apertura/chiusura dei filtri mobili, filtro regionale, filtro Portogallo e reset del catalogo funzionano. La [Frisia](https://people-placement-eu.pages.dev/friesland.html) mantiene sette stage e diciotto comuni.
+
+Il dataset pubblico ha timestamp `2026-11-06T18:05:57.251698+00:00` (19:05:57 Europe/Zurich), identico al commit del bot: 183 record, 30 nuovi, tutti i 153 record precedenti conservati. Il controllo specifico sulle 50 fonti parziali/fallite che avevano annunci precedenti conferma la conservazione di tutti i loro 106 record e nessuna chiusura per assenza. I cambiamenti di disponibilità restano espliciti: due precedenti schede sono nuovamente verificate, due diventano non verificate secondo le normali regole di disponibilità, senza eliminazioni.
+
+Sono stati tentati tutti i 1.782 canali attivi dei 1.784 datori, compresi i 30 canali dei 31 datori Groningen e tutti gli 893 datori frisoni. Questo **non significa che tutti i siti siano stati letti completamente**. Fra i 27 qualificati Groningen: 3 datori con inventario osservato letto, 12 letture parziali, 9 scoperte incomplete e 3 blocchi/fallimenti. Non risultano esiti non riusciti con `complete: true`. I due annunci IKEA restano non verificati e nascosti; il monitor di salute continua a segnalare le fonti problematiche.
+
+La catena merge → raccolta → consolidamento → commit del bot → Cloudflare → dati pubblici è verificata. La pianificazione giornaliera esistente resta alle 06:17 UTC (07:17 in inverno / 08:17 in estate a Zurigo e Amsterdam), soggetta ai ritardi di GitHub; il prossimo avvio schedulato del codice aggiornato è un evento futuro, non viene dichiarato già osservato. Nessun servizio a pagamento, chiamata ricorrente a modelli o modifica architetturale aggiuntiva è stato introdotto.
+
+Date dei controlli, passaggi per job, hash dell’artefatto, confronto dei file e risultati completi: `docs/groningen-remote-verification.json`.

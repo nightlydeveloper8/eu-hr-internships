@@ -1,7 +1,7 @@
 {
-  "schema_version": 2,
-  "checked_at": "2026-11-06T17:24:40.769545+00:00",
-  "branch": "groningen-research",
+  "schema_version": 3,
+  "checked_at": "2026-11-06T18:09:37.847500+00:00",
+  "branch": "main",
   "pull_request": "https://github.com/nightlydeveloper8/eu-hr-internships/pull/2",
   "code_commit": "4a0b5f6c0735f239e35c009c46c559ed14f6e8a1",
   "validation": {
@@ -82,69 +82,2308 @@
     }
   },
   "full_remote_collection": {
-    "status": "not_executed_for_groningen",
-    "reason": "PR #2 is unmerged. The current user explicitly requires authorization before modifying main; the Groningen-inclusive collect/consolidate/publish cycle remains pending that authorization.",
-    "previous_main_runs": [
+    "run_id": 42264583427,
+    "url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42264583427",
+    "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686",
+    "trigger": "push",
+    "conclusion": "success",
+    "jobs": [
       {
-        "id": 42221643385,
-        "name": "Daily employer collection",
+        "id": 128053043914,
+        "name": "test",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42221643385",
-        "head_sha": "9226a88eaf4434a464ea4844edb02db8c8246070",
-        "event": "push",
-        "created_at": "2026-11-06T12:57:35Z",
-        "updated_at": "2026-11-06T13:15:37Z"
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Verify extraction, all-employer assignment and public export",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          }
+        ]
       },
       {
-        "id": 42180468791,
-        "name": "Daily employer collection",
+        "id": 128053181380,
+        "name": "collect (1)",
         "status": "completed",
         "conclusion": "success",
-        "html_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42180468791",
-        "head_sha": "9f266173e29d5dc57166f1dff8a43d7d5ab63ae6",
-        "event": "schedule",
-        "created_at": "2026-11-06T07:22:39Z",
-        "updated_at": "2026-11-06T07:42:40Z"
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181443,
+        "name": "collect (2)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181491,
+        "name": "collect (4)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181502,
+        "name": "collect (9)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181511,
+        "name": "collect (5)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181517,
+        "name": "collect (15)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181550,
+        "name": "collect (11)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181600,
+        "name": "collect (12)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181638,
+        "name": "collect (8)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181650,
+        "name": "collect (6)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181670,
+        "name": "collect (3)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181680,
+        "name": "collect (0)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181690,
+        "name": "collect (10)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181701,
+        "name": "collect (7)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181735,
+        "name": "collect (14)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128053181812,
+        "name": "collect (13)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Install public-page reader",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Restore employer page checkpoints",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Collect every assigned employer and verify matching links",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Save employer page checkpoints for the next morning",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain employer results",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 128063492275,
+        "name": "publish",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 42264583427,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/download-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Require a result for every employer, merge and validate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Retain catalog and per-employer outcomes",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Publish collected records and honest coverage",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Report source health or workflow failure",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
       }
     ],
-    "verification_after_authorized_merge": [
-      "Observe the Actions run on the merged main commit, including test, all 16 collect jobs, consolidation and publish.",
-      "Verify the catalog-and-coverage artifact, bot data commit, updated Groningen/Fryslân report and preservation of prior postings on partial source errors.",
-      "Observe Cloudflare deployment for the bot commit and verify production in a fresh anonymous desktop/mobile browser."
-    ]
+    "artifacts": [
+      {
+        "id": 13527423064,
+        "name": "catalog-and-coverage",
+        "size_in_bytes": 512786,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527423064",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527423064/zip",
+        "expired": false,
+        "created_at": "2026-11-06T18:06:19Z",
+        "expires_at": "2026-11-20T18:06:18Z",
+        "updated_at": "2026-11-06T18:06:19Z",
+        "digest": "sha256:0f5bf42244a055b6c0b6c974de7c14621edf214cda25c565138e04acf33ad00a",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13527291623,
+        "name": "employer-shard-2",
+        "size_in_bytes": 19462,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527291623",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527291623/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:55:52Z",
+        "expires_at": "2026-11-13T17:55:52Z",
+        "updated_at": "2026-11-06T17:55:52Z",
+        "digest": "sha256:96aaa172e8ef367f344b5133cb31ad1cff33550501cb4ad5163a828450744cd9",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13527236678,
+        "name": "employer-shard-8",
+        "size_in_bytes": 16382,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527236678",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527236678/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:54:19Z",
+        "expires_at": "2026-11-13T17:54:19Z",
+        "updated_at": "2026-11-06T17:54:19Z",
+        "digest": "sha256:dc372b2b07a71aa6fccfb04a095ef70e2260c3d29018b4be00f6bfb4a2a83376",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13527131935,
+        "name": "employer-shard-5",
+        "size_in_bytes": 15905,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527131935",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13527131935/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:53:51Z",
+        "expires_at": "2026-11-13T17:53:50Z",
+        "updated_at": "2026-11-06T17:53:51Z",
+        "digest": "sha256:aca2108d7a687f92ec0fca732c6233d410d995d5acc9846adbbbedb7c63c74b1",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526987466,
+        "name": "employer-shard-1",
+        "size_in_bytes": 16595,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526987466",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526987466/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:55:36Z",
+        "expires_at": "2026-11-13T17:55:36Z",
+        "updated_at": "2026-11-06T17:55:36Z",
+        "digest": "sha256:cab5d5b00193034e508b9e6bca3d55c391b64c41941d7d3f9bca7160d6822552",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526939121,
+        "name": "employer-shard-0",
+        "size_in_bytes": 21900,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526939121",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526939121/zip",
+        "expired": false,
+        "created_at": "2026-11-06T18:06:00Z",
+        "expires_at": "2026-11-13T18:05:59Z",
+        "updated_at": "2026-11-06T18:06:00Z",
+        "digest": "sha256:595d4112f7f05f134244937c4a62fa66d85cd36c87ee26d2ba2c9845aa86a370",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526842971,
+        "name": "employer-shard-9",
+        "size_in_bytes": 21308,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526842971",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526842971/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:55:28Z",
+        "expires_at": "2026-11-13T17:55:27Z",
+        "updated_at": "2026-11-06T17:55:28Z",
+        "digest": "sha256:c8fb5915d5489549164e15e74588b5cfd7fd024dc3a620bb490c0f489291cef7",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526692973,
+        "name": "employer-shard-15",
+        "size_in_bytes": 14693,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526692973",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526692973/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:54:15Z",
+        "expires_at": "2026-11-13T17:54:15Z",
+        "updated_at": "2026-11-06T17:54:15Z",
+        "digest": "sha256:6003c5c363b299237a52bb4b83d8ca1f44e294c06ca4ce74a0025d1fbcbfe4f6",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526653072,
+        "name": "employer-shard-7",
+        "size_in_bytes": 19336,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526653072",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526653072/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:54:41Z",
+        "expires_at": "2026-11-13T17:54:41Z",
+        "updated_at": "2026-11-06T17:54:41Z",
+        "digest": "sha256:966d1cf0f766c7eadacc7fbab72e9cfee53c22c497f589487a04eab669e4da33",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526468940,
+        "name": "employer-shard-3",
+        "size_in_bytes": 17760,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526468940",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526468940/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:56:06Z",
+        "expires_at": "2026-11-13T17:56:05Z",
+        "updated_at": "2026-11-06T17:56:06Z",
+        "digest": "sha256:7494398ab9c3092fe7e925e8167e87c3f3404e6918bf5423fcf74094cf2e8b55",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526468696,
+        "name": "employer-shard-12",
+        "size_in_bytes": 23254,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526468696",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526468696/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:54:46Z",
+        "expires_at": "2026-11-13T17:54:45Z",
+        "updated_at": "2026-11-06T17:54:46Z",
+        "digest": "sha256:3c5e5e63c81fbc10b46851d730aabb5dbc1993d5b8146757ffbc0dfe40566d54",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526414167,
+        "name": "employer-shard-10",
+        "size_in_bytes": 16434,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526414167",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526414167/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:56:16Z",
+        "expires_at": "2026-11-13T17:56:15Z",
+        "updated_at": "2026-11-06T17:56:16Z",
+        "digest": "sha256:bcb0d2c14288befba52afe98728f94d9e267ae50940451e0218b0a490e786a7d",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526264347,
+        "name": "employer-shard-11",
+        "size_in_bytes": 13375,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526264347",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526264347/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:55:24Z",
+        "expires_at": "2026-11-13T17:55:23Z",
+        "updated_at": "2026-11-06T17:55:24Z",
+        "digest": "sha256:0ada2db93c7ff2e067bbccb91a99916bf3ecf4db7bfef8955d524d58c20d5125",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526174173,
+        "name": "employer-shard-6",
+        "size_in_bytes": 20966,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526174173",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526174173/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:54:07Z",
+        "expires_at": "2026-11-13T17:54:06Z",
+        "updated_at": "2026-11-06T17:54:07Z",
+        "digest": "sha256:57220e759e4bd983dfe64359ab40e9dac9885449fcc2d7a986fa18964c565a1b",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13526029906,
+        "name": "employer-shard-4",
+        "size_in_bytes": 18335,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526029906",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13526029906/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:56:46Z",
+        "expires_at": "2026-11-13T17:56:46Z",
+        "updated_at": "2026-11-06T17:56:46Z",
+        "digest": "sha256:867c9e145a787ee6bc0cf883dfa65cb72c1bf9081288b8deb9d0e51af4b79af3",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13525789175,
+        "name": "employer-shard-13",
+        "size_in_bytes": 17175,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13525789175",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13525789175/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:54:10Z",
+        "expires_at": "2026-11-13T17:54:09Z",
+        "updated_at": "2026-11-06T17:54:10Z",
+        "digest": "sha256:79773b1fbba718530cfa52058f7ea6d9a5cb8af0d0336549911d93e7a263067e",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      },
+      {
+        "id": 13525769133,
+        "name": "employer-shard-14",
+        "size_in_bytes": 15216,
+        "url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13525769133",
+        "archive_download_url": "https://api.github.com/repos/nightlydeveloper8/eu-hr-internships/actions/artifacts/13525769133/zip",
+        "expired": false,
+        "created_at": "2026-11-06T17:54:02Z",
+        "expires_at": "2026-11-13T17:54:01Z",
+        "updated_at": "2026-11-06T17:54:02Z",
+        "digest": "sha256:a28e5c40165fb3dfd0b32ccf49f10003bcf1a45c9e9830bee058b9bbe740cc31",
+        "workflow_run": {
+          "id": 42264583427,
+          "repository_id": 1446999482,
+          "head_repository_id": 1446999482,
+          "head_branch": "main",
+          "head_sha": "e8a692d630079f8aadb1c3c1542370a28ecb6686"
+        }
+      }
+    ],
+    "test_summary": {
+      "python_tests": 132,
+      "frontend_tests": 12,
+      "classification_examples": 52,
+      "observed_log_lines": [
+        "2026-11-06T17:45:57.6014356Z Ran 132 tests in 4.294s",
+        "2026-11-06T17:45:57.7226173Z # tests 12",
+        "2026-11-06T17:45:57.7227788Z # fail 0",
+        "2026-11-06T17:45:57.7613532Z   \"examples\": 52,"
+      ]
+    },
+    "publish_evidence": [
+      "2026-11-06T18:06:17.3525860Z 2026-11-06 18:06:17,352 INFO Catalog: 183 records, 727/1782 sources succeeded",
+      "2026-11-06T18:06:17.3930207Z 2026-11-06 18:06:17,392 INFO All-employer collection: {'verified-empty': 28, 'blocked-or-failed': 251, 'partial': 604, 'discovery-incomplete': 839, 'collected': 62, 'companies': 1784, 'configured': 1784, 'attempted': 1784}",
+      "2026-11-06T18:06:18.4333530Z Built dist/ — static files, no runtime services required",
+      "2026-11-06T18:06:20.4998835Z [main 119c6fb] Refresh all-employer HR internship collection",
+      "2026-11-06T18:06:23.0784341Z    e8a692d..119c6fb  main -> main"
+    ],
+    "data_integrity_audit": {
+      "checked_at": "2026-11-06T18:09:00.491384+00:00",
+      "catalog_updated_at": "2026-11-06T18:05:57.251698+00:00",
+      "before_records": 153,
+      "after_records": 183,
+      "new_records": 30,
+      "missing_previous_ids": [],
+      "enabled_sources": 1782,
+      "enabled_sources_not_attempted_after_merge": [],
+      "employer_summary": {
+        "verified-empty": 28,
+        "blocked-or-failed": 251,
+        "partial": 604,
+        "discovery-incomplete": 839,
+        "collected": 62,
+        "companies": 1784,
+        "configured": 1784,
+        "attempted": 1784
+      },
+      "partial_or_failed_sources": 1694,
+      "partial_source_previous_record_retention": [
+        {
+          "source_id": "auto-accor",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-all-in-group-gmbh",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-altarea",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-aspiag-service-s-r-l",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-avery-dennison",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-axs-logistiek",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-becton-dickinson",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-belsimpel-gomibo-group",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-bibliotheken-noord-fryslan",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-bosch",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-centraal-justitieel-incassobureau-cjib",
+          "state": "partial",
+          "previous_records": 3,
+          "retained": 3,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-daf-trucks",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-devoteam",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-econvert-water-energy-b-v",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-elevation-group-b-v",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-european-investment-bank",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-fitz",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-fotofabriek",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-ikea-ingka-group",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-interlogement-93",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-jde-peet-s",
+          "state": "partial",
+          "previous_records": 4,
+          "retained": 4,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-l-oreal",
+          "state": "partial",
+          "previous_records": 12,
+          "retained": 12,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-landal",
+          "state": "partial",
+          "previous_records": 3,
+          "retained": 3,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-lesaffre",
+          "state": "partial",
+          "previous_records": 4,
+          "retained": 4,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-liebherr",
+          "state": "partial",
+          "previous_records": 3,
+          "retained": 3,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-mtu-aero-engines",
+          "state": "partial",
+          "previous_records": 13,
+          "retained": 13,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-mynaric-ag",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-opmobility-exterior-munich-gmbh",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-philip-morris-international",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-philips",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-politie",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-quantum-systems-gmbh",
+          "state": "partial",
+          "previous_records": 3,
+          "retained": 3,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-randstad-groep-nederland",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-randstad-italia-spa",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-rijkswaterstaat",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-rohde-schwarz-gmbh-co-kg",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-royal-a-ware",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-salomon",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-sap",
+          "state": "partial",
+          "previous_records": 4,
+          "retained": 4,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-scoreplay",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-sia",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-smcp",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-sthree",
+          "state": "partial",
+          "previous_records": 2,
+          "retained": 2,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-teamviewer-germany-gmbh",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-technicum",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-tilburg-university",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "auto-zefir",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "employer-danone",
+          "state": "partial",
+          "previous_records": 8,
+          "retained": 8,
+          "missing_ids": [],
+          "newly_closed": []
+        },
+        {
+          "source_id": "employer-unilever",
+          "state": "partial",
+          "previous_records": 1,
+          "retained": 1,
+          "missing_ids": [],
+          "newly_closed": []
+        }
+      ],
+      "contradictory_complete_flags": [],
+      "groningen": {
+        "employers": 31,
+        "qualified_employers": 27,
+        "distinct_groups": 30,
+        "qualified_groups": 26,
+        "size_unknown": 4,
+        "below_threshold": 0,
+        "municipalities": 10,
+        "municipalities_with_qualified_employers": 10,
+        "configured": 31,
+        "attempted_recently": 31,
+        "collection_states": {
+          "discovery-incomplete": 9,
+          "blocked-or-failed": 4,
+          "partial": 15,
+          "collected": 3
+        },
+        "qualified_collection_states": {
+          "discovery-incomplete": 9,
+          "blocked-or-failed": 3,
+          "partial": 12,
+          "collected": 3
+        },
+        "verified_hr_internships": 2,
+        "verified_hr_internships_qualified_employers": 2
+      },
+      "friesland": {
+        "employers": 893,
+        "qualified_employers": 146,
+        "distinct_groups": 891,
+        "qualified_groups": 145,
+        "size_unknown": 741,
+        "below_threshold": 6,
+        "municipalities": 18,
+        "municipalities_with_qualified_employers": 18,
+        "configured": 893,
+        "attempted_recently": 893,
+        "collection_states": {
+          "collected": 38,
+          "discovery-incomplete": 419,
+          "partial": 292,
+          "blocked-or-failed": 144
+        },
+        "qualified_collection_states": {
+          "discovery-incomplete": 44,
+          "partial": 74,
+          "collected": 13,
+          "blocked-or-failed": 15
+        },
+        "verified_hr_internships": 7,
+        "verified_hr_internships_qualified_employers": 7
+      },
+      "verified_country_counts": {
+        "AT": 1,
+        "BE": 2,
+        "BG": 0,
+        "HR": 0,
+        "CY": 0,
+        "CZ": 3,
+        "DK": 0,
+        "EE": 0,
+        "FI": 0,
+        "FR": 33,
+        "DE": 19,
+        "GR": 0,
+        "HU": 2,
+        "IE": 0,
+        "IT": 31,
+        "LV": 0,
+        "LT": 0,
+        "LU": 0,
+        "MT": 0,
+        "NL": 40,
+        "PL": 3,
+        "PT": 1,
+        "RO": 0,
+        "SK": 0,
+        "SI": 0,
+        "ES": 10,
+        "SE": 1
+      }
+    }
   },
   "production": {
-    "checked_at": "2026-11-06T17:20:38.826612+00:00",
+    "checked_at": "2026-11-06T18:08:18.907806+00:00",
     "anonymous_fresh_browser_context": true,
-    "production_base": "https://people-placement-eu.pages.dev",
-    "home_status": 200,
-    "catalog_updated_at": "2026-11-06T13:15:13.450095+00:00",
-    "catalog_records": 147,
-    "countries": 27,
-    "friesland": {
+    "base_url": "https://people-placement-eu.pages.dev",
+    "groningen": {
+      "canonical_page_present_on_first_request": true,
+      "used_revalidation_query": false,
       "status": 200,
-      "verified_internships": 7,
-      "municipalities": 18,
+      "summary": "2 verified HR internships · 27 employers with documented size · 4 candidates awaiting size checks · 31/31 employer sites with a collection attempt within 48 hours. Updated 06/11/2026, 19:06:18.",
+      "jobs": [
+        "Groningen\n\nHR Stagiair\n\nHANOS\n\nRead the internship and apply ↗\n\nLink checked 06/11/2026, 18:46:28",
+        "Groningen\n\nStage: HRM\n\nFotofabriek\n\nRead the internship and apply ↗\n\nLink checked 06/11/2026, 18:46:31"
+      ],
+      "municipalities": 10,
+      "programmes": 2,
+      "links": [
+        "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+        "https://www.werkenbijfotofabriek.nl/jobs/stage-hrm-306"
+      ],
+      "search_filter_result": "Showing 3 of 3 employers",
       "mobile_document_overflow": false
     },
-    "groningen": {
-      "http_status": 200,
-      "provincial_page_present": false
+    "friesland": {
+      "status": 200,
+      "jobs": 7,
+      "municipalities": 18,
+      "summary": "7 verified HR internships · 146 employers with documented size · 741 candidates awaiting size checks · 893/893 employer sites with a collection attempt within 48 hours. Updated 06/11/2026, 19:06:18.",
+      "mobile_document_overflow": false
+    },
+    "home": {
+      "status": 200,
+      "result_count": "177",
+      "country_options": 28,
+      "notice": "Some sources could not be refreshed. Their previous records were retained.",
+      "groningen_filter_count": "2",
+      "portugal_filter_count": "1",
+      "reset_count": "177",
+      "mobile_filter_open": true,
+      "mobile_filter_closed": true,
+      "mobile_document_overflow": false
     },
     "page_errors": [],
-    "status": "groningen_not_published",
-    "main_commit": "a3732da8e17b39c4d86ef33774a934d573202fd4",
-    "url": "https://people-placement-eu.pages.dev/groningen.html",
-    "interpretation": "HTTP 200 is the site fallback. No Groningen provincial page is present; this is not a successful Groningen production deployment."
+    "catalog_updated_at": "2026-11-06T18:05:57.251698+00:00",
+    "coverage_generated_at": "2026-11-06T18:05:57.251698+00:00",
+    "status": "verified",
+    "deployment": {
+      "success": true,
+      "commit": "119c6fb825b4b25c1f01bfb51e0d49a914cecc52",
+      "check_url": "https://github.com/nightlydeveloper8/eu-hr-internships/runs/128063883346",
+      "details_url": "https://dash.cloudflare.com/?to=/31c3d1ecbaa6ae566ab9b9a3a45a5215/pages/view/people-placement-eu/ca0da97e-4a3b-44cd-930c-c433179c9cb7",
+      "completed_at": "2026-11-06T18:06:48Z",
+      "deployment_id": "ca0da97e-4a3b-44cd-930c-c433179c9cb7",
+      "immutable_deployment_url": "https://ca0da97e.people-placement-eu.pages.dev"
+    },
+    "source_data_commit": "119c6fb825b4b25c1f01bfb51e0d49a914cecc52",
+    "application_checks": [
+      {
+        "job_id": "9f900cc9419de8ce264a",
+        "employer": "HANOS",
+        "title": "HR Stagiair",
+        "url": "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+        "checked_at": "2026-11-06T18:00:07.585041+00:00",
+        "application_url_in_catalog": "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+        "status": "verified",
+        "application": {
+          "url": "https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404",
+          "method": "rendered-official-application-form"
+        }
+      },
+      {
+        "job_id": "0aa70507b5a3cbedd17b",
+        "employer": "Fotofabriek",
+        "title": "Stage: HRM",
+        "url": "https://www.werkenbijfotofabriek.nl/jobs/stage-hrm-306",
+        "checked_at": "2026-11-06T18:00:07.585309+00:00",
+        "application_url_in_catalog": "https://www.werkenbijfotofabriek.nl/jobs/apply/stage-hrm-306",
+        "status": "verified",
+        "application": {
+          "url": "https://www.werkenbijfotofabriek.nl/jobs/apply/stage-hrm-306",
+          "method": "official-vacancy-specific-form"
+        }
+      }
+    ]
   },
   "approval": {
-    "required_action": "Authorize merging PR #2 into main and starting/observing the existing production collection and publication workflow.",
-    "status": "awaiting_explicit_user_authorization",
-    "source": "Current user instruction: Non modificare main senza una mia autorizzazione esplicita.",
-    "historical_rejection": "The earlier attempt to update main was rejected by automatic approval review. No main update was attempted during this review."
+    "status": "authorized_and_executed",
+    "source": "User explicitly authorized merging PR #2 into main and proceeding with production verification.",
+    "scope": "Merge, existing full collection workflow, Cloudflare production verification and final report update."
   },
-  "review": {
+  "pre_merge_review": {
     "status": "ready_for_merge_awaiting_explicit_authorization",
     "pull_request_state": "open",
     "main_modified": false,
@@ -241,5 +2480,166 @@
         "No paid service, recurring AI call, or additional production schedule was introduced."
       ]
     }
+  },
+  "status": "completed",
+  "merge": {
+    "pull_request": "https://github.com/nightlydeveloper8/eu-hr-internships/pull/2",
+    "state": "merged",
+    "head_commit": "ef819156ab511d34dbdac8d009d391fb45599785",
+    "merge_commit": "e8a692d630079f8aadb1c3c1542370a28ecb6686",
+    "publication": {
+      "checked_at": "2026-11-06T18:09:37.797545+00:00",
+      "merge_commit": "e8a692d630079f8aadb1c3c1542370a28ecb6686",
+      "data_commit": "119c6fb825b4b25c1f01bfb51e0d49a914cecc52",
+      "data_commit_url": "https://github.com/nightlydeveloper8/eu-hr-internships/commit/119c6fb825b4b25c1f01bfb51e0d49a914cecc52",
+      "live_data_matches_bot_commit": {
+        "catalog": true,
+        "coverage": true,
+        "groningen-coverage": true,
+        "friesland-coverage": true,
+        "employer-collection": true
+      },
+      "artifact": {
+        "checked_at": "2026-11-06T18:08:13.659627+00:00",
+        "artifact_id": 13527423064,
+        "url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42264583427/artifacts/13527423064",
+        "zip_bytes": 512786,
+        "sha256": "0f5bf42244a055b6c0b6c974de7c14621edf214cda25c565138e04acf33ad00a",
+        "files": [
+          {
+            "path": "data/catalog.json",
+            "bytes": 332975,
+            "sha256": "e34207019101d5e4ee41ec0189a1ae9a9e94c2686fe2f18212f3a930e429b74f",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "data/company-coverage.json",
+            "bytes": 492973,
+            "sha256": "e81b19c4c03dc7a2173d88a9cece9337d0339d9375f8fbbe802df552d0d783eb",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "data/coverage.json",
+            "bytes": 2556302,
+            "sha256": "9f4b0d53ee2f13aa60f0752fb25f5d2666ef4ea294fdb498b23bd32c46cb621b",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "data/employer-collection.json",
+            "bytes": 1225461,
+            "sha256": "e1c21a2a303981cb471bb9f970a15a7cf85f45e031d071d5b0c070e99188c175",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "data/friesland-coverage.json",
+            "bytes": 1177505,
+            "sha256": "105467402df92f881b4c9dd98056580cdab516ce603955adf23ff0b77358027a",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "data/groningen-coverage.json",
+            "bytes": 58813,
+            "sha256": "2902c3870806788df9021280e6b3eca0efb5eb07a1afb1b2662d19292a992b1f",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "docs/evaluation-report.json",
+            "bytes": 257,
+            "sha256": "284be35f6a1ea6bca322d8b3565e58c57f1210c87c2c825e63cae801ac18a308",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "docs/country-research-progress.json",
+            "bytes": 12484,
+            "sha256": "24094fec8cf7920236c4d40c9b3d76f5e0c1f91a4041ad9919a046fcf2339534",
+            "matches_bot_commit": true
+          },
+          {
+            "path": "docs/company-integration-queue.json",
+            "bytes": 695902,
+            "sha256": "df909016c1b1070b697808a0af2e43620a3f0245a85579896f4bc17e9c637939",
+            "matches_bot_commit": true
+          }
+        ],
+        "all_files_match_bot_commit": true
+      },
+      "normal_availability_changes": [
+        {
+          "job_id": "1df27ac49c962e947dc6",
+          "employer": "Amazon Distribution GmbH",
+          "source_id": "amazon-hr-internships",
+          "previous_status": "open",
+          "current_status": "unverified",
+          "link_status": "verified",
+          "missing_count": 1,
+          "last_missing_run": "2026-11-06",
+          "retained": true
+        },
+        {
+          "job_id": "e5134a06cadd8be48a6c",
+          "employer": "RP Group B.V.",
+          "source_id": "auto-landal",
+          "previous_status": "unverified",
+          "current_status": "open",
+          "link_status": "verified",
+          "missing_count": 0,
+          "last_missing_run": null,
+          "retained": true
+        },
+        {
+          "job_id": "4ae396a41fdabb8cdcc2",
+          "employer": "DG Rijkswaterstaat",
+          "source_id": "auto-rijkswaterstaat",
+          "previous_status": "unverified",
+          "current_status": "open",
+          "link_status": "verified",
+          "missing_count": 0,
+          "last_missing_run": null,
+          "retained": true
+        },
+        {
+          "job_id": "70d297b765fc2696c836",
+          "employer": "Tilburg University",
+          "source_id": "auto-tilburg-university",
+          "previous_status": "open",
+          "current_status": "unverified",
+          "link_status": "unverified",
+          "missing_count": 0,
+          "last_missing_run": null,
+          "retained": true
+        }
+      ],
+      "availability_note": "No previous record was removed. One Amazon posting missing from a complete API snapshot became unverified under the existing absence policy (first missing snapshot); one older employer-link check became unverified. Two previous unverified records were reverified. These records remain retained and no incomplete-source absence triggered closure.",
+      "transient_deployment_note": "During initial alias propagation the clean Groningen URL briefly served the previous fallback. The ordinary public URL subsequently loaded correctly without a revalidation query, including after the bot data deployment.",
+      "slow_runner_setup": {
+        "checked_at": "2026-11-06T17:58:01.532115+00:00",
+        "job_id": 128053181680,
+        "job_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42264583427/job/128053181680",
+        "observation": "Live GitHub UI showed Install public-page reader completed in 10 minutes. Collection started at 17:56:12 UTC and reported real employer outcomes including Kenonz. No intervention or configuration change was required."
+      }
+    }
+  },
+  "limitations": [
+    "Employer census remains an initial, non-exhaustive inventory.",
+    "A successful workflow means all configured sources were attempted and consolidation/publication succeeded; partial or blocked source inventories remain explicit.",
+    "Unverified IKEA candidates and general HR programmes are excluded from verified internship counts."
+  ],
+  "research_branch": "groningen-research",
+  "completion_criteria": {
+    "pr_merged": true,
+    "remote_tests_collection_consolidation_publication": true,
+    "bot_artifact_and_commit_match": true,
+    "anonymous_production_desktop_mobile": true,
+    "groningen_applications_usable": true,
+    "friesland_preserved": true,
+    "previous_eu_records_retained": true,
+    "incomplete_sources_not_reported_complete": true
+  },
+  "daily_schedule": {
+    "workflow_path": ".github/workflows/collect.yml",
+    "cron_utc": "17 6 * * *",
+    "zurich_and_amsterdam": "07:17 winter / 08:17 summer",
+    "current_verified_trigger": "push after authorized merge",
+    "note": "The existing daily schedule is unchanged. This verification covers a real full production cycle on the merged code; the next scheduled invocation of that code is a future event, not claimed observed."
   }
 }
