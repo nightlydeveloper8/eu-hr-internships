@@ -55,7 +55,7 @@ def generate_province(slug):
 
 
 def generate_all():
-    return {slug:generate_province(slug) for slug in ('friesland','groningen')
+    return {slug:generate_province(slug) for slug in ('friesland','groningen','drenthe')
         if (ROOT/'data'/(slug+'-geography.json')).exists()}
 
 

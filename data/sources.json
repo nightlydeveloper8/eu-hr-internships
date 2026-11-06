@@ -5623,13 +5623,15 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte",
       "https://jobs.workatcenterparcs.com/nl/annonces",
       "https://www.centerparcs.nl"
     ],
-    "career_url": "https://jobs.workatcenterparcs.com/nl/annonces",
+    "career_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
     "allowed_hosts": [
       "jobs.workatcenterparcs.com",
-      "www.centerparcs.nl"
+      "www.centerparcs.nl",
+      "www.workatcenterparcs.com"
     ],
     "target_countries": [
       "NL"
@@ -45103,11 +45105,13 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://careers.avebe.com",
       "https://www.werkenbijavebe.nl/vacatures",
       "https://www.avebe.com"
     ],
-    "career_url": "https://www.werkenbijavebe.nl/vacatures",
+    "career_url": "https://careers.avebe.com/",
     "allowed_hosts": [
+      "careers.avebe.com",
       "www.avebe.com",
       "www.werkenbijavebe.nl"
     ],
@@ -45347,5 +45351,805 @@
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
     "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-aa-en-hunze",
+    "company_id": "gemeente-aa-en-hunze",
+    "employer": "Gemeente Aa en Hunze",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.aaenhunze.nl/Alle_onderwerpen/Werken_bij_Aa_en_Hunze/Vooruit_in_Drenthe",
+      "https://www.aaenhunze.nl"
+    ],
+    "career_url": "https://www.aaenhunze.nl/Alle_onderwerpen/Werken_bij_Aa_en_Hunze/Vooruit_in_Drenthe",
+    "allowed_hosts": [
+      "www.aaenhunze.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-assen",
+    "company_id": "gemeente-assen",
+    "employer": "Gemeente Assen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijassen.nl",
+      "https://www.assen.nl"
+    ],
+    "career_url": "https://www.werkenbijassen.nl/",
+    "allowed_hosts": [
+      "www.assen.nl",
+      "www.werkenbijassen.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-borger-odoorn",
+    "company_id": "gemeente-borger-odoorn",
+    "employer": "Gemeente Borger-Odoorn",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.borger-odoorn.nl/werken-bij-de-gemeente-borger-odoorn",
+      "https://www.borger-odoorn.nl"
+    ],
+    "career_url": "https://www.borger-odoorn.nl/werken-bij-de-gemeente-borger-odoorn",
+    "allowed_hosts": [
+      "www.borger-odoorn.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-coevorden",
+    "company_id": "gemeente-coevorden",
+    "employer": "Gemeente Coevorden",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.coevorden.nl/vacatures",
+      "https://www.coevorden.nl"
+    ],
+    "career_url": "https://www.coevorden.nl/vacatures",
+    "allowed_hosts": [
+      "www.coevorden.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-emmen",
+    "company_id": "gemeente-emmen",
+    "employer": "Gemeente Emmen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://gemeente.emmen.nl"
+    ],
+    "career_url": "https://gemeente.emmen.nl/",
+    "allowed_hosts": [
+      "gemeente.emmen.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-samenwerkingsorganisatie-de-wolden-hoogeveen",
+    "company_id": "samenwerkingsorganisatie-de-wolden-hoogeveen",
+    "employer": "Samenwerkingsorganisatie De Wolden Hoogeveen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijdeswo.nl"
+    ],
+    "career_url": "https://www.werkenbijdeswo.nl/",
+    "allowed_hosts": [
+      "www.werkenbijdeswo.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-meppel",
+    "company_id": "gemeente-meppel",
+    "employer": "Gemeente Meppel",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.meppel.nl/werken-bij",
+      "https://www.meppel.nl"
+    ],
+    "career_url": "https://www.meppel.nl/werken-bij/",
+    "allowed_hosts": [
+      "www.meppel.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-midden-drenthe",
+    "company_id": "gemeente-midden-drenthe",
+    "employer": "Gemeente Midden-Drenthe",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.middendrenthe.nl/bestuur-organisatie/over-de-gemeente/werken-bij-de-gemeente",
+      "https://www.middendrenthe.nl"
+    ],
+    "career_url": "https://www.middendrenthe.nl/bestuur-organisatie/over-de-gemeente/werken-bij-de-gemeente",
+    "allowed_hosts": [
+      "www.middendrenthe.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-noordenveld",
+    "company_id": "gemeente-noordenveld",
+    "employer": "Gemeente Noordenveld",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.vooruitindrenthe.nl/organisaties/gemeente-noordenveld/79f9e333-1e81-4307-e795-08dc814a5a06",
+      "https://www.noordenveld.nl"
+    ],
+    "career_url": "https://www.vooruitindrenthe.nl/organisaties/gemeente-noordenveld/79f9e333-1e81-4307-e795-08dc814a5a06",
+    "allowed_hosts": [
+      "www.noordenveld.nl",
+      "www.vooruitindrenthe.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-tynaarlo",
+    "company_id": "gemeente-tynaarlo",
+    "employer": "Gemeente Tynaarlo",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.tynaarlo.nl"
+    ],
+    "career_url": "https://www.tynaarlo.nl/",
+    "allowed_hosts": [
+      "www.tynaarlo.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-westerveld",
+    "company_id": "gemeente-westerveld",
+    "employer": "Gemeente Westerveld",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.gemeentewesterveld.nl/Alle_onderwerpen/Werken_bij_Westerveld",
+      "https://www.gemeentewesterveld.nl"
+    ],
+    "career_url": "https://www.gemeentewesterveld.nl/Alle_onderwerpen/Werken_bij_Westerveld",
+    "allowed_hosts": [
+      "www.gemeentewesterveld.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-het-drentse-landschap",
+    "company_id": "het-drentse-landschap",
+    "employer": "Het Drentse Landschap",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbij.drentslandschap.nl",
+      "https://www.drentslandschap.nl"
+    ],
+    "career_url": "https://werkenbij.drentslandschap.nl/",
+    "allowed_hosts": [
+      "werkenbij.drentslandschap.nl",
+      "www.drentslandschap.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-vanboeijen",
+    "company_id": "vanboeijen",
+    "employer": "Vanboeijen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.vanboeijen.nl/vacatures",
+      "https://www.vanboeijen.nl"
+    ],
+    "career_url": "https://www.vanboeijen.nl/vacatures",
+    "allowed_hosts": [
+      "www.vanboeijen.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-vdl-wientjes-roden",
+    "company_id": "vdl-wientjes-roden",
+    "employer": "VDL Wientjes Roden",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijvdl.nl",
+      "https://www.vdlwientjesroden.nl"
+    ],
+    "career_url": "https://www.werkenbijvdl.nl/",
+    "allowed_hosts": [
+      "www.vdlwientjesroden.nl",
+      "www.werkenbijvdl.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-avitec",
+    "company_id": "avitec",
+    "employer": "Avitec",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://avitec.nl"
+    ],
+    "career_url": "https://avitec.nl/",
+    "allowed_hosts": [
+      "avitec.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-tvm-verzekeringen",
+    "company_id": "tvm-verzekeringen",
+    "employer": "TVM verzekeringen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.tvm.nl/werken-bij-tvm",
+      "https://www.tvm.nl"
+    ],
+    "career_url": "https://www.tvm.nl/werken-bij-tvm",
+    "allowed_hosts": [
+      "www.tvm.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-unigarant",
+    "company_id": "unigarant",
+    "employer": "Unigarant",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.unigarant.nl/over-ons",
+      "https://www.unigarant.nl"
+    ],
+    "career_url": "https://www.unigarant.nl/over-ons/",
+    "allowed_hosts": [
+      "www.unigarant.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-wilhelmina-ziekenhuis-assen",
+    "company_id": "wilhelmina-ziekenhuis-assen",
+    "employer": "Wilhelmina Ziekenhuis Assen",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.wza.nl/werken-en-leren",
+      "https://www.wza.nl"
+    ],
+    "career_url": "https://www.wza.nl/werken-en-leren/",
+    "allowed_hosts": [
+      "www.wza.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-cosis",
+    "company_id": "cosis",
+    "employer": "Cosis",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.cosis.nu/alles-over-cosis/werken-bij",
+      "https://www.cosis.nu"
+    ],
+    "career_url": "https://www.cosis.nu/alles-over-cosis/werken-bij",
+    "allowed_hosts": [
+      "www.cosis.nu"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-interzorg-noord-nederland",
+    "company_id": "interzorg-noord-nederland",
+    "employer": "Interzorg Noord Nederland",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.interzorg.nl/je-bent-van-harte-welkom",
+      "https://www.interzorg.nl"
+    ],
+    "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+    "allowed_hosts": [
+      "www.interzorg.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-astron",
+    "company_id": "astron",
+    "employer": "ASTRON",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.astron.nl/careers-3",
+      "https://www.astron.nl"
+    ],
+    "career_url": "https://www.astron.nl/careers-3/",
+    "allowed_hosts": [
+      "www.astron.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-doc-kaas-b-v",
+    "company_id": "doc-kaas-b-v",
+    "employer": "DOC Kaas B.V.",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://dockaasbv.nl/werken-bij-ons",
+      "https://dockaasbv.nl"
+    ],
+    "career_url": "https://dockaasbv.nl/werken-bij-ons/",
+    "allowed_hosts": [
+      "dockaasbv.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-forbo-novilon",
+    "company_id": "forbo-novilon",
+    "employer": "Forbo Novilon",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/pxd3oi",
+      "https://www.forbo.com"
+    ],
+    "career_url": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/pxd3oi",
+    "allowed_hosts": [
+      "www.forbo.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-paas-b-v",
+    "company_id": "paas-b-v",
+    "employer": "Paas B.V.",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.paasbv.com"
+    ],
+    "career_url": "https://www.paasbv.com/",
+    "allowed_hosts": [
+      "www.paasbv.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-skk-kozijnwacht",
+    "company_id": "skk-kozijnwacht",
+    "employer": "SKK Kozijnwacht",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://skk.nl/werken-bij-skk",
+      "https://skk.nl"
+    ],
+    "career_url": "https://skk.nl/werken-bij-skk/",
+    "allowed_hosts": [
+      "skk.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 90,
+    "collection_seconds": 140,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official public employer listings and linked application entry; runtime robots checks; no applications or emails sent.",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://skk.nl/werken-bij-skk/stageplaatsen/"
+    ],
+    "job_url_pattern": "^https://skk\\.nl/werken-bij-skk/stagiair-[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "Locatie:\\s*Assen\\s*\\(",
+        "city": "Assen",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "application_check": "official-email",
+    "application_email": "personeelszaken@skk.nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "All observed specific internship links in the official stageplaatsen list; other careers pages and generic programmes are outside this inventory.",
+    "access_reviewed_on": "2026-11-06"
+  },
+  {
+    "id": "auto-nncz",
+    "company_id": "nncz",
+    "employer": "NNCZ",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbij.nncz.nl",
+      "https://nncz.nl"
+    ],
+    "career_url": "https://werkenbij.nncz.nl/",
+    "allowed_hosts": [
+      "nncz.nl",
+      "werkenbij.nncz.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 150,
+    "collection_seconds": 240,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official public employer listings and linked application entry; runtime robots checks; no applications or emails sent.",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://werkenbij.nncz.nl/portal-over-het-bedrijf/vacatures"
+    ],
+    "index_rendered": true,
+    "job_url_pattern": "^https://werkenbij\\.nncz\\.nl/algemene-vacaturebeschrijving/[^/?]+$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "HR-afdeling in Hoogeveen",
+        "city": "Hoogeveen",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Rendered official vacancy list; reviewed visible workplace extraction currently supports the HR department in Hoogeveen. Other workplace templates and AFAS application action remain incomplete.",
+    "access_reviewed_on": "2026-11-06"
+  },
+  {
+    "id": "auto-ziengs-schoenen",
+    "company_id": "ziengs-schoenen",
+    "employer": "Ziengs Schoenen",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijziengs.nl",
+      "https://www.ziengs.nl"
+    ],
+    "career_url": "https://www.werkenbijziengs.nl/",
+    "allowed_hosts": [
+      "www.werkenbijziengs.nl",
+      "www.ziengs.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 120,
+    "collection_seconds": 180,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official public employer listings and linked application entry; runtime robots checks; no applications or emails sent.",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://www.werkenbijziengs.nl/vacatures/servicekantoor"
+    ],
+    "index_rendered": true,
+    "index_job_count_pattern": "(\\d+) zoekresultaten",
+    "job_url_pattern": "^https://www\\.werkenbijziengs\\.nl/vacatures/(?!servicekantoor|winkels|distributiecentrum)[^?#]+$",
+    "employer_tokens": [
+      "ziengs",
+      "scapino"
+    ],
+    "application_check": "formie-linked",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "All eight observed vacancies in the servicekantoor department; live result count must match inventoried links. Retail branches outside this department are not inventoried.",
+    "access_reviewed_on": "2026-11-06"
+  },
+  {
+    "id": "auto-bats-uitzendburo",
+    "company_id": "bats-uitzendburo",
+    "employer": "Bats Uitzendburo",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://batsuitzendburo.nl"
+    ],
+    "career_url": "https://batsuitzendburo.nl/",
+    "allowed_hosts": [
+      "batsuitzendburo.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-scania",
+    "company_id": "scania",
+    "employer": "Scania",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://jobs.scania.com/search?q=Meppel",
+      "https://www.scania.com"
+    ],
+    "career_url": "https://jobs.scania.com/search?q=Meppel",
+    "allowed_hosts": [
+      "jobs.scania.com",
+      "www.scania.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 90,
+    "collection_seconds": 140,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://jobs.scania.com/search?q=Meppel"
+    ],
+    "job_url_pattern": "^https://jobs\\.scania\\.com/job/[^/?]+/\\d+/?$",
+    "index_job_count_pattern": "Showing \\d+ to \\d+ of (\\d+) Jobs",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "Locatie\\(s\\):\\s*Meppel, NL, 7944HT",
+        "city": "Meppel",
+        "country": "NL"
+      },
+      {
+        "pattern": "Locatie\\(s\\):\\s*Zwolle, NL, 8041AL",
+        "city": "Zwolle",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Six observed results for the official keyword query Meppel, including a Zwolle posting; live total must match. Final explicit workplace, not search membership, determines province. Other Scania sites are outside this query."
   }
 ]

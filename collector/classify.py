@@ -150,7 +150,7 @@ def extract_metadata(text, work_mode=None):
         if not re.search(r'intern|duration|placement|trainee|available|availability|stag|praktik|durée|duree|durata|duur|beschikbaar|periode|period of',sentence,re.I): continue
         duration = re.search(r'\b\d+(?:\s*[-–]\s*\d+)?\s*(?:months?|maanden|mois|monate|meses|mesi|weeks?|weken)\b',sentence,re.I)
         if duration: break
-    enrollment = next((s for s in re.split(r'(?<=[.!?])\s+',text) if re.search(r'enroll|ingeschreven|inscrit|immatrikul|convention de stage|learning agreement',s,re.I)),None)
+    enrollment = next((s for s in re.split(r'(?<=[.!?])\s+',text) if re.search(r'enroll|ingeschreven|inscrit|immatrikul|convention de stage|learning agreement|\bje volgt\b.{0,100}\bopleiding\b|\bvolg jij\b.{0,100}\bstudie\b|\bstudie\b.{0,100}\bvolgt\b',s,re.I)),None)
     if work_mode not in ('remote','hybrid','on-site'):
         work_mode = 'hybrid' if re.search(r'\bhybrid\b',text,re.I) else 'on-site' if re.search(r'\bon.site\b',text,re.I) else 'unspecified'
     return {'duration':duration.group(0) if duration else None,'enrollment':enrollment[:260] if enrollment else None,'work_mode':work_mode}

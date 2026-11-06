@@ -1,0 +1,99 @@
+{
+  "auto-skk-kozijnwacht": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://skk.nl/werken-bij-skk/stageplaatsen/"
+    ],
+    "job_url_pattern": "^https://skk\\.nl/werken-bij-skk/stagiair-[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "Locatie:\\s*Assen\\s*\\(",
+        "city": "Assen",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "application_check": "official-email",
+    "application_email": "personeelszaken@skk.nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "All observed specific internship links in the official stageplaatsen list; other careers pages and generic programmes are outside this inventory.",
+    "collection_seconds": 140,
+    "max_requests": 90,
+    "access_reviewed_on": "2026-11-06",
+    "permission_basis": "Official public employer listings and linked application entry; runtime robots checks; no applications or emails sent."
+  },
+  "auto-ziengs-schoenen": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://www.werkenbijziengs.nl/vacatures/servicekantoor"
+    ],
+    "index_rendered": true,
+    "index_job_count_pattern": "(\\d+) zoekresultaten",
+    "job_url_pattern": "^https://www\\.werkenbijziengs\\.nl/vacatures/(?!servicekantoor|winkels|distributiecentrum)[^?#]+$",
+    "employer_tokens": [
+      "ziengs",
+      "scapino"
+    ],
+    "application_check": "formie-linked",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "All eight observed vacancies in the servicekantoor department; live result count must match inventoried links. Retail branches outside this department are not inventoried.",
+    "collection_seconds": 180,
+    "max_requests": 120,
+    "access_reviewed_on": "2026-11-06",
+    "permission_basis": "Official public employer listings and linked application entry; runtime robots checks; no applications or emails sent."
+  },
+  "auto-nncz": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://werkenbij.nncz.nl/portal-over-het-bedrijf/vacatures"
+    ],
+    "index_rendered": true,
+    "job_url_pattern": "^https://werkenbij\\.nncz\\.nl/algemene-vacaturebeschrijving/[^/?]+$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "HR-afdeling in Hoogeveen",
+        "city": "Hoogeveen",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Rendered official vacancy list; reviewed visible workplace extraction currently supports the HR department in Hoogeveen. Other workplace templates and AFAS application action remain incomplete.",
+    "collection_seconds": 240,
+    "max_requests": 150,
+    "access_reviewed_on": "2026-11-06",
+    "permission_basis": "Official public employer listings and linked application entry; runtime robots checks; no applications or emails sent."
+  },
+  "auto-scania": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://jobs.scania.com/search?q=Meppel"
+    ],
+    "job_url_pattern": "^https://jobs\\.scania\\.com/job/[^/?]+/\\d+/?$",
+    "index_job_count_pattern": "Showing \\d+ to \\d+ of (\\d+) Jobs",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "Locatie\\(s\\):\\s*Meppel, NL, 7944HT",
+        "city": "Meppel",
+        "country": "NL"
+      },
+      {
+        "pattern": "Locatie\\(s\\):\\s*Zwolle, NL, 8041AL",
+        "city": "Zwolle",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Six observed results for the official keyword query Meppel, including a Zwolle posting; live total must match. Final explicit workplace, not search membership, determines province. Other Scania sites are outside this query.",
+    "collection_seconds": 140,
+    "max_requests": 90
+  }
+}

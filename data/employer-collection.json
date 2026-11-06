@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-06T19:43:13.414181+00:00",
+  "generated_at": "2026-11-06T20:01:38.724424+00:00",
   "exhaustive": false,
   "summary": {
     "verified-empty": 29,
-    "blocked-or-failed": 252,
-    "partial": 604,
-    "discovery-incomplete": 848,
-    "collected": 51,
-    "companies": 1784,
-    "configured": 1784,
-    "attempted": 1784
+    "blocked-or-failed": 256,
+    "partial": 623,
+    "discovery-incomplete": 852,
+    "collected": 53,
+    "companies": 1813,
+    "configured": 1813,
+    "attempted": 1813
   },
   "country_counting": "Candidate country membership; multi-country employers counted once per country. Actual job locations require published evidence.",
   "countries": [
@@ -186,13 +186,13 @@
     {
       "code": "NL",
       "name": "Netherlands",
-      "companies_identified": 1110,
+      "companies_identified": 1139,
       "states": {
         "verified-empty": 25,
-        "partial": 390,
-        "discovery-incomplete": 488,
-        "collected": 31,
-        "blocked-or-failed": 176
+        "partial": 409,
+        "discovery-incomplete": 492,
+        "collected": 33,
+        "blocked-or-failed": 180
       }
     },
     {
@@ -7486,7 +7486,7 @@
         "auto-center-parcs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-06T19:24:50.084281+00:00",
+      "checked_at": "2026-11-06T19:55:54.939489+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 21,
@@ -41742,7 +41742,7 @@
         "auto-royal-avebe"
       ],
       "attempted": true,
-      "checked_at": "2026-11-06T19:24:50.777561+00:00",
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 34,
@@ -41957,6 +41957,637 @@
         {
           "source_id": "auto-gemeente-westerwolde",
           "error": "[{'url': 'https://www.werkenbijgroningen.nl/over-ons/arbeidsvoorwaarden', 'error': 'robots.txt unavailable: 406'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-aa-en-hunze",
+      "name": "Gemeente Aa en Hunze",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-gemeente-aa-en-hunze"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 4,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-aa-en-hunze",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-assen",
+      "name": "Gemeente Assen",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-gemeente-assen"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 8,
+      "matching_hr_positions": 0,
+      "pages_read": 12,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-assen",
+          "error": "[{'url': 'https://www.assen.nl', 'error': 'robots.txt unavailable: 403'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-borger-odoorn",
+      "name": "Gemeente Borger-Odoorn",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "blocked-or-failed",
+      "source_ids": [
+        "auto-gemeente-borger-odoorn"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 0,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-borger-odoorn",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-coevorden",
+      "name": "Gemeente Coevorden",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "blocked-or-failed",
+      "source_ids": [
+        "auto-gemeente-coevorden"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 0,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-coevorden",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-emmen",
+      "name": "Gemeente Emmen",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "blocked-or-failed",
+      "source_ids": [
+        "auto-gemeente-emmen"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 0,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-emmen",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "samenwerkingsorganisatie-de-wolden-hoogeveen",
+      "name": "Samenwerkingsorganisatie De Wolden Hoogeveen",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-samenwerkingsorganisatie-de-wolden-hoogeveen"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 1,
+      "matching_hr_positions": 0,
+      "pages_read": 10,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-meppel",
+      "name": "Gemeente Meppel",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-gemeente-meppel"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 5,
+      "matching_hr_positions": 0,
+      "pages_read": 14,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-midden-drenthe",
+      "name": "Gemeente Midden-Drenthe",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-gemeente-midden-drenthe"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 61,
+      "matching_hr_positions": 0,
+      "pages_read": 70,
+      "pending_urls": 31,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-noordenveld",
+      "name": "Gemeente Noordenveld",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-gemeente-noordenveld"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 66,
+      "matching_hr_positions": 0,
+      "pages_read": 70,
+      "pending_urls": 26,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-tynaarlo",
+      "name": "Gemeente Tynaarlo",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-gemeente-tynaarlo"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 22,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-tynaarlo",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-westerveld",
+      "name": "Gemeente Westerveld",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-gemeente-westerveld"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 59,
+      "matching_hr_positions": 0,
+      "pages_read": 70,
+      "pending_urls": 27,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-westerveld",
+          "error": "[{'url': 'https://werkenbijwesterveld.nl', 'error': '<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1129)>'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "het-drentse-landschap",
+      "name": "Het Drentse Landschap",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-het-drentse-landschap"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 18,
+      "matching_hr_positions": 0,
+      "pages_read": 28,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "vanboeijen",
+      "name": "Vanboeijen",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-vanboeijen"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 62,
+      "matching_hr_positions": 0,
+      "pages_read": 70,
+      "pending_urls": 2,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "vdl-wientjes-roden",
+      "name": "VDL Wientjes Roden",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-vdl-wientjes-roden"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 19,
+      "pending_urls": 33,
+      "errors": [
+        {
+          "source_id": "auto-vdl-wientjes-roden",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "avitec",
+      "name": "Avitec",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-avitec"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 9,
+      "matching_hr_positions": 0,
+      "pages_read": 17,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "tvm-verzekeringen",
+      "name": "TVM verzekeringen",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-tvm-verzekeringen"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 13,
+      "matching_hr_positions": 0,
+      "pages_read": 70,
+      "pending_urls": 14,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "unigarant",
+      "name": "Unigarant",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-unigarant"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 5,
+      "matching_hr_positions": 0,
+      "pages_read": 10,
+      "pending_urls": 7,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "wilhelmina-ziekenhuis-assen",
+      "name": "Wilhelmina Ziekenhuis Assen",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-wilhelmina-ziekenhuis-assen"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 19,
+      "matching_hr_positions": 0,
+      "pages_read": 41,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-wilhelmina-ziekenhuis-assen",
+          "error": "[{'url': 'https://www.wza.nl/werken-en-leren/vacatures/template-vacature-detail', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "cosis",
+      "name": "Cosis",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-cosis"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 65,
+      "matching_hr_positions": 0,
+      "pages_read": 70,
+      "pending_urls": 95,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "interzorg-noord-nederland",
+      "name": "Interzorg Noord Nederland",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-interzorg-noord-nederland"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 27,
+      "matching_hr_positions": 0,
+      "pages_read": 33,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-interzorg-noord-nederland",
+          "error": "[{'url': 'https://vacature.tibpartners.nl/vacatures/vacature_zorgmanager_voor_locatie_hendrik_kok_4746951_11.html', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://vacature.tibpartners.nl/vacatures/vacature_zorgmanager_met_focus_op_dagbesteding_4746942_11.html', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "astron",
+      "name": "ASTRON",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-astron"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 1,
+      "matching_hr_positions": 0,
+      "pages_read": 4,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-astron",
+          "error": "[{'url': 'https://www.astron.nl/careers-3', 'error': 'HTTP Error 500: Internal Server Error'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "doc-kaas-b-v",
+      "name": "DOC Kaas B.V.",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-doc-kaas-b-v"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 22,
+      "matching_hr_positions": 0,
+      "pages_read": 25,
+      "pending_urls": 344,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "forbo-novilon",
+      "name": "Forbo Novilon",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-forbo-novilon"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 1,
+      "matching_hr_positions": 0,
+      "pages_read": 21,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-forbo-novilon",
+          "error": "[{'url': 'https://www.timing.nl/mooie-bedrijven/forbo-flooring-vacatures', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/vacatureoverzicht/servicemonteur-buitendienst/jgip9s?c=NL', 'error': '<urlopen error [Errno 60] Operation timed out>'}, {'url': 'https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/vacatureoverzicht/global-procurement-business-compliance-controller/jtjz1a?c=NL', 'error': '<urlopen error [Errno 60] Operation timed out>'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "paas-b-v",
+      "name": "Paas B.V.",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-paas-b-v"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:50:52.565309+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 1,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-paas-b-v",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "skk-kozijnwacht",
+      "name": "SKK Kozijnwacht",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "collected",
+      "source_ids": [
+        "auto-skk-kozijnwacht"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:58:13.936693+00:00",
+      "public_job_records": 3,
+      "matching_hr_positions": 1,
+      "pages_read": 1,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "nncz",
+      "name": "NNCZ",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-nncz"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:55:54.939489+00:00",
+      "public_job_records": 1,
+      "matching_hr_positions": 1,
+      "pages_read": 1,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-nncz",
+          "error": "[{'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-oproep-nb-2026-10-05', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/senior-verpleegkundige-def', 'error': 'Visible vacancy workplace requires review'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "ziengs-schoenen",
+      "name": "Ziengs Schoenen",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "collected",
+      "source_ids": [
+        "auto-ziengs-schoenen"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:58:13.936693+00:00",
+      "public_job_records": 8,
+      "matching_hr_positions": 1,
+      "pages_read": 1,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "bats-uitzendburo",
+      "name": "Bats Uitzendburo",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "blocked-or-failed",
+      "source_ids": [
+        "auto-bats-uitzendburo"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T19:58:54.478109+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 1,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-bats-uitzendburo",
+          "error": "Public source access blocked; no inventory established; no bypass attempted"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "scania",
+      "name": "Scania",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-scania"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-06T20:00:50.857103+00:00",
+      "public_job_records": 6,
+      "matching_hr_positions": 1,
+      "pages_read": 1,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-scania",
+          "error": "[{'url': 'https://jobs.scania.com/job/Meppel-Stage-Human-Resource-Management-7944HT/1454163033', 'error': 'Vacancy verification: robots.txt disallows https://jobs.scania.com/talentcommunity/apply/1454163033?locale=nl_NL'}]"
         }
       ],
       "next_attempt": "next daily run"

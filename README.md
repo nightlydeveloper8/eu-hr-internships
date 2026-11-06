@@ -15,6 +15,10 @@ See [the Italian coverage strategy](docs/strategia-copertura.md). Run `python3 s
 
 The initial Groningen lot uses the existing shared employer registry and daily collectors: all 10 CBS municipalities and 199 settlements, 31 researched employers (27 with documented 50+ size), and two locally verified HR internships with usable application forms. Two IKEA candidates remain unverified because the linked application channel disallows crawler access. Province reports share one implementation and keep generic HR programmes separate from vacancies. This is an expanding inventory, not an exhaustive census. See [the Groningen research report](docs/groningen-mappatura.md) and `groningen.html`.
 
+## Drenthe provincial research (6 November 2026)
+
+The initial Drenthe lot reuses the same employer registry, collectors and provincial UI: 12 CBS municipalities, 227 settlements, 31 researched employers (14 with documented 50+ size) and two HR internships with verified application channels in Assen. All 31 sources were executed: two observed inventories read, 20 partial, five discovery-incomplete and four blocked/failed. NNCZ and Scania candidates remain unverified. See [the Italian research report](docs/drenthe-mappatura.md) and `drenthe.html`. Daily integration is prepared in the existing workflow; remote production execution requires an authorized merge and subsequent verification.
+
 ## What is implemented
 
 - Python collectors for Greenhouse, Lever (global and EU), Ashby and SmartRecruiters; pagination and fixture tests for all four.

@@ -70,6 +70,34 @@ def verify_application(record, source, client):
     kind = source.get('application_check')
     if not kind: return None
     body, doc = checked_document(record['url'], source, client)
+    if kind == 'official-email':
+        # The address must be both reviewed and currently published with an
+        # instruction to send application documents on this identified vacancy.
+        address = source.get('application_email', '')
+        observed = any(href.lower().split('?')[0] == 'mailto:' + address.lower()
+                       for href, _, _ in doc.links)
+        instructions = re.search(r'(?:stuur|send|mail).{0,200}(?:cv|resume).{0,100}'
+                                 + re.escape(address), doc.text, re.I)
+        if not address or not observed or not instructions:
+            raise ValueError('Vacancy-specific email application instructions unavailable')
+        return dict(url=record['url'], method='official-vacancy-email-instructions',
+                    application_email=address, delivery_verified=False)
+    if kind == 'formie-linked':
+        expected=str(record.get('posting_identifier') or '')
+        targets=[canonical_url(urljoin(doc.url,href)) for href,label,_ in doc.links
+                 if re.search(r'solliciteer|solliciteren|apply',label,re.I)
+                 and parse_qs(urlsplit(href).query).get('vacature')==[expected]]
+        if not expected or not targets:raise ValueError('Matching Formie application entry missing')
+        app_body,app=checked_document(targets[0],source,client)
+        if canonical_url(app.url)!=targets[0] or 'Solliciteren voor: '+record['title'] not in app.text:
+            raise ValueError('Formie application identifies a different vacancy')
+        for form in ApplicantForms(app_body).forms:
+            fields={field.get('name'):field for field in form['fields']}
+            if ('applicationForm' in form['attrs'].get('data-form-handle','') and form['submit']
+                and fields.get('fields[vacancyId]',{}).get('value')==expected
+                and {'fields[firstName]','fields[email]'}.issubset(fields)):
+                return dict(url=app.url,method='official-formie-same-requisition-form')
+        raise ValueError('Formie applicant fields, requisition or submit unavailable')
     if kind == 'odoo':
         form = odoo_application(doc, source, client, record['title'])
         return dict(url=canonical_url(form.url), method='official-vacancy-specific-form')

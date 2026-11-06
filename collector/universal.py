@@ -199,7 +199,8 @@ class Crawler:
             if len(links)>2000:self.incomplete=True
             return dict(records=[],links=links[:2000],empty=False)
         doc=Document(body,final)
-        if CHALLENGE.search(doc.text[:3000]):raise ValueError('Access challenge; no bypass attempted')
+        if CHALLENGE.search(doc.text[:3000]) or (re.search(br'http-equiv=["\']refresh["\']',body,re.I) and b'/.well-known/sgcaptcha/' in body):
+            raise ValueError('Access challenge; no bypass attempted')
         # Employer-hosted Recruitee sites retain the platform credit/assets and
         # the documented /o/ posting paths. No board identifier is invented.
         platform_credit=any(re.search(r'https://[^/]*(?:recruitee\.com|recruiteecdn\.com)(?:/|$)',urljoin(final,href),re.I) for href,_,_ in doc.links) or bool(re.search(br'(?:src|href)=["\'][^"\']*recruitee(?:cdn)?\.com/',body,re.I))
@@ -303,6 +304,10 @@ class Crawler:
         complete=(bool(self.completed_feeds) and self.inventory or self.empty) and not self.incomplete and not self.errors and not remaining and not unresolved
         stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),verified_closed_urls=sorted(self.closed_urls),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed))
         if not self.inventory and not self.empty:stats['error']='No verified job inventory or explicit empty vacancy list found; discovery continues automatically'
+        if not self.inventory and not self.empty and self.errors and all(
+            re.search(r'Access challenge|robots\.txt disallows|HTTP Error: (?:401|403|429|451)',e['error'],re.I)
+            for e in self.errors):
+            stats.update(status='failed',error='Public source access blocked; no inventory established; no bypass attempted')
         return Inventory(self.records.values(),stats)
 
 def collect_universal(source,client):return Crawler(source,client).run()
