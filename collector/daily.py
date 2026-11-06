@@ -1,18 +1,48 @@
 """Provision every employer, collect in bounded parallel shards, merge once.
 
     python -m collector.daily provision
-    python -m collector.daily collect --shard 0 --shards 8
-    python -m collector.daily merge --inputs .staging/results --shards 8
+    python -m collector.daily collect --shard 0 --shards 8 --run-id manual-2026-11-06
+    python -m collector.daily merge --inputs .staging/results --shards 8 --run-id manual-2026-11-06
 """
-import argparse,copy,hashlib,json,logging,time
+import argparse,copy,hashlib,json,logging,os,re,time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor,as_completed
+from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 from .pipeline import ROOT,read,write,now,process_source,finalize,deduplicate
 from .classify import COUNTRIES,canonical_url
 from .runtime import BudgetClient,PageCache
 LOG=logging.getLogger(__name__)
+MAX_SHARD_AGE=timedelta(hours=24)
+CLOCK_SKEW=timedelta(minutes=5)
+
+def collection_run_id(shards,run_id=None):
+    value=run_id if run_id is not None else os.environ.get('COLLECTOR_RUN_ID')
+    if value is None:
+        if shards>1:raise ValueError('Multi-shard collection requires --run-id or COLLECTOR_RUN_ID')
+        return None
+    if not isinstance(value,str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._:/-]{0,199}',value):
+        raise ValueError('Invalid collector run ID')
+    return value
+
+def collection_time(value):
+    try:
+        result=datetime.fromisoformat(value.replace('Z','+00:00'))
+        if result.tzinfo is None:raise ValueError('Timezone required')
+        return result.astimezone(timezone.utc)
+    except (AttributeError,TypeError,ValueError) as exc:
+        raise ValueError('Invalid timezone-aware collection timestamp') from exc
+
+def validate_shard_times(payload,clock):
+    started=collection_time(payload.get('started_at'));finished=collection_time(payload.get('finished_at'))
+    if started>finished or started<clock-MAX_SHARD_AGE or finished>clock+CLOCK_SKEW:
+        raise ValueError('Expired, future or reversed shard timestamps; previous catalog retained')
+    for part in payload.get('parts',[]):
+        checked=collection_time(part.get('report',{}).get('checked_at'))
+        if not started-CLOCK_SKEW<=checked<=finished+CLOCK_SKEW:
+            raise ValueError('Source timestamp outside shard collection interval; previous catalog retained')
+    return finished
 
 def provision(companies,sources):
     """Idempotently attach an actual crawler to every unserved employer."""
@@ -38,8 +68,9 @@ def shard_for(source_id,shards):return int(hashlib.sha256(source_id.encode()).he
 
 def fingerprint(sources):return hashlib.sha256(json.dumps(sources,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 
-def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds=None):
+def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds=None,run_id=None):
     if shards<1 or not 0<=shard<shards:raise ValueError('Invalid shard')
+    run_id=collection_run_id(shards,run_id)
     companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')]
     if source_ids and set(source_ids)-{s['id'] for s in enabled}:raise ValueError('Unknown or disabled source IDs: '+str(sorted(set(source_ids)-{s['id'] for s in enabled})))
     selected=[s for s in enabled if shard_for(s['id'],shards)==shard and (not source_ids or s['id'] in source_ids)]
@@ -77,10 +108,10 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
             parts.append(part)
             LOG.info('Shard %s: %s/%s employers; %s %s; %s HR matches',shard,len(parts),len(selected),source['employer'],part['report']['status'],len(part['jobs']))
             # A killed runner leaves a usable diagnostic checkpoint, never a partial catalog.
-            payload=dict(schema_version=1,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=sorted(s['id'] for s in selected),parts=parts,complete=len(parts)==len(selected))
+            payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=sorted(s['id'] for s in selected),parts=parts,complete=len(parts)==len(selected))
             write(output or ROOT/'.staging/results'/('shard-'+str(shard)+'.json'),payload)
     if not selected:
-        payload=dict(schema_version=1,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=[],parts=[],complete=True)
+        payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=[],parts=[],complete=True)
         write(output or ROOT/'.staging/results'/('shard-'+str(shard)+'.json'),payload)
     return payload
 
@@ -99,29 +130,33 @@ def employer_report(companies,sources,parts,stamp,catalog_jobs=None):
     countries=[dict(code=code,name=name,companies_identified=sum(code in r['candidate_countries'] for r in rows),states=dict(Counter(r['state'] for r in rows if code in r['candidate_countries']))) for code,name in COUNTRIES.items()]
     return dict(generated_at=stamp,exhaustive=False,summary=summary,country_counting='Candidate country membership; multi-country employers counted once per country. Actual job locations require published evidence.',countries=countries,employers=rows)
 
-def merge(inputs,shards=8,output=ROOT/'data'):
+def merge(inputs,shards=8,output=ROOT/'data',run_id=None):
+    if shards<1:raise ValueError('Invalid shard count')
+    run_id=collection_run_id(shards,run_id);clock=collection_time(now());finished_times=[]
     companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')];expected={s['id'] for s in enabled};seen=set();parts=[];payloads=[]
     for i in range(shards):
         files=list(Path(inputs).rglob('shard-'+str(i)+'.json'))
         if len(files)!=1:raise ValueError('Expected exactly one result for shard '+str(i))
         p=read(files[0],{});payloads.append(p)
+        if p.get('run_id')!=run_id:raise ValueError('Shard belongs to another collection run; previous catalog retained')
+        finished_times.append(validate_shard_times(p,clock))
         if p.get('shard')!=i or p.get('shards')!=shards or not p.get('complete') or p.get('registry_fingerprint')!=fingerprint(enabled):raise ValueError('Incomplete/stale shard '+str(i)+'; previous catalog retained')
         assigned={s for s in expected if shard_for(s,shards)==i}
         ids=[part['report']['id'] for part in p['parts']]
         if set(ids)!=assigned or len(ids)!=len(set(ids)) or set(ids)&seen:raise ValueError('Missing, duplicate or unexpected employer results in shard '+str(i))
         seen.update(ids);parts.extend(p['parts'])
     if seen!=expected:raise ValueError('Every enabled employer must be attempted before publishing')
-    stamp=max(p['finished_at'] for p in payloads)
+    stamp=max(finished_times).isoformat()
     result,coverage=finalize(sources,enabled,read(output/'catalog.json',{'jobs':[]}),read(output/'coverage.json',{}),parts,stamp,output)
     employers=employer_report(companies,sources,parts,stamp,result['jobs'])
     write(output/'employer-collection.json',employers)
     LOG.info('All-employer collection: %s',employers['summary']);return result,coverage,employers
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('command',choices=['provision','collect','merge']);p.add_argument('--shard',type=int,default=0);p.add_argument('--shards',type=int,default=8);p.add_argument('--workers',type=int,default=6);p.add_argument('--output',type=Path);p.add_argument('--inputs',type=Path,default=ROOT/'.staging/results');p.add_argument('--sources',nargs='+');p.add_argument('--seconds',type=int);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('command',choices=['provision','collect','merge']);p.add_argument('--shard',type=int,default=0);p.add_argument('--shards',type=int,default=8);p.add_argument('--workers',type=int,default=6);p.add_argument('--output',type=Path);p.add_argument('--inputs',type=Path,default=ROOT/'.staging/results');p.add_argument('--sources',nargs='+');p.add_argument('--seconds',type=int);p.add_argument('--run-id',help='Shared ID for this collection run; defaults to COLLECTOR_RUN_ID');a=p.parse_args()
     logging.basicConfig(level=logging.INFO,format='%(asctime)s %(levelname)s %(message)s')
     if a.command=='provision':
         c,s=provision_files();print(len(c),'employers;',sum(x.get('enabled',False) for x in s),'active collectors')
-    elif a.command=='collect':collect_shard(a.shard,a.shards,a.workers,a.output,a.sources,a.seconds)
-    else:merge(a.inputs,a.shards,a.output or ROOT/'data')
+    elif a.command=='collect':collect_shard(a.shard,a.shards,a.workers,a.output,a.sources,a.seconds,a.run_id)
+    else:merge(a.inputs,a.shards,a.output or ROOT/'data',a.run_id)
 if __name__=='__main__':main()

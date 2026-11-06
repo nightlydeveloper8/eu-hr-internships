@@ -98,13 +98,12 @@ def page_record(record,source,client,clock=None):
         identifier=data.get('identifier')
         if isinstance(identifier,dict):identifier=identifier.get('value')
         if isinstance(identifier,(str,int)):result['posting_identifier']=str(identifier)
+        result['valid_through']=data.get('validThrough')
         expires=data.get('validThrough')
         if expires:
-            try:
-                expiry=datetime.fromisoformat(expires.replace('Z','+00:00'))
-                if expiry.tzinfo is None:expiry=expiry.replace(tzinfo=timezone.utc)
-                if expiry<stamp:raise ValueError('Posting has expired')
-            except (TypeError,AttributeError):raise ValueError('Malformed expiry')
+            from .verification import expired
+            from .applications import ApplicationClosed
+            if expired(expires,stamp.isoformat()):raise ApplicationClosed('Posting has expired')
         loc=data.get('jobLocation',[]);loc=loc if isinstance(loc,list) else [loc]
         addresses=[l.get('address',{}) for l in loc if isinstance(l,dict)]
         countries=[];cities=[]

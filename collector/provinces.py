@@ -3,14 +3,13 @@ from collections import Counter
 from datetime import datetime, timedelta
 from .company_registry import company_key
 from .classify import fold
+from .verification import verified_job
 from .pipeline import ROOT, read, write, now
 
 
 def coverage(companies,sources,runs,jobs,geography,stamp,opportunities=None,*,research_key="friesland_research",region_code="NL12",province="Fryslân"):
     cutoff=datetime.fromisoformat(stamp)-timedelta(hours=48)
-    def verified(job):
-        try:return job.get('link_status')=='verified' and cutoff <= datetime.fromisoformat(job['last_verified_at']) <= datetime.fromisoformat(stamp)
-        except (KeyError,TypeError,ValueError):return False
+    def verified(job):return verified_job(job,stamp)
     enabled={s['id'] for s in sources if s.get('enabled')}
     reports={r['id']:r for r in runs};rows=[]
     for company in companies:

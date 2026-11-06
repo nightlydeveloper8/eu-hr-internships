@@ -6,12 +6,15 @@ does not change certificates, authentication, access restrictions or robots.
 from urllib.error import HTTPError
 
 
-def request(url,method,headers,timeout):
+def request(url,method,headers,timeout,client=None,robots=True):
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         context=p.request.new_context(ignore_https_errors=False,extra_http_headers=headers)
         try:
-            response=context.fetch(url,method=method,timeout=max(1,int(timeout*1000)),max_redirects=10)
+            # No automatic redirects: each destination goes through Client and robots.
+            response=context.fetch(url,method=method,timeout=max(1,int(timeout*1000)),max_redirects=0)
+            if response.status in (301,302,303,307,308):
+                raise ValueError('TLS transport redirect requires review; no unchecked navigation')
             if response.status>=400:
                 raise HTTPError(response.url,response.status,response.status_text,response.headers,None)
             if not response.url.startswith('https://'):raise ValueError('Unsafe redirect')

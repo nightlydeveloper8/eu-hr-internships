@@ -75,9 +75,9 @@ def job_from_json(data,url,source):
     if not title or not text:return None
     expiry=data.get('validThrough')
     if expiry:
+        from .verification import expired
         try:
-            t=datetime.fromisoformat(str(expiry).replace('Z','+00:00'));t=t.replace(tzinfo=timezone.utc) if t.tzinfo is None else t
-            if t<datetime.now(timezone.utc):return None
+            if expired(expiry,datetime.now(timezone.utc).isoformat()):return None
         except ValueError:pass
     loc=data.get('jobLocation',[]);loc=loc if isinstance(loc,list) else [loc];cities=[];countries=[];declared=False
     for place in loc:
@@ -90,7 +90,7 @@ def job_from_json(data,url,source):
     job_url=safe_url(urljoin(url,data.get('url') or url))
     if not job_url:return None
     employment=data.get('employmentType','');employment=' '.join(str(x) for x in employment) if isinstance(employment,list) else str(employment or '')
-    record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=None,published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting')
+    record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=None,published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting',valid_through=data.get('validThrough'))
     identifier=data.get('identifier')
     if isinstance(identifier,dict):identifier=identifier.get('value')
     if isinstance(identifier,(str,int)) and str(identifier).strip():record['posting_identifier']=str(identifier).strip()
@@ -137,7 +137,7 @@ class Crawler:
         self.allowed.add(urlsplit(url).hostname);r['source_id']=self.source['id'];self.records[url]=r
     def feed(self,url):
         """Only documented endpoints with identifiers observed in employer links."""
-        from .adapters import collect
+        from .adapters import collect,enrich
         p=urlsplit(url);host=p.hostname or '';path=[x for x in p.path.split('/') if x];adapter=None;board=None;feed=None
         if host in ('job-boards.greenhouse.io','boards.greenhouse.io','boards.eu.greenhouse.io') and path and path[0]!='embed':adapter='greenhouse';board=path[0]
         elif host in ('jobs.lever.co','jobs.eu.lever.co') and path:adapter='lever';board=path[0]
@@ -156,13 +156,16 @@ class Crawler:
         if feed:s['feed_url']=feed
         try:
             rows=collect(s,self.client)
-            for r in rows:self.add_record(r)
+            for r in rows:
+                if adapter=='smartrecruiters' and classify_role(r['title'],'',r.get('employment','')):r=enrich(r,s,self.client)
+                self.add_record(r)
             self.inventory=True;self.empty=not rows;self.completed_feeds.add(key);self.used_methods.add(adapter);return True
         except CollectionBudgetExceeded:raise
         except Exception as exc:self.errors.append(dict(url=feed or url,error='Feed: '+str(exc)[:160]));return False
     def visit(self,url,is_job=False,render=False):
         self.client.check();cached=self.cache.get(url,max_age_hours=12 if url in self.known_urls else 48) if is_job else None
         if cached:
+            for record in cached.get('records',[]):record.pop('inventory_evidence',None)
             self.used_methods.add('cached-job-page');return cached
         body,_,final=self.client.request(url)
         if not safe_url(final):raise ValueError('Unsafe final URL')
@@ -226,6 +229,11 @@ class Crawler:
         for d in docs:
             posts=d.jobposts()
             for post in posts:
+                from .verification import expired
+                try:
+                    if expired(post.get('validThrough'),datetime.now(timezone.utc).isoformat()):
+                        self.closed_urls.add(d.url);continue
+                except (ValueError,TypeError):pass
                 r=job_from_json(post,d.url,self.source)
                 if not r and self.source.get('visible_description_for_structured_jobs') and plain(post.get('title')) in d.h1 and len(d.text)>200:
                     # Reviewed AFAS template: title/address are structured, while

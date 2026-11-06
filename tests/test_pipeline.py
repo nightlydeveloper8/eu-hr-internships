@@ -26,12 +26,26 @@ class PipelineTests(unittest.TestCase):
         merged=reconcile([job(status='closed')],[job(first_discovered_at='2026-02-01T00:00:00+00:00')],{'a'},'2026-02-01T00:00:00+00:00')
         self.assertEqual(merged[0]['first_discovered_at'],'2026-01-01T00:00:00+00:00');self.assertEqual(merged[0]['status'],'open')
 
+    def test_explicitly_closed_posting_stays_closed_when_absent(self):
+        closed=job(status='closed',closure_reason='Official application unavailable')
+        self.assertEqual(reconcile([closed],[],{'a'},'2026-01-02T00:00:00+00:00'),[closed])
+
     def test_tracking_duplicates_merge_but_distinct_postings_stay(self):
         self.assertEqual(len(deduplicate([job(),job(id='def',url='https://jobs.lever.co/a/1?utm_source=x')])),1)
         self.assertEqual(len(deduplicate([job(),job(id='def',url='https://jobs.lever.co/a/2')])),2)
 
     def test_shared_application_urls_merge_mirrors(self):
         rows=[job(apply_url='https://jobs.lever.co/a/1/apply'),job(id='def',url='https://careers.example.com/job',apply_url='https://jobs.lever.co/a/1/apply')]
+        self.assertEqual(len(deduplicate(rows)),1)
+
+    def test_shared_generic_apply_url_cannot_merge_distinct_official_ids(self):
+        rows=[job(source_posting_id='1',apply_url='https://careers.example.com/apply'),
+              job(id='def',source_posting_id='2',url='https://jobs.lever.co/a/2',apply_url='https://careers.example.com/apply')]
+        self.assertEqual({j['source_posting_id'] for j in deduplicate(rows)},{'1','2'})
+
+    def test_same_posting_id_still_merges_language_mirrors(self):
+        rows=[job(source_posting_id='1'),
+              job(id='def',source_posting_id='1',url='https://careers.example.com/fr/job/1')]
         self.assertEqual(len(deduplicate(rows)),1)
 
     def test_unapproved_url_rejected(self):
@@ -90,7 +104,7 @@ class AdapterTests(unittest.TestCase):
 
     def test_robots_denial_stops_requests(self):
         client=Client(delay=0)
-        with patch.object(client,'permitted',return_value=False),patch('collector.adapters.urlopen') as opened:
+        with patch.object(client,'permitted',return_value=False),patch('collector.adapters.build_opener') as opened:
             with self.assertRaises(ValueError):client.json('https://api.example.com/jobs')
             opened.assert_not_called()
 
@@ -123,3 +137,15 @@ class PublishedATSAliasTests(unittest.TestCase):
   a=job(source_id='despar',url='https://despar.intervieweb.it/jobs/hr-stage-11939/it',last_verified_at=None)
   b=job(id='def',source_id='despar',url='https://despar.intervieweb.it/app.php?module=annunci&l=hr-stage-11939&lang=de',last_verified_at=None)
   self.assertEqual(len(deduplicate([a,b])),1)
+
+class EvidenceDedupTests(unittest.TestCase):
+ def test_general_portal_without_posting_ids_does_not_merge(self):
+  for sid in ['a','b']:
+   rows=[job(url='https://example.org/jobs/1',apply_url='https://example.org/apply'),job(id='other',source_id=sid,url='https://example.org/jobs/2',apply_url='https://example.org/apply')]
+   self.assertEqual(len(deduplicate(rows)),2)
+ def test_recent_failed_or_closed_observation_supersedes_old_verification(self):
+  for state,status in [('incomplete','unverified'),('closed','closed')]:
+   old=job(last_seen_at='2026-11-05T12:00:00Z',last_verified_at='2026-11-05T12:00:00Z',verification={'state':'verified','checked_at':'2026-11-05T12:00:00Z'})
+   new=job(id='new',last_seen_at='2026-11-06T12:00:00Z',last_verified_at=None,status=status,verification={'state':state,'checked_at':'2026-11-06T12:00:00Z'})
+   merged=deduplicate([old,new])[0]
+   self.assertEqual(merged['status'],status);self.assertEqual(merged['id'],old['id']);self.assertEqual(merged['last_verified_at'],old['last_verified_at'])

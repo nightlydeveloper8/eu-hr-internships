@@ -30,7 +30,7 @@ class AllEmployerTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    out=Path(d);(out/'catalog.json').write_text('prior catalog')
    with patch('collector.daily.provision_files',return_value=([],[])):
-    with self.assertRaises(ValueError):merge(out,8,out)
+    with self.assertRaises(ValueError):merge(out,8,out,run_id='test-run')
    self.assertEqual((out/'catalog.json').read_text(),'prior catalog')
  def test_homepage_200_is_not_successful_empty_inventory(self):
   with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):

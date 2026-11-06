@@ -5,12 +5,24 @@ import re
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit, quote
-from urllib.request import Request, urlopen
+from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.robotparser import RobotFileParser
 from .classify import plain
 
 LOG = logging.getLogger(__name__)
 AGENT = 'PeoplePlacementBot/1.0 (public HR internship discovery; source: README.md)'
+
+class CheckedRedirect(HTTPRedirectHandler):
+    def __init__(self, client, robots=True): self.client,self.robots=client,robots
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        from .classify import canonical_url
+        canonical_url(newurl)
+        # Check destination robots before urllib follows, including same-host redirects.
+        if self.robots and not self.client.permitted(newurl):raise ValueError('robots.txt disallows redirect '+newurl)
+        host=urlsplit(newurl).netloc
+        self.client.pause(max(0,self.client.host_delays.get(host,self.client.delay)-(time.monotonic()-self.client.last.get(host,0))))
+        self.client.last[host]=time.monotonic()
+        return super().redirect_request(req,fp,code,msg,headers,newurl)
 
 class Client:
     def __init__(self, delay=0.35):
@@ -26,7 +38,7 @@ class Client:
             self.pause(max(0,self.host_delays.get(host,self.delay)-(time.monotonic()-self.last.get(host,0))))
             self.last[host]=time.monotonic()
             try:
-                with urlopen(Request(url,headers={'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},method=method),timeout=timeout) as response:
+                with build_opener(CheckedRedirect(self,robots)).open(Request(url,headers={'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},method=method),timeout=timeout) as response:
                     if urlsplit(response.url).scheme != 'https': raise ValueError('Unsafe redirect')
                     return response.read(20_000_000), response.status, response.url
             except HTTPError as exc:
@@ -38,7 +50,7 @@ class Client:
             except (URLError,TimeoutError) as exc:
                 if any(error in str(exc) for error in ('TLSV1_ALERT_PROTOCOL_VERSION','TLSV1_ALERT_INTERNAL_ERROR')):
                     from .tls_transport import request as modern_tls_request
-                    return modern_tls_request(url,method,{'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},timeout)
+                    return modern_tls_request(url,method,{'User-Agent':AGENT,'Accept':'application/json,text/html;q=0.8'},timeout,client=self,robots=robots)
                 if attempt==attempts-1: raise
                 self.pause(2**(attempt+1))
 
@@ -72,7 +84,7 @@ class Client:
 
 def _record(source, job_id,title,location,text,url,apply=None,**extra):
     if not job_id or not title or not url: raise ValueError('Malformed source record')
-    return dict(source_id=source['id'],external_id=str(job_id),employer=source['employer'],title=plain(title),location=plain(location),text=plain(text),url=url,apply_url=apply or url,**extra)
+    return dict(source_id=source['id'],external_id=str(job_id),employer=source['employer'],title=plain(title),location=plain(location),text=plain(text),url=url,apply_url=apply or url,inventory_evidence='current-employer-feed',**extra)
 
 def collect(source,client):
     kind,board=source['adapter'],quote(source.get('board',''),safe='')

@@ -33,7 +33,7 @@ class DeepCollectionTests(unittest.TestCase):
     return self.detail(r,'HR Intern')
    result,report=self.run_with(output,[new,broken],enrich)
   self.assertEqual(len(result['jobs']),2);self.assertEqual(result['update_status'],'partial')
-  self.assertEqual(report['sources'][0]['status'],'partial');self.assertEqual(report['sources'][0]['page_failures'],1)
+  self.assertEqual(report['sources'][0]['status'],'partial');self.assertEqual(report['sources'][0]['page_failures'],2)
 if __name__=='__main__':unittest.main()
 
 class StructuredCountryTests(unittest.TestCase):

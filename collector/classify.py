@@ -9,10 +9,11 @@ LANGUAGES = dict(en='English', nl='Dutch', fr='French', de='German', es='Spanish
 CATEGORIES = {
  'talent-acquisition': ('Talent acquisition & recruitment', r'talent acquisition|recruit(?:ment|ing|er)?|recrutement|recrutamento|reclutamiento|reclutamento|werving|rekrut|personalgewinnung|(?:talent|candidate) sourc(?:ing|er)'),
  'people-operations': ('People operations & culture', r'people (?:operations|ops|and culture|& culture|& organisation|& organization|process)|personalkultur'),
- 'learning-development': ('Learning & development', r'learning (?:and|&) development|\bl&d\b|people development|talent development|personalentwicklung|formation rh|formazione del personale'),
+ 'learning-development': ('Learning & development', r'learning (?:and|&) development|learning and organisational development|apprentissage et developpement|formation et developpement|\bl&d\b|people development|talent development|personalentwicklung|formation rh|formazione del personale'),
  'employer-branding': ('Employer branding', r'employer brand|marque employeur|arbeidsmarktcommunicatie'),
  'people-analytics': ('HR & people analytics', r'(?:hr|people|workforce|personal) (?:analytics|data|analysis|controlling)|hr controlling'),
- 'compensation-benefits': ('Compensation & benefits', r'compensation|benefits|reward|remuneration|payroll|paie|salaris|loonadministratie'),
+ 'compensation-benefits': ('Compensation & benefits', r'compensation|\bbenefits\b|total rewards?|remuneration|payroll|\bpaie\b|salaris|loonadministratie'),
+ 'employee-relations': ('Employee & labour relations', r'employee relations|labou?r relations|industrial relations|relazioni (?:industriali|sindacali)|relations sociales|arbeidsverhoudingen|mitbestimmung'),
  'employee-experience': ('Employee experience & engagement', r'(?:employee|people) (?:experience|engagement)|mitarbeiterbindung'),
  'organizational-development': ('Organizational development', r'organi[sz]ational development|organi[sz]ation development|organisationsentwicklung'),
  'hr-administration': ('HR administration', r'hr admin|personnel admin|administration du personnel|personaladministration|personeelsadministratie|amministrazione del personale'),
@@ -66,6 +67,11 @@ def classify_role(title, text='', employment=''):
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title)]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
     if not cats and re.search(r'people (?:&|and) events',title) and re.search(r'personalbetreuung|personalentwicklung|human resources|hr administration',text):cats=['hr-generalist']
+    if re.search(r'benefits|compensation|reward',title) and not re.search(r'hr|human resources|employee|payroll|compensation (?:&|and) benefits|total rewards|remuneration',title+' '+text):
+        cats=[c for c in cats if c!='compensation-benefits']
+    if re.search(r'talent (?:community|pool|network)|open application|general (?:internship|student) programme|internship opportunities|internships (?:at|within)',title):return None
+    # Graduate employment is distinct from a university placement.
+    if re.search(r'graduate (?:program|programme|scheme)|management trainee',title) and not re.search(r'\binternship\b|\bplacement\b',title):return None
     # Department metadata alone cannot turn a sustainability/software role into HR.
     if not cats: return None
     # Dutch 'intern' can mean an in-house permanent employee. Require actual
@@ -79,7 +85,7 @@ def classify_role(title, text='', employment=''):
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
 LANG_ALIASES = {
- 'en':r'english|anglais|englisch|engels|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands|neerlandais|ollandese', 'fr':r'french|francais|franzosisch|frans|francese', 'de':r'german|deutsch|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'
+ 'en':r'english|anglais(?:e)?|englisch|engels|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands|neerlandais|ollandese', 'fr':r'french|francais(?:e)?|franzosisch|frans|francese', 'de':r'german|deutsch(?:kenntnisse)?|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'
 }
 
 def workplace_languages(text):
@@ -88,21 +94,43 @@ def workplace_languages(text):
         s = fold(sentence)
         # Application language / language classes / marketing are not workplace evidence.
         if re.search(r'(?:applications?|cv|resume|cover letter).{0,45}(?:in english|in french)|language (?:classes|courses)|(?:english|french|german).{0,15}(?:lessons|classes|courses)',s): continue
-        cue = r'\bfluen|proficien|command of|(?:official|corporate|company|business|main|working) language|working (?:proficiency|in)|work in|communication(?: and \w+)? skills|communicat\w* (?:in|skills)|spea[kc]|written and (?:verbal|spoken)|oral and written|writ\w* strong|comfortable.{0,30}english|maitrise|courant|biling|kenntnisse|beherrschen|vloeiend|beheers|niveau|livello|conoscenza|dominio|competencia'
+        cue = r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|preferred|preferably|nice.to.have|a plus|von vorteil|required|mandatory|essential|must|requis|obligatoire|verplicht|vereist|parl(?:ez|er)|couramment|\bfluen|proficien|command of|(?:official|corporate|company|business|main|working) language|working (?:proficiency|in)|work in|communication(?: and \w+)? skills|communicat\w* (?:in|skills)|spea[kc]|written and (?:verbal|spoken)|oral and written|writ\w* strong|comfortable.{0,30}english|maitrise|courant|biling|kenntnisse|beherrschen|vloeiend|beheers|niveau|livello|conoscenza|dominio|competencia'
         if not re.search(cue,s): continue
         for code,pattern in LANG_ALIASES.items():
             m = re.search(r'\b(?:'+pattern+r')\b',s)
             if not m: continue
-            local = s[max(0,m.start()-45):m.end()+65]
-            if re.search(r'not (?:required|necessary)|no .{0,20}(?:required|necessary)|nicht erforderlich|niet vereist|pas (?:requis|necessaire)',local): continue
-            tail = s[m.end():m.end()+65]
+            # Scope negation/optional cues to this language clause, never the next one.
+            start=max(s.rfind(',',0,m.start()),s.rfind(' but ',0,m.start()),s.rfind(' maar ',0,m.start()))
+            local = s[max(start+1,m.start()-45):m.end()+65]
+            following=re.search(r',|\b(?:but|maar|mais|aber)\b',s[m.end():])
+            if following:local=s[max(start+1,m.start()-45):m.end()+following.start()]
+            if re.search(r'not (?:required|necessary|essential|mandatory)|(?:do not|don.t) (?:need|require)|no need to (?:speak|know)|no .{0,20}(?:required|necessary)|nicht erforderlich|niet vereist|pas (?:requis|necessaire)',local): continue
+            tail = local[local.find(m.group(0))+len(m.group(0)):]
             next_language = '|'.join(LANG_ALIASES.values())
             tail = re.split(r'\b(?:additional languages|other languages|'+next_language+r')\b',tail,maxsplit=1)[0]
             optional = bool(re.search(r'plus|advantage|bonus|preferred|nice.to.have|appreciated|souhait|apprecie|von vorteil',tail))
+            optional = optional or bool(re.match(r'preferred languages?(?: are)?\s*:',s) or re.match(r'preferred languages? are\b',s))
+            optional = optional or bool(re.search(r'(?:preferred|preferably|nice.to.have|ideally)\s+(?:\w+\s+){0,2}$',s[max(start+1,m.start()-35):m.start()]))
+            mentions=sorted((x.start(),x.end()) for p in LANG_ALIASES.values() for x in re.finditer(r'\b(?:'+p+r')\b',s))
+            alternative=any(re.fullmatch(r'\s+(?:or|oder|of|ou|oppure)\s+',s[a[1]:b[0]]) and m.start() in (a[0],b[0]) for a,b in zip(mentions,mentions[1:]))
+            working=bool(re.search(r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|(?:working|corporate|company|business|official|main) language|work in',local))
+            if re.search(r'\b(?:required|mandatory|must|verplicht|vereist|requis)\b',s[m.end():m.end()+35]):working=False
             excerpt = sentence[max(0,m.start()-100):m.end()+120]
-            item = {'code':code, 'confidence':'confirmed','requirement':'preferred' if optional else 'required-or-working','evidence':excerpt}
+            item = {'code':code, 'confidence':'confirmed','requirement':'preferred' if optional else 'alternative' if alternative else 'working' if working else 'required-or-working','method':'explicit-language-pattern','evidence':excerpt}
             if not any(e['code']==code and e['requirement']==item['requirement'] for e in evidence): evidence.append(item)
     return evidence
+
+def language_summary(text, languages=None):
+    languages=workplace_languages(text) if languages is None else languages
+    supported=[l for l in languages if l['requirement'] in ('required-or-working','required','working')]
+    required=sorted({l['code'] for l in supported if l['requirement']!='working'})
+    english=any(l['code']=='en' and l['requirement']!='preferred' for l in languages)
+    sufficiency=re.search(r'english is the only (?:required|working) language|no (?:other|additional) languages? (?:is |are )?required',fold(plain(text)))
+    only=english and not any(c!='en' for c in required) and bool(sufficiency)
+    return dict(requirements_status='explicit' if any(l['requirement']!='preferred' for l in languages) else 'unknown',required_languages=required,
+                alternative_languages=sorted({l['code'] for l in languages if l['requirement']=='alternative'}),
+                english_support='documented' if english else 'unknown',english_sufficiency='documented' if only else 'unknown',english_sufficiency_evidence=sufficiency.group(0) if only else None)
+
 
 def advertisement_language(text, hint=None):
     if hint:hint=hint.replace('_','-')

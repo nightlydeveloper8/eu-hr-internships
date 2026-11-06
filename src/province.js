@@ -1,3 +1,4 @@
+import {verifiedJob} from './logic.js';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
 const labels = {'collected':'Observed inventory read','partial':'Partial reading','discovery-incomplete':'Discovery incomplete','blocked-or-failed':'Blocked / failed','not-recently-checked':'No recent check','unconfigured':'Needs integration'};
 const date = value => value ? new Date(value).toLocaleString('en-GB', {timeZone:'Europe/Amsterdam'}) : 'Not yet checked';
@@ -19,12 +20,12 @@ try {
   }));
   const [report, catalog] = responses;
   const ids = new Set(report.verified_hr_internship_ids);
-  const jobs = catalog.jobs.filter(job => ids.has(job.id) && job.status === 'open');
+  const jobs = catalog.jobs.filter(job => ids.has(job.id) && verifiedJob(job));
   select('summary').textContent = `${jobs.length} verified HR internships · ${report.summary.qualified_employers} employers with documented size · ${report.summary.size_unknown} candidates awaiting size checks · ${report.summary.attempted_recently}/${report.summary.employers} employer sites with a collection attempt within 48 hours. Updated ${date(report.generated_at)}.`;
   select('jobs').innerHTML = jobs.map(job => `<article class="job-card employer-card"><p class="eyebrow">${escape(job.city)}</p><h3>${escape(job.title)}</h3><p>${escape(job.employer)}</p><p>${link(job.url,'Read the internship and apply')}</p><p class="input-note">Link checked ${date(job.last_verified_at)}</p></article>`).join('') || '<p>No currently verified internship in this collection.</p>';
   select('programmes').innerHTML = report.research_opportunities.filter(item => ['open_hr_internship_programme','hr_internship_programme'].includes(item.kind)).map(item => `<article class="job-card employer-card"><h3>${escape(item.employer)}</h3><p>${escape(item.title || '')}</p><p>${escape(item.city)}</p><p>${link(item.url,'Read the HR internship programme')}</p><p class="input-note">Programme researched ${date(item.checked_at)}. ${escape(item.availability_note || 'Availability to confirm.')}</p></article>`).join('') || '<p>No programmes recorded yet.</p>';
   select('health').textContent = `For the ${report.summary.qualified_employers} employers with documented size: ${Object.entries(report.summary.qualified_collection_states).map(([state,count]) => `${count} ${labels[state] || state}`).join(' · ')}. Partial or blocked sources do not prove the absence of internships.`;
-  select('municipalities').innerHTML = report.municipalities.map(m => `<tr><th scope="row">${escape(m.name)}</th><td>${m.qualified_employers}</td><td>${m.size_unknown}</td><td>${m.verified_hr_internships ?? 0}</td><td>${Object.entries(m.collection_states).map(([state,count]) => `${count} ${escape(labels[state] || state)}`).join('; ') || 'No employers researched yet'}</td></tr>`).join('');
+  select('municipalities').innerHTML = report.municipalities.map(m => `<tr><th scope="row">${escape(m.name)}</th><td>${m.qualified_employers}</td><td>${m.size_unknown}</td><td>${(m.verified_hr_internship_ids || []).filter(id=>jobs.some(j=>j.id===id)).length}</td><td>${Object.entries(m.collection_states).map(([state,count]) => `${count} ${escape(labels[state] || state)}`).join('; ') || 'No employers researched yet'}</td></tr>`).join('');
   let employerLimit = 20;
   function renderEmployers() {
     const query = select('search').value.toLocaleLowerCase();
