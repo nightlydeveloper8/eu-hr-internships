@@ -1,4 +1,6 @@
 """Offline workflow boundaries: freshness, reproducibility, inert external claims."""
+import contextlib
+import io
 from pathlib import Path
 import subprocess
 import tempfile
@@ -120,7 +122,7 @@ class FactoryTest(unittest.TestCase):
         self.assertTrue(first['pending_tasks'])
         self.assertEqual(self.data_hashes(), self.baseline)
 
-    def test_vacancy_expiry_invalidates_before_checkpoint_age_limit(self):
+    def test_verification_freshness_expiry_invalidates_before_checkpoint_age_limit(self):
         checkpoint(self.root, 'p', AT)
         with self.assertRaises(ValueError):
             checkpoint(self.root, 'p', '2026-11-07T16:01:00Z', resume=True)
@@ -128,6 +130,93 @@ class FactoryTest(unittest.TestCase):
         self.assertEqual(action, 'created')
         self.assertEqual(result['verified_hr_internship_ids'], [])
         self.assertEqual(len(list((self.root / '.staging/factory/p/checkpoints').glob('*.json'))), 2)
+
+    def deadline_fixture(self, deadline):
+        job = read(self.root / 'data/catalog.json')['jobs'][0]
+        job.update(last_verified_at=AT, valid_through=deadline)
+        self.save('catalog', dict(jobs=[job]))
+
+    def cli_checkpoint(self, at, resume=False):
+        from scripts import provincial_factory as cli
+        args = ['provincial_factory.py', 'checkpoint', 'p', '--at', at]
+        if resume:
+            args.append('--resume')
+        out, err = io.StringIO(), io.StringIO()
+        code = 0
+        with patch.object(cli, 'ROOT', self.root), patch('sys.argv', args), contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            try:
+                cli.main()
+            except SystemExit as exc:
+                code = exc.code
+        return code, out.getvalue() + err.getvalue()
+
+    def test_timestamp_deadline_excludes_ids_and_counts_with_fresh_verification(self):
+        self.deadline_fixture('2026-11-07T15:30:00+00:00')
+        hashes = self.data_hashes()
+        for at, expected in [(AT, ['j1']), ('2026-11-07T15:30:00Z', ['j1']),
+                             ('2026-11-07T15:30:00.000001Z', []), ('2026-11-07T15:31:00Z', [])]:
+            with self.subTest(at=at):
+                report = snapshot(self.root, 'p', at)
+                self.assertEqual(report['verified_hr_internship_ids'], expected)
+                self.assertIn(f"Verified HR internships (policy v2, <=48h): {len(expected)};", compact(report))
+        self.assertEqual(self.data_hashes(), hashes)
+
+    def test_date_only_deadline_is_inclusive_for_the_utc_day(self):
+        self.deadline_fixture('2026-11-07')
+        for at, expected in [('2026-11-07T23:59:59.999999Z', ['j1']),
+                             ('2026-11-08T00:30:00+01:00', ['j1']),
+                             ('2026-11-07T23:30:00-01:00', []),
+                             ('2026-11-08T00:00:00Z', [])]:
+            with self.subTest(at=at):
+                self.assertEqual(snapshot(self.root, 'p', at)['verified_hr_internship_ids'], expected)
+
+    def assert_deadline_checkpoint_invalidated(self, deadline, still_open_at, expired_at):
+        self.deadline_fixture(deadline)
+        hashes = self.data_hashes()
+        self.assertEqual(self.cli_checkpoint(AT)[0], 0)
+        path = self.root / '.staging/factory/p/checkpoint.json'
+        original = path.read_bytes()
+        before = read(path)
+        code, output = self.cli_checkpoint(still_open_at, resume=True)
+        self.assertEqual(code, 0)
+        self.assertIn('reused', output)
+        self.assertEqual(path.read_bytes(), original)
+        code, output = self.cli_checkpoint(expired_at, resume=True)
+        self.assertEqual(code, 2)
+        self.assertIn('obsolete', output)
+        self.assertEqual(path.read_bytes(), original)
+        code, output = self.cli_checkpoint(expired_at)
+        self.assertEqual(code, 0)
+        self.assertIn('created', output)
+        after = read(path)
+        self.assertEqual(before['verified_hr_internship_ids'], ['j1'])
+        self.assertEqual(after['verified_hr_internship_ids'], [])
+        self.assertEqual(before['versions'], after['versions'])
+        self.assertNotEqual(before['state_sha256'], after['state_sha256'])
+        self.assertEqual(len(list(path.parent.glob('checkpoints/*.json'))), 2)
+        self.assertIn('reused', self.cli_checkpoint(expired_at, resume=True)[1])
+        self.assertEqual(self.data_hashes(), hashes)
+
+    def test_timestamp_deadline_invalidates_cli_checkpoint_before_48h(self):
+        self.assert_deadline_checkpoint_invalidated('2026-11-07T15:30:00Z',
+            '2026-11-07T15:30:00Z', '2026-11-07T15:31:00Z')
+
+    def test_date_only_deadline_invalidates_cli_checkpoint_at_next_utc_day(self):
+        self.assert_deadline_checkpoint_invalidated('2026-11-07',
+            '2026-11-07T23:59:59Z', '2026-11-08T00:00:00Z')
+
+    def test_verification_freshness_is_required_even_before_future_deadline(self):
+        self.deadline_fixture('2026-11-30')
+        for at, expected in [('2026-11-09T15:00:00Z', ['j1']),
+                             ('2026-11-09T15:00:00.000001Z', [])]:
+            with self.subTest(at=at):
+                self.assertEqual(snapshot(self.root, 'p', at)['verified_hr_internship_ids'], expected)
+
+    def test_missing_deadline_preserves_policy_and_invalid_deadline_is_excluded(self):
+        for deadline, expected in [(None, ['j1']), ('invalid', [])]:
+            with self.subTest(deadline=deadline):
+                self.deadline_fixture(deadline)
+                self.assertEqual(snapshot(self.root, 'p', AT)['verified_hr_internship_ids'], expected)
 
     def test_missing_checkpoint_and_clock_rollback_rejected(self):
         with self.assertRaises(ValueError):

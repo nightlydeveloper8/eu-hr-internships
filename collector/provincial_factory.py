@@ -10,7 +10,7 @@ from collections import Counter
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlsplit
 from .company_registry import company_key
-from .verification import blocked_error, verified_job
+from .verification import blocked_error, expired, verified_job
 
 SCHEMA_VERSION = 1
 FRESHNESS = timedelta(hours=48)
@@ -63,6 +63,16 @@ def recent(value, at):
         return False
 
 
+def deadline_open(job, at):
+    """Honor application deadlines independently of the verification's 48h age."""
+    try:
+        # expired() treats a date-only deadline as inclusive. Normalize the
+        # evaluation date to UTC even when --at supplies another timezone.
+        return not expired(job.get('valid_through'), clock(at).isoformat())
+    except (ValueError, TypeError, AttributeError):
+        return False
+
+
 def workspace(root, slug):
     if not re.fullmatch(r'[a-z][a-z0-9-]*', slug) or not (root / f'data/{slug}-geography.json').is_file():
         raise ValueError('Unknown provincial geography')
@@ -105,7 +115,7 @@ def snapshot(root, slug, at):
     names = {company_key(n) for c in companies for n in [c['name']] + c.get('aliases', [])}
     jobs = [j for j in read(root / 'data/catalog.json')['jobs'] if region in j.get('region_codes', [])
             and (j.get('source_id') in ids or company_key(j.get('employer', '')) in names)
-            and j.get('internship_type') == 'internship' and verified_job(j, at)]
+            and j.get('internship_type') == 'internship' and verified_job(j, at) and deadline_open(j, at)]
     municipalities = [dict(name=m['name'], identified=sum(m['cbs_code'] in e['municipality_codes'] for e in employers),
         configured=sum(e['configured'] and m['cbs_code'] in e['municipality_codes'] for e in employers),
         complete_recent=sum(e['complete_recent'] and m['cbs_code'] in e['municipality_codes'] for e in employers))
