@@ -29,6 +29,22 @@ class ClassificationTests(unittest.TestCase):
     def test_vacation_is_not_internship_duration(self):
         self.assertIsNone(extract_metadata('We offer 5 weeks paid vacation. Welcome to our internship.')['duration'])
 
+    def test_posting_age_is_not_internship_duration(self):
+        for text in ('HR Stagiair(e) Full Time 3 maanden geleden',
+                     'HR internship posted 3 months ago'):
+            with self.subTest(text=text):
+                self.assertIsNone(extract_metadata(text)['duration'])
+
+    def test_legitimate_month_duration_after_posting_age(self):
+        self.assertEqual(extract_metadata(
+            'HR Stagiair(e) 3 maanden geleden Beschikbaar voor 6 maanden')['duration'], '6 maanden')
+        self.assertEqual(extract_metadata('Deze stage duurt 3 maanden')['duration'], '3 maanden')
+
+    def test_month_duration_alternatives_are_retained(self):
+        self.assertEqual(extract_metadata(
+            'HR Stagiair(e) Full Time 3 maanden geleden Beschikbaar is voor 5 of 10 maanden, '
+            'bij voorkeur een meewerk- en afstudeerstage aaneengesloten')['duration'], '5 of 10 maanden')
+
     def test_multilingual_statements(self):
         for statement,expected in [('Vous avez un niveau professionnel en anglais.','en'),('Sehr gute Deutschkenntnisse und fließend Englisch.','en'),('Je spreekt vloeiend Nederlands en Engels.','nl'),('Buona conoscenza della lingua italiana.','it'),('Fluency in Romanian.','ro')]:
             with self.subTest(statement=statement): self.assertIn(expected,{r['code'] for r in workplace_languages(statement)})

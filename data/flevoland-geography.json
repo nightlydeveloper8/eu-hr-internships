@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "province": {
+    "official_name": "Flevoland",
+    "cbs_code": "PV24",
+    "nuts2_code": "NL23",
+    "nuts_note": "Province NUTS2 code; municipalities use CBS GM codes."
+  },
+  "checked_on": "2026-11-07",
+  "administrative_reference_date": "2026-01-01",
+  "municipality_count": 6,
+  "settlement_count": 19,
+  "composition_status": "complete-official-2026-municipal-membership",
+  "sources": {
+    "cbs_areas_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+    "cbs_settlements_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86312NED"
+  },
+  "api_sources": {
+    "municipalities": "https://opendata.cbs.nl/ODataApi/OData/86247NED/TypedDataSet",
+    "settlement_links": "https://opendata.cbs.nl/ODataApi/OData/86312NED/TypedDataSet",
+    "settlement_names": "https://opendata.cbs.nl/ODataApi/OData/86312NED/Woonplaatsen"
+  },
+  "import_audit": {
+    "national_area_rows": 342,
+    "national_settlement_rows": 2502,
+    "national_settlement_names": 2502,
+    "unique_provincial_settlement_codes": 19
+  },
+  "municipalities": [
+    {
+      "cbs_code": "GM0034",
+      "name": "Almere",
+      "province_code": "PV24",
+      "province_name": "Flevoland",
+      "corop_code": "CR40",
+      "corop_name": "Flevoland",
+      "inhabitants": 232619,
+      "settlements": [
+        {
+          "code": "WP1270",
+          "name": "Almere",
+          "search_name_variants": [
+            "Almere",
+            "almere"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Almere"
+      ]
+    },
+    {
+      "cbs_code": "GM0303",
+      "name": "Dronten",
+      "province_code": "PV24",
+      "province_name": "Flevoland",
+      "corop_code": "CR40",
+      "corop_name": "Flevoland",
+      "inhabitants": 45443,
+      "settlements": [
+        {
+          "code": "WP2429",
+          "name": "Biddinghuizen",
+          "search_name_variants": [
+            "Biddinghuizen",
+            "biddinghuizen"
+          ]
+        },
+        {
+          "code": "WP2430",
+          "name": "Dronten",
+          "search_name_variants": [
+            "Dronten",
+            "dronten"
+          ]
+        },
+        {
+          "code": "WP2431",
+          "name": "Swifterbant",
+          "search_name_variants": [
+            "Swifterbant",
+            "swifterbant"
+          ]
+        }
+      ],
+      "settlement_count": 3,
+      "search_name_variants": [
+        "Dronten"
+      ]
+    },
+    {
+      "cbs_code": "GM0995",
+      "name": "Lelystad",
+      "province_code": "PV24",
+      "province_name": "Flevoland",
+      "corop_code": "CR40",
+      "corop_name": "Flevoland",
+      "inhabitants": 85781,
+      "settlements": [
+        {
+          "code": "WP1051",
+          "name": "Lelystad",
+          "search_name_variants": [
+            "Lelystad",
+            "lelystad"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Lelystad"
+      ]
+    },
+    {
+      "cbs_code": "GM0171",
+      "name": "Noordoostpolder",
+      "province_code": "PV24",
+      "province_name": "Flevoland",
+      "corop_code": "CR40",
+      "corop_name": "Flevoland",
+      "inhabitants": 51930,
+      "settlements": [
+        {
+          "code": "WP1272",
+          "name": "Bant",
+          "search_name_variants": [
+            "Bant",
+            "bant"
+          ]
+        },
+        {
+          "code": "WP1281",
+          "name": "Creil",
+          "search_name_variants": [
+            "Creil",
+            "creil"
+          ]
+        },
+        {
+          "code": "WP1271",
+          "name": "Emmeloord",
+          "search_name_variants": [
+            "Emmeloord",
+            "emmeloord"
+          ]
+        },
+        {
+          "code": "WP1276",
+          "name": "Ens",
+          "search_name_variants": [
+            "Ens",
+            "ens"
+          ]
+        },
+        {
+          "code": "WP1280",
+          "name": "Espel",
+          "search_name_variants": [
+            "Espel",
+            "espel"
+          ]
+        },
+        {
+          "code": "WP1275",
+          "name": "Kraggenburg",
+          "search_name_variants": [
+            "Kraggenburg",
+            "kraggenburg"
+          ]
+        },
+        {
+          "code": "WP1273",
+          "name": "Luttelgeest",
+          "search_name_variants": [
+            "Luttelgeest",
+            "luttelgeest"
+          ]
+        },
+        {
+          "code": "WP1274",
+          "name": "Marknesse",
+          "search_name_variants": [
+            "Marknesse",
+            "marknesse"
+          ]
+        },
+        {
+          "code": "WP1278",
+          "name": "Nagele",
+          "search_name_variants": [
+            "Nagele",
+            "nagele"
+          ]
+        },
+        {
+          "code": "WP1282",
+          "name": "Rutten",
+          "search_name_variants": [
+            "Rutten",
+            "rutten"
+          ]
+        },
+        {
+          "code": "WP1277",
+          "name": "Schokland",
+          "search_name_variants": [
+            "Schokland",
+            "schokland"
+          ]
+        },
+        {
+          "code": "WP1279",
+          "name": "Tollebeek",
+          "search_name_variants": [
+            "Tollebeek",
+            "tollebeek"
+          ]
+        }
+      ],
+      "settlement_count": 12,
+      "search_name_variants": [
+        "Noordoostpolder"
+      ]
+    },
+    {
+      "cbs_code": "GM0184",
+      "name": "Urk",
+      "province_code": "PV24",
+      "province_name": "Flevoland",
+      "corop_code": "CR40",
+      "corop_name": "Flevoland",
+      "inhabitants": 22431,
+      "settlements": [
+        {
+          "code": "WP2143",
+          "name": "Urk",
+          "search_name_variants": [
+            "Urk",
+            "urk"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Urk"
+      ]
+    },
+    {
+      "cbs_code": "GM0050",
+      "name": "Zeewolde",
+      "province_code": "PV24",
+      "province_name": "Flevoland",
+      "corop_code": "CR40",
+      "corop_name": "Flevoland",
+      "inhabitants": 24612,
+      "settlements": [
+        {
+          "code": "WP1075",
+          "name": "Zeewolde",
+          "search_name_variants": [
+            "Zeewolde",
+            "zeewolde"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Zeewolde"
+      ]
+    }
+  ],
+  "ambiguous_settlement_names": [],
+  "name_disambiguation": [
+    "A province, municipality and settlement are distinct units; a provincial mention alone is not a city workplace.",
+    "CBS provincial suffixes remain in statutory lookup names. Unsuffixed search variants require municipality/address confirmation.",
+    "Former municipality names are not current CBS municipality assignments; use the annual GM membership."
+  ],
+  "limitations": [
+    "CBS annual BAG snapshot at 1 January 2026, provisional; not live boundary geometry.",
+    "Search variants are normalisations, not alternative statutory names.",
+    "A complete geographic frame does not establish a complete employer census."
+  ]
+}

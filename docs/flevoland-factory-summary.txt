@@ -1,0 +1,24 @@
+Province: flevoland | as of 2026-11-07T17:22:17.838898+00:00 | freshness: 48h
+Employers: identified 19; configured 19; complete/recent 0
+Sources: configured 19; complete/recent 0; stale/invalid/missing timestamp 0
+Collection states (independent of freshness): complete=0; partial=10; incomplete=7; blocked=2; failed=0; not-attempted=0
+Verified HR internships (policy v2, <=48h): 1; untrusted review candidates: 26
+Municipality | identified / configured / complete-recent employers (overlapping totals)
+Almere | 2 / 2 / 0
+Dronten | 3 / 3 / 0
+Lelystad | 4 / 4 / 0
+Noordoostpolder | 3 / 3 / 0
+Urk | 4 / 4 / 0
+Zeewolde | 3 / 3 / 0
+Priority anomalies: 19 (first 10)
+auto-gemeente-almere: blocked
+auto-gemeente-noordoostpolder: blocked
+auto-alfen: incomplete
+auto-farm-dairy: incomplete
+auto-gemeente-dronten: incomplete
+auto-gemeente-zeewolde: incomplete
+auto-giant-europe: incomplete
+auto-groothuisbouw: partial
+auto-hlb-group: partial
+auto-kramer-fish-group: incomplete
+Evidence: data/coverage.json; data/catalog.json; data/companies.json; provincial geography. No network requests.

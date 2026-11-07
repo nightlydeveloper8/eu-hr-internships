@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-07T17:15:44.146686+00:00",
+  "generated_at": "2026-11-07T17:21:04.103603+00:00",
   "exhaustive": false,
   "summary": {
     "verified-empty": 33,
-    "blocked-or-failed": 291,
-    "partial": 502,
-    "discovery-incomplete": 986,
+    "blocked-or-failed": 293,
+    "partial": 511,
+    "discovery-incomplete": 993,
     "collected": 52,
-    "companies": 1864,
-    "configured": 1864,
-    "attempted": 1864
+    "companies": 1882,
+    "configured": 1882,
+    "attempted": 1882
   },
   "country_counting": "Candidate country membership; multi-country employers counted once per country. Actual job locations require published evidence.",
   "countries": [
@@ -187,12 +187,12 @@
     {
       "code": "NL",
       "name": "Netherlands",
-      "companies_identified": 1190,
+      "companies_identified": 1208,
       "states": {
         "verified-empty": 29,
-        "partial": 363,
-        "blocked-or-failed": 193,
-        "discovery-incomplete": 571,
+        "partial": 372,
+        "blocked-or-failed": 195,
+        "discovery-incomplete": 578,
         "collected": 34
       }
     },
@@ -1647,16 +1647,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "source_ids": [
         "auto-alfen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-07T17:04:52.613142+00:00",
-      "public_job_records": 26,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 2,
-      "pending_urls": 21,
+      "pages_read": 20,
+      "pending_urls": 18,
       "errors": [
         {
           "source_id": "auto-alfen",
@@ -43931,6 +43931,398 @@
       "matching_hr_positions": 0,
       "pages_read": 31,
       "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-almere",
+      "name": "Gemeente Almere",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "blocked-or-failed",
+      "source_ids": [
+        "auto-gemeente-almere"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 0,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-almere",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "provincie-flevoland",
+      "name": "Provincie Flevoland",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-provincie-flevoland"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 7,
+      "matching_hr_positions": 0,
+      "pages_read": 8,
+      "pending_urls": 5,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "marfo",
+      "name": "Marfo",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-marfo"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 2,
+      "matching_hr_positions": 0,
+      "pages_read": 8,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-marfo",
+          "error": "[{'url': 'https://www.werkenbijmarfo.nl/vacatures/?bedrijfsnaam2=Kantoor', 'error': 'Rendered read: Playwright is not installed'}, {'url': 'https://www.werkenbijmarfo.nl/vacatures/?bedrijfsnaam2=Stages', 'error': 'Rendered read: Playwright is not installed'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "farm-dairy",
+      "name": "Farm Dairy",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-farm-dairy"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 8,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-farm-dairy",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "giant-europe",
+      "name": "Giant Europe",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-giant-europe"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 2,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-giant-europe",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "meerpaal",
+      "name": "Meerpaal",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-meerpaal"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 3,
+      "matching_hr_positions": 0,
+      "pages_read": 7,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-dronten",
+      "name": "Gemeente Dronten",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-gemeente-dronten"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 3,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-dronten",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "hlb-group",
+      "name": "HLB Group",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-hlb-group"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 4,
+      "matching_hr_positions": 1,
+      "pages_read": 5,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "smt-netherlands",
+      "name": "SMT Netherlands",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-smt-netherlands"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 1,
+      "matching_hr_positions": 1,
+      "pages_read": 1,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-smt-netherlands",
+          "error": "[{'url': 'https://werkenbijsmt.nl/vacature/hr-stagiaire', 'error': 'Vacancy verification: Vacancy-specific email application instructions unavailable'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "groothuisbouw",
+      "name": "Groothuisbouw",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-groothuisbouw"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 5,
+      "matching_hr_positions": 0,
+      "pages_read": 8,
+      "pending_urls": 2,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-noordoostpolder",
+      "name": "Gemeente Noordoostpolder",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "blocked-or-failed",
+      "source_ids": [
+        "auto-gemeente-noordoostpolder"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 0,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-noordoostpolder",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "sea-fresh",
+      "name": "Sea Fresh",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-sea-fresh"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 6,
+      "matching_hr_positions": 0,
+      "pages_read": 8,
+      "pending_urls": 2,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "urker-zalmhuys",
+      "name": "Urker Zalmhuys",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-urker-zalmhuys"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 3,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-urker-zalmhuys",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "neerlandia-urk",
+      "name": "Neerlandia Urk",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-neerlandia-urk"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 5,
+      "matching_hr_positions": 0,
+      "pages_read": 8,
+      "pending_urls": 2,
+      "errors": [
+        {
+          "source_id": "auto-neerlandia-urk",
+          "error": "[{'url': 'https://neerlandia.com', 'error': 'Rendered read: Playwright is not installed'}]"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "kramer-fish-group",
+      "name": "Kramer Fish Group",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-kramer-fish-group"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 5,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-kramer-fish-group",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "van-amersfoort-racing",
+      "name": "Van Amersfoort Racing",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-van-amersfoort-racing"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 2,
+      "matching_hr_positions": 0,
+      "pages_read": 5,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "royal-herkel",
+      "name": "Royal Herkel",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-royal-herkel"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 1,
+      "matching_hr_positions": 0,
+      "pages_read": 3,
+      "pending_urls": 0,
+      "errors": [],
+      "next_attempt": "next daily run"
+    },
+    {
+      "company_id": "gemeente-zeewolde",
+      "name": "Gemeente Zeewolde",
+      "candidate_countries": [
+        "NL"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-gemeente-zeewolde"
+      ],
+      "attempted": true,
+      "checked_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "matching_hr_positions": 0,
+      "pages_read": 8,
+      "pending_urls": 11,
       "errors": [],
       "next_attempt": "next daily run"
     }

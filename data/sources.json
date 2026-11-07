@@ -2461,9 +2461,10 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://alfen.com/nl-nl/werken-bij/stage/stage-mogelijkheden",
       "https://alfen.com/nl-nl/werken-bij"
     ],
-    "career_url": "https://alfen.com/nl-nl/werken-bij",
+    "career_url": "https://alfen.com/nl-nl/werken-bij/stage/stage-mogelijkheden",
     "allowed_hosts": [
       "alfen.com"
     ],
@@ -47538,5 +47539,513 @@
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
     "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-gemeente-almere",
+    "company_id": "gemeente-almere",
+    "employer": "Gemeente Almere",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijalmere.nl/vacatures",
+      "https://www.werkenbijalmere.nl"
+    ],
+    "career_url": "https://www.werkenbijalmere.nl/vacatures",
+    "allowed_hosts": [
+      "www.werkenbijalmere.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-provincie-flevoland",
+    "company_id": "provincie-flevoland",
+    "employer": "Provincie Flevoland",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://flevoland.heeft-vacatures.com"
+    ],
+    "career_url": "https://flevoland.heeft-vacatures.com/",
+    "allowed_hosts": [
+      "flevoland.heeft-vacatures.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-marfo",
+    "company_id": "marfo",
+    "employer": "Marfo",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijmarfo.nl/vacatures",
+      "https://www.werkenbijmarfo.nl"
+    ],
+    "career_url": "https://www.werkenbijmarfo.nl/vacatures/",
+    "allowed_hosts": [
+      "www.werkenbijmarfo.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-farm-dairy",
+    "company_id": "farm-dairy",
+    "employer": "Farm Dairy",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://farmdairy.com/werken-bij-farm-dairy",
+      "https://farmdairy.com"
+    ],
+    "career_url": "https://farmdairy.com/werken-bij-farm-dairy/",
+    "allowed_hosts": [
+      "farmdairy.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-giant-europe",
+    "company_id": "giant-europe",
+    "employer": "Giant Europe",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.giant-bicycles.com/nl/vacatures",
+      "https://www.giant-bicycles.com"
+    ],
+    "career_url": "https://www.giant-bicycles.com/nl/vacatures",
+    "allowed_hosts": [
+      "www.giant-bicycles.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-meerpaal",
+    "company_id": "meerpaal",
+    "employer": "Meerpaal",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.meerpaal.nl/vacatures",
+      "https://www.meerpaal.nl"
+    ],
+    "career_url": "https://www.meerpaal.nl/vacatures/",
+    "allowed_hosts": [
+      "www.meerpaal.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-gemeente-dronten",
+    "company_id": "gemeente-dronten",
+    "employer": "Gemeente Dronten",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.dronten.nl/bestuur-organisatie/werken-bij-gemeente-dronten",
+      "https://www.dronten.nl"
+    ],
+    "career_url": "https://www.dronten.nl/bestuur-organisatie/werken-bij-gemeente-dronten",
+    "allowed_hosts": [
+      "www.dronten.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-hlb-group",
+    "company_id": "hlb-group",
+    "employer": "HLB Group",
+    "adapter": "hlb-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.hlbbv.nl/nl/over-hlb/werken-bij",
+      "https://www.hlbbv.nl"
+    ],
+    "career_url": "https://www.hlbbv.nl/nl/over-hlb/werken-bij/",
+    "allowed_hosts": [
+      "www.hlbbv.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 30,
+    "collection_seconds": 100,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim.",
+    "reviewed_city_countries": {
+      "Dronten": "NL",
+      "Wijster": "NL",
+      "Wageningen": "NL"
+    },
+    "application_check": "hlb-email",
+    "application_email": "personeel@hlbbv.nl"
+  },
+  {
+    "id": "auto-smt-netherlands",
+    "company_id": "smt-netherlands",
+    "employer": "SMT Netherlands",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbijsmt.nl/vacatures",
+      "https://werkenbijsmt.nl"
+    ],
+    "career_url": "https://werkenbijsmt.nl/vacatures/",
+    "allowed_hosts": [
+      "werkenbijsmt.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 15,
+    "collection_seconds": 70,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Only Issue #9 HR candidate from official list; entire employer inventory not collected.",
+    "index_urls": [
+      "https://werkenbijsmt.nl/vacatures/"
+    ],
+    "job_url_pattern": "^https://werkenbijsmt\\.nl/vacature/hr-stagiaire/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "HR Stagiair\\(e\\) Full Time .{0,70}Emmeloord Gelijk solliciteren",
+        "city": "Emmeloord",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "application_check": "official-email",
+    "application_email": "jobs.nl@smt.network",
+    "report_index_scope": true,
+    "inventory_scope_complete": false
+  },
+  {
+    "id": "auto-groothuisbouw",
+    "company_id": "groothuisbouw",
+    "employer": "Groothuisbouw",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.groothuisbouw.nl/vacatures",
+      "https://www.groothuisbouw.nl"
+    ],
+    "career_url": "https://www.groothuisbouw.nl/vacatures",
+    "allowed_hosts": [
+      "www.groothuisbouw.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-gemeente-noordoostpolder",
+    "company_id": "gemeente-noordoostpolder",
+    "employer": "Gemeente Noordoostpolder",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.noordoostpolder.nl/vacatures-gemeente-noordoostpolder",
+      "https://www.noordoostpolder.nl"
+    ],
+    "career_url": "https://www.noordoostpolder.nl/vacatures-gemeente-noordoostpolder",
+    "allowed_hosts": [
+      "www.noordoostpolder.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-sea-fresh",
+    "company_id": "sea-fresh",
+    "employer": "Sea Fresh",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbijseafresh.nl/vacatures",
+      "https://werkenbijseafresh.nl"
+    ],
+    "career_url": "https://werkenbijseafresh.nl/vacatures/",
+    "allowed_hosts": [
+      "werkenbijseafresh.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-urker-zalmhuys",
+    "company_id": "urker-zalmhuys",
+    "employer": "Urker Zalmhuys",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijzalmhuys.nl"
+    ],
+    "career_url": "https://www.werkenbijzalmhuys.nl/",
+    "allowed_hosts": [
+      "www.werkenbijzalmhuys.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-neerlandia-urk",
+    "company_id": "neerlandia-urk",
+    "employer": "Neerlandia Urk",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://neerlandia.com/vacatures",
+      "https://neerlandia.com"
+    ],
+    "career_url": "https://neerlandia.com/vacatures/",
+    "allowed_hosts": [
+      "neerlandia.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-kramer-fish-group",
+    "company_id": "kramer-fish-group",
+    "employer": "Kramer Fish Group",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://kramerfish.nl/vacatures",
+      "https://kramerfish.nl"
+    ],
+    "career_url": "https://kramerfish.nl/vacatures/",
+    "allowed_hosts": [
+      "kramerfish.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-van-amersfoort-racing",
+    "company_id": "van-amersfoort-racing",
+    "employer": "Van Amersfoort Racing",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.vanamersfoortracing.nl/careers",
+      "https://www.vanamersfoortracing.nl"
+    ],
+    "career_url": "https://www.vanamersfoortracing.nl/careers/",
+    "allowed_hosts": [
+      "www.vanamersfoortracing.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-royal-herkel",
+    "company_id": "royal-herkel",
+    "employer": "Royal Herkel",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://royalherkel.com/vacatures",
+      "https://royalherkel.com"
+    ],
+    "career_url": "https://royalherkel.com/vacatures",
+    "allowed_hosts": [
+      "royalherkel.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-gemeente-zeewolde",
+    "company_id": "gemeente-zeewolde",
+    "employer": "Gemeente Zeewolde",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.zeewolde.nl/werken-bij-de-gemeente",
+      "https://www.zeewolde.nl"
+    ],
+    "career_url": "https://www.zeewolde.nl/werken-bij-de-gemeente",
+    "allowed_hosts": [
+      "www.zeewolde.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
   }
 ]

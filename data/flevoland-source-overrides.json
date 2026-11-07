@@ -1,0 +1,194 @@
+{
+  "auto-gemeente-almere": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-provincie-flevoland": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-marfo": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-farm-dairy": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-giant-europe": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-meerpaal": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-gemeente-dronten": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-hlb-group": {
+    "max_pages": 8,
+    "max_requests": 30,
+    "collection_seconds": 100,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim.",
+    "adapter": "hlb-index",
+    "career_url": "https://www.hlbbv.nl/nl/over-hlb/werken-bij/",
+    "allowed_hosts": [
+      "www.hlbbv.nl"
+    ],
+    "reviewed_city_countries": {
+      "Dronten": "NL",
+      "Wijster": "NL",
+      "Wageningen": "NL"
+    },
+    "application_check": "hlb-email",
+    "application_email": "personeel@hlbbv.nl"
+  },
+  "auto-smt-netherlands": {
+    "max_pages": 8,
+    "max_requests": 15,
+    "collection_seconds": 70,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Only Issue #9 HR candidate from official list; entire employer inventory not collected.",
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://werkenbijsmt.nl/vacatures/"
+    ],
+    "job_url_pattern": "^https://werkenbijsmt\\.nl/vacature/hr-stagiaire/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "HR Stagiair\\(e\\) Full Time .{0,70}Emmeloord Gelijk solliciteren",
+        "city": "Emmeloord",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "application_check": "official-email",
+    "application_email": "jobs.nl@smt.network",
+    "report_index_scope": true,
+    "inventory_scope_complete": false
+  },
+  "auto-groothuisbouw": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-gemeente-noordoostpolder": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-sea-fresh": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-urker-zalmhuys": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-neerlandia-urk": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-kramer-fish-group": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-van-amersfoort-racing": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-royal-herkel": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  "auto-gemeente-zeewolde": {
+    "max_pages": 8,
+    "max_requests": 24,
+    "collection_seconds": 45,
+    "max_navigation_depth": 1,
+    "max_render_pages": 0,
+    "access_reviewed_on": "2026-11-07",
+    "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  }
+}

@@ -75,6 +75,14 @@ def verify_application(record, source, client):
     kind = source.get('application_check')
     if not kind: return None
     body, doc = checked_document(record['url'], source, client)
+    if kind == 'hlb-email':
+        address = 'personeel@hlbbv.nl'
+        if (source.get('application_email') != address
+            or not any(href.lower().split('?')[0] == 'mailto:' + address for href, _, _ in doc.links)
+            or 'Je cv en motivatiebrief mogen gestuurd worden naar ' + address not in doc.text):
+            raise ValueError('HLB vacancy-specific CV and motivation email instructions unavailable')
+        return dict(url=record['url'], method='official-vacancy-email-instructions',
+                    application_email=address, delivery_verified=False)
     if kind == 'official-email':
         # The address must be both reviewed and currently published with an
         # instruction to send application documents on this identified vacancy.

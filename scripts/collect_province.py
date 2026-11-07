@@ -9,7 +9,7 @@ from collector.provinces import generate_province
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('province',choices=['friesland','groningen','drenthe','utrecht'])
+    parser.add_argument('province',choices=['friesland','groningen','drenthe','utrecht','flevoland'])
     parser.add_argument('--workers',type=int,default=6)
     args=parser.parse_args()
     logging.basicConfig(level=logging.INFO,format='%(asctime)s %(levelname)s %(message)s')
