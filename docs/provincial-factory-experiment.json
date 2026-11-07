@@ -1,0 +1,40 @@
+{
+  "after": {
+    "median_seconds_5_runs": 0.022356,
+    "stdout_bytes": 1177,
+    "stdout_lines": 30
+  },
+  "as_of": "2026-11-07T14:30:00+00:00",
+  "baseline_commit": "118d3a9",
+  "before": {
+    "median_seconds_5_runs": 0.001026,
+    "stdout_bytes": 546,
+    "stdout_lines": 1
+  },
+  "catalog_sha256": "54bdbf659c2ce34dcb2885215671608c53e18d1f2204bdf0e7e88dc74e2e5eea",
+  "checks": {
+    "all_data_files_unchanged": true,
+    "changed_input_rejected": true,
+    "checkpoint_idempotent": true,
+    "cli_repeatable": true,
+    "expired_checkpoint_rejected": true,
+    "handoff_pending_and_idempotent": true
+  },
+  "codex_quota": "Not measured; no usage UI values available. No saving claimed.",
+  "comparison": "Existing coverage summary rendering versus Factory summary on the same saved batch. Not a crawler benchmark; old timing uses preloaded objects, Factory includes file reads.",
+  "complete_recent_sources": 3,
+  "network_requests_after": 0,
+  "network_requests_before": 0,
+  "province": "drenthe",
+  "saved_collection_requests": 741,
+  "saved_collection_source_seconds_sum": 782.67,
+  "schema_version": 1,
+  "source_reports_processed": 34,
+  "source_states": {
+    "blocked": 5,
+    "complete": 3,
+    "incomplete": 9,
+    "partial": 17
+  },
+  "verified_hr_internships": 2
+}

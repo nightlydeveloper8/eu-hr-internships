@@ -134,3 +134,7 @@ GitHub repository creation, live scheduled-run verification and Cloudflare Pages
 The availability policy, before/after results, live sample, daily-run evidence and remaining limits are documented in [vacancy-reliability-report.md](docs/vacancy-reliability-report.md). A successful URL response alone no longer verifies an opening. Historical HEAD-only records remain available through “Include unverified opportunities” until recollected. No new sources or countries are added by this change.
 
 For manual multi-shard runs, supply the same unique `--run-id` to every `collector.daily collect` and `merge` invocation (or set `COLLECTOR_RUN_ID`). GitHub Actions supplies its run ID and attempt automatically; rerun all jobs together after a failed attempt.
+
+## Provincial Factory v1
+
+Offline summaries, workflow checkpoints and untrusted candidate handoff: [operator commands](docs/provincial-factory.md).

@@ -47,7 +47,7 @@ class EnnatuurlijkReconciliationTests(unittest.TestCase):
         # Use the actual post-run regression as history. Only the fixture form
         # establishes a fresh verification; never promote the input by hand.
         prior=[copy.deepcopy(self.target)]
-        for day in (7,7,8,9):
+        for iteration,day in enumerate((7,7,8,9)):
             rows,part,coverage=self.cycle(prior,day)
             self.assertEqual(part['report']['verification_states'],{'verified':1})
             self.assertEqual(part['closure_eligible'],[self.source['id']])
@@ -59,7 +59,8 @@ class EnnatuurlijkReconciliationTests(unittest.TestCase):
             self.assertEqual(job['missing_count'],0)
             self.assertNotIn('missing_since',job);self.assertNotIn('last_missing_run',job)
             self.assertEqual(coverage['quality']['verified_internships'],1)
-            if day==7 and prior[0].get('status')=='open':self.assertEqual(rows,prior)
+            # Compare repeated fixture output, not the mutable live catalog seed.
+            if iteration==1:self.assertEqual(rows,prior)
             prior=rows
 
     def test_ownership_review_precedes_identity_and_absence(self):
