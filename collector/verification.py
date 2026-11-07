@@ -80,7 +80,10 @@ def verify_vacancy(record, source, client, stamp):
     """No successful HEAD, cached page or JSON-LD alone establishes an opening."""
     body, doc = checked_document(record['url'], source, client)
     if canonical_url(doc.url)!=canonical_url(record['url']):raise ValueError('Vacancy redirected to a different URL; identity requires review')
-    if not same_title(doc, record['title']): raise ValueError('Current page does not identify the same vacancy')
+    if not same_title(doc, record['title']):
+        from .reviewed_html import reviewed_titles
+        if doc.h1 or [fold(t) for t in reviewed_titles(body,source)] != [fold(record['title'])]:
+            raise ValueError('Current page does not identify the same vacancy')
     fresh_deadline=next((post.get('validThrough') for post in doc.jobposts() if fold(plain(post.get('title')))==fold(record['title'])),None)
     for post in doc.jobposts():
         if fold(plain(post.get('title'))) == fold(record['title']) and expired(post.get('validThrough'), stamp):

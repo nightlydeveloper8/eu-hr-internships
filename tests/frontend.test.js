@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts} from '../src/logic.js';
+import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
@@ -50,6 +50,7 @@ test('opportunity counts separate archived, verified and opportunity types',()=>
  assert.equal(opportunityCounts(jobs,clock+49*60*60*1000).verified,0);
 });
 test('verification explanations are useful without exposing parser errors',()=>{
+ assert.equal(verificationMessage({...base,status:'unverified',link_status:'review-required',review_note:'Published September intake needs confirmation.'}),'Published September intake needs confirmation.');
  assert.match(verificationMessage({...base,status:'unverified',verification:{state:'blocked'}}),/restricted/);
  assert.match(verificationMessage({...base,status:'unverified',verification:{reason:'Request budget exhausted'}}),/could not finish/);
  assert.match(verificationMessage({...base,status:'unverified',verification:{reason:'Invalid application deadline'}}),/closing date/);
@@ -57,6 +58,20 @@ test('verification explanations are useful without exposing parser errors',()=>{
  assert.match(text,/may still be open/);assert.doesNotMatch(text,/TypeError|NoneType|sequence/);
  assert.match(verificationMessage({...base,last_verified_at:'2020-01-01T00:00:00Z'}),/more than 48 hours/);
  assert.match(verificationMessage(base),/confirmed within/);
+});
+
+test('province jobs require workplace region and separate unverified internships',()=>{
+  const report={region_code:'NL35',verified_hr_internship_ids:['1']};
+  const local={...base,region_codes:['NL35']};
+  const candidate={...local,id:'candidate',verification:{state:'unverified'},status:'unverified'};
+  const otherProvince={...local,id:'elsewhere',region_codes:['NL13']};
+  const programme={...candidate,id:'programme',internship_type:'traineeship'};
+  const closed={...candidate,id:'closed',status:'closed'};
+  const rows=[local,candidate,otherProvince,programme,closed];
+  assert.deepEqual(provincialJobs(rows,report).map(j=>j.id),['1']);
+  assert.deepEqual(provincialJobs(rows,report,{unverified:true}).map(j=>j.id),['1','candidate']);
+  assert.equal(provincialJobs(rows,report,{unverified:true,ad:'nl'}).length,0);
+  assert.deepEqual(provincialJobs(rows,report,{q:'Example'}).map(j=>j.id),['1']);
 });
 
 test('English advertisement alone proves neither workplace English nor sufficiency',()=>{
@@ -85,4 +100,5 @@ test('verified internship and working-student KPI subsets exclude stale and unve
  const counts=opportunityCounts(jobs,clock);
  assert.equal(counts.verifiedInternships,1);assert.equal(counts.verifiedWorkingStudents,1);
  assert.equal(counts.unverified,2);assert.equal(counts.workingStudents,3);
+
 });

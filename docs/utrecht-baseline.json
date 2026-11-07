@@ -1,0 +1,39 @@
+{
+  "baseline_commit": "3ec0afd5a82caccd9d678199c0c1db8992b148a2",
+  "checked_on": "2026-11-07",
+  "work_isolation": "Separate shared-object clone in authorized workspace. Managed worktree creation returned late; unused clean managed worktree retained because archive tool rejects the chat primary checkout. Original Flevoland checkout untouched.",
+  "original_checkout": "/Users/dennis/Documents/ChatGPT/Internship/eu-hr-internships",
+  "branch": "feat/utrecht-expansion",
+  "recent_prs": [
+    {
+      "number": 6,
+      "state": "merged",
+      "url": "https://github.com/nightlydeveloper8/eu-hr-internships/pull/6"
+    },
+    {
+      "number": 5,
+      "state": "merged",
+      "url": "https://github.com/nightlydeveloper8/eu-hr-internships/pull/5"
+    }
+  ],
+  "recent_workflows": [
+    {
+      "id": 42352487916,
+      "name": "Validate application",
+      "conclusion": "success"
+    },
+    {
+      "id": 42349661189,
+      "name": "Daily employer collection",
+      "conclusion": "success"
+    }
+  ],
+  "nuts_2024": "NL35",
+  "cbs_province": "PV26",
+  "municipalities": 26,
+  "settlements": 104,
+  "existing_utrecht_company_ids": [
+    "danone"
+  ],
+  "original_git_status": " M collector/applications.py\n M collector/daily.py\n M collector/provinces.py\n M collector/reviewed_html.py\n M collector/verification.py\n M data/catalog.json\n M data/companies.json\n M data/coverage.json\n M data/sources.json\n M scripts/check_province_ui.py\n M scripts/collect_province.py\n M src/app.js\n M src/employers.html\n M src/index.html\n M src/logic.js\n M src/province.js\n M src/style.css\n M tests/frontend.test.js\n M tests/test_friesland.py\n?? data/flevoland-coverage.json\n?? data/flevoland-employers.json\n?? data/flevoland-geography.json\n?? data/flevoland-opportunities.json\n?? data/flevoland-source-overrides.json\n?? docs/autonomia-raccolta.md\n?? docs/flevoland-baseline.json\n?? docs/flevoland-research-employers.json\n?? docs/flevoland-research-vacancies.json\n?? docs/groningen-incarico.md\n?? scripts/check_unverified_ui.py\n?? scripts/integrate_flevoland.py\n?? src/flevoland.html\n?? tests/test_flevoland.py\n?? tests/test_flevoland_applications.py\n"
+}

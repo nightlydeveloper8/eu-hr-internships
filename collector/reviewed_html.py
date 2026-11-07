@@ -46,3 +46,34 @@ def aware_record(body,record,source):
     if suffix and suffix.group(1) in COUNTRIES:country=suffix.group(1)
     if not country:raise ValueError('A-ware workplace country requires review: '+fields['city'])
     return dict(record,**fields,country=country,countries=[country],location=fields['city']+', '+country,language='nl')
+
+
+class ReviewedTitle(HTMLParser):
+    """Extract one source-reviewed heading tag/class, including nested spans."""
+    def __init__(self, body, selector):
+        super().__init__(convert_charrefs=True)
+        self.selector=selector;self.depth=0;self.values=[];self.current=[]
+        self.feed(body.decode('utf-8','replace'))
+
+    def handle_starttag(self,tag,attrs):
+        attrs=dict(attrs)
+        if self.depth:
+            if tag not in ('br','img','input','hr','meta','link','source','wbr'):self.depth+=1
+        elif tag==self.selector.get('tag') and self.selector.get('class') in attrs.get('class','').split():
+            self.depth=1;self.current=[]
+
+    def handle_data(self,data):
+        if self.depth:self.current.append(data)
+
+    def handle_endtag(self,tag):
+        if self.depth:
+            self.depth-=1
+            if self.depth==0:self.values.append(plain(' '.join(self.current)))
+
+
+def reviewed_titles(body,source):
+    selector=source.get('reviewed_title')
+    if not selector:return []
+    if selector.get('tag') not in ('h1','h2','h3') or not selector.get('class'):
+        raise ValueError('Unreviewed visible title selector')
+    return ReviewedTitle(body,selector).values

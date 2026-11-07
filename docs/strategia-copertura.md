@@ -143,3 +143,8 @@ Rapporti e interfaccia provinciali condividono ora la stessa implementazione; an
 ## Estensione provinciale: Drenthe — 6 novembre 2026
 
 Frame CBS completo di 12 comuni e 227 località. Primo lotto di 31 datori, 14 qualificati ≥50 addetti; due stage candidabili verificati presso SKK e Ziengs/Scapino ad Assen. Tentati realmente tutti i 31 canali: due inventari osservati letti, 20 parziali, cinque discovery incomplete, quattro blocchi/fallimenti. NNCZ e Scania non vengono contati fra gli stage verificati. Riutilizzati import, registro, pagina provinciale e workflow quotidiano; produzione remota da verificare dopo merge autorizzato. Nessuna nuova automazione o chiamata ricorrente AI. Dettagli: [drenthe-mappatura.md](drenthe-mappatura.md).
+
+
+## Estensione provinciale: Utrecht — 7 novembre 2026
+
+Frame CBS completo di 26 comuni e 104 località, con codice NUTS 2024 NL35. Integrati 51 datori distinti, 20 qualificati ≥50 e 31 dimensioni ignote; 58 tentativi reali su 51 fonti. Sei stage con candidatura verificata: Remia, Trunkrs, Berenschot, due AS Watson e Domino’s. Le partenze Trunkrs/Domino’s richiedono conferma del nuovo intake. Stati correnti: quattro inventari osservati letti, 33 parziali, dieci scoperte incomplete, quattro blocchi/fallimenti. Tutti i comuni hanno datori ricercati; questo non equivale a un censimento né alla copertura di ogni località. Registro, importatore, report, pagina provinciale e sedici shard quotidiani sono condivisi. Nessuna nuova automazione o chiamata ricorrente AI; merge e produzione ancora da autorizzare. [Rapporto dettagliato](utrecht-mappatura.md).

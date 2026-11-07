@@ -1,0 +1,4105 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-07T08:04:01.447631+00:00",
+  "province": "utrecht",
+  "baseline_commit": "3ec0afd5a82caccd9d678199c0c1db8992b148a2",
+  "exhaustive": false,
+  "removed": {
+    "companies": [],
+    "sources": [],
+    "catalog_urls": []
+  },
+  "preservation_checks_passed": true,
+  "preserved_other_region_workplaces": 1073,
+  "baseline_counts": {
+    "companies": 1816,
+    "sources": 1860,
+    "catalog": 309
+  },
+  "current_counts": {
+    "companies": 1864,
+    "sources": 1908,
+    "catalog": 321
+  },
+  "summary": {
+    "employers": 51,
+    "qualified_employers": 20,
+    "distinct_groups": 51,
+    "qualified_groups": 20,
+    "size_unknown": 31,
+    "below_threshold": 0,
+    "municipalities": 26,
+    "municipalities_with_qualified_employers": 17,
+    "configured": 51,
+    "attempted_recently": 51,
+    "collection_states": {
+      "partial": 33,
+      "blocked-or-failed": 4,
+      "discovery-incomplete": 10,
+      "collected": 4
+    },
+    "qualified_collection_states": {
+      "partial": 13,
+      "blocked-or-failed": 2,
+      "discovery-incomplete": 5
+    },
+    "verified_hr_internships": 6,
+    "verified_hr_internships_qualified_employers": 1
+  },
+  "municipalities": [
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0307",
+      "name": "Amersfoort",
+      "settlements": 4,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3
+      },
+      "company_ids": [
+        "eemhart",
+        "prenatal",
+        "van-den-pol-elektrotechniek"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0308",
+      "name": "Baarn",
+      "settlements": 2,
+      "employers": 2,
+      "qualified_employers": 2,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 1,
+        "partial": 1
+      },
+      "company_ids": [
+        "eemhart",
+        "gemeente-baarn"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0312",
+      "name": "Bunnik",
+      "settlements": 3,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "gemeente-bunnik",
+        "vrumona"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0313",
+      "name": "Bunschoten",
+      "settlements": 2,
+      "employers": 1,
+      "qualified_employers": 0,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1
+      },
+      "company_ids": [
+        "gemeente-bunschoten"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0310",
+      "name": "De Bilt",
+      "settlements": 6,
+      "employers": 1,
+      "qualified_employers": 1,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1
+      },
+      "company_ids": [
+        "gemeente-de-bilt"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0736",
+      "name": "De Ronde Venen",
+      "settlements": 8,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "blocked-or-failed": 1,
+        "partial": 1
+      },
+      "company_ids": [
+        "gemeente-de-ronde-venen",
+        "van-walraven",
+        "walraven-group"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0317",
+      "name": "Eemnes",
+      "settlements": 1,
+      "employers": 1,
+      "qualified_employers": 1,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "bel-gemeenten"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0321",
+      "name": "Houten",
+      "settlements": 4,
+      "employers": 2,
+      "qualified_employers": 2,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2
+      },
+      "company_ids": [
+        "gemeente-houten",
+        "onvz"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0353",
+      "name": "IJsselstein",
+      "settlements": 1,
+      "employers": 2,
+      "qualified_employers": 0,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 1
+      },
+      "company_ids": [
+        "gemeente-ijsselstein",
+        "terberg-techniek"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0327",
+      "name": "Leusden",
+      "settlements": 3,
+      "employers": 2,
+      "qualified_employers": 2,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2
+      },
+      "company_ids": [
+        "afas-software",
+        "gemeente-leusden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0331",
+      "name": "Lopik",
+      "settlements": 5,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-lopik",
+        "royal-a-ware"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0335",
+      "name": "Montfoort",
+      "settlements": 2,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 1
+      },
+      "company_ids": [
+        "gemeente-montfoort",
+        "van-den-pol-elektrotechniek"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "10121d7fcd9519b11d98"
+      ],
+      "verified_hr_internships": 1,
+      "code": "GM0356",
+      "name": "Nieuwegein",
+      "settlements": 1,
+      "employers": 3,
+      "qualified_employers": 1,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3
+      },
+      "company_ids": [
+        "domino-s-pizza-netherlands",
+        "gemeente-nieuwegein",
+        "sopra-steria"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0589",
+      "name": "Oudewater",
+      "settlements": 4,
+      "employers": 1,
+      "qualified_employers": 0,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1
+      },
+      "company_ids": [
+        "gemeente-woerden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "4f1b149f7c7d6bd1b6fe",
+        "7878c54c7ee681ba8f6c"
+      ],
+      "verified_hr_internships": 2,
+      "code": "GM0339",
+      "name": "Renswoude",
+      "settlements": 1,
+      "employers": 2,
+      "qualified_employers": 0,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2
+      },
+      "company_ids": [
+        "as-watson-benelux",
+        "gemeente-renswoude"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0340",
+      "name": "Rhenen",
+      "settlements": 2,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2
+      },
+      "company_ids": [
+        "gemeente-rhenen",
+        "ouwehands-dierenpark"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0342",
+      "name": "Soest",
+      "settlements": 2,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3
+      },
+      "company_ids": [
+        "eemhart",
+        "gemeente-soest",
+        "kontakt-der-kontinenten"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1904",
+      "name": "Stichtse Vecht",
+      "settlements": 11,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-stichtse-vecht",
+        "zorgdomein"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "68bbbe8c4218385f7c9d"
+      ],
+      "verified_hr_internships": 1,
+      "code": "GM0344",
+      "name": "Utrecht",
+      "settlements": 4,
+      "employers": 8,
+      "qualified_employers": 2,
+      "size_unknown": 6,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 7,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "bcn",
+        "berenschot",
+        "danone",
+        "defabrique-holding",
+        "eemhart",
+        "hb-rts",
+        "rijkswaterstaat",
+        "universiteit-utrecht"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1581",
+      "name": "Utrechtse Heuvelrug",
+      "settlements": 7,
+      "employers": 1,
+      "qualified_employers": 0,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-utrechtse-heuvelrug"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0345",
+      "name": "Veenendaal",
+      "settlements": 1,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-veenendaal",
+        "hso"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1961",
+      "name": "Vijfheerenlanden",
+      "settlements": 17,
+      "employers": 2,
+      "qualified_employers": 0,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-vijfheerenlanden",
+        "miele-nederland-b-v"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0352",
+      "name": "Wijk bij Duurstede",
+      "settlements": 3,
+      "employers": 1,
+      "qualified_employers": 0,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-wijk-bij-duurstede"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "0a51cae97d6d6ff8eb91"
+      ],
+      "verified_hr_internships": 1,
+      "code": "GM0632",
+      "name": "Woerden",
+      "settlements": 4,
+      "employers": 2,
+      "qualified_employers": 0,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-woerden",
+        "trunkrs"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0351",
+      "name": "Woudenberg",
+      "settlements": 1,
+      "employers": 2,
+      "qualified_employers": 0,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2
+      },
+      "company_ids": [
+        "gemeente-woudenberg",
+        "vak-infra"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "feeafd529fbb03b9a107"
+      ],
+      "verified_hr_internships": 1,
+      "code": "GM0355",
+      "name": "Zeist",
+      "settlements": 5,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-zeist",
+        "koninklijke-remia-c-v"
+      ]
+    }
+  ],
+  "source_attempts": [
+    {
+      "id": "auto-gemeente-baarn",
+      "employer": "Gemeente Baarn",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "failed",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://werkenbijgemeentebaarn.nl/over-baarn",
+          "error": "robots.txt unavailable: 406"
+        },
+        {
+          "url": "https://werkenbijgemeentebaarn.nl",
+          "error": "robots.txt unavailable: 406"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 0,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbijgemeentebaarn.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 0.81,
+      "requests": 4,
+      "bytes_read": 0,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-bunnik",
+      "employer": "Gemeente Bunnik",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 3,
+      "sitemaps_read": 1,
+      "rendered_pages": 0,
+      "job_urls_discovered": 1,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.baanbijbunnik.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 2.16,
+      "requests": 4,
+      "bytes_read": 368881,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-de-ronde-venen",
+      "employer": "Gemeente De Ronde Venen",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 4,
+      "sitemaps_read": 2,
+      "rendered_pages": 1,
+      "job_urls_discovered": 1,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenvoorderondevenen.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 4.51,
+      "requests": 8,
+      "bytes_read": 97185,
+      "shard": 0
+    },
+    {
+      "id": "auto-bel-gemeenten",
+      "employer": "BEL gemeenten",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://werkenvoorbel.nl/wp-content/uploads/2024/12/BEL_240001_Bel_Gemeente_werkenbij_video_DEF_Subtitles_v3.mp4",
+          "error": "subclasses of ParserBase must override error()"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 9,
+      "sitemaps_read": 2,
+      "rendered_pages": 1,
+      "job_urls_discovered": 5,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenvoorbel.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 17.0,
+      "requests": 11,
+      "bytes_read": 21029930,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-de-bilt",
+      "employer": "Gemeente De Bilt",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 9,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 9,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 21,
+      "sitemaps_read": 1,
+      "rendered_pages": 9,
+      "job_urls_discovered": 10,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.werkenvoordebilt.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 22.06,
+      "requests": 31,
+      "bytes_read": 909355,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-houten",
+      "employer": "Gemeente Houten",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 8,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 8,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [
+        "https://www.werkenbijhouten.nl/vacatures/bbl-leerling-buitendienst/",
+        "https://www.werkenbijhouten.nl/vacatures/medewerker-groenbeheer/"
+      ],
+      "pages_read": 20,
+      "sitemaps_read": 3,
+      "rendered_pages": 3,
+      "job_urls_discovered": 16,
+      "pending_urls": 0,
+      "unresolved_geography": 2,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.werkenbijhouten.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 21.18,
+      "requests": 24,
+      "bytes_read": 3342875,
+      "shard": 0
+    },
+    {
+      "id": "auto-rijkswaterstaat",
+      "employer": "Rijkswaterstaat",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 51,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "blocked": 2
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 51,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://werkenbij.rijkswaterstaat.nl/vacatures/meewerkstage-hr/1346936",
+          "error": "Vacancy verification: HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://werkenbij.rijkswaterstaat.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde/1346780",
+          "error": "Vacancy verification: HTTP Error 403: Forbidden"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 56,
+      "sitemaps_read": 2,
+      "rendered_pages": 1,
+      "job_urls_discovered": 61,
+      "pending_urls": 2,
+      "unresolved_geography": 26,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "api.whatsapp.com",
+        "werkenbij.rijkswaterstaat.nl",
+        "www.rijkswaterstaat.nl",
+        "www.werkenvoornederland.nl"
+      ],
+      "inventory_complete": false,
+      "access_state": "blocked",
+      "duration_seconds": 42.96,
+      "requests": 90,
+      "bytes_read": 11154558,
+      "shard": 0
+    },
+    {
+      "id": "auto-afas-software",
+      "employer": "AFAS Software",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 9,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 9,
+      "page_failures": 16,
+      "page_errors": [
+        {
+          "url": "https://www.afas.nl",
+          "error": "Rendered read: Locator.click: Timeout 4000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/afstudeer-stages-bim",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/allround-geluidstechnicus",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/bijbaan",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/commercieel-specialist",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/consultant",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/contractmanager",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/facilitair-medewerker",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/facilitair-medewerker-schoonmaak",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/hospitality-medewerker",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/hospitality-medewerker-afas-theater",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/marketeer",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/servicemanager",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/stage-customer-support",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/stage-social-media-marketing",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.werkenbijafas.nl/job/theatertechnicus",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [
+        "https://www.werkenbijafas.nl/job/afstudeerstage-succesmanagement",
+        "https://www.werkenbijafas.nl/job/stage-artificial-intelligence"
+      ],
+      "pages_read": 28,
+      "sitemaps_read": 2,
+      "rendered_pages": 4,
+      "job_urls_discovered": 35,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.afas.nl",
+        "www.werkenbijafas.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 59.22,
+      "requests": 61,
+      "bytes_read": 6995409,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-zeist",
+      "employer": "Gemeente Zeist",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://www.werkenbijzeist.nl/jouw-carriere",
+          "error": "Rendered read: Request budget exhausted; checkpoint retained"
+        },
+        {
+          "url": "collection-budget",
+          "error": "Request budget exhausted; checkpoint retained"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 4,
+      "sitemaps_read": 1,
+      "rendered_pages": 1,
+      "job_urls_discovered": 4,
+      "pending_urls": 4,
+      "unresolved_geography": 0,
+      "explicit_empty": true,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.werkenbijzeist.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 21.88,
+      "requests": 110,
+      "bytes_read": 416354,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-leusden",
+      "employer": "Gemeente Leusden",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 47,
+      "status": "partial",
+      "matching": 3,
+      "verification_states": {
+        "incomplete": 3
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 47,
+      "page_failures": 3,
+      "page_errors": [
+        {
+          "url": "https://www.gemeentebanen.nl/vacatures/84479/gemeente-lansingerland/meewerkstage-communicatie-en-employer-branding",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.gemeentebanen.nl/vacatures/84386/gemeente-krimpenerwaard/stagiaire-hr",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.gemeentebanen.nl/vacatures/84171/gemeente-haarlemmermeer/stagiair-hr-business-partner",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 61,
+      "sitemaps_read": 0,
+      "rendered_pages": 15,
+      "job_urls_discovered": 500,
+      "pending_urls": 477,
+      "unresolved_geography": 11,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbij.zaanstad.nl",
+        "www.gemeentebanen.nl",
+        "www.leusden.nl",
+        "www.velsen.nl",
+        "www.werkenbijhaarlemmermeer.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 59.66,
+      "requests": 91,
+      "bytes_read": 12689800,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-stichtse-vecht",
+      "employer": "Gemeente Stichtse Vecht",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 20,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 20,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 33,
+      "sitemaps_read": 1,
+      "rendered_pages": 11,
+      "job_urls_discovered": 22,
+      "pending_urls": 3,
+      "unresolved_geography": 3,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.werkenbijstichtsevecht.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 50.34,
+      "requests": 92,
+      "bytes_read": 1818189,
+      "shard": 0
+    },
+    {
+      "id": "auto-berenschot",
+      "employer": "Berenschot",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 87,
+      "status": "partial",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 87,
+      "page_failures": 5,
+      "page_errors": [
+        {
+          "url": "https://www.berenschot.nl/nieuws/even-voorstellen-jackie-van-rijn-berenschot-klimaattalent",
+          "error": "<urlopen error timed out>"
+        },
+        {
+          "url": "https://www.berenschot.nl/human-capital/search/vacatures/lid-raad-commissarissen-l-escaut",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.berenschot.nl/human-capital/search/vacatures/manager-vastgoed-bij-oost-west-wonen",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://www.berenschot.nl/vacatures/cooerdinator-assessment-support-berenschot",
+          "error": "<urlopen error timed out>"
+        },
+        {
+          "url": "https://www.berenschot.nl/vacatures/junior-adviseur-bedrijfsvoering-data-analyse-en-benchmarking",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 1,
+      "rendered_pages": 0,
+      "job_urls_discovered": 152,
+      "pending_urls": 132,
+      "unresolved_geography": 27,
+      "explicit_empty": true,
+      "methods": [
+        "jobposting",
+        "recruitee",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "berenschot.recruitee.com",
+        "vimeo.com",
+        "www.berenschot.nl",
+        "www.mooiland.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 80.42,
+      "requests": 79,
+      "bytes_read": 10223295,
+      "shard": 0
+    },
+    {
+      "id": "auto-bcn",
+      "employer": "BCN",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "failed",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://werkenbij.bcn.nl",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://www.bcn.nl",
+          "error": "HTTP Error 403: Forbidden"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 0,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbij.bcn.nl",
+        "www.bcn.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 1.45,
+      "requests": 4,
+      "bytes_read": 3112,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-rhenen",
+      "employer": "Gemeente Rhenen",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 58,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 58,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://welzijnrivierstroom.nl/vacature/vrijwilliger-voor-werkgroep-creatieve-workshops/info@podiumdevlam.nl",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://welzijnrivierstroom.nl/vacature/vrijwilliger-obs-prins-willem-alexander/Werken@broodspelen.nl",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 2,
+      "rendered_pages": 0,
+      "job_urls_discovered": 78,
+      "pending_urls": 16,
+      "unresolved_geography": 58,
+      "explicit_empty": false,
+      "methods": [
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "energieloketrivierenland.nl",
+        "welzijnrivierstroom.nl",
+        "www.rhenen.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 71.28,
+      "requests": 74,
+      "bytes_read": 9123324,
+      "shard": 0
+    },
+    {
+      "id": "auto-sopra-steria",
+      "employer": "Sopra Steria",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 51,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "FR",
+        "NL"
+      ],
+      "records_inspected": 51,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.soprasteria.com",
+          "error": "robots.txt unavailable: 406"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 101,
+      "pending_urls": 65,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "jobposting",
+        "public-smartrecruiters-json"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "careers.smartrecruiters.com",
+        "careers.soprasteria.com",
+        "jobs.smartrecruiters.com",
+        "www.soprasteria.com"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 45.06,
+      "requests": 74,
+      "bytes_read": 5786280,
+      "shard": 0
+    },
+    {
+      "id": "auto-as-watson-benelux",
+      "employer": "AS Watson Benelux",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 2,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "incomplete": 2
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 2,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+          "error": "Vacancy verification: Application link lacks a matching vacancy identifier"
+        },
+        {
+          "url": "https://www.werkenbijaswatson.nl/banen/heteren/stage-hr-supply-chain/3560/46363040768",
+          "error": "Vacancy verification: Application link lacks a matching vacancy identifier"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 34,
+      "sitemaps_read": 0,
+      "rendered_pages": 2,
+      "job_urls_discovered": 2,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": true,
+      "methods": [
+        "browser",
+        "jobposting"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.aswatsonbenelux.com",
+        "www.werkenbijaswatson.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 37.0,
+      "requests": 41,
+      "bytes_read": 6314721,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-ijsselstein",
+      "employer": "Gemeente IJsselstein",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 3,
+      "sitemaps_read": 0,
+      "rendered_pages": 2,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "ijsselstein.easycruit.com",
+        "www.ijsselstein.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 5.46,
+      "requests": 18,
+      "bytes_read": 444860,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-lopik",
+      "employer": "Gemeente Lopik",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 3,
+      "sitemaps_read": 0,
+      "rendered_pages": 1,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.lopik.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 3.36,
+      "requests": 15,
+      "bytes_read": 565881,
+      "shard": 0
+    },
+    {
+      "id": "auto-defabrique-holding",
+      "employer": "DeFabrique Holding",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 12,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 12,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.defabriqueholding.nl/werken-bij/dus",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [
+        "https://www.defabriqueholding.nl/vacatures/all-round-eerste-medewerker-horeca-defabrique-evenementenlocatie"
+      ],
+      "pages_read": 64,
+      "sitemaps_read": 1,
+      "rendered_pages": 0,
+      "job_urls_discovered": 39,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "jobposting",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.defabriqueholding.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 43.17,
+      "requests": 66,
+      "bytes_read": 5097448,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-montfoort",
+      "employer": "Gemeente Montfoort",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 6,
+      "sitemaps_read": 1,
+      "rendered_pages": 1,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.montfoort.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 4.73,
+      "requests": 14,
+      "bytes_read": 230809,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-nieuwegein",
+      "employer": "Gemeente Nieuwegein",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 4,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 4,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 6,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "jobposting"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.nieuwegein.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 3.73,
+      "requests": 7,
+      "bytes_read": 374639,
+      "shard": 0
+    },
+    {
+      "id": "auto-hso",
+      "employer": "HSO",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 72,
+      "pending_urls": 201,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.hso.com"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 73.26,
+      "requests": 71,
+      "bytes_read": 23478558,
+      "shard": 0
+    },
+    {
+      "id": "auto-domino-s-pizza-netherlands",
+      "employer": "Domino's Pizza Netherlands",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 42,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 42,
+      "page_failures": 3,
+      "page_errors": [
+        {
+          "url": "https://www.dominos.nl",
+          "error": "robots.txt unavailable: 403"
+        },
+        {
+          "url": "https://static.smartrecruiters.com/job-widget/1.3.8/script/smart_widget.js",
+          "error": "robots.txt unavailable: 403"
+        },
+        {
+          "url": "https://static.smartrecruiters.com/job-widget/1.3.8/css/smart_widget.css",
+          "error": "robots.txt unavailable: 403"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 56,
+      "sitemaps_read": 0,
+      "rendered_pages": 1,
+      "job_urls_discovered": 43,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "static.smartrecruiters.com",
+        "werkenbijdominos.nl",
+        "www.dominos.nl",
+        "www.werkenbijdominos.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 41.44,
+      "requests": 65,
+      "bytes_read": 2021137,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-renswoude",
+      "employer": "Gemeente Renswoude",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 1,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 1,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 7,
+      "sitemaps_read": 2,
+      "rendered_pages": 0,
+      "job_urls_discovered": 1,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "jobposting",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "swo-sr.nl",
+        "www.renswoude.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 7.05,
+      "requests": 9,
+      "bytes_read": 1038382,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-utrechtse-heuvelrug",
+      "employer": "Gemeente Utrechtse Heuvelrug",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "ok",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": true,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 5,
+      "sitemaps_read": 0,
+      "rendered_pages": 1,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": true,
+      "methods": [
+        "browser"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.heuvelrug.nl",
+        "www.socialedorpsteams.nl"
+      ],
+      "inventory_complete": true,
+      "duration_seconds": 5.37,
+      "requests": 8,
+      "bytes_read": 776591,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-wijk-bij-duurstede",
+      "employer": "Gemeente Wijk bij Duurstede",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 2,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.werkenbijgemeentewijkbijduurstede.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 1.22,
+      "requests": 3,
+      "bytes_read": 372400,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-soest",
+      "employer": "Gemeente Soest",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 6,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 6,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 21,
+      "sitemaps_read": 2,
+      "rendered_pages": 3,
+      "job_urls_discovered": 13,
+      "pending_urls": 0,
+      "unresolved_geography": 2,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.soest.nl",
+        "www.werkenbijgemeentesoest.nl",
+        "www.werkenvoorgemeentesoest.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 18.82,
+      "requests": 40,
+      "bytes_read": 1211501,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-veenendaal",
+      "employer": "Gemeente Veenendaal",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 14,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 14,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 18,
+      "sitemaps_read": 1,
+      "rendered_pages": 1,
+      "job_urls_discovered": 14,
+      "pending_urls": 0,
+      "unresolved_geography": 3,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.veenendaal.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 12.09,
+      "requests": 21,
+      "bytes_read": 1086545,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-woudenberg",
+      "employer": "Gemeente Woudenberg",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 5,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 5,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 10,
+      "sitemaps_read": 1,
+      "rendered_pages": 1,
+      "job_urls_discovered": 6,
+      "pending_urls": 0,
+      "unresolved_geography": 5,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "woudenberg.easycruit.com",
+        "www.woudenberg.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 9.46,
+      "requests": 14,
+      "bytes_read": 516305,
+      "shard": 0
+    },
+    {
+      "id": "auto-koninklijke-remia-c-v",
+      "employer": "Koninklijke Remia C.V.",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 13,
+      "status": "partial",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 13,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.remia.nl",
+          "error": "robots.txt unavailable: 406"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 0,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "recruitee"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "remiacv.recruitee.com",
+        "www.remia.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 1.18,
+      "requests": 5,
+      "bytes_read": 331046,
+      "shard": 0
+    },
+    {
+      "id": "auto-hb-rts",
+      "employer": "HB RTS",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 7,
+      "status": "partial",
+      "matching": 4,
+      "verification_states": {
+        "incomplete": 4
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 7,
+      "page_failures": 4,
+      "page_errors": [
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.hb-rts.com/careers/stagiair-hr",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/stagiair-learning-development",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.hb-rts.com/careers/stagiair-learning-development",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 14,
+      "sitemaps_read": 1,
+      "rendered_pages": 0,
+      "job_urls_discovered": 12,
+      "pending_urls": 0,
+      "unresolved_geography": 2,
+      "explicit_empty": true,
+      "methods": [
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.hb-rts.com"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 12.8,
+      "requests": 23,
+      "bytes_read": 3856932,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-woerden",
+      "employer": "Gemeente Woerden",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 23,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 23,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 40,
+      "sitemaps_read": 1,
+      "rendered_pages": 1,
+      "job_urls_discovered": 26,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbij.woerden.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 22.77,
+      "requests": 43,
+      "bytes_read": 2095865,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-vijfheerenlanden",
+      "employer": "Gemeente Vijfheerenlanden",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 26,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 26,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 39,
+      "sitemaps_read": 1,
+      "rendered_pages": 1,
+      "job_urls_discovered": 37,
+      "pending_urls": 0,
+      "unresolved_geography": 26,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.vijfheerenlanden.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 26.32,
+      "requests": 42,
+      "bytes_read": 5251820,
+      "shard": 0
+    },
+    {
+      "id": "auto-gemeente-bunschoten",
+      "employer": "Gemeente Bunschoten",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 47,
+      "status": "partial",
+      "matching": 3,
+      "verification_states": {
+        "incomplete": 3
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 47,
+      "page_failures": 3,
+      "page_errors": [
+        {
+          "url": "https://www.gemeentebanen.nl/vacatures/84479/gemeente-lansingerland/meewerkstage-communicatie-en-employer-branding",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.gemeentebanen.nl/vacatures/84386/gemeente-krimpenerwaard/stagiaire-hr",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.gemeentebanen.nl/vacatures/84171/gemeente-haarlemmermeer/stagiair-hr-business-partner",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 61,
+      "sitemaps_read": 0,
+      "rendered_pages": 13,
+      "job_urls_discovered": 525,
+      "pending_urls": 491,
+      "unresolved_geography": 12,
+      "explicit_empty": true,
+      "methods": [
+        "browser",
+        "jobposting",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbij.zaanstad.nl",
+        "www.bunschoten.nl",
+        "www.gemeentebanen.nl",
+        "www.velsen.nl",
+        "www.werkenbijhaarlemmermeer.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 53.68,
+      "requests": 91,
+      "bytes_read": 13099381,
+      "shard": 0
+    },
+    {
+      "id": "auto-vrumona",
+      "employer": "Vrumona",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 0,
+      "status": "failed",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.vrumona.nl",
+          "error": "robots.txt unavailable: 406"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 0,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.vrumona.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 0.4,
+      "requests": 2,
+      "bytes_read": 0,
+      "shard": 0
+    },
+    {
+      "id": "auto-trunkrs",
+      "employer": "Trunkrs",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 6,
+      "status": "ok",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 6,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": true,
+      "closure_complete": true,
+      "verified_closed_urls": [],
+      "pages_read": 5,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 2,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "recruitee"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "trunkrs.nl",
+        "trunkrs.recruitee.com",
+        "werkenbij.trunkrs.nl",
+        "www.trunkrs.nl"
+      ],
+      "inventory_complete": true,
+      "duration_seconds": 4.4,
+      "requests": 12,
+      "bytes_read": 888135,
+      "shard": 0
+    },
+    {
+      "id": "auto-terberg-techniek",
+      "employer": "Terberg Techniek",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 49,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 49,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 0,
+      "rendered_pages": 3,
+      "job_urls_discovered": 120,
+      "pending_urls": 78,
+      "unresolved_geography": 49,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "boards.eu.greenhouse.io",
+        "www.royalterberggroup.com",
+        "www.terbergtechniek.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 39.08,
+      "requests": 75,
+      "bytes_read": 3108898,
+      "shard": 0
+    },
+    {
+      "id": "auto-universiteit-utrecht",
+      "employer": "Universiteit Utrecht",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 39,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 39,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 0,
+      "rendered_pages": 1,
+      "job_urls_discovered": 40,
+      "pending_urls": 30,
+      "unresolved_geography": 2,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "careers.ctalents.nl",
+        "www.uu.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 40.56,
+      "requests": 73,
+      "bytes_read": 3060564,
+      "shard": 0
+    },
+    {
+      "id": "auto-prenatal",
+      "employer": "Prénatal",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 1,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 1,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 29,
+      "sitemaps_read": 2,
+      "rendered_pages": 14,
+      "job_urls_discovered": 1,
+      "pending_urls": 0,
+      "unresolved_geography": 1,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.prenatal.nl",
+        "www.werkenbij.prenatal.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 53.04,
+      "requests": 45,
+      "bytes_read": 14996326,
+      "shard": 0
+    },
+    {
+      "id": "employer-danone",
+      "employer": "Danone",
+      "adapter": "employer-sitemap",
+      "checked_at": "2026-11-07T07:56:19.639836+00:00",
+      "collected": 773,
+      "status": "partial",
+      "matching": 9,
+      "verification_states": {
+        "incomplete": 9
+      },
+      "observed_countries": [
+        "BE",
+        "BG",
+        "DE",
+        "ES",
+        "FR",
+        "GR",
+        "LT",
+        "NL",
+        "PL",
+        "RO"
+      ],
+      "records_inspected": 88,
+      "page_failures": 16,
+      "page_errors": [
+        {
+          "url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-employer-branding-dutch-speaker-29000-en-us.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/internship-employee-experience-and-engagement-m-w-january-2027-28566-en-us.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/internship-global-hr-talent-analyst-intern-january-2027-h-f-28605-en-us.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/internship-hr-business-partner-intern-28754-en-us.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/internship-hr-organisation-development-january-2027-m-f-28744-en-us.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/internship-hr-reporting-data-governance-intern-january-2027-h-f-28600-en-us.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/internship-program-danone-in-talent-acquisition-team-29170-en-us.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/praktikum-hr-engagement-culture-w-m-d-28463-de-de.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/praktikum-hr-management-m-w-d-fokus-recruiting-28915-de-de.html",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/.-27568-en-us.html",
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/.-27569-en-us.html",
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/biotics-fermentation-technician-10250-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/brand-manager-26915-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/cash-flow-reporting-finance-analyst-28359-en-us.html",
+          "error": "Missing structured title/description"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/cdd-coordinateur-technique-aval-f-h-26870-fr-fr.html",
+          "error": "The read operation timed out"
+        },
+        {
+          "url": "https://careers.danone.com/en-global/jobs/cdd-infirmier-ere-de-sante-au-travail-28313-fr-fr.html",
+          "error": "Time budget exhausted; checkpoint retained"
+        }
+      ],
+      "page_errors_truncated": false,
+      "verified_closed_urls": [],
+      "complete": false,
+      "closure_complete": false,
+      "cache_hits": 0,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+      "page_discovery_mode": "read-all-inventoried-job-pages",
+      "duration_seconds": 180.36,
+      "requests": 105,
+      "bytes_read": 19713951,
+      "shard": 0
+    },
+    {
+      "id": "auto-walraven-group",
+      "employer": "Walraven Group",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 0,
+      "status": "failed",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://www.walraven.com/nl/werken-bij-walraven",
+          "error": "HTTP Error 403: Forbidden"
+        },
+        {
+          "url": "https://www.walraven.com",
+          "error": "HTTP Error 403: Forbidden"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 0,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.walraven.com"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 1.42,
+      "requests": 3,
+      "bytes_read": 2898,
+      "shard": 0
+    },
+    {
+      "id": "auto-miele-nederland-b-v",
+      "employer": "Miele Nederland B.V.",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.miele.nl",
+          "error": "robots.txt unavailable: 403"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 4,
+      "sitemaps_read": 1,
+      "rendered_pages": 2,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "career.miele.nl",
+        "miele.wd3.myworkdayjobs.com",
+        "www.miele.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 7.55,
+      "requests": 14,
+      "bytes_read": 2145825,
+      "shard": 0
+    },
+    {
+      "id": "auto-ouwehands-dierenpark",
+      "employer": "Ouwehands Dierenpark",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 3,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 3,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 6,
+      "sitemaps_read": 1,
+      "rendered_pages": 0,
+      "job_urls_discovered": 4,
+      "pending_urls": 0,
+      "unresolved_geography": 3,
+      "explicit_empty": false,
+      "methods": [
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.ouwehand.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 3.23,
+      "requests": 7,
+      "bytes_read": 411459,
+      "shard": 0
+    },
+    {
+      "id": "auto-kontakt-der-kontinenten",
+      "employer": "Kontakt der Kontinenten",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 3,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 3,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 9,
+      "sitemaps_read": 4,
+      "rendered_pages": 3,
+      "job_urls_discovered": 4,
+      "pending_urls": 0,
+      "unresolved_geography": 3,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.kontaktderkontinenten.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 13.56,
+      "requests": 29,
+      "bytes_read": 672163,
+      "shard": 0
+    },
+    {
+      "id": "auto-onvz",
+      "employer": "ONVZ",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 12,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 12,
+      "page_failures": 3,
+      "page_errors": [
+        {
+          "url": "https://www.onvz.nl/globalassets/files/onvz/onvz-nl/2024/onvz-brochure-hoortoestellen-2024.pdf",
+          "error": "robots.txt disallows https://www.onvz.nl/globalassets/files/onvz/onvz-nl/2024/onvz-brochure-hoortoestellen-2024.pdf"
+        },
+        {
+          "url": "https://www.onvz.nl/globalassets/files/onvz/onvz-nl/2025/onvz-brochure-hoortoestellen-2025.pdf",
+          "error": "robots.txt disallows https://www.onvz.nl/globalassets/files/onvz/onvz-nl/2025/onvz-brochure-hoortoestellen-2025.pdf"
+        },
+        {
+          "url": "https://www.onvz.nl/globalassets/files/onvz/onvz-nl/jaaronafhankelijk/onvz-brochure-hoortoestellen.pdf",
+          "error": "robots.txt disallows https://www.onvz.nl/globalassets/files/onvz/onvz-nl/jaaronafhankelijk/onvz-brochure-hoortoestellen.pdf"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 21,
+      "sitemaps_read": 5,
+      "rendered_pages": 1,
+      "job_urls_discovered": 14,
+      "pending_urls": 0,
+      "unresolved_geography": 12,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbijonvz.nl",
+        "www.onvz.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 19.38,
+      "requests": 27,
+      "bytes_read": 5888181,
+      "shard": 0
+    },
+    {
+      "id": "auto-vak-infra",
+      "employer": "VAK Infra",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 3,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 3,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 8,
+      "sitemaps_read": 3,
+      "rendered_pages": 0,
+      "job_urls_discovered": 4,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "jobposting",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "vak-bv.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 9.96,
+      "requests": 9,
+      "bytes_read": 425703,
+      "shard": 0
+    },
+    {
+      "id": "auto-eemhart",
+      "employer": "Eemhart",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 8,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 8,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 121,
+      "pending_urls": 59,
+      "unresolved_geography": 8,
+      "explicit_empty": false,
+      "methods": [
+        "jobposting",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.eemhart.nl",
+        "www.werkenbijeemhart.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 38.88,
+      "requests": 72,
+      "bytes_read": 5245945,
+      "shard": 0
+    },
+    {
+      "id": "auto-zorgdomein",
+      "employer": "ZorgDomein",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 5,
+      "status": "ok",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 5,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": true,
+      "closure_complete": true,
+      "verified_closed_urls": [],
+      "pages_read": 10,
+      "sitemaps_read": 0,
+      "rendered_pages": 0,
+      "job_urls_discovered": 10,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "recruitee"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "zorgdomein.com",
+        "zorgdomein.recruitee.com"
+      ],
+      "inventory_complete": true,
+      "duration_seconds": 20.95,
+      "requests": 13,
+      "bytes_read": 9005033,
+      "shard": 0
+    },
+    {
+      "id": "auto-van-walraven",
+      "employer": "Van Walraven",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 20,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 20,
+      "page_failures": 5,
+      "page_errors": [
+        {
+          "url": "https://www.vanwalraven.com",
+          "error": "robots.txt unavailable: 403"
+        },
+        {
+          "url": "https://app.teamtailor.com/companies/of4jPZyuqjY/jobs/5789759/edit/06%20%E2%80%93%2042%2056%2047%2063",
+          "error": "Rendered read: Locator.click: Timeout 4000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m"
+        },
+        {
+          "url": "https://werkenbij.vanwalraven.com/jobs/06%20%E2%80%93%2042%2056%2047%2063",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "url": "https://app.teamtailor.com/companies/of4jPZyuqjY@eu/dashboard",
+          "error": "Rendered read: Locator.click: Timeout 4000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m"
+        },
+        {
+          "url": "https://app.teamtailor.com/companies/of4jPZyuqjY/jobs/5789759/edit/06%20%E2%80%93%2042%2056%2047%2063%5C",
+          "error": "Rendered read: Locator.click: Timeout 4000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m"
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 28,
+      "sitemaps_read": 1,
+      "rendered_pages": 2,
+      "job_urls_discovered": 23,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "app.teamtailor.com",
+        "vanwalraven.teamtailor.com",
+        "werkenbij.vanwalraven.com",
+        "www.vanwalraven.com"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 41.76,
+      "requests": 39,
+      "bytes_read": 1786612,
+      "shard": 0
+    },
+    {
+      "id": "auto-van-den-pol-elektrotechniek",
+      "employer": "Van den Pol Elektrotechniek",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 16,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 16,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 32,
+      "sitemaps_read": 6,
+      "rendered_pages": 2,
+      "job_urls_discovered": 20,
+      "pending_urls": 0,
+      "unresolved_geography": 3,
+      "explicit_empty": true,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbijvandenpol.nl",
+        "www.vandenpol.com",
+        "www.werkenbijvandenpol.com"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 80.6,
+      "requests": 38,
+      "bytes_read": 5200694,
+      "shard": 0
+    },
+    {
+      "id": "auto-royal-a-ware",
+      "employer": "Royal A-ware",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T08:00:02.938889+00:00",
+      "collected": 95,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "incomplete": 2
+      },
+      "observed_countries": [
+        "BE",
+        "ES",
+        "NL"
+      ],
+      "records_inspected": 93,
+      "page_failures": 4,
+      "page_errors": [
+        {
+          "url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
+          "error": "Vacancy verification: Current page does not identify the same vacancy"
+        },
+        {
+          "url": "https://werkenbijaware.com/vacatures/stage-hr-req2618",
+          "error": "Vacancy verification: Current page does not identify the same vacancy"
+        },
+        {
+          "url": "https://werkenbijaware.com/vacatures/manager-maintenance-req2157",
+          "error": "A-ware reviewed title, workplace, description or application form missing"
+        },
+        {
+          "url": "https://werkenbijaware.com/vacatures/operator-rijping-req1420",
+          "error": "A-ware workplace country requires review: Woerden"
+        }
+      ],
+      "page_errors_truncated": false,
+      "verified_closed_urls": [],
+      "complete": false,
+      "closure_complete": false,
+      "cache_hits": 0,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "Official public vacancy index; unknown workplace countries fail explicitly",
+      "page_discovery_mode": "read-all-inventoried-job-pages",
+      "duration_seconds": 171.69,
+      "requests": 99,
+      "bytes_read": 12147743,
+      "shard": 0
+    },
+    {
+      "id": "auto-koninklijke-remia-c-v",
+      "employer": "Koninklijke Remia C.V.",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-07T07:57:12.086347+00:00",
+      "collected": 13,
+      "status": "ok",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 13,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "verified_closed_urls": []
+    },
+    {
+      "id": "auto-trunkrs",
+      "employer": "Trunkrs",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-07T07:57:13.697837+00:00",
+      "collected": 6,
+      "status": "ok",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 6,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "verified_closed_urls": []
+    },
+    {
+      "id": "auto-as-watson-benelux",
+      "employer": "AS Watson Benelux",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T07:57:14.863541+00:00",
+      "collected": 1,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+          "error": "Unexpected hiring organisation"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 1,
+      "declared_job_count": null,
+      "discovery_scope": "One vacancy-first discovered official HR internship, observed structured posting on its canonical page; broader employer inventory and pagination remain incomplete. Application requisition req281438 matched to observed link, title and rendered hidden field.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    },
+    {
+      "id": "auto-defabrique-holding",
+      "employer": "DeFabrique Holding",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T07:57:15.990910+00:00",
+      "collected": 30,
+      "status": "partial",
+      "matching": 1,
+      "verification_states": {
+        "incomplete": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 1,
+      "page_failures": 30,
+      "page_errors": [
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/banqueting-co-rdinator-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/zelfstandig-werkend-kok-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/medewerker-op-afbouw-events-dus-utrecht",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/op-afbouw-co-rdinator-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/assistent-horeca-manager-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-activiteiten-parque-west",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-social-media-defabrique-holding",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/medewerker-op-afbouw-events-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-facilitair-eventmedewerker-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/allround-medewerker-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/ervaren-horecamedewerker-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/horecamedewerker-events-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/all-round-eerste-medewerker-horeca-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/hulpkok-parque-west",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/bijbaan-horeca-medewerker-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/activiteitenbegeleider-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/senior-accountmanager-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/personeelsplanner-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/product-marketeer-parque-west-parque-west",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-producer-event-styling-jan-verhuur",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-werkplaats-jan-verhuur",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-decorateur-jan-verhuur",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-marketing-communicatie-defabrique-holding",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-projectmanager-events-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/chefkok-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/afwasser-keukenhulp-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+          "error": "Vacancy verification: Application link lacks a matching vacancy identifier"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-horeca-events-dus-utrecht",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/kok-creatieve-catering-dus-utrecht",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/open-sollicitatie-defabrique-holding",
+          "error": "Visible vacancy workplace requires review"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 30,
+      "declared_job_count": null,
+      "discovery_scope": "Official vacancy list. Visible workplace extraction reviewed only for Utrecht HR office. Other locations, pagination and blocked CVW application remain incomplete; no complete employer inventory claimed.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    },
+    {
+      "id": "auto-hb-rts",
+      "employer": "HB RTS",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T07:57:35.605881+00:00",
+      "collected": 5,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "incomplete": 2
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 3,
+      "page_failures": 4,
+      "page_errors": [
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/open-sollicitatie-nederland",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/area-sales-manager-north-east-france",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/stagiair-learning-development",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 5,
+      "declared_job_count": null,
+      "discovery_scope": "Official English careers list, currently reviewed visible workplace extraction for Utrecht only. Contact address supports questions, not verified application instructions. Broader inventory/pagination incomplete.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    },
+    {
+      "id": "auto-as-watson-benelux",
+      "employer": "AS Watson Benelux",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T07:58:05.827583+00:00",
+      "collected": 2,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "verified": 2
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 2,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 2,
+      "declared_job_count": null,
+      "discovery_scope": "Observed official HR/Legal/Facilities department list. All linked job pages are read; broader employer inventory, other departments and pagination not established. Application requisitions must match each live JSON-LD identifier, observed link, rendered title and hidden ReqId.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    },
+    {
+      "id": "auto-domino-s-pizza-netherlands",
+      "employer": "Domino's Pizza Netherlands",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T08:02:38.533821+00:00",
+      "collected": 9,
+      "status": "partial",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 4,
+      "page_failures": 5,
+      "page_errors": [
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/stage-global-sustainability-0",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/stage-crm-marketing-feb-26",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe",
+          "error": "Reviewed visible vacancy title/description missing"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/stage-online-marketing-januari27",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux",
+          "error": "Visible vacancy workplace requires review"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 9,
+      "declared_job_count": null,
+      "discovery_scope": "Official student internship list. Actual h2.vacancy-title and published Nieuwegein workplace are extracted from each live vacancy; HR vacancy-specific email CV/motivation instructions checked. Other workplaces, broader inventories/pagination and September intake year remain unresolved.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    }
+  ],
+  "attempt_count": 58,
+  "distinct_attempted_sources": 51,
+  "invalid_complete_reports": [],
+  "language_decisions": [
+    {
+      "id": "78fbaf9deba776b888ea",
+      "title": "Internship: Campus Recruitment (Dutch Speaker)",
+      "city": "Hoofddorp",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
+      "language_requirements": null,
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "evidence": "Fluent in English and Dutch (spoken and written).."
+        },
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "evidence": "Fluent in English and Dutch (spoken and written).."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "reason": "Requires vacancy/application evidence under policy v2",
+        "policy_version": 2,
+        "checked_at": null
+      }
+    },
+    {
+      "id": "a75a025145ddcfcc34d5",
+      "title": "INTERNSHIP – Employee Experience and Engagement (M/W) – January 2027",
+      "city": "RUEIL MALMAISON",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-employee-experience-and-engagement-m-w-january-2027-28566-en-us.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en",
+          "fr"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Langu age : We need someone who is fluent in English and French, and another language will be highly appreciated."
+        },
+        {
+          "code": "fr",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Langu age : We need someone who is fluent in English and French, and another language will be highly appreciated."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "b9c63cd2dc3d7956a558",
+      "title": "INTERNSHIP - Global HR Talent Analyst Intern - January 2027 - (H/F)",
+      "city": "PARIS",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-global-hr-talent-analyst-intern-january-2027-h-f-28605-en-us.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Fluent in English (written and spoken)."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "db43b7d990a7641b085c",
+      "title": "Internship HR Business Partner Intern",
+      "city": "Utrecht",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-hr-business-partner-intern-28754-en-us.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "You are fluent in English - oral and written."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "fc0802251335577ff651",
+      "title": "INTERNSHIP – HR Organisation Development – January 2027 (M/F)",
+      "city": "PARIS",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-hr-organisation-development-january-2027-m-f-28744-en-us.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Fluent in English (mandatory)."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "d55ddde0eb79fc977b10",
+      "title": "INTERNSHIP - HR Reporting & Data Governance Intern – January 2027 - (H/F)",
+      "city": "PARIS",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-hr-reporting-data-governance-intern-january-2027-h-f-28600-en-us.html",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "preferred",
+          "method": "explicit-language-pattern",
+          "evidence": "Excellent communication and presentation skills in English (other language is a plus)."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "ff3d21b49b3ea7aa4279",
+      "title": "Praktikum HR: Engagement & Culture (w/m/d)",
+      "city": "Frankfurt am Main",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/praktikum-hr-engagement-culture-w-m-d-28463-de-de.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "de",
+          "en"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Sehr gute Deutsch- und Englisch-Kenntnisse."
+        },
+        {
+          "code": "de",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Sehr gute Deutsch- und Englisch-Kenntnisse."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "1576057fe613bb7279a7",
+      "title": "Praktikum HR Management (m/w/d) Fokus: Recruiting",
+      "city": "Frankfurt am Main",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/praktikum-hr-management-m-w-d-fokus-recruiting-28915-de-de.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "de"
+        ],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "de",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Du verfügst über fließende Deutschkenntnisse, zudem sind gute Englischkenntnisse von Vorteil."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "4ae396a41fdabb8cdcc2",
+      "title": "Meewerkstage HR",
+      "city": "Utrecht",
+      "status": "unverified",
+      "url": "https://werkenbij.rijkswaterstaat.nl/vacatures/meewerkstage-hr/1346936",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "blocked",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "id": "a5ce8a272a48d5026b20",
+      "title": "Stage HR Heerenveen",
+      "city": "Heerenveen",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T08:00:02.938889+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "dc9a9a926f76c0aff13b",
+      "title": "Stage HR",
+      "city": "Almere",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-req2618",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T08:00:02.938889+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "b48e9d0cb54fe0b03701",
+      "title": "Stage organisatiepsychologie, HR en bestuurskunde",
+      "city": "Utrecht",
+      "status": "unverified",
+      "url": "https://werkenbij.rijkswaterstaat.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde/1346780",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "blocked",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "HTTP Error 403: Forbidden"
+      }
+    },
+    {
+      "id": "d8f520ac8b43e39cfeab",
+      "title": "Internship: Campus Recruitment & Employer Branding (Dutch Speaker)",
+      "city": "Hoofddorp",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-employer-branding-dutch-speaker-29000-en-us.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en",
+          "nl"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Non-EU citizens must have a valid Dutch residency permit.."
+        },
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Fluent in English and Dutch (spoken and written).."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "0b19fc77e9e7c73b6be7",
+      "title": "Internship Program DanOne in Talent Acquisition Team",
+      "city": "Warsaw",
+      "status": "unverified",
+      "url": "https://careers.danone.com/en-global/jobs/internship-program-danone-in-talent-acquisition-team-29170-en-us.html",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en",
+          "pl"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Fluent Polish speakers with a very good command of English (minimum B2)."
+        },
+        {
+          "code": "pl",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Fluent Polish speakers with a very good command of English (minimum B2)."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "2ddae4d7eb10c7054b4e",
+      "title": "Meewerkstage Communicatie en Employer Branding",
+      "city": "Bergschenhoek",
+      "status": "unverified",
+      "url": "https://www.gemeentebanen.nl/vacatures/84479/gemeente-lansingerland/meewerkstage-communicatie-en-employer-branding",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "9bdc9d892b1f3d35f7f8",
+      "title": "Stagiair(e) HR",
+      "city": "Bergambacht",
+      "status": "unverified",
+      "url": "https://www.gemeentebanen.nl/vacatures/84386/gemeente-krimpenerwaard/stagiaire-hr",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "2c0c488e9f65ad05d797",
+      "title": "Stagiair HR Business Partner",
+      "city": "Hoofddorp",
+      "status": "unverified",
+      "url": "https://www.gemeentebanen.nl/vacatures/84171/gemeente-haarlemmermeer/stagiair-hr-business-partner",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "68bbbe8c4218385f7c9d",
+      "title": "stagiair(e) Advies & Onderzoek – Arbeidsmarkt en Strategisch HRM",
+      "city": "Utrecht",
+      "status": "open",
+      "url": "https://berenschot.recruitee.com/o/stagiaire-advies-onderzoek-arbeidsmarkt-en-strategisch-hrm",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:56:19.639836+00:00",
+        "policy_version": 2,
+        "reason": "same-vacancy-applicant-form"
+      }
+    },
+    {
+      "id": "feeafd529fbb03b9a107",
+      "title": "HR Stagiair(e)",
+      "city": "Den Dolder",
+      "status": "open",
+      "url": "https://remiacv.recruitee.com/o/hr-stagiaire",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:57:12.086347+00:00",
+        "policy_version": 2,
+        "reason": "same-vacancy-applicant-form"
+      }
+    },
+    {
+      "id": "0a51cae97d6d6ff8eb91",
+      "title": "HR Stagiair",
+      "city": "woerden",
+      "status": "open",
+      "url": "https://werkenbij.trunkrs.nl/o/hr-stagiair",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en",
+          "nl"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "💜💚 Je beheerst de Nederlandse en Engelse taal goed.."
+        },
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "💜💚 Je beheerst de Nederlandse en Engelse taal goed.."
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:57:13.697837+00:00",
+        "policy_version": 2,
+        "reason": "same-vacancy-applicant-form"
+      }
+    },
+    {
+      "id": "89d7fee0c50ad218665a",
+      "title": "Stage HRM",
+      "city": "Utrecht",
+      "status": "unverified",
+      "url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:57:15.990910+00:00",
+        "policy_version": 2,
+        "reason": "Application link lacks a matching vacancy identifier"
+      }
+    },
+    {
+      "id": "b4e2eb9e44e90a4ae9f4",
+      "title": "HR Intern",
+      "city": "Utrecht",
+      "status": "unverified",
+      "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "preferred",
+          "method": "explicit-language-pattern",
+          "evidence": "English is a plus."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:57:35.605881+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "3d146dcea66accedc451",
+      "title": "Learning & Development Intern",
+      "city": "Utrecht",
+      "status": "unverified",
+      "url": "https://www.hb-rts.com/en-uk/careers/stagiair-learning-development",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "preferred",
+          "method": "explicit-language-pattern",
+          "evidence": "English is a plus."
+        }
+      ],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:57:35.605881+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "4f1b149f7c7d6bd1b6fe",
+      "title": "Stage HR Business Partner Kruidvat",
+      "city": "Renswoude",
+      "status": "open",
+      "url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:58:05.827583+00:00",
+        "policy_version": 2,
+        "reason": "rendered-watson-same-requisition-form"
+      }
+    },
+    {
+      "id": "7878c54c7ee681ba8f6c",
+      "title": "Stage Employer Branding en Recruitment",
+      "city": "Renswoude",
+      "status": "open",
+      "url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-employer-branding-en-recruitment/3560/45611367488",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:58:05.827583+00:00",
+        "policy_version": 2,
+        "reason": "rendered-watson-same-requisition-form"
+      }
+    },
+    {
+      "id": "10121d7fcd9519b11d98",
+      "title": "Meewerkstage HR",
+      "city": "Nieuwegein",
+      "status": "open",
+      "url": "https://werkenbijdominos.nl/hoofdkantoor/meewerkstage-hr",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "nl"
+        ],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Goede beheersing van de Nederlandse taal;"
+        }
+      ],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T08:02:38.533821+00:00",
+        "policy_version": 2,
+        "reason": "official-vacancy-email-instructions"
+      }
+    }
+  ],
+  "note": "Per-source checked_at retained. A full inventory in one query does not establish complete employer/market coverage. No merge or deployment performed."
+}

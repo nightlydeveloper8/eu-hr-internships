@@ -38,17 +38,22 @@ class ApplicantForms(HTMLParser):
 
 
 def checked_document(url, source, client):
-    from .universal import Document, CHALLENGE
+    from .universal import Document
     if urlsplit(url).hostname not in source['allowed_hosts']:
         raise ValueError('Unreviewed application host')
     body, _, final = client.request(url)
     if urlsplit(final).hostname not in source['allowed_hosts']:
         raise ValueError('Unreviewed application redirect')
     doc = Document(body, final)
-    if CHALLENGE.search(doc.text[:3000]): raise ValueError('Application access challenge')
-    if re.search(r'(?:vacature|position|job|posting).{0,45}(?:niet meer beschikbaar|niet meer open|is gesloten|is closed|has closed|no longer available|no longer accepting|has expired)|solliciteren.{0,25}niet meer mogelijk|offre.{0,30}(?:expiree|pourvue)|stelle.{0,30}(?:besetzt|geschlossen)', fold(doc.text), re.I):
-        raise ApplicationClosed('Official application page says the posting is closed')
+    ensure_open_document(doc)
     return body, doc
+
+
+def ensure_open_document(doc):
+    from .universal import CHALLENGE
+    if CHALLENGE.search(doc.text[:3000]): raise ValueError('Application access challenge')
+    if re.search(r'(?:vacature|vacancy|position|job|posting).{0,45}(?:niet (?:meer )?beschikbaar|niet meer open|is gesloten|is closed|has closed|has (?:now )?expired|no longer available|no longer accepting)|solliciteren.{0,25}niet meer mogelijk|offre.{0,30}(?:expiree|pourvue)|stelle.{0,30}(?:besetzt|geschlossen)', fold(doc.text), re.I):
+        raise ApplicationClosed('Official application page says the posting is closed')
 
 
 def odoo_application(doc, source, client, title):
@@ -123,6 +128,33 @@ def verify_application(record, source, client):
             and re.search(r'solliciteren|apply', label, re.I) for href, label, _ in application.links):
             raise ValueError('Same-requisition Avature application entry unavailable')
         return dict(url=target, method='official-requisition-application-entry', account_required=True)
+    if kind == 'watson-rendered':
+        from .rendering import render_pages
+        expected=str(record.get('posting_identifier') or '')
+        if not re.fullmatch(r'req\d+',expected):raise ValueError('Reviewed Watson requisition missing')
+        targets=[canonical_url(urljoin(doc.url,href)) for href,label,_ in doc.links
+                 if re.search(r'solliciteer|solliciteren',label,re.I)
+                 and urlsplit(urljoin(doc.url,href)).hostname in source['allowed_hosts']
+                 and urlsplit(href).path=='/vacatures-solliciteer'
+                 and parse_qs(urlsplit(href).query).get('req')==[expected[3:]]]
+        if not targets:raise ValueError('Watson same-requisition application link missing')
+        snapshots,_=render_pages(targets[0],client,
+            lambda target:urlsplit(target).hostname in source['allowed_hosts'],limit=1)
+        if not snapshots:raise ValueError('Watson application form could not be rendered')
+        final,body=snapshots[-1]
+        if canonical_url(final)!=targets[0]:raise ValueError('Watson application redirected')
+        from .universal import Document
+        application=Document(body,final)
+        ensure_open_document(application)
+        if 'Je solliciteert op de functie '+record['title'] not in application.text:
+            raise ValueError('Watson application title differs from vacancy')
+        for form in ApplicantForms(body).forms:
+            fields={f.get('name'):f for f in form['fields']}
+            if (form['attrs'].get('id')=='watson-apply-form' and form['submit']
+                and fields.get('ReqId',{}).get('value')==expected
+                and {'FirstName','LastName','Email','Resume'}.issubset(fields)):
+                return dict(url=final,method='rendered-watson-same-requisition-form')
+        raise ValueError('Watson applicant fields, requisition or submit unavailable')
     if kind == 'hanos-rendered':
         from .rendering import render_pages
         snapshots, _ = render_pages(record['url'], client,

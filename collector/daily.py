@@ -80,7 +80,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
         if job.get('status')!='closed':known.setdefault(job['source_id'],[]).append(job['url'])
     regional={}
     for company in companies:
-        research=[company[key] for key in ('friesland_research','groningen_research','drenthe_research') if company.get(key)]
+        research=[company[key] for key in ('friesland_research','groningen_research','drenthe_research','utrecht_research') if company.get(key)]
         if research:
             priority=0 if any(r.get('size',{}).get('qualification')=='verified_50_plus' for r in research) else 1
             for sid in company.get('source_ids',[]):regional[sid]=min(regional.get(sid,2),priority)

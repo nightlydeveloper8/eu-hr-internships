@@ -48,7 +48,7 @@ def audit(province,baseline,attempt_files):
         summary=report['summary'],municipalities=report['municipalities'],
         source_attempts=attempts,attempt_count=len(attempts),distinct_attempted_sources=len({r['id'] for r in attempts}),
         invalid_complete_reports=invalid,language_decisions=[dict(id=j['id'],title=j['title'],city=j['city'],status=j['status'],url=j['url'],
-            language_requirements=j['language_requirements'],workplace_languages=j['workplace_languages'],verification=j['verification']) for j in jobs if j['source_id'] in source_ids],
+            language_requirements=j.get('language_requirements'),workplace_languages=j['workplace_languages'],verification=j['verification']) for j in jobs if j['source_id'] in source_ids],
         note='Per-source checked_at retained. A full inventory in one query does not establish complete employer/market coverage. No merge or deployment performed.')
 
 

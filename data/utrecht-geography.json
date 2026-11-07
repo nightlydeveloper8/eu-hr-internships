@@ -1,0 +1,1346 @@
+{
+  "schema_version": 1,
+  "province": {
+    "official_name": "Utrecht",
+    "cbs_code": "PV26",
+    "nuts2_code": "NL35",
+    "nuts_note": "NUTS 2024 NL35 from existing national registry; former NL31 is not used."
+  },
+  "checked_on": "2026-11-07",
+  "administrative_reference_date": "2026-01-01",
+  "municipality_count": 26,
+  "settlement_count": 104,
+  "composition_status": "complete-official-2026-municipal-membership",
+  "sources": {
+    "cbs_areas_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86247NED",
+    "cbs_settlements_table": "https://www.cbs.nl/nl-nl/cijfers/detail/86312NED"
+  },
+  "api_sources": {
+    "municipalities": "https://opendata.cbs.nl/ODataApi/OData/86247NED/TypedDataSet",
+    "settlement_links": "https://opendata.cbs.nl/ODataApi/OData/86312NED/TypedDataSet",
+    "settlement_names": "https://opendata.cbs.nl/ODataApi/OData/86312NED/Woonplaatsen"
+  },
+  "import_audit": {
+    "national_area_rows": 342,
+    "national_settlement_rows": 2502,
+    "national_settlement_names": 2502,
+    "unique_provincial_settlement_codes": 104
+  },
+  "municipalities": [
+    {
+      "cbs_code": "GM0307",
+      "name": "Amersfoort",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 163764,
+      "settlements": [
+        {
+          "code": "WP1664",
+          "name": "Amersfoort",
+          "search_name_variants": [
+            "Amersfoort",
+            "amersfoort"
+          ]
+        },
+        {
+          "code": "WP1665",
+          "name": "Hoogland",
+          "search_name_variants": [
+            "Hoogland",
+            "hoogland"
+          ]
+        },
+        {
+          "code": "WP1666",
+          "name": "Hooglanderveen",
+          "search_name_variants": [
+            "Hooglanderveen",
+            "hooglanderveen"
+          ]
+        },
+        {
+          "code": "WP1667",
+          "name": "Stoutenburg Noord",
+          "search_name_variants": [
+            "Stoutenburg Noord",
+            "stoutenburg noord"
+          ]
+        }
+      ],
+      "settlement_count": 4,
+      "search_name_variants": [
+        "Amersfoort"
+      ]
+    },
+    {
+      "cbs_code": "GM0308",
+      "name": "Baarn",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 25435,
+      "settlements": [
+        {
+          "code": "WP1092",
+          "name": "Baarn",
+          "search_name_variants": [
+            "Baarn",
+            "baarn"
+          ]
+        },
+        {
+          "code": "WP1093",
+          "name": "Lage Vuursche",
+          "search_name_variants": [
+            "Lage Vuursche",
+            "lage vuursche"
+          ]
+        }
+      ],
+      "settlement_count": 2,
+      "search_name_variants": [
+        "Baarn"
+      ]
+    },
+    {
+      "cbs_code": "GM0312",
+      "name": "Bunnik",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 16402,
+      "settlements": [
+        {
+          "code": "WP2603",
+          "name": "Bunnik",
+          "search_name_variants": [
+            "Bunnik",
+            "bunnik"
+          ]
+        },
+        {
+          "code": "WP2604",
+          "name": "Odijk",
+          "search_name_variants": [
+            "Odijk",
+            "odijk"
+          ]
+        },
+        {
+          "code": "WP2605",
+          "name": "Werkhoven",
+          "search_name_variants": [
+            "Werkhoven",
+            "werkhoven"
+          ]
+        }
+      ],
+      "settlement_count": 3,
+      "search_name_variants": [
+        "Bunnik"
+      ]
+    },
+    {
+      "cbs_code": "GM0313",
+      "name": "Bunschoten",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 22905,
+      "settlements": [
+        {
+          "code": "WP2237",
+          "name": "Bunschoten-Spakenburg",
+          "search_name_variants": [
+            "Bunschoten-Spakenburg",
+            "bunschoten-spakenburg"
+          ]
+        },
+        {
+          "code": "WP2238",
+          "name": "Eemdijk",
+          "search_name_variants": [
+            "Eemdijk",
+            "eemdijk"
+          ]
+        }
+      ],
+      "settlement_count": 2,
+      "search_name_variants": [
+        "Bunschoten"
+      ]
+    },
+    {
+      "cbs_code": "GM0310",
+      "name": "De Bilt",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 43687,
+      "settlements": [
+        {
+          "code": "WP2935",
+          "name": "Bilthoven",
+          "search_name_variants": [
+            "Bilthoven",
+            "bilthoven"
+          ]
+        },
+        {
+          "code": "WP2934",
+          "name": "De Bilt",
+          "search_name_variants": [
+            "De Bilt",
+            "de bilt"
+          ]
+        },
+        {
+          "code": "WP2937",
+          "name": "Groenekan",
+          "search_name_variants": [
+            "Groenekan",
+            "groenekan"
+          ]
+        },
+        {
+          "code": "WP2938",
+          "name": "Hollandsche Rading",
+          "search_name_variants": [
+            "Hollandsche Rading",
+            "hollandsche rading"
+          ]
+        },
+        {
+          "code": "WP2936",
+          "name": "Maartensdijk",
+          "search_name_variants": [
+            "Maartensdijk",
+            "maartensdijk"
+          ]
+        },
+        {
+          "code": "WP2939",
+          "name": "Westbroek",
+          "search_name_variants": [
+            "Westbroek",
+            "westbroek"
+          ]
+        }
+      ],
+      "settlement_count": 6,
+      "search_name_variants": [
+        "De Bilt"
+      ]
+    },
+    {
+      "cbs_code": "GM0736",
+      "name": "De Ronde Venen",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 45749,
+      "settlements": [
+        {
+          "code": "WP1332",
+          "name": "Abcoude",
+          "search_name_variants": [
+            "Abcoude",
+            "abcoude"
+          ]
+        },
+        {
+          "code": "WP3547",
+          "name": "Amstelhoek",
+          "search_name_variants": [
+            "Amstelhoek",
+            "amstelhoek"
+          ]
+        },
+        {
+          "code": "WP1333",
+          "name": "Baambrugge",
+          "search_name_variants": [
+            "Baambrugge",
+            "baambrugge"
+          ]
+        },
+        {
+          "code": "WP3548",
+          "name": "de Hoef",
+          "search_name_variants": [
+            "de Hoef",
+            "de hoef"
+          ]
+        },
+        {
+          "code": "WP3549",
+          "name": "Mijdrecht",
+          "search_name_variants": [
+            "Mijdrecht",
+            "mijdrecht"
+          ]
+        },
+        {
+          "code": "WP3550",
+          "name": "Vinkeveen",
+          "search_name_variants": [
+            "Vinkeveen",
+            "vinkeveen"
+          ]
+        },
+        {
+          "code": "WP3551",
+          "name": "Waverveen",
+          "search_name_variants": [
+            "Waverveen",
+            "waverveen"
+          ]
+        },
+        {
+          "code": "WP1931",
+          "name": "Wilnis",
+          "search_name_variants": [
+            "Wilnis",
+            "wilnis"
+          ]
+        }
+      ],
+      "settlement_count": 8,
+      "search_name_variants": [
+        "De Ronde Venen"
+      ]
+    },
+    {
+      "cbs_code": "GM0317",
+      "name": "Eemnes",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 10065,
+      "settlements": [
+        {
+          "code": "WP1037",
+          "name": "Eemnes",
+          "search_name_variants": [
+            "Eemnes",
+            "eemnes"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Eemnes"
+      ]
+    },
+    {
+      "cbs_code": "GM0321",
+      "name": "Houten",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 50952,
+      "settlements": [
+        {
+          "code": "WP2054",
+          "name": "'t Goy",
+          "search_name_variants": [
+            "'t Goy",
+            "'t goy"
+          ]
+        },
+        {
+          "code": "WP2053",
+          "name": "Houten",
+          "search_name_variants": [
+            "Houten",
+            "houten"
+          ]
+        },
+        {
+          "code": "WP2056",
+          "name": "Schalkwijk",
+          "search_name_variants": [
+            "Schalkwijk",
+            "schalkwijk"
+          ]
+        },
+        {
+          "code": "WP2055",
+          "name": "Tull en 't Waal",
+          "search_name_variants": [
+            "Tull en 't Waal",
+            "tull en 't waal"
+          ]
+        }
+      ],
+      "settlement_count": 4,
+      "search_name_variants": [
+        "Houten"
+      ]
+    },
+    {
+      "cbs_code": "GM0353",
+      "name": "IJsselstein",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 33171,
+      "settlements": [
+        {
+          "code": "WP2432",
+          "name": "IJsselstein",
+          "search_name_variants": [
+            "IJsselstein",
+            "ijsselstein"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "IJsselstein"
+      ]
+    },
+    {
+      "cbs_code": "GM0327",
+      "name": "Leusden",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 32287,
+      "settlements": [
+        {
+          "code": "WP2640",
+          "name": "Achterveld",
+          "search_name_variants": [
+            "Achterveld",
+            "achterveld"
+          ]
+        },
+        {
+          "code": "WP2638",
+          "name": "Leusden",
+          "search_name_variants": [
+            "Leusden",
+            "leusden"
+          ]
+        },
+        {
+          "code": "WP2639",
+          "name": "Stoutenburg",
+          "search_name_variants": [
+            "Stoutenburg",
+            "stoutenburg"
+          ]
+        }
+      ],
+      "settlement_count": 3,
+      "search_name_variants": [
+        "Leusden"
+      ]
+    },
+    {
+      "cbs_code": "GM0331",
+      "name": "Lopik",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 14802,
+      "settlements": [
+        {
+          "code": "WP1958",
+          "name": "Benschop",
+          "search_name_variants": [
+            "Benschop",
+            "benschop"
+          ]
+        },
+        {
+          "code": "WP1959",
+          "name": "Jaarsveld",
+          "search_name_variants": [
+            "Jaarsveld",
+            "jaarsveld"
+          ]
+        },
+        {
+          "code": "WP1960",
+          "name": "Lopik",
+          "search_name_variants": [
+            "Lopik",
+            "lopik"
+          ]
+        },
+        {
+          "code": "WP1961",
+          "name": "Lopikerkapel",
+          "search_name_variants": [
+            "Lopikerkapel",
+            "lopikerkapel"
+          ]
+        },
+        {
+          "code": "WP1962",
+          "name": "Polsbroek",
+          "search_name_variants": [
+            "Polsbroek",
+            "polsbroek"
+          ]
+        }
+      ],
+      "settlement_count": 5,
+      "search_name_variants": [
+        "Lopik"
+      ]
+    },
+    {
+      "cbs_code": "GM0335",
+      "name": "Montfoort",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 13795,
+      "settlements": [
+        {
+          "code": "WP1963",
+          "name": "Linschoten",
+          "search_name_variants": [
+            "Linschoten",
+            "linschoten"
+          ]
+        },
+        {
+          "code": "WP1964",
+          "name": "Montfoort",
+          "search_name_variants": [
+            "Montfoort",
+            "montfoort"
+          ]
+        }
+      ],
+      "settlement_count": 2,
+      "search_name_variants": [
+        "Montfoort"
+      ]
+    },
+    {
+      "cbs_code": "GM0356",
+      "name": "Nieuwegein",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 68257,
+      "settlements": [
+        {
+          "code": "WP1108",
+          "name": "Nieuwegein",
+          "search_name_variants": [
+            "Nieuwegein",
+            "nieuwegein"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Nieuwegein"
+      ]
+    },
+    {
+      "cbs_code": "GM0589",
+      "name": "Oudewater",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 10513,
+      "settlements": [
+        {
+          "code": "WP1909",
+          "name": "Hekendorp",
+          "search_name_variants": [
+            "Hekendorp",
+            "hekendorp"
+          ]
+        },
+        {
+          "code": "WP1910",
+          "name": "Oudewater",
+          "search_name_variants": [
+            "Oudewater",
+            "oudewater"
+          ]
+        },
+        {
+          "code": "WP1911",
+          "name": "Papekop",
+          "search_name_variants": [
+            "Papekop",
+            "papekop"
+          ]
+        },
+        {
+          "code": "WP1912",
+          "name": "Snelrewaard",
+          "search_name_variants": [
+            "Snelrewaard",
+            "snelrewaard"
+          ]
+        }
+      ],
+      "settlement_count": 4,
+      "search_name_variants": [
+        "Oudewater"
+      ]
+    },
+    {
+      "cbs_code": "GM0339",
+      "name": "Renswoude",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 5908,
+      "settlements": [
+        {
+          "code": "WP2141",
+          "name": "Renswoude",
+          "search_name_variants": [
+            "Renswoude",
+            "renswoude"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Renswoude"
+      ]
+    },
+    {
+      "cbs_code": "GM0340",
+      "name": "Rhenen",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 20457,
+      "settlements": [
+        {
+          "code": "WP1400",
+          "name": "Elst Ut",
+          "search_name_variants": [
+            "Elst Ut",
+            "elst ut",
+            "elst"
+          ]
+        },
+        {
+          "code": "WP1399",
+          "name": "Rhenen",
+          "search_name_variants": [
+            "Rhenen",
+            "rhenen"
+          ]
+        }
+      ],
+      "settlement_count": 2,
+      "search_name_variants": [
+        "Rhenen"
+      ]
+    },
+    {
+      "cbs_code": "GM0342",
+      "name": "Soest",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 47853,
+      "settlements": [
+        {
+          "code": "WP1013",
+          "name": "Soest",
+          "search_name_variants": [
+            "Soest",
+            "soest"
+          ]
+        },
+        {
+          "code": "WP1014",
+          "name": "Soesterberg",
+          "search_name_variants": [
+            "Soesterberg",
+            "soesterberg"
+          ]
+        }
+      ],
+      "settlement_count": 2,
+      "search_name_variants": [
+        "Soest"
+      ]
+    },
+    {
+      "cbs_code": "GM1904",
+      "name": "Stichtse Vecht",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 66196,
+      "settlements": [
+        {
+          "code": "WP1392",
+          "name": "Breukelen",
+          "search_name_variants": [
+            "Breukelen",
+            "breukelen"
+          ]
+        },
+        {
+          "code": "WP1393",
+          "name": "Kockengen",
+          "search_name_variants": [
+            "Kockengen",
+            "kockengen"
+          ]
+        },
+        {
+          "code": "WP2219",
+          "name": "Loenen aan de Vecht",
+          "search_name_variants": [
+            "Loenen aan de Vecht",
+            "loenen aan de vecht"
+          ]
+        },
+        {
+          "code": "WP2220",
+          "name": "Loenersloot",
+          "search_name_variants": [
+            "Loenersloot",
+            "loenersloot"
+          ]
+        },
+        {
+          "code": "WP2064",
+          "name": "Maarssen",
+          "search_name_variants": [
+            "Maarssen",
+            "maarssen"
+          ]
+        },
+        {
+          "code": "WP1394",
+          "name": "Nieuwer Ter Aa",
+          "search_name_variants": [
+            "Nieuwer Ter Aa",
+            "nieuwer ter aa"
+          ]
+        },
+        {
+          "code": "WP2221",
+          "name": "Nieuwersluis",
+          "search_name_variants": [
+            "Nieuwersluis",
+            "nieuwersluis"
+          ]
+        },
+        {
+          "code": "WP2222",
+          "name": "Nigtevecht",
+          "search_name_variants": [
+            "Nigtevecht",
+            "nigtevecht"
+          ]
+        },
+        {
+          "code": "WP2066",
+          "name": "Oud Zuilen",
+          "search_name_variants": [
+            "Oud Zuilen",
+            "oud zuilen"
+          ]
+        },
+        {
+          "code": "WP2065",
+          "name": "Tienhoven",
+          "search_name_variants": [
+            "Tienhoven",
+            "tienhoven"
+          ]
+        },
+        {
+          "code": "WP3525",
+          "name": "Vreeland",
+          "search_name_variants": [
+            "Vreeland",
+            "vreeland"
+          ]
+        }
+      ],
+      "settlement_count": 11,
+      "search_name_variants": [
+        "Stichtse Vecht"
+      ]
+    },
+    {
+      "cbs_code": "GM0344",
+      "name": "Utrecht",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 378121,
+      "settlements": [
+        {
+          "code": "WP3297",
+          "name": "De Meern",
+          "search_name_variants": [
+            "De Meern",
+            "de meern"
+          ]
+        },
+        {
+          "code": "WP3298",
+          "name": "Haarzuilens",
+          "search_name_variants": [
+            "Haarzuilens",
+            "haarzuilens"
+          ]
+        },
+        {
+          "code": "WP3295",
+          "name": "Utrecht",
+          "search_name_variants": [
+            "Utrecht",
+            "utrecht"
+          ]
+        },
+        {
+          "code": "WP3296",
+          "name": "Vleuten",
+          "search_name_variants": [
+            "Vleuten",
+            "vleuten"
+          ]
+        }
+      ],
+      "settlement_count": 4,
+      "search_name_variants": [
+        "Utrecht"
+      ]
+    },
+    {
+      "cbs_code": "GM1581",
+      "name": "Utrechtse Heuvelrug",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 51107,
+      "settlements": [
+        {
+          "code": "WP3337",
+          "name": "Amerongen",
+          "search_name_variants": [
+            "Amerongen",
+            "amerongen"
+          ]
+        },
+        {
+          "code": "WP3339",
+          "name": "Doorn",
+          "search_name_variants": [
+            "Doorn",
+            "doorn"
+          ]
+        },
+        {
+          "code": "WP3335",
+          "name": "Driebergen-Rijsenburg",
+          "search_name_variants": [
+            "Driebergen-Rijsenburg",
+            "driebergen-rijsenburg"
+          ]
+        },
+        {
+          "code": "WP3587",
+          "name": "Leersum",
+          "search_name_variants": [
+            "Leersum",
+            "leersum"
+          ]
+        },
+        {
+          "code": "WP3340",
+          "name": "Maarn",
+          "search_name_variants": [
+            "Maarn",
+            "maarn"
+          ]
+        },
+        {
+          "code": "WP3341",
+          "name": "Maarsbergen",
+          "search_name_variants": [
+            "Maarsbergen",
+            "maarsbergen"
+          ]
+        },
+        {
+          "code": "WP3588",
+          "name": "Overberg",
+          "search_name_variants": [
+            "Overberg",
+            "overberg"
+          ]
+        }
+      ],
+      "settlement_count": 7,
+      "search_name_variants": [
+        "Utrechtse Heuvelrug"
+      ]
+    },
+    {
+      "cbs_code": "GM0345",
+      "name": "Veenendaal",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 70779,
+      "settlements": [
+        {
+          "code": "WP2048",
+          "name": "Veenendaal",
+          "search_name_variants": [
+            "Veenendaal",
+            "veenendaal"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Veenendaal"
+      ]
+    },
+    {
+      "cbs_code": "GM1961",
+      "name": "Vijfheerenlanden",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 63246,
+      "settlements": [
+        {
+          "code": "WP2106",
+          "name": "Ameide",
+          "search_name_variants": [
+            "Ameide",
+            "ameide"
+          ]
+        },
+        {
+          "code": "WP2840",
+          "name": "Everdingen",
+          "search_name_variants": [
+            "Everdingen",
+            "everdingen"
+          ]
+        },
+        {
+          "code": "WP3625",
+          "name": "Hagestein",
+          "search_name_variants": [
+            "Hagestein",
+            "hagestein"
+          ]
+        },
+        {
+          "code": "WP2109",
+          "name": "Hei- en Boeicop",
+          "search_name_variants": [
+            "Hei- en Boeicop",
+            "hei- en boeicop"
+          ]
+        },
+        {
+          "code": "WP3626",
+          "name": "Hoef en Haag",
+          "search_name_variants": [
+            "Hoef en Haag",
+            "hoef en haag"
+          ]
+        },
+        {
+          "code": "WP2273",
+          "name": "Kedichem",
+          "search_name_variants": [
+            "Kedichem",
+            "kedichem"
+          ]
+        },
+        {
+          "code": "WP2110",
+          "name": "Leerbroek",
+          "search_name_variants": [
+            "Leerbroek",
+            "leerbroek"
+          ]
+        },
+        {
+          "code": "WP2271",
+          "name": "Leerdam",
+          "search_name_variants": [
+            "Leerdam",
+            "leerdam"
+          ]
+        },
+        {
+          "code": "WP2105",
+          "name": "Lexmond",
+          "search_name_variants": [
+            "Lexmond",
+            "lexmond"
+          ]
+        },
+        {
+          "code": "WP2108",
+          "name": "Meerkerk",
+          "search_name_variants": [
+            "Meerkerk",
+            "meerkerk"
+          ]
+        },
+        {
+          "code": "WP2111",
+          "name": "Nieuwland",
+          "search_name_variants": [
+            "Nieuwland",
+            "nieuwland"
+          ]
+        },
+        {
+          "code": "WP2274",
+          "name": "Oosterwijk",
+          "search_name_variants": [
+            "Oosterwijk",
+            "oosterwijk"
+          ]
+        },
+        {
+          "code": "WP2842",
+          "name": "Ossenwaard",
+          "search_name_variants": [
+            "Ossenwaard",
+            "ossenwaard"
+          ]
+        },
+        {
+          "code": "WP2272",
+          "name": "Schoonrewoerd",
+          "search_name_variants": [
+            "Schoonrewoerd",
+            "schoonrewoerd"
+          ]
+        },
+        {
+          "code": "WP2107",
+          "name": "Tienhoven aan de Lek",
+          "search_name_variants": [
+            "Tienhoven aan de Lek",
+            "tienhoven aan de lek"
+          ]
+        },
+        {
+          "code": "WP2843",
+          "name": "Vianen",
+          "search_name_variants": [
+            "Vianen",
+            "vianen"
+          ]
+        },
+        {
+          "code": "WP2844",
+          "name": "Zijderveld",
+          "search_name_variants": [
+            "Zijderveld",
+            "zijderveld"
+          ]
+        }
+      ],
+      "settlement_count": 17,
+      "search_name_variants": [
+        "Vijfheerenlanden"
+      ]
+    },
+    {
+      "cbs_code": "GM0352",
+      "name": "Wijk bij Duurstede",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 23707,
+      "settlements": [
+        {
+          "code": "WP1304",
+          "name": "Cothen",
+          "search_name_variants": [
+            "Cothen",
+            "cothen"
+          ]
+        },
+        {
+          "code": "WP1303",
+          "name": "Langbroek",
+          "search_name_variants": [
+            "Langbroek",
+            "langbroek"
+          ]
+        },
+        {
+          "code": "WP1302",
+          "name": "Wijk bij Duurstede",
+          "search_name_variants": [
+            "Wijk bij Duurstede",
+            "wijk bij duurstede"
+          ]
+        }
+      ],
+      "settlement_count": 3,
+      "search_name_variants": [
+        "Wijk bij Duurstede"
+      ]
+    },
+    {
+      "cbs_code": "GM0632",
+      "name": "Woerden",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 54199,
+      "settlements": [
+        {
+          "code": "WP1072",
+          "name": "Harmelen",
+          "search_name_variants": [
+            "Harmelen",
+            "harmelen"
+          ]
+        },
+        {
+          "code": "WP1073",
+          "name": "Kamerik",
+          "search_name_variants": [
+            "Kamerik",
+            "kamerik"
+          ]
+        },
+        {
+          "code": "WP1071",
+          "name": "Woerden",
+          "search_name_variants": [
+            "Woerden",
+            "woerden"
+          ]
+        },
+        {
+          "code": "WP1074",
+          "name": "Zegveld",
+          "search_name_variants": [
+            "Zegveld",
+            "zegveld"
+          ]
+        }
+      ],
+      "settlement_count": 4,
+      "search_name_variants": [
+        "Woerden"
+      ]
+    },
+    {
+      "cbs_code": "GM0351",
+      "name": "Woudenberg",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 15099,
+      "settlements": [
+        {
+          "code": "WP2523",
+          "name": "Woudenberg",
+          "search_name_variants": [
+            "Woudenberg",
+            "woudenberg"
+          ]
+        }
+      ],
+      "settlement_count": 1,
+      "search_name_variants": [
+        "Woudenberg"
+      ]
+    },
+    {
+      "cbs_code": "GM0355",
+      "name": "Zeist",
+      "province_code": "PV26",
+      "province_name": "Utrecht",
+      "corop_code": "CR17",
+      "corop_name": "Utrecht",
+      "inhabitants": 66648,
+      "settlements": [
+        {
+          "code": "WP2824",
+          "name": "Austerlitz",
+          "search_name_variants": [
+            "Austerlitz",
+            "austerlitz"
+          ]
+        },
+        {
+          "code": "WP2823",
+          "name": "Bosch en Duin",
+          "search_name_variants": [
+            "Bosch en Duin",
+            "bosch en duin"
+          ]
+        },
+        {
+          "code": "WP2822",
+          "name": "Den Dolder",
+          "search_name_variants": [
+            "Den Dolder",
+            "den dolder"
+          ]
+        },
+        {
+          "code": "WP2825",
+          "name": "Huis ter Heide",
+          "search_name_variants": [
+            "Huis ter Heide",
+            "huis ter heide"
+          ]
+        },
+        {
+          "code": "WP2821",
+          "name": "Zeist",
+          "search_name_variants": [
+            "Zeist",
+            "zeist"
+          ]
+        }
+      ],
+      "settlement_count": 5,
+      "search_name_variants": [
+        "Zeist"
+      ]
+    }
+  ],
+  "ambiguous_settlement_names": [
+    {
+      "name": "Achterveld",
+      "occurrences": [
+        {
+          "name": "Achterveld",
+          "municipality": "Barneveld",
+          "municipality_code": "GM0203",
+          "province": "Gelderland",
+          "province_code": "PV25"
+        },
+        {
+          "name": "Achterveld",
+          "municipality": "Leusden",
+          "municipality_code": "GM0327",
+          "province": "Utrecht",
+          "province_code": "PV26"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Elst",
+      "occurrences": [
+        {
+          "name": "Elst",
+          "municipality": "Overbetuwe",
+          "municipality_code": "GM1734",
+          "province": "Gelderland",
+          "province_code": "PV25"
+        },
+        {
+          "name": "Elst Ut",
+          "municipality": "Rhenen",
+          "municipality_code": "GM0340",
+          "province": "Utrecht",
+          "province_code": "PV26"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Huis ter Heide",
+      "occurrences": [
+        {
+          "name": "Huis ter Heide",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "province": "Drenthe",
+          "province_code": "PV22"
+        },
+        {
+          "name": "Huis ter Heide",
+          "municipality": "Zeist",
+          "municipality_code": "GM0355",
+          "province": "Utrecht",
+          "province_code": "PV26"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    },
+    {
+      "name": "Vianen",
+      "occurrences": [
+        {
+          "name": "Vianen",
+          "municipality": "Vijfheerenlanden",
+          "municipality_code": "GM1961",
+          "province": "Utrecht",
+          "province_code": "PV26"
+        },
+        {
+          "name": "Vianen NB",
+          "municipality": "Land van Cuijk",
+          "municipality_code": "GM1982",
+          "province": "Noord-Brabant",
+          "province_code": "PV30"
+        }
+      ],
+      "note": "Require municipality/postcode or official street address; name alone is insufficient."
+    }
+  ],
+  "name_disambiguation": [
+    "A province, municipality and settlement are distinct units; a provincial mention alone is not a city workplace.",
+    "CBS provincial suffixes remain in statutory lookup names. Unsuffixed search variants require municipality/address confirmation.",
+    "Former municipality names are not current CBS municipality assignments; use the annual GM membership."
+  ],
+  "limitations": [
+    "CBS annual BAG snapshot at 1 January 2026, provisional; not live boundary geometry.",
+    "Search variants are normalisations, not alternative statutory names.",
+    "A complete geographic frame does not establish a complete employer census."
+  ]
+}
