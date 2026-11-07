@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
+from .intake import extract_intake
 from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -251,12 +252,13 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             if not role or not countries:continue
             url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
             verified=None; link_status='not-checked'; application=None; closed=False
+            observation={}
             verification={'state':'incomplete','checked_at':stamp,'policy_version':2,'reason':'Verification disabled'}
             if verify:
                 from .verification import verify_vacancy, blocked_error
                 from .applications import ApplicationClosed
                 try:
-                    application=verify_vacancy(record,source,client,stamp)
+                    application=verify_vacancy(record,source,client,stamp,observation=observation)
                     apply=allowed_url(application['url'],source)
                     verified=stamp; link_status='verified'
                     verification.update(state='verified',reason=application['method'])
@@ -269,6 +271,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     LOG.warning('Vacancy %s %s: %s',url,state,str(exc)[:150])
             langs=workplace_languages(record['text'])
             staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_requirements=language_summary(record['text'],langs),language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),valid_through=application.get('valid_through') if application else record.get('valid_through'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,verification=verification,status='open' if verified else 'unverified'))
+            intake=observation['intake'] if 'intake' in observation else extract_intake(record['text'],stamp)
+            if intake:staged[-1]['intake']=intake
             if application:staged[-1]['application_verification']=dict(application,checked_at=stamp)
             if closed:staged[-1].update(status='closed',closure_reason='Official recruiting page explicitly disables applications')
         current.extend(staged); successful.add(source['id'])
