@@ -269,6 +269,8 @@ class Crawler:
                 target=safe_url(urljoin(d.url,href.strip()))
                 if target and self.allow(target,observed=True) and (provider_host(urlsplit(target).hostname) or CAREER.search(target)):result['links'].append(dict(url=target,job=False))
             result['empty']|=bool(EMPTY.search(d.text))
+        for record in result['records']:
+            record['_text_observation']=dict(kind='live',checked_at=datetime.now(timezone.utc).isoformat())
         if is_job:self.cache.put(url,result)
         return result
     def priority(self,entry):

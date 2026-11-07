@@ -18,7 +18,7 @@ class DeepCollectionTests(unittest.TestCase):
    return run(output=output)
  def test_opaque_page_is_read_and_misleading_hr_slug_is_rejected(self):
   opaque=self.raw('jobs/12345');misleading=self.raw('jobs/hr-intern')
-  def enrich(r,s,c):return self.detail(r,'HR Intern' if r is opaque else 'Software Engineer')
+  def enrich(r,s,c,**kwargs):return self.detail(r,'HR Intern' if r is opaque else 'Software Engineer')
   with tempfile.TemporaryDirectory() as d:
    result,report=self.run_with(Path(d),[opaque,misleading],enrich)
   self.assertEqual(len(result['jobs']),1);self.assertTrue(result['jobs'][0]['url'].endswith('12345'))
@@ -27,8 +27,8 @@ class DeepCollectionTests(unittest.TestCase):
   old=self.raw('jobs/1');new=self.raw('jobs/2');broken=self.raw('jobs/3')
   with tempfile.TemporaryDirectory() as d:
    output=Path(d)
-   self.run_with(output,[old],lambda r,s,c:self.detail(r,'HR Intern'))
-   def enrich(r,s,c):
+   self.run_with(output,[old],lambda r,s,c,**kwargs:self.detail(r,'HR Intern'))
+   def enrich(r,s,c,**kwargs):
     if r is broken:raise ValueError('Unsupported page layout')
     return self.detail(r,'HR Intern')
    result,report=self.run_with(output,[new,broken],enrich)

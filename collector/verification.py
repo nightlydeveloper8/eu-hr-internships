@@ -76,20 +76,29 @@ def applicant_form(body):
     return False
 
 
-def verify_vacancy(record, source, client, stamp):
+def verify_vacancy(record, source, client, stamp, observation=None):
     """No successful HEAD, cached page or JSON-LD alone establishes an opening."""
-    body, doc = checked_document(record['url'], source, client)
+    closure=None
+    try:body, doc = checked_document(record['url'], source, client)
+    except ApplicationClosed as exc:
+        closure=exc;body=exc.body;doc=exc.document
     if canonical_url(doc.url)!=canonical_url(record['url']):raise ValueError('Vacancy redirected to a different URL; identity requires review')
     if not same_title(doc, record['title']):
         from .reviewed_html import reviewed_titles
         if doc.h1 or [fold(t) for t in reviewed_titles(body,source)] != [fold(record['title'])]:
             raise ValueError('Current page does not identify the same vacancy')
     fresh_deadline=next((post.get('validThrough') for post in doc.jobposts() if fold(plain(post.get('title')))==fold(record['title'])),None)
+    identifiers=structured_identifiers(doc,record['title'])
+    if len(identifiers)>1 or (record.get('posting_identifier') and identifiers and str(record['posting_identifier']) not in identifiers):raise ValueError('Vacancy identifier differs from collected position')
+    # Capture the identified vacancy independently of application success. A
+    # current page with no start supersedes an older feed/cache start as well.
+    if observation is not None:
+        from .intake import extract_intake
+        observation['intake'] = extract_intake(doc.text, stamp)
+    if closure:raise closure
     for post in doc.jobposts():
         if fold(plain(post.get('title'))) == fold(record['title']) and expired(post.get('validThrough'), stamp):
             raise ApplicationClosed('Published application deadline has passed')
-    identifiers=structured_identifiers(doc,record['title'])
-    if len(identifiers)>1 or (record.get('posting_identifier') and identifiers and str(record['posting_identifier']) not in identifiers):raise ValueError('Vacancy identifier differs from collected position')
     reviewed = verify_application(record, source, client)
     if reviewed:
         return dict(reviewed,valid_through=fresh_deadline, vacancy_match='title', inventory=record.get('inventory_evidence', 'not-established'))

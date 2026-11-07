@@ -161,10 +161,10 @@ def collect(source,client):
     if len(ids)!=len(set(ids)): raise ValueError('Repeated IDs: board may have changed during pagination')
     return out
 
-def enrich(record,source,client):
+def enrich(record,source,client,defer_expiry=False):
     if source['adapter'] in ('employer-sitemap','employer-index'):
         from .employer_pages import page_record
-        return page_record(record,source,client)
+        return page_record(record,source,client,defer_expiry=defer_expiry)
     if source['adapter']!='smartrecruiters': return record
     j=client.json(f'https://api.smartrecruiters.com/v1/companies/{quote(source["board"],safe="")}/postings/{record["external_id"]}')
     if j.get('active') is False or j.get('visibility','PUBLIC')!='PUBLIC': raise ValueError('Inactive or private posting')
