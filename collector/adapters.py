@@ -89,6 +89,9 @@ def _record(source, job_id,title,location,text,url,apply=None,**extra):
 def collect(source,client):
     kind,board=source['adapter'],quote(source.get('board',''),safe='')
     out=[]
+    if kind=='hlb-index':
+        from .flevoland import hlb_records
+        return hlb_records(source,client)
     if kind=='amazon-search':
         from .amazon import search_records
         return search_records(source,client)

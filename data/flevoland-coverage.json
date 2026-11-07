@@ -1,0 +1,1281 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-07T17:21:05.081289+00:00",
+  "province": "Flevoland",
+  "region_code": "NL23",
+  "exhaustive": false,
+  "geography_reference_date": "2026-01-01",
+  "employee_threshold": 50,
+  "size_counting": "Documented employer/group qualification; group headcount is never assigned to a local establishment. Unknown size stays separate.",
+  "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
+  "summary": {
+    "employers": 19,
+    "qualified_employers": 0,
+    "distinct_groups": 19,
+    "qualified_groups": 0,
+    "size_unknown": 19,
+    "below_threshold": 0,
+    "municipalities": 6,
+    "municipalities_with_qualified_employers": 0,
+    "configured": 19,
+    "attempted_recently": 19,
+    "collection_states": {
+      "discovery-incomplete": 7,
+      "blocked-or-failed": 2,
+      "partial": 10
+    },
+    "qualified_collection_states": {},
+    "verified_hr_internships": 1,
+    "verified_hr_internships_qualified_employers": 0
+  },
+  "municipalities": [
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0034",
+      "name": "Almere",
+      "settlements": 1,
+      "employers": 2,
+      "qualified_employers": 0,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "alfen",
+        "gemeente-almere"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "36be83296822b67167cb"
+      ],
+      "verified_hr_internships": 1,
+      "code": "GM0303",
+      "name": "Dronten",
+      "settlements": 3,
+      "employers": 3,
+      "qualified_employers": 0,
+      "size_unknown": 3,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-dronten",
+        "hlb-group",
+        "meerpaal"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0995",
+      "name": "Lelystad",
+      "settlements": 1,
+      "employers": 4,
+      "qualified_employers": 0,
+      "size_unknown": 4,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 2
+      },
+      "company_ids": [
+        "farm-dairy",
+        "giant-europe",
+        "marfo",
+        "provincie-flevoland"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0171",
+      "name": "Noordoostpolder",
+      "settlements": 12,
+      "employers": 3,
+      "qualified_employers": 0,
+      "size_unknown": 3,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "gemeente-noordoostpolder",
+        "groothuisbouw",
+        "smt-netherlands"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0184",
+      "name": "Urk",
+      "settlements": 1,
+      "employers": 4,
+      "qualified_employers": 0,
+      "size_unknown": 4,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 2
+      },
+      "company_ids": [
+        "kramer-fish-group",
+        "neerlandia-urk",
+        "sea-fresh",
+        "urker-zalmhuys"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0050",
+      "name": "Zeewolde",
+      "settlements": 1,
+      "employers": 3,
+      "qualified_employers": 0,
+      "size_unknown": 3,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-zeewolde",
+        "royal-herkel",
+        "van-amersfoort-racing"
+      ]
+    }
+  ],
+  "employers": [
+    {
+      "company_id": "alfen",
+      "name": "Alfen",
+      "group_name": null,
+      "career_url": "https://alfen.com/nl-nl/werken-bij/stage/stage-mogelijkheden",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Almere",
+          "municipality": "Almere",
+          "municipality_code": "GM0034",
+          "settlement_code": "WP1270",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://alfen.com/nl-nl/contact",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-alfen"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-alfen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-almere",
+      "name": "Gemeente Almere",
+      "group_name": null,
+      "career_url": "https://www.werkenbijalmere.nl/vacatures",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Almere",
+          "municipality": "Almere",
+          "municipality_code": "GM0034",
+          "settlement_code": "WP1270",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijalmere.nl/vacatures/stage-meewerkstage-team-recruitment-391873",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-almere"
+      ],
+      "state": "blocked-or-failed",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-almere",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "provincie-flevoland",
+      "name": "Provincie Flevoland",
+      "group_name": null,
+      "career_url": "https://flevoland.heeft-vacatures.com/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Lelystad",
+          "municipality": "Lelystad",
+          "municipality_code": "GM0995",
+          "settlement_code": "WP1051",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://flevoland.nl/wie-zijn-we/werken-bij-flevoland/sollicitatiestappen/jouw-nieuwe-werkplek",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-provincie-flevoland"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 7,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "marfo",
+      "name": "Marfo",
+      "group_name": null,
+      "career_url": "https://www.werkenbijmarfo.nl/vacatures/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Lelystad",
+          "municipality": "Lelystad",
+          "municipality_code": "GM0995",
+          "settlement_code": "WP1051",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijmarfo.nl/vacatures/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-marfo"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 2,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-marfo",
+          "message": "[{'url': 'https://www.werkenbijmarfo.nl/vacatures/?bedrijfsnaam2=Kantoor', 'error': 'Rendered read: Playwright is not installed'}, {'url': 'https://www.werkenbijmarfo.nl/vacatures/?bedrijfsnaam2=Stages', 'error': 'Rendered read: Playwright is not installed'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "farm-dairy",
+      "name": "Farm Dairy",
+      "group_name": null,
+      "career_url": "https://farmdairy.com/werken-bij-farm-dairy/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Lelystad",
+          "municipality": "Lelystad",
+          "municipality_code": "GM0995",
+          "settlement_code": "WP1051",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://farmdairy.com/contact/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-farm-dairy"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-farm-dairy",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "giant-europe",
+      "name": "Giant Europe",
+      "group_name": null,
+      "career_url": "https://www.giant-bicycles.com/nl/vacatures",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Lelystad",
+          "municipality": "Lelystad",
+          "municipality_code": "GM0995",
+          "settlement_code": "WP1051",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://burgersupport.nl/vacatures/giant",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-giant-europe"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-giant-europe",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "meerpaal",
+      "name": "Meerpaal",
+      "group_name": null,
+      "career_url": "https://www.meerpaal.nl/vacatures/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": null,
+          "municipality": "Dronten",
+          "municipality_code": "GM0303",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.meerpaal.nl/vacatures/stagiair-hr",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-meerpaal"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 3,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "gemeente-dronten",
+      "name": "Gemeente Dronten",
+      "group_name": null,
+      "career_url": "https://www.dronten.nl/bestuur-organisatie/werken-bij-gemeente-dronten",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": null,
+          "municipality": "Dronten",
+          "municipality_code": "GM0303",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.dronten.nl/bestuur-organisatie/werken-bij-gemeente-dronten",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-dronten"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-dronten",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "hlb-group",
+      "name": "HLB Group",
+      "group_name": "HLB Group",
+      "career_url": "https://www.hlbbv.nl/nl/over-hlb/werken-bij/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Dronten",
+          "municipality": "Dronten",
+          "municipality_code": "GM0303",
+          "settlement_code": "WP2430",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.hlbbv.nl/nl/over-hlb/werken-bij/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-hlb-group"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 4,
+      "verified_hr_internship_ids": [
+        "36be83296822b67167cb"
+      ],
+      "errors": []
+    },
+    {
+      "company_id": "smt-netherlands",
+      "name": "SMT Netherlands",
+      "group_name": null,
+      "career_url": "https://werkenbijsmt.nl/vacatures/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Emmeloord",
+          "municipality": "Noordoostpolder",
+          "municipality_code": "GM0171",
+          "settlement_code": "WP1271",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijsmt.nl/vacature/hr-stagiaire/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-smt-netherlands"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 1,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-smt-netherlands",
+          "message": "[{'url': 'https://werkenbijsmt.nl/vacature/hr-stagiaire', 'error': 'Vacancy verification: Vacancy-specific email application instructions unavailable'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "groothuisbouw",
+      "name": "Groothuisbouw",
+      "group_name": null,
+      "career_url": "https://www.groothuisbouw.nl/vacatures",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Emmeloord",
+          "municipality": "Noordoostpolder",
+          "municipality_code": "GM0171",
+          "settlement_code": "WP1271",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.groothuisbouw.nl/vacatures",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-groothuisbouw"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 5,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "gemeente-noordoostpolder",
+      "name": "Gemeente Noordoostpolder",
+      "group_name": null,
+      "career_url": "https://www.noordoostpolder.nl/vacatures-gemeente-noordoostpolder",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": null,
+          "municipality": "Noordoostpolder",
+          "municipality_code": "GM0171",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.noordoostpolder.nl/vacatures-gemeente-noordoostpolder",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-noordoostpolder"
+      ],
+      "state": "blocked-or-failed",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-noordoostpolder",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "sea-fresh",
+      "name": "Sea Fresh",
+      "group_name": null,
+      "career_url": "https://werkenbijseafresh.nl/vacatures/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Urk",
+          "municipality": "Urk",
+          "municipality_code": "GM0184",
+          "settlement_code": "WP2143",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijseafresh.nl/contact/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-sea-fresh"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 6,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "urker-zalmhuys",
+      "name": "Urker Zalmhuys",
+      "group_name": null,
+      "career_url": "https://www.werkenbijzalmhuys.nl/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Urk",
+          "municipality": "Urk",
+          "municipality_code": "GM0184",
+          "settlement_code": "WP2143",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijzalmhuys.nl/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-urker-zalmhuys"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-urker-zalmhuys",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "neerlandia-urk",
+      "name": "Neerlandia Urk",
+      "group_name": null,
+      "career_url": "https://neerlandia.com/vacatures/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Urk",
+          "municipality": "Urk",
+          "municipality_code": "GM0184",
+          "settlement_code": "WP2143",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://neerlandia.com/contact/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-neerlandia-urk"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 5,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-neerlandia-urk",
+          "message": "[{'url': 'https://neerlandia.com', 'error': 'Rendered read: Playwright is not installed'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "kramer-fish-group",
+      "name": "Kramer Fish Group",
+      "group_name": null,
+      "career_url": "https://kramerfish.nl/vacatures/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Urk",
+          "municipality": "Urk",
+          "municipality_code": "GM0184",
+          "settlement_code": "WP2143",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://kramerfish.nl/contact/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-kramer-fish-group"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-kramer-fish-group",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "van-amersfoort-racing",
+      "name": "Van Amersfoort Racing",
+      "group_name": null,
+      "career_url": "https://www.vanamersfoortracing.nl/careers/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Zeewolde",
+          "municipality": "Zeewolde",
+          "municipality_code": "GM0050",
+          "settlement_code": "WP1075",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.vanamersfoortracing.nl/careers/hr-stagiair/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-van-amersfoort-racing"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 2,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "royal-herkel",
+      "name": "Royal Herkel",
+      "group_name": null,
+      "career_url": "https://royalherkel.com/vacatures",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": "Zeewolde",
+          "municipality": "Zeewolde",
+          "municipality_code": "GM0050",
+          "settlement_code": "WP1075",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://royalherkel.com/contact",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-royal-herkel"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 1,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "gemeente-zeewolde",
+      "name": "Gemeente Zeewolde",
+      "group_name": null,
+      "career_url": "https://www.zeewolde.nl/werken-bij-de-gemeente",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "No new primary headcount verification; no local or group size inferred.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL23",
+          "city": null,
+          "municipality": "Zeewolde",
+          "municipality_code": "GM0050",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zeewolde.nl/werken-bij-de-gemeente",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-zeewolde"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    }
+  ],
+  "verified_hr_internship_ids": [
+    "36be83296822b67167cb"
+  ],
+  "research_opportunities": [
+    {
+      "candidate_id": "flv-v01",
+      "employer": "Gemeente Almere",
+      "title": "Stage: Meewerkstage team Recruitment",
+      "url": "https://www.werkenbijalmere.nl/vacatures/stage-meewerkstage-team-recruitment-391873",
+      "municipality": "Almere",
+      "kind": "research_candidate",
+      "review_status": "blocked",
+      "checked_at": "2026-11-07T17:11:10.613808+00:00",
+      "availability_note": "Official crawler cannot read robots.txt (HTTP 406). Cached official page names vacancy 391873, deadline 2026-11-10 and February 2027 intake, but no live same-vacancy application form established.",
+      "original_issue_claim": {
+        "candidate_id": "flv-v01",
+        "employer": "Gemeente Almere",
+        "municipality": "Almere",
+        "title": "Stage: Meewerkstage team Recruitment",
+        "evidence_url": "https://www.werkenbijalmere.nl/vacatures/stage-meewerkstage-team-recruitment-391873",
+        "evidence_type": "official_vacancy_page",
+        "deadline": "2026-11-10",
+        "start": "2027-02",
+        "priority": "urgent",
+        "review_status": "official_vacancy_seen_application_unverified",
+        "language_requirements": "unknown"
+      },
+      "catalog_id": null,
+      "intake": {
+        "published_start": "2027-02",
+        "evidence_url": "https://www.werkenbijalmere.nl/vacatures/stage-meewerkstage-team-recruitment-391873"
+      },
+      "workplace_requirements_by_language": {
+        "en": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "fr": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "nl": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "other": {
+          "status": "unknown",
+          "evidence_url": null
+        }
+      },
+      "english_sufficiency": "unknown",
+      "advertisement_language": "nl"
+    },
+    {
+      "candidate_id": "flv-v02",
+      "employer": "Provincie Flevoland",
+      "title": "Stagiair HR van werving tot onboarding",
+      "url": "https://flevoland.heeft-vacatures.com/vacatures/stagiair-hr-van-werving-tot-onboarding-1357003/",
+      "municipality": "Lelystad",
+      "kind": "research_candidate",
+      "review_status": "unverified",
+      "checked_at": "2026-11-07T17:11:10.613808+00:00",
+      "availability_note": "Official page and rendered same-ID application entry 1357003 observed. Enabled first-step personal-data fields and title match; no submission or upload step attempted. Deadline conflict persists (header 30 November / body 29 November); vacancy-specific city is not explicit, so no HQ-based workplace inferred.",
+      "original_issue_claim": {
+        "candidate_id": "flv-v02",
+        "employer": "Provincie Flevoland",
+        "municipality": "Lelystad",
+        "title": "Stagiair HR van werving tot onboarding",
+        "evidence_url": "https://flevoland.heeft-vacatures.com/vacatures/stagiair-hr-van-werving-tot-onboarding-1357003/",
+        "evidence_type": "official_employer_recruitment_site",
+        "deadline": "2026-11-29_or_30_unresolved",
+        "start": null,
+        "priority": "urgent",
+        "review_status": "official_vacancy_seen_application_unverified",
+        "language_requirements": "unknown"
+      },
+      "catalog_id": null,
+      "intake": null,
+      "workplace_requirements_by_language": {
+        "en": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "fr": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "nl": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "other": {
+          "status": "unknown",
+          "evidence_url": null
+        }
+      },
+      "english_sufficiency": "unknown",
+      "advertisement_language": "nl",
+      "application_entry": {
+        "url": "https://flevoland.heeft-vacatures.com/solliciteren/?vacancy-id=1357003",
+        "checked_at": "2026-11-07T17:12:16.844363+00:00",
+        "same_vacancy_id": "1357003",
+        "title_match": true,
+        "first_step_available": true,
+        "uploads_verified": false,
+        "submitted": false
+      },
+      "deadline": {
+        "status": "conflicting-official-dates",
+        "candidates": [
+          "2026-11-29",
+          "2026-11-30"
+        ],
+        "authoritative_resolution": null,
+        "conservative_planning_date": "2026-11-29",
+        "note": "Planning date is not a resolved closing date."
+      }
+    },
+    {
+      "candidate_id": "flv-v03",
+      "employer": "SMT Netherlands",
+      "title": "HR Stagiair(e)",
+      "url": "https://werkenbijsmt.nl/vacature/hr-stagiaire/",
+      "municipality": "Noordoostpolder",
+      "kind": "research_candidate",
+      "review_status": "unverified",
+      "checked_at": "2026-11-07T17:11:10.613808+00:00",
+      "availability_note": "Current official list and HR vacancy observed. Visible email address differs from mailto destination. Embedded form carries referer_title Service Planning Officer although queried_id is 2305. Existing strict official-email check fails; no generic form used as substitute.",
+      "original_issue_claim": {
+        "candidate_id": "flv-v03",
+        "employer": "SMT Netherlands",
+        "municipality": "Noordoostpolder",
+        "city": "Emmeloord",
+        "title": "HR Stagiair(e)",
+        "evidence_url": "https://werkenbijsmt.nl/vacature/hr-stagiaire/",
+        "evidence_type": "official_vacancy_page",
+        "deadline": null,
+        "start": null,
+        "priority": "high",
+        "review_status": "official_vacancy_seen_application_unverified",
+        "language_requirements": "Dutch_explicit"
+      },
+      "catalog_id": "bc43db710e2776ddcbe7",
+      "intake": null,
+      "workplace_requirements_by_language": {
+        "en": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "fr": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "nl": {
+          "status": "required",
+          "evidence_url": "https://werkenbijsmt.nl/vacature/hr-stagiaire/"
+        },
+        "other": {
+          "status": "unknown",
+          "evidence_url": null
+        }
+      },
+      "english_sufficiency": "unknown",
+      "advertisement_language": "nl"
+    },
+    {
+      "candidate_id": "flv-v04",
+      "employer": "Van Amersfoort Racing",
+      "title": "HR Stagiair",
+      "url": "https://www.vanamersfoortracing.nl/careers/hr-stagiair/",
+      "municipality": "Zeewolde",
+      "kind": "research_candidate",
+      "review_status": "past-intake",
+      "checked_at": "2026-11-07T17:11:10.613808+00:00",
+      "availability_note": "Official vacancy still describes September 2026 start and requires Dutch and English; current career list does not establish a new intake.",
+      "original_issue_claim": {
+        "candidate_id": "flv-v04",
+        "employer": "Van Amersfoort Racing",
+        "municipality": "Zeewolde",
+        "title": "HR Stagiair",
+        "evidence_url": "https://www.vanamersfoortracing.nl/careers/hr-stagiair/",
+        "evidence_type": "official_vacancy_page",
+        "deadline": null,
+        "start": "2026-09_past",
+        "priority": "review",
+        "review_status": "past_start_not_on_current_careers_list_verify_before_publishing",
+        "language_requirements": "Dutch_and_English_explicit"
+      },
+      "catalog_id": null,
+      "intake": {
+        "published_start": "2026-09",
+        "evidence_url": "https://www.vanamersfoortracing.nl/careers/hr-stagiair/"
+      },
+      "workplace_requirements_by_language": {
+        "en": {
+          "status": "required",
+          "evidence_url": "https://www.vanamersfoortracing.nl/careers/hr-stagiair/"
+        },
+        "fr": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "nl": {
+          "status": "required",
+          "evidence_url": "https://www.vanamersfoortracing.nl/careers/hr-stagiair/"
+        },
+        "other": {
+          "status": "unknown",
+          "evidence_url": null
+        }
+      },
+      "english_sufficiency": "unknown",
+      "advertisement_language": "nl"
+    },
+    {
+      "candidate_id": "flv-v05",
+      "employer": "Meerpaal",
+      "title": "Stagiair HR",
+      "url": "https://www.meerpaal.nl/vacatures/stagiair-hr",
+      "municipality": "Dronten",
+      "kind": "research_candidate",
+      "review_status": "expired",
+      "checked_at": "2026-11-07T17:11:10.613808+00:00",
+      "availability_note": "Official page requests application before 15 October 2026 despite mentioning possible 2027 internships. No renewed deadline established.",
+      "original_issue_claim": {
+        "candidate_id": "flv-v05",
+        "employer": "Meerpaal",
+        "municipality": "Dronten",
+        "title": "Stagiair HR",
+        "evidence_url": "https://www.meerpaal.nl/vacatures/stagiair-hr",
+        "evidence_type": "official_vacancy_page",
+        "deadline": "2026-10-15_past",
+        "start": "2027_possible_but_deadline_past",
+        "priority": "review",
+        "review_status": "past_deadline_not_verified_open",
+        "language_requirements": "unknown"
+      },
+      "catalog_id": null,
+      "intake": null,
+      "workplace_requirements_by_language": {
+        "en": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "fr": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "nl": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "other": {
+          "status": "unknown",
+          "evidence_url": null
+        }
+      },
+      "english_sufficiency": "unknown",
+      "advertisement_language": "nl"
+    },
+    {
+      "candidate_id": "flv-v06",
+      "employer": "Marfo",
+      "title": "HBO HR/Bedrijfskunde - Onderzoeksstage",
+      "url": "https://baanlens.nl/vacature/marfo-hbo-hr-bedrijfskunde-onderzoeksstage-56250a5",
+      "municipality": "Lelystad",
+      "kind": "research_candidate",
+      "review_status": "unverified",
+      "checked_at": "2026-11-07T17:11:10.613808+00:00",
+      "availability_note": "Secondary research candidate absent from the two observed official Marfo listings. Official inventory remains partial: absence cannot establish closure, and no primary HR vacancy/application found.",
+      "original_issue_claim": {
+        "candidate_id": "flv-v06",
+        "employer": "Marfo",
+        "municipality": "Lelystad",
+        "title": "HBO HR/Bedrijfskunde - Onderzoeksstage",
+        "evidence_url": "https://baanlens.nl/vacature/marfo-hbo-hr-bedrijfskunde-onderzoeksstage-56250a5",
+        "evidence_type": "secondary_aggregator",
+        "deadline": "2026-11-17_per_secondary",
+        "start": null,
+        "priority": "review",
+        "review_status": "secondary_only_absent_from_observed_official_vacancies",
+        "language_requirements": "Dutch_and_English_per_secondary_unconfirmed"
+      },
+      "catalog_id": null,
+      "intake": null,
+      "workplace_requirements_by_language": {
+        "en": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "fr": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "nl": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "other": {
+          "status": "unknown",
+          "evidence_url": null
+        }
+      },
+      "english_sufficiency": "unknown",
+      "advertisement_language": "unknown"
+    },
+    {
+      "candidate_id": "flv-v07",
+      "employer": "HLB Group (HLB / De Groene Vlieg)",
+      "title": "Stagiair Organisatiecultuur & HR",
+      "url": "https://www.hlbbv.nl/nl/vacature/stageplek-hr/",
+      "municipality": "Dronten",
+      "kind": "research_candidate",
+      "review_status": "verified",
+      "checked_at": "2026-11-07T17:14:20.589672+00:00",
+      "availability_note": "Primary HLB career card identifies Dronten; matching detail page explicitly instructs sending CV and motivation to a published matching mailto. Email delivery not tested; observed group inventory remains partial.",
+      "original_issue_claim": {
+        "candidate_id": "flv-v07",
+        "employer": "HLB Group (HLB / De Groene Vlieg)",
+        "municipality": "Dronten",
+        "title": "Stagiair Organisatiecultuur & HR",
+        "evidence_url": "https://nl.indeed.com/cmp/Hlb-Groep",
+        "evidence_type": "secondary_aggregator",
+        "deadline": null,
+        "start": null,
+        "priority": "review",
+        "review_status": "secondary_only_official_vacancy_link_missing",
+        "language_requirements": "unknown"
+      },
+      "catalog_id": "36be83296822b67167cb",
+      "intake": null,
+      "workplace_requirements_by_language": {
+        "en": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "fr": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "nl": {
+          "status": "unknown",
+          "evidence_url": null
+        },
+        "other": {
+          "status": "unknown",
+          "evidence_url": null
+        }
+      },
+      "english_sufficiency": "unknown",
+      "advertisement_language": "nl"
+    }
+  ],
+  "schedule": {
+    "workflow": "collect.yml",
+    "cron_utc": "17 6 * * *",
+    "note": "Daily hosted runner; Europe/Amsterdam 07:17 winter / 08:17 summer. Scheduled start may be delayed by GitHub."
+  },
+  "limitations": [
+    "Employer mapping is still expanding; no complete business-register denominator is available.",
+    "Configured, attempted, fully read observed inventory, partial and blocked sources are distinct.",
+    "No current vacancy is inferred from company presence or a general internship programme."
+  ]
+}

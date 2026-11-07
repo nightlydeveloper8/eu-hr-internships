@@ -19,7 +19,7 @@ def main():
         with sync_playwright() as p:
             browser=p.chromium.launch(headless=True)
             page=browser.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
-            for slug,count in [('friesland',18),('groningen',10),('drenthe',12),('utrecht',26)]:
+            for slug,count in [('friesland',18),('groningen',10),('drenthe',12),('utrecht',26),('flevoland',6)]:
                 for width in [1280,390]:
                     page.set_viewport_size({'width':width,'height':900})
                     page.goto(base+'/'+slug+'.html')
@@ -44,6 +44,15 @@ def main():
                         page.locator('#utrecht-unverified').uncheck()
                         (ROOT/'.staging/utrecht').mkdir(parents=True,exist_ok=True)
                         page.screenshot(path=str(ROOT/'.staging/utrecht'/('ui-'+str(width)+'.png')),full_page=True)
+                    if slug=='flevoland':
+                        page.locator('#flevoland-unverified').check()
+                        page.locator('#flevoland-job-search').fill('SMT')
+                        assert page.locator('#flevoland-jobs article').count()==1
+                        assert 'Unverified opportunity' in page.locator('#flevoland-jobs').inner_text()
+                        page.locator('#flevoland-job-search').fill('')
+                        page.locator('#flevoland-unverified').uncheck()
+                        (ROOT/'.staging/flevoland').mkdir(parents=True,exist_ok=True)
+                        page.screenshot(path=str(ROOT/'.staging/flevoland'/('ui-'+str(width)+'.png')),full_page=True)
             page.set_viewport_size({'width':1280,'height':900});page.goto(base)
             page.wait_for_function("document.getElementById('jobs').getAttribute('aria-busy')==='false'")
             assert page.locator('#country option').count()==28
@@ -54,10 +63,11 @@ def main():
             page.locator('#reset').click();page.locator('#include-unverified').check();assert int(page.locator('#result-count').inner_text())==total
             page.set_viewport_size({'width':390,'height':844});page.locator('#filter-toggle').click();assert page.locator('#country').is_visible()
             page.locator('#filters-done').click();assert not page.locator('#country').is_visible()
-            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1');assert not errors,errors
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), page.evaluate("Array.from(document.querySelectorAll('body *')).filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,8).map(e=>({tag:e.tagName,cls:e.className,width:e.getBoundingClientRect().width}))")
+            assert not errors,errors
             results.append({'catalog_total_including_unverified':total,'drenthe_including_unverified':regional,'country_options':27,'errors':errors})
             browser.close()
     finally:server.shutdown()
     args.output.write_text(json.dumps(results,ensure_ascii=False,indent=2)+'\n')
-    print('UI OK: four provinces desktop/mobile, municipal rows, employer search, EU/country/region filters, mobile filters, no page errors or overflow')
+    print('UI OK: five provinces desktop/mobile, municipal rows, employer search, EU/country/region filters, mobile filters, no page errors or overflow')
 if __name__=='__main__':main()
