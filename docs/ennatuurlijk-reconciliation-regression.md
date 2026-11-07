@@ -22,7 +22,7 @@ delle identità. Il timestamp sintetico di missing può poi vincere sulla verifi
 Le revisioni individuali si applicano ora a storico e osservazioni prima della
 riconciliazione. Le identità condivise (ID, URL e alias di vacancy già ammessi)
 sono risolte prima del conteggio delle assenze. Storico e osservazioni correnti
-sono deduplicati separatamente: il risultato corrente prevale anche se negativo,
+sono consolidati separatamente: il risultato corrente prevale anche se negativo,
 conservando ID e prima scoperta storici. Una ricomparsa azzera tutti i marcatori
 di assenza. Nessuna preferenza globale per record aperti o verificati.
 
@@ -36,3 +36,20 @@ Catalogo di produzione, budget e workflow invariati; nessuna raccolta avviata.
 
 Issue #10 resta aperta: dopo un eventuale merge autorizzato occorre confrontare
 l'output della fonte con il catalogo della successiva raccolta completa su main.
+
+## Revisione P1 — alias transitivo
+
+Il nuovo test `test_transitive_historical_bridge_retains_every_current_observation`
+attraversa `finalize()` e rilegge il catalogo esportato. Due osservazioni correnti
+non condividono direttamente le chiavi: soltanto lo storico collega l'URL della
+prima al percorso di candidatura specifico della seconda. Prima della correzione
+`deduplicate(rows)[0]` scartava la seconda osservazione, anche se più recente e
+chiusa o non verificata (due sottocasi falliti, catalogo erroneamente aperto).
+
+`consolidate_group()` ora considera tutti i membri del componente già riconosciuto,
+senza suddividerlo nuovamente. Gli alias storici effettivamente collegati restano
+nel record esportato per mantenere il collegamento anche al ciclo successivo;
+i portali generici di candidatura continuano a non costituire identità.
+Il test controlla chiusura/esito non verificato, ID e prima scoperta, marcatori di
+assenza, ripetizione nello stesso giorno e nel giorno seguente, con fonti parziali.
+Restano attivi i test originari Ennatuurlijk, policy v2 e assenze incomplete.

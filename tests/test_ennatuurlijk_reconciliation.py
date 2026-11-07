@@ -121,3 +121,46 @@ class EnnatuurlijkReconciliationTests(unittest.TestCase):
             result,_=finalize(self.registry,[self.source],dict(jobs=prior),{},[part],
                 '2026-11-08T13:30:00+00:00',Path(directory))
         self.assertEqual(result['jobs'],prior)
+
+    def test_transitive_historical_bridge_retains_every_current_observation(self):
+        from collector.pipeline import deduplicate
+        # Only history connects the vacancy URL of A to the application URL of B.
+        vacancy='https://example.org/jobs/hr'
+        application='https://jobs.lever.co/example/hr-1/apply'
+        old=dict(self.target,url=vacancy,apply_url=application,source_id='bridge-source')
+        for state,status in (('closed','closed'),('incomplete','unverified')):
+            with self.subTest(state=state):
+                opened=dict(old,id='current-open',source_id='source-a',
+                    apply_url='https://example.org/apply',status='open',link_status='verified',
+                    first_discovered_at='2026-11-07T10:00:00+00:00',
+                    last_seen_at='2026-11-07T10:00:00+00:00',last_verified_at='2026-11-07T10:00:00+00:00',
+                    verification=dict(state='verified',policy_version=2,checked_at='2026-11-07T10:00:00+00:00'))
+                latest=dict(opened,id='current-latest',source_id='source-b',
+                    url='https://example.org/jobs/hr-mirror',apply_url=application,
+                    first_discovered_at='2026-11-07T11:00:00+00:00',
+                    last_seen_at='2026-11-07T11:00:00+00:00',last_verified_at=None,
+                    status=status,link_status=state,
+                    verification=dict(state=state,policy_version=2,checked_at='2026-11-07T11:00:00+00:00'))
+                self.assertEqual(len(deduplicate([opened,latest])),2)
+                self.assertEqual(len(deduplicate([old,opened,latest])),1)
+                prior=[old]
+                for day in (7,7,8):
+                    parts=[dict(report=dict(id=j['source_id'],status='partial',records_inspected=1),
+                        jobs=[copy.deepcopy(j)],closure_eligible=[]) for j in (opened,latest)]
+                    with tempfile.TemporaryDirectory() as directory:
+                        result,_=finalize(self.registry,[],dict(jobs=copy.deepcopy(prior)),{},parts,
+                            f'2026-11-{day:02d}T13:30:00+00:00',Path(directory))
+                        exported=read(Path(directory)/'catalog.json',{})['jobs']
+                    self.assertEqual(len(exported),1)
+                    job=exported[0]
+                    self.assertEqual(job['status'],status)
+                    self.assertEqual(job['verification'],latest['verification'])
+                    self.assertEqual(job['id'],old['id'])
+                    self.assertEqual(job['first_discovered_at'],old['first_discovered_at'])
+                    self.assertEqual(job['last_seen_at'],latest['last_seen_at'])
+                    self.assertFalse(verified_job(job,f'2026-11-{day:02d}T13:30:00+00:00'))
+                    self.assertEqual(job['missing_count'],0)
+                    self.assertIn(vacancy,job['identity_aliases'])
+                    self.assertNotIn(opened['apply_url'],job['identity_aliases'])
+                    if prior!=[old]:self.assertEqual(exported,prior)
+                    prior=exported

@@ -105,12 +105,23 @@ def observation_time(job):
         except (ValueError,TypeError,AttributeError):pass
     return max(parsed,default=0)
 
+def identity_keys(job,include_aliases=True):
+    keys={'catalog:'+job['id'],canonical_url(job['url'])}
+    for identity in (posting_identity(job),posting_url_identity(job),application_identity_url(job)):
+        if identity:keys.add(identity)
+    if include_aliases:keys.update(job.get('identity_aliases',[]))
+    return keys
+
+def preserve_identity_aliases(merged,members):
+    # Keep the historical bridge when the winning observation uses another URL.
+    aliases={key for job in members for key in identity_keys(job)}-identity_keys(merged,False)
+    if aliases:merged['identity_aliases']=sorted(aliases)
+    else:merged.pop('identity_aliases',None)
+
 def duplicate_groups(jobs):
     by_key={};groups=[]
     for job in sorted(jobs,key=lambda j:j.get('first_discovered_at','')):
-        keys={'catalog:'+job['id'],canonical_url(job['url'])}
-        for identity in (posting_identity(job),posting_url_identity(job),application_identity_url(job)):
-            if identity:keys.add(identity)
+        keys=identity_keys(job)
         # Exact vacancy URLs / official IDs / vacancy-specific application paths
         # identify mirrors. A general applicant portal never does.
         matches={by_key[k] for k in keys if k in by_key}
@@ -124,24 +135,26 @@ def duplicate_groups(jobs):
         for key in existing['keys']:by_key[key]=index
     return [group['members'] for group in groups if group is not None]
 
+def consolidate_group(members):
+    """Merge every member of an already established identity component."""
+    first=members[0]
+    newest=max(members,key=lambda j:(observation_time(j),j.get('status')=='closed'))
+    merged=dict(newest,id=first['id'],first_discovered_at=first.get('first_discovered_at'))
+    verified=[m.get('last_verified_at') for m in members if m.get('last_verified_at')]
+    if not merged.get('last_verified_at') and verified:merged['last_verified_at']=max(verified,key=lambda stamp:observation_time({'last_verified_at':stamp}))
+    countries=sorted({c for m in members for c in m.get('countries',[])})
+    if countries:merged.update(countries=countries,country=countries[0])
+    if len(members)>1:merged['duplicate_source_ids']=sorted({sid for m in members for sid in [m['source_id']]+m.get('duplicate_source_ids',[])})
+    preserve_identity_aliases(merged,members)
+    return merged
+
 def deduplicate(jobs):
-    result=[]
-    for members in duplicate_groups(jobs):
-        first=members[0]
-        newest=max(members,key=lambda j:(observation_time(j),j.get('status')=='closed'))
-        merged=dict(newest,id=first['id'],first_discovered_at=first.get('first_discovered_at'))
-        verified=[m.get('last_verified_at') for m in members if m.get('last_verified_at')]
-        if not merged.get('last_verified_at') and verified:merged['last_verified_at']=max(verified,key=lambda stamp:observation_time({'last_verified_at':stamp}))
-        countries=sorted({c for m in members for c in m.get('countries',[])})
-        if countries:merged.update(countries=countries,country=countries[0])
-        if len(members)>1:merged['duplicate_source_ids']=sorted({sid for m in members for sid in [m['source_id']]+m.get('duplicate_source_ids',[])})
-        result.append(merged)
-    return result
+    return [consolidate_group(members) for members in duplicate_groups(jobs)]
 
 def align_observations(previous,current):
     """Resolve vacancy aliases before absence accounting, retaining history's ID.
 
-    Deduplicate each side separately: a synthetic historical missing check can
+    Consolidate each side separately: a synthetic historical missing check can
     be newer than this run's actual observation. Current failures and closures
     are observations too, and must supersede historical verification.
     """
@@ -154,8 +167,11 @@ def align_observations(previous,current):
         canonical=(old or members)[0]
         for rows,aligned in ((old,aligned_previous),(fresh,aligned_current)):
             if rows:
-                job=deduplicate(rows)[0]
+                # rows can be disconnected without the other side's bridge.
+                # Membership was already established by the complete component.
+                job=consolidate_group(rows)
                 job.update(id=canonical['id'],first_discovered_at=canonical.get('first_discovered_at'))
+                preserve_identity_aliases(job,members)
                 aligned.append(job)
     return aligned_previous,aligned_current
 
