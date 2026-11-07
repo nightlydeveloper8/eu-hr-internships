@@ -1,0 +1,134 @@
+{
+  "auto-koninklijke-remia-c-v": {
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Official public employer feed or vacancy page and observed application entry; robots enforced at runtime; read-only checks, no applications sent.",
+    "collection_seconds": 180,
+    "max_requests": 100,
+    "adapter": "recruitee",
+    "feed_url": "https://remiacv.recruitee.com/api/offers/",
+    "allowed_hosts": [
+      "remiacv.recruitee.com"
+    ],
+    "discovery_scope": "All currently published offers in the official public Recruitee feed; no next-page marker observed. Vacancy-specific applicant forms checked separately."
+  },
+  "auto-trunkrs": {
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Official public employer feed or vacancy page and observed application entry; robots enforced at runtime; read-only checks, no applications sent.",
+    "collection_seconds": 180,
+    "max_requests": 100,
+    "adapter": "recruitee",
+    "feed_url": "https://werkenbij.trunkrs.nl/api/offers/",
+    "allowed_hosts": [
+      "werkenbij.trunkrs.nl"
+    ],
+    "discovery_scope": "All currently published offers in the official public Recruitee feed; no next-page marker observed. Vacancy-specific applicant forms checked separately."
+  },
+  "auto-as-watson-benelux": {
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Official public employer feed or vacancy page and observed application entry; robots enforced at runtime; read-only checks, no applications sent.",
+    "collection_seconds": 180,
+    "max_requests": 100,
+    "adapter": "employer-index",
+    "allowed_hosts": [
+      "www.werkenbijaswatson.nl"
+    ],
+    "index_urls": [
+      "https://www.werkenbijaswatson.nl/wat-ga-je-doen-hr-legal-facilities"
+    ],
+    "include_index_jobposting": true,
+    "job_url_pattern": "^https://www\\.werkenbijaswatson\\.nl/banen/[^?#]+/\\d+/\\d+$",
+    "employer_tokens": [
+      "a.s. watson"
+    ],
+    "application_check": "watson-rendered",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Observed official HR/Legal/Facilities department list. All linked job pages are read; broader employer inventory, other departments and pagination not established. Application requisitions must match each live JSON-LD identifier, observed link, rendered title and hidden ReqId."
+  },
+  "auto-defabrique-holding": {
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Official public employer feed or vacancy page and observed application entry; robots enforced at runtime; read-only checks, no applications sent.",
+    "collection_seconds": 180,
+    "max_requests": 100,
+    "adapter": "employer-index",
+    "allowed_hosts": [
+      "www.defabriqueholding.nl",
+      "werkenbijdefabriqueholding.cvw.io"
+    ],
+    "index_urls": [
+      "https://www.defabriqueholding.nl/vacatures"
+    ],
+    "job_url_pattern": "^https://www\\.defabriqueholding\\.nl/vacatures/[^/?]+$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "Ons kantoor is gevestigd op de Westkanaaldijk op het industrieterrein Lage Weide in Utrecht",
+        "city": "Utrecht",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Official vacancy list. Visible workplace extraction reviewed only for Utrecht HR office. Other locations, pagination and blocked CVW application remain incomplete; no complete employer inventory claimed."
+  },
+  "auto-hb-rts": {
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Official public employer feed or vacancy page and observed application entry; robots enforced at runtime; read-only checks, no applications sent.",
+    "collection_seconds": 180,
+    "max_requests": 100,
+    "adapter": "employer-index",
+    "allowed_hosts": [
+      "www.hb-rts.com"
+    ],
+    "index_urls": [
+      "https://www.hb-rts.com/en-uk/careers"
+    ],
+    "job_url_pattern": "^https://www\\.hb-rts\\.com/en-uk/careers/[^/?]+$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "Location: Utrecht",
+        "city": "Utrecht",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "en",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Official English careers list, currently reviewed visible workplace extraction for Utrecht only. Contact address supports questions, not verified application instructions. Broader inventory/pagination incomplete."
+  },
+  "auto-domino-s-pizza-netherlands": {
+    "adapter": "employer-index",
+    "allowed_hosts": [
+      "werkenbijdominos.nl",
+      "www.werkenbijdominos.nl"
+    ],
+    "index_urls": [
+      "https://werkenbijdominos.nl/stages"
+    ],
+    "job_url_pattern": "^https://werkenbijdominos\\.nl/hoofdkantoor/[^/?]+$",
+    "page_format": "reviewed-visible",
+    "reviewed_title": {
+      "tag": "h2",
+      "class": "vacancy-title"
+    },
+    "reviewed_workplaces": [
+      {
+        "pattern": "Nieuwegein / Netherlands",
+        "city": "Nieuwegein",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "application_check": "official-email",
+    "application_email": "lea.ruijsdam@dominos.nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Official student internship list. Actual h2.vacancy-title and published Nieuwegein workplace are extracted from each live vacancy; HR vacancy-specific email CV/motivation instructions checked. Other workplaces, broader inventories/pagination and September intake year remain unresolved.",
+    "collection_seconds": 180,
+    "max_requests": 100,
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Official public vacancy list and employer-published vacancy-specific email application instructions. Runtime robots checks; no email/application sent."
+  }
+}

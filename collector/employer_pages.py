@@ -83,13 +83,15 @@ def page_record(record,source,client,clock=None):
     elif source.get('page_format')=='reviewed-visible':
         from .universal import Document
         doc=Document(body,final)
-        if len(doc.h1)!=1 or len(doc.text)<200:
+        from .reviewed_html import reviewed_titles
+        titles=doc.h1 or reviewed_titles(body,source)
+        if len(titles)!=1 or len(doc.text)<200:
             raise ValueError('Reviewed visible vacancy title/description missing')
         places=[place for place in source.get('reviewed_workplaces',[])
                 if re.search(place['pattern'],doc.text)]
         if len(places)!=1:raise ValueError('Visible vacancy workplace requires review')
         place=places[0]
-        result.update(title=doc.h1[0],text=doc.text,city=place['city'],
+        result.update(title=titles[0],text=doc.text,city=place['city'],
             country=place['country'],countries=[place['country']],
             location=place['city']+', '+place['country'],language=source.get('reviewed_advertisement_language'))
     elif source.get('page_format')=='odoo-visible':

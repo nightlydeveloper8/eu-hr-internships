@@ -19,6 +19,10 @@ The initial Groningen lot uses the existing shared employer registry and daily c
 
 The initial Drenthe lot reuses the same employer registry, collectors and provincial UI: 12 CBS municipalities, 227 settlements, 31 researched employers (14 with documented 50+ size) and two HR internships with verified application channels in Assen. All 31 sources were executed: two observed inventories read, 20 partial, five discovery-incomplete and four blocked/failed. NNCZ and Scania candidates remain unverified. See [the Italian research report](docs/drenthe-mappatura.md) and `drenthe.html`. Daily integration is prepared in the existing workflow; remote production execution requires an authorized merge and subsequent verification.
 
+## Utrecht provincial research (7 November 2026)
+
+Utrecht now reuses the shared provincial model and daily collectors: 26 CBS municipalities, 104 settlements, 51 reviewed employers (20 with documented 50+ employees) and six HR internships with verified application routes. All 51 sources were executed: four observed inventories read, 33 partial, ten discovery-incomplete and four blocked/failed. Trunkrs and Domino’s retain intake-date caveats; generic student routes remain separate. The region uses NUTS 2024 `NL35`. See [the Italian Utrecht report](docs/utrecht-mappatura.md) and `utrecht.html`. The existing daily workflow includes these sources; remote execution and production publication await an authorized merge.
+
 ## What is implemented
 
 - Python collectors for Greenhouse, Lever (global and EU), Ashby and SmartRecruiters; pagination and fixture tests for all four.

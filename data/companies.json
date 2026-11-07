@@ -14328,21 +14328,23 @@
     "workplaces": [
       {
         "country": "NL",
-        "region_code": "NL35",
-        "subregion_code": null,
-        "city": "Utrecht",
-        "evidence_url": "https://careers.danone.com/us/en/jobs/internship-hr-business-partner-intern-28754-nl-nl.html",
-        "location_confidence": "confirmed",
-        "checked_on": "2026-11-05"
-      },
-      {
-        "country": "NL",
         "region_code": "NL32",
         "subregion_code": null,
         "city": "Hoofddorp",
         "evidence_url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
         "location_confidence": "confirmed",
         "checked_on": "2026-11-05"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://careers.danone.com/benelux/en/jobs/internship-hr-business-partner-intern-28754-en-us.html",
+        "checked_on": "2026-11-07"
       }
     ],
     "source_ids": [
@@ -14351,7 +14353,25 @@
     "priority": "high",
     "hr_internship_evidence": "confirmed-posting",
     "review_status": "monitoring",
-    "hr_internship_evidence_url": "https://careers.danone.com/en-global/jobs/praktikum-hr-management-m-w-d-fokus-recruiting-28915-de-de.html"
+    "hr_internship_evidence_url": "https://careers.danone.com/en-global/jobs/praktikum-hr-management-m-w-d-fokus-recruiting-28915-de-de.html",
+    "aliases": [],
+    "website_url": "https://www.danone.com/",
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Reuse existing European employer and collecting source; R&I HR Business Partner internship in Utrecht."
+      ]
+    }
   },
   {
     "id": "dare-health-innovation",
@@ -48411,7 +48431,7 @@
     "id": "rijkswaterstaat",
     "name": "Rijkswaterstaat",
     "website_url": "https://www.rijkswaterstaat.nl/",
-    "career_url": "https://werkenbij.rijkswaterstaat.nl/vacatures/stages",
+    "career_url": "https://www.werkenvoornederland.nl/organisaties/ministerie-van-infrastructuur-en-waterstaat/rijkswaterstaat",
     "evidence_url": "https://www.rijkswaterstaat.nl/",
     "target_countries": [
       "NL"
@@ -48425,6 +48445,17 @@
         "municipality_code": "GM0093",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.rijkswaterstaat.nl/water/projectenoverzicht/waddenzee-vervangen-radarsensoren-vuurtorens"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenvoornederland.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde-RWS-2026-5392",
+        "checked_on": "2026-11-07"
       }
     ],
     "source_ids": [
@@ -48456,6 +48487,22 @@
       "source_url": "https://werkenbij.rijkswaterstaat.nl/vacatures/stages",
       "source_date": null,
       "source_type": "employer_website"
+    },
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Reuse existing employer; DOK RWS internship in Utrecht starting February 2027, deadline 16 November 2026."
+      ]
     }
   },
   {
@@ -49026,8 +49073,8 @@
   {
     "id": "royal-a-ware",
     "name": "Royal A-ware",
-    "website_url": "https://werkenbijaware.com",
-    "career_url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
+    "website_url": "https://www.royal-aware.com/nl/",
+    "career_url": "https://werkenbijaware.com/",
     "evidence_url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
     "target_countries": [
       "NL"
@@ -49041,6 +49088,17 @@
         "municipality_code": "GM0074",
         "location_confidence": "confirmed",
         "evidence_url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Lopik",
+        "municipality": "Lopik",
+        "municipality_code": "GM0331",
+        "settlement_code": "WP1960",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijaware.com/vacatures/procesoperator-a-req1467",
+        "checked_on": "2026-11-07"
       }
     ],
     "source_ids": [
@@ -49064,10 +49122,29 @@
     },
     "employee_size_evidence": {
       "qualification": "verified_50_plus",
-      "employees_min": 5300,
-      "employees_text": "Organico dichiarato sul sito ufficiale; vedere nota su perimetro del gruppo.",
+      "employees_estimate": 5300,
+      "employees_text": "Official group homepage describes more than 5,300 colleagues including food and AB Texel transport; not Lopik staff count.",
       "scope": "group",
-      "source_url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679"
+      "source_url": "https://www.royal-aware.com/nl/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    },
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 5300,
+        "employees_text": "Official group homepage describes more than 5,300 colleagues including food and AB Texel transport; not Lopik staff count.",
+        "scope": "group",
+        "source_url": "https://www.royal-aware.com/nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Reuse existing European employer and collection source; published Lopik workplace does not make all group roles local."
+      ]
     }
   },
   {
@@ -69412,6 +69489,2457 @@
       "scope": "employer",
       "source_url": "https://www.zzwd.nl/over-zzwd/",
       "source_date": null
+    }
+  },
+  {
+    "id": "gemeente-baarn",
+    "name": "Gemeente Baarn",
+    "website_url": "https://werkenbijgemeentebaarn.nl/",
+    "career_url": "https://werkenbijgemeentebaarn.nl/over-baarn",
+    "evidence_url": "https://werkenbijgemeentebaarn.nl/over-baarn",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Baarn",
+        "municipality": "Baarn",
+        "municipality_code": "GM0308",
+        "settlement_code": "WP1092",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijgemeentebaarn.nl/over-baarn",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-baarn"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 180,
+        "employees_text": "Official employer source describes approximately 180 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://werkenbijgemeentebaarn.nl/over-baarn",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 180,
+      "employees_text": "Official employer source describes approximately 180 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://werkenbijgemeentebaarn.nl/over-baarn",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "gemeente-bunnik",
+    "name": "Gemeente Bunnik",
+    "website_url": "https://www.baanbijbunnik.nl/",
+    "career_url": "https://www.baanbijbunnik.nl/",
+    "evidence_url": "https://www.baanbijbunnik.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Odijk",
+        "municipality": "Bunnik",
+        "municipality_code": "GM0312",
+        "settlement_code": "WP2604",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.baanbijbunnik.nl/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-bunnik"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official employer source describes approximately 100 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://www.baanbijbunnik.nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount",
+        "employees_estimate": 100
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_text": "Official employer source describes approximately 100 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://www.baanbijbunnik.nl/",
+      "source_date": null,
+      "measurement": "approximate-headcount",
+      "employees_estimate": 100
+    }
+  },
+  {
+    "id": "gemeente-bunschoten",
+    "name": "Gemeente Bunschoten",
+    "website_url": "https://www.bunschoten.nl/",
+    "career_url": "https://www.bunschoten.nl/werkenbij",
+    "evidence_url": "https://www.bunschoten.nl/werkenbij",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Bunschoten",
+        "municipality_code": "GM0313",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.bunschoten.nl/werkenbij",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-bunschoten"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-de-bilt",
+    "name": "Gemeente De Bilt",
+    "website_url": "https://www.werkenvoordebilt.nl/",
+    "career_url": "https://www.werkenvoordebilt.nl/",
+    "evidence_url": "https://www.werkenvoordebilt.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Bilthoven",
+        "municipality": "De Bilt",
+        "municipality_code": "GM0310",
+        "settlement_code": "WP2935",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenvoordebilt.nl/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-de-bilt"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official employer source describes approximately 230 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://www.werkenvoordebilt.nl/vacatures/teamleider-facilitaire-zaken",
+        "source_date": null,
+        "measurement": "approximate-headcount",
+        "employees_estimate": 230
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_text": "Official employer source describes approximately 230 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://www.werkenvoordebilt.nl/vacatures/teamleider-facilitaire-zaken",
+      "source_date": null,
+      "measurement": "approximate-headcount",
+      "employees_estimate": 230
+    }
+  },
+  {
+    "id": "gemeente-de-ronde-venen",
+    "name": "Gemeente De Ronde Venen",
+    "website_url": "https://werkenvoorderondevenen.nl/",
+    "career_url": "https://werkenvoorderondevenen.nl/",
+    "evidence_url": "https://werkenvoorderondevenen.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Mijdrecht",
+        "municipality": "De Ronde Venen",
+        "municipality_code": "GM0736",
+        "settlement_code": "WP3549",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenvoorderondevenen.nl/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-de-ronde-venen"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 350,
+        "employees_text": "Official employer source describes approximately 350 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://werkenvoorderondevenen.nl/over-de-gemeente/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 350,
+      "employees_text": "Official employer source describes approximately 350 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://werkenvoorderondevenen.nl/over-de-gemeente/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "gemeente-houten",
+    "name": "Gemeente Houten",
+    "website_url": "https://www.werkenbijhouten.nl/",
+    "career_url": "https://www.werkenbijhouten.nl/",
+    "evidence_url": "https://www.werkenbijhouten.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Houten",
+        "municipality": "Houten",
+        "municipality_code": "GM0321",
+        "settlement_code": "WP2053",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijhouten.nl/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-houten"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 350,
+        "employees_text": "Official government organisation record describes approximately 350 employees; not an FTE total.",
+        "scope": "employer",
+        "source_url": "https://organisaties.overheid.nl/38261/www.houten.nl",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 350,
+      "employees_text": "Official government organisation record describes approximately 350 employees; not an FTE total.",
+      "scope": "employer",
+      "source_url": "https://organisaties.overheid.nl/38261/www.houten.nl",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "gemeente-ijsselstein",
+    "name": "Gemeente IJsselstein",
+    "website_url": "https://www.ijsselstein.nl/",
+    "career_url": "https://www.ijsselstein.nl/werken-bij-de-gemeente-ijsselstein",
+    "evidence_url": "https://www.ijsselstein.nl/werken-bij-de-gemeente-ijsselstein",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "IJsselstein",
+        "municipality": "IJsselstein",
+        "municipality_code": "GM0353",
+        "settlement_code": "WP2432",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.ijsselstein.nl/werken-bij-de-gemeente-ijsselstein",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-ijsselstein"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-leusden",
+    "name": "Gemeente Leusden",
+    "website_url": "https://www.leusden.nl/",
+    "career_url": "https://www.leusden.nl/werkenbijleusden",
+    "evidence_url": "https://www.leusden.nl/werkenbijleusden",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Leusden",
+        "municipality": "Leusden",
+        "municipality_code": "GM0327",
+        "settlement_code": "WP2638",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.leusden.nl/werkenbijleusden",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-leusden"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 200,
+        "employees_text": "Official employer source describes approximately 200 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://www.leusden.nl/werkenbijleusden",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 200,
+      "employees_text": "Official employer source describes approximately 200 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://www.leusden.nl/werkenbijleusden",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "gemeente-lopik",
+    "name": "Gemeente Lopik",
+    "website_url": "https://www.lopik.nl/",
+    "career_url": "https://www.lopik.nl/werken-bij-lopik",
+    "evidence_url": "https://www.lopik.nl/werken-bij-lopik",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Lopik",
+        "municipality_code": "GM0331",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.lopik.nl/werken-bij-lopik",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-lopik"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-montfoort",
+    "name": "Gemeente Montfoort",
+    "website_url": "https://www.montfoort.nl/",
+    "career_url": "https://www.montfoort.nl/Alle_onderwerpen/Bestuur_en_organisatie/Werken_bij_Montfoort",
+    "evidence_url": "https://www.montfoort.nl/Alle_onderwerpen/Bestuur_en_organisatie/Werken_bij_Montfoort",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Montfoort",
+        "municipality_code": "GM0335",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.montfoort.nl/Alle_onderwerpen/Bestuur_en_organisatie/Werken_bij_Montfoort",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-montfoort"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-nieuwegein",
+    "name": "Gemeente Nieuwegein",
+    "website_url": "https://www.nieuwegein.nl/",
+    "career_url": "https://www.nieuwegein.nl/gemeente-bestuur-en-organisatie/organisatie/werken-bij-de-gemeente",
+    "evidence_url": "https://www.nieuwegein.nl/gemeente-bestuur-en-organisatie/organisatie/werken-bij-de-gemeente",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Nieuwegein",
+        "municipality": "Nieuwegein",
+        "municipality_code": "GM0356",
+        "settlement_code": "WP1108",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.nieuwegein.nl/gemeente-bestuur-en-organisatie/organisatie/werken-bij-de-gemeente",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-nieuwegein"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-renswoude",
+    "name": "Gemeente Renswoude",
+    "website_url": "https://www.renswoude.nl/",
+    "career_url": "https://www.renswoude.nl/werken-bij-de-gemeente",
+    "evidence_url": "https://www.renswoude.nl/werken-bij-de-gemeente",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Renswoude",
+        "municipality": "Renswoude",
+        "municipality_code": "GM0339",
+        "settlement_code": "WP2141",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.renswoude.nl/werken-bij-de-gemeente",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-renswoude"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-rhenen",
+    "name": "Gemeente Rhenen",
+    "website_url": "https://www.rhenen.nl/",
+    "career_url": "https://www.rhenen.nl/info-over-de-gemeente/werken-bij-de-gemeente-rhenen",
+    "evidence_url": "https://www.rhenen.nl/info-over-de-gemeente/werken-bij-de-gemeente-rhenen",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Rhenen",
+        "municipality_code": "GM0340",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.rhenen.nl/info-over-de-gemeente/werken-bij-de-gemeente-rhenen",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-rhenen"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 200,
+        "employees_text": "Official employer source describes approximately 200 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://www.rhenen.nl/info-over-de-gemeente/werken-bij-de-gemeente-rhenen",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 200,
+      "employees_text": "Official employer source describes approximately 200 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://www.rhenen.nl/info-over-de-gemeente/werken-bij-de-gemeente-rhenen",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "gemeente-soest",
+    "name": "Gemeente Soest",
+    "website_url": "https://www.soest.nl/",
+    "career_url": "https://www.soest.nl/vacatures",
+    "evidence_url": "https://www.soest.nl/vacatures",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Soest",
+        "municipality_code": "GM0342",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.soest.nl/vacatures",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-soest"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-stichtse-vecht",
+    "name": "Gemeente Stichtse Vecht",
+    "website_url": "https://www.werkenbijstichtsevecht.nl/",
+    "career_url": "https://www.werkenbijstichtsevecht.nl/",
+    "evidence_url": "https://www.werkenbijstichtsevecht.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Maarssen",
+        "municipality": "Stichtse Vecht",
+        "municipality_code": "GM1904",
+        "settlement_code": "WP2064",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijstichtsevecht.nl/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-stichtse-vecht"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official employer source describes approximately 500 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://www.werkenbijstichtsevecht.nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount",
+        "employees_estimate": 500
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_text": "Official employer source describes approximately 500 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://www.werkenbijstichtsevecht.nl/",
+      "source_date": null,
+      "measurement": "approximate-headcount",
+      "employees_estimate": 500
+    }
+  },
+  {
+    "id": "gemeente-utrechtse-heuvelrug",
+    "name": "Gemeente Utrechtse Heuvelrug",
+    "website_url": "https://www.heuvelrug.nl/",
+    "career_url": "https://www.heuvelrug.nl/werken-bij-de-gemeente",
+    "evidence_url": "https://www.heuvelrug.nl/werken-bij-de-gemeente",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Utrechtse Heuvelrug",
+        "municipality_code": "GM1581",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.heuvelrug.nl/werken-bij-de-gemeente",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-utrechtse-heuvelrug"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-veenendaal",
+    "name": "Gemeente Veenendaal",
+    "website_url": "https://www.veenendaal.nl/",
+    "career_url": "https://www.veenendaal.nl/info-over-de-gemeente/over-de-gemeente/werken-voor-veenendaal/veens-werken",
+    "evidence_url": "https://www.veenendaal.nl/info-over-de-gemeente/over-de-gemeente/werken-voor-veenendaal/veens-werken",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Veenendaal",
+        "municipality_code": "GM0345",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.veenendaal.nl/info-over-de-gemeente/over-de-gemeente/werken-voor-veenendaal/veens-werken",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-veenendaal"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-vijfheerenlanden",
+    "name": "Gemeente Vijfheerenlanden",
+    "website_url": "https://www.vijfheerenlanden.nl/",
+    "career_url": "https://www.vijfheerenlanden.nl/vacatures",
+    "evidence_url": "https://www.vijfheerenlanden.nl/vacatures",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Vijfheerenlanden",
+        "municipality_code": "GM1961",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.vijfheerenlanden.nl/vacatures",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-vijfheerenlanden"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-wijk-bij-duurstede",
+    "name": "Gemeente Wijk bij Duurstede",
+    "website_url": "https://www.werkenbijgemeentewijkbijduurstede.nl/",
+    "career_url": "https://www.werkenbijgemeentewijkbijduurstede.nl/",
+    "evidence_url": "https://www.werkenbijgemeentewijkbijduurstede.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Wijk bij Duurstede",
+        "municipality": "Wijk bij Duurstede",
+        "municipality_code": "GM0352",
+        "settlement_code": "WP1302",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijgemeentewijkbijduurstede.nl/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-wijk-bij-duurstede"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-woerden",
+    "name": "Gemeente Woerden",
+    "website_url": "https://werkenbij.woerden.nl/",
+    "career_url": "https://werkenbij.woerden.nl/",
+    "evidence_url": "https://werkenbij.woerden.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Woerden",
+        "municipality": "Woerden",
+        "municipality_code": "GM0632",
+        "settlement_code": "WP1071",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbij.woerden.nl/",
+        "checked_on": "2026-11-07"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Oudewater",
+        "municipality": "Oudewater",
+        "municipality_code": "GM0589",
+        "settlement_code": "WP1910",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.oudewater.nl/Contact",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-woerden"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Official careers site states staff are employed by Woerden and serve Woerden and Oudewater; one employer, two public service locations. No automatic assignment of a vacancy to both municipalities."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-woudenberg",
+    "name": "Gemeente Woudenberg",
+    "website_url": "https://www.woudenberg.nl/",
+    "career_url": "https://www.woudenberg.nl/over-de-gemeente/vacatures",
+    "evidence_url": "https://www.woudenberg.nl/service-en-contact/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": null,
+        "municipality": "Woudenberg",
+        "municipality_code": "GM0351",
+        "settlement_code": null,
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.woudenberg.nl/over-de-gemeente/vacatures",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-woudenberg"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    }
+  },
+  {
+    "id": "gemeente-zeist",
+    "name": "Gemeente Zeist",
+    "website_url": "https://www.werkenbijzeist.nl/",
+    "career_url": "https://www.werkenbijzeist.nl/vacatures/",
+    "evidence_url": "https://www.werkenbijzeist.nl/vacatures/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Zeist",
+        "municipality": "Zeist",
+        "municipality_code": "GM0355",
+        "settlement_code": "WP2821",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijzeist.nl/vacatures/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-gemeente-zeist"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 600,
+        "employees_text": "Official employer source describes approximately 600 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://www.werkenbijzeist.nl/vacatures/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Municipal employer research does not establish an HR internship. Municipal-only presence retained where office locality has not been checked."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 600,
+      "employees_text": "Official employer source describes approximately 600 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://www.werkenbijzeist.nl/vacatures/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "bel-gemeenten",
+    "name": "BEL gemeenten",
+    "website_url": "https://werkenvoorbel.nl/",
+    "career_url": "https://werkenvoorbel.nl/",
+    "evidence_url": "https://www.gemeentebanen.nl/overheden/bel-gemeenten",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Eemnes",
+        "municipality": "Eemnes",
+        "municipality_code": "GM0317",
+        "settlement_code": "WP1037",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.gemeentebanen.nl/overheden/bel-gemeenten",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-bel-gemeenten"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 250,
+        "employees_text": "Official employer source describes approximately 250 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://werkenvoorbel.nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "notes": [
+        "Shared BEL organisation for Blaricum, Eemnes and Laren; only Eemnes is in Utrecht province. One employer, not three municipal employer copies."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 250,
+      "employees_text": "Official employer source describes approximately 250 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://werkenvoorbel.nl/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "defabrique-holding",
+    "name": "DeFabrique Holding",
+    "website_url": "https://www.defabriqueholding.nl/",
+    "career_url": "https://www.defabriqueholding.nl/vacatures",
+    "evidence_url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-defabrique-holding"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Concrete HRM internship, February 2027; application verification remains separate."
+      ]
+    }
+  },
+  {
+    "id": "koninklijke-remia-c-v",
+    "name": "Koninklijke Remia C.V.",
+    "website_url": "https://www.remia.nl/",
+    "career_url": "https://remiacv.recruitee.com/",
+    "evidence_url": "https://remiacv.recruitee.com/o/hr-stagiaire",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Den Dolder",
+        "municipality": "Zeist",
+        "municipality_code": "GM0355",
+        "settlement_code": "WP2822",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://remiacv.recruitee.com/o/hr-stagiaire",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-koninklijke-remia-c-v"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Recruitee official board; concrete HR internship starting February 2027."
+      ]
+    }
+  },
+  {
+    "id": "trunkrs",
+    "name": "Trunkrs",
+    "website_url": "https://www.trunkrs.nl/",
+    "career_url": "https://werkenbij.trunkrs.nl/",
+    "evidence_url": "https://werkenbij.trunkrs.nl/o/hr-stagiair?lang=en",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Woerden",
+        "municipality": "Woerden",
+        "municipality_code": "GM0632",
+        "settlement_code": "WP1071",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbij.trunkrs.nl/o/hr-stagiair?lang=en",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-trunkrs"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official HR internship has past start date September 2026; do not confirm current availability from reachability alone."
+      ]
+    }
+  },
+  {
+    "id": "as-watson-benelux",
+    "name": "AS Watson Benelux",
+    "website_url": "https://www.aswatsonbenelux.com/",
+    "career_url": "https://www.werkenbijaswatson.nl/vacatures-zoeken",
+    "evidence_url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Renswoude",
+        "municipality": "Renswoude",
+        "municipality_code": "GM0339",
+        "settlement_code": "WP2141",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-as-watson-benelux"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "HR Business Partner and employer branding/recruitment internship leads in Renswoude; HR Supply Chain at Heteren is outside Utrecht province."
+      ]
+    }
+  },
+  {
+    "id": "sopra-steria",
+    "name": "Sopra Steria",
+    "website_url": "https://www.soprasteria.com/",
+    "career_url": "https://careers.soprasteria.com/",
+    "evidence_url": "https://careers.soprasteria.com/job/stage-hr-in-nieuwegein-netherlands-jid-9153",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Nieuwegein",
+        "municipality": "Nieuwegein",
+        "municipality_code": "GM0356",
+        "settlement_code": "WP1108",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://careers.soprasteria.com/job/stage-hr-in-nieuwegein-netherlands-jid-9153",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-sopra-steria"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 51000,
+        "employees_text": "Official job description states more than 51,000 colleagues across nearly 30 countries; group total, not Nieuwegein workforce.",
+        "scope": "group",
+        "source_url": "https://careers.soprasteria.com/job/stage-hr-in-nieuwegein-netherlands-jid-9153",
+        "source_date": null,
+        "measurement": "lower-bound"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Reviewed jid-9153 is explicitly expired in current HTML; retained as employer monitor, not an open internship."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 51000,
+      "employees_text": "Official job description states more than 51,000 colleagues across nearly 30 countries; group total, not Nieuwegein workforce.",
+      "scope": "group",
+      "source_url": "https://careers.soprasteria.com/job/stage-hr-in-nieuwegein-netherlands-jid-9153",
+      "source_date": null,
+      "measurement": "lower-bound"
+    }
+  },
+  {
+    "id": "prenatal",
+    "name": "Prénatal",
+    "website_url": "https://www.prenatal.nl/",
+    "career_url": "https://www.werkenbij.prenatal.nl/",
+    "evidence_url": "https://www.werkenbij.prenatal.nl/vacature-servicekantoor/meewerkstage-hr-amersfoort",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Amersfoort",
+        "municipality": "Amersfoort",
+        "municipality_code": "GM0307",
+        "settlement_code": "WP1664",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbij.prenatal.nl/vacature-servicekantoor/meewerkstage-hr-amersfoort",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-prenatal"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": []
+    }
+  },
+  {
+    "id": "domino-s-pizza-netherlands",
+    "name": "Domino's Pizza Netherlands",
+    "website_url": "https://www.dominos.nl/",
+    "career_url": "https://www.werkenbijdominos.nl/stages",
+    "evidence_url": "https://www.werkenbijdominos.nl/hoofdkantoor/meewerkstage-hr",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Nieuwegein",
+        "municipality": "Nieuwegein",
+        "municipality_code": "GM0356",
+        "settlement_code": "WP1108",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.werkenbijdominos.nl/hoofdkantoor/meewerkstage-hr",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-domino-s-pizza-netherlands"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "HR internship page says per September without a year; no inferred future start date."
+      ]
+    }
+  },
+  {
+    "id": "hb-rts",
+    "name": "HB RTS",
+    "website_url": "https://www.hb-rts.com/",
+    "career_url": "https://www.hb-rts.com/en-uk/careers",
+    "evidence_url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-hb-rts"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Concrete February 2027 HR internship; 20 weeks, HBO, official job detail."
+      ]
+    }
+  },
+  {
+    "id": "afas-software",
+    "name": "AFAS Software",
+    "website_url": "https://www.afas.nl/",
+    "career_url": "https://www.werkenbijafas.nl/",
+    "evidence_url": "https://www.afas.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Leusden",
+        "municipality": "Leusden",
+        "municipality_code": "GM0327",
+        "settlement_code": "WP2638",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.afas.nl/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-afas-software"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 680,
+        "employees_text": "Official employer source describes approximately 680 colleagues; not a local establishment count.",
+        "scope": "employer",
+        "source_url": "https://www.afas.nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official homepage says 680 colleagues; other official pages give around 700 at group level. No current HR internship inferred."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 680,
+      "employees_text": "Official employer source describes approximately 680 colleagues; not a local establishment count.",
+      "scope": "employer",
+      "source_url": "https://www.afas.nl/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "hso",
+    "name": "HSO",
+    "website_url": "https://www.hso.com/",
+    "career_url": "https://www.hso.com/nl/carriere/join-hso/",
+    "evidence_url": "https://www.hso.com/nl/carriere/join-hso/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Veenendaal",
+        "municipality": "Veenendaal",
+        "municipality_code": "GM0345",
+        "settlement_code": "WP2048",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.hso.com/nl/carriere/join-hso/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-hso"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 2200,
+        "employees_text": "Official careers page describes more than 2,200 worldwide staff in one posting; other postings say 2,500. Conservative lower bound, group total, not Veenendaal.",
+        "scope": "group",
+        "source_url": "https://www.hso.com/nl/carriere/join-hso/",
+        "source_date": null,
+        "measurement": "lower-bound"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 2200,
+      "employees_text": "Official careers page describes more than 2,200 worldwide staff in one posting; other postings say 2,500. Conservative lower bound, group total, not Veenendaal.",
+      "scope": "group",
+      "source_url": "https://www.hso.com/nl/carriere/join-hso/",
+      "source_date": null,
+      "measurement": "lower-bound"
+    }
+  },
+  {
+    "id": "berenschot",
+    "name": "Berenschot",
+    "website_url": "https://www.berenschot.nl/",
+    "career_url": "https://www.berenschot.nl/vacatures",
+    "evidence_url": "https://nl.linkedin.com/company/berenschot",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://nl.linkedin.com/company/berenschot",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-berenschot"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 500,
+        "employees_text": "Employer-owned LinkedIn profile states 500 employees; employer total, not office count.",
+        "scope": "employer",
+        "source_url": "https://nl.linkedin.com/company/berenschot",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": []
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 500,
+      "employees_text": "Employer-owned LinkedIn profile states 500 employees; employer total, not office count.",
+      "scope": "employer",
+      "source_url": "https://nl.linkedin.com/company/berenschot",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "terberg-techniek",
+    "name": "Terberg Techniek",
+    "website_url": "https://www.terbergtechniek.nl/",
+    "career_url": "https://www.terbergtechniek.nl/vacatures",
+    "evidence_url": "https://www.terbergtechniek.nl/vacatures",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "IJsselstein",
+        "municipality": "IJsselstein",
+        "municipality_code": "GM0353",
+        "settlement_code": "WP2432",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.terbergtechniek.nl/vacatures",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-terberg-techniek"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official board links Greenhouse EU token terberg-techniek. Separate employer from Terberg Environmental and Terberg Totaal Installaties; no unsupported merge."
+      ]
+    }
+  },
+  {
+    "id": "universiteit-utrecht",
+    "name": "Universiteit Utrecht",
+    "website_url": "https://www.uu.nl/",
+    "career_url": "https://www.uu.nl/organisatie/werken-bij-de-universiteit-utrecht",
+    "evidence_url": "https://www.uu.nl/organisatie/werken-bij-de-universiteit-utrecht",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.uu.nl/organisatie/werken-bij-de-universiteit-utrecht",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-universiteit-utrecht"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "education",
+      "group_name": null,
+      "notes": [
+        "Official institutional careers site; no current specific HR internship established in this review."
+      ]
+    }
+  },
+  {
+    "id": "bcn",
+    "name": "BCN",
+    "website_url": "https://www.bcn.nl/",
+    "career_url": "https://werkenbij.bcn.nl/",
+    "evidence_url": "https://werkenbij.bcn.nl/open-sollicitatie-hr-stagiaire/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbij.bcn.nl/open-sollicitatie-hr-stagiaire/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-bcn"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official HR open application is a student programme, not a verified advertised opening."
+      ]
+    }
+  },
+  {
+    "id": "vrumona",
+    "name": "Vrumona",
+    "website_url": "https://www.vrumona.nl/",
+    "career_url": "https://www.vrumona.nl/",
+    "evidence_url": "https://www.uwstadwerkt.nl/bunnik/bedrijf/12094/vrumona",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Bunnik",
+        "municipality": "Bunnik",
+        "municipality_code": "GM0312",
+        "settlement_code": "WP2603",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.uwstadwerkt.nl/bunnik/bedrijf/12094/vrumona",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-vrumona"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established from reviewed primary evidence in this pass.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Employer profile on territorial Bunnik Werkt platform supports Bunnik presence; official site requires dynamic discovery. Historical September 2026 student recruitment on employer LinkedIn is not a current vacancy proof. Headcount withheld until primary employer review."
+      ]
+    }
+  },
+  {
+    "id": "onvz",
+    "name": "ONVZ",
+    "website_url": "https://www.onvz.nl/",
+    "career_url": "https://werkenbijonvz.nl/",
+    "evidence_url": "https://werkenbijonvz.nl/onze-organisatie/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Houten",
+        "municipality": "Houten",
+        "municipality_code": "GM0321",
+        "settlement_code": "WP2053",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijonvz.nl/onze-organisatie/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-onvz"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 400,
+        "employees_text": "Official employer source describes approximately 400 colleagues, never attributed to the local establishment.",
+        "scope": "employer",
+        "source_url": "https://werkenbijonvz.nl/onze-organisatie/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official employer organisation page: Houten, approximately 400 employees; mutual insurer, 400,000 insured are not employees."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 400,
+      "employees_text": "Official employer source describes approximately 400 colleagues, never attributed to the local establishment.",
+      "scope": "employer",
+      "source_url": "https://werkenbijonvz.nl/onze-organisatie/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "van-den-pol-elektrotechniek",
+    "name": "Van den Pol Elektrotechniek",
+    "website_url": "https://www.vandenpol.com/",
+    "career_url": "https://werkenbijvandenpol.nl/vacatures/",
+    "evidence_url": "https://www.vandenpol.com/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Montfoort",
+        "municipality": "Montfoort",
+        "municipality_code": "GM0335",
+        "settlement_code": "WP1964",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.vandenpol.com/",
+        "checked_on": "2026-11-07"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Amersfoort",
+        "municipality": "Amersfoort",
+        "municipality_code": "GM0307",
+        "settlement_code": "WP1664",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.vandenpol.com/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-van-den-pol-elektrotechniek"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 250,
+        "employees_text": "Official employer source describes approximately 250 colleagues, never attributed to the local establishment.",
+        "scope": "employer",
+        "source_url": "https://www.vandenpol.com/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Employer monitored for future HR internships; no current specific HR internship established in this review."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 250,
+      "employees_text": "Official employer source describes approximately 250 colleagues, never attributed to the local establishment.",
+      "scope": "employer",
+      "source_url": "https://www.vandenpol.com/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "miele-nederland-b-v",
+    "name": "Miele Nederland B.V.",
+    "website_url": "https://www.miele.nl/",
+    "career_url": "https://career.miele.nl/",
+    "evidence_url": "https://www.miele.nl/cs/miele-experience-center/vianen-700",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Vianen",
+        "municipality": "Vijfheerenlanden",
+        "municipality_code": "GM1961",
+        "settlement_code": "WP2843",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.miele.nl/cs/miele-experience-center/vianen-700",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-miele-nederland-b-v"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Current employee count not established from reviewed primary sources.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "HR Stagiair mentioned in human-resources team biography is an existing colleague, not an opening. Current board review found no HR internship among 12 roles. Size withheld: historical third-party 350-person number is not current primary evidence."
+      ]
+    }
+  },
+  {
+    "id": "kontakt-der-kontinenten",
+    "name": "Kontakt der Kontinenten",
+    "website_url": "https://www.kontaktderkontinenten.nl/",
+    "career_url": "https://www.kontaktderkontinenten.nl/vacatures/",
+    "evidence_url": "https://www.kontaktderkontinenten.nl/contact/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Soesterberg",
+        "municipality": "Soest",
+        "municipality_code": "GM0342",
+        "settlement_code": "WP1014",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.kontaktderkontinenten.nl/contact/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-kontakt-der-kontinenten"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 80,
+        "employees_text": "Official recruiting page describes more than 80 enthusiastic colleagues; approximate lower description, not FTE or group count.",
+        "scope": "employer",
+        "source_url": "https://www.kontaktderkontinenten.nl/vacatures/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Employer monitored for future HR internships; no current specific HR internship established in this review."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 80,
+      "employees_text": "Official recruiting page describes more than 80 enthusiastic colleagues; approximate lower description, not FTE or group count.",
+      "scope": "employer",
+      "source_url": "https://www.kontaktderkontinenten.nl/vacatures/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "walraven-group",
+    "name": "Walraven Group",
+    "website_url": "https://www.walraven.com/",
+    "career_url": "https://www.walraven.com/nl/werken-bij-walraven/",
+    "evidence_url": "https://www.walraven.com/nl/werken-bij-walraven/magazijnmedewerker/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Mijdrecht",
+        "municipality": "De Ronde Venen",
+        "municipality_code": "GM0736",
+        "settlement_code": "WP3549",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.walraven.com/nl/werken-bij-walraven/magazijnmedewerker/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-walraven-group"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 1300,
+        "employees_text": "Official careers page describes more than 1,300 employees in 19 countries; group scope, never Mijdrecht headcount.",
+        "scope": "group",
+        "source_url": "https://www.walraven.com/nl/werken-bij-walraven/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Manufacturer Walraven Group is distinct from wholesaler Van Walraven; do not deduplicate by similar name alone."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 1300,
+      "employees_text": "Official careers page describes more than 1,300 employees in 19 countries; group scope, never Mijdrecht headcount.",
+      "scope": "group",
+      "source_url": "https://www.walraven.com/nl/werken-bij-walraven/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "van-walraven",
+    "name": "Van Walraven",
+    "website_url": "https://www.vanwalraven.com/",
+    "career_url": "https://werkenbij.vanwalraven.com/jobs",
+    "evidence_url": "https://werkenbij.vanwalraven.com/jobs",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Mijdrecht",
+        "municipality": "De Ronde Venen",
+        "municipality_code": "GM0736",
+        "settlement_code": "WP3549",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbij.vanwalraven.com/jobs",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-van-walraven"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Current employee count not established from reviewed primary sources.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Technical wholesaler, distinct from Walraven Group manufacturer. Official careers board lists Mijdrecht jobs and generic internship; no verified HR internship."
+      ]
+    }
+  },
+  {
+    "id": "eemhart",
+    "name": "Eemhart",
+    "website_url": "https://www.eemhart.nl/",
+    "career_url": "https://www.werkenbijeemhart.nl/",
+    "evidence_url": "https://www.eemhart.nl/contact",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Baarn",
+        "municipality": "Baarn",
+        "municipality_code": "GM0308",
+        "settlement_code": "WP1092",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.eemhart.nl/contact",
+        "checked_on": "2026-11-07"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Utrecht",
+        "municipality": "Utrecht",
+        "municipality_code": "GM0344",
+        "settlement_code": "WP3295",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.eemhart.nl/contact",
+        "checked_on": "2026-11-07"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Amersfoort",
+        "municipality": "Amersfoort",
+        "municipality_code": "GM0307",
+        "settlement_code": "WP1664",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.eemhart.nl/contact",
+        "checked_on": "2026-11-07"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Soest",
+        "municipality": "Soest",
+        "municipality_code": "GM0342",
+        "settlement_code": "WP1013",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.eemhart.nl/contact",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-eemhart"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [
+      "Amerpoort",
+      "Amerpoort-Sherpa",
+      "Sherpa"
+    ],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 4000,
+        "employees_text": "Official homepage describes more than 4,000 colleagues separately from 1,200 volunteers; volunteers excluded.",
+        "scope": "employer",
+        "source_url": "https://www.eemhart.nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "health",
+      "group_name": null,
+      "notes": [
+        "Amerpoort and Sherpa merged in 2025 and now trade as Eemhart; one employer, no separate historical employer copies. Official current contact page documents Utrecht-province offices."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 4000,
+      "employees_text": "Official homepage describes more than 4,000 colleagues separately from 1,200 volunteers; volunteers excluded.",
+      "scope": "employer",
+      "source_url": "https://www.eemhart.nl/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    }
+  },
+  {
+    "id": "vak-infra",
+    "name": "VAK Infra",
+    "website_url": "https://vak-bv.nl/",
+    "career_url": "https://vak-bv.nl/vacatures/",
+    "evidence_url": "https://vak-bv.nl/vacatures/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Woudenberg",
+        "municipality": "Woudenberg",
+        "municipality_code": "GM0351",
+        "settlement_code": "WP2523",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://vak-bv.nl/vacatures/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-vak-infra"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Current employee count not established from reviewed primary sources.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official indexed jobs explicitly locate work at Woudenberg. Live web reader timed out; collection status must show actual runtime result, not inferred completeness."
+      ]
+    }
+  },
+  {
+    "id": "ouwehands-dierenpark",
+    "name": "Ouwehands Dierenpark",
+    "website_url": "https://www.ouwehand.nl/",
+    "career_url": "https://www.ouwehand.nl/over-ons/werken-bij",
+    "evidence_url": "https://www.ouwehand.nl/contact",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Rhenen",
+        "municipality": "Rhenen",
+        "municipality_code": "GM0340",
+        "settlement_code": "WP1399",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://www.ouwehand.nl/contact",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-ouwehands-dierenpark"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Current employee count not established from reviewed primary sources.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official contact gives Grebbeweg 111 Rhenen; generic marketing internship is not an HR internship. Staff headcount not established."
+      ]
+    }
+  },
+  {
+    "id": "zorgdomein",
+    "name": "ZorgDomein",
+    "website_url": "https://zorgdomein.com/",
+    "career_url": "https://zorgdomein.com/werken-bij/",
+    "evidence_url": "https://zorgdomein.com/werken-bij/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "country": "NL",
+        "region_code": "NL35",
+        "city": "Breukelen",
+        "municipality": "Stichtse Vecht",
+        "municipality_code": "GM1904",
+        "settlement_code": "WP1392",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://zorgdomein.com/werken-bij/",
+        "checked_on": "2026-11-07"
+      }
+    ],
+    "source_ids": [
+      "auto-zorgdomein"
+    ],
+    "priority": "high",
+    "hr_internship_evidence": "not-yet-confirmed",
+    "review_status": "research-required",
+    "aliases": [],
+    "utrecht_research": {
+      "checked_on": "2026-11-07",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Current employee count not established from reviewed primary sources.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "notes": [
+        "Official recruiting page footer documents Straatweg 68 Breukelen. Historical 2020 124.5 FTE report not promoted to current headcount."
+      ]
     }
   }
 ]

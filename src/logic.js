@@ -59,3 +59,11 @@ export function opportunityCounts(jobs, clock = Date.now()) {
     workingStudents:active.filter(job => job.internship_type==='working-student').length,
     traineeships:active.filter(job => job.internship_type==='traineeship').length};
 }
+
+export function provincialJobs(jobs, report, filters = {}) {
+  const verifiedIds = new Set(report.verified_hr_internship_ids);
+  return jobs.filter(job => (job.region_codes || []).includes(report.region_code)
+    && job.internship_type === 'internship'
+    && (verifiedIds.has(job.id) || (filters.unverified && !verifiedJob(job)))
+    && matches(job, filters));
+}

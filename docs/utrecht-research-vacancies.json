@@ -1,0 +1,934 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-07T08:00:33.449959+00:00",
+  "region_code": "NL35",
+  "methodology": [
+    "Vacancy-first Dutch/English searches followed by direct official employer pages, public feeds and observed linked applicant entries.",
+    "All direct reads used the existing Client/BudgetClient robots checks. Read-only rendering used existing collector rendering. No applications submitted or messages sent.",
+    "Reachability, indexed search snippets and retained vacancy descriptions are insufficient to verify an opening. Closed, blocked and unknown application states remain separate.",
+    "Hashes identify observed HTML only; full copied descriptions are not committed.",
+    "Employer-first inventory reads discovered additional specific L&D and Employer Branding internships."
+  ],
+  "opportunities": [
+    {
+      "employer": "Koninklijke Remia C.V.",
+      "title": "HR Stagiair(e)",
+      "url": "https://remiacv.recruitee.com/o/hr-stagiaire",
+      "final_url": "https://remiacv.recruitee.com/o/hr-stagiaire",
+      "city": "Den Dolder",
+      "municipality": "Zeist",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "verified_applicable_internship",
+      "application_status": "same-vacancy-applicant-form",
+      "checked_at": "2026-11-07T08:00:33.311031+00:00",
+      "page_sha256": "537659a9edf74b4801aa70ffc78134ebc897c72da9b6167d0018c16002c493a1",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": "Je volgt een mbo-, hbo- of wo-opleiding in de richting van HRM.",
+        "work_mode": "unspecified"
+      },
+      "start": "2027-02",
+      "duration_documented": "minimum four months",
+      "stipend_documented": "EUR400/month full time",
+      "notes": [
+        "Official published Recruitee feed 13 records; matching active applicant form has name, email, CV and enabled send. Body allows mbo/hbo/wo, requirements section specifically HBO; preserve stricter explicit requirement. No workplace language requirement found."
+      ],
+      "application_verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:57:12.086347+00:00",
+        "policy_version": 2,
+        "reason": "same-vacancy-applicant-form"
+      }
+    },
+    {
+      "employer": "Trunkrs",
+      "title": "HR Stagiair",
+      "url": "https://werkenbij.trunkrs.nl/o/hr-stagiair",
+      "final_url": "https://werkenbij.trunkrs.nl/o/hr-stagiair",
+      "city": "Woerden",
+      "municipality": "Woerden",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "verified_applicable_internship",
+      "application_status": "same-vacancy-applicant-form",
+      "checked_at": "2026-11-07T08:00:33.314550+00:00",
+      "page_sha256": "5f5972054a002a6046866ad42e0ee7281819260f9aaa67613d12e24f3803b577",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en",
+          "nl"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": "💜💚 Je volgt een hbo- of wo-opleiding, bij voorkeur in de richting van Human Resource Management.",
+        "work_mode": "on-site"
+      },
+      "start": "2026-09-01",
+      "duration_documented": null,
+      "stipend_documented": "appropriate allowance; amount not stated",
+      "notes": [
+        "Official published Recruitee feed 6 records and live same-vacancy form. Start 1 September 2026 is past; current feed/form supports availability only, not a revised start. Ask employer to confirm later intake. Dutch and English both explicitly required."
+      ],
+      "application_verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:57:13.697837+00:00",
+        "policy_version": 2,
+        "reason": "same-vacancy-applicant-form"
+      }
+    },
+    {
+      "employer": "AS Watson Benelux",
+      "title": "Stage HR Business Partner Kruidvat",
+      "url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+      "final_url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+      "city": "Renswoude",
+      "municipality": "Renswoude",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "verified_applicable_internship",
+      "application_status": "rendered-watson-same-requisition-form",
+      "checked_at": "2026-11-07T08:00:33.342846+00:00",
+      "page_sha256": "5213ef259498b25e194243832049c249df4a0f8f3cc3004be7a8ff853c14eb84",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": "5 maanden",
+        "enrollment": null,
+        "work_mode": "unspecified"
+      },
+      "start": "2027-02",
+      "duration_documented": "minimum five months; four days/week",
+      "stipend_documented": "EUR500 gross/month full time",
+      "notes": [
+        "Official department list has two observed postings. JSON-LD req281438 matches observed application link req=281438 and hidden ReqId=req281438; rendered title and enabled applicant fields checked. Inventory remains partial beyond department."
+      ],
+      "application_verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:58:05.827583+00:00",
+        "policy_version": 2,
+        "reason": "rendered-watson-same-requisition-form"
+      }
+    },
+    {
+      "employer": "AS Watson Benelux",
+      "title": "Stage Employer Branding en Recruitment",
+      "url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-employer-branding-en-recruitment/3560/45611367488",
+      "final_url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-employer-branding-en-recruitment/3560/45611367488",
+      "city": "Renswoude",
+      "municipality": "Renswoude",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "verified_applicable_internship",
+      "application_status": "rendered-watson-same-requisition-form",
+      "checked_at": "2026-11-07T08:00:33.395898+00:00",
+      "page_sha256": "f8a69a1a1acb3c899b829c1547ff08967c2df6b5fc9a263985aa050a033588e7",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified"
+      },
+      "start": "2027-02",
+      "duration_documented": "approximately five months",
+      "stipend_documented": "EUR500 gross/month full time",
+      "notes": [
+        "Official department list and same-requisition rendered applicant form req280076, matching title and hidden ID. Inventory remains partial beyond department."
+      ],
+      "application_verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T07:58:05.827583+00:00",
+        "policy_version": 2,
+        "reason": "rendered-watson-same-requisition-form"
+      }
+    },
+    {
+      "employer": "Berenschot",
+      "title": "stagiair(e) Advies & Onderzoek – Arbeidsmarkt en Strategisch HRM",
+      "url": "https://berenschot.recruitee.com/o/stagiaire-advies-onderzoek-arbeidsmarkt-en-strategisch-hrm",
+      "final_url": "https://berenschot.recruitee.com/o/stagiaire-advies-onderzoek-arbeidsmarkt-en-strategisch-hrm",
+      "city": "Utrecht",
+      "municipality": "Utrecht",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "verified_applicable_internship",
+      "application_status": "same-vacancy-applicant-form",
+      "checked_at": "2026-11-07T08:00:33.434141+00:00",
+      "page_sha256": "15515047ae56dacd744d8fb23500ec9c576edaae98439c6b04aac8da9aa3e827",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": "Je bent gedurende je stage ingeschreven bij een onderwijsinstelling Dit bieden we jou Bij Berenschot bieden we een unieke werkomgeving zonder aandeelhouders of partners, wat ons de vrijheid geeft om te ondernemen en ons in te zetten voor maatschappelijke thema",
+        "work_mode": "unspecified"
+      },
+      "start": null,
+      "duration_documented": null,
+      "stipend_documented": "EUR600 gross/month full time",
+      "notes": [
+        "Parent collection independently verified official Recruitee vacancy. Direct read confirms applicant fields and substantive HR advisory/research: workforce planning, skills, talent, learning, sustainable employability and HR transformations. WO-master enrolment during entire internship; exact start and duration unspecified."
+      ],
+      "application_verification": null
+    },
+    {
+      "employer": "DeFabrique Holding",
+      "title": "Stage HRM",
+      "url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+      "final_url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+      "city": "Utrecht",
+      "municipality": "Utrecht",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "unverified_opportunity",
+      "application_status": "blocked-official-application",
+      "checked_at": "2026-11-07T08:00:33.437408+00:00",
+      "page_sha256": "f6094f9a741a45604b4b36538b4e0fb5d6039850b29c83dc69b8b0c8caff7c4f",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": "5 maanden",
+        "enrollment": null,
+        "work_mode": "unspecified"
+      },
+      "start": "2027-02",
+      "duration_documented": null,
+      "stipend_documented": "EUR400/month at32hours/week",
+      "notes": [
+        "Vacancy text and start are current. Official linked CVW application job405317: robots endpoint HTTP406, no bypass. Structured description is empty; shared reviewed-visible extraction reads published Utrecht office location. Pipeline cannot establish matching application identity."
+      ],
+      "application_verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:57:15.990910+00:00",
+        "policy_version": 2,
+        "reason": "Application link lacks a matching vacancy identifier"
+      }
+    },
+    {
+      "employer": "HB RTS",
+      "title": "HR Intern",
+      "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+      "final_url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+      "city": "Utrecht",
+      "municipality": "Utrecht",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "unverified_opportunity",
+      "application_status": "application-entry-not-established",
+      "checked_at": "2026-11-07T08:00:33.439552+00:00",
+      "page_sha256": "a5127f60fefe1f7ea04cb6eaefffff293af9896b8380a14c69cf1a48cc0dde58",
+      "advertisement_language": {
+        "code": "en",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null,
+        "preferred_languages": [
+          "en"
+        ]
+      },
+      "metadata": {
+        "duration": "20 weeks",
+        "enrollment": "What to Bring You are enrolled in a higher professional education (HBO) program in HRM, either an Associate Degree or a Bachelor's degree.",
+        "work_mode": "unspecified"
+      },
+      "start": "2027-02",
+      "duration_documented": "20weeks; minimum4days/week",
+      "stipend_documented": "EUR600 at40hours/week",
+      "notes": [
+        "Current official HR internship page. Published contact address invites questions only, not sending CV/application. No applicant form or vacancy-specific application instruction established. English ad and English preferred do not establish English-only work."
+      ],
+      "application_verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:57:35.605881+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      },
+      "documented_workplace_language_evidence": "English is a plus."
+    },
+    {
+      "employer": "HB RTS",
+      "title": "Learning & Development Intern",
+      "url": "https://www.hb-rts.com/en-uk/careers/stagiair-learning-development",
+      "final_url": "https://www.hb-rts.com/en-uk/careers/stagiair-learning-development",
+      "city": "Utrecht",
+      "municipality": "Utrecht",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "unverified_opportunity",
+      "application_status": "application-entry-not-established",
+      "checked_at": "2026-11-07T08:00:33.440683+00:00",
+      "page_sha256": "01c90c4e771dcafc3c0b239100b8620030f0a9f80ebfcc4009cef0ee13645051",
+      "advertisement_language": {
+        "code": "en",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null,
+        "preferred_languages": [
+          "en"
+        ]
+      },
+      "metadata": {
+        "duration": "20 weeks",
+        "enrollment": null,
+        "work_mode": "unspecified"
+      },
+      "start": "2027-02",
+      "duration_documented": "20weeks; minimum4days/week",
+      "stipend_documented": "EUR600 at40hours/week",
+      "notes": [
+        "Official L&D intern programme is a specific assignment, discovered by reading employer inventory. Contact is for questions only; no applicant form/instruction established. English preferred, not English-only proof."
+      ],
+      "application_verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T07:57:35.605881+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      },
+      "documented_workplace_language_evidence": "English is a plus."
+    },
+    {
+      "employer": "Prénatal",
+      "title": "Meewerkstage HR - Amersfoort",
+      "url": "https://www.werkenbij.prenatal.nl/vacature-servicekantoor/meewerkstage-hr-amersfoort",
+      "final_url": "https://www.werkenbij.prenatal.nl/vacature-servicekantoor/meewerkstage-hr-amersfoort",
+      "city": "Amersfoort",
+      "municipality": "Amersfoort",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "unverified_opportunity",
+      "application_status": "application-entry-not-established",
+      "checked_at": "2026-11-07T08:00:33.442252+00:00",
+      "page_sha256": "0a6932c27500a2df6e13b31ed3feae9afcbc42ce2c8b437687fa3ae11ca7f82c",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": "Je volgt een HBO-opleiding in de richting van Human Resource Management of vergelijkbaar; Je bent op zoek naar een meewerkstage vanaf september; Je bent nieuwsgierig, leergierig en niet bang om vragen te stellen; Je werkt nauwkeurig en hebt oog voor detail; Je",
+        "work_mode": "unspecified"
+      },
+      "start": null,
+      "duration_documented": null,
+      "stipend_documented": "EUR250 gross/month at38hours/week",
+      "notes": [
+        "Published specific HR stage, 32–38hours/week. Page asks use application button and explicitly declines email/WhatsApp applications. No usable button/form established in direct or rendered page; do not repurpose recruiter contact."
+      ],
+      "application_verification": null
+    },
+    {
+      "employer": "Domino's Pizza Netherlands",
+      "title": "Meewerkstage HR",
+      "url": "https://werkenbijdominos.nl/hoofdkantoor/meewerkstage-hr",
+      "final_url": "https://werkenbijdominos.nl/hoofdkantoor/meewerkstage-hr",
+      "city": "Nieuwegein",
+      "municipality": "Nieuwegein",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "verified_applicable_internship",
+      "application_status": "official-vacancy-email-instructions",
+      "checked_at": "2026-11-07T08:02:38.533821+00:00",
+      "page_sha256": "dd0270034a1af7205075b6f8442248cc809381fe361bbc1b2f9827fbed6516d5",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "nl"
+        ],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified"
+      },
+      "start": "September; year not published",
+      "duration_documented": null,
+      "stipend_documented": "EUR500 at40hours/week",
+      "notes": [
+        "Official stage list inventoried nine links, four supported pages inspected and five unsupported title/workplace templates retained as errors: partial inventory, no absence-based closure. Current h2.vacancy-title and labelled Nieuwegein workplace read under a source-reviewed selector. Fresh identified HR vacancy explicitly instructs sending motivation/CV to lea.ruijsdam@dominos.nl; observed mailto confirmed. No email sent. September start has no year, future intake requires confirmation. Good Dutch explicitly required."
+      ],
+      "application_verification": {
+        "state": "verified",
+        "checked_at": "2026-11-07T08:02:38.533821+00:00",
+        "policy_version": 2,
+        "reason": "official-vacancy-email-instructions"
+      }
+    },
+    {
+      "employer": "Danone",
+      "title": "Internship HR Business Partner Intern",
+      "url": "https://careers.danone.com/benelux/en/jobs/internship-hr-business-partner-intern-28754-en-us.html",
+      "final_url": "https://careers.danone.com/benelux/en/jobs/internship-hr-business-partner-intern-28754-en-us.html",
+      "city": "Utrecht",
+      "municipality": "Utrecht",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "unverified_opportunity",
+      "application_status": "robots-disallowed-application",
+      "checked_at": "2026-11-07T08:00:33.446077+00:00",
+      "page_sha256": "6661fdf776dcb032597ef3b0123dead9b8d975077e0e02874633028ee56978ac",
+      "advertisement_language": {
+        "code": "en",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": "5 months",
+        "enrollment": "There are some key requirements: Enrolled as a Master/Bachelores’ student during the whole internship period (if you are a non-EU citizen, you need to be enrolled at a Dutch university and provide a Nuffic Agreement).",
+        "work_mode": "hybrid"
+      },
+      "start": "2027-01/2027-02",
+      "duration_documented": "minimum5months;4–5days/week",
+      "stipend_documented": "EUR650/month full time",
+      "notes": [
+        "Official current HRBP vacancy req28754; application https://enapply-danone.icims.com/jobs/28754/login is robots-disallowed. Deadline stated in body 10November2026. Enrolled Bachelor/Master whole period; non-EU students Dutch university and Nuffic agreement; English fluent required, English-only sufficiency unknown.",
+        "Language evidence manually scoped to primary vacancy; unrelated page/navigation text is not a Dutch requirement."
+      ],
+      "application_verification": null,
+      "documented_workplace_language_evidence": "You are fluent in English - oral and written."
+    },
+    {
+      "employer": "Sopra Steria",
+      "title": "Stage HR",
+      "url": "https://careers.soprasteria.com/job/stage-hr-in-nieuwegein-netherlands-jid-9153",
+      "final_url": "https://careers.soprasteria.com/job/stage-hr-in-nieuwegein-netherlands-jid-9153",
+      "city": "Nieuwegein",
+      "municipality": "Nieuwegein",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "excluded_closed",
+      "application_status": "explicitly-expired",
+      "checked_at": "2026-11-07T08:00:33.448419+00:00",
+      "page_sha256": "9652c7059ff0724bed5e7200c6c8e20f8de3a97b017672c38f7d169047ce28fe",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en",
+          "nl"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified"
+      },
+      "start": null,
+      "duration_documented": null,
+      "stipend_documented": null,
+      "notes": [
+        "Accessible retained full text includes live attrax-expired-vacancy-message: This vacancy has now expired. Shared checker expanded and regression-tested to reject this marker."
+      ],
+      "application_verification": null
+    },
+    {
+      "employer": "Rijkswaterstaat",
+      "title": "Stage organisatiepsychologie, HR en bestuurskunde",
+      "url": "https://www.werkenvoornederland.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde-RWS-2026-5392",
+      "final_url": "https://www.werkenvoornederland.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde-RWS-2026-5392",
+      "city": "Utrecht",
+      "municipality": "Utrecht",
+      "province": "Utrecht",
+      "region_code": "NL35",
+      "category": "excluded_unavailable",
+      "application_status": "current-page-vacature-niet-beschikbaar",
+      "checked_at": "2026-11-07T08:00:33.449897+00:00",
+      "page_sha256": "684e295fcdc9c7ac83e642df0287e05beba65e59ad79cbacb1fbe795421a1392",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "confirmed",
+        "method": "source metadata"
+      },
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "metadata": {
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified"
+      },
+      "start": null,
+      "duration_documented": null,
+      "stipend_documented": null,
+      "notes": [
+        "Indexed copy described organisation psychology/HR internship Feb2027 and deadline16November2026, but fresh official browser page says Vacature niet beschikbaar. Current source must take precedence over indexed copy. No application confirmed."
+      ],
+      "application_verification": null
+    }
+  ],
+  "programmes": [
+    {
+      "employer": "AS Watson Benelux",
+      "url": "https://www.werkenbijaswatson.nl/banen/renswoude/he-student-op-zoek-naar-een-buitengewone-stage/3560/46449358464",
+      "kind": "general_student_route",
+      "status": "not_a_specific_hr_vacancy",
+      "sha256": "b4a5072305369d7610ce1c28a08a7d8b0a72ce2d1abdb94c52379c47df554b33"
+    },
+    {
+      "employer": "BCN",
+      "url": "https://werkenbij.bcn.nl/open-sollicitatie-hr-stagiaire/",
+      "kind": "open_application_lead",
+      "status": "research_only_access403_not_promoted"
+    }
+  ],
+  "excluded_geography": [
+    {
+      "employer": "AS Watson Benelux",
+      "title": "Stage HR Supply Chain",
+      "city": "Heteren",
+      "reason": "Gelderland, outside Utrecht; employer Renswoude headquarters does not make this provincial."
+    },
+    {
+      "employer": "Van Amersfoort Racing",
+      "title": "HR Stagiair",
+      "city": "Zeewolde",
+      "reason": "Flevoland, outside Utrecht; employer name is not a workplace."
+    }
+  ],
+  "executed_source_checks": [
+    {
+      "id": "auto-koninklijke-remia-c-v",
+      "employer": "Koninklijke Remia C.V.",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-07T07:57:12.086347+00:00",
+      "collected": 13,
+      "status": "ok",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 13,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "verified_closed_urls": []
+    },
+    {
+      "id": "auto-trunkrs",
+      "employer": "Trunkrs",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-07T07:57:13.697837+00:00",
+      "collected": 6,
+      "status": "ok",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 6,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "verified_closed_urls": []
+    },
+    {
+      "id": "auto-defabrique-holding",
+      "employer": "DeFabrique Holding",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T07:57:15.990910+00:00",
+      "collected": 30,
+      "status": "partial",
+      "matching": 1,
+      "verification_states": {
+        "incomplete": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 1,
+      "page_failures": 30,
+      "page_errors": [
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/banqueting-co-rdinator-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/zelfstandig-werkend-kok-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/medewerker-op-afbouw-events-dus-utrecht",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/op-afbouw-co-rdinator-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/assistent-horeca-manager-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-activiteiten-parque-west",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-social-media-defabrique-holding",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/medewerker-op-afbouw-events-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-facilitair-eventmedewerker-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/allround-medewerker-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/ervaren-horecamedewerker-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/horecamedewerker-events-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/all-round-eerste-medewerker-horeca-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/hulpkok-parque-west",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/bijbaan-horeca-medewerker-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/activiteitenbegeleider-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/senior-accountmanager-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/personeelsplanner-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/product-marketeer-parque-west-parque-west",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-producer-event-styling-jan-verhuur",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-werkplaats-jan-verhuur",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-decorateur-jan-verhuur",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-marketing-communicatie-defabrique-holding",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-projectmanager-events-defabrique-evenementenlocatie",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/chefkok-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/afwasser-keukenhulp-kartfabrique",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+          "error": "Vacancy verification: Application link lacks a matching vacancy identifier"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/stage-horeca-events-dus-utrecht",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/kok-creatieve-catering-dus-utrecht",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.defabriqueholding.nl/vacatures/open-sollicitatie-defabrique-holding",
+          "error": "Visible vacancy workplace requires review"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 30,
+      "declared_job_count": null,
+      "discovery_scope": "Official vacancy list. Visible workplace extraction reviewed only for Utrecht HR office. Other locations, pagination and blocked CVW application remain incomplete; no complete employer inventory claimed.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    },
+    {
+      "id": "auto-hb-rts",
+      "employer": "HB RTS",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T07:57:35.605881+00:00",
+      "collected": 5,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "incomplete": 2
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 3,
+      "page_failures": 4,
+      "page_errors": [
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/open-sollicitatie-nederland",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/area-sales-manager-north-east-france",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://www.hb-rts.com/en-uk/careers/stagiair-learning-development",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 5,
+      "declared_job_count": null,
+      "discovery_scope": "Official English careers list, currently reviewed visible workplace extraction for Utrecht only. Contact address supports questions, not verified application instructions. Broader inventory/pagination incomplete.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    },
+    {
+      "id": "auto-as-watson-benelux",
+      "employer": "AS Watson Benelux",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T07:58:05.827583+00:00",
+      "collected": 2,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "verified": 2
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 2,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 2,
+      "declared_job_count": null,
+      "discovery_scope": "Observed official HR/Legal/Facilities department list. All linked job pages are read; broader employer inventory, other departments and pagination not established. Application requisitions must match each live JSON-LD identifier, observed link, rendered title and hidden ReqId.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    },
+    {
+      "id": "auto-domino-s-pizza-netherlands",
+      "employer": "Domino's Pizza Netherlands",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T08:02:38.533821+00:00",
+      "collected": 9,
+      "status": "partial",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 4,
+      "page_failures": 5,
+      "page_errors": [
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/stage-global-sustainability-0",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/stage-crm-marketing-feb-26",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe",
+          "error": "Reviewed visible vacancy title/description missing"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/stage-online-marketing-januari27",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux",
+          "error": "Visible vacancy workplace requires review"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 9,
+      "declared_job_count": null,
+      "discovery_scope": "Official student internship list. Actual h2.vacancy-title and published Nieuwegein workplace are extracted from each live vacancy; HR vacancy-specific email CV/motivation instructions checked. Other workplaces, broader inventories/pagination and September intake year remain unresolved.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages"
+    }
+  ],
+  "limitations": [
+    "Past advertised Trunkrs start requires employer confirmation even though published feed/form remain active.",
+    "Broader AS Watson department pagination and inventories at DeFabrique/HB RTS remain partial.",
+    "BCN blocked; Prénatal button unresolved; Danone robots restriction; DeFabrique CVW robots unavailable; no bypass attempted.",
+    "Start, deadline, duration, workplace languages and exact requirements remain unknown when not explicitly documented.",
+    "Domino's September start has no year; the vacancy remains presently published with application instructions, later intake must be confirmed with employer."
+  ]
+}
