@@ -226,10 +226,13 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 if not owned_record(record,ownership_source):continue
             # Inventory hints and URL slugs are not job titles. Read structured
             # pages before filtering, including opaque IDs and untranslated URLs.
+            text_observation=record.get('_text_observation',dict(kind='feed',checked_at=stamp))
             if record.get('needs_page'):
                 try:
                     cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache else None
-                    record=cached or enrich(record,source,client)
+                    record=cached or enrich(record,source,client,defer_expiry=True)
+                    text_observation=record.get('_text_observation',dict(kind='live',checked_at=stamp))
+                    record=dict(record,_text_observation=text_observation)
                     if cache and not cached:cache.put(record['url'],record)
                 except Exception as exc:
                     from .applications import ApplicationClosed
@@ -241,7 +244,10 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             else:
                 role=classify_role(record['title'],record['text'],record.get('employment',''))
                 if role:
-                    try:record=enrich(record,source,client)
+                    try:
+                        record=enrich(record,source,client,defer_expiry=True)
+                        if source['adapter'] in ('employer-sitemap','employer-index'):
+                            text_observation=dict(kind='live',checked_at=stamp)
                     except Exception as exc:
                         from .applications import ApplicationClosed
                         if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
@@ -271,7 +277,10 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     LOG.warning('Vacancy %s %s: %s',url,state,str(exc)[:150])
             langs=workplace_languages(record['text'])
             staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_requirements=language_summary(record['text'],langs),language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),valid_through=application.get('valid_through') if application else record.get('valid_through'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,verification=verification,status='open' if verified else 'unverified'))
-            intake=observation['intake'] if 'intake' in observation else extract_intake(record['text'],stamp)
+            intake=observation['intake'] if 'intake' in observation else extract_intake(record['text'],text_observation['checked_at'])
+            if intake:
+                provenance=dict(kind='live',checked_at=stamp) if 'intake' in observation else text_observation
+                intake=dict(intake,provenance=provenance['kind'],observed_via=provenance.get('origin',provenance['kind']))
             if intake:staged[-1]['intake']=intake
             if application:staged[-1]['application_verification']=dict(application,checked_at=stamp)
             if closed:staged[-1].update(status='closed',closure_reason='Official recruiting page explicitly disables applications')

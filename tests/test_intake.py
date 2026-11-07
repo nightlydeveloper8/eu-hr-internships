@@ -1,5 +1,6 @@
 """Offline regressions through the real adapter, verification and daily finalize."""
 from copy import deepcopy
+import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
@@ -14,10 +15,11 @@ SOURCE = dict(id='intake-example', employer='Example', adapter='greenhouse',
 
 
 class VacancyClient:
-    def __init__(self, text, page_text=None, form=True):
+    def __init__(self, text, page_text=None, form=True, deadline=None):
         self.text = text
         self.page_text = text if page_text is None else page_text
         self.form = form
+        self.deadline = deadline
 
     def json(self, url):
         return dict(jobs=[dict(id=1, title='HR Intern', location=dict(name='Amsterdam'),
@@ -26,7 +28,9 @@ class VacancyClient:
     def request(self, url):
         form = ('<form id="application"><input name="name"><input type="email" name="email">'
                 '<input name="cv" type="file"><button type="submit">Apply</button></form>') if self.form else ''
-        return ('<h1>HR Intern</h1><p>' + self.page_text + '</p>' + form).encode(), 200, url
+        metadata = '' if self.deadline is None else '<script type="application/ld+json">' + json.dumps({
+            '@type': 'JobPosting', 'title': 'HR Intern', 'validThrough': self.deadline}) + '</script>'
+        return ('<h1>HR Intern</h1><p>' + self.page_text + '</p>' + metadata + form).encode(), 200, url
 
 
 class IntakeTests(unittest.TestCase):
@@ -63,6 +67,18 @@ class IntakeTests(unittest.TestCase):
                 self.assertEqual(job.get('intake', {}).get('published_start'), expected)
                 self.assertEqual(job['status'], 'open' if form else 'unverified')
 
+    def test_expired_live_page_removes_outdated_feed_intake_before_closing(self):
+        prior = self.cycle({'jobs': []}, 'Stage vanaf februari 2027.')
+        for day in ('09', '10'):
+            stamp = f'2026-11-{day}T12:00:00+00:00'
+            result = self.cycle(prior, 'Stage vanaf februari 2027.', stamp,
+                                page_text='Start in overleg.', deadline='2026-10-15')
+            self.assertEqual(result['jobs'][0]['status'], 'closed')
+            self.assertNotIn('intake', result['jobs'][0])
+            self.assertEqual(self.cycle(result, 'Stage vanaf februari 2027.', stamp,
+                                       page_text='Start in overleg.', deadline='2026-10-15'), result)
+            prior = result
+
     def test_past_start_never_rolls_forward_and_month_without_year_stays_unknown(self):
         for text, expected, state in [
             ('Startdatum: 1 september 2026.', '2026-09-01', 'past-start'),
@@ -87,7 +103,8 @@ class IntakeTests(unittest.TestCase):
                 self.assertIsNone(extract_intake(text, STAMP))
         proof = extract_intake('Startdatum februari 2027. Starting March 2027.', STAMP)
         self.assertEqual(proof['state'], 'conflicting-starts')
-        self.assertEqual(proof['published_start'], '2027-02 / 2027-03')
+        self.assertIsNone(proof['published_start'])
+        self.assertEqual(proof['alternatives'], ['2027-02', '2027-03'])
         self.assertEqual(extract_intake('Stage vanaf februari 2027 of maart 2027.', STAMP)['state'],
                          'conflicting-starts')
 
@@ -117,6 +134,8 @@ class IntakeTests(unittest.TestCase):
         part = process_source(SOURCE, VacancyClient('Stage vanaf februari 2027.'), STAMP, verify=False)
         self.assertEqual(part['jobs'][0]['intake']['published_start'], '2027-02')
         self.assertEqual(part['jobs'][0]['status'], 'unverified')
+        self.assertEqual(part['jobs'][0]['intake']['provenance'], 'feed')
+        self.assertEqual(part['jobs'][0]['intake']['checked_at'], STAMP)
 
     def test_recorded_utrecht_primary_evidence(self):
         vacancies = read(ROOT/'docs/utrecht-recovery-vacancies.json', {})['vacancies']

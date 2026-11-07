@@ -1,66 +1,90 @@
 # Issue #14 — intake nelle raccolte successive
 
-Base verificata: `e61e950`, pubblicazione quotidiana successiva alle PR #7
-(`3686021`) e #15 (`015717f`). Catalogo: **324 record**, 23 open,
-300 unverified, uno closed. Nessun `intake` rimasto nel catalogo corrente.
+Base: `e61e950`, pubblicazione successiva alle PR #7 (`3686021`) e #15
+(`015717f`). **324 record**, 23 open, 300 unverified, uno closed; nessun
+intake rimasto. La regressione originale riproduce il campo perduto nel
+`process_source()` precedente alla PR. Questo aggiornamento corregge i tre P2
+della revisione indipendente sul primo commit della PR #16, `e9106c9`.
 
-## Riproduzione e correzione
+## 1. Cache e provenienza temporale
 
-La regressione offline sul `process_source()` originale fallisce con
-`KeyError: intake`: il record rigenerato sostituisce quello storico senza
-ricostruire il campo. Con la correzione passa attraverso adattatore Greenhouse,
-verifica effettiva di pagina/modulo e `finalize()`, senza accesso alla rete.
+`PageCache` propaga la provenienza del testo e il timestamp della sua prima
+osservazione, anche per i record annidati del crawler universale. Le cache
+preesistenti usano `stored_at`, senza inventare una provenienza live. Una
+riscrittura tecnica della cache conserva il timestamp originario della prova.
 
-L'estrattore accetta date esplicite con indicatori di inizio in olandese/inglese
-(mese, giorno facoltativo, anno facoltativo; ISO con giorno). Conserva evidenza
-e timestamp, non indovina anni e distingue date passate, anno assente e date
-multiple/conflittuali. Non interpreta durata, anzianità di pubblicazione,
-scadenze o finestre di candidatura come inizio dello stage. I formati non
-riconosciuti restano senza intake: la copertura non pretende di essere universale.
+L'intake esporta `provenance` (`live`, `feed`, `cache`), `observed_via` e
+`checked_at`. Una pagina live identificata prevale sul feed/cache; se la lettura
+fallisce e rimane soltanto la cache, l'intake usa il vecchio timestamp. Non
+riceve la data del nuovo tentativo. La UI distingue pagina ufficiale, feed e
+prova storica in cache, mostrando quando è stata osservata. Il timestamp del
+tentativo di verifica può cambiare: non rappresenta una nuova prova riuscita.
 
-Il testo della pagina ufficiale con titolo/identità corrispondenti prevale sul
-feed/cache, anche quando il modulo non è disponibile. Una pagina che cambia
-data o elimina l'inizio sostituisce o elimina il precedente intake; non esiste
-fallback sull'intake storico. Se non si riesce a leggere la vacancy, si usa
-soltanto il testo del record ufficiale disponibile in questa raccolta, senza
-promuovere lo stato di verifica. Nessuna richiesta aggiuntiva introdotta.
+Regressione completa con sitemap, parser della pagina, PageCache reale,
+verifica e finalize: prima lettura live, poi pagina bloccata con cache di **12 e
+36 ore**, due cicli successivi e ripetizione idempotente. Restano invariati
+`intake.checked_at`, `last_verified_at`, ID e ownership; lo stato non è
+verificato. Il file della cache non viene riscritto dal semplice utilizzo.
+Coperto anche il caso di cache legacy e riscrittura tecnica successiva.
 
-Un annuncio assente da inventario incompleto/fallito conserva l'osservazione
-storica con timestamp originario; non ottiene nuova verifica e resta soggetto
-alla finestra di 48 ore. L'assenza da inventario completo continua invece a
-seguire la normale riconciliazione conservativa.
+## 2. Date estranee all'intake
 
-## Confini di verifica e conservazione
+`vanaf`, `per` o la semplice disponibilità non bastano: occorre un contesto di
+inizio stage. Candidature, compensi, pubblicazione, scadenze, storia aziendale
+e campagne non diventano intake. Le due frasi segnalate sono negative anche
+nel percorso completo:
 
-Trunkrs e Domino's mantengono le revisioni bloccanti esistenti. VAR e Meerpaal
-sono candidati di ricerca esterni al catalogo, rispettivamente con intake passato
-e scadenza superata: due `needs-verification` rendono persistenti anche nel
-finalize quotidiano questi esiti già documentati da PR #15. Un modulo attivo,
-o persino una nuova data estratta, non sostituisce la revisione manuale.
-Nessun candidato importato o promosso dalla correzione.
+- `Solliciteer vanaf februari 2027.`
+- `Per februari 2027 bedraagt de stagevergoeding 500 euro.`
 
-Il replay alla data di pubblicazione preserva tutti i 324 ID, source ownership,
-stati, regioni e policy v2. Il finalize esistente riqualifica già link_status e
-motivazione di verifica per 26 deadline invalide in record non verificati:
-comportamento preesistente, estraneo a questa modifica. Catalogo, fonti,
-datori, geografie e dati di pubblicazione non modificati.
+Restano riconosciuti `Stage vanaf februari 2027`, `per februari 2027 starten`,
+`Starting in February 2027`, `Startdatum`, il testo Utrecht documentato e una
+vera frase di inizio che menziona anche il compenso. Date multiple/conflittuali
+restano in `alternatives`, con `published_start=null`: la UI non mostra una
+data confermata. Anni assenti restano esplicitamente ignoti; date passate non
+vengono trasferite all'anno seguente. Formati non riconosciuti restano senza
+intake; l'estrazione è conservativa e non pretende copertura universale.
 
-## Validazioni
+## 3. Deadline scaduta e precedenza delle prove
 
-- **236 test Python**, inclusi 10 nuovi test offline: evidenze primarie Utrecht
-  salvate, due raccolte successive, ripetizione idempotente, modifica/rimozione
-  data, feed obsoleto, modulo assente, anno ignoto, date passate e conflittuali,
-  scadenza superata, verifica disabilitata, inventari incompleti/falliti/completi,
-  preservazione del catalogo e quattro blocchi di revisione su due cicli.
-- **21 test frontend**; **64 esempi di classificazione**, zero errori.
-- Validazione catalogo e registry datori/fonti/geografia; company coverage e
-  build statica riusciti. Output derivati di copertura ripristinati alla base.
-- Browser locale offline sul risultato di due raccolte: **Published start =
-  2027-02**, nessun errore di pagina. Nessun browser scaricato.
-- `git diff --check` superato.
+La pagina ufficiale viene identificata per URL, titolo e requisition prima di
+acquisire il nuovo intake e propagare la chiusura. Una deadline scaduta o un
+banner di chiusura continuano a chiudere la candidatura, ma non impediscono più
+alla pagina corrente di sostituire o rimuovere la data del feed/cache.
 
-Nessun merge, deployment, raccolta massiva, sottoagente o servizio a pagamento.
-Il ripristino delle date nel sito richiederà una futura raccolta autorizzata con
-questa correzione; questa PR non rigenera il catalogo pubblicato.
+Caso obbligatorio coperto con feed Greenhouse e verifica reale: **feed febbraio
+2027; pagina `Start in overleg`; deadline 15 ottobre 2026 → closed, nessun
+intake febbraio ripubblicato**. Coperti due cicli successivi e idempotenza.
+Per sitemap, il parser può differire il controllo di scadenza fino alla
+verifica/finalize: anche una pagina scaduta non presente in cache aggiorna i
+metadati prima della chiusura. Il comportamento standalone del parser resta
+conservativo. Testati inoltre cambio a marzo, rimozione successiva e banner
+esplicito di chiusura. Nessuna richiesta aggiuntiva alla vacancy introdotta.
 
-Refs #14.
+## Conservazione e verifiche
+
+Trunkrs/Domino's e VAR/Meerpaal mantengono i blocchi di revisione, anche con
+modulo attivo e nuova data. VAR/Meerpaal restano candidati esterni al catalogo.
+Gli inventari incompleti/falliti non rinnovano la prova storica; resta la
+finestra di 48 ore. L'assenza da inventario completo segue la riconciliazione
+conservativa esistente.
+
+Il replay conserva i **324 ID**, source ownership, stati, regioni e policy v2.
+Il finalize preesistente riqualifica già link_status/motivazione di 26 deadline
+invalide in record non verificati: comportamento estraneo alla correzione.
+Catalogo pubblicato, fonti, datori, geografie e listing reviews non modificati
+in questo aggiornamento. Ripristinati gli output derivati delle validazioni.
+
+- **243 test Python**: 17 regressioni intake, incluse sei nuove prove complete
+  sitemap/PageCache e il caso feed con deadline scaduta. I nuovi test completi
+  falliscono su `e9106c9` e passano con le correzioni.
+- **21 test frontend**, **64 esempi di classificazione**, zero errori.
+- Browser offline: Published start 2027-02, etichetta `Historical cached evidence`
+  e osservazione originale dell’8 novembre dopo il ciclo del 9; nessun errore.
+- Catalogo e registry datori/fonti/geografia validati; company coverage,
+  build statica e `git diff --check` superati.
+
+Nessuna nuova Issue o PR, sottoagente, raccolta massiva, merge o deployment.
+Il ripristino sul sito richiederà una futura raccolta con la correzione.
+
+Refs #14; aggiornamento esclusivamente nella PR #16.

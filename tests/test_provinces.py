@@ -115,7 +115,7 @@ class PartialAvailabilityTests(unittest.TestCase):
         import copy
         source,record=self.fixture();failed=dict(record,url='https://example.org/jobs/2',external_id='2',needs_page=True)
         inventory=Inventory([record,failed],dict(status='ok',complete=True,closure_complete=False))
-        def enrich(row,*args):
+        def enrich(row,*args,**kwargs):
             if row['url']==failed['url']:raise ValueError('Detail page inaccessible')
             return row
         class Client:

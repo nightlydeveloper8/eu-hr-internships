@@ -35,14 +35,26 @@ def extract_intake(text, stamp):
     evidence = []
     candidates = []
     for match in START.finditer(text):
-        prefix = text[max(0, match.start() - 60):match.start()]
-        # Application windows, company history and negated starts are not
-        # affirmative statements about when this placement begins.
-        if re.search(r'\b(?:applications?|sollicitaties?|apply|solliciteren|deadline|'
-                     r'published|posted|geplaatst|founded|opgericht)\b[^.!?;]{0,45}$', prefix, re.I):
+        # Interpret cues inside their own clause, not the whole vacancy: a
+        # salary/application sentence can mention a stage without starting it.
+        before=re.split(r'[.!?;]',text[:match.start()])[-1]
+        after=re.split(r'[.!?;]',text[match.end():])[0]
+        clause=before+match.group(0)+after
+        if re.search(r'\b(?:sollicit\w*|applications?|apply|deadline|closing|'
+                     r'publication|published|posted|geplaatst|founded|opgericht|campaign|campagne)\b', clause, re.I):
             continue
-        if re.search(r'\b(?:not|niet|geen)\s*$', prefix, re.I):
+        if re.search(r'\b(?:stagevergoeding|vergoeding|salary|salaris|compensation|loon|payment)\b',before,re.I):
             continue
+        if re.search(r'\b(?:not|niet|geen)\s*$', before, re.I):
+            continue
+        cue=match.group(0).lower()
+        if re.match(r'(?:vanaf|per|available|beschikbaar)\b',cue):
+            # Generic availability/effective-from is insufficient. Require a
+            # placement noun before the date or an actual start verb after it.
+            placement=re.search(r'\b(?:stage|stagiair\w*|internship|placement)\b',before,re.I)
+            starting=re.search(r'\b(?:starten|beginnen|starting|starts|start|stagiair\w*)\b',after,re.I)
+            if not placement and not starting:
+                continue
         evidence.append(match.group(0))
         candidates.extend(m.group(0) for m in re.finditer(DATE, match.group('date') or match.group('before'), re.I))
     for raw in candidates:
@@ -69,7 +81,8 @@ def extract_intake(text, stamp):
             continue
     if not starts:
         return None
-    return dict(published_start=' / '.join(sorted(starts)),
+    return dict(published_start=next(iter(starts)) if len(starts)==1 else None,
+                alternatives=sorted(starts) if len(starts)>1 else [],
                 state=next(iter(starts.values())) if len(starts) == 1 else 'conflicting-starts',
                 checked_at=stamp,
                 evidence=list(dict.fromkeys(evidence)))
