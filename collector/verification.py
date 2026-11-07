@@ -69,8 +69,11 @@ def structured_identifiers(doc, title):
 
 def applicant_form(body):
     for form in ApplicantForms(body).forms:
-        names=' '.join(i.get('name','')+' '+i.get('type','') for i in form['fields']).lower()
-        attributes=' '.join(form['attrs'].values()).lower()
+        # Modern ATS forms bind controls by id/autocomplete instead of name.
+        # Boolean HTML attributes have value None and carry no field semantics.
+        names=' '.join(str(i.get(key) or '') for i in form['fields']
+                       for key in ('name','id','type','autocomplete','aria-label')).lower()
+        attributes=' '.join(value for value in form['attrs'].values() if isinstance(value,str)).lower()
         application=bool(re.search(r'apply|applica|recruit|candidate',attributes) or re.search(r'resume|\bcv\b',names))
         if application and form['submit'] and 'email' in names and re.search(r'name|resume|\bcv\b',names):return True
     return False

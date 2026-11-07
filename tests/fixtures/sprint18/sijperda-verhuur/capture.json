@@ -1,0 +1,135 @@
+{
+  "company_id": "sijperda-verhuur",
+  "stamp": "2026-11-07T22:51:20.970737+00:00",
+  "source": {
+    "id": "auto-sijperda-verhuur",
+    "company_id": "sijperda-verhuur",
+    "employer": "Sijperda Verhuur",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+      "https://www.werkenbijsijperda.nl/",
+      "https://www.sijperdaverhuur.nl/",
+      "https://www.werkenbijsijperda.nl",
+      "https://www.sijperdaverhuur.nl"
+    ],
+    "career_url": "https://www.werkenbijsijperda.nl/",
+    "allowed_hosts": [
+      "www.sijperdaverhuur.nl",
+      "www.werkenbijsijperda.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://www.werkenbijsijperda.nl/jobs"
+    ],
+    "job_url_pattern": "^https://www\\.werkenbijsijperda\\.nl/jobs/\\d+-",
+    "employer_tokens": [
+      "sijperda"
+    ],
+    "discovery_scope": "Official public Teamtailor vacancy index; pagination completeness reviewed separately"
+  },
+  "record": {
+    "id": "4ddd6e0cbe33c42d8bbf",
+    "external_id": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+    "source_id": "auto-sijperda-verhuur",
+    "source_name": "Sijperda Verhuur",
+    "source_type": "employer-index",
+    "source_posting_id": "8625132",
+    "employer": "Sijperda Verhuur",
+    "title": "HR Stagiair(e) – Meewerkstage",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Sneek",
+    "url": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+    "apply_url": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+    "categories": [
+      "hr-generalist"
+    ],
+    "category": "hr-generalist",
+    "internship_type": "internship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "nl",
+      "confidence": "uncertain",
+      "method": "deterministic stopword heuristic"
+    },
+    "workplace_languages": [],
+    "language_requirements": {
+      "requirements_status": "unknown",
+      "required_languages": [],
+      "alternative_languages": [],
+      "english_support": "unknown",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "language_confidence": "unspecified",
+    "duration": null,
+    "enrollment": "Je volgt een hbo(AD)-opleiding Human Resource Management (HRM) of een vergelijkbare opleiding;.",
+    "work_mode": "unspecified",
+    "published_at": "2026-10-27T15:00:33+01:00",
+    "valid_through": null,
+    "first_discovered_at": "2026-11-06T06:42:20.187115+00:00",
+    "last_seen_at": "2026-11-07T20:55:18.297261+00:00",
+    "last_verified_at": "2026-11-06T17:46:35.026413+00:00",
+    "link_status": "incomplete",
+    "verification": {
+      "state": "incomplete",
+      "checked_at": "2026-11-07T20:55:18.297261+00:00",
+      "policy_version": 2,
+      "reason": "No available vacancy-specific application entry established"
+    },
+    "status": "unverified",
+    "missing_count": 0,
+    "region_codes": [
+      "NL12"
+    ],
+    "text": "",
+    "location": "Sneek",
+    "posting_identifier": "8625132"
+  },
+  "events": [
+    {
+      "url": "https://www.werkenbijsijperda.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.233
+    },
+    {
+      "url": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+      "status": 200,
+      "seconds": 0.604
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://www.werkenbijsijperda.nl/robots.txt",
+      "final_url": "https://www.werkenbijsijperda.nl/robots.txt",
+      "status": 200,
+      "file": "e6c8df7b9bed2591039f.html.gz",
+      "sha256": "7a57de535ae1573eb4336f2b77df1be8f39462bcbefce74045d22697c98fa00b"
+    },
+    {
+      "url": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+      "final_url": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+      "status": 200,
+      "file": "9bcc2fa1a37b24ec26b8.html.gz",
+      "sha256": "4335f164de6bf24737b6e42c1812b170ee193b67bf952756003d15f229671ac0"
+    }
+  ],
+  "requests": 2,
+  "bytes_read": 81585,
+  "baseline": {
+    "error": "No available vacancy-specific application entry established"
+  }
+}

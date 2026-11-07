@@ -1,0 +1,142 @@
+{
+  "company_id": "nncz",
+  "stamp": "2026-11-07T22:51:22.328199+00:00",
+  "source": {
+    "id": "auto-nncz",
+    "company_id": "nncz",
+    "employer": "NNCZ",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbij.nncz.nl",
+      "https://nncz.nl"
+    ],
+    "career_url": "https://werkenbij.nncz.nl/",
+    "allowed_hosts": [
+      "nncz.nl",
+      "werkenbij.nncz.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 150,
+    "collection_seconds": 240,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official public employer listings and linked application entry; runtime robots checks; no applications or emails sent.",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://werkenbij.nncz.nl/portal-over-het-bedrijf/vacatures"
+    ],
+    "index_rendered": true,
+    "job_url_pattern": "^https://werkenbij\\.nncz\\.nl/algemene-vacaturebeschrijving/[^/?]+$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "HR-afdeling in Hoogeveen",
+        "city": "Hoogeveen",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Rendered official vacancy list; reviewed visible workplace extraction currently supports the HR department in Hoogeveen. Other workplace templates and AFAS application action remain incomplete.",
+    "access_reviewed_on": "2026-11-06"
+  },
+  "record": {
+    "id": "9d0bee377ab034aabd48",
+    "external_id": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+    "source_id": "auto-nncz",
+    "source_name": "NNCZ",
+    "source_type": "employer-index",
+    "source_posting_id": null,
+    "employer": "NNCZ",
+    "title": "HR-stagiaire Hoogeveen",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Hoogeveen",
+    "url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+    "apply_url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+    "categories": [
+      "hr-generalist"
+    ],
+    "category": "hr-generalist",
+    "internship_type": "internship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "nl",
+      "confidence": "confirmed",
+      "method": "source metadata"
+    },
+    "workplace_languages": [],
+    "language_requirements": {
+      "requirements_status": "unknown",
+      "required_languages": [],
+      "alternative_languages": [],
+      "english_support": "unknown",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "language_confidence": "unspecified",
+    "duration": null,
+    "enrollment": "Je volgt een HBO-opleiding Human Resource Management en zit in het tweede of derde jaar; Je hebt een proactieve en kritische houding; Je bent communicatief en sociaal vaardig; Je bent flexibel en kunt goed omgaan met veranderingen en onverwachte situaties; Je ",
+    "work_mode": "unspecified",
+    "published_at": null,
+    "valid_through": null,
+    "first_discovered_at": "2026-11-06T19:55:54.939489+00:00",
+    "last_seen_at": "2026-11-07T20:55:15.366453+00:00",
+    "last_verified_at": null,
+    "link_status": "incomplete",
+    "verification": {
+      "state": "incomplete",
+      "checked_at": "2026-11-07T20:55:15.366453+00:00",
+      "policy_version": 2,
+      "reason": "No available vacancy-specific application entry established"
+    },
+    "status": "unverified",
+    "missing_count": 0,
+    "region_codes": [
+      "NL13"
+    ],
+    "text": "",
+    "location": "Hoogeveen",
+    "posting_identifier": null
+  },
+  "events": [
+    {
+      "url": "https://werkenbij.nncz.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.203
+    },
+    {
+      "url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+      "status": 200,
+      "seconds": 1.118
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://werkenbij.nncz.nl/robots.txt",
+      "final_url": "https://werkenbij.nncz.nl/robots.txt",
+      "status": 200,
+      "file": "472b7af2baa3123cbc59.html.gz",
+      "sha256": "d4a0a6ebea61eafcb24ebbd39855565cdd12c90f3502bfc3a0f7a53fe6264d6b"
+    },
+    {
+      "url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+      "final_url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+      "status": 200,
+      "file": "3f9c0bff6e5a55ef933a.html.gz",
+      "sha256": "d99c49760cbcca2568bb346416bc7a3528fa36e327ece95d54370912ed491f75"
+    }
+  ],
+  "requests": 2,
+  "bytes_read": 106239,
+  "baseline": {
+    "error": "No available vacancy-specific application entry established"
+  }
+}

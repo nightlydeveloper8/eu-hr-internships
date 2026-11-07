@@ -1,0 +1,360 @@
+{
+  "scope": "8 known HR candidates; full official inventory replay only for configured Greenhouse source; no full crawl of other 7",
+  "production_catalog_modified": false,
+  "shortlist_count": 25,
+  "analyzed_companies": 8,
+  "baseline_company_states": {
+    "partial": 8
+  },
+  "company_coverage_delta": {
+    "partial_to_collected": [
+      "hunter-douglas-talent-programs"
+    ],
+    "other_seven": "inventory not recollected; no complete-coverage claim"
+  },
+  "candidate_count": 8,
+  "newly_discovered_hr": 0,
+  "verified_before": 0,
+  "verified_after": 1,
+  "unverified_before": 8,
+  "unverified_after": 7,
+  "conversion_before": 0.0,
+  "conversion_after": 0.125,
+  "live_requests": 26,
+  "rows": [
+    {
+      "company_id": "bas-group",
+      "vacancy_url": "https://www.werkenbijbas.com/vacature/33110/meewerkstage-hr-4",
+      "observed_at": "2026-11-07T22:51:16.377134+00:00",
+      "baseline": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "live_requests": 4,
+      "live_bytes": 220372,
+      "live_duration_seconds": 3.565,
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "newly_discovered_hr": 0
+    },
+    {
+      "company_id": "daf-trucks",
+      "vacancy_url": "https://www.daf.com/en/working-at-daf/vacancies/hbo-meewerkstage-hr-officer-paccar-parts",
+      "observed_at": "2026-11-07T22:51:14.667829+00:00",
+      "baseline": {
+        "error": "Vacancy redirected to a different URL; identity requires review"
+      },
+      "live_requests": 2,
+      "live_bytes": 106787,
+      "live_duration_seconds": 1.69,
+      "after": {
+        "error": "Vacancy redirected to a different URL; identity requires review"
+      },
+      "newly_discovered_hr": 0
+    },
+    {
+      "company_id": "danone",
+      "vacancy_url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
+      "observed_at": "2026-11-07T22:51:18.720581+00:00",
+      "baseline": {
+        "error": "HTTP Error 404: Not Found"
+      },
+      "live_requests": 2,
+      "live_bytes": 132,
+      "live_duration_seconds": 1.442,
+      "after": {
+        "error": "HTTP Error 404: Not Found"
+      },
+      "newly_discovered_hr": 0
+    },
+    {
+      "company_id": "hb-rts",
+      "vacancy_url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+      "observed_at": "2026-11-07T22:51:21.591905+00:00",
+      "baseline": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "live_requests": 2,
+      "live_bytes": 207286,
+      "live_duration_seconds": 0.699,
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "newly_discovered_hr": 0
+    },
+    {
+      "company_id": "hunter-douglas-talent-programs",
+      "vacancy_url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+      "observed_at": "2026-11-07T22:51:20.164097+00:00",
+      "baseline": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "live_requests": 8,
+      "live_bytes": 616762,
+      "live_duration_seconds": 4.083,
+      "after": {
+        "proof": {
+          "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+          "method": "same-vacancy-applicant-form",
+          "valid_through": null,
+          "vacancy_match": "title",
+          "inventory": "not-established"
+        }
+      },
+      "fresh_live_confirmation": {
+        "stamp": "2026-11-07T22:58:18.957131+00:00",
+        "source_id": "greenhouse-talentprograms",
+        "inventory_records": 13,
+        "hr_candidates": 1,
+        "proofs": [
+          {
+            "external_id": "8073628003",
+            "title": "HRBP Intern - February 2027",
+            "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        ],
+        "requests": 4,
+        "events": [
+          {
+            "url": "https://boards-api.greenhouse.io/robots.txt",
+            "status": 200,
+            "seconds": 0.542
+          },
+          {
+            "url": "https://boards-api.greenhouse.io/v1/boards/talentprograms/jobs?content=true",
+            "status": 200,
+            "seconds": 1.166
+          },
+          {
+            "url": "https://job-boards.greenhouse.io/robots.txt",
+            "status": 200,
+            "seconds": 0.446
+          },
+          {
+            "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+            "status": 200,
+            "seconds": 1.047
+          }
+        ],
+        "responses": [
+          {
+            "url": "https://boards-api.greenhouse.io/robots.txt",
+            "final_url": "https://boards-api.greenhouse.io/robots.txt",
+            "status": 200,
+            "file": "2f219410a1d444080b11.html.gz",
+            "sha256": "0bc35a3bc59e53b4932c848ba1f33890320d2de73fa0c1357555dd79c5629be9"
+          },
+          {
+            "url": "https://boards-api.greenhouse.io/v1/boards/talentprograms/jobs?content=true",
+            "final_url": "https://boards-api.greenhouse.io/v1/boards/talentprograms/jobs?content=true",
+            "status": 200,
+            "file": "109ed3c18ab0bc09ec73.html.gz",
+            "sha256": "596823d753eed0e7a78674119347c51e5a1d1dfdd1889d3cc6eddc41e35d39a2"
+          },
+          {
+            "url": "https://job-boards.greenhouse.io/robots.txt",
+            "final_url": "https://job-boards.greenhouse.io/robots.txt",
+            "status": 200,
+            "file": "261b42e13986bbec6e0a.html.gz",
+            "sha256": "17fb1dc3361b057783040fa7f58d72f18707170866d370bd3db6e547bee09058"
+          },
+          {
+            "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+            "final_url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+            "status": 200,
+            "file": "d4e9e51210f210ee7639.html.gz",
+            "sha256": "8e4ad95708eb224c2979f3c70e72713a865cacafaa86a7ddfe96a2fed4ab32e9"
+          }
+        ]
+      },
+      "newly_discovered_hr": 0
+    },
+    {
+      "company_id": "kenonz",
+      "vacancy_url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+      "observed_at": "2026-11-07T22:51:13.524982+00:00",
+      "baseline": {
+        "error": "sequence item 2: expected str instance, NoneType found"
+      },
+      "live_requests": 4,
+      "live_bytes": 100822,
+      "live_duration_seconds": 1.891,
+      "after": {
+        "error": "Application page does not identify the same vacancy"
+      },
+      "newly_discovered_hr": 0
+    },
+    {
+      "company_id": "nncz",
+      "vacancy_url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+      "observed_at": "2026-11-07T22:51:22.328199+00:00",
+      "baseline": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "live_requests": 2,
+      "live_bytes": 106239,
+      "live_duration_seconds": 1.118,
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "newly_discovered_hr": 0
+    },
+    {
+      "company_id": "sijperda-verhuur",
+      "vacancy_url": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage",
+      "observed_at": "2026-11-07T22:51:20.970737+00:00",
+      "baseline": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "live_requests": 2,
+      "live_bytes": 81585,
+      "live_duration_seconds": 0.604,
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "newly_discovered_hr": 0
+    }
+  ],
+  "inventory_replay": {
+    "company_id": "hunter-douglas-talent-programs",
+    "raw_published_count": 16,
+    "records_inspected": 13,
+    "before_report": {
+      "id": "greenhouse-talentprograms",
+      "employer": "Hunter Douglas – Talent Programs",
+      "adapter": "greenhouse",
+      "checked_at": "2026-11-07T22:51:20.164097+00:00",
+      "collected": 13,
+      "status": "partial",
+      "matching": 1,
+      "verification_states": {
+        "incomplete": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 13,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        }
+      ],
+      "page_errors_truncated": false,
+      "verified_closed_urls": [],
+      "complete": false,
+      "closure_complete": false
+    },
+    "after_report": {
+      "id": "greenhouse-talentprograms",
+      "employer": "Hunter Douglas – Talent Programs",
+      "adapter": "greenhouse",
+      "checked_at": "2026-11-07T22:51:20.164097+00:00",
+      "collected": 13,
+      "status": "ok",
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 13,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "verified_closed_urls": []
+    },
+    "after_hr_jobs": [
+      {
+        "id": "848131b207f96ee15a25",
+        "external_id": "8073628003",
+        "source_id": "greenhouse-talentprograms",
+        "source_name": "Hunter Douglas – Talent Programs",
+        "source_type": "greenhouse",
+        "source_posting_id": null,
+        "employer": "Hunter Douglas – Talent Programs",
+        "title": "HRBP Intern - February 2027",
+        "country": "NL",
+        "countries": [
+          "NL"
+        ],
+        "city": "Rotterdam, NL",
+        "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+        "apply_url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+        "categories": [
+          "hr-generalist"
+        ],
+        "category": "hr-generalist",
+        "internship_type": "internship",
+        "internship_confidence": "confirmed",
+        "advertisement_language": {
+          "code": "en",
+          "confidence": "confirmed",
+          "method": "source metadata"
+        },
+        "workplace_languages": [
+          {
+            "code": "en",
+            "confidence": "confirmed",
+            "requirement": "required-or-working",
+            "method": "explicit-language-pattern",
+            "evidence": "Proficient in English (additional languages are a plus) ."
+          }
+        ],
+        "language_requirements": {
+          "requirements_status": "explicit",
+          "required_languages": [
+            "en"
+          ],
+          "alternative_languages": [],
+          "english_support": "documented",
+          "english_sufficiency": "unknown",
+          "english_sufficiency_evidence": null
+        },
+        "language_confidence": "confirmed",
+        "duration": "6 months",
+        "enrollment": null,
+        "work_mode": "hybrid",
+        "published_at": "2026-11-02T08:30:57-05:00",
+        "valid_through": null,
+        "first_discovered_at": "2026-11-07T22:51:20.164097+00:00",
+        "last_seen_at": "2026-11-07T22:51:20.164097+00:00",
+        "last_verified_at": "2026-11-07T22:51:20.164097+00:00",
+        "link_status": "verified",
+        "verification": {
+          "state": "verified",
+          "checked_at": "2026-11-07T22:51:20.164097+00:00",
+          "policy_version": 2,
+          "reason": "same-vacancy-applicant-form"
+        },
+        "status": "open",
+        "application_verification": {
+          "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+          "method": "same-vacancy-applicant-form",
+          "valid_through": null,
+          "vacancy_match": "title",
+          "inventory": "current-employer-feed",
+          "checked_at": "2026-11-07T22:51:20.164097+00:00"
+        }
+      }
+    ],
+    "global_before": {
+      "open": 23,
+      "unverified": 300,
+      "closed": 1
+    },
+    "global_after": {
+      "open": 24,
+      "unverified": 299,
+      "closed": 1
+    },
+    "two_collections_idempotent": true,
+    "identities_and_existing_open_preserved": true
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "company_id": "hb-rts",
+  "stamp": "2026-11-07T22:51:21.591905+00:00",
+  "source": {
+    "id": "auto-hb-rts",
+    "company_id": "hb-rts",
+    "employer": "HB RTS",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.hb-rts.com/en-uk/careers",
+      "https://www.hb-rts.com"
+    ],
+    "career_url": "https://www.hb-rts.com/en-uk/careers",
+    "allowed_hosts": [
+      "www.hb-rts.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 100,
+    "collection_seconds": 180,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official public employer feed or vacancy page and observed application entry; robots enforced at runtime; read-only checks, no applications sent.",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-07",
+    "index_urls": [
+      "https://www.hb-rts.com/en-uk/careers"
+    ],
+    "job_url_pattern": "^https://www\\.hb-rts\\.com/en-uk/careers/[^/?]+$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "Location: Utrecht",
+        "city": "Utrecht",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "en",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Official English careers list, currently reviewed visible workplace extraction for Utrecht only. Contact address supports questions, not verified application instructions. Broader inventory/pagination incomplete."
+  },
+  "record": {
+    "id": "b4e2eb9e44e90a4ae9f4",
+    "external_id": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+    "source_id": "auto-hb-rts",
+    "source_name": "HB RTS",
+    "source_type": "employer-index",
+    "source_posting_id": null,
+    "employer": "HB RTS",
+    "title": "HR Intern",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Utrecht",
+    "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+    "apply_url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+    "categories": [
+      "hr-generalist"
+    ],
+    "category": "hr-generalist",
+    "internship_type": "internship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "en",
+      "confidence": "confirmed",
+      "method": "source metadata"
+    },
+    "workplace_languages": [
+      {
+        "code": "en",
+        "confidence": "confirmed",
+        "requirement": "preferred",
+        "method": "explicit-language-pattern",
+        "evidence": "English is a plus."
+      }
+    ],
+    "language_requirements": {
+      "requirements_status": "unknown",
+      "required_languages": [],
+      "alternative_languages": [],
+      "english_support": "unknown",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "language_confidence": "confirmed",
+    "duration": "20 weeks",
+    "enrollment": "What to Bring You are enrolled in a higher professional education (HBO) program in HRM, either an Associate Degree or a Bachelor's degree.",
+    "work_mode": "unspecified",
+    "published_at": null,
+    "valid_through": null,
+    "first_discovered_at": "2026-11-07T07:57:35.605881+00:00",
+    "last_seen_at": "2026-11-07T20:55:22.487634+00:00",
+    "last_verified_at": null,
+    "link_status": "incomplete",
+    "verification": {
+      "state": "incomplete",
+      "checked_at": "2026-11-07T20:55:22.487634+00:00",
+      "policy_version": 2,
+      "reason": "No available vacancy-specific application entry established"
+    },
+    "status": "unverified",
+    "intake": {
+      "published_start": "2027-02",
+      "alternatives": [],
+      "state": "documented-future-start",
+      "checked_at": "2026-11-07T20:55:22.487634+00:00",
+      "evidence": [
+        "Start: February 2027"
+      ],
+      "provenance": "live",
+      "observed_via": "live"
+    },
+    "missing_count": 0,
+    "region_codes": [
+      "NL35"
+    ],
+    "text": "",
+    "location": "Utrecht",
+    "posting_identifier": null
+  },
+  "events": [
+    {
+      "url": "https://www.hb-rts.com/robots.txt",
+      "status": 200,
+      "seconds": 0.186
+    },
+    {
+      "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+      "status": 200,
+      "seconds": 0.699
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://www.hb-rts.com/robots.txt",
+      "final_url": "https://www.hb-rts.com/robots.txt",
+      "status": 200,
+      "file": "68228ffb6c3c4056ca5a.html.gz",
+      "sha256": "42a325df1a05be30070b301da7bd23196d6dd5eab579a5fce596bad511bb5f9f"
+    },
+    {
+      "url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+      "final_url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+      "status": 200,
+      "file": "43805825fd503ff6f141.html.gz",
+      "sha256": "a5127f60fefe1f7ea04cb6eaefffff293af9896b8380a14c69cf1a48cc0dde58"
+    }
+  ],
+  "requests": 2,
+  "bytes_read": 207286,
+  "baseline": {
+    "error": "No available vacancy-specific application entry established"
+  }
+}

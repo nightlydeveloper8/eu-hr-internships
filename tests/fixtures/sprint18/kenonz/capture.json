@@ -1,0 +1,147 @@
+{
+  "company_id": "kenonz",
+  "stamp": "2026-11-07T22:51:13.524982+00:00",
+  "source": {
+    "id": "auto-kenonz",
+    "company_id": "kenonz",
+    "employer": "Kenonz",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+      "https://www.kenonz.nl"
+    ],
+    "career_url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+    "allowed_hosts": [
+      "www.kenonz.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  "record": {
+    "id": "ef25f5ffa5bd6c4d909d",
+    "external_id": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+    "source_id": "auto-kenonz",
+    "source_name": "Kenonz",
+    "source_type": "universal-employer",
+    "source_posting_id": "a15P8000004TWNBIA4",
+    "employer": "Kenonz",
+    "title": "HR-stagiair",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Gorredijk",
+    "url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+    "apply_url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+    "categories": [
+      "hr-generalist"
+    ],
+    "category": "hr-generalist",
+    "internship_type": "internship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "nl",
+      "confidence": "uncertain",
+      "method": "deterministic stopword heuristic"
+    },
+    "workplace_languages": [],
+    "language_requirements": {
+      "requirements_status": "unknown",
+      "required_languages": [],
+      "alternative_languages": [],
+      "english_support": "unknown",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "language_confidence": "unspecified",
+    "duration": null,
+    "enrollment": null,
+    "work_mode": "unspecified",
+    "published_at": "2026-9-22",
+    "valid_through": null,
+    "first_discovered_at": "2026-11-06T06:42:20.187115+00:00",
+    "last_seen_at": "2026-11-07T20:55:21.976688+00:00",
+    "last_verified_at": "2026-11-06T17:56:12.432178+00:00",
+    "link_status": "incomplete",
+    "verification": {
+      "state": "incomplete",
+      "checked_at": "2026-11-07T20:55:21.976688+00:00",
+      "policy_version": 2,
+      "reason": "sequence item 2: expected str instance, NoneType found"
+    },
+    "status": "unverified",
+    "missing_count": 0,
+    "region_codes": [
+      "NL12"
+    ],
+    "text": "",
+    "location": "Gorredijk",
+    "posting_identifier": "a15P8000004TWNBIA4"
+  },
+  "events": [
+    {
+      "url": "https://www.kenonz.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.632
+    },
+    {
+      "url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+      "status": 200,
+      "seconds": 1.109
+    },
+    {
+      "url": "https://www.kenonz.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.063
+    },
+    {
+      "url": "https://www.kenonz.nl/solliciteren?job=a15P8000004TWNBIA4",
+      "status": 200,
+      "seconds": 0.782
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://www.kenonz.nl/robots.txt",
+      "final_url": "https://www.kenonz.nl/robots.txt",
+      "status": 200,
+      "file": "e5fdf43296e34d1b34d4.html.gz",
+      "sha256": "000585f0cef79f32e6b60632506f02eab228cdc8d812eb1be497cd11cf4b0d33"
+    },
+    {
+      "url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+      "final_url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+      "status": 200,
+      "file": "5d7beaadbd84b45c048f.html.gz",
+      "sha256": "55125246835698ef26381f66b0d73bc3c4a7209f37ba1cd5f530fe9e3c5d7bc4"
+    },
+    {
+      "url": "https://www.kenonz.nl/robots.txt",
+      "final_url": "https://www.kenonz.nl/robots.txt",
+      "status": 200,
+      "file": "e5fdf43296e34d1b34d4.html.gz",
+      "sha256": "000585f0cef79f32e6b60632506f02eab228cdc8d812eb1be497cd11cf4b0d33"
+    },
+    {
+      "url": "https://www.kenonz.nl/solliciteren?job=a15P8000004TWNBIA4",
+      "final_url": "https://www.kenonz.nl/solliciteren?job=a15P8000004TWNBIA4",
+      "status": 200,
+      "file": "1f12d4c994630627f9a7.html.gz",
+      "sha256": "ca99897ef5842719850ee6133ff7f69cb73ffb96d5fea45825a1717a862fffbb"
+    }
+  ],
+  "requests": 4,
+  "bytes_read": 100822,
+  "baseline": {
+    "error": "sequence item 2: expected str instance, NoneType found"
+  }
+}
