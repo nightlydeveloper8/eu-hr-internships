@@ -8284,7 +8284,7 @@
     "id": "auto-ennatuurlijk",
     "company_id": "ennatuurlijk",
     "employer": "Ennatuurlijk",
-    "adapter": "universal-employer",
+    "adapter": "recruitee",
     "enabled": true,
     "start_urls": [
       "https://ennatuurlijk.nl/werken-bij",
@@ -8292,7 +8292,8 @@
     ],
     "career_url": "https://ennatuurlijk.nl/werken-bij",
     "allowed_hosts": [
-      "ennatuurlijk.nl"
+      "ennatuurlijk.nl",
+      "ennatuurlijkbv.recruitee.com"
     ],
     "target_countries": [
       "NL"
@@ -8303,7 +8304,10 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "automatic-collection-pending",
+    "feed_url": "https://ennatuurlijkbv.recruitee.com/api/offers/",
+    "ownership_evidence_url": "https://ennatuurlijk.nl/werken-bij/hr-stagiaire-gezocht",
+    "review_notes": "Official HR posting links directly to the Ennatuurlijk Recruitee applicant form; tenant ownership reviewed individually 2026-11-07."
   },
   {
     "id": "auto-ennov",
@@ -16185,7 +16189,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "automatic-collection-pending",
+    "require_employer_identity": true
   },
   {
     "id": "auto-raylase-gmbh",
@@ -19325,7 +19330,10 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "automatic-collection-pending",
+    "ownership_scope": "reviewed-hosts",
+    "review_notes": "Student career/referral portals are third-party discovery, not Tilburg employment. External hosts require individual ownership review; historical external rows remain unverified pending individual review.",
+    "require_employer_identity": true
   },
   {
     "id": "auto-timac-agro-italia",

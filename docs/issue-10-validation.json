@@ -1,0 +1,42 @@
+{
+  "base": "3ec0afd",
+  "catalog_records_before": 309,
+  "catalog_records_after": 309,
+  "changed_ids": [
+    "70d297b765fc2696c836"
+  ],
+  "preserved_all_ids_urls_and_apply_urls": true,
+  "preserved_existing_application_proof": true,
+  "registry_valid": true,
+  "catalog_valid": true,
+  "province_artifacts": {
+    "friesland": {
+      "unchanged": true,
+      "verified_hr_internships": 1
+    },
+    "groningen": {
+      "unchanged": true,
+      "verified_hr_internships": 2
+    },
+    "drenthe": {
+      "unchanged": true,
+      "verified_hr_internships": 2
+    }
+  },
+  "source_budgets_unchanged": true,
+  "verified_types": {
+    "internship": 15,
+    "working-student": 3
+  },
+  "tests": {
+    "python": 184,
+    "frontend": 20,
+    "classification_cases": 64,
+    "result": "pass"
+  },
+  "build": "pass",
+  "limitations": [
+    "No scheduled all-employer collection executed; future remote daily run remains to be observed after authorized merge.",
+    "Utrecht PR #7 remains separate; Flevoland local edits untouched."
+  ]
+}

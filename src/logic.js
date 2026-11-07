@@ -54,8 +54,19 @@ export function opportunityCounts(jobs, clock = Date.now()) {
   const active = jobs.filter(job => job.status !== 'closed');
   return {total:active.length,verified:active.filter(job => verifiedJob(job,clock)).length,
     unverified:active.filter(job => !verifiedJob(job,clock)).length,
+    verifiedInternships:active.filter(job => verifiedJob(job,clock) && job.internship_type==='internship').length,
+    verifiedWorkingStudents:active.filter(job => verifiedJob(job,clock) && job.internship_type==='working-student').length,
+    verifiedTraineeships:active.filter(job => verifiedJob(job,clock) && job.internship_type==='traineeship').length,
     closed:jobs.length-active.length,
     internships:active.filter(job => job.internship_type==='internship').length,
     workingStudents:active.filter(job => job.internship_type==='working-student').length,
     traineeships:active.filter(job => job.internship_type==='traineeship').length};
+}
+
+export function completeRecentInventory(company,sources,reports,clock=Date.now()) {
+  const ids=company.source_ids.filter(id=>sources.some(s=>s.id===id && s.enabled));
+  return ids.length>0 && ids.every(id=>{
+    const report=reports.find(r=>r.id===id), checked=Date.parse(report?.checked_at || '');
+    return report?.status==='ok' && report.complete!==false && Number.isFinite(checked) && checked<=clock && clock-checked<=48*60*60*1000;
+  });
 }

@@ -54,7 +54,7 @@ function render() {
   $('verified-view-count').textContent=`(${selection.verified})`;
   $('unverified-view-count').textContent=`(${selection.total})`;
   $('unverified-notice').hidden=!filters.unverified;
-  $('verification-counts').textContent=`In this selection: ${selection.verified} verified · ${selection.unverified} unverified. Matching types: ${shown.internships} internship${shown.internships===1?'':'s'}, ${shown.workingStudents} working-student role${shown.workingStudents===1?'':'s'} and ${shown.traineeships} traineeship${shown.traineeships===1?'':'s'}.`;
+  $('verification-counts').textContent=`In this selection: ${selection.verified} verified (${selection.verifiedInternships} internships, ${selection.verifiedWorkingStudents} working-student roles, ${selection.verifiedTraineeships} traineeships) · ${selection.unverified} unverified. Matching types: ${shown.internships} internship${shown.internships===1?'':'s'}, ${shown.workingStudents} working-student role${shown.workingStudents===1?'':'s'} and ${shown.traineeships} traineeship${shown.traineeships===1?'':'s'}.`;
   const archive=opportunityCounts(catalog.jobs);
   $('catalog-counts').textContent=`${catalog.jobs.length} archived records across all countries and types; ${archive.closed} closed listing${archive.closed===1?'':'s'} excluded. An archived record is not a confirmed opening.`;
   $('result-count').textContent=jobs.length;$('result-label').textContent=filters.saved ? (jobs.length===1 ? 'saved opportunity' : 'saved opportunities') : jobs.length===1 ? 'opportunity' : 'opportunities';

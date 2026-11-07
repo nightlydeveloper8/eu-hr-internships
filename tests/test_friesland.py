@@ -47,7 +47,7 @@ class FrieslandTests(unittest.TestCase):
 
     def test_company_locations_in_prose_are_not_a_labelled_job_city(self):
         doc=Document(b'<main><h1>Meewerkstage HR</h1><p>Wij werken vanuit Wolvega voor onze locaties in Wolvega, Leeuwarden, Buitenpost en Groningen.</p></main>','https://example.org/job/hr')
-        self.assertIsNone(job_from_visible(doc,{'id':'example','employer':'Example'})['city'])
+        self.assertIsNone(job_from_visible(doc,{'id':'example','employer':'Example','allowed_hosts':['example.org']})['city'])
 
     def test_pending_application_review_overrides_a_successful_head_check(self):
         job=dict(url='https://example.org/job/hr',status='open',last_verified_at='2026-11-06T06:00:00+00:00')
