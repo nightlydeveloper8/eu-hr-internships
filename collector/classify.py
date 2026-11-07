@@ -148,7 +148,12 @@ def extract_metadata(text, work_mode=None):
     for sentence in re.split(r'(?<=[.!?])\s+',text):
         if re.search(r'holiday|vacation|annual leave|time off|paid leave|conges|vakantie|urlaub',sentence,re.I): continue
         if not re.search(r'intern|duration|placement|trainee|available|availability|stag|praktik|durée|duree|durata|duur|beschikbaar|periode|period of',sentence,re.I): continue
-        duration = re.search(r'\b\d+(?:\s*[-–]\s*\d+)?\s*(?:months?|maanden|mois|monate|meses|mesi|weeks?|weken)\b',sentence,re.I)
+        for candidate in re.finditer(r'\b\d+(?:\s*[-–]\s*\d+|\s+(?:of|or)\s+\d+)?\s*(?:months?|maanden|mois|monate|meses|mesi|weeks?|weken)\b',sentence,re.I):
+            # Posting age can share a sentence with the title or requirements.
+            # Skip that match, while retaining later legitimate durations.
+            if re.match(r'\s+(?:geleden|ago)\b',sentence[candidate.end():],re.I): continue
+            duration = candidate
+            break
         if duration: break
     enrollment = next((s for s in re.split(r'(?<=[.!?])\s+',text) if re.search(r'enroll|ingeschreven|inscrit|immatrikul|convention de stage|learning agreement|\bje volgt\b.{0,100}\bopleiding\b|\bvolg jij\b.{0,100}\bstudie\b|\bstudie\b.{0,100}\bvolgt\b',s,re.I)),None)
     if work_mode not in ('remote','hybrid','on-site'):
