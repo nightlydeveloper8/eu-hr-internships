@@ -1,0 +1,43 @@
+name: Issue 17 isolated access diagnostic
+on:
+  push:
+    branches: [diagnostic/issue-17-almere-access]
+    paths: [.github/workflows/issue-17-diagnostic.yml]
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check DNS, robots and the single vacancy
+        run: |
+          python - <<'PY'
+          import socket, traceback
+          from datetime import datetime, timezone
+          from collector.adapters import Client
+          from collector.verification import verify_vacancy
+          host = 'www.werkenbijalmere.nl'
+          vacancy = 'https://' + host + '/vacatures/stage-meewerkstage-team-recruitment-391873'
+          app = vacancy + '/solliciteren'
+          print('UTC:', datetime.now(timezone.utc).isoformat(), flush=True)
+          try:
+              print('DNS:', sorted({x[4][0] for x in socket.getaddrinfo(host, 443)}), flush=True)
+          except Exception as e:
+              print('DNS failure:', repr(e), flush=True)
+              raise SystemExit(0)
+          client = Client()
+          try:
+              for url in (vacancy, app):
+                  print('robots permission', url, client.permitted(url), flush=True)
+              if not client.permitted(vacancy) or not client.permitted(app):
+                  print('STOP: robots disallows one or both URLs', flush=True)
+                  raise SystemExit(0)
+              record = {'url': vacancy, 'title': 'Stage: Meewerkstage team Recruitment', 'posting_identifier': '391873'}
+              source = {'allowed_hosts': [host]}
+              print('policy v2 result:', verify_vacancy(record, source, client, datetime.now(timezone.utc).isoformat()), flush=True)
+          except Exception as e:
+              print('Diagnostic failure:', type(e).__name__, str(e), flush=True)
+              traceback.print_exc()
+          PY
