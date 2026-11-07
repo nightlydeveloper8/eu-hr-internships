@@ -1,0 +1,64 @@
+{
+  "reviewed_on": "2026-11-07",
+  "official_posting": "https://ennatuurlijk.nl/werken-bij/hr-stagiaire-gezocht",
+  "official_apply_link": "https://ennatuurlijkbv.recruitee.com/o/hr-stagiaire-gezocht/c/new",
+  "feed": "https://ennatuurlijkbv.recruitee.com/api/offers/",
+  "offer": {
+    "id": 971718,
+    "company_name": "Ennatuurlijk",
+    "title": "HR Stagiair(e) gezocht!",
+    "careers_url": "https://ennatuurlijkbv.recruitee.com/o/hr-stagiaire-gezocht",
+    "status": "published",
+    "city": "Eindhoven",
+    "country_code": "NL"
+  },
+  "original_id_reproduced": "70d297b765fc2696c836",
+  "application_check": {
+    "url": "https://ennatuurlijkbv.recruitee.com/o/hr-stagiaire-gezocht",
+    "method": "same-vacancy-applicant-form",
+    "valid_through": null,
+    "vacancy_match": "title",
+    "inventory": "current-employer-feed"
+  },
+  "workflow_run": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42349661189",
+  "log_excerpts": [
+    "2026-11-07T07:07:25.9264357Z 2026-11-07 07:07:25,924 INFO Collecting Tilburg University (universal-employer)",
+    "2026-11-07T07:09:26.9193393Z 2026-11-07 07:09:26,919 INFO auto-tilburg-university: 161 public records; 109 HR internships",
+    "2026-11-07T07:07:58.7024512Z 2026-11-07 07:07:58,702 INFO Collecting Randstad Italia Spa (universal-employer)",
+    "2026-11-07T07:09:59.3092109Z 2026-11-07 07:09:59,309 INFO auto-randstad-italia-spa: 25 public records; 25 HR internships"
+  ],
+  "raw_evidence": [
+    {
+      "file": "ennatuurlijk-feed.body",
+      "bytes": 227591,
+      "sha256": "a60bb7eaa5d0445f0475b133188083234fc4a0792fbdc7d5c4842a4a1979473f"
+    },
+    {
+      "file": "ennatuurlijk-primary.body",
+      "bytes": 59840,
+      "sha256": "e816b5175f1f5001219eb1a00a2f764c56acf8738bd2a158110c794aea79dc15"
+    },
+    {
+      "file": "issue10-job-128334947371.json",
+      "bytes": 120690,
+      "sha256": "095fcd69f90dd2027c89b2bbf44ff84fbaa0905013362fea6703e1b2ef27d1e8"
+    },
+    {
+      "file": "issue10-job-128334947429.json",
+      "bytes": 91436,
+      "sha256": "2f3142f63e90cdaba72f057394f6340555fffda1b8b7e2da30f819be8bd7a2fc"
+    }
+  ],
+  "raw_evidence_directory": ".staging/issue-10 (ignored; local only)",
+  "historical_navigation_limit": "No historical frontier/parent-edge trace available. Individual intermediary URL path to the ATS tenant is not proven by these logs. Source/feed/external-ID inheritance is directly reproduced.",
+  "baseline_offline_reproduction": {
+    "result": {
+      "id": "70d297b765fc2696c836",
+      "employer": "Tilburg University",
+      "source_id": "auto-tilburg-university",
+      "external_id": "971718",
+      "url": "https://ennatuurlijkbv.recruitee.com/o/hr-stagiaire-gezocht"
+    },
+    "scope": "Synthetic single observed-link fixture plus actual saved public offers feed, executed against baseline collector 3ec0afd; no network. It proves attribution code path and stable ID, not historical parent URL sequence."
+  }
+}

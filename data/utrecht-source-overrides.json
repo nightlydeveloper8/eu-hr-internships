@@ -130,5 +130,12 @@
     "max_requests": 100,
     "access_reviewed_on": "2026-11-07",
     "permission_basis": "Official public vacancy list and employer-published vacancy-specific email application instructions. Runtime robots checks; no email/application sent."
+  },
+  "auto-berenschot": {
+    "allowed_hosts": [
+      "berenschot.recruitee.com",
+      "www.berenschot.nl"
+    ],
+    "permission_basis": "Official Berenschot vacancy links directly to berenschot.recruitee.com/o/stagiaire-advies-onderzoek-arbeidsmarkt-en-strategisch-hrm/c/new; observed 2026-11-07; robots enforced; read-only checks."
   }
 }

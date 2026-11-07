@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T08:03:46.759044+00:00",
+  "generated_at": "2026-11-07T16:43:50.680572+00:00",
   "province": "Utrecht",
   "region_code": "NL35",
   "exhaustive": false,
@@ -30,7 +30,7 @@
       "blocked-or-failed": 2,
       "discovery-incomplete": 5
     },
-    "verified_hr_internships": 6,
+    "verified_hr_internships": 4,
     "verified_hr_internships_qualified_employers": 1
   },
   "municipalities": [
@@ -257,10 +257,8 @@
       ]
     },
     {
-      "verified_hr_internship_ids": [
-        "10121d7fcd9519b11d98"
-      ],
-      "verified_hr_internships": 1,
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
       "code": "GM0356",
       "name": "Nieuwegein",
       "settlements": 1,
@@ -471,10 +469,8 @@
       ]
     },
     {
-      "verified_hr_internship_ids": [
-        "0a51cae97d6d6ff8eb91"
-      ],
-      "verified_hr_internships": 1,
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
       "code": "GM0632",
       "name": "Woerden",
       "settlements": 4,
@@ -564,13 +560,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T07:56:19.639836+00:00",
-      "public_job_records": 88,
+      "last_attempt_at": "2026-11-07T16:24:43.342585+00:00",
+      "public_job_records": 759,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "employer-danone",
-          "message": "[{'url': 'https://careers.danone.com/en-global/jobs/internship-campus-recruitment-employer-branding-dutch-speaker-29000-en-us.html', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://careers.danone.com/en-global/jobs/internship-employee-experience-and-engagement-m-w-january-2027-28566-en-us.html', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://careers.danone.com/en-global/jobs/internship-global-hr-talent-analyst-intern-january-2027-h-f-28605-en-us.html', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+          "message": "[{'url': 'https://careers.danone.com/en-global/jobs/internship-employee-experience-and-engagement-m-w-january-2027-28566-en-us.html', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://careers.danone.com/en-global/jobs/internship-global-hr-talent-analyst-intern-january-2027-h-f-28605-en-us.html', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://careers.danone.com/en-global/jobs/internship-hr-business-partner-intern-28754-en-us.html', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
         }
       ]
     },
@@ -606,13 +602,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T07:56:19.639836+00:00",
-      "public_job_records": 51,
+      "last_attempt_at": "2026-11-07T16:24:48.263071+00:00",
+      "public_job_records": 112,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-rijkswaterstaat",
-          "message": "[{'url': 'https://werkenbij.rijkswaterstaat.nl/vacatures/meewerkstage-hr/1346936', 'error': 'Vacancy verification: HTTP Error 403: Forbidden'}, {'url': 'https://werkenbij.rijkswaterstaat.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde/1346780', 'error': 'Vacancy verification: HTTP Error 403: Forbidden'}]"
+          "message": "[{'url': 'https://werkenbij.rijkswaterstaat.nl/vacatures/stage-samenwerken-in-de-bouw/alexander.wielemaker@rws.nl', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbij.rijkswaterstaat.nl/vacature-offline', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbij.rijkswaterstaat.nl/vacatures?jobType%5B%5D=Stage', 'error': 'HTTP Error 403: Forbidden'}]"
         }
       ]
     },
@@ -649,7 +645,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T08:00:02.938889+00:00",
+      "last_attempt_at": "2026-11-07T16:24:43.913467+00:00",
       "public_job_records": 93,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1706,9 +1702,7 @@
       "attempted_recently": true,
       "last_attempt_at": "2026-11-07T07:57:13.697837+00:00",
       "public_job_records": 6,
-      "verified_hr_internship_ids": [
-        "0a51cae97d6d6ff8eb91"
-      ],
+      "verified_hr_internship_ids": [],
       "errors": []
     },
     {
@@ -1865,9 +1859,7 @@
       "attempted_recently": true,
       "last_attempt_at": "2026-11-07T08:02:38.533821+00:00",
       "public_job_records": 4,
-      "verified_hr_internship_ids": [
-        "10121d7fcd9519b11d98"
-      ],
+      "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-domino-s-pizza-netherlands",
@@ -2647,8 +2639,6 @@
     }
   ],
   "verified_hr_internship_ids": [
-    "0a51cae97d6d6ff8eb91",
-    "10121d7fcd9519b11d98",
     "4f1b149f7c7d6bd1b6fe",
     "68bbbe8c4218385f7c9d",
     "7878c54c7ee681ba8f6c",

@@ -1,5 +1,7 @@
 # Utrecht — stage HR e copertura provinciale
 
+> Rapporto storico della prima PR #7. L’aggiornamento successivo è in [utrecht-recovery.md](utrecht-recovery.md): quattro stage attualmente verificati; Trunkrs e Domino’s non verificati per intake non confermato. I sei canali tecnici descritti sotto non equivalgono a sei intake disponibili.
+
 Fotografia del 7 novembre 2026, rapporto generato 2026-11-07T08:03:46.759044+00:00. Ricerca in ampliamento, non censimento esaustivo. Base main `3ec0afd`, con PR #5 e #6 già integrate; PR, commit e workflow controllati in `utrecht-baseline.json`. Il checkout con il lavoro Flevoland è rimasto intatto. Ramo dedicato `feat/utrecht-expansion` in un clone separato nel workspace. Nessun merge o deploy di produzione effettuato.
 
 ## Territorio e qualità della copertura

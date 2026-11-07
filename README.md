@@ -21,7 +21,7 @@ The initial Drenthe lot reuses the same employer registry, collectors and provin
 
 ## Utrecht provincial research (7 November 2026)
 
-Utrecht now reuses the shared provincial model and daily collectors: 26 CBS municipalities, 104 settlements, 51 reviewed employers (20 with documented 50+ employees) and six HR internships with verified application routes. All 51 sources were executed: four observed inventories read, 33 partial, ten discovery-incomplete and four blocked/failed. Trunkrs and Domino’s retain intake-date caveats; generic student routes remain separate. The region uses NUTS 2024 `NL35`. See [the Italian Utrecht report](docs/utrecht-mappatura.md) and `utrecht.html`. The existing daily workflow includes these sources; remote execution and production publication await an authorized merge.
+Utrecht reuses the shared provincial model and daily collectors: 26 CBS municipalities, 104 settlements and 51 reviewed employers (20 with documented 50+ employees). After recovery onto main with PRs #11–#13, four HR internships have current policy v2 application evidence: Remia, Berenschot and two AS Watson positions. Trunkrs (past September 2026 intake) and Domino’s (September without a year) remain unverified pending intake confirmation. All 310 latest published main records and all 321 original Utrecht catalog IDs are preserved in the combined 322-record archive. The region uses NUTS 2024 `NL35`. See [the recovery report](docs/utrecht-recovery.md), [the original research](docs/utrecht-mappatura.md) and `utrecht.html`. Existing daily integration is prepared; no merge or production deployment was performed.
 
 ## What is implemented
 
@@ -138,3 +138,7 @@ GitHub repository creation, live scheduled-run verification and Cloudflare Pages
 The availability policy, before/after results, live sample, daily-run evidence and remaining limits are documented in [vacancy-reliability-report.md](docs/vacancy-reliability-report.md). A successful URL response alone no longer verifies an opening. Historical HEAD-only records remain available through “Include unverified opportunities” until recollected. No new sources or countries are added by this change.
 
 For manual multi-shard runs, supply the same unique `--run-id` to every `collector.daily collect` and `merge` invocation (or set `COLLECTOR_RUN_ID`). GitHub Actions supplies its run ID and attempt automatically; rerun all jobs together after a failed attempt.
+
+## Provincial Factory v1
+
+Offline summaries, workflow checkpoints and untrusted candidate handoff: [operator commands](docs/provincial-factory.md).

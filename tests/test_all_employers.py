@@ -37,7 +37,7 @@ class AllEmployerTests(unittest.TestCase):
    rows=Crawler(source(),FakeClient({'https://example.org':'<main><h1>Example</h1><p>Our company</p></main>'})).run()
   self.assertFalse(rows.stats['complete']);self.assertNotEqual(rows.stats['status'],'ok');self.assertFalse(rows.stats['explicit_empty'])
  def test_follows_observed_external_career_link_and_reads_opaque_job_id(self):
-  pages={'https://example.org':'<a href="https://work.example.net/careers">Careers</a>','https://work.example.net/careers':'<a href="/jobs/12345">Read more</a>','https://work.example.net/jobs/12345':'<script type="application/ld+json">'+json.dumps(posting())+'</script>'}
+  pages={'https://example.org':'<a href="https://work.example.net/careers">Careers</a>','https://work.example.net/careers':'<a href="/jobs/12345">Read more</a>','https://work.example.net/jobs/12345':'<script type="application/ld+json">'+json.dumps(posting(hiringOrganization={'name':'Example'}))+'</script>'}
   with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):
    rows=Crawler(source(),FakeClient(pages)).run()
   self.assertEqual(len(rows),1);self.assertEqual(rows[0]['countries'],['NL']);self.assertIn('work.example.net',rows.stats['allowed_hosts'])

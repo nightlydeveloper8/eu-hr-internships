@@ -1,0 +1,152 @@
+{
+  "baseline_ref": "3ec0afd",
+  "baseline_catalog_updated_at": "2026-11-07T07:14:56.839751+00:00",
+  "catalog": {
+    "historical": 309,
+    "verified": 18,
+    "verified_types": {
+      "internship": 15,
+      "working-student": 3
+    },
+    "unverified": 290,
+    "closed": 1,
+    "english_documented": 8,
+    "english_alone_documented": 0
+  },
+  "sources": [
+    {
+      "id": "auto-tilburg-university",
+      "budget_seconds": 120,
+      "max_requests": 110,
+      "max_pages": 70,
+      "catalog_records": 109,
+      "reasons": {
+        "same-vacancy-applicant-form": 1,
+        "No available vacancy-specific application entry established": 31,
+        "HTTP Error 410: Gone": 1,
+        "Time budget exhausted; checkpoint retained": 76
+      },
+      "catalog_hosts": {
+        "ennatuurlijkbv.recruitee.com": 1,
+        "www.nationalevacaturebank.nl": 108
+      },
+      "run": {
+        "status": "partial",
+        "checked_at": "2026-11-07T07:04:32.004378+00:00",
+        "duration_seconds": 121.0,
+        "requests": 78,
+        "pages_read": 41,
+        "rendered_pages": 0,
+        "records_inspected": 161,
+        "job_urls_discovered": 3744,
+        "pending_urls": 5328,
+        "cache_hits": 107,
+        "complete": false,
+        "closure_complete": false,
+        "inventory_complete": false,
+        "page_failures": 108,
+        "page_errors_truncated": true,
+        "methods": [
+          "cached-job-page",
+          "jobposting",
+          "recruitee",
+          "visible-html"
+        ]
+      }
+    },
+    {
+      "id": "auto-randstad-italia-spa",
+      "budget_seconds": 120,
+      "max_requests": 110,
+      "max_pages": 70,
+      "catalog_records": 25,
+      "reasons": {
+        "No available vacancy-specific application entry established": 12,
+        "Time budget exhausted; checkpoint retained": 13
+      },
+      "catalog_hosts": {
+        "www.randstad.it": 25
+      },
+      "run": {
+        "status": "partial",
+        "checked_at": "2026-11-07T07:04:33.159560+00:00",
+        "duration_seconds": 120.61,
+        "requests": 40,
+        "pages_read": 15,
+        "rendered_pages": 12,
+        "records_inspected": 25,
+        "job_urls_discovered": 16,
+        "pending_urls": 2334,
+        "cache_hits": 25,
+        "complete": false,
+        "closure_complete": false,
+        "inventory_complete": false,
+        "page_failures": 25,
+        "page_errors_truncated": false,
+        "methods": [
+          "browser",
+          "cached-job-page"
+        ]
+      }
+    }
+  ],
+  "employers": {
+    "configured": 1816,
+    "complete_recent_employer_country_relationships": 102,
+    "baseline_target": 2700,
+    "definition": "Configured employers and complete/recent employer-country inventories have different units and denominators."
+  },
+  "application_review_shortlist": [
+    {
+      "id": "0b19fc77e9e7c73b6be7",
+      "employer": "Danone",
+      "url": "https://careers.danone.com/en-global/jobs/internship-program-danone-in-talent-acquisition-team-29170-en-us.html",
+      "source_id": "employer-danone",
+      "adapter": "employer-sitemap",
+      "published_at": "2026-11-06T21:52:00+00:00",
+      "first_discovered_at": "2026-11-07T06:51:56.765808+00:00",
+      "reason": "Configured host, HR role already classified; individually review current employer, deadline and actual application entry. No promotion without policy-v2 evidence."
+    },
+    {
+      "id": "d8f520ac8b43e39cfeab",
+      "employer": "Danone",
+      "url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-employer-branding-dutch-speaker-29000-en-us.html",
+      "source_id": "employer-danone",
+      "adapter": "employer-sitemap",
+      "published_at": "2026-11-06T13:06:00+00:00",
+      "first_discovered_at": "2026-11-06T17:46:36.617226+00:00",
+      "reason": "Configured host, HR role already classified; individually review current employer, deadline and actual application entry. No promotion without policy-v2 evidence."
+    },
+    {
+      "id": "b9c63cd2dc3d7956a558",
+      "employer": "Danone",
+      "url": "https://careers.danone.com/en-global/jobs/internship-global-hr-talent-analyst-intern-january-2027-h-f-28605-en-us.html",
+      "source_id": "employer-danone",
+      "adapter": "employer-sitemap",
+      "published_at": "2026-11-05T16:59:00+00:00",
+      "first_discovered_at": "2026-11-05T13:22:38.045387+00:00",
+      "reason": "Configured host, HR role already classified; individually review current employer, deadline and actual application entry. No promotion without policy-v2 evidence."
+    },
+    {
+      "id": "848131b207f96ee15a25",
+      "employer": "Hunter Douglas – Talent Programs",
+      "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+      "source_id": "greenhouse-talentprograms",
+      "adapter": "greenhouse",
+      "published_at": "2026-11-02T08:30:57-05:00",
+      "first_discovered_at": "2026-11-05T12:27:41.026227+00:00",
+      "reason": "Configured host, HR role already classified; individually review current employer, deadline and actual application entry. No promotion without policy-v2 evidence."
+    },
+    {
+      "id": "1576057fe613bb7279a7",
+      "employer": "Danone",
+      "url": "https://careers.danone.com/en-global/jobs/praktikum-hr-management-m-w-d-fokus-recruiting-28915-de-de.html",
+      "source_id": "employer-danone",
+      "adapter": "employer-sitemap",
+      "published_at": "2026-10-29T13:03:00+00:00",
+      "first_discovered_at": "2026-11-05T13:22:38.045387+00:00",
+      "reason": "Configured host, HR role already classified; individually review current employer, deadline and actual application entry. No promotion without policy-v2 evidence."
+    }
+  ],
+  "shortlist_limitations": "Offline triage only; no claim that these old observations remain open, official ownership is current, or a conversion will succeed."
+}

@@ -41,6 +41,7 @@ function card(job) {
   for (const lang of langs) row(catalog.languages[lang.code],`“${lang.evidence}” · ${requirementLabel(lang.requirement)}`,'evidence');
   if (!langs.length) row('Workplace language','No explicit statement extracted. Check the original posting.');
   row('Student enrolment',job.enrollment||'Unspecified. Check the employer’s requirements.');row('Source',`${job.source_name} · ${job.source_type}`);row('Last seen on board',date(job.last_seen_at));row('Last verification attempt',date(job.verification?.checked_at));row('Vacancy last verified',job.verification?.state==='verified' && job.verification?.policy_version===2 ? date(job.last_verified_at) : 'No current verification');row('Availability evidence',verificationMessage(job));row('English alone',info.english_sufficiency==='documented' ? 'Explicitly documented' : 'Unknown; English evidence does not establish sufficiency');
+  if (job.intake) row('Published start',job.intake.published_start || 'Not specified; confirm with the employer.');
   details.append(dl);article.append(details);return article;
 }
 function urlState() { const params=new URLSearchParams();for(const [k,v] of Object.entries(filters)) if(v!==defaults[k]) params.set(k,String(v)); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
@@ -54,7 +55,7 @@ function render() {
   $('verified-view-count').textContent=`(${selection.verified})`;
   $('unverified-view-count').textContent=`(${selection.total})`;
   $('unverified-notice').hidden=!filters.unverified;
-  $('verification-counts').textContent=`In this selection: ${selection.verified} verified · ${selection.unverified} unverified. Matching types: ${shown.internships} internship${shown.internships===1?'':'s'}, ${shown.workingStudents} working-student role${shown.workingStudents===1?'':'s'} and ${shown.traineeships} traineeship${shown.traineeships===1?'':'s'}.`;
+  $('verification-counts').textContent=`In this selection: ${selection.verified} verified (${selection.verifiedInternships} internships, ${selection.verifiedWorkingStudents} working-student roles, ${selection.verifiedTraineeships} traineeships) · ${selection.unverified} unverified. Matching types: ${shown.internships} internship${shown.internships===1?'':'s'}, ${shown.workingStudents} working-student role${shown.workingStudents===1?'':'s'} and ${shown.traineeships} traineeship${shown.traineeships===1?'':'s'}.`;
   const archive=opportunityCounts(catalog.jobs);
   $('catalog-counts').textContent=`${catalog.jobs.length} archived records across all countries and types; ${archive.closed} closed listing${archive.closed===1?'':'s'} excluded. An archived record is not a confirmed opening.`;
   $('result-count').textContent=jobs.length;$('result-label').textContent=filters.saved ? (jobs.length===1 ? 'saved opportunity' : 'saved opportunities') : jobs.length===1 ? 'opportunity' : 'opportunities';

@@ -8,6 +8,30 @@ class PageClient:
     def request(self,url): return self.body.encode(),200,url
 
 class UtrechtVacancyTests(unittest.TestCase):
+    def test_daily_refresh_cannot_promote_unconfirmed_intakes(self):
+        from copy import deepcopy
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from collector.pipeline import ROOT, read, finalize
+        from collector.verification import verified_job
+        stamp = '2026-11-08T12:00:00+00:00'
+        ids = {'auto-trunkrs', 'auto-domino-s-pizza-netherlands'}
+        jobs = [deepcopy(j) for j in read(ROOT/'data/catalog.json', {})['jobs'] if j['source_id'] in ids]
+        self.assertEqual(len(jobs), 2)
+        for job in jobs:
+            job.update(status='open', link_status='verified', last_verified_at=stamp,
+                       verification=dict(state='verified', policy_version=2, checked_at=stamp))
+        sources = [s for s in read(ROOT/'data/sources.json', []) if s['id'] in ids]
+        parts = [dict(report=dict(id=j['source_id'], status='partial', records_inspected=1),
+                      jobs=[j], closure_eligible=[]) for j in jobs]
+        with TemporaryDirectory() as folder:
+            result, _ = finalize(sources, sources, {'jobs': []}, {}, parts, stamp, Path(folder))
+        for job in result['jobs']:
+            self.assertFalse(verified_job(job, stamp))
+            self.assertEqual(job['status'], 'unverified')
+            self.assertEqual(job['link_status'], 'review-required')
+            self.assertIn('intake', job['review_note'])
+
     def test_expired_attrax_vacancy_is_not_verified(self):
         # Real Sopra Steria expiry marker, despite a retained full description.
         url='https://example.org/job/stage-hr-jid-9153'

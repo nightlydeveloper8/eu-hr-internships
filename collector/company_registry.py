@@ -77,7 +77,7 @@ def country_research_progress(companies,sources,plan,source_reports=None,stamp=N
     for report in source_reports or []:
         try:checked=datetime.fromisoformat(report['checked_at'])
         except (KeyError,TypeError,ValueError):continue
-        if report.get('status')=='ok' and checked.tzinfo and checked>=cutoff:successful[report['id']]=report
+        if report.get('status')=='ok' and report.get('complete',True) and checked.tzinfo and cutoff<=checked<=moment:successful[report['id']]=report
     enabled={s['id'] for s in sources if s.get('enabled')};result=[]
     for country in plan['countries']:
         code=country['code']

@@ -28,12 +28,14 @@ def allowed_url(url,source):
     return cleaned
 
 def reconcile(previous,current,successful,stamp):
+    previous,current=align_observations(previous,current)
     merged={j['id']:dict(j) for j in previous}
     for job in current:
         old=merged.get(job['id'],{})
         job['first_discovered_at']=old.get('first_discovered_at',job.get('first_discovered_at',stamp))
         job['missing_count']=0
         job.pop('missing_since',None)
+        job.pop('last_missing_run',None)
         merged[job['id']]=job
     seen={j['id'] for j in current}
     for key,job in merged.items():
@@ -103,12 +105,23 @@ def observation_time(job):
         except (ValueError,TypeError,AttributeError):pass
     return max(parsed,default=0)
 
-def deduplicate(jobs):
+def identity_keys(job,include_aliases=True):
+    keys={'catalog:'+job['id'],canonical_url(job['url'])}
+    for identity in (posting_identity(job),posting_url_identity(job),application_identity_url(job)):
+        if identity:keys.add(identity)
+    if include_aliases:keys.update(job.get('identity_aliases',[]))
+    return keys
+
+def preserve_identity_aliases(merged,members):
+    # Keep the historical bridge when the winning observation uses another URL.
+    aliases={key for job in members for key in identity_keys(job)}-identity_keys(merged,False)
+    if aliases:merged['identity_aliases']=sorted(aliases)
+    else:merged.pop('identity_aliases',None)
+
+def duplicate_groups(jobs):
     by_key={};groups=[]
     for job in sorted(jobs,key=lambda j:j.get('first_discovered_at','')):
-        keys={canonical_url(job['url'])}
-        for identity in (posting_identity(job),posting_url_identity(job),application_identity_url(job)):
-            if identity:keys.add(identity)
+        keys=identity_keys(job)
         # Exact vacancy URLs / official IDs / vacancy-specific application paths
         # identify mirrors. A general applicant portal never does.
         matches={by_key[k] for k in keys if k in by_key}
@@ -120,19 +133,47 @@ def deduplicate(jobs):
         else:
             index=len(groups);existing=dict(members=[job],keys=keys);groups.append(existing)
         for key in existing['keys']:by_key[key]=index
-    result=[]
-    for group in groups:
-        if group is None:continue
-        members=group['members'];first=members[0]
-        newest=max(members,key=lambda j:(observation_time(j),j.get('status')=='closed'))
-        merged=dict(newest,id=first['id'],first_discovered_at=first.get('first_discovered_at'))
-        verified=[m.get('last_verified_at') for m in members if m.get('last_verified_at')]
-        if not merged.get('last_verified_at') and verified:merged['last_verified_at']=max(verified,key=lambda stamp:observation_time({'last_verified_at':stamp}))
-        countries=sorted({c for m in members for c in m.get('countries',[])})
-        if countries:merged.update(countries=countries,country=countries[0])
-        if len(members)>1:merged['duplicate_source_ids']=sorted({sid for m in members for sid in [m['source_id']]+m.get('duplicate_source_ids',[])})
-        result.append(merged)
-    return result
+    return [group['members'] for group in groups if group is not None]
+
+def consolidate_group(members):
+    """Merge every member of an already established identity component."""
+    first=members[0]
+    newest=max(members,key=lambda j:(observation_time(j),j.get('status')=='closed'))
+    merged=dict(newest,id=first['id'],first_discovered_at=first.get('first_discovered_at'))
+    verified=[m.get('last_verified_at') for m in members if m.get('last_verified_at')]
+    if not merged.get('last_verified_at') and verified:merged['last_verified_at']=max(verified,key=lambda stamp:observation_time({'last_verified_at':stamp}))
+    countries=sorted({c for m in members for c in m.get('countries',[])})
+    if countries:merged.update(countries=countries,country=countries[0])
+    if len(members)>1:merged['duplicate_source_ids']=sorted({sid for m in members for sid in [m['source_id']]+m.get('duplicate_source_ids',[])})
+    preserve_identity_aliases(merged,members)
+    return merged
+
+def deduplicate(jobs):
+    return [consolidate_group(members) for members in duplicate_groups(jobs)]
+
+def align_observations(previous,current):
+    """Resolve vacancy aliases before absence accounting, retaining history's ID.
+
+    Consolidate each side separately: a synthetic historical missing check can
+    be newer than this run's actual observation. Current failures and closures
+    are observations too, and must supersede historical verification.
+    """
+    current=[dict(job) for job in current]
+    historical={id(job) for job in previous}
+    aligned_previous=[];aligned_current=[]
+    for members in duplicate_groups(previous+current):
+        old=[job for job in members if id(job) in historical]
+        fresh=[job for job in members if id(job) not in historical]
+        canonical=(old or members)[0]
+        for rows,aligned in ((old,aligned_previous),(fresh,aligned_current)):
+            if rows:
+                # rows can be disconnected without the other side's bridge.
+                # Membership was already established by the complete component.
+                job=consolidate_group(rows)
+                job.update(id=canonical['id'],first_discovered_at=canonical.get('first_discovered_at'))
+                preserve_identity_aliases(job,members)
+                aligned.append(job)
+    return aligned_previous,aligned_current
 
 def validate_catalog(data):
     assert data['schema_version']==1
@@ -165,6 +206,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
     LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
     report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
     try:
+        ownership_source=source
         records=collect(source,client)
         inventory_stats=getattr(records,'stats',{})
         source=dict(source,allowed_hosts=sorted(set(source['allowed_hosts'])|set(inventory_stats.get('allowed_hosts',[]))))
@@ -178,6 +220,9 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
         for record in records:
+            if source['adapter']=='universal-employer':
+                from .ownership import owned_record
+                if not owned_record(record,ownership_source):continue
             # Inventory hints and URL slugs are not job titles. Read structured
             # pages before filtering, including opaque IDs and untranslated URLs.
             if record.get('needs_page'):
@@ -257,7 +302,12 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     partial_sources={r['id'] for r in reports if r['status']=='partial'}
     closure_eligible={sid for p in parts for sid in p['closure_eligible']}
     report_by_id={r['id']:r for r in prior_report.get('sources',[])}
-    jobs=deduplicate(apply_listing_reviews(reconcile(prior['jobs'],current,closure_eligible,stamp),read(ROOT/'data/listing-reviews.json',[])))
+    from .ownership import apply_ownership_reviews
+    reviews=read(ROOT/'data/ownership-reviews.json',[])
+    previous=apply_ownership_reviews(prior['jobs'],reviews)
+    current=apply_ownership_reviews(current,reviews)
+    reviewed=reconcile(previous,current,closure_eligible,stamp)
+    jobs=deduplicate(apply_listing_reviews(reviewed,read(ROOT/'data/listing-reviews.json',[])))
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     for job in jobs:
         if canonical_url(job['url']) in explicitly_closed:

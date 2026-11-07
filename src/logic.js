@@ -41,6 +41,7 @@ export function safeUrl(value) { try {const url = new URL(value); return url.pro
 export function verificationMessage(job, clock = Date.now()) {
   if (verifiedJob(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
   if (job.status === 'closed') return 'The employer has closed this listing.';
+  if (job.link_status === 'review-required' && job.review_note) return job.review_note;
   const reason = job.verification?.reason || '';
   if (job.verification?.state === 'blocked' || /robots|captcha|access (?:challenge|restricted|denied)|HTTP Error: (?:401|403|429)/i.test(reason)) return 'Access to the employer’s recruiting site was restricted, so we could not confirm current availability or the application route.';
   const stamp = Date.parse(job.last_verified_at || '');
@@ -54,6 +55,9 @@ export function opportunityCounts(jobs, clock = Date.now()) {
   const active = jobs.filter(job => job.status !== 'closed');
   return {total:active.length,verified:active.filter(job => verifiedJob(job,clock)).length,
     unverified:active.filter(job => !verifiedJob(job,clock)).length,
+    verifiedInternships:active.filter(job => verifiedJob(job,clock) && job.internship_type==='internship').length,
+    verifiedWorkingStudents:active.filter(job => verifiedJob(job,clock) && job.internship_type==='working-student').length,
+    verifiedTraineeships:active.filter(job => verifiedJob(job,clock) && job.internship_type==='traineeship').length,
     closed:jobs.length-active.length,
     internships:active.filter(job => job.internship_type==='internship').length,
     workingStudents:active.filter(job => job.internship_type==='working-student').length,
@@ -66,4 +70,13 @@ export function provincialJobs(jobs, report, filters = {}) {
     && job.internship_type === 'internship'
     && (verifiedIds.has(job.id) || (filters.unverified && !verifiedJob(job)))
     && matches(job, filters));
+}
+
+export function completeRecentInventory(company,sources,reports,clock=Date.now()) {
+  const ids=company.source_ids.filter(id=>sources.some(s=>s.id===id && s.enabled));
+  return ids.length>0 && ids.every(id=>{
+    const report=reports.find(r=>r.id===id), checked=Date.parse(report?.checked_at || '');
+    return report?.status==='ok' && report.complete!==false && Number.isFinite(checked) && checked<=clock && clock-checked<=48*60*60*1000;
+  });
+
 }
