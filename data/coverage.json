@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T20:25:38.753456+00:00",
+  "generated_at": "2026-11-07T01:14:13.839077+00:00",
   "exhaustive": false,
   "sources": [
     {
@@ -7857,44 +7857,56 @@
     {
       "id": "auto-center-parcs",
       "employer": "Center Parcs",
-      "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:30.708929+00:00",
-      "collected": 0,
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T01:11:51.137187+00:00",
+      "collected": 31,
       "status": "partial",
-      "matching": 0,
-      "verification_states": {},
-      "observed_countries": [],
-      "records_inspected": 0,
-      "page_failures": 0,
-      "page_errors": [],
+      "matching": 2,
+      "verification_states": {
+        "incomplete": 2
+      },
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 31,
+      "page_failures": 2,
+      "page_errors": [
+        {
+          "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        },
+        {
+          "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+          "error": "Vacancy verification: No available vacancy-specific application entry established"
+        }
+      ],
       "page_errors_truncated": false,
-      "inventory_kind": "bounded-public-career-crawl",
       "complete": false,
       "closure_complete": false,
-      "verified_closed_urls": [],
-      "pages_read": 20,
-      "sitemaps_read": 1,
-      "rendered_pages": 8,
-      "job_urls_discovered": 0,
-      "pending_urls": 2,
-      "unresolved_geography": 0,
+      "pages_read": 2,
+      "job_urls_discovered": 31,
+      "observed_scopes": [
+        {
+          "url": "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57783%2C57789%2C57775%2C57787%2C57777%2C57785%2C57781%2C57779%2C57773",
+          "declared_job_count": 119,
+          "observed_jobs": 20,
+          "complete": false
+        },
+        {
+          "url": "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57781",
+          "declared_job_count": 11,
+          "observed_jobs": 11,
+          "complete": true
+        }
+      ],
+      "discovery_scope": "Observed first search page for all nine Dutch parks/head office plus the De Huttenheugte filtered inventory. Per-query published counts compared with distinct requisitions. Broad search pagination remains incomplete when count exceeds returned items; no absence-based closure.",
       "explicit_empty": false,
-      "methods": [
-        "browser",
-        "robots-declared-sitemap"
-      ],
-      "cache_hits": 0,
-      "allowed_hosts": [
-        "jobs.workatcenterparcs.com",
-        "www.centerparcs.nl",
-        "www.workatcenterparcs.com"
-      ],
-      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "verified_closed_urls": [],
       "inventory_complete": false,
-      "duration_seconds": 99.59,
-      "requests": 56,
-      "bytes_read": 1934408,
-      "shard": 9
+      "snapshot_kind": "public-job-search-inventory",
+      "page_discovery_mode": "published-titles-and-locations-with-HR-detail-enrichment",
+      "requests": 17,
+      "bytes_read": 264959
     },
     {
       "id": "auto-formula-air-b-v",
@@ -82701,7 +82713,7 @@
       "id": "auto-royal-avebe",
       "employer": "Royal Avebe",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:33.706126+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 10,
       "status": "partial",
       "matching": 0,
@@ -82722,7 +82734,7 @@
       "complete": false,
       "closure_complete": false,
       "verified_closed_urls": [],
-      "pages_read": 34,
+      "pages_read": 44,
       "sitemaps_read": 4,
       "rendered_pages": 0,
       "job_urls_discovered": 11,
@@ -82730,20 +82742,21 @@
       "unresolved_geography": 1,
       "explicit_empty": true,
       "methods": [
-        "cached-job-page",
-        "robots-declared-sitemap"
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
       ],
-      "cache_hits": 10,
+      "cache_hits": 0,
       "allowed_hosts": [
         "careers.avebe.com",
         "www.avebe.com",
         "www.werkenbijavebe.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 22.38,
-      "requests": 38,
-      "bytes_read": 2565280,
-      "shard": 15
+      "duration_seconds": 28.82,
+      "requests": 48,
+      "bytes_read": 3751975,
+      "shard": 0
     },
     {
       "id": "auto-belsimpel-gomibo-group",
@@ -83233,7 +83246,7 @@
       "id": "auto-gemeente-borger-odoorn",
       "employer": "Gemeente Borger-Odoorn",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:39.888911+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "failed",
       "matching": 0,
@@ -83270,16 +83283,16 @@
       ],
       "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
       "inventory_complete": false,
-      "duration_seconds": 1.51,
+      "duration_seconds": 0.65,
       "requests": 4,
       "bytes_read": 0,
-      "shard": 2
+      "shard": 0
     },
     {
       "id": "auto-gemeente-aa-en-hunze",
       "employer": "Gemeente Aa en Hunze",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:33.069496+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "partial",
       "matching": 0,
@@ -83309,16 +83322,16 @@
       ],
       "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
       "inventory_complete": false,
-      "duration_seconds": 2.86,
+      "duration_seconds": 2.31,
       "requests": 5,
-      "bytes_read": 153831,
-      "shard": 12
+      "bytes_read": 153840,
+      "shard": 0
     },
     {
       "id": "auto-gemeente-assen",
       "employer": "Gemeente Assen",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:40.785442+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 8,
       "status": "partial",
       "matching": 0,
@@ -83355,16 +83368,16 @@
         "www.werkenbijassen.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 18.23,
+      "duration_seconds": 8.1,
       "requests": 16,
-      "bytes_read": 2260467,
-      "shard": 6
+      "bytes_read": 2260537,
+      "shard": 0
     },
     {
       "id": "auto-avitec",
       "employer": "Avitec",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:41.302153+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 9,
       "status": "partial",
       "matching": 0,
@@ -83395,16 +83408,16 @@
         "avitec.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 22.74,
+      "duration_seconds": 16.82,
       "requests": 19,
       "bytes_read": 2128378,
-      "shard": 11
+      "shard": 0
     },
     {
       "id": "auto-astron",
       "employer": "ASTRON",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:32.954583+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 1,
       "status": "partial",
       "matching": 0,
@@ -83439,16 +83452,16 @@
         "www.astron.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 8.95,
+      "duration_seconds": 6.4,
       "requests": 6,
       "bytes_read": 1069580,
-      "shard": 14
+      "shard": 0
     },
     {
       "id": "auto-het-drentse-landschap",
       "employer": "Het Drentse Landschap",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:40.692955+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 18,
       "status": "partial",
       "matching": 0,
@@ -83480,16 +83493,16 @@
         "www.drentslandschap.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 43.59,
+      "duration_seconds": 28.35,
       "requests": 31,
-      "bytes_read": 1707446,
-      "shard": 10
+      "bytes_read": 1706983,
+      "shard": 0
     },
     {
       "id": "auto-gemeente-midden-drenthe",
       "employer": "Gemeente Midden-Drenthe",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:33.069496+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 61,
       "status": "partial",
       "matching": 0,
@@ -83506,8 +83519,8 @@
       "pages_read": 70,
       "sitemaps_read": 1,
       "rendered_pages": 1,
-      "job_urls_discovered": 86,
-      "pending_urls": 31,
+      "job_urls_discovered": 84,
+      "pending_urls": 29,
       "unresolved_geography": 61,
       "explicit_empty": false,
       "methods": [
@@ -83522,16 +83535,16 @@
         "www.vooruitindrenthe.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 57.17,
+      "duration_seconds": 37.55,
       "requests": 73,
-      "bytes_read": 12172027,
-      "shard": 12
+      "bytes_read": 11945717,
+      "shard": 0
     },
     {
       "id": "auto-tvm-verzekeringen",
       "employer": "TVM verzekeringen",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:40.692955+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 13,
       "status": "partial",
       "matching": 0,
@@ -83563,16 +83576,16 @@
         "www.tvm.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 67.05,
+      "duration_seconds": 40.74,
       "requests": 71,
-      "bytes_read": 9044696,
-      "shard": 10
+      "bytes_read": 9044704,
+      "shard": 0
     },
     {
       "id": "auto-gemeente-coevorden",
       "employer": "Gemeente Coevorden",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:41.302153+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "failed",
       "matching": 0,
@@ -83609,16 +83622,16 @@
       ],
       "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
       "inventory_complete": false,
-      "duration_seconds": 2.12,
+      "duration_seconds": 0.62,
       "requests": 4,
       "bytes_read": 0,
-      "shard": 11
+      "shard": 0
     },
     {
       "id": "auto-gemeente-emmen",
       "employer": "Gemeente Emmen",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:34.178304+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "failed",
       "matching": 0,
@@ -83651,16 +83664,16 @@
       ],
       "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
       "inventory_complete": false,
-      "duration_seconds": 0.31,
+      "duration_seconds": 0.19,
       "requests": 2,
       "bytes_read": 0,
-      "shard": 5
+      "shard": 0
     },
     {
       "id": "auto-gemeente-meppel",
       "employer": "Gemeente Meppel",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:34.178304+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 5,
       "status": "partial",
       "matching": 0,
@@ -83690,16 +83703,16 @@
         "www.meppel.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 17.27,
+      "duration_seconds": 12.94,
       "requests": 15,
       "bytes_read": 1007244,
-      "shard": 5
+      "shard": 0
     },
     {
       "id": "auto-vdl-wientjes-roden",
       "employer": "VDL Wientjes Roden",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:34.178304+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "partial",
       "matching": 0,
@@ -83713,10 +83726,10 @@
       "complete": false,
       "closure_complete": false,
       "verified_closed_urls": [],
-      "pages_read": 27,
+      "pages_read": 19,
       "sitemaps_read": 0,
-      "rendered_pages": 25,
-      "job_urls_discovered": 25,
+      "rendered_pages": 17,
+      "job_urls_discovered": 17,
       "pending_urls": 33,
       "unresolved_geography": 0,
       "explicit_empty": false,
@@ -83730,16 +83743,16 @@
       ],
       "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
       "inventory_complete": false,
-      "duration_seconds": 101.35,
-      "requests": 79,
-      "bytes_read": 2911519,
-      "shard": 5
+      "duration_seconds": 46.1,
+      "requests": 92,
+      "bytes_read": 2026746,
+      "shard": 0
     },
     {
       "id": "auto-gemeente-tynaarlo",
       "employer": "Gemeente Tynaarlo",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:33.706126+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "partial",
       "matching": 0,
@@ -83769,16 +83782,16 @@
       ],
       "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
       "inventory_complete": false,
-      "duration_seconds": 18.29,
+      "duration_seconds": 13.33,
       "requests": 25,
       "bytes_read": 2279058,
-      "shard": 15
+      "shard": 0
     },
     {
       "id": "auto-forbo-novilon",
       "employer": "Forbo Novilon",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:34.178304+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 1,
       "status": "partial",
       "matching": 0,
@@ -83787,11 +83800,15 @@
         "NL"
       ],
       "records_inspected": 1,
-      "page_failures": 1,
+      "page_failures": 2,
       "page_errors": [
         {
           "url": "https://www.timing.nl/mooie-bedrijven/forbo-flooring-vacatures",
           "error": "robots.txt unavailable: 403"
+        },
+        {
+          "url": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/vacatureoverzicht/operational-excellence-program-manager/jloht5?c=NL",
+          "error": "<urlopen error timed out>"
         }
       ],
       "page_errors_truncated": false,
@@ -83799,7 +83816,7 @@
       "complete": false,
       "closure_complete": false,
       "verified_closed_urls": [],
-      "pages_read": 23,
+      "pages_read": 22,
       "sitemaps_read": 0,
       "rendered_pages": 4,
       "job_urls_discovered": 1,
@@ -83816,16 +83833,16 @@
         "www.timing.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 24.82,
+      "duration_seconds": 31.7,
       "requests": 67,
-      "bytes_read": 1266369,
-      "shard": 5
+      "bytes_read": 1212390,
+      "shard": 0
     },
     {
       "id": "auto-doc-kaas-b-v",
       "employer": "DOC Kaas B.V.",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:32.954583+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 22,
       "status": "partial",
       "matching": 0,
@@ -83841,7 +83858,7 @@
       "verified_closed_urls": [],
       "pages_read": 25,
       "sitemaps_read": 0,
-      "rendered_pages": 15,
+      "rendered_pages": 13,
       "job_urls_discovered": 351,
       "pending_urls": 344,
       "unresolved_geography": 22,
@@ -83857,16 +83874,16 @@
         "www.startpeople.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 96.89,
-      "requests": 92,
-      "bytes_read": 14273339,
-      "shard": 14
+      "duration_seconds": 49.44,
+      "requests": 88,
+      "bytes_read": 14273351,
+      "shard": 0
     },
     {
       "id": "auto-paas-b-v",
       "employer": "Paas B.V.",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:32.954825+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "failed",
       "matching": 0,
@@ -83877,7 +83894,7 @@
       "page_errors": [
         {
           "url": "https://www.paasbv.com",
-          "error": "robots.txt unavailable: 403"
+          "error": "Access challenge; no bypass attempted"
         }
       ],
       "page_errors_truncated": false,
@@ -83885,7 +83902,7 @@
       "complete": false,
       "closure_complete": false,
       "verified_closed_urls": [],
-      "pages_read": 0,
+      "pages_read": 1,
       "sitemaps_read": 0,
       "rendered_pages": 0,
       "job_urls_discovered": 0,
@@ -83897,18 +83914,18 @@
       "allowed_hosts": [
         "www.paasbv.com"
       ],
-      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "error": "Public source access blocked; no inventory established; no bypass attempted",
       "inventory_complete": false,
-      "duration_seconds": 0.49,
+      "duration_seconds": 0.63,
       "requests": 2,
-      "bytes_read": 0,
-      "shard": 1
+      "bytes_read": 348,
+      "shard": 0
     },
     {
       "id": "auto-vanboeijen",
       "employer": "Vanboeijen",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:33.706126+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 62,
       "status": "partial",
       "matching": 0,
@@ -83939,16 +83956,16 @@
         "www.vanboeijen.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 76.78,
-      "requests": 74,
-      "bytes_read": 4310062,
-      "shard": 15
+      "duration_seconds": 74.47,
+      "requests": 73,
+      "bytes_read": 4309886,
+      "shard": 0
     },
     {
       "id": "auto-samenwerkingsorganisatie-de-wolden-hoogeveen",
       "employer": "Samenwerkingsorganisatie De Wolden Hoogeveen",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:27.587048+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 1,
       "status": "partial",
       "matching": 0,
@@ -83979,16 +83996,16 @@
         "www.werkenbijdeswo.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 13.72,
+      "duration_seconds": 8.01,
       "requests": 12,
       "bytes_read": 1427705,
-      "shard": 13
+      "shard": 0
     },
     {
       "id": "auto-cosis",
       "employer": "Cosis",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:32.261492+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 65,
       "status": "partial",
       "matching": 0,
@@ -84020,16 +84037,16 @@
         "www.cosis.nu"
       ],
       "inventory_complete": false,
-      "duration_seconds": 77.53,
+      "duration_seconds": 74.31,
       "requests": 85,
-      "bytes_read": 3004043,
-      "shard": 7
+      "bytes_read": 3003743,
+      "shard": 0
     },
     {
       "id": "auto-unigarant",
       "employer": "Unigarant",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:26.484167+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 5,
       "status": "partial",
       "matching": 0,
@@ -84062,16 +84079,16 @@
         "www.unigarant.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 36.32,
+      "duration_seconds": 27.1,
       "requests": 101,
-      "bytes_read": 1435955,
+      "bytes_read": 1435675,
       "shard": 0
     },
     {
       "id": "auto-gemeente-noordenveld",
       "employer": "Gemeente Noordenveld",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:33.721260+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 66,
       "status": "partial",
       "matching": 0,
@@ -84088,8 +84105,8 @@
       "pages_read": 70,
       "sitemaps_read": 1,
       "rendered_pages": 0,
-      "job_urls_discovered": 86,
-      "pending_urls": 26,
+      "job_urls_discovered": 84,
+      "pending_urls": 24,
       "unresolved_geography": 66,
       "explicit_empty": false,
       "methods": [
@@ -84103,16 +84120,16 @@
         "www.vooruitindrenthe.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 56.79,
-      "requests": 72,
-      "bytes_read": 12431450,
-      "shard": 3
+      "duration_seconds": 36.58,
+      "requests": 71,
+      "bytes_read": 12316203,
+      "shard": 0
     },
     {
       "id": "auto-interzorg-noord-nederland",
       "employer": "Interzorg Noord Nederland",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:33.706126+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 27,
       "status": "partial",
       "matching": 0,
@@ -84153,16 +84170,16 @@
         "www.interzorg.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 38.77,
+      "duration_seconds": 36.8,
       "requests": 37,
       "bytes_read": 2421188,
-      "shard": 15
+      "shard": 0
     },
     {
       "id": "auto-wilhelmina-ziekenhuis-assen",
       "employer": "Wilhelmina Ziekenhuis Assen",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:40.785442+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 19,
       "status": "partial",
       "matching": 0,
@@ -84198,16 +84215,16 @@
         "www.wza.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 50.03,
+      "duration_seconds": 33.99,
       "requests": 46,
       "bytes_read": 1780959,
-      "shard": 6
+      "shard": 0
     },
     {
       "id": "auto-gemeente-westerveld",
       "employer": "Gemeente Westerveld",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:32.261492+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 59,
       "status": "partial",
       "matching": 0,
@@ -84218,7 +84235,7 @@
       "page_errors": [
         {
           "url": "https://werkenbijwesterveld.nl",
-          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1011)>"
+          "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1129)>"
         }
       ],
       "page_errors_truncated": false,
@@ -84229,8 +84246,8 @@
       "pages_read": 70,
       "sitemaps_read": 2,
       "rendered_pages": 1,
-      "job_urls_discovered": 86,
-      "pending_urls": 27,
+      "job_urls_discovered": 84,
+      "pending_urls": 25,
       "unresolved_geography": 59,
       "explicit_empty": false,
       "methods": [
@@ -84246,16 +84263,16 @@
         "www.vooruitindrenthe.nl"
       ],
       "inventory_complete": false,
-      "duration_seconds": 60.52,
-      "requests": 81,
-      "bytes_read": 11526289,
-      "shard": 7
+      "duration_seconds": 38.32,
+      "requests": 80,
+      "bytes_read": 11408193,
+      "shard": 0
     },
     {
       "id": "auto-bats-uitzendburo",
       "employer": "Bats Uitzendburo",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-06T20:15:34.178304+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 0,
       "status": "failed",
       "matching": 0,
@@ -84266,7 +84283,7 @@
       "page_errors": [
         {
           "url": "https://batsuitzendburo.nl",
-          "error": "robots.txt unavailable: 403"
+          "error": "Access challenge; no bypass attempted"
         }
       ],
       "page_errors_truncated": false,
@@ -84274,7 +84291,7 @@
       "complete": false,
       "closure_complete": false,
       "verified_closed_urls": [],
-      "pages_read": 0,
+      "pages_read": 1,
       "sitemaps_read": 0,
       "rendered_pages": 0,
       "job_urls_discovered": 0,
@@ -84286,18 +84303,18 @@
       "allowed_hosts": [
         "batsuitzendburo.nl"
       ],
-      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "error": "Public source access blocked; no inventory established; no bypass attempted",
       "inventory_complete": false,
-      "duration_seconds": 0.45,
+      "duration_seconds": 0.64,
       "requests": 2,
-      "bytes_read": 0,
-      "shard": 5
+      "bytes_read": 348,
+      "shard": 0
     },
     {
       "id": "auto-skk-kozijnwacht",
       "employer": "SKK Kozijnwacht",
       "adapter": "employer-index",
-      "checked_at": "2026-11-06T20:15:30.708929+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 3,
       "status": "ok",
       "matching": 1,
@@ -84322,16 +84339,16 @@
       "cache_hits": 0,
       "snapshot_kind": "public-job-page-inventory",
       "page_discovery_mode": "read-all-inventoried-job-pages",
-      "duration_seconds": 7.64,
+      "duration_seconds": 6.18,
       "requests": 7,
       "bytes_read": 488869,
-      "shard": 9
+      "shard": 0
     },
     {
       "id": "auto-ziengs-schoenen",
       "employer": "Ziengs Schoenen",
       "adapter": "employer-index",
-      "checked_at": "2026-11-06T20:15:33.721260+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 8,
       "status": "ok",
       "matching": 1,
@@ -84356,16 +84373,16 @@
       "cache_hits": 0,
       "snapshot_kind": "public-job-page-inventory",
       "page_discovery_mode": "read-all-inventoried-job-pages",
-      "duration_seconds": 18.46,
+      "duration_seconds": 13.88,
       "requests": 18,
       "bytes_read": 979292,
-      "shard": 3
+      "shard": 0
     },
     {
       "id": "auto-nncz",
       "employer": "NNCZ",
       "adapter": "employer-index",
-      "checked_at": "2026-11-06T20:15:40.785442+00:00",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
       "collected": 25,
       "status": "partial",
       "matching": 1,
@@ -84491,16 +84508,16 @@
       "cache_hits": 0,
       "snapshot_kind": "public-job-page-inventory",
       "page_discovery_mode": "read-all-inventoried-job-pages",
-      "duration_seconds": 54.74,
+      "duration_seconds": 28.99,
       "requests": 28,
       "bytes_read": 2771080,
-      "shard": 6
+      "shard": 0
     },
     {
       "id": "auto-scania",
       "employer": "Scania",
       "adapter": "employer-index",
-      "checked_at": "2026-11-06T20:15:33.721260+00:00",
+      "checked_at": "2026-11-07T01:13:26.466944+00:00",
       "collected": 6,
       "status": "partial",
       "matching": 1,
@@ -84528,13 +84545,128 @@
       "verified_closed_urls": [],
       "inventory_complete": true,
       "access_state": "blocked",
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages",
+      "requests": 10,
+      "bytes_read": 944680
+    },
+    {
+      "id": "auto-groningen-airport-eelde",
+      "employer": "Groningen Airport Eelde",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
+      "collected": 0,
+      "status": "ok",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "complete": true,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 0,
+      "declared_job_count": 0,
+      "discovery_scope": "Current official public vacancy list only. Zero requires the reviewed rendered no-vacancies message and matching heading, no job links or conflicting counts; generic internship information is not a vacancy. No closure inferred from absence.",
+      "verified_closed_urls": [],
+      "inventory_complete": true,
       "cache_hits": 0,
       "snapshot_kind": "public-job-page-inventory",
       "page_discovery_mode": "read-all-inventoried-job-pages",
-      "duration_seconds": 7.55,
-      "requests": 10,
-      "bytes_read": 944679,
-      "shard": 3
+      "duration_seconds": 3.12,
+      "requests": 5,
+      "bytes_read": 30140,
+      "shard": 0
+    },
+    {
+      "id": "auto-emco-groep",
+      "employer": "EMCO-groep",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 4,
+      "sitemaps_read": 2,
+      "rendered_pages": 1,
+      "job_urls_discovered": 0,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "emco-groep.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "duration_seconds": 4.26,
+      "requests": 6,
+      "bytes_read": 376760,
+      "shard": 0
+    },
+    {
+      "id": "auto-zzwd-zorgcollectief",
+      "employer": "ZZWD Zorgcollectief",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-07T01:08:37.076401+00:00",
+      "collected": 6,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 6,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.zzwd.nl/wp-content/uploads/2026/10/00.1-Verzorgende-IG-nachtzorg-1.pdf",
+          "error": "Rendered read: Page.goto: Download is starting\nCall log:\n  - navigating to \"https://www.zzwd.nl/wp-content/uploads/2026/10/00.1-Verzorgende-IG-nachtzorg-1.pdf\", waiting until "
+        }
+      ],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 22,
+      "sitemaps_read": 2,
+      "rendered_pages": 2,
+      "job_urls_discovered": 18,
+      "pending_urls": 0,
+      "unresolved_geography": 4,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.zzwd.nl"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 29.66,
+      "requests": 26,
+      "bytes_read": 3311952,
+      "shard": 0
     }
   ],
   "countries": [
@@ -84674,7 +84806,7 @@
     {
       "code": "NL",
       "name": "Netherlands",
-      "listings": 127,
+      "listings": 129,
       "sources_with_observed_jobs": 34,
       "discovery_candidates": 10
     },
@@ -84729,13 +84861,13 @@
     }
   ],
   "quality": {
-    "total": 265,
+    "total": 267,
     "open": 19,
-    "unverified": 245,
-    "confirmed_english": 77,
-    "sources_succeeded": 739,
-    "sources_attempted": 1811,
-    "sources_partial": 1444,
+    "unverified": 247,
+    "confirmed_english": 78,
+    "sources_succeeded": 2,
+    "sources_attempted": 2,
+    "sources_partial": 2,
     "verified_internships": 16,
     "verified_working_students": 3,
     "verified_traineeships": 0

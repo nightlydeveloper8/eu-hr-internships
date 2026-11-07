@@ -95,5 +95,40 @@
     "discovery_scope": "Six observed results for the official keyword query Meppel, including a Zwolle posting; live total must match. Final explicit workplace, not search membership, determines province. Other Scania sites are outside this query.",
     "collection_seconds": 140,
     "max_requests": 90
+  },
+  "auto-groningen-airport-eelde": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://www.groningenairport.nl/werken-op/vacatures"
+    ],
+    "index_rendered": true,
+    "job_url_pattern": "^https://www\\.groningenairport\\.nl/werken-op/vacatures/[^/?]+$",
+    "reviewed_empty_index": {
+      "heading": "Vacatures",
+      "pattern": "\\bEr zijn geen vacatures gevonden\\."
+    },
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Current official public vacancy list only. Zero requires the reviewed rendered no-vacancies message and matching heading, no job links or conflicting counts; generic internship information is not a vacancy. No closure inferred from absence.",
+    "collection_seconds": 160,
+    "max_requests": 100,
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Official public careers and vacancy list; runtime robots checks; no applications sent."
+  },
+  "auto-center-parcs": {
+    "adapter": "employer-index",
+    "cegid_inventory_search": true,
+    "index_urls": [
+      "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57783,57789,57775,57787,57777,57785,57781,57779,57773",
+      "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57781"
+    ],
+    "job_url_pattern": "^https://jobs\\.workatcenterparcs\\.com/nl/annonce/\\d+-[a-z0-9-]+$",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Observed first search page for all nine Dutch parks/head office plus the De Huttenheugte filtered inventory. Per-query published counts compared with distinct requisitions. Broad search pagination remains incomplete when count exceeds returned items; no absence-based closure.",
+    "collection_seconds": 240,
+    "max_requests": 150,
+    "access_reviewed_on": "2026-11-07",
+    "permission_basis": "Public official park page links these Cegid filters. Reviewed public Nuxt getJobAds POST and /nl/annonce/:jobSlug route only; payload constrained, runtime robots checks. Candidate, authentication, subscription and map POSTs blocked; no application submitted."
   }
 }

@@ -5620,7 +5620,7 @@
     "id": "auto-center-parcs",
     "company_id": "center-parcs",
     "employer": "Center Parcs",
-    "adapter": "universal-employer",
+    "adapter": "employer-index",
     "enabled": true,
     "start_urls": [
       "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte",
@@ -5637,12 +5637,22 @@
       "NL"
     ],
     "max_pages": 70,
-    "max_requests": 110,
-    "collection_seconds": 120,
+    "max_requests": 150,
+    "collection_seconds": 240,
     "max_navigation_depth": 3,
     "max_render_pages": 4,
-    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "permission_basis": "Public official park page links these Cegid filters. Reviewed public Nuxt getJobAds POST and /nl/annonce/:jobSlug route only; payload constrained, runtime robots checks. Candidate, authentication, subscription and map POSTs blocked; no application submitted.",
+    "status": "automatic-collection-pending",
+    "cegid_inventory_search": true,
+    "index_urls": [
+      "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57783,57789,57775,57787,57777,57785,57781,57779,57773",
+      "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57781"
+    ],
+    "job_url_pattern": "^https://jobs\\.workatcenterparcs\\.com/nl/annonce/\\d+-[a-z0-9-]+$",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Observed first search page for all nine Dutch parks/head office plus the De Huttenheugte filtered inventory. Per-query published counts compared with distinct requisitions. Broad search pagination remains incomplete when count exceeds returned items; no absence-based closure.",
+    "access_reviewed_on": "2026-11-07"
   },
   {
     "id": "auto-centopercento-s-r-l",
@@ -46151,5 +46161,93 @@
     "report_index_scope": true,
     "inventory_scope_complete": true,
     "discovery_scope": "Six observed results for the official keyword query Meppel, including a Zwolle posting; live total must match. Final explicit workplace, not search membership, determines province. Other Scania sites are outside this query."
+  },
+  {
+    "id": "auto-groningen-airport-eelde",
+    "company_id": "groningen-airport-eelde",
+    "employer": "Groningen Airport Eelde",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.groningenairport.nl/werken-op/vacatures",
+      "https://www.groningenairport.nl"
+    ],
+    "career_url": "https://www.groningenairport.nl/werken-op/vacatures",
+    "allowed_hosts": [
+      "www.groningenairport.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 100,
+    "collection_seconds": 160,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official public careers and vacancy list; runtime robots checks; no applications sent.",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://www.groningenairport.nl/werken-op/vacatures"
+    ],
+    "index_rendered": true,
+    "job_url_pattern": "^https://www\\.groningenairport\\.nl/werken-op/vacatures/[^/?]+$",
+    "reviewed_empty_index": {
+      "heading": "Vacatures",
+      "pattern": "\\bEr zijn geen vacatures gevonden\\."
+    },
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Current official public vacancy list only. Zero requires the reviewed rendered no-vacancies message and matching heading, no job links or conflicting counts; generic internship information is not a vacancy. No closure inferred from absence.",
+    "access_reviewed_on": "2026-11-07"
+  },
+  {
+    "id": "auto-emco-groep",
+    "company_id": "emco-groep",
+    "employer": "EMCO-groep",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://emco-groep.nl/werkenbij",
+      "https://emco-groep.nl"
+    ],
+    "career_url": "https://emco-groep.nl/werkenbij",
+    "allowed_hosts": [
+      "emco-groep.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-zzwd-zorgcollectief",
+    "company_id": "zzwd-zorgcollectief",
+    "employer": "ZZWD Zorgcollectief",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.zzwd.nl/vacatures",
+      "https://www.zzwd.nl"
+    ],
+    "career_url": "https://www.zzwd.nl/vacatures/",
+    "allowed_hosts": [
+      "www.zzwd.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
   }
 ]

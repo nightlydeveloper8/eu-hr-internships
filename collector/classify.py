@@ -85,7 +85,7 @@ def classify_role(title, text='', employment=''):
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
 LANG_ALIASES = {
- 'en':r'english|anglais(?:e)?|englisch|engels|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands|neerlandais|ollandese', 'fr':r'french|francais(?:e)?|franzosisch|frans|francese', 'de':r'german|deutsch(?:kenntnisse)?|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'
+ 'en':r'english|anglais(?:e)?|englisch|engels(?:e)?|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands(?:e)?|neerlandais|ollandese', 'fr':r'french|francais(?:e)?|franzosisch|frans|francese', 'de':r'german|deutsch(?:kenntnisse)?|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'
 }
 
 def workplace_languages(text):
@@ -112,7 +112,7 @@ def workplace_languages(text):
             optional = optional or bool(re.match(r'preferred languages?(?: are)?\s*:',s) or re.match(r'preferred languages? are\b',s))
             optional = optional or bool(re.search(r'(?:preferred|preferably|nice.to.have|ideally)\s+(?:\w+\s+){0,2}$',s[max(start+1,m.start()-35):m.start()]))
             mentions=sorted((x.start(),x.end()) for p in LANG_ALIASES.values() for x in re.finditer(r'\b(?:'+p+r')\b',s))
-            alternative=any(re.fullmatch(r'\s+(?:or|oder|of|ou|oppure)\s+',s[a[1]:b[0]]) and m.start() in (a[0],b[0]) for a,b in zip(mentions,mentions[1:]))
+            alternative=any(re.fullmatch(r'\s+(?:or|and\s*/\s*or|oder|of|en\s*/\s*of|ou|oppure)\s+',s[a[1]:b[0]]) and m.start() in (a[0],b[0]) for a,b in zip(mentions,mentions[1:]))
             working=bool(re.search(r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|(?:working|corporate|company|business|official|main) language|work in',local))
             if re.search(r'\b(?:required|mandatory|must|verplicht|vereist|requis)\b',s[m.end():m.end()+35]):working=False
             excerpt = sentence[max(0,m.start()-100):m.end()+120]

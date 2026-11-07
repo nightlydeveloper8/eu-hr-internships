@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-06T20:25:38.753456+00:00",
-  "last_attempt_at": "2026-11-06T20:25:38.753456+00:00",
+  "updated_at": "2026-11-07T01:14:13.839077+00:00",
+  "last_attempt_at": "2026-11-07T01:14:13.839077+00:00",
   "update_status": "partial",
   "countries": {
     "AT": "Austria",
@@ -14302,12 +14302,12 @@
       "first_discovered_at": "2026-11-06T19:34:06.804628+00:00",
       "last_seen_at": "2026-11-06T20:15:30.516826+00:00",
       "last_verified_at": null,
-      "link_status": "incomplete",
+      "link_status": "invalid-deadline",
       "verification": {
         "state": "incomplete",
-        "checked_at": "2026-11-06T20:15:30.516826+00:00",
+        "checked_at": "2026-11-07T01:14:13.839077+00:00",
         "policy_version": 2,
-        "reason": "Time budget exhausted; checkpoint retained"
+        "reason": "Invalid application deadline"
       },
       "status": "unverified",
       "missing_count": 0,
@@ -14356,12 +14356,12 @@
       "published_at": null,
       "valid_through": null,
       "first_discovered_at": "2026-11-06T19:55:54.939489+00:00",
-      "last_seen_at": "2026-11-06T20:15:40.785442+00:00",
+      "last_seen_at": "2026-11-07T01:08:37.076401+00:00",
       "last_verified_at": null,
       "link_status": "incomplete",
       "verification": {
         "state": "incomplete",
-        "checked_at": "2026-11-06T20:15:40.785442+00:00",
+        "checked_at": "2026-11-07T01:08:37.076401+00:00",
         "policy_version": 2,
         "reason": "No available vacancy-specific application entry established"
       },
@@ -14414,12 +14414,12 @@
       "published_at": null,
       "valid_through": null,
       "first_discovered_at": "2026-11-06T19:58:13.936693+00:00",
-      "last_seen_at": "2026-11-06T20:15:30.708929+00:00",
-      "last_verified_at": "2026-11-06T20:15:30.708929+00:00",
+      "last_seen_at": "2026-11-07T01:08:37.076401+00:00",
+      "last_verified_at": "2026-11-07T01:08:37.076401+00:00",
       "link_status": "verified",
       "verification": {
         "state": "verified",
-        "checked_at": "2026-11-06T20:15:30.708929+00:00",
+        "checked_at": "2026-11-07T01:08:37.076401+00:00",
         "policy_version": 2,
         "reason": "official-vacancy-email-instructions"
       },
@@ -14432,7 +14432,7 @@
         "valid_through": null,
         "vacancy_match": "title",
         "inventory": "not-established",
-        "checked_at": "2026-11-06T20:15:30.708929+00:00"
+        "checked_at": "2026-11-07T01:08:37.076401+00:00"
       },
       "missing_count": 0,
       "region_codes": [
@@ -14482,12 +14482,12 @@
       "published_at": "2026-08-26T09:10:00+02:00",
       "valid_through": null,
       "first_discovered_at": "2026-11-06T19:58:13.936693+00:00",
-      "last_seen_at": "2026-11-06T20:15:33.721260+00:00",
-      "last_verified_at": "2026-11-06T20:15:33.721260+00:00",
+      "last_seen_at": "2026-11-07T01:08:37.076401+00:00",
+      "last_verified_at": "2026-11-07T01:08:37.076401+00:00",
       "link_status": "verified",
       "verification": {
         "state": "verified",
-        "checked_at": "2026-11-06T20:15:33.721260+00:00",
+        "checked_at": "2026-11-07T01:08:37.076401+00:00",
         "policy_version": 2,
         "reason": "official-formie-same-requisition-form"
       },
@@ -14498,7 +14498,7 @@
         "valid_through": null,
         "vacancy_match": "title",
         "inventory": "not-established",
-        "checked_at": "2026-11-06T20:15:33.721260+00:00"
+        "checked_at": "2026-11-07T01:08:37.076401+00:00"
       },
       "missing_count": 0,
       "region_codes": [
@@ -14532,28 +14532,46 @@
         "confidence": "confirmed",
         "method": "source metadata"
       },
-      "workplace_languages": [],
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        },
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        }
+      ],
       "language_requirements": {
-        "requirements_status": "unknown",
+        "requirements_status": "explicit",
         "required_languages": [],
-        "alternative_languages": [],
-        "english_support": "unknown",
+        "alternative_languages": [
+          "en",
+          "nl"
+        ],
+        "english_support": "documented",
         "english_sufficiency": "unknown",
         "english_sufficiency_evidence": null
       },
-      "language_confidence": "unspecified",
+      "language_confidence": "confirmed",
       "duration": null,
       "enrollment": null,
       "work_mode": "unspecified",
       "published_at": null,
       "valid_through": null,
       "first_discovered_at": "2026-11-06T20:00:50.857103+00:00",
-      "last_seen_at": "2026-11-06T20:15:33.721260+00:00",
+      "last_seen_at": "2026-11-07T01:13:26.466944+00:00",
       "last_verified_at": null,
       "link_status": "blocked",
       "verification": {
         "state": "blocked",
-        "checked_at": "2026-11-06T20:15:33.721260+00:00",
+        "checked_at": "2026-11-07T01:13:26.466944+00:00",
         "policy_version": 2,
         "reason": "robots.txt disallows https://jobs.scania.com/talentcommunity/apply/1454163033?locale=nl_NL"
       },
@@ -16668,6 +16686,118 @@
         "checked_at": "2026-11-06T20:15:39.888911+00:00",
         "policy_version": 2,
         "reason": "Request budget exhausted; checkpoint retained"
+      },
+      "status": "unverified",
+      "missing_count": 0,
+      "region_codes": []
+    },
+    {
+      "id": "5506269ba93324a54632",
+      "external_id": "4654111",
+      "source_id": "auto-center-parcs",
+      "source_name": "Center Parcs",
+      "source_type": "employer-index",
+      "source_posting_id": "4654111-93213447",
+      "employer": "Center Parcs",
+      "title": "Stage Recruitment Februari 2027",
+      "country": "NL",
+      "countries": [
+        "NL"
+      ],
+      "city": "Capelle aan den IJssel",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "apply_url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "categories": [
+        "talent-acquisition"
+      ],
+      "category": "talent-acquisition",
+      "internship_type": "internship",
+      "internship_confidence": "confirmed",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "uncertain",
+        "method": "deterministic stopword heuristic"
+      },
+      "workplace_languages": [],
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "language_confidence": "unspecified",
+      "duration": null,
+      "enrollment": null,
+      "work_mode": "unspecified",
+      "published_at": "2026-10-20",
+      "valid_through": null,
+      "first_discovered_at": "2026-11-07T01:11:51.137187+00:00",
+      "last_seen_at": "2026-11-07T01:11:51.137187+00:00",
+      "last_verified_at": null,
+      "link_status": "incomplete",
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T01:11:51.137187+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      },
+      "status": "unverified",
+      "missing_count": 0,
+      "region_codes": []
+    },
+    {
+      "id": "a3b5d7cde7fe9d17a72e",
+      "external_id": "4653111",
+      "source_id": "auto-center-parcs",
+      "source_name": "Center Parcs",
+      "source_type": "employer-index",
+      "source_posting_id": "4653111-93213447",
+      "employer": "Center Parcs",
+      "title": "Stage Internal Communications and Employee Engagement Officer Februari 2027",
+      "country": "NL",
+      "countries": [
+        "NL"
+      ],
+      "city": "Capelle aan den IJssel",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "apply_url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "categories": [
+        "employee-experience"
+      ],
+      "category": "employee-experience",
+      "internship_type": "internship",
+      "internship_confidence": "confirmed",
+      "advertisement_language": {
+        "code": "nl",
+        "confidence": "uncertain",
+        "method": "deterministic stopword heuristic"
+      },
+      "workplace_languages": [],
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "language_confidence": "unspecified",
+      "duration": null,
+      "enrollment": null,
+      "work_mode": "unspecified",
+      "published_at": "2026-10-19",
+      "valid_through": null,
+      "first_discovered_at": "2026-11-07T01:11:51.137187+00:00",
+      "last_seen_at": "2026-11-07T01:11:51.137187+00:00",
+      "last_verified_at": null,
+      "link_status": "incomplete",
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-07T01:11:51.137187+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
       },
       "status": "unverified",
       "missing_count": 0,

@@ -148,9 +148,12 @@ class JobLinksParser(HTMLParser):
 
 def index_records(source,client):
     """Inventory actual links in reviewed official lists; never infer job paths."""
+    if source.get('cegid_inventory_search'):
+        from .cegid import index_records as cegid_records
+        return cegid_records(source,client)
     from urllib.parse import urljoin
     records={};pattern=re.compile(source['job_url_pattern'])
-    pending=list(source['index_urls']);seen=set();declared_total=None
+    pending=list(source['index_urls']);seen=set();declared_total=None;empty_pages=set()
     for url in pending:
         url=approved(url,source)
         if url in seen:continue
@@ -168,6 +171,11 @@ def index_records(source,client):
         else:
             body,_,final=client.request(approved(url,source))
         approved(final,source)
+        empty=source.get('reviewed_empty_index')
+        if empty:
+            from .universal import Document
+            doc=Document(body,final)
+            if empty['heading'] in doc.h1 and re.search(empty['pattern'],doc.text):empty_pages.add(url)
         parser=JobLinksParser();parser.feed(body.decode('utf-8','replace'))
         if source.get('index_job_count_pattern'):
             match=re.search(source['index_job_count_pattern'],plain(body.decode('utf-8','replace')))
@@ -195,7 +203,11 @@ def index_records(source,client):
             if key in records and len(records[key]['title'])>=len(title):continue
             records[key]=dict(source_id=source['id'],external_id=key,employer=source['employer'],title=title,location='',text='',url=target,apply_url=target,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True)
         if len(records)>source.get('max_job_urls',5000):raise ValueError('Job index safety limit')
-    if not records:raise ValueError('No matching links; list layout needs review')
+    if empty_pages:
+        if records or empty_pages!=seen or declared_total not in (None,0):
+            raise ValueError('Empty inventory evidence conflicts with job links, pages or count')
+        declared_total=0
+    elif not records:raise ValueError('No matching links; list layout needs review')
     if declared_total is not None and declared_total!=len(records):raise ValueError('Job links differ from the published inventory count')
     if source.get('report_index_scope'):
         from .universal import Inventory

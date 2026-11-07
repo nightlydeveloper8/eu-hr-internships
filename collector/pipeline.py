@@ -242,6 +242,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         if cache:report['cache_hits']=max(cache.hits,inventory_stats.get('cache_hits',0))
         if source['adapter'] in ('employer-sitemap','employer-index'):
             report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
+        if source.get('cegid_inventory_search'):
+            report.update(snapshot_kind='public-job-search-inventory',page_discovery_mode='published-titles-and-locations-with-HR-detail-enrichment')
         LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
     except Exception as exc:
         from .verification import blocked_error

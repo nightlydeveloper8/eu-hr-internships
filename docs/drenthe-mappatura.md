@@ -1,5 +1,7 @@
 # Drenthe: prima ricerca e raccolta degli stage HR
 
+Approfondimento successivo del 7 novembre 2026: [34 datori, copertura dei comuni meno ricercati e riparazione Cegid](drenthe-followup.md). Il testo seguente conserva lo storico della prima integrazione e della sua pubblicazione.
+
 Verifica del **6 novembre 2026**. Lotto iniziale approfondito in ampliamento, **non censimento esaustivo**. Non esiste un denominatore completo dei datori provinciali: non viene calcolata una percentuale di copertura del mercato.
 
 ## Risultati osservati
