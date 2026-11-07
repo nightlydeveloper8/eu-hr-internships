@@ -1,0 +1,81 @@
+{
+  "checked_at": "2026-11-07T01:15:52.984903+00:00",
+  "remote_branches": [
+    "  origin/HEAD                        -> origin/main",
+    "  origin/feat/drenthe-hr-internships baf8630 Extend shared HR internship research and collection to Drenthe",
+    "  origin/fix/hr-vacancy-evidence     72e16f8 Require vacancy and application evidence for verified HR opportunities",
+    "  origin/groningen-research          ef81915 Document Groningen merge review, production baseline and pending authorization",
+    "  origin/main                        699d1a4 Document verified Drenthe production collection and deployment"
+  ],
+  "fresh_checkout": "Created under this chat workspace; initially clean at 699d1a4. No existing workspace attachment or checkout under Documents/Codex was present.",
+  "previous_checkout": "Documents/ChatGPT/Internship/eu-hr-internships (read-only inspection)",
+  "previous_checkout_branch": "feat/flevoland-unverified-opportunities",
+  "previous_checkout_status": [
+    " M collector/applications.py",
+    " M collector/daily.py",
+    " M collector/provinces.py",
+    " M collector/reviewed_html.py",
+    " M collector/verification.py",
+    " M data/catalog.json",
+    " M data/companies.json",
+    " M data/coverage.json",
+    " M data/sources.json",
+    " M scripts/check_province_ui.py",
+    " M scripts/collect_province.py",
+    " M src/app.js",
+    " M src/employers.html",
+    " M src/index.html",
+    " M src/logic.js",
+    " M src/province.js",
+    " M src/style.css",
+    " M tests/frontend.test.js",
+    " M tests/test_friesland.py",
+    "?? data/flevoland-coverage.json",
+    "?? data/flevoland-employers.json",
+    "?? data/flevoland-geography.json",
+    "?? data/flevoland-opportunities.json",
+    "?? data/flevoland-source-overrides.json",
+    "?? docs/autonomia-raccolta.md",
+    "?? docs/flevoland-baseline.json",
+    "?? docs/flevoland-research-employers.json",
+    "?? docs/flevoland-research-vacancies.json",
+    "?? docs/groningen-incarico.md",
+    "?? scripts/check_unverified_ui.py",
+    "?? scripts/integrate_flevoland.py",
+    "?? src/flevoland.html",
+    "?? tests/test_flevoland.py",
+    "?? tests/test_flevoland_applications.py"
+  ],
+  "previous_checkout_branches": [
+    "  feat/drenthe-hr-internships                699d1a4 [origin/feat/drenthe-hr-internships: ahead 3] Document verified Drenthe production collection and deployment",
+    "* feat/flevoland-unverified-opportunities    699d1a4 [origin/main] Document verified Drenthe production collection and deployment",
+    "  fix/hr-vacancy-evidence                    72e16f8 [origin/fix/hr-vacancy-evidence] Require vacancy and application evidence for verified HR opportunities",
+    "  groningen-production-verification          1579e4f [origin/main: behind 7] Document verified Groningen production collection and deployment",
+    "  groningen-research                         ef81915 [origin/groningen-research] Document Groningen merge review, production baseline and pending authorization",
+    "  main                                       7a338fa [origin/main: ahead 2, behind 14] Use current official careers board for Global-Tickets location evidence",
+    "  pre-github-publication                     cd96b61 Record verified public publication and remaining activation gates",
+    "  remotes/origin/HEAD                        -> origin/main",
+    "  remotes/origin/feat/drenthe-hr-internships baf8630 Extend shared HR internship research and collection to Drenthe",
+    "  remotes/origin/fix/hr-vacancy-evidence     72e16f8 Require vacancy and application evidence for verified HR opportunities",
+    "  remotes/origin/groningen-research          ef81915 Document Groningen merge review, production baseline and pending authorization",
+    "  remotes/origin/main                        699d1a4 Document verified Drenthe production collection and deployment"
+  ],
+  "previous_work_policy": "Uncommitted Flevoland/UI/collector work and local-only branches inspected read-only and left untouched. They are not imported into this Drenthe follow-up.",
+  "prior_prs": [
+    "https://github.com/nightlydeveloper8/eu-hr-internships/pull/2",
+    "https://github.com/nightlydeveloper8/eu-hr-internships/pull/3",
+    "https://github.com/nightlydeveloper8/eu-hr-internships/pull/4"
+  ],
+  "completed_work_not_repeated": [
+    "CBS 12-municipality / 227-settlement frame import",
+    "initial Drenthe employer import and PR #4 merge",
+    "production collection and deployment verification documented on main 699d1a4"
+  ],
+  "reviewed_reports": [
+    "docs/drenthe-mappatura.md",
+    "docs/drenthe-remote-verification.json",
+    "docs/drenthe-collection-audit.json",
+    "docs/drenthe-integrity-verification.json",
+    "docs/drenthe-baseline.json"
+  ]
+}

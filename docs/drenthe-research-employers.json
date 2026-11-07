@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "checked_on": "2026-11-06",
-  "scope": "Initial employer-first research across all twelve Drenthe municipalities; not exhaustive. Sources read through web on the stated date, collector outcomes recorded separately.",
+  "scope": "Initial 6 November research plus 7 November follow-up in under-covered municipalities; not exhaustive. Per-row dates retained. Collector outcomes recorded separately.",
   "size_policy": "Only reviewed primary employer sources qualify. Employer/group headcounts are not site headcounts; unknown remains unknown; historical dates explicit.",
   "employers": [
     {
@@ -684,6 +684,104 @@
       "notes": [
         "Research query can return positions outside Meppel; final vacancy location must be explicit. Separate dealer Rinsma Scania is already registered; no parent/dealer merger inferred."
       ]
+    },
+    {
+      "name": "Groningen Airport Eelde",
+      "website_url": "https://www.groningenairport.nl/",
+      "career_url": "https://www.groningenairport.nl/werken-op/vacatures",
+      "municipality": "Tynaarlo",
+      "locality": "Eelde",
+      "presence_source_url": "https://www.groningenairport.nl/en/careers",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 80,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official careers page describes about 80 employees at Groningen Airport Eelde; excludes other campus employers.",
+        "scope": "employer",
+        "source_url": "https://www.groningenairport.nl/en/careers",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": null,
+      "checked_on": "2026-11-07",
+      "notes": [
+        "Follow-up research lot; no current HR internship inferred from employer presence."
+      ]
+    },
+    {
+      "name": "EMCO-groep",
+      "website_url": "https://emco-groep.nl/",
+      "career_url": "https://emco-groep.nl/werkenbij",
+      "municipality": "Emmen",
+      "locality": "Emmen",
+      "presence_source_url": "https://emco-groep.nl/contact",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official organisation page describes more than 1500 employees across the employer; not the headcount of either local establishment.",
+        "scope": "employer",
+        "source_url": "https://emco-groep.nl/over-emco-groep",
+        "source_date": null,
+        "employees_min": 1500
+      },
+      "employer_type": "public",
+      "group_name": null,
+      "checked_on": "2026-11-07",
+      "notes": [
+        "Follow-up research lot; no current HR internship inferred from employer presence."
+      ],
+      "additional_locations": [
+        {
+          "municipality": "Coevorden",
+          "locality": "Coevorden",
+          "presence_source_url": "https://emco-groep.nl/contact"
+        }
+      ]
+    },
+    {
+      "name": "ZZWD Zorgcollectief",
+      "website_url": "https://www.zzwd.nl/",
+      "career_url": "https://www.zzwd.nl/vacatures/",
+      "municipality": "Westerveld",
+      "locality": "Dwingeloo",
+      "presence_source_url": "https://www.zzwd.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 400,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official organisation page describes approximately 400 employees, separately from approximately 400 volunteers. Employer total across villages, not per-location headcount.",
+        "scope": "employer",
+        "source_url": "https://www.zzwd.nl/over-zzwd/",
+        "source_date": null
+      },
+      "employer_type": "nonprofit",
+      "group_name": null,
+      "checked_on": "2026-11-07",
+      "notes": [
+        "Follow-up research lot; no current HR internship inferred from employer presence."
+      ],
+      "additional_locations": [
+        {
+          "municipality": "Westerveld",
+          "locality": "Havelte",
+          "presence_source_url": "https://www.zzwd.nl/"
+        },
+        {
+          "municipality": "Westerveld",
+          "locality": "Diever",
+          "presence_source_url": "https://www.zzwd.nl/"
+        },
+        {
+          "municipality": "De Wolden",
+          "locality": "Ruinen",
+          "presence_source_url": "https://www.zzwd.nl/"
+        },
+        {
+          "municipality": "De Wolden",
+          "locality": "Koekange",
+          "presence_source_url": "https://www.zzwd.nl/"
+        }
+      ]
     }
-  ]
+  ],
+  "followup_checked_on": "2026-11-07"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T20:25:56.285208+00:00",
+  "generated_at": "2026-11-07T01:14:15.382877+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -9,27 +9,27 @@
   "size_counting": "Documented employer/group qualification; group headcount is never assigned to a local establishment. Unknown size stays separate.",
   "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
   "summary": {
-    "employers": 31,
-    "qualified_employers": 14,
-    "distinct_groups": 31,
-    "qualified_groups": 14,
+    "employers": 34,
+    "qualified_employers": 17,
+    "distinct_groups": 34,
+    "qualified_groups": 17,
     "size_unknown": 17,
     "below_threshold": 0,
     "municipalities": 12,
-    "municipalities_with_qualified_employers": 8,
-    "configured": 31,
-    "attempted_recently": 31,
+    "municipalities_with_qualified_employers": 12,
+    "configured": 34,
+    "attempted_recently": 34,
     "collection_states": {
+      "partial": 22,
       "discovery-incomplete": 4,
-      "partial": 20,
       "blocked-or-failed": 5,
-      "collected": 2
+      "collected": 3
     },
     "qualified_collection_states": {
+      "partial": 11,
       "discovery-incomplete": 3,
-      "partial": 9,
       "blocked-or-failed": 1,
-      "collected": 1
+      "collected": 2
     },
     "verified_hr_internships": 2,
     "verified_hr_internships_qualified_employers": 1
@@ -108,17 +108,18 @@
       "code": "GM0109",
       "name": "Coevorden",
       "settlements": 25,
-      "employers": 3,
-      "qualified_employers": 1,
+      "employers": 4,
+      "qualified_employers": 2,
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1,
+        "partial": 2,
         "blocked-or-failed": 1,
-        "partial": 1
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "center-parcs",
+        "emco-groep",
         "forbo-novilon",
         "gemeente-coevorden"
       ]
@@ -129,15 +130,16 @@
       "code": "GM1690",
       "name": "De Wolden",
       "settlements": 13,
-      "employers": 1,
-      "qualified_employers": 0,
+      "employers": 2,
+      "qualified_employers": 1,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 1
+        "partial": 2
       },
       "company_ids": [
-        "samenwerkingsorganisatie-de-wolden-hoogeveen"
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "zzwd-zorgcollectief"
       ]
     },
     {
@@ -146,14 +148,16 @@
       "code": "GM0114",
       "name": "Emmen",
       "settlements": 16,
-      "employers": 1,
-      "qualified_employers": 0,
+      "employers": 2,
+      "qualified_employers": 1,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "blocked-or-failed": 1
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1
       },
       "company_ids": [
+        "emco-groep",
         "gemeente-emmen"
       ]
     },
@@ -239,15 +243,17 @@
       "code": "GM1730",
       "name": "Tynaarlo",
       "settlements": 18,
-      "employers": 1,
-      "qualified_employers": 0,
+      "employers": 2,
+      "qualified_employers": 1,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1
+        "discovery-incomplete": 1,
+        "collected": 1
       },
       "company_ids": [
-        "gemeente-tynaarlo"
+        "gemeente-tynaarlo",
+        "groningen-airport-eelde"
       ]
     },
     {
@@ -256,18 +262,19 @@
       "code": "GM1701",
       "name": "Westerveld",
       "settlements": 26,
-      "employers": 3,
-      "qualified_employers": 0,
+      "employers": 4,
+      "qualified_employers": 1,
       "size_unknown": 3,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2,
+        "partial": 3,
         "blocked-or-failed": 1
       },
       "company_ids": [
         "astron",
         "bats-uitzendburo",
-        "gemeente-westerveld"
+        "gemeente-westerveld",
+        "zzwd-zorgcollectief"
       ]
     }
   ],
@@ -302,15 +309,15 @@
       "source_ids": [
         "auto-center-parcs"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:30.708929+00:00",
-      "public_job_records": 0,
+      "last_attempt_at": "2026-11-07T01:11:51.137187+00:00",
+      "public_job_records": 31,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-center-parcs",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
         }
       ]
     },
@@ -346,7 +353,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.706126+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -389,7 +396,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.069496+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -431,7 +438,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:40.785442+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 8,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -474,7 +481,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:39.888911+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -516,7 +523,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:41.302153+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -558,7 +565,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:34.178304+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -611,7 +618,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:27.587048+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -648,7 +655,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:34.178304+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -685,7 +692,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.069496+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 61,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -722,7 +729,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.721260+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 66,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -759,7 +766,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.706126+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -801,13 +808,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:32.261492+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 59,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-gemeente-westerveld",
-          "message": "[{'url': 'https://werkenbijwesterveld.nl', 'error': '<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1011)>'}]"
+          "message": "[{'url': 'https://werkenbijwesterveld.nl', 'error': '<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1129)>'}]"
         }
       ]
     },
@@ -843,7 +850,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:40.692955+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -880,7 +887,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.706126+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 62,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -917,7 +924,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:34.178304+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -959,7 +966,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:41.302153+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -997,7 +1004,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:40.692955+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 13,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1034,7 +1041,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:26.484167+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1071,7 +1078,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:40.785442+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 19,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1113,7 +1120,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:32.261492+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 65,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1150,7 +1157,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.706126+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 27,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1203,7 +1210,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:32.954583+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1245,7 +1252,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:32.954583+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 22,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1282,13 +1289,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:34.178304+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-forbo-novilon",
-          "message": "[{'url': 'https://www.timing.nl/mooie-bedrijven/forbo-flooring-vacatures', 'error': 'robots.txt unavailable: 403'}]"
+          "message": "[{'url': 'https://www.timing.nl/mooie-bedrijven/forbo-flooring-vacatures', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/vacatureoverzicht/operational-excellence-program-manager/jloht5?c=NL', 'error': '<urlopen error timed out>'}]"
         }
       ]
     },
@@ -1324,13 +1331,13 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:32.954825+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-paas-b-v",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "Public source access blocked; no inventory established; no bypass attempted"
         }
       ]
     },
@@ -1366,7 +1373,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:30.708929+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [
         "0d026302ba6f8aedd558"
@@ -1405,7 +1412,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:40.785442+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1447,7 +1454,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.721260+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 8,
       "verified_hr_internship_ids": [
         "95dca55a4e83f8016444"
@@ -1486,13 +1493,13 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:34.178304+00:00",
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-bats-uitzendburo",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "Public source access blocked; no inventory established; no bypass attempted"
         }
       ]
     },
@@ -1529,13 +1536,191 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-06T20:15:33.721260+00:00",
+      "last_attempt_at": "2026-11-07T01:13:26.466944+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-scania",
           "message": "[{'url': 'https://jobs.scania.com/job/Meppel-Stage-Human-Resource-Management-7944HT/1454163033', 'error': 'Vacancy verification: robots.txt disallows https://jobs.scania.com/talentcommunity/apply/1454163033?locale=nl_NL'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "groningen-airport-eelde",
+      "name": "Groningen Airport Eelde",
+      "group_name": null,
+      "career_url": "https://www.groningenairport.nl/werken-op/vacatures",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 80,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official careers page describes about 80 employees at Groningen Airport Eelde; excludes other campus employers.",
+        "scope": "employer",
+        "source_url": "https://www.groningenairport.nl/en/careers",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Eelde",
+          "municipality": "Tynaarlo",
+          "municipality_code": "GM1730",
+          "settlement_code": "WP2909",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.groningenairport.nl/en/careers",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-groningen-airport-eelde"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "emco-groep",
+      "name": "EMCO-groep",
+      "group_name": null,
+      "career_url": "https://emco-groep.nl/werkenbij",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official organisation page describes more than 1500 employees across the employer; not the headcount of either local establishment.",
+        "scope": "employer",
+        "source_url": "https://emco-groep.nl/over-emco-groep",
+        "source_date": null,
+        "employees_min": 1500
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Emmen",
+          "municipality": "Emmen",
+          "municipality_code": "GM0114",
+          "settlement_code": "WP1988",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://emco-groep.nl/contact",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Coevorden",
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": "WP2147",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://emco-groep.nl/contact",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-emco-groep"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-emco-groep",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "zzwd-zorgcollectief",
+      "name": "ZZWD Zorgcollectief",
+      "group_name": null,
+      "career_url": "https://www.zzwd.nl/vacatures/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 400,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official organisation page describes approximately 400 employees, separately from approximately 400 volunteers. Employer total across villages, not per-location headcount.",
+        "scope": "employer",
+        "source_url": "https://www.zzwd.nl/over-zzwd/",
+        "source_date": null
+      },
+      "employer_type": "nonprofit",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Dwingeloo",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3110",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Havelte",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3113",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Diever",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3107",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Ruinen",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "settlement_code": "WP3169",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Koekange",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "settlement_code": "WP3167",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-zzwd-zorgcollectief"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-07T01:08:37.076401+00:00",
+      "public_job_records": 6,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-zzwd-zorgcollectief",
+          "message": "[{'url': 'https://www.zzwd.nl/wp-content/uploads/2026/10/00.1-Verzorgende-IG-nachtzorg-1.pdf', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://www.zzwd.nl/wp-content/uploads/2026/10/00.1-Verzorgende-IG-nachtzorg-1.pdf\", waiting until '}]"
         }
       ]
     }

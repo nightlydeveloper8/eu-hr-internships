@@ -61,3 +61,63 @@ class DrentheSourceTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Access challenge'):
                 Crawler(source,Client({url:body})).visit(url)
         render.assert_not_called()
+
+    def test_empty_inventory_needs_reviewed_live_message_and_heading(self):
+        url='https://example.org/jobs'
+        source=dict(id='airport',employer='Airport',allowed_hosts=['example.org'],index_urls=[url],
+            job_url_pattern=r'/jobs/\d+',report_index_scope=True,inventory_scope_complete=True,
+            reviewed_empty_index=dict(heading='Vacatures',pattern=r'Er zijn geen vacatures gevonden\.'))
+        page='<main><h1>Vacatures</h1>Er zijn geen vacatures gevonden.</main>'
+        result=index_records(source,Client({url:page}))
+        self.assertEqual(len(result),0)
+        self.assertTrue(result.stats['complete'])
+        self.assertFalse(result.stats['closure_complete'])
+        self.assertEqual(result.stats['declared_job_count'],0)
+        for invalid in [page.replace('Vacatures','Page unavailable'),page.replace('Er zijn geen vacatures gevonden.','Loading...'),
+                        page+'<a href="/jobs/123">HR stage</a>']:
+            with self.assertRaises(ValueError):index_records(source,Client({url:invalid}))
+        # A generic empty list still fails; the marker is an individually reviewed opt-in.
+        with self.assertRaises(ValueError):index_records(dict(source,reviewed_empty_index=None),Client({url:page}))
+        with self.assertRaises(ValueError):index_records(dict(source,index_job_count_pattern=r'(\d+) results'),Client({url:page+' 1 results'}))
+
+    def test_cegid_post_allowance_is_only_for_observed_public_inventory(self):
+        import json
+        from collector.rendering import cegid_inventory_search
+        page='https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57781'
+        url='https://api.digitalrecruiters.com/public/v1/careers-site/job-ads?domainName=jobs.workatcenterparcs.com&limit=20&page=1&locale=nl_BE'
+        data={'filters':{'customFieldMcqChoice':['57781']},'coordinates':{'lat':0,'lng':0}}
+        self.assertTrue(cegid_inventory_search(url,json.dumps(data),page))
+        for target in [url.replace('job-ads?','map-pins?'),url.replace('job-ads?','applications?'),
+                       url.replace('api.digitalrecruiters.com/','evil.example/'),url.replace('limit=20','limit=10000'),
+                       url.replace('page=1','page=0'),url+'&page=2',url.replace('domainName=jobs.workatcenterparcs.com','domainName=other.example')]:
+            self.assertFalse(cegid_inventory_search(target,json.dumps(data),page))
+        for payload in ['invalid','null','[]',json.dumps(dict(data,email='candidate@example.org')),
+                        json.dumps(dict(data,filters={'candidate':['57781']})),
+                        json.dumps(dict(data,filters={'customFieldMcqChoice':['apply']})),
+                        json.dumps(dict(data,filters={'customFieldMcqChoice':['57783']})),
+                        json.dumps(dict(data,coordinates={'lat':1000,'lng':0}))]:
+            self.assertFalse(cegid_inventory_search(url,payload,page))
+
+    def test_cegid_inventory_counts_scopes_and_rejects_external_or_duplicate_jobs(self):
+        from collector.cegid import inventory_records,index_records as cegid_records
+        url='https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57781'
+        source=dict(id='center',employer='Center Parcs',allowed_hosts=['jobs.workatcenterparcs.com'],
+                    index_urls=[url],discovery_scope='Reviewed park query')
+        item=dict(job_ad_id=123,title='Stage HR',location='Dalen',contract='Stage',url='123-stage-hr-dalen',
+                  career_domain='jobs.workatcenterparcs.com',is_external=False,is_aggregated=False)
+        data=dict(count=1,items=[item])
+        rows,scope=inventory_records(data,source,url)
+        self.assertTrue(scope['complete']);self.assertEqual(rows[0]['city'],'Dalen')
+        self.assertEqual(rows[0]['url'],'https://jobs.workatcenterparcs.com/nl/annonce/123-stage-hr-dalen')
+        self.assertFalse(inventory_records(dict(data,count=2),source,url)[1]['complete'])
+        self.assertTrue(inventory_records(dict(count=0,items=[]),source,url)[1]['complete'])
+        for invalid in [dict(data,count=0),dict(data,count='1'),dict(data,items=[item,item]),
+                        dict(data,items=[dict(item,is_external=True)]),dict(data,items=[dict(item,url='999-other-job')]),
+                        dict(data,items=[dict(item,career_domain='evil.example')])]:
+            with self.assertRaises(ValueError):inventory_records(invalid,source,url)
+        with self.assertRaises(ValueError):inventory_records(data,source,url.replace('57781','57765'))
+        def capture(*args,**kwargs):kwargs['cegid_responses'].append(dict(data,count=2));return [],True
+        with patch('collector.rendering.render_pages',side_effect=capture):
+            result=cegid_records(source,Client({}))
+        self.assertFalse(result.stats['complete']);self.assertFalse(result.stats['closure_complete'])
+        self.assertEqual(result.stats['status'],'partial')

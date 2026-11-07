@@ -1,0 +1,72 @@
+{
+  "checked_at": "2026-11-07T01:16:19.372923+00:00",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests"
+      ],
+      "exit_code": 0,
+      "output_sha256": "97e2e8b02375f8132969223072704879883964d9bb125b1aee2190bc1196d22f",
+      "output_tail": "........Vacancy https://example.org/jobs/1 incomplete: 'https://example.org/jobs/1'\n....Vacancy https://example.org/jobs/1 incomplete: 'https://example.org/jobs/1'\n..................robots.txt has invalid HTML lines: https://x; parsing valid directives\n.................................Vacancy https://example.org/jobs/12345 incomplete: Current page does not identify the same vacancy\n.Vacancy https://example.org/jobs/1 incomplete: Current page does not identify the same vacancy\nVacancy https://example.org/jobs/2 incomplete: Current page does not identify the same vacancy\n...............robots.txt has invalid HTML lines: https://x; parsing valid directives\n...............................................greenhouse-adyen failed; previous data retained: network unavailable\n.............Vacancy https://example.org/jobs/1 blocked: robots.txt disallows application\n.Vacancy https://example.org/jobs/1 incomplete: Current page does not identify the same vacancy\n..........................Vacancy https://example.org/jobs/123 blocked: robots.txt disallows job\nVacancy https://example.org/jobs/123 incomplete: No available vacancy-specific application entry established\nVacancy https://example.org/jobs/123 closed: Official application page says the posting is closed\n.........\n----------------------------------------------------------------------\nRan 175 tests in 2.101s\n\nOK\n"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/frontend.test.js"
+      ],
+      "exit_code": 0,
+      "output_sha256": "a44e51832093ba4da217b1b02585684a4ef4e88b0da8fab6a9658fe25e3fc4d9",
+      "output_tail": "✔ all independent filters compose (1.14325ms)\n✔ English ad alone never matches English workplace filter (0.049ms)\n✔ closed always hidden and unverified optional (0.047167ms)\n✔ saved jobs filter uses local IDs (0.043417ms)\n✔ Netherlands priority is independent from country filtering (0.24075ms)\n✔ keyword relevance ranks title matches (0.049292ms)\n✔ accent-insensitive keyword search (0.199042ms)\n✔ all multi-country locations match independently (0.046541ms)\n✔ unknown dates sort after known recency (0.047125ms)\n✔ stale and malformed timestamps warn (0.074291ms)\n✔ unsafe link protocols rejected (0.061584ms)\n✔ regional filters require an explicitly mapped region (0.054916ms)\n✔ unknown language requirements remain discoverable (0.048458ms)\n✔ preferred English does not prove work support; alternatives are explicit choices (0.062666ms)\n✔ legacy, future and stale verification never appears as verified (0.043375ms)\nℹ tests 15\nℹ suites 0\nℹ pass 15\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 43.990917\n"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/evaluate.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "d33db881986e8290ae1bfc357cc1aaf97ab5244470cf8cc62bff5914b704d261",
+      "output_tail": "{\n  \"examples\": 64,\n  \"true_positives\": 37,\n  \"true_negatives\": 27,\n  \"false_positives\": 0,\n  \"false_negatives\": 0,\n  \"errors\": [],\n  \"limitation\": \"Small manually labelled regression set; these scores are not estimates of accuracy on all European jobs.\"\n}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "collector.pipeline",
+        "--validate"
+      ],
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/build.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "c0bdb257b50fcac6e22a39dc09fceb7ea696907b6ad7aa7494ab488cf58ecbf2",
+      "output_tail": "Built dist/ — static files, no runtime services required\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    }
+  ],
+  "python_tests": 175,
+  "frontend_tests": 15,
+  "role_examples": 64,
+  "language_examples": 16,
+  "network_note": "Live source attempts and preservation checks in drenthe-followup-audit.json; no production deployment or merge tested/performed."
+}
