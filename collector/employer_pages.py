@@ -66,7 +66,7 @@ def walk_json(value):
         for k in ('@graph','mainEntity','itemListElement','item'):
             if k in value:yield from walk_json(value[k])
 
-def page_record(record,source,client,clock=None):
+def page_record(record,source,client,clock=None,defer_expiry=False):
     body,_,final=client.request(approved(record['url'],source));approved(final,source)
     parser=PageParser();parser.feed(body.decode('utf-8','replace'))
     data=next((j for script in parser.scripts for j in walk_json(script)),None)
@@ -117,7 +117,7 @@ def page_record(record,source,client,clock=None):
         if expires:
             from .verification import expired
             from .applications import ApplicationClosed
-            if expired(expires,stamp.isoformat()):raise ApplicationClosed('Posting has expired')
+            if not defer_expiry and expired(expires,stamp.isoformat()):raise ApplicationClosed('Posting has expired')
         loc=data.get('jobLocation',[]);loc=loc if isinstance(loc,list) else [loc]
         addresses=[l.get('address',{}) for l in loc if isinstance(l,dict)]
         countries=[];cities=[]

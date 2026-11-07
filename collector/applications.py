@@ -45,7 +45,12 @@ def checked_document(url, source, client):
     if urlsplit(final).hostname not in source['allowed_hosts']:
         raise ValueError('Unreviewed application redirect')
     doc = Document(body, final)
-    ensure_open_document(doc)
+    try:ensure_open_document(doc)
+    except ApplicationClosed as exc:
+        # The verifier still needs to identify this document and capture changed
+        # metadata before propagating the same closure decision.
+        exc.document=doc;exc.body=body
+        raise
     return body, doc
 
 

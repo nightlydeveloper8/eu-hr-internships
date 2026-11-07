@@ -49,8 +49,16 @@ class PageCache:
             with gzip.open(self.path(url),'rt',encoding='utf-8') as f:value=json.load(f)
             if value.get('revision',1)!=self.revision:return None
             age=(datetime.now(timezone.utc)-datetime.fromisoformat(value['stored_at'])).total_seconds()/3600
-            if age>max_age_hours or (lastmod and value.get('lastmod')!=lastmod):return None
-            self.hits+=1;return value['record']
+            if age<0 or age>max_age_hours or (lastmod and value.get('lastmod')!=lastmod):return None
+            record=value['record']
+            # A cache hit is not a new observation of the vacancy. Legacy
+            # entries have stored_at as their only available evidence time.
+            for row in [record]+record.get('records',[]):
+                original=row.get('_text_observation',{})
+                row['_text_observation']=dict(kind='cache',
+                    checked_at=original.get('checked_at',value['stored_at']),
+                    origin=original.get('origin',original.get('kind','unknown')))
+            self.hits+=1;return record
         except (OSError,ValueError,KeyError,TypeError):return None
     def put(self,url,record,lastmod=None):
         path=self.path(url);tmp=path.with_suffix('.tmp')
