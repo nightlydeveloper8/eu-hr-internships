@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts} from '../src/logic.js';
+import { completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
@@ -44,7 +44,7 @@ test('legacy, future and stale verification never appears as verified',()=>{
 
 test('opportunity counts separate archived, verified and opportunity types',()=>{
  const clock=Date.now();const jobs=[base,{...base,id:'2',status:'unverified'}, {...base,id:'3',status:'closed'}, {...base,id:'4',status:'unverified',internship_type:'working-student'}, {...base,id:'5',internship_type:'traineeship'}];
- assert.deepEqual(opportunityCounts(jobs,clock),{total:4,verified:2,unverified:2,closed:1,internships:2,workingStudents:1,traineeships:1});
+ assert.deepEqual(opportunityCounts(jobs,clock),{total:4,verified:2,unverified:2,verifiedInternships:1,verifiedWorkingStudents:0,verifiedTraineeships:1,closed:1,internships:2,workingStudents:1,traineeships:1});
  const selected=jobs.filter(j=>matches(j,{...f,unverified:true,country:'NL',type:'internship'}));
  assert.deepEqual(selected.map(j=>j.id),['1','2']);
  assert.equal(opportunityCounts(jobs,clock+49*60*60*1000).verified,0);
@@ -57,4 +57,32 @@ test('verification explanations are useful without exposing parser errors',()=>{
  assert.match(text,/may still be open/);assert.doesNotMatch(text,/TypeError|NoneType|sequence/);
  assert.match(verificationMessage({...base,last_verified_at:'2020-01-01T00:00:00Z'}),/more than 48 hours/);
  assert.match(verificationMessage(base),/confirmed within/);
+});
+
+test('English advertisement alone proves neither workplace English nor sufficiency',()=>{
+ const job={...base,advertisement_language:{code:'en',confidence:'confirmed'},workplace_languages:[],language_requirements:undefined};
+ assert.equal(languageInfo(job).english_support,'unknown');
+ assert.equal(languageInfo(job).english_sufficiency,'unknown');
+ assert.equal(matches(job,{...f,english:true}),false);
+ assert.equal(matches(job,{...f,englishOnly:true}),false);
+ assert.ok(matches(job,f));
+});
+test('complete recent employer inventories differ from configured collection',()=>{
+ const clock=Date.parse('2026-11-07T12:00:00Z');
+ const company={source_ids:['board']},sources=[{id:'board',enabled:true}];
+ const report={id:'board',status:'ok',complete:true,checked_at:'2026-11-07T10:00:00Z'};
+ assert.ok(completeRecentInventory(company,sources,[report],clock));
+ for(const change of [{status:'partial'},{complete:false},{checked_at:'2026-11-01T10:00:00Z'},{checked_at:'2026-11-08T10:00:00Z'}]){
+  assert.equal(completeRecentInventory(company,sources,[{...report,...change}],clock),false);
+ }
+ assert.equal(completeRecentInventory(company,sources,[],clock),false);
+ assert.equal(completeRecentInventory(company,[{id:'board',enabled:false}],[report],clock),false);
+});
+
+test('verified internship and working-student KPI subsets exclude stale and unverified roles',()=>{
+ const clock=Date.now(), working={...base,id:'ws',internship_type:'working-student'};
+ const jobs=[base,working,{...working,id:'unknown',status:'unverified'},{...working,id:'stale',last_verified_at:'2020-01-01T00:00:00Z'}];
+ const counts=opportunityCounts(jobs,clock);
+ assert.equal(counts.verifiedInternships,1);assert.equal(counts.verifiedWorkingStudents,1);
+ assert.equal(counts.unverified,2);assert.equal(counts.workingStudents,3);
 });

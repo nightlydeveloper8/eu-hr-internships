@@ -165,6 +165,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
     LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
     report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
     try:
+        ownership_source=source
         records=collect(source,client)
         inventory_stats=getattr(records,'stats',{})
         source=dict(source,allowed_hosts=sorted(set(source['allowed_hosts'])|set(inventory_stats.get('allowed_hosts',[]))))
@@ -178,6 +179,9 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
         for record in records:
+            if source['adapter']=='universal-employer':
+                from .ownership import owned_record
+                if not owned_record(record,ownership_source):continue
             # Inventory hints and URL slugs are not job titles. Read structured
             # pages before filtering, including opaque IDs and untranslated URLs.
             if record.get('needs_page'):
@@ -257,7 +261,9 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     partial_sources={r['id'] for r in reports if r['status']=='partial'}
     closure_eligible={sid for p in parts for sid in p['closure_eligible']}
     report_by_id={r['id']:r for r in prior_report.get('sources',[])}
-    jobs=deduplicate(apply_listing_reviews(reconcile(prior['jobs'],current,closure_eligible,stamp),read(ROOT/'data/listing-reviews.json',[])))
+    from .ownership import apply_ownership_reviews
+    reviewed=apply_ownership_reviews(reconcile(prior['jobs'],current,closure_eligible,stamp),read(ROOT/'data/ownership-reviews.json',[]))
+    jobs=deduplicate(apply_listing_reviews(reviewed,read(ROOT/'data/listing-reviews.json',[])))
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     for job in jobs:
         if canonical_url(job['url']) in explicitly_closed:

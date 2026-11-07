@@ -13,6 +13,7 @@ from urllib.parse import urlsplit,urljoin,parse_qs
 from .classify import canonical_url,plain,fold,classify_role,country_codes
 from .employer_pages import PageParser,walk_json
 from .runtime import CollectionBudgetExceeded,PageCache
+from .ownership import employer_matches,owned_record
 
 CAREER=re.compile(r'career|karriere|werken.?bij|working.?at|work.?with.?us|join.?us|recrut|rejoignez|emploi|jobs|vacatur|lavora.?con|lavora.?in|lavoro|trabaja|trabajar|carriere|stellen|opportunit|oferty.?pracy|kariera|vacantes|candidatur',re.I)
 JOBPATH=re.compile(r'/(?:jobs?|vacatures?|vacancy|positions?|postings?|offres?|stellenangebote|stellen|annunci|o)/[^/?#]+|[?&](?:jobid|job_id|vacancyid|positionid)=',re.I)
@@ -89,15 +90,19 @@ def job_from_json(data,url,source):
     hiring=data.get('hiringOrganization',{});name=hiring.get('name') if isinstance(hiring,dict) else None
     job_url=safe_url(urljoin(url,data.get('url') or url))
     if not job_url:return None
+    if name and not employer_matches(plain(name),source):return None
+    if not name and (source.get('require_employer_identity') or urlsplit(job_url).hostname not in source['allowed_hosts']):return None
     employment=data.get('employmentType','');employment=' '.join(str(x) for x in employment) if isinstance(employment,list) else str(employment or '')
     record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=None,published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting',valid_through=data.get('validThrough'))
     identifier=data.get('identifier')
     if isinstance(identifier,dict):identifier=identifier.get('value')
     if isinstance(identifier,(str,int)) and str(identifier).strip():record['posting_identifier']=str(identifier).strip()
+    if name:record['employer_identity_evidence']='jobposting-hiring-organization'
     if declared:record['countries']=sorted(set(countries))
     return record
 
 def job_from_visible(doc,source,is_job=False):
+    if source.get('require_employer_identity') or urlsplit(doc.url).hostname not in source['allowed_hosts']:return None
     if re.search(r'/(?:blogs?|news|stories|events|insights|articles?)(?:/|$)',urlsplit(doc.url).path,re.I):return None
     title=next((h for h in doc.h1 if classify_role(h)),None)
     if not title and is_job and len(doc.h1)==1 and len(doc.text)>200:title=doc.h1[0]
@@ -120,17 +125,21 @@ class Inventory(list):
 
 class Crawler:
     def __init__(self,source,client):
-        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=3);self.state=self.cache.state();self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set()
+        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=4 if source.get('ownership_scope')=='reviewed-hosts' else 3);self.state=self.cache.state();
+        if source.get('ownership_scope')=='reviewed-hosts' and self.state.get('ownership_policy_version')!=1:self.state={}
+        self.state['ownership_policy_version']=1
+        self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set()
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
         host=urlsplit(value).hostname
         if host in VENDOR_HOSTS:return False
+        if self.source.get('ownership_scope')=='reviewed-hosts' and host not in self.source['allowed_hosts']:return False
         if host in self.allowed:return True
         if observed and provider_host(host):self.allowed.add(host);return True
         return False
     def add_record(self,r):
-        if not r:return
+        if not r or not owned_record(r,self.source):return
         # URL was explicitly published in a trusted employer's structured data/feed.
         url=safe_url(r['url'])
         if not url:return
@@ -147,6 +156,8 @@ class Crawler:
         elif host.endswith('.recruitee.com') and host not in ('www.recruitee.com','careers-analytics.recruitee.com'):adapter='recruitee';feed='https://'+host+'/api/offers/'
         elif host in self.custom_recruitee:adapter='recruitee';feed='https://'+host+'/api/offers/'
         if not adapter:return False
+        # A posting/referral link does not establish ownership of an ATS tenant.
+        if host not in self.source['allowed_hosts']:return False
         key=(adapter,board or feed)
         if key in self.completed_feeds:return True
         if key in self.feeds:return False
@@ -247,7 +258,7 @@ class Crawler:
             for href,label,rel in d.links:
                 target=safe_url(urljoin(d.url,href.strip()))
                 if not target:continue
-                if CAREER.search(label) and not re.search(r'facebook|linkedin|instagram|youtube|twitter|tiktok',urlsplit(target).hostname):self.allowed.add(urlsplit(target).hostname)
+                if CAREER.search(label) and self.source.get('ownership_scope')!='reviewed-hosts' and not re.search(r'facebook|linkedin|instagram|youtube|twitter|tiktok',urlsplit(target).hostname):self.allowed.add(urlsplit(target).hostname)
                 if not self.allow(target,observed=True):continue
                 label=plain(label)
                 path=urlsplit(target).path

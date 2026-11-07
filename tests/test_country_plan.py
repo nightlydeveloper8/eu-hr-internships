@@ -40,7 +40,7 @@ class OperationalCountryCoverageTests(unittest.TestCase):
   stamp='2026-11-05T12:00:00+00:00'
   row=country_research_progress([company],sources,plan,[report],stamp)[0]
   self.assertEqual(row['companies_monitored_in_country'],1);self.assertEqual(row['baseline_gap'],99)
-  for change in [dict(status='partial'),dict(checked_at='2026-10-01T10:00:00+00:00'),dict(observed_countries=['DE'])]:
+  for change in [dict(complete=False),dict(checked_at='2026-11-06T10:00:00+00:00'),dict(status='partial'),dict(checked_at='2026-10-01T10:00:00+00:00'),dict(observed_countries=['DE'])]:
    row=country_research_progress([company],sources,plan,[dict(report,**change)],stamp)[0]
    self.assertEqual(row['companies_monitored_in_country'],0)
  def test_configured_without_run_does_not_satisfy_target(self):
