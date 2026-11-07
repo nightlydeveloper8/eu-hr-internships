@@ -1,0 +1,120 @@
+{
+  "commit": "a2a5c920524b48954dc2d1c5c5839f6546b780a6",
+  "checked_at": "2026-11-07T07:02:59.325592+00:00",
+  "sites": [
+    {
+      "site": "production",
+      "url": "https://people-placement-eu.pages.dev/drenthe.html",
+      "summary": "2 verified HR internships · 17 employers with documented size · 17 candidates awaiting size checks · 34/34 employer sites with a collection attempt within 48 hours. Updated 07/11/2026, 08:01:43.",
+      "summary_data": {
+        "employers": 34,
+        "qualified_employers": 17,
+        "distinct_groups": 34,
+        "qualified_groups": 17,
+        "size_unknown": 17,
+        "below_threshold": 0,
+        "municipalities": 12,
+        "municipalities_with_qualified_employers": 12,
+        "configured": 34,
+        "attempted_recently": 34,
+        "collection_states": {
+          "partial": 23,
+          "discovery-incomplete": 3,
+          "blocked-or-failed": 5,
+          "collected": 3
+        },
+        "qualified_collection_states": {
+          "partial": 12,
+          "discovery-incomplete": 2,
+          "blocked-or-failed": 1,
+          "collected": 2
+        },
+        "verified_hr_internships": 2,
+        "verified_hr_internships_qualified_employers": 1
+      },
+      "json_matches_reviewed_commit": true
+    }
+  ],
+  "page_errors": [],
+  "previous_records": 267,
+  "current_records": 305,
+  "missing_ids": [],
+  "drenthe_summary": {
+    "employers": 34,
+    "qualified_employers": 17,
+    "distinct_groups": 34,
+    "qualified_groups": 17,
+    "size_unknown": 17,
+    "below_threshold": 0,
+    "municipalities": 12,
+    "municipalities_with_qualified_employers": 12,
+    "configured": 34,
+    "attempted_recently": 34,
+    "collection_states": {
+      "partial": 23,
+      "discovery-incomplete": 3,
+      "blocked-or-failed": 5,
+      "collected": 3
+    },
+    "qualified_collection_states": {
+      "partial": 12,
+      "discovery-incomplete": 2,
+      "blocked-or-failed": 1,
+      "collected": 2
+    },
+    "verified_hr_internships": 2,
+    "verified_hr_internships_qualified_employers": 1
+  },
+  "all_employers_summary": {
+    "verified-empty": 30,
+    "blocked-or-failed": 281,
+    "partial": 635,
+    "discovery-incomplete": 817,
+    "collected": 53,
+    "companies": 1816,
+    "configured": 1816,
+    "attempted": 1816
+  },
+  "merge_commit": "3632f74abec2c96a560edec6078ea8594999b1f1",
+  "pr_url": "https://github.com/nightlydeveloper8/eu-hr-internships/pull/5",
+  "workflow_id": 42348794504,
+  "workflow_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42348794504",
+  "workflow_event": "push",
+  "workflow_all_jobs_successful": 18,
+  "cloudflare_deployment": "079dd871-87f0-455c-a505-11788e982565",
+  "non_success_sources_incorrectly_complete": 0,
+  "official_application_rechecks": [
+    {
+      "employer": "SKK Kozijnwacht",
+      "url": "https://skk.nl/werken-bij-skk/stagiair-hr",
+      "verified": true,
+      "proof": {
+        "url": "https://skk.nl/werken-bij-skk/stagiair-hr",
+        "method": "official-vacancy-email-instructions",
+        "application_email": "personeelszaken@skk.nl",
+        "delivery_verified": false,
+        "valid_through": null,
+        "vacancy_match": "title",
+        "inventory": "not-established"
+      }
+    },
+    {
+      "employer": "Ziengs Schoenen",
+      "url": "https://www.werkenbijziengs.nl/vacatures/hr-stagiaire-scapino-ziengs",
+      "verified": true,
+      "proof": {
+        "url": "https://www.werkenbijziengs.nl/solliciteren?vacature=4260",
+        "method": "official-formie-same-requisition-form",
+        "valid_through": null,
+        "vacancy_match": "title",
+        "inventory": "not-established"
+      }
+    }
+  ],
+  "limitations": [
+    "Initial research inventory, not an exhaustive employer census.",
+    "17 employer sizes remain unknown; partial/blocked channels remain documented.",
+    "The successful observed remote run was triggered by the authorized merge. The next scheduled start is a separate event, subject to GitHub delays.",
+    "Previous uncommitted Flevoland/UI work was left untouched."
+  ]
+}

@@ -131,3 +131,8 @@ Drenthe mantiene 31 datori, 14 qualificati e 17 dimensioni ignote, tutti con ten
 La [pagina Drenthe in produzione](https://people-placement-eu.pages.dev/drenthe.html) è stata verificata in un browser anonimo su desktop e mobile: due stage, dodici righe comunali, ricerca dei datori e filtro provinciale funzionanti, nessun errore di pagina o overflow mobile. Anche Frisia e Groningen sono disponibili, rispettivamente con uno e due stage verificati secondo la policy corrente. Cinque dataset pubblici corrispondono ai JSON del commit del bot. Timestamp del rapporto Drenthe: `2026-11-06T20:25:56.285208+00:00`, 21:25:56 a Zurigo.
 
 La raccolta quotidiana esistente resta programmata alle 06:17 UTC (07:17 invernale / 08:17 estiva). Il prossimo avvio schedulato è futuro; non viene presentato come già osservato. Restano le lacune dei canali parziali, le candidature non confermate e la qualificazione dimensionale. Prove, hash e controlli: [drenthe-remote-verification.json](drenthe-remote-verification.json).
+
+
+## Aggiornamento in produzione — 7 novembre 2026
+
+Integrata dopo autorizzazione la PR #5: Drenthe pubblica ora 34 datori, 17 qualificati e due stage verificati. Tutti i 12 comuni hanno almeno un datore qualificato nel lotto. Raccolta remota e distribuzione controllate con successo; 3 inventari letti, 23 parziali, 3 discovery incomplete e 5 blocchi/fallimenti. Ricerca non esaustiva. Rapporto e prove: [verifica finale](drenthe-followup.md#pubblicazione-e-verifica-finale--7-novembre-2026) e [audit remoto](drenthe-followup-remote-verification.json).

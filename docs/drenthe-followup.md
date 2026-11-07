@@ -65,3 +65,16 @@ I file degli ultimi due tentativi sono checkpoint locali; i relativi report inte
 ## Attività residue
 
 La ricerca rimane non esaustiva: ampliare ancora i datori e le località, qualificare le 17 dimensioni ignote, completare le letture parziali e verificare un percorso ufficiale di candidatura AFAS senza invii. Per Cegid il sottoinsieme Drenthe è letto, la paginazione nazionale e le candidature restano incomplete. I blocchi Scania/Bats e i fallimenti comunali restano esiti documentati, non zeri. Nessun nuovo risultato viene pubblicato in produzione da questa fase; eventuali merge e pubblicazione richiedono autorizzazione separata.
+
+
+## Pubblicazione e verifica finale — 7 novembre 2026
+
+La [PR #5](https://github.com/nightlydeveloper8/eu-hr-internships/pull/5) è stata revisionata e integrata dopo autorizzazione esplicita dell'utente nel commit `3632f74abec2c96a560edec6078ea8594999b1f1`. Le indicazioni precedenti sul merge ancora da autorizzare sono storiche. Ripetuti con successo 175 test Python, 15 frontend, classificazione, validazione e build; sito e anteprima verificati su desktop/mobile, insieme ai filtri e alle pagine Frisia/Groningen. Entrambe le candidature ufficiali SKK e Ziengs/Scapino sono state ricontrollate senza invii.
+
+Il [workflow 42348794504](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42348794504), avviato dal merge, è concluso con tutti i 18 job riusciti: test, 16 shard e pubblicazione. Il bot ha pubblicato `a2a5c920524b48954dc2d1c5c5839f6546b780a6`; Cloudflare lo ha distribuito nel deployment `079dd871-87f0-455c-a505-11788e982565`. Tutti i 1.816 datori hanno ricevuto un tentativo; non tutti i siti sono stati letti completamente. Il catalogo passa da 267 a 305 schede archiviate, senza perdere alcun ID precedente: il totale non rappresenta stage aperti verificati.
+
+La [produzione Drenthe](https://people-placement-eu.pages.dev/drenthe.html) è stata verificata alle 08:02 Europe/Zurich: **34 datori, 17 con dimensione documentata, 17 dimensioni ignote, 12 comuni con almeno un datore qualificato e 2 stage HR candidabili verificati**. Tutte le 34 fonti hanno un tentativo recente. Esiti remoti: 3 inventari osservati letti, 23 letture parziali, 3 scoperte incomplete, 5 blocchi/fallimenti. Nessun esito non riuscito è marcato completo. Dati pubblici uguali al rapporto del commit del bot, nessun errore di pagina o overflow mobile; filtri UE e provinciali funzionanti.
+
+La raccolta ordinaria resta sul workflow esistente alle 06:17 UTC (07:17 invernale / 08:17 estiva a Zurigo), soggetta ai ritardi GitHub. Il ciclo osservato qui è quello avviato dal merge; non si dichiara già osservata un'esecuzione futura dello scheduler. NNCZ/AFAS, Scania, Bats e le altre fonti incomplete restano documentati; non vengono aggirate restrizioni e la ricerca non è un censimento esaustivo. Il precedente lavoro locale su Flevoland/interfaccia è rimasto intatto.
+
+Prove complete: [drenthe-followup-remote-verification.json](drenthe-followup-remote-verification.json).
