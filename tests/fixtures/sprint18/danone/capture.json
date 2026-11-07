@@ -1,0 +1,122 @@
+{
+  "company_id": "danone",
+  "stamp": "2026-11-07T22:51:18.720581+00:00",
+  "source": {
+    "id": "employer-danone",
+    "employer": "Danone",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.danone.com",
+    "sitemaps": [
+      "https://careers.danone.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.danone\\.com/en-global/jobs/[^/]+-\\d+-[a-z]{2}-[a-z]{2}\\.html$",
+    "allowed_hosts": [
+      "careers.danone.com"
+    ],
+    "target_countries": [
+      "NL",
+      "FR",
+      "DE",
+      "BE",
+      "ES",
+      "IT",
+      "PL"
+    ],
+    "page_format": "danone",
+    "permission_basis": "Official public employer sitemap and structured page metadata; robots checked every run; only discovery metadata exported",
+    "reviewed_on": "2026-11-05",
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs."
+  },
+  "record": {
+    "id": "78fbaf9deba776b888ea",
+    "external_id": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
+    "source_id": "employer-danone",
+    "source_name": "Danone",
+    "source_type": "employer-sitemap",
+    "source_posting_id": null,
+    "employer": "Danone",
+    "title": "Internship: Campus Recruitment (Dutch Speaker)",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Hoofddorp",
+    "url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
+    "apply_url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
+    "categories": [
+      "talent-acquisition"
+    ],
+    "category": "talent-acquisition",
+    "internship_type": "internship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "en",
+      "confidence": "confirmed",
+      "method": "source metadata"
+    },
+    "workplace_languages": [
+      {
+        "code": "en",
+        "confidence": "confirmed",
+        "requirement": "required-or-working",
+        "evidence": "Fluent in English and Dutch (spoken and written).."
+      },
+      {
+        "code": "nl",
+        "confidence": "confirmed",
+        "requirement": "required-or-working",
+        "evidence": "Fluent in English and Dutch (spoken and written).."
+      }
+    ],
+    "language_confidence": "confirmed",
+    "duration": "6-8 months",
+    "enrollment": "Enrolled as a Bachelor's or Master's student for the entire duration of the internship..",
+    "work_mode": "hybrid",
+    "published_at": "2026-10-30T15:03:00+00:00",
+    "first_discovered_at": "2026-11-05T13:22:38.045387+00:00",
+    "last_seen_at": "2026-11-06T12:58:24.775594+00:00",
+    "last_verified_at": "2026-11-06T12:58:24.775594+00:00",
+    "link_status": "legacy-verification",
+    "status": "unverified",
+    "missing_count": 0,
+    "region_codes": [
+      "NL32"
+    ],
+    "verification": {
+      "state": "incomplete",
+      "reason": "Requires vacancy/application evidence under policy v2",
+      "policy_version": 2,
+      "checked_at": null
+    },
+    "text": "",
+    "location": "Hoofddorp",
+    "posting_identifier": null
+  },
+  "events": [
+    {
+      "url": "https://careers.danone.com/robots.txt",
+      "status": 200,
+      "seconds": 0.219
+    },
+    {
+      "url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
+      "error": "HTTP Error 404: Not Found",
+      "seconds": 1.442
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://careers.danone.com/robots.txt",
+      "final_url": "https://careers.danone.com/robots.txt",
+      "status": 200,
+      "file": "c32a7565cfe929d310fb.html.gz",
+      "sha256": "42a7103b5e045c393edb32f7e48ccbcb84d4787716f6741b145b9e892bc368de"
+    }
+  ],
+  "requests": 2,
+  "bytes_read": 132,
+  "baseline": {
+    "error": "HTTP Error 404: Not Found"
+  }
+}

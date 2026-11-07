@@ -1,0 +1,1865 @@
+{
+  "baseline_commit": "6d97637",
+  "score_is": "heuristic priority, not an estimated success probability",
+  "inputs": [
+    "data/company-coverage.json",
+    "data/employer-collection.json",
+    "data/sources.json",
+    "data/companies.json",
+    "data/catalog.json",
+    "docs/company-integration-queue.json",
+    "docs/company-discovery-queue.json",
+    "docs/company-channel-review.json"
+  ],
+  "coverage_regions": 1409,
+  "discovery_queue_entries": 1409,
+  "channel_reviews": 4,
+  "shortlist": [
+    {
+      "company_id": "kenonz",
+      "name": "Kenonz",
+      "score": 150,
+      "reasons": [
+        "sequence item 2: expected str instance, NoneType found"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-kenonz"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Gorredijk",
+          "municipality": "Opsterland",
+          "municipality_code": "GM0086",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.kenonz.nl/banen/gorredijk/hr-stagiair/2684/45061452928"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 9,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "ef25f5ffa5bd6c4d909d",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 100,
+        "missing_form_evidence": 0,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 1,
+      "batch": true
+    },
+    {
+      "company_id": "daf-trucks",
+      "name": "DAF Trucks",
+      "score": 130,
+      "reasons": [
+        "sequence item 4: expected str instance, NoneType found"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-daf-trucks"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.daf.com/en/working-at-daf",
+      "workplaces": [],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 20,
+      "pending_urls": 2270,
+      "hr_candidates": 2,
+      "unverified": 2,
+      "explicit_languages": [
+        {
+          "id": "0e3a7ab8721c804ff374",
+          "requirements": []
+        },
+        {
+          "id": "506978f5e99721b600a4",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 100,
+        "missing_form_evidence": 0,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 0,
+        "low_observed_page_cost": 0
+      },
+      "rank": 2,
+      "batch": true
+    },
+    {
+      "company_id": "bas-group",
+      "name": "BAS Group",
+      "score": 90,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "employer-bas-group"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://www.werkenbijbas.com/vacatures",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL41",
+          "subregion_code": null,
+          "city": "Veghel",
+          "evidence_url": "https://www.werkenbijbas.com/vacature/33110/meewerkstage-hr-4",
+          "location_confidence": "confirmed",
+          "checked_on": "2026-11-05"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 0,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "3912b033efdb068b0819",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 3,
+      "batch": true
+    },
+    {
+      "company_id": "danone",
+      "name": "Danone",
+      "score": 90,
+      "reasons": [
+        "No available vacancy-specific application entry established",
+        "Requires vacancy/application evidence under policy v2"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "employer-danone"
+      ],
+      "adapters": [
+        "employer-sitemap"
+      ],
+      "career_url": "https://careers.danone.com",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL32",
+          "subregion_code": null,
+          "city": "Hoofddorp",
+          "evidence_url": "https://careers.danone.com/en-global/jobs/internship-campus-recruitment-dutch-speaker-29000-en-us.html",
+          "location_confidence": "confirmed",
+          "checked_on": "2026-11-05"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL35",
+          "city": "Utrecht",
+          "municipality": "Utrecht",
+          "municipality_code": "GM0344",
+          "settlement_code": "WP3295",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://careers.danone.com/benelux/en/jobs/internship-hr-business-partner-intern-28754-en-us.html",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "candidate_countries": [
+        "BE",
+        "DE",
+        "ES",
+        "FR",
+        "IT",
+        "NL",
+        "PL"
+      ],
+      "previous_pages_read": 0,
+      "pending_urls": 0,
+      "hr_candidates": 10,
+      "unverified": 10,
+      "explicit_languages": [
+        {
+          "id": "78fbaf9deba776b888ea",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "evidence": "Fluent in English and Dutch (spoken and written).."
+            },
+            {
+              "code": "nl",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "evidence": "Fluent in English and Dutch (spoken and written).."
+            }
+          ]
+        },
+        {
+          "id": "a75a025145ddcfcc34d5",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Langu age : We need someone who is fluent in English and French, and another language will be highly appreciated."
+            },
+            {
+              "code": "fr",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Langu age : We need someone who is fluent in English and French, and another language will be highly appreciated."
+            }
+          ]
+        },
+        {
+          "id": "b9c63cd2dc3d7956a558",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Fluent in English (written and spoken)."
+            }
+          ]
+        },
+        {
+          "id": "db43b7d990a7641b085c",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "You are fluent in English - oral and written."
+            }
+          ]
+        },
+        {
+          "id": "fc0802251335577ff651",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Fluent in English (mandatory)."
+            }
+          ]
+        },
+        {
+          "id": "d55ddde0eb79fc977b10",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "preferred",
+              "method": "explicit-language-pattern",
+              "evidence": "Excellent communication and presentation skills in English (other language is a plus)."
+            }
+          ]
+        },
+        {
+          "id": "ff3d21b49b3ea7aa4279",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Sehr gute Deutsch- und Englisch-Kenntnisse."
+            },
+            {
+              "code": "de",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Sehr gute Deutsch- und Englisch-Kenntnisse."
+            }
+          ]
+        },
+        {
+          "id": "1576057fe613bb7279a7",
+          "requirements": [
+            {
+              "code": "de",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Du verfügst über fließende Deutschkenntnisse, zudem sind gute Englischkenntnisse von Vorteil."
+            }
+          ]
+        },
+        {
+          "id": "d8f520ac8b43e39cfeab",
+          "requirements": [
+            {
+              "code": "nl",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Non-EU citizens must have a valid Dutch residency permit.."
+            },
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Fluent in English and Dutch (spoken and written).."
+            }
+          ]
+        },
+        {
+          "id": "0b19fc77e9e7c73b6be7",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Fluent Polish speakers with a very good command of English (minimum B2)."
+            },
+            {
+              "code": "pl",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Fluent Polish speakers with a very good command of English (minimum B2)."
+            }
+          ]
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 4,
+      "batch": true
+    },
+    {
+      "company_id": "hunter-douglas-talent-programs",
+      "name": "Hunter Douglas – Talent Programs",
+      "score": 90,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "greenhouse-talentprograms"
+      ],
+      "adapters": [
+        "greenhouse"
+      ],
+      "career_url": "https://job-boards.greenhouse.io/talentprograms",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL36",
+          "subregion_code": null,
+          "city": "Rotterdam",
+          "evidence_url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+          "location_confidence": "confirmed",
+          "checked_on": "2026-11-05"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 0,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "848131b207f96ee15a25",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Proficient in English (additional languages are a plus) ."
+            }
+          ]
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 5,
+      "batch": true
+    },
+    {
+      "company_id": "sijperda-verhuur",
+      "name": "Sijperda Verhuur",
+      "score": 90,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-sijperda-verhuur"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://www.werkenbijsijperda.nl/",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Sneek",
+          "municipality": "Súdwest-Fryslân",
+          "municipality_code": "GM1900",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijsijperda.nl/jobs/8625132-hr-stagiair-e-meewerkstage"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 0,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "4ddd6e0cbe33c42d8bbf",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 6,
+      "batch": true
+    },
+    {
+      "company_id": "hb-rts",
+      "name": "HB RTS",
+      "score": 90,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-hb-rts"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://www.hb-rts.com/en-uk/careers",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL35",
+          "city": "Utrecht",
+          "municipality": "Utrecht",
+          "municipality_code": "GM0344",
+          "settlement_code": "WP3295",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.hb-rts.com/en-uk/careers/stagiair-hr",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 1,
+      "pending_urls": 0,
+      "hr_candidates": 2,
+      "unverified": 2,
+      "explicit_languages": [
+        {
+          "id": "b4e2eb9e44e90a4ae9f4",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "preferred",
+              "method": "explicit-language-pattern",
+              "evidence": "English is a plus."
+            }
+          ]
+        },
+        {
+          "id": "3d146dcea66accedc451",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "preferred",
+              "method": "explicit-language-pattern",
+              "evidence": "English is a plus."
+            }
+          ]
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 7,
+      "batch": true
+    },
+    {
+      "company_id": "nncz",
+      "name": "NNCZ",
+      "score": 90,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-nncz"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://werkenbij.nncz.nl/",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 1,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "9d0bee377ab034aabd48",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 8,
+      "batch": true
+    },
+    {
+      "company_id": "center-parcs",
+      "name": "Center Parcs",
+      "score": 90,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-center-parcs"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Dalen",
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": "WP2148",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 2,
+      "pending_urls": 0,
+      "hr_candidates": 2,
+      "unverified": 2,
+      "explicit_languages": [
+        {
+          "id": "5506269ba93324a54632",
+          "requirements": []
+        },
+        {
+          "id": "a3b5d7cde7fe9d17a72e",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 9,
+      "batch": false
+    },
+    {
+      "company_id": "philips",
+      "name": "Philips",
+      "score": 80,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-philips"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.careers.philips.com/global/en",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "subregion_code": null,
+          "city": "Drachten",
+          "evidence_url": "https://www.careers.philips.com/global/en/job/594564/Intern-Manufacturing-People-Partnering",
+          "location_confidence": "confirmed",
+          "checked_on": "2026-11-05"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Drachten",
+          "municipality": "Smallingerland",
+          "municipality_code": "GM0090",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.careers.philips.com/global/en/job/594564/Intern-Manufacturing-People-Partnering"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 8,
+      "pending_urls": 110,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "903efc58fb2fabb24b59",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "ree in Human Resources, Business Administration or a related field, and you are fluent in Dutch and English.."
+            },
+            {
+              "code": "nl",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "elor’s degree in Human Resources, Business Administration or a related field, and you are fluent in Dutch and English.."
+            }
+          ]
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 0,
+        "low_observed_page_cost": 10
+      },
+      "rank": 10,
+      "batch": false
+    },
+    {
+      "company_id": "econvert-water-energy-b-v",
+      "name": "Econvert Water & Energy B.V.",
+      "score": 80,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-econvert-water-energy-b-v"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://eu.jobs.saur.com/jobs?country=Netherlands&region=NL.+Friesland&split_view=true&query=",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Heerenveen",
+          "municipality": "Heerenveen",
+          "municipality_code": "GM0074",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/econvert-water-energy-b-v"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 16,
+      "pending_urls": 0,
+      "hr_candidates": 4,
+      "unverified": 4,
+      "explicit_languages": [
+        {
+          "id": "dc5c9c187393d5e44c21",
+          "requirements": []
+        },
+        {
+          "id": "c49b9bc729c9e10ad164",
+          "requirements": [
+            {
+              "code": "fr",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "📢 The Caribbean and Indian Ocean department is currently looking for an HR Trainee - french speaker to be based in our Gestagua office, in Madrid .."
+            },
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "✓ Fluent in both English and French ."
+            }
+          ]
+        },
+        {
+          "id": "06bc9de5e3a7fdc95fe6",
+          "requirements": []
+        },
+        {
+          "id": "80b74c5d080475fed46f",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 0
+      },
+      "rank": 11,
+      "batch": false
+    },
+    {
+      "company_id": "bentacera",
+      "name": "Bentacera",
+      "score": 80,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-bentacera"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.werkenbijbentacera.nl/",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Leeuwarden",
+          "municipality": "Leeuwarden",
+          "municipality_code": "GM0080",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/bentacera"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 23,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "985543752c20a8abaeba",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 0
+      },
+      "rank": 12,
+      "batch": false
+    },
+    {
+      "company_id": "elevation-group-b-v",
+      "name": "Elevation Group B.V.",
+      "score": 80,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "discovery-incomplete",
+      "source_ids": [
+        "auto-elevation-group-b-v"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.elevationgroup.nl/werken-bij/",
+      "workplaces": [],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 27,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "1e20ec5b490fb8e59447",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 0
+      },
+      "rank": 13,
+      "batch": false
+    },
+    {
+      "company_id": "oosterwolde-plastic-industrie-b-v",
+      "name": "Oosterwolde Plastic Industrie B.V.",
+      "score": 80,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-oosterwolde-plastic-industrie-b-v"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://werkenbijopackgroup.nl/oosterwolde-plastic-industry",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Oosterwolde",
+          "municipality": "Ooststellingwerf",
+          "municipality_code": "GM0085",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/oosterwolde-plastic-industrie-b-v"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 30,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "994018cb6659595e818f",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 0
+      },
+      "rank": 14,
+      "batch": false
+    },
+    {
+      "company_id": "politie",
+      "name": "Politie Nederland",
+      "score": 70,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-politie"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://kombijde.politie.nl/",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": null,
+          "municipality": "Ameland",
+          "municipality_code": "GM0060",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://kombijde.politie.nl/vacatures/operationeel-specialist-a---basisteam-noordoost-fryslan_1348917.html"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Schiermonnikoog",
+          "municipality": "Schiermonnikoog",
+          "municipality_code": "GM0088",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://kombijde.politie.nl/vacatures/operationeel-specialist-a---basisteam-noordoost-fryslan_1348917.html"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": null,
+          "municipality": "Terschelling",
+          "municipality_code": "GM0093",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.politie.nl/headless-api/contact/social-media/facebook-totaal.html"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Vlieland",
+          "municipality": "Vlieland",
+          "municipality_code": "GM0096",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.politie.nl/headless-api/contact/social-media/facebook-totaal.html"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 27,
+      "pending_urls": 12,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "566c36cc1b457c8c7e92",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 0,
+        "low_observed_page_cost": 0
+      },
+      "rank": 15,
+      "batch": false
+    },
+    {
+      "company_id": "manpower",
+      "name": "Manpower",
+      "score": 70,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-manpower"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.manpower.nl/nl/werkzoekend/vacatures-voor-jou",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Leeuwarden",
+          "municipality": "Leeuwarden",
+          "municipality_code": "GM0080",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/manpower"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 30,
+      "pending_urls": 3403,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "9f15d089bb2891361632",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 0,
+        "low_observed_page_cost": 0
+      },
+      "rank": 16,
+      "batch": false
+    },
+    {
+      "company_id": "randstad-groep-nederland",
+      "name": "Randstad Groep Nederland",
+      "score": 70,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-randstad-groep-nederland"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.werkenbijrandstad.nl",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Heerenveen",
+          "municipality": "Heerenveen",
+          "municipality_code": "GM0074",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/randstad-groep-nederland"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Bolsward",
+          "municipality": "Súdwest-Fryslân",
+          "municipality_code": "GM1900",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.tempo-team.nl/vacatures/756793/stagiair%28e%29-hr-tempo-team"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 70,
+      "pending_urls": 602,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "eab88084ba0a8d8c2125",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 0,
+        "low_observed_page_cost": 0
+      },
+      "rank": 17,
+      "batch": false
+    },
+    {
+      "company_id": "technicum",
+      "name": "Technicum",
+      "score": 70,
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-technicum"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://technicum.nl/vacatures",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Heerenveen",
+          "municipality": "Heerenveen",
+          "municipality_code": "GM0074",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/technicum"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 70,
+      "pending_urls": 1048,
+      "hr_candidates": 2,
+      "unverified": 2,
+      "explicit_languages": [
+        {
+          "id": "82c47664462c588f6cbc",
+          "requirements": []
+        },
+        {
+          "id": "820ac13bd476aa4b454a",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 40,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 0,
+        "low_observed_page_cost": 0
+      },
+      "rank": 18,
+      "batch": false
+    },
+    {
+      "company_id": "royal-a-ware",
+      "name": "Royal A-ware",
+      "score": 50,
+      "reasons": [
+        "Current page does not identify the same vacancy"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-royal-a-ware"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://werkenbijaware.com/",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Heerenveen",
+          "municipality": "Heerenveen",
+          "municipality_code": "GM0074",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL35",
+          "city": "Lopik",
+          "municipality": "Lopik",
+          "municipality_code": "GM0331",
+          "settlement_code": "WP1960",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijaware.com/vacatures/procesoperator-a-req1467",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 0,
+      "pending_urls": 0,
+      "hr_candidates": 2,
+      "unverified": 2,
+      "explicit_languages": [
+        {
+          "id": "a5ce8a272a48d5026b20",
+          "requirements": []
+        },
+        {
+          "id": "dc9a9a926f76c0aff13b",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 0,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 19,
+      "batch": false
+    },
+    {
+      "company_id": "defabrique-holding",
+      "name": "DeFabrique Holding",
+      "score": 50,
+      "reasons": [
+        "Application link lacks a matching vacancy identifier"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-defabrique-holding"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://www.defabriqueholding.nl/vacatures",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL35",
+          "city": "Utrecht",
+          "municipality": "Utrecht",
+          "municipality_code": "GM0344",
+          "settlement_code": "WP3295",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 1,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "89d7fee0c50ad218665a",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 0,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 20,
+      "batch": false
+    },
+    {
+      "company_id": "axs-logistiek",
+      "name": "AXS logistiek",
+      "score": 50,
+      "reasons": [
+        "Application link lacks a matching vacancy identifier"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-axs-logistiek"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://axslogistiek.nl/alle-vacatures/",
+      "workplaces": [],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 8,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "76560a31eb04332c6a70",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 0,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 21,
+      "batch": false
+    },
+    {
+      "company_id": "yobbers",
+      "name": "Yobbers",
+      "score": 40,
+      "reasons": [
+        "Request budget exhausted; checkpoint retained"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-yobbers"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.yobbers.com/nl/opgeslagen-vacatures",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Leeuwarden",
+          "municipality": "Leeuwarden",
+          "municipality_code": "GM0080",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/yobbers"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 9,
+      "pending_urls": 562,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "fa500fb554688d22ba6c",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 0,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 0,
+        "low_observed_page_cost": 10
+      },
+      "rank": 22,
+      "batch": false
+    },
+    {
+      "company_id": "centraal-beheer-achmea",
+      "name": "Centraal Beheer Achmea",
+      "score": 40,
+      "reasons": [
+        "Application link lacks a matching vacancy identifier"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-centraal-beheer-achmea"
+      ],
+      "adapters": [
+        "universal-employer"
+      ],
+      "career_url": "https://www.werkenbijachmea.nl",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL12",
+          "city": "Leeuwarden",
+          "municipality": "Leeuwarden",
+          "municipality_code": "GM0080",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wrk.frl/bedrijven/centraal-beheer-achmea"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 64,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 1,
+      "explicit_languages": [
+        {
+          "id": "e83537f80a3c4be51eae",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 0,
+        "unverified": 20,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 0
+      },
+      "rank": 23,
+      "batch": false
+    },
+    {
+      "company_id": "unilever",
+      "name": "Unilever",
+      "score": 30,
+      "reasons": [
+        "same-vacancy-applicant-form"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "employer-unilever"
+      ],
+      "adapters": [
+        "employer-sitemap"
+      ],
+      "career_url": "https://careers.unilever.com",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL36",
+          "subregion_code": null,
+          "city": "Rotterdam",
+          "evidence_url": "https://careers.unilever.com/en/job/rotterdam/internship-27-human-resources/34155/101567836896",
+          "location_confidence": "confirmed",
+          "checked_on": "2026-11-05"
+        }
+      ],
+      "candidate_countries": [
+        "BE",
+        "DE",
+        "ES",
+        "FR",
+        "IT",
+        "NL",
+        "PL"
+      ],
+      "previous_pages_read": 0,
+      "pending_urls": 0,
+      "hr_candidates": 1,
+      "unverified": 0,
+      "explicit_languages": [
+        {
+          "id": "12e4d5cc93dc6e0323bb",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 0,
+        "unverified": 0,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 24,
+      "batch": false
+    },
+    {
+      "company_id": "as-watson-benelux",
+      "name": "AS Watson Benelux",
+      "score": 30,
+      "reasons": [
+        "rendered-watson-same-requisition-form"
+      ],
+      "state": "partial",
+      "source_ids": [
+        "auto-as-watson-benelux"
+      ],
+      "adapters": [
+        "employer-index"
+      ],
+      "career_url": "https://www.werkenbijaswatson.nl/vacatures-zoeken",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL35",
+          "city": "Renswoude",
+          "municipality": "Renswoude",
+          "municipality_code": "GM0339",
+          "settlement_code": "WP2141",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijaswatson.nl/banen/renswoude/stage-hr-business-partner-kruidvat/3560/46386869952",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "candidate_countries": [
+        "NL"
+      ],
+      "previous_pages_read": 1,
+      "pending_urls": 0,
+      "hr_candidates": 2,
+      "unverified": 0,
+      "explicit_languages": [
+        {
+          "id": "4f1b149f7c7d6bd1b6fe",
+          "requirements": []
+        },
+        {
+          "id": "7878c54c7ee681ba8f6c",
+          "requirements": []
+        }
+      ],
+      "queue_state": "collection-review-required",
+      "request_budget": 8,
+      "duration_budget_seconds": 45,
+      "score_components": {
+        "nullable_form_attributes": 0,
+        "missing_form_evidence": 0,
+        "unverified": 0,
+        "single_adapter": 10,
+        "no_pending": 10,
+        "low_observed_page_cost": 10
+      },
+      "rank": 25,
+      "batch": false
+    }
+  ],
+  "excluded": [
+    {
+      "company_id": "avery-dennison",
+      "reasons": [
+        "Current page does not identify the same vacancy"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "jobs.smartrecruiters.com"
+      ]
+    },
+    {
+      "company_id": "bam-infra-wegen-regio-oost",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "www.bamcareers.com"
+      ]
+    },
+    {
+      "company_id": "bibliotheken-noord-fryslan",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "noorderlink.nl"
+      ]
+    },
+    {
+      "company_id": "bosch",
+      "reasons": [
+        "Current page does not identify the same vacancy"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "jobs.smartrecruiters.com"
+      ]
+    },
+    {
+      "company_id": "centraal-justitieel-incassobureau-cjib",
+      "reasons": [
+        "No available vacancy-specific application entry established",
+        "The read operation timed out"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "www.werkenvoornederland.nl"
+      ]
+    },
+    {
+      "company_id": "damen",
+      "reasons": [
+        "Current page does not identify the same vacancy"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "damen.wd3.myworkdayjobs.com"
+      ]
+    },
+    {
+      "company_id": "fitz",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "www.werkenbijfitz.nl"
+      ]
+    },
+    {
+      "company_id": "jde-peet-s",
+      "reasons": [
+        "Application link lacks a matching vacancy identifier",
+        "Current page does not identify the same vacancy"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "careers-nl.jdepeets.com",
+        "jobs.smartrecruiters.com"
+      ]
+    },
+    {
+      "company_id": "landal",
+      "reasons": [
+        "Application link lacks a matching vacancy identifier",
+        "Current page does not identify the same vacancy"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "jobs.landal.com",
+        "roompot.wd103.myworkdayjobs.com"
+      ]
+    },
+    {
+      "company_id": "rijkswaterstaat",
+      "reasons": [
+        "HTTP Error 403: Forbidden"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "werkenbij.rijkswaterstaat.nl"
+      ]
+    },
+    {
+      "company_id": "sthree",
+      "reasons": [
+        "robots.txt disallows https://careers.sthree.com/talentcommunity/apply/1352436255?locale=en_US",
+        "robots.txt disallows https://careers.sthree.com/talentcommunity/apply/1352443255?locale=en_US",
+        "robots.txt disallows https://careers.sthree.com/talentcommunity/apply/1365215355?locale=en_US"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "careers.sthree.com"
+      ]
+    },
+    {
+      "company_id": "tilburg-university",
+      "reasons": [
+        "HTTP Error 410: Gone",
+        "No available vacancy-specific application entry established",
+        "Time budget exhausted; checkpoint retained"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "www.nationalevacaturebank.nl"
+      ]
+    },
+    {
+      "company_id": "van-wijnen",
+      "reasons": [
+        "HTTP Error 429: Too Many Requests"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "werkenbij.vanwijnen.nl"
+      ]
+    },
+    {
+      "company_id": "ikea-ingka-group",
+      "reasons": [
+        "robots.txt disallows https://ikea.avature.net/nl_NL/External/JobDetail?jobId=375629&source=Talent+Brew+Career+Page",
+        "robots.txt disallows https://ikea.avature.net/nl_NL/External/JobDetail?jobId=376337&source=Talent+Brew+Career+Page"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "jobs.ikea.com"
+      ]
+    },
+    {
+      "company_id": "belsimpel-gomibo-group",
+      "reasons": [
+        "sequence item 0: expected str instance, NoneType found"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "jobs.werkenbijbelsimpel.nl"
+      ]
+    },
+    {
+      "company_id": "skk-kozijnwacht",
+      "reasons": [
+        "official-vacancy-email-instructions"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "skk.nl"
+      ]
+    },
+    {
+      "company_id": "scania",
+      "reasons": [
+        "robots.txt disallows https://jobs.scania.com/talentcommunity/apply/1454163033?locale=nl_NL"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "jobs.scania.com"
+      ]
+    },
+    {
+      "company_id": "gemeente-leusden",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "www.gemeentebanen.nl"
+      ]
+    },
+    {
+      "company_id": "domino-s-pizza-netherlands",
+      "reasons": [
+        "official-vacancy-email-instructions"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "werkenbijdominos.nl"
+      ]
+    },
+    {
+      "company_id": "hlb-group",
+      "reasons": [
+        "official-vacancy-email-instructions"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "www.hlbbv.nl"
+      ]
+    },
+    {
+      "company_id": "smt-netherlands",
+      "reasons": [
+        "Vacancy-specific email application instructions unavailable"
+      ],
+      "cause": "access/ownership/aggregator/manual channel",
+      "hosts": [
+        "werkenbijsmt.nl"
+      ]
+    }
+  ]
+}

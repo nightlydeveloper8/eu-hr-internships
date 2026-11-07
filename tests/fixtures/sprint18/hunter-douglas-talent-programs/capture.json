@@ -1,0 +1,155 @@
+{
+  "company_id": "hunter-douglas-talent-programs",
+  "stamp": "2026-11-07T22:51:20.164097+00:00",
+  "source": {
+    "id": "greenhouse-talentprograms",
+    "adapter": "greenhouse",
+    "board": "talentprograms",
+    "employer": "Hunter Douglas – Talent Programs",
+    "enabled": true,
+    "career_url": "https://job-boards.greenhouse.io/talentprograms",
+    "allowed_hosts": [
+      "job-boards.greenhouse.io",
+      "boards.greenhouse.io",
+      "careers.hellofresh.com",
+      "careers.deliveryhero.com",
+      "www.personio.com",
+      "www.sennder.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "permission_basis": "Public documented job-board API; runtime robots check",
+    "reviewed_on": "2026-11-05"
+  },
+  "record": {
+    "id": "848131b207f96ee15a25",
+    "external_id": "8073628003",
+    "source_id": "greenhouse-talentprograms",
+    "source_name": "Hunter Douglas – Talent Programs",
+    "source_type": "greenhouse",
+    "source_posting_id": null,
+    "employer": "Hunter Douglas – Talent Programs",
+    "title": "HRBP Intern - February 2027",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Rotterdam, NL",
+    "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+    "apply_url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+    "categories": [
+      "hr-generalist"
+    ],
+    "category": "hr-generalist",
+    "internship_type": "internship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "en",
+      "confidence": "confirmed",
+      "method": "source metadata"
+    },
+    "workplace_languages": [
+      {
+        "code": "en",
+        "confidence": "confirmed",
+        "requirement": "required-or-working",
+        "method": "explicit-language-pattern",
+        "evidence": "Proficient in English (additional languages are a plus) ."
+      }
+    ],
+    "language_requirements": {
+      "requirements_status": "explicit",
+      "required_languages": [
+        "en"
+      ],
+      "alternative_languages": [],
+      "english_support": "documented",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "language_confidence": "confirmed",
+    "duration": "6 months",
+    "enrollment": null,
+    "work_mode": "hybrid",
+    "published_at": "2026-11-02T08:30:57-05:00",
+    "valid_through": null,
+    "first_discovered_at": "2026-11-05T12:27:41.026227+00:00",
+    "last_seen_at": "2026-11-07T20:55:18.821881+00:00",
+    "last_verified_at": "2026-11-06T17:46:33.153995+00:00",
+    "link_status": "incomplete",
+    "verification": {
+      "state": "incomplete",
+      "checked_at": "2026-11-07T20:55:18.821881+00:00",
+      "policy_version": 2,
+      "reason": "No available vacancy-specific application entry established"
+    },
+    "status": "unverified",
+    "missing_count": 0,
+    "region_codes": [
+      "NL36"
+    ],
+    "text": "",
+    "location": "Rotterdam, NL",
+    "posting_identifier": null
+  },
+  "events": [
+    {
+      "url": "https://job-boards.greenhouse.io/robots.txt",
+      "status": 200,
+      "seconds": 0.176
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+      "status": 200,
+      "seconds": 0.79
+    },
+    {
+      "url": "https://boards-api.greenhouse.io/robots.txt",
+      "status": 200,
+      "seconds": 0.463
+    },
+    {
+      "url": "https://boards-api.greenhouse.io/v1/boards/talentprograms/jobs?content=true",
+      "status": 200,
+      "seconds": 1.08
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://job-boards.greenhouse.io/robots.txt",
+      "final_url": "https://job-boards.greenhouse.io/robots.txt",
+      "status": 200,
+      "file": "261b42e13986bbec6e0a.html.gz",
+      "sha256": "17fb1dc3361b057783040fa7f58d72f18707170866d370bd3db6e547bee09058"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+      "final_url": "https://job-boards.greenhouse.io/talentprograms/jobs/8073628003",
+      "status": 200,
+      "file": "d4e9e51210f210ee7639.html.gz",
+      "sha256": "2e963fbb25bebeaccd7c9385982fdc940f54a8391f44ed9c1051bb5f46dedb15"
+    },
+    {
+      "url": "https://boards-api.greenhouse.io/robots.txt",
+      "final_url": "https://boards-api.greenhouse.io/robots.txt",
+      "status": 200,
+      "file": "2f219410a1d444080b11.html.gz",
+      "sha256": "0bc35a3bc59e53b4932c848ba1f33890320d2de73fa0c1357555dd79c5629be9"
+    },
+    {
+      "url": "https://boards-api.greenhouse.io/v1/boards/talentprograms/jobs?content=true",
+      "final_url": "https://boards-api.greenhouse.io/v1/boards/talentprograms/jobs?content=true",
+      "status": 200,
+      "file": "109ed3c18ab0bc09ec73.html.gz",
+      "sha256": "596823d753eed0e7a78674119347c51e5a1d1dfdd1889d3cc6eddc41e35d39a2"
+    }
+  ],
+  "requests": 4,
+  "bytes_read": 616762,
+  "baseline": {
+    "error": "No available vacancy-specific application entry established"
+  },
+  "inventory_records": 13,
+  "inventory_attempted": true
+}
