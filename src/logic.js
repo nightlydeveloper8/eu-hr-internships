@@ -37,3 +37,25 @@ export function rankJobs(jobs, filters) {
 }
 export function stale(updatedAt, clock = Date.now()) { return !updatedAt || clock - Date.parse(updatedAt) > 36*60*60*1000 || !Number.isFinite(Date.parse(updatedAt)) || Date.parse(updatedAt) > clock; }
 export function safeUrl(value) { try {const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : null;} catch {return null;} }
+
+export function verificationMessage(job, clock = Date.now()) {
+  if (verifiedJob(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
+  if (job.status === 'closed') return 'The employer has closed this listing.';
+  const reason = job.verification?.reason || '';
+  if (job.verification?.state === 'blocked' || /robots|captcha|access (?:challenge|restricted|denied)|HTTP Error: (?:401|403|429)/i.test(reason)) return 'Access to the employer’s recruiting site was restricted, so we could not confirm current availability or the application route.';
+  const stamp = Date.parse(job.last_verified_at || '');
+  if (Number.isFinite(stamp) && clock - stamp > 48*60*60*1000) return 'The last confirmation is more than 48 hours old. Check the original posting for current availability.';
+  if (/older than|timestamp|stale/i.test(reason)) return 'The last confirmation is no longer current. Check the original posting for current availability.';
+  if (/budget|timeout|timed out/i.test(reason)) return 'We could not finish the latest check. The listing may still be available; confirm it on the employer’s site.';
+  if (/deadline/i.test(reason)) return 'The closing date could not be confirmed. Check the employer’s current deadline before applying.';
+  return 'We could not confirm the current vacancy and its application route. The listing may still be open; check the original employer page.';
+}
+export function opportunityCounts(jobs, clock = Date.now()) {
+  const active = jobs.filter(job => job.status !== 'closed');
+  return {total:active.length,verified:active.filter(job => verifiedJob(job,clock)).length,
+    unverified:active.filter(job => !verifiedJob(job,clock)).length,
+    closed:jobs.length-active.length,
+    internships:active.filter(job => job.internship_type==='internship').length,
+    workingStudents:active.filter(job => job.internship_type==='working-student').length,
+    traineeships:active.filter(job => job.internship_type==='traineeship').length};
+}
