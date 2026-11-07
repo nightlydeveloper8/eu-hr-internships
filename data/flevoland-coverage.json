@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T17:21:05.081289+00:00",
+  "generated_at": "2026-11-07T17:56:01.869580+00:00",
   "province": "Flevoland",
   "region_code": "NL23",
   "exhaustive": false,
@@ -20,9 +20,9 @@
     "configured": 19,
     "attempted_recently": 19,
     "collection_states": {
-      "discovery-incomplete": 7,
+      "partial": 11,
       "blocked-or-failed": 2,
-      "partial": 10
+      "discovery-incomplete": 6
     },
     "qualified_collection_states": {},
     "verified_hr_internships": 1,
@@ -40,7 +40,7 @@
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1,
+        "partial": 1,
         "blocked-or-failed": 1
       },
       "company_ids": [
@@ -184,10 +184,10 @@
       "source_ids": [
         "auto-alfen"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
-      "public_job_records": 0,
+      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
+      "public_job_records": 26,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -228,7 +228,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:46:00.750904+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -270,7 +270,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
       "public_job_records": 7,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -307,15 +307,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:51.413023+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-marfo",
-          "message": "[{'url': 'https://www.werkenbijmarfo.nl/vacatures/?bedrijfsnaam2=Kantoor', 'error': 'Rendered read: Playwright is not installed'}, {'url': 'https://www.werkenbijmarfo.nl/vacatures/?bedrijfsnaam2=Stages', 'error': 'Rendered read: Playwright is not installed'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "farm-dairy",
@@ -349,7 +344,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:52.381611+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -391,7 +386,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:56.529290+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -433,7 +428,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:58.676617+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -470,7 +465,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:56.274550+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -512,7 +507,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [
         "36be83296822b67167cb"
@@ -551,7 +546,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:50.352410+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -593,7 +588,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:46:00.750904+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -630,7 +625,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:58.054227+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -672,7 +667,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:56.911233+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -709,7 +704,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:46:00.750904+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -751,15 +746,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:56.911233+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-neerlandia-urk",
-          "message": "[{'url': 'https://neerlandia.com', 'error': 'Rendered read: Playwright is not installed'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "kramer-fish-group",
@@ -793,7 +783,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:55.282029+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -835,7 +825,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -872,7 +862,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:55.282029+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -909,7 +899,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:17:06.708255+00:00",
+      "last_attempt_at": "2026-11-07T17:45:59.465314+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
