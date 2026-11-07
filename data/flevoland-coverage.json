@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T21:06:56.767186+00:00",
+  "generated_at": "2026-11-07T23:18:55.413188+00:00",
   "province": "Flevoland",
   "region_code": "NL23",
   "exhaustive": false,
@@ -21,8 +21,8 @@
     "attempted_recently": 19,
     "collection_states": {
       "partial": 11,
-      "blocked-or-failed": 3,
-      "discovery-incomplete": 5
+      "blocked-or-failed": 2,
+      "discovery-incomplete": 6
     },
     "qualified_collection_states": {},
     "verified_hr_internships": 1,
@@ -123,8 +123,7 @@
       "below_threshold": 0,
       "collection_states": {
         "partial": 2,
-        "blocked-or-failed": 1,
-        "discovery-incomplete": 1
+        "discovery-incomplete": 2
       },
       "company_ids": [
         "kramer-fish-group",
@@ -187,8 +186,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
-      "public_job_records": 27,
+      "last_attempt_at": "2026-11-07T23:08:18.743278+00:00",
+      "public_job_records": 26,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -229,7 +228,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:23.646413+00:00",
+      "last_attempt_at": "2026-11-07T23:08:34.745734+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -271,10 +270,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
+      "last_attempt_at": "2026-11-07T23:08:18.743278+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-provincie-flevoland",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "marfo",
@@ -308,7 +312,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:19.317230+00:00",
+      "last_attempt_at": "2026-11-07T23:08:23.290305+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -345,7 +349,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:25.544134+00:00",
+      "last_attempt_at": "2026-11-07T23:08:32.549901+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -387,7 +391,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:17.070997+00:00",
+      "last_attempt_at": "2026-11-07T23:08:30.525301+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -429,7 +433,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:24.176283+00:00",
+      "last_attempt_at": "2026-11-07T23:08:26.776223+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -471,7 +475,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:21.235610+00:00",
+      "last_attempt_at": "2026-11-07T23:08:27.618248+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -513,7 +517,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
+      "last_attempt_at": "2026-11-07T23:08:18.743278+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [
         "36be83296822b67167cb"
@@ -552,7 +556,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:21.712123+00:00",
+      "last_attempt_at": "2026-11-07T23:08:21.471356+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -594,10 +598,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:23.646413+00:00",
+      "last_attempt_at": "2026-11-07T23:08:34.745734+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-groothuisbouw",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-noordoostpolder",
@@ -631,7 +640,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:17.197658+00:00",
+      "last_attempt_at": "2026-11-07T23:08:25.727320+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -673,7 +682,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:21.976688+00:00",
+      "last_attempt_at": "2026-11-07T23:08:23.776766+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -713,9 +722,9 @@
       "source_ids": [
         "auto-urker-zalmhuys"
       ],
-      "state": "blocked-or-failed",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:23.646413+00:00",
+      "last_attempt_at": "2026-11-07T23:08:34.745734+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -757,7 +766,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:21.976688+00:00",
+      "last_attempt_at": "2026-11-07T23:08:23.776766+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -794,7 +803,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:22.487634+00:00",
+      "last_attempt_at": "2026-11-07T23:08:25.368087+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -836,7 +845,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
+      "last_attempt_at": "2026-11-07T23:08:18.743278+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -878,7 +887,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:22.487634+00:00",
+      "last_attempt_at": "2026-11-07T23:08:25.368087+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -920,7 +929,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T20:55:19.808476+00:00",
+      "last_attempt_at": "2026-11-07T23:08:21.074797+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []

@@ -5319,22 +5319,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "dim",
-    "name": "DIM",
-    "candidate_countries": [
-      "DE",
-      "FR",
-      "IT"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://job-boards.greenhouse.io/dim",
-    "source_ids": [
-      "greenhouse-dim"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "dll-group",
     "name": "DLL Group",
     "candidate_countries": [
@@ -5400,6 +5384,20 @@
     "career_url": "https://www.donat-it.de/karriere/",
     "source_ids": [
       "auto-donat-it-gmbh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "dop-advocaten",
+    "name": "DOP advocaten",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://dopadvocaten.nl/werken-bij/",
+    "source_ids": [
+      "auto-dop-advocaten"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -11259,20 +11257,6 @@
     "career_url": "https://www.huizekwast.nl/vacatures/",
     "source_ids": [
       "auto-huize-kwast"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "hunter-douglas-talent-programs",
-    "name": "Hunter Douglas – Talent Programs",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://job-boards.greenhouse.io/talentprograms",
-    "source_ids": [
-      "greenhouse-talentprograms"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25527,15 +25511,17 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "dop-advocaten",
-    "name": "DOP advocaten",
+    "company_id": "dim",
+    "name": "DIM",
     "candidate_countries": [
-      "NL"
+      "DE",
+      "FR",
+      "IT"
     ],
     "state": "collecting",
-    "career_url": "https://dopadvocaten.nl/werken-bij/",
+    "career_url": "https://job-boards.greenhouse.io/dim",
     "source_ids": [
-      "auto-dop-advocaten"
+      "greenhouse-dim"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25924,6 +25910,20 @@
     "career_url": "https://werkenbij.hvhl.nl/",
     "source_ids": [
       "auto-hogeschool-van-hall-larenstein"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "hunter-douglas-talent-programs",
+    "name": "Hunter Douglas – Talent Programs",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://job-boards.greenhouse.io/talentprograms",
+    "source_ids": [
+      "greenhouse-talentprograms"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
