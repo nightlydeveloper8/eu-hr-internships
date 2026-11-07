@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T17:56:01.869580+00:00",
+  "generated_at": "2026-11-07T21:06:56.767186+00:00",
   "province": "Flevoland",
   "region_code": "NL23",
   "exhaustive": false,
@@ -21,8 +21,8 @@
     "attempted_recently": 19,
     "collection_states": {
       "partial": 11,
-      "blocked-or-failed": 2,
-      "discovery-incomplete": 6
+      "blocked-or-failed": 3,
+      "discovery-incomplete": 5
     },
     "qualified_collection_states": {},
     "verified_hr_internships": 1,
@@ -123,7 +123,8 @@
       "below_threshold": 0,
       "collection_states": {
         "partial": 2,
-        "discovery-incomplete": 2
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "kramer-fish-group",
@@ -186,8 +187,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
-      "public_job_records": 26,
+      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
+      "public_job_records": 27,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -228,7 +229,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:46:00.750904+00:00",
+      "last_attempt_at": "2026-11-07T20:55:23.646413+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -270,8 +271,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
-      "public_job_records": 7,
+      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
+      "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -307,7 +308,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:51.413023+00:00",
+      "last_attempt_at": "2026-11-07T20:55:19.317230+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -344,7 +345,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:52.381611+00:00",
+      "last_attempt_at": "2026-11-07T20:55:25.544134+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -386,7 +387,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:56.529290+00:00",
+      "last_attempt_at": "2026-11-07T20:55:17.070997+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -428,10 +429,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:58.676617+00:00",
+      "last_attempt_at": "2026-11-07T20:55:24.176283+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-meerpaal",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-dronten",
@@ -465,7 +471,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:56.274550+00:00",
+      "last_attempt_at": "2026-11-07T20:55:21.235610+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -507,7 +513,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
+      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [
         "36be83296822b67167cb"
@@ -546,7 +552,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:50.352410+00:00",
+      "last_attempt_at": "2026-11-07T20:55:21.712123+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -588,8 +594,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:46:00.750904+00:00",
-      "public_job_records": 5,
+      "last_attempt_at": "2026-11-07T20:55:23.646413+00:00",
+      "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -625,7 +631,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:58.054227+00:00",
+      "last_attempt_at": "2026-11-07T20:55:17.197658+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -667,10 +673,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:56.911233+00:00",
+      "last_attempt_at": "2026-11-07T20:55:21.976688+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-sea-fresh",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "urker-zalmhuys",
@@ -702,9 +713,9 @@
       "source_ids": [
         "auto-urker-zalmhuys"
       ],
-      "state": "discovery-incomplete",
+      "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:46:00.750904+00:00",
+      "last_attempt_at": "2026-11-07T20:55:23.646413+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -746,8 +757,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:56.911233+00:00",
-      "public_job_records": 5,
+      "last_attempt_at": "2026-11-07T20:55:21.976688+00:00",
+      "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -783,7 +794,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:55.282029+00:00",
+      "last_attempt_at": "2026-11-07T20:55:22.487634+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -825,10 +836,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:51.441085+00:00",
+      "last_attempt_at": "2026-11-07T20:55:15.366453+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-van-amersfoort-racing",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "royal-herkel",
@@ -862,10 +878,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:55.282029+00:00",
+      "last_attempt_at": "2026-11-07T20:55:22.487634+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-royal-herkel",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-zeewolde",
@@ -899,7 +920,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T17:45:59.465314+00:00",
+      "last_attempt_at": "2026-11-07T20:55:19.808476+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
