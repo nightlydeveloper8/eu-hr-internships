@@ -1,0 +1,252 @@
+{
+  "company_id": "center-parcs",
+  "stamp": "2026-11-08T08:11:53.496949+00:00",
+  "records": [
+    {
+      "source": {
+        "id": "auto-center-parcs",
+        "company_id": "center-parcs",
+        "employer": "Center Parcs",
+        "adapter": "employer-index",
+        "enabled": true,
+        "start_urls": [
+          "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte",
+          "https://jobs.workatcenterparcs.com/nl/annonces",
+          "https://www.centerparcs.nl"
+        ],
+        "career_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
+        "allowed_hosts": [
+          "jobs.workatcenterparcs.com",
+          "www.centerparcs.nl",
+          "www.workatcenterparcs.com"
+        ],
+        "target_countries": [
+          "NL"
+        ],
+        "max_pages": 70,
+        "max_requests": 150,
+        "collection_seconds": 240,
+        "max_navigation_depth": 3,
+        "max_render_pages": 4,
+        "permission_basis": "Public official park page links these Cegid filters. Reviewed public Nuxt getJobAds POST and /nl/annonce/:jobSlug route only; payload constrained, runtime robots checks. Candidate, authentication, subscription and map POSTs blocked; no application submitted.",
+        "status": "automatic-collection-pending",
+        "cegid_inventory_search": true,
+        "index_urls": [
+          "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57783,57789,57775,57787,57777,57785,57781,57779,57773",
+          "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57781"
+        ],
+        "job_url_pattern": "^https://jobs\\.workatcenterparcs\\.com/nl/annonce/\\d+-[a-z0-9-]+$",
+        "report_index_scope": true,
+        "inventory_scope_complete": false,
+        "discovery_scope": "Observed first search page for all nine Dutch parks/head office plus the De Huttenheugte filtered inventory. Per-query published counts compared with distinct requisitions. Broad search pagination remains incomplete when count exceeds returned items; no absence-based closure.",
+        "access_reviewed_on": "2026-11-07"
+      },
+      "record": {
+        "id": "5506269ba93324a54632",
+        "external_id": "4654111",
+        "source_id": "auto-center-parcs",
+        "source_name": "Center Parcs",
+        "source_type": "employer-index",
+        "source_posting_id": "4654111-93213447",
+        "employer": "Center Parcs",
+        "title": "Stage Recruitment Februari 2027",
+        "country": "NL",
+        "countries": [
+          "NL"
+        ],
+        "city": "Capelle aan den IJssel",
+        "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+        "apply_url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+        "categories": [
+          "talent-acquisition"
+        ],
+        "category": "talent-acquisition",
+        "internship_type": "internship",
+        "internship_confidence": "confirmed",
+        "advertisement_language": {
+          "code": "nl",
+          "confidence": "uncertain",
+          "method": "deterministic stopword heuristic"
+        },
+        "workplace_languages": [],
+        "language_requirements": {
+          "requirements_status": "unknown",
+          "required_languages": [],
+          "alternative_languages": [],
+          "english_support": "unknown",
+          "english_sufficiency": "unknown",
+          "english_sufficiency_evidence": null
+        },
+        "language_confidence": "unspecified",
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified",
+        "published_at": "2026-10-20",
+        "valid_through": null,
+        "first_discovered_at": "2026-11-07T01:11:51.137187+00:00",
+        "last_seen_at": "2026-11-08T07:07:34.175375+00:00",
+        "last_verified_at": null,
+        "link_status": "incomplete",
+        "verification": {
+          "state": "incomplete",
+          "checked_at": "2026-11-08T07:07:34.175375+00:00",
+          "policy_version": 2,
+          "reason": "No available vacancy-specific application entry established"
+        },
+        "status": "unverified",
+        "missing_count": 0,
+        "region_codes": [],
+        "text": "",
+        "location": "Capelle aan den IJssel",
+        "posting_identifier": "4654111-93213447"
+      },
+      "before": {
+        "error": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "source": {
+        "id": "auto-center-parcs",
+        "company_id": "center-parcs",
+        "employer": "Center Parcs",
+        "adapter": "employer-index",
+        "enabled": true,
+        "start_urls": [
+          "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte",
+          "https://jobs.workatcenterparcs.com/nl/annonces",
+          "https://www.centerparcs.nl"
+        ],
+        "career_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
+        "allowed_hosts": [
+          "jobs.workatcenterparcs.com",
+          "www.centerparcs.nl",
+          "www.workatcenterparcs.com"
+        ],
+        "target_countries": [
+          "NL"
+        ],
+        "max_pages": 70,
+        "max_requests": 150,
+        "collection_seconds": 240,
+        "max_navigation_depth": 3,
+        "max_render_pages": 4,
+        "permission_basis": "Public official park page links these Cegid filters. Reviewed public Nuxt getJobAds POST and /nl/annonce/:jobSlug route only; payload constrained, runtime robots checks. Candidate, authentication, subscription and map POSTs blocked; no application submitted.",
+        "status": "automatic-collection-pending",
+        "cegid_inventory_search": true,
+        "index_urls": [
+          "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57783,57789,57775,57787,57777,57785,57781,57779,57773",
+          "https://jobs.workatcenterparcs.com/nl/annonces?customFieldMcqChoice=57781"
+        ],
+        "job_url_pattern": "^https://jobs\\.workatcenterparcs\\.com/nl/annonce/\\d+-[a-z0-9-]+$",
+        "report_index_scope": true,
+        "inventory_scope_complete": false,
+        "discovery_scope": "Observed first search page for all nine Dutch parks/head office plus the De Huttenheugte filtered inventory. Per-query published counts compared with distinct requisitions. Broad search pagination remains incomplete when count exceeds returned items; no absence-based closure.",
+        "access_reviewed_on": "2026-11-07"
+      },
+      "record": {
+        "id": "a3b5d7cde7fe9d17a72e",
+        "external_id": "4653111",
+        "source_id": "auto-center-parcs",
+        "source_name": "Center Parcs",
+        "source_type": "employer-index",
+        "source_posting_id": "4653111-93213447",
+        "employer": "Center Parcs",
+        "title": "Stage Internal Communications and Employee Engagement Officer Februari 2027",
+        "country": "NL",
+        "countries": [
+          "NL"
+        ],
+        "city": "Capelle aan den IJssel",
+        "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+        "apply_url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+        "categories": [
+          "employee-experience"
+        ],
+        "category": "employee-experience",
+        "internship_type": "internship",
+        "internship_confidence": "confirmed",
+        "advertisement_language": {
+          "code": "nl",
+          "confidence": "uncertain",
+          "method": "deterministic stopword heuristic"
+        },
+        "workplace_languages": [],
+        "language_requirements": {
+          "requirements_status": "unknown",
+          "required_languages": [],
+          "alternative_languages": [],
+          "english_support": "unknown",
+          "english_sufficiency": "unknown",
+          "english_sufficiency_evidence": null
+        },
+        "language_confidence": "unspecified",
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified",
+        "published_at": "2026-10-19",
+        "valid_through": null,
+        "first_discovered_at": "2026-11-07T01:11:51.137187+00:00",
+        "last_seen_at": "2026-11-08T07:07:34.175375+00:00",
+        "last_verified_at": null,
+        "link_status": "incomplete",
+        "verification": {
+          "state": "incomplete",
+          "checked_at": "2026-11-08T07:07:34.175375+00:00",
+          "policy_version": 2,
+          "reason": "No available vacancy-specific application entry established"
+        },
+        "status": "unverified",
+        "missing_count": 0,
+        "region_codes": [],
+        "text": "",
+        "location": "Capelle aan den IJssel",
+        "posting_identifier": "4653111-93213447"
+      },
+      "before": {
+        "error": "No available vacancy-specific application entry established"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://jobs.workatcenterparcs.com/robots.txt",
+      "final_url": "https://jobs.workatcenterparcs.com/robots.txt",
+      "status": 200,
+      "file": "b664b45ff3a088982c37.html.gz",
+      "sha256": "dc27fb09d012e642b14016aa62f163efbb0e1b6993a0ba4b14076f41f93f0bc9"
+    },
+    {
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "final_url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "status": 200,
+      "file": "ddd419adfe5edc5b0b38.html.gz",
+      "sha256": "cfce5f0e479dd824cfbee23ac3d99e0d8d04465f5d4f678eb18123f0b4bf6494"
+    },
+    {
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "final_url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "status": 200,
+      "file": "8c956572ad404ce1ce76.html.gz",
+      "sha256": "2946b5d53e1b07eb81389535cc058ec29008289ae7c3782c2359b40ca0c1c935"
+    }
+  ],
+  "events": [
+    {
+      "url": "https://jobs.workatcenterparcs.com/robots.txt",
+      "status": 200,
+      "seconds": 0.345
+    },
+    {
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "status": 200,
+      "seconds": 10.824
+    },
+    {
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "status": 200,
+      "seconds": 9.875
+    }
+  ],
+  "requests": 3,
+  "bytes_read": 128015
+}

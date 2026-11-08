@@ -1,0 +1,232 @@
+{
+  "base_commit": "2a9668545fd7fa64394014869d12b8b3eeb6b52d",
+  "scope": "Known-candidate verification only; no complete inventory or discovery claim",
+  "production_catalog_modified": false,
+  "shortlist_count": 17,
+  "analyzed_companies": 7,
+  "candidate_count": 8,
+  "baseline_company_states": {
+    "partial": 6,
+    "discovery-incomplete": 1
+  },
+  "live_requests": 23,
+  "source_costs": [
+    {
+      "company_id": "axs-logistiek",
+      "requests": 4,
+      "bytes_read": 341810,
+      "seconds": 2.999
+    },
+    {
+      "company_id": "bentacera",
+      "requests": 2,
+      "bytes_read": 119501,
+      "seconds": 1.383
+    },
+    {
+      "company_id": "center-parcs",
+      "requests": 3,
+      "bytes_read": 128015,
+      "seconds": 20.699
+    },
+    {
+      "company_id": "centraal-beheer-achmea",
+      "requests": 4,
+      "bytes_read": 222044,
+      "seconds": 1.734
+    },
+    {
+      "company_id": "defabrique-holding",
+      "requests": 4,
+      "bytes_read": 64802,
+      "seconds": 1.305
+    },
+    {
+      "company_id": "elevation-group-b-v",
+      "requests": 4,
+      "bytes_read": 156361,
+      "seconds": 1.786
+    },
+    {
+      "company_id": "oosterwolde-plastic-industrie-b-v",
+      "requests": 2,
+      "bytes_read": 114126,
+      "seconds": 1.329
+    }
+  ],
+  "verified_before": 0,
+  "verified_after": 0,
+  "new_hr_discovered": 0,
+  "rows": [
+    {
+      "company_id": "axs-logistiek",
+      "id": "76560a31eb04332c6a70",
+      "vacancy_url": "https://axslogistiek.nl/jobs/24173/hr-stage",
+      "source_id": "auto-axs-logistiek",
+      "observed_at": "2026-11-08T08:12:14.225788+00:00",
+      "before": {
+        "error": "Application link lacks a matching vacancy identifier"
+      },
+      "after": {
+        "error": "Application link lacks a matching vacancy identifier"
+      },
+      "before_requests": [
+        "https://axslogistiek.nl/jobs/24173/hr-stage"
+      ],
+      "after_requests": [
+        "https://axslogistiek.nl/jobs/24173/hr-stage"
+      ]
+    },
+    {
+      "company_id": "bentacera",
+      "id": "985543752c20a8abaeba",
+      "vacancy_url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+      "source_id": "auto-bentacera",
+      "observed_at": "2026-11-08T08:12:15.029237+00:00",
+      "before": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "before_requests": [
+        "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284"
+      ],
+      "after_requests": [
+        "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284"
+      ]
+    },
+    {
+      "company_id": "center-parcs",
+      "id": "5506269ba93324a54632",
+      "vacancy_url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "source_id": "auto-center-parcs",
+      "observed_at": "2026-11-08T08:11:53.496949+00:00",
+      "before": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "before_requests": [
+        "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel"
+      ],
+      "after_requests": [
+        "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel"
+      ]
+    },
+    {
+      "company_id": "center-parcs",
+      "id": "a3b5d7cde7fe9d17a72e",
+      "vacancy_url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "source_id": "auto-center-parcs",
+      "observed_at": "2026-11-08T08:11:53.496949+00:00",
+      "before": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "before_requests": [
+        "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel"
+      ],
+      "after_requests": [
+        "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel"
+      ]
+    },
+    {
+      "company_id": "centraal-beheer-achmea",
+      "id": "e83537f80a3c4be51eae",
+      "vacancy_url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+      "source_id": "auto-centraal-beheer-achmea",
+      "observed_at": "2026-11-08T08:12:18.471952+00:00",
+      "before": {
+        "error": "Application link lacks a matching vacancy identifier"
+      },
+      "after": {
+        "error": "Applicant form not established; application may require JavaScript or an account"
+      },
+      "before_requests": [
+        "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj"
+      ],
+      "after_requests": [
+        "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+        "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj/solliciteer"
+      ]
+    },
+    {
+      "company_id": "defabrique-holding",
+      "id": "89d7fee0c50ad218665a",
+      "vacancy_url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+      "source_id": "auto-defabrique-holding",
+      "observed_at": "2026-11-08T08:11:52.349109+00:00",
+      "before": {
+        "error": "Application link lacks a matching vacancy identifier"
+      },
+      "after": {
+        "error": "robots.txt unavailable: 406"
+      },
+      "before_requests": [
+        "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding"
+      ],
+      "after_requests": [
+        "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+        "https://werkenbijdefabriqueholding.cvw.io/ApplicationForm/AppForm?job=405317&channel=own_website&lang=nl-NL"
+      ]
+    },
+    {
+      "company_id": "elevation-group-b-v",
+      "id": "1e20ec5b490fb8e59447",
+      "vacancy_url": "https://www.elevationgroup.nl/vacatures/talent-acquisition-stagiaire",
+      "source_id": "auto-elevation-group-b-v",
+      "observed_at": "2026-11-08T08:16:24.338514+00:00",
+      "before": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "before_requests": [
+        "https://www.elevationgroup.nl/vacatures/talent-acquisition-stagiaire"
+      ],
+      "after_requests": [
+        "https://www.elevationgroup.nl/vacatures/talent-acquisition-stagiaire"
+      ]
+    },
+    {
+      "company_id": "oosterwolde-plastic-industrie-b-v",
+      "id": "994018cb6659595e818f",
+      "vacancy_url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+      "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+      "observed_at": "2026-11-08T08:12:17.111458+00:00",
+      "before": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "after": {
+        "error": "No available vacancy-specific application entry established"
+      },
+      "before_requests": [
+        "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385"
+      ],
+      "after_requests": [
+        "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385"
+      ]
+    }
+  ],
+  "global_before": {
+    "open": 24,
+    "unverified": 296,
+    "closed": 4
+  },
+  "global_after": {
+    "open": 24,
+    "unverified": 296,
+    "closed": 4
+  },
+  "two_finalizations_idempotent": true,
+  "ids_ownership_aliases_and_existing_open_preserved": true,
+  "unverified_before": 8,
+  "unverified_after": 8,
+  "conversion_before": 0.0,
+  "conversion_after": 0.0
+}

@@ -39,14 +39,14 @@ def same_title(doc, title):
 
 
 def same_requisition(vacancy, application):
-    """An observed /apply child retains the complete vacancy path (e.g. Lever UUID).
+    """An observed application child retains the complete vacancy path.
 
     General /apply pages and unrelated IDs cannot pass this check.
     """
     a,b=urlsplit(vacancy),urlsplit(application)
     path=a.path.rstrip('/')
     return a.hostname==b.hostname and len(path.split('/'))>=3 and bool(
-        re.fullmatch(re.escape(path)+r'/(?:apply|application)',b.path.rstrip('/')))
+        re.fullmatch(re.escape(path)+r'/(?:apply|application|solliciteer)',b.path.rstrip('/')))
 
 
 def shares_identifier(record, application):
@@ -117,7 +117,13 @@ def verify_vacancy(record, source, client, stamp, observation=None):
         if urlsplit(target).hostname in source['allowed_hosts'] and target != canonical_url(doc.url): targets.append(target)
     if not targets: raise ValueError('No available vacancy-specific application entry established')
     # Do not treat a redirect to a careers/search page or another requisition as success.
-    if not same_requisition(doc.url,targets[0]) and not shares_identifier(record,targets[0]):raise ValueError('Application link lacks a matching vacancy identifier')
+    # A structured identifier on this freshly identified vacancy can bridge a
+    # human-readable URL to the ATS ID in its observed application CTA. Never
+    # replace a conflicting collected ID, or infer an ID from the CTA itself.
+    identity_record = record
+    if not record.get('posting_identifier') and len(identifiers)==1:
+        identity_record = dict(record, posting_identifier=next(iter(identifiers)))
+    if not same_requisition(doc.url,targets[0]) and not shares_identifier(identity_record,targets[0]):raise ValueError('Application link lacks a matching vacancy identifier')
     app_body, application = checked_document(targets[0], source, client)
     if canonical_url(application.url)!=targets[0]:raise ValueError('Application redirected to a different URL; identity requires review')
     for post in application.jobposts():
