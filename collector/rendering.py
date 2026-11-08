@@ -10,6 +10,17 @@ BLOCK=re.compile(r'captcha|verify (?:you are|that you are) human|access denied|j
 
 class BrowserUnavailable(RuntimeError):pass
 
+def unigarant_inventory_search(target,payload,page_url):
+    """Observed public vacancy pagination, with exactly one numeric form field."""
+    target=urlsplit(target);page=urlsplit(page_url)
+    if (target.scheme!='https' or target.netloc!='werkenbijunigarant.nl'
+        or target.path!='/vacatures-ajax' or target.query or target.fragment
+        or page.scheme!='https' or page.netloc!=target.netloc
+        or page.path.rstrip('/')!='/vacatures' or page.query):return False
+    return isinstance(payload,str) and bool(re.fullmatch(
+        r'--(?P<boundary>[-A-Za-z0-9]+)\r\nContent-Disposition: form-data; name="page"\r\n\r\n'
+        r'[1-9]\d{0,2}\r\n--(?P=boundary)--\r\n',payload))
+
 def cegid_inventory_search(target,payload,page_url):
     """Only the observed public Cegid inventory POST, never candidate operations."""
     parsed=urlsplit(target);query=parse_qs(parsed.query)
@@ -33,7 +44,7 @@ def cegid_inventory_search(target,payload,page_url):
             and -90<=coordinates['lat']<=90 and -180<=coordinates['lng']<=180)
     except (ValueError,TypeError,KeyError):return False
 
-def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses=None):
+def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses=None,unigarant_search=False,index_error_pattern=None,unigarant_responses=None):
     """A fresh browser has no user cookies or credentials; no applications submitted."""
     canonical_url(url)
     if not client.permitted(url):raise ValueError('robots.txt disallows browser navigation')
@@ -51,6 +62,8 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
                 read_search=(req.method=='POST' and req.resource_type in ('xhr','fetch') and bool(re.search(r'/(?:jobs|search|positions|postings)(?:[/?]|$)',urlsplit(req.url).path,re.I)) and not re.search(r'apply|candidate|login|submit|mutation',req.url+' '+(req.post_data or ''),re.I))
                 if cegid_search and req.method=='POST' and req.resource_type in ('xhr','fetch'):
                     read_search=read_search or cegid_inventory_search(req.url,req.post_data,url)
+                if unigarant_search and req.method=='POST' and req.resource_type in ('xhr','fetch'):
+                    read_search=read_search or unigarant_inventory_search(req.url,req.post_data,url)
                 if (req.method not in ('GET','HEAD') and not read_search) or req.resource_type in ('image','font','media') or re.search(r'google-analytics|googletagmanager|doubleclick|facebook|linkedin',host):return route.abort()
                 if req.is_navigation_request() or req.resource_type in ('xhr','fetch'):
                     try:
@@ -63,16 +76,26 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
             context.route('**/*',route_request)
             try:
                 client.check()
-                if cegid_search:
+                if cegid_search or unigarant_search:
                     # Wait for the public search, not a DOM snapshot that can still
                     # say Loading while robots/throttle checks delay its request.
-                    with page.expect_response(lambda r: r.request.method=='POST' and cegid_inventory_search(r.url,r.request.post_data,url),
+                    search_check=cegid_inventory_search if cegid_search else unigarant_inventory_search
+                    with page.expect_response(lambda r: r.request.method=='POST' and search_check(r.url,r.request.post_data,url),
                             timeout=min(60000,max(1000,int(client.remaining()*1000)))) as inventory:
                         response=page.goto(url,wait_until='domcontentloaded',timeout=min(20000,max(1000,int(client.remaining()*1000))))
                     search=inventory.value
-                    if search.status!=200:raise ValueError('Cegid public inventory HTTP '+str(search.status))
-                    data=search.json()
-                    if cegid_responses is not None:cegid_responses.append(data)
+                    if search.status not in ((200,202) if unigarant_search else (200,)):
+                        raise ValueError('Public inventory HTTP '+str(search.status))
+                    if unigarant_search:
+                        data=search.json()
+                        if (not isinstance(data,dict) or data.get('success') is not True
+                            or type(data.get('total')) is not int or data['total']<0
+                            or not isinstance(data.get('vacancies'),list)):
+                            raise ValueError('Unigarant public inventory success/count/records unavailable')
+                        if unigarant_responses is not None:unigarant_responses.append(data)
+                    if cegid_search:
+                        data=search.json()
+                        if cegid_responses is not None:cegid_responses.append(data)
                 else:
                     response=page.goto(url,wait_until='domcontentloaded',timeout=min(20000,max(1000,int(client.remaining()*1000))))
                 if response and response.status in (401,403,429):raise ValueError('Rendered page access restricted: '+str(response.status))
@@ -82,6 +105,8 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
                 for index in range(limit):
                     client.check();text=page.locator('body').inner_text(timeout=3000)
                     if BLOCK.search(text[:3000]):raise ValueError('Browser access challenge; no bypass attempted')
+                    if index_error_pattern and re.search(index_error_pattern,text,re.I):
+                        raise ValueError('Official vacancy inventory reports a loading error; not an empty list')
                     html=page.content();signature=hash(html)
                     if signature in seen:break
                     seen.add(signature);snapshots.append((page.url,html.encode()))

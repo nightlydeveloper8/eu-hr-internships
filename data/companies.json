@@ -49121,6 +49121,28 @@
         "location_confidence": "confirmed",
         "evidence_url": "https://werkenbijaware.com/vacatures/procesoperator-a-req1467",
         "checked_on": "2026-11-07"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL13",
+        "city": "Ruinerwold",
+        "municipality": "De Wolden",
+        "municipality_code": "GM1690",
+        "settlement_code": "WP3170",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651",
+        "checked_on": "2026-11-08"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL13",
+        "city": "Hoogeveen",
+        "municipality": "Hoogeveen",
+        "municipality_code": "GM0118",
+        "settlement_code": "WP1814",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651",
+        "checked_on": "2026-11-08"
       }
     ],
     "source_ids": [
@@ -49166,6 +49188,23 @@
       "group_name": null,
       "notes": [
         "Reuse existing European employer and collection source; published Lopik workplace does not make all group roles local."
+      ]
+    },
+    "drenthe_research": {
+      "checked_on": "2026-11-08",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 5300,
+        "employees_text": "Official group homepage describes more than 5,300 colleagues including food and AB Texel transport; not Lopik staff count.",
+        "scope": "group",
+        "source_url": "https://www.royal-aware.com/nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "group_name": "Royal A-ware",
+      "notes": [
+        "Official current QA vacancy explicitly identifies Bouter Borrelgemak in Ruinerwold and Hoogeveen as part of Royal A-ware. Group presence reused; no new legal-employer identity inferred and no local HR internship inferred. Existing Friesland/Utrecht workplaces and channels retained."
       ]
     }
   },
@@ -68666,7 +68705,7 @@
     "id": "unigarant",
     "name": "Unigarant",
     "website_url": "https://www.unigarant.nl/",
-    "career_url": "https://www.unigarant.nl/over-ons/",
+    "career_url": "https://werkenbijunigarant.nl/vacatures/",
     "evidence_url": "https://www.unigarant.nl/over-ons/",
     "target_countries": [
       "NL"
@@ -68681,7 +68720,7 @@
         "settlement_code": "WP1814",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.unigarant.nl/over-ons/",
-        "checked_on": "2026-11-06"
+        "checked_on": "2026-11-08"
       }
     ],
     "source_ids": [
@@ -68692,13 +68731,13 @@
     "review_status": "research-required",
     "aliases": [],
     "drenthe_research": {
-      "checked_on": "2026-11-06",
+      "checked_on": "2026-11-08",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_min": 650,
+        "employees_text": "Official employer overview publishes 650+ Unigarant colleagues; employer-wide, not ANWB group or office-specific staff count.",
         "scope": "employer",
-        "source_url": null,
+        "source_url": "https://www.unigarant.nl/over-ons/",
         "source_date": null
       },
       "employer_type": "private",
@@ -68706,6 +68745,14 @@
       "notes": [
         "ANWB subsidiary; official profile confirms headquarters and links careers. Size not inferred from third-party current estimates."
       ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 650,
+      "employees_text": "Official employer overview publishes 650+ Unigarant colleagues; employer-wide, not ANWB group or office-specific staff count.",
+      "scope": "employer",
+      "source_url": "https://www.unigarant.nl/over-ons/",
+      "source_date": null
     }
   },
   {
@@ -68771,7 +68818,7 @@
         "settlement_code": "WP2391",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.cosis.nu/",
-        "checked_on": "2026-11-06"
+        "checked_on": "2026-11-08"
       }
     ],
     "source_ids": [
@@ -68782,20 +68829,30 @@
     "review_status": "research-required",
     "aliases": [],
     "drenthe_research": {
-      "checked_on": "2026-11-06",
+      "checked_on": "2026-11-08",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_estimate": 4000,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official 2025 quality report describes approximately 4000 employees across Groningen and Drenthe, separately from approximately 800 volunteers. Historical 2025 employer total, not Assen establishment headcount.",
         "scope": "employer",
-        "source_url": null,
-        "source_date": null
+        "source_url": "https://jaarbericht.cosis.nu/2025/kwaliteitsbeeld-2025/we-stellen-ons-even-voor-2/11-wat-doet-cosis",
+        "source_date": "2025"
       },
       "employer_type": "healthcare",
       "group_name": null,
       "notes": [
         "Servicebureau Lauwers 17 Assen; supporting P&O roles and internships explicitly described. No specific HR internship inferred."
       ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 4000,
+      "measurement": "approximate-headcount",
+      "employees_text": "Official 2025 quality report describes approximately 4000 employees across Groningen and Drenthe, separately from approximately 800 volunteers. Historical 2025 employer total, not Assen establishment headcount.",
+      "scope": "employer",
+      "source_url": "https://jaarbericht.cosis.nu/2025/kwaliteitsbeeld-2025/we-stellen-ons-even-voor-2/11-wat-doet-cosis",
+      "source_date": "2025"
     }
   },
   {
@@ -68848,7 +68905,7 @@
     "id": "astron",
     "name": "ASTRON",
     "website_url": "https://www.astron.nl/",
-    "career_url": "https://www.astron.nl/careers-3/",
+    "career_url": "https://werkenbijastron.nl/",
     "evidence_url": "https://www.astron.nl/contact/",
     "target_countries": [
       "NL"
@@ -68863,7 +68920,7 @@
         "settlement_code": "WP3110",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.astron.nl/contact/",
-        "checked_on": "2026-11-06"
+        "checked_on": "2026-11-08"
       },
       {
         "country": "NL",
@@ -68874,7 +68931,7 @@
         "settlement_code": "WP3029",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.astron.nl/contact/",
-        "checked_on": "2026-11-06"
+        "checked_on": "2026-11-08"
       }
     ],
     "source_ids": [
@@ -68885,7 +68942,7 @@
     "review_status": "research-required",
     "aliases": [],
     "drenthe_research": {
-      "checked_on": "2026-11-06",
+      "checked_on": "2026-11-08",
       "size": {
         "qualification": "unknown",
         "employees_min": null,
@@ -68897,7 +68954,8 @@
       "employer_type": "research",
       "group_name": null,
       "notes": [
-        "Official contact also lists telescope site Zwiggelte; no HR workplace inferred from observatory."
+        "Official contact also lists telescope site Zwiggelte; no HR workplace inferred from observatory.",
+        "Old astron.nl/careers-3/ returns HTTP 500. Public jobsatastron.nl redirects to werkenbijastron.nl, whose organisation/contact pages identify ASTRON. Career discovery start repaired; no headcount or HR internship inferred."
       ]
     }
   },

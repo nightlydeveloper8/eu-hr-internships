@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T23:18:55.301883+00:00",
+  "generated_at": "2026-11-08T01:14:02.630574+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -9,24 +9,24 @@
   "size_counting": "Documented employer/group qualification; group headcount is never assigned to a local establishment. Unknown size stays separate.",
   "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
   "summary": {
-    "employers": 34,
-    "qualified_employers": 17,
-    "distinct_groups": 34,
-    "qualified_groups": 17,
-    "size_unknown": 17,
+    "employers": 35,
+    "qualified_employers": 20,
+    "distinct_groups": 35,
+    "qualified_groups": 20,
+    "size_unknown": 15,
     "below_threshold": 0,
     "municipalities": 12,
     "municipalities_with_qualified_employers": 12,
-    "configured": 34,
-    "attempted_recently": 34,
+    "configured": 35,
+    "attempted_recently": 35,
     "collection_states": {
-      "partial": 17,
-      "discovery-incomplete": 9,
+      "partial": 19,
+      "discovery-incomplete": 8,
       "blocked-or-failed": 5,
       "collected": 3
     },
     "qualified_collection_states": {
-      "partial": 9,
+      "partial": 12,
       "discovery-incomplete": 5,
       "blocked-or-failed": 1,
       "collected": 2
@@ -64,8 +64,8 @@
       "name": "Assen",
       "settlements": 7,
       "employers": 8,
-      "qualified_employers": 4,
-      "size_unknown": 4,
+      "qualified_employers": 5,
+      "size_unknown": 3,
       "below_threshold": 0,
       "collection_states": {
         "partial": 6,
@@ -130,14 +130,15 @@
       "code": "GM1690",
       "name": "De Wolden",
       "settlements": 13,
-      "employers": 2,
-      "qualified_employers": 1,
+      "employers": 3,
+      "qualified_employers": 2,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2
+        "partial": 3
       },
       "company_ids": [
+        "royal-a-ware",
         "samenwerkingsorganisatie-de-wolden-hoogeveen",
         "zzwd-zorgcollectief"
       ]
@@ -167,17 +168,18 @@
       "code": "GM0118",
       "name": "Hoogeveen",
       "settlements": 11,
-      "employers": 5,
-      "qualified_employers": 2,
-      "size_unknown": 3,
+      "employers": 6,
+      "qualified_employers": 4,
+      "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2,
-        "discovery-incomplete": 3
+        "partial": 4,
+        "discovery-incomplete": 2
       },
       "company_ids": [
         "doc-kaas-b-v",
         "nncz",
+        "royal-a-ware",
         "samenwerkingsorganisatie-de-wolden-hoogeveen",
         "tvm-verzekeringen",
         "unigarant"
@@ -321,6 +323,60 @@
         {
           "source_id": "auto-center-parcs",
           "message": "[{'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "royal-a-ware",
+      "name": "Royal A-ware",
+      "group_name": "Royal A-ware",
+      "career_url": "https://werkenbijaware.com/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 5300,
+        "employees_text": "Official group homepage describes more than 5,300 colleagues including food and AB Texel transport; not Lopik staff count.",
+        "scope": "group",
+        "source_url": "https://www.royal-aware.com/nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Ruinerwold",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "settlement_code": "WP3170",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651",
+          "checked_on": "2026-11-08"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651",
+          "checked_on": "2026-11-08"
+        }
+      ],
+      "source_ids": [
+        "auto-royal-a-ware"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-08T01:10:11.311827+00:00",
+      "public_job_records": 93,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-royal-a-ware",
+          "message": "[{'url': 'https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679', 'error': 'Vacancy verification: Current page does not identify the same vacancy'}, {'url': 'https://werkenbijaware.com/vacatures/stage-hr-req2618', 'error': 'Vacancy verification: Current page does not identify the same vacancy'}, {'url': 'https://werkenbijaware.com/vacatures/manager-maintenance-req2157', 'error': 'A-ware reviewed title, workplace, description or application form missing'}]"
         }
       ]
     },
@@ -1056,13 +1112,13 @@
       "company_id": "unigarant",
       "name": "Unigarant",
       "group_name": "ANWB",
-      "career_url": "https://www.unigarant.nl/over-ons/",
+      "career_url": "https://werkenbijunigarant.nl/vacatures/",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_min": 650,
+        "employees_text": "Official employer overview publishes 650+ Unigarant colleagues; employer-wide, not ANWB group or office-specific staff count.",
         "scope": "employer",
-        "source_url": null,
+        "source_url": "https://www.unigarant.nl/over-ons/",
         "source_date": null
       },
       "employer_type": "private",
@@ -1076,23 +1132,18 @@
           "settlement_code": "WP1814",
           "location_confidence": "confirmed",
           "evidence_url": "https://www.unigarant.nl/over-ons/",
-          "checked_on": "2026-11-06"
+          "checked_on": "2026-11-08"
         }
       ],
       "source_ids": [
         "auto-unigarant"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:23.776766+00:00",
-      "public_job_records": 0,
+      "last_attempt_at": "2026-11-08T01:10:11.312298+00:00",
+      "public_job_records": 9,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-unigarant",
-          "message": "[{'url': 'https://www.unigarant.nl/vacature/schadebehandelaar-woon', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.unigarant.nl/vacature/schadebehandelaar-materieel-4', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.unigarant.nl/vacature/junior-productinrichting-pi-specialist', 'error': 'HTTP Error 404: Not Found'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "wilhelmina-ziekenhuis-assen",
@@ -1142,12 +1193,13 @@
       "group_name": null,
       "career_url": "https://www.cosis.nu/alles-over-cosis/werken-bij",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_estimate": 4000,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official 2025 quality report describes approximately 4000 employees across Groningen and Drenthe, separately from approximately 800 volunteers. Historical 2025 employer total, not Assen establishment headcount.",
         "scope": "employer",
-        "source_url": null,
-        "source_date": null
+        "source_url": "https://jaarbericht.cosis.nu/2025/kwaliteitsbeeld-2025/we-stellen-ons-even-voor-2/11-wat-doet-cosis",
+        "source_date": "2025"
       },
       "employer_type": "healthcare",
       "workplaces": [
@@ -1160,7 +1212,7 @@
           "settlement_code": "WP2391",
           "location_confidence": "confirmed",
           "evidence_url": "https://www.cosis.nu/",
-          "checked_on": "2026-11-06"
+          "checked_on": "2026-11-08"
         }
       ],
       "source_ids": [
@@ -1168,7 +1220,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:26.776223+00:00",
+      "last_attempt_at": "2026-11-08T01:10:11.312370+00:00",
       "public_job_records": 100,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1224,7 +1276,7 @@
       "company_id": "astron",
       "name": "ASTRON",
       "group_name": null,
-      "career_url": "https://www.astron.nl/careers-3/",
+      "career_url": "https://werkenbijastron.nl/",
       "size": {
         "qualification": "unknown",
         "employees_min": null,
@@ -1244,7 +1296,7 @@
           "settlement_code": "WP3110",
           "location_confidence": "confirmed",
           "evidence_url": "https://www.astron.nl/contact/",
-          "checked_on": "2026-11-06"
+          "checked_on": "2026-11-08"
         },
         {
           "country": "NL",
@@ -1255,7 +1307,7 @@
           "settlement_code": "WP3029",
           "location_confidence": "confirmed",
           "evidence_url": "https://www.astron.nl/contact/",
-          "checked_on": "2026-11-06"
+          "checked_on": "2026-11-08"
         }
       ],
       "source_ids": [
@@ -1263,13 +1315,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:23.290305+00:00",
-      "public_job_records": 1,
+      "last_attempt_at": "2026-11-08T01:12:36.931527+00:00",
+      "public_job_records": 21,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-astron",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.astron.nl/careers-3', 'error': 'HTTP Error 500: Internal Server Error'}, {'url': 'https://astron.recruitee.com/api/offers', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },

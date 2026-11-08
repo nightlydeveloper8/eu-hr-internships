@@ -130,5 +130,27 @@
     "max_requests": 150,
     "access_reviewed_on": "2026-11-07",
     "permission_basis": "Public official park page links these Cegid filters. Reviewed public Nuxt getJobAds POST and /nl/annonce/:jobSlug route only; payload constrained, runtime robots checks. Candidate, authentication, subscription and map POSTs blocked; no application submitted."
+  },
+  "auto-unigarant": {
+    "adapter": "employer-index",
+    "unigarant_inventory_search": true,
+    "index_urls": [
+      "https://werkenbijunigarant.nl/vacatures/"
+    ],
+    "allowed_hosts": [
+      "werkenbijunigarant.nl",
+      "www.unigarant.nl"
+    ],
+    "job_url_pattern": "^https://werkenbijunigarant\\.nl/vacature/[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [],
+    "index_error_pattern": "Er ging iets mis bij het ophalen van de vacatures",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Official unfiltered public inventory: exact /vacatures-ajax POST with only numeric page. Published titles and short descriptions read; count compared with records. Full detail/workplace and application templates remain unreviewed, so no full-source or absence-based closure claim.",
+    "access_reviewed_on": "2026-11-08",
+    "permission_basis": "Employer overview links this public career domain. Observed employer JS and browser request identify public pagination only; robots checked; no filters, candidate fields, login or application POSTs permitted.",
+    "collection_seconds": 160,
+    "max_requests": 100
   }
 }

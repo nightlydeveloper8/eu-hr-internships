@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T23:18:35.824417+00:00",
+  "generated_at": "2026-11-08T01:14:01.813883+00:00",
   "exhaustive": false,
   "sources": [
     {
@@ -71131,7 +71131,7 @@
       "id": "auto-royal-a-ware",
       "employer": "Royal A-ware",
       "adapter": "employer-index",
-      "checked_at": "2026-11-07T23:08:26.776223+00:00",
+      "checked_at": "2026-11-08T01:10:11.311827+00:00",
       "collected": 95,
       "status": "partial",
       "matching": 2,
@@ -71167,14 +71167,13 @@
       "verified_closed_urls": [],
       "complete": false,
       "closure_complete": false,
-      "cache_hits": 93,
+      "cache_hits": 0,
       "snapshot_kind": "public-job-page-inventory",
       "discovery_scope": "Official public vacancy index; unknown workplace countries fail explicitly",
       "page_discovery_mode": "read-all-inventoried-job-pages",
-      "duration_seconds": 16.81,
-      "requests": 6,
-      "bytes_read": 1105951,
-      "shard": 7
+      "duration_seconds": 180.17,
+      "requests": 99,
+      "bytes_read": 12148064
     },
     {
       "id": "auto-royal-de-boer-stalinrichtingen-b-v",
@@ -84495,18 +84494,24 @@
       "id": "auto-astron",
       "employer": "ASTRON",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-07T23:08:23.290305+00:00",
-      "collected": 1,
+      "checked_at": "2026-11-08T01:12:36.931527+00:00",
+      "collected": 21,
       "status": "partial",
       "matching": 0,
       "verification_states": {},
-      "observed_countries": [],
-      "records_inspected": 1,
-      "page_failures": 1,
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 21,
+      "page_failures": 2,
       "page_errors": [
         {
           "url": "https://www.astron.nl/careers-3",
           "error": "HTTP Error 500: Internal Server Error"
+        },
+        {
+          "url": "https://astron.recruitee.com/api/offers",
+          "error": "HTTP Error 404: Not Found"
         }
       ],
       "page_errors_truncated": false,
@@ -84514,27 +84519,29 @@
       "complete": false,
       "closure_complete": false,
       "verified_closed_urls": [],
-      "pages_read": 3,
-      "sitemaps_read": 2,
+      "pages_read": 33,
+      "sitemaps_read": 4,
       "rendered_pages": 0,
-      "job_urls_discovered": 2,
+      "job_urls_discovered": 23,
       "pending_urls": 0,
       "unresolved_geography": 1,
       "explicit_empty": false,
       "methods": [
         "cached-job-page",
+        "jobposting",
         "robots-declared-sitemap"
       ],
       "cache_hits": 1,
       "allowed_hosts": [
+        "astron.recruitee.com",
+        "astron1.recruitee.com",
+        "werkenbijastron.nl",
         "www.astron.nl"
       ],
-      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
       "inventory_complete": false,
-      "duration_seconds": 6.41,
-      "requests": 5,
-      "bytes_read": 548804,
-      "shard": 14
+      "duration_seconds": 24.09,
+      "requests": 39,
+      "bytes_read": 8278589
     },
     {
       "id": "auto-het-drentse-landschap",
@@ -85086,7 +85093,7 @@
       "id": "auto-cosis",
       "employer": "Cosis",
       "adapter": "universal-employer",
-      "checked_at": "2026-11-07T23:08:26.776223+00:00",
+      "checked_at": "2026-11-08T01:10:11.312370+00:00",
       "collected": 100,
       "status": "partial",
       "matching": 0,
@@ -85109,100 +85116,66 @@
       "complete": false,
       "closure_complete": false,
       "verified_closed_urls": [],
-      "pages_read": 44,
+      "pages_read": 69,
       "sitemaps_read": 1,
-      "rendered_pages": 3,
+      "rendered_pages": 2,
       "job_urls_discovered": 103,
-      "pending_urls": 16,
+      "pending_urls": 26,
       "unresolved_geography": 29,
       "explicit_empty": false,
       "methods": [
         "browser",
         "cached-job-page",
         "jobposting",
-        "robots-declared-sitemap"
+        "robots-declared-sitemap",
+        "visible-html"
       ],
-      "cache_hits": 102,
+      "cache_hits": 67,
       "allowed_hosts": [
         "werkenbij.cosis.nu",
         "www.cosis.nu"
       ],
       "inventory_complete": false,
-      "duration_seconds": 99.91,
-      "requests": 51,
-      "bytes_read": 2065745,
-      "shard": 7
+      "duration_seconds": 100.41,
+      "requests": 75,
+      "bytes_read": 3074266
     },
     {
       "id": "auto-unigarant",
       "employer": "Unigarant",
-      "adapter": "universal-employer",
-      "checked_at": "2026-11-07T23:08:23.776766+00:00",
-      "collected": 0,
+      "adapter": "employer-index",
+      "checked_at": "2026-11-08T01:10:11.312298+00:00",
+      "collected": 9,
       "status": "partial",
       "matching": 0,
       "verification_states": {},
       "observed_countries": [],
-      "records_inspected": 0,
-      "page_failures": 7,
-      "page_errors": [
-        {
-          "url": "https://www.unigarant.nl/vacature/schadebehandelaar-woon",
-          "error": "HTTP Error 404: Not Found"
-        },
-        {
-          "url": "https://www.unigarant.nl/vacature/schadebehandelaar-materieel-4",
-          "error": "HTTP Error 404: Not Found"
-        },
-        {
-          "url": "https://www.unigarant.nl/vacature/junior-productinrichting-pi-specialist",
-          "error": "HTTP Error 404: Not Found"
-        },
-        {
-          "url": "https://www.unigarant.nl/vacature/junior-coordinator-fraudebeheersing",
-          "error": "HTTP Error 404: Not Found"
-        },
-        {
-          "url": "https://www.unigarant.nl/vacature/senior-specialist-productinrichting-architect",
-          "error": "HTTP Error 404: Not Found"
-        },
-        {
-          "url": "https://www.unigarant.nl/vacature/personenschadebehandelaar-middelzwaar-letsel-2",
-          "error": "HTTP Error 404: Not Found"
-        },
-        {
-          "url": "https://www.unigarant.nl/vacature/teammanager-materiele-schade-a-i",
-          "error": "HTTP Error 404: Not Found"
-        }
-      ],
+      "records_inspected": 9,
+      "page_failures": 0,
+      "page_errors": [],
       "page_errors_truncated": false,
-      "inventory_kind": "bounded-public-career-crawl",
       "complete": false,
       "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 9,
+      "observed_scopes": [
+        {
+          "declared_job_count": 9,
+          "observed_jobs": 9,
+          "complete": true,
+          "url": "https://werkenbijunigarant.nl/vacatures"
+        }
+      ],
+      "discovery_scope": "Official unfiltered public inventory: exact /vacatures-ajax POST with only numeric page. Published titles and short descriptions read; count compared with records. Full detail/workplace and application templates remain unreviewed, so no full-source or absence-based closure claim.",
+      "explicit_empty": false,
       "verified_closed_urls": [],
-      "pages_read": 12,
-      "sitemaps_read": 6,
-      "rendered_pages": 1,
-      "job_urls_discovered": 23,
-      "pending_urls": 0,
-      "unresolved_geography": 0,
-      "explicit_empty": true,
-      "methods": [
-        "browser",
-        "cached-job-page",
-        "robots-declared-sitemap"
-      ],
-      "cache_hits": 14,
-      "allowed_hosts": [
-        "unigarant.nl",
-        "werkenbijunigarant.nl",
-        "www.unigarant.nl"
-      ],
       "inventory_complete": false,
-      "duration_seconds": 38.58,
-      "requests": 35,
-      "bytes_read": 1004729,
-      "shard": 0
+      "cache_hits": 0,
+      "snapshot_kind": "public-job-search-inventory",
+      "page_discovery_mode": "published-titles-and-short-descriptions-with-HR-detail-enrichment",
+      "duration_seconds": 3.65,
+      "requests": 15,
+      "bytes_read": 2913
     },
     {
       "id": "auto-gemeente-noordenveld",
@@ -89191,9 +89164,9 @@
     "open": 25,
     "unverified": 295,
     "confirmed_english": 91,
-    "sources_succeeded": 631,
-    "sources_attempted": 1880,
-    "sources_partial": 1477,
+    "sources_succeeded": 4,
+    "sources_attempted": 4,
+    "sources_partial": 4,
     "verified_internships": 22,
     "verified_working_students": 3,
     "verified_traineeships": 0

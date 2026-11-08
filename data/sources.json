@@ -45776,26 +45776,40 @@
     "id": "auto-unigarant",
     "company_id": "unigarant",
     "employer": "Unigarant",
-    "adapter": "universal-employer",
+    "adapter": "employer-index",
     "enabled": true,
     "start_urls": [
+      "https://werkenbijunigarant.nl/vacatures",
       "https://www.unigarant.nl/over-ons",
       "https://www.unigarant.nl"
     ],
-    "career_url": "https://www.unigarant.nl/over-ons/",
+    "career_url": "https://werkenbijunigarant.nl/vacatures/",
     "allowed_hosts": [
+      "werkenbijunigarant.nl",
       "www.unigarant.nl"
     ],
     "target_countries": [
       "NL"
     ],
     "max_pages": 70,
-    "max_requests": 110,
-    "collection_seconds": 120,
+    "max_requests": 100,
+    "collection_seconds": 160,
     "max_navigation_depth": 3,
     "max_render_pages": 4,
-    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "permission_basis": "Employer overview links this public career domain. Observed employer JS and browser request identify public pagination only; robots checked; no filters, candidate fields, login or application POSTs permitted.",
+    "status": "automatic-collection-pending",
+    "unigarant_inventory_search": true,
+    "index_urls": [
+      "https://werkenbijunigarant.nl/vacatures/"
+    ],
+    "job_url_pattern": "^https://werkenbijunigarant\\.nl/vacature/[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [],
+    "index_error_pattern": "Er ging iets mis bij het ophalen van de vacatures",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Official unfiltered public inventory: exact /vacatures-ajax POST with only numeric page. Published titles and short descriptions read; count compared with records. Full detail/workplace and application templates remain unreviewed, so no full-source or absence-based closure claim.",
+    "access_reviewed_on": "2026-11-08"
   },
   {
     "id": "auto-wilhelmina-ziekenhuis-assen",
@@ -45879,11 +45893,13 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://werkenbijastron.nl",
       "https://www.astron.nl/careers-3",
       "https://www.astron.nl"
     ],
-    "career_url": "https://www.astron.nl/careers-3/",
+    "career_url": "https://werkenbijastron.nl/",
     "allowed_hosts": [
+      "werkenbijastron.nl",
       "www.astron.nl"
     ],
     "target_countries": [
