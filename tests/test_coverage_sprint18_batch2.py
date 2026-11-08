@@ -88,7 +88,9 @@ class RealBatchTests(unittest.TestCase):
 
     def test_fixed_scope_budget_and_body_integrity(self):
         saved=json.loads((REPORT/'ranking.json').read_text())
-        self.assertEqual({r['company_id'] for r in saved['shortlist']},{r['company_id'] for r in rank()['shortlist']})
+        with patch('scripts.coverage_sprint18_batch2.subprocess.check_output',side_effect=AssertionError('Ranking must not require Git refs')):
+            current=rank()
+        self.assertEqual({r['company_id'] for r in saved['shortlist']},{r['company_id'] for r in current['shortlist']})
         self.assertEqual(len(saved['shortlist']),17)
         for path in FIXTURES.glob('*/capture.json'):
             payload=json.loads(path.read_text())

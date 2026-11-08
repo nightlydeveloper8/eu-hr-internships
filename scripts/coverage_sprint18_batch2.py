@@ -57,8 +57,7 @@ def rank():
     rows.sort(key=lambda r: (bool(r['excluded']), -r['score'], r['pages_read'], r['company_id']))
     for i, row in enumerate(rows):
         row.update(rank=i+1, selected=i<7 and not row['excluded'])
-    return dict(base_commit=subprocess.check_output(['git','rev-parse','origin/main'],cwd=ROOT,text=True).strip(),
-                catalog_updated_at=read('data/catalog.json')['updated_at'],
+    return dict(catalog_updated_at=read('data/catalog.json')['updated_at'],
                 global_statuses=dict(Counter(j['status'] for j in jobs)),
                 scope='Only the 17 remaining companies from the original shortlist',
                 heuristic='20 unverified + 40 missing form/identity + 30 no pending URLs + 20 known NL vacancy + 10 <=10 pages; exclusions first',
@@ -70,6 +69,9 @@ def capture():
     selection = rank()
     if (REPORT/'ranking.json').exists() or FIXTURES.exists():
         raise ValueError('Evidence already exists; no silent refresh')
+    # Git provenance belongs to a new capture, not the pure ranking calculation.
+    # Actions' shallow PR checkout need not contain origin/main to run tests.
+    selection['base_commit']=subprocess.check_output(['git','rev-parse','origin/main'],cwd=ROOT,text=True).strip()
     write(REPORT/'ranking.json', selection)
     FIXTURES.mkdir(parents=True)
     catalog=(ROOT/'data/catalog.json').read_bytes()
