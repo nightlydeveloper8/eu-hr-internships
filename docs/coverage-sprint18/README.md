@@ -1,5 +1,7 @@
 # Coverage Improvement Sprint #18 — primo lotto
 
+Il [secondo lotto, sulla raccolta dell'8 novembre 2026](batch2/README.md), ricalcola le 17 aziende residue e documenta un confronto aggiuntivo senza nuove promozioni.
+
 Issue: https://github.com/nightlydeveloper8/eu-hr-internships/issues/18 · base `main` **6d97637**.
 
 ## Risultato misurato

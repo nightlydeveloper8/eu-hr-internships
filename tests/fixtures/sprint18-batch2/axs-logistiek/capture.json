@@ -1,0 +1,150 @@
+{
+  "company_id": "axs-logistiek",
+  "stamp": "2026-11-08T08:12:14.225788+00:00",
+  "records": [
+    {
+      "source": {
+        "id": "auto-axs-logistiek",
+        "company_id": "axs-logistiek",
+        "employer": "AXS logistiek",
+        "adapter": "universal-employer",
+        "enabled": true,
+        "start_urls": [
+          "https://axslogistiek.nl/alle-vacatures",
+          "https://axslogistiek.nl"
+        ],
+        "career_url": "https://axslogistiek.nl/alle-vacatures/",
+        "allowed_hosts": [
+          "axslogistiek.nl"
+        ],
+        "target_countries": [
+          "NL"
+        ],
+        "max_pages": 70,
+        "max_requests": 110,
+        "collection_seconds": 120,
+        "max_navigation_depth": 3,
+        "max_render_pages": 4,
+        "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+        "status": "automatic-collection-pending"
+      },
+      "record": {
+        "id": "76560a31eb04332c6a70",
+        "external_id": "https://axslogistiek.nl/jobs/24173/hr-stage",
+        "source_id": "auto-axs-logistiek",
+        "source_name": "AXS logistiek",
+        "source_type": "universal-employer",
+        "source_posting_id": null,
+        "employer": "AXS logistiek",
+        "title": "HR Stage",
+        "country": "NL",
+        "countries": [
+          "NL"
+        ],
+        "city": "Rotterdam",
+        "url": "https://axslogistiek.nl/jobs/24173/hr-stage",
+        "apply_url": "https://axslogistiek.nl/jobs/24173/hr-stage",
+        "categories": [
+          "hr-generalist"
+        ],
+        "category": "hr-generalist",
+        "internship_type": "internship",
+        "internship_confidence": "confirmed",
+        "advertisement_language": {
+          "code": "nl",
+          "confidence": "uncertain",
+          "method": "deterministic stopword heuristic"
+        },
+        "workplace_languages": [],
+        "language_requirements": {
+          "requirements_status": "unknown",
+          "required_languages": [],
+          "alternative_languages": [],
+          "english_support": "unknown",
+          "english_sufficiency": "unknown",
+          "english_sufficiency_evidence": null
+        },
+        "language_confidence": "unspecified",
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified",
+        "published_at": null,
+        "valid_through": null,
+        "first_discovered_at": "2026-11-05T21:47:39.847454+00:00",
+        "last_seen_at": "2026-11-08T07:07:39.140780+00:00",
+        "last_verified_at": "2026-11-06T17:46:36.617226+00:00",
+        "link_status": "incomplete",
+        "verification": {
+          "state": "incomplete",
+          "checked_at": "2026-11-08T07:07:39.140780+00:00",
+          "policy_version": 2,
+          "reason": "Application link lacks a matching vacancy identifier"
+        },
+        "status": "unverified",
+        "missing_count": 0,
+        "region_codes": [],
+        "text": "",
+        "location": "Rotterdam",
+        "posting_identifier": null
+      },
+      "before": {
+        "error": "Application link lacks a matching vacancy identifier"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://axslogistiek.nl/robots.txt",
+      "final_url": "https://axslogistiek.nl/robots.txt",
+      "status": 200,
+      "file": "1818b69a336fa55bc848.html.gz",
+      "sha256": "5e97b841ed0ac1c8bb1d3bc7eabcee842ca5c8c3653aab62b8092e9fcc82ed20"
+    },
+    {
+      "url": "https://axslogistiek.nl/jobs/24173/hr-stage",
+      "final_url": "https://axslogistiek.nl/jobs/24173/hr-stage",
+      "status": 200,
+      "file": "f2e8950246e3964c2622.html.gz",
+      "sha256": "18a67b400e8b1900f0a4703d915281f4c2b57fb20ef0c9088c37f09ea0217772"
+    },
+    {
+      "url": "https://axslogistiek.nl/robots.txt",
+      "final_url": "https://axslogistiek.nl/robots.txt",
+      "status": 200,
+      "file": "1818b69a336fa55bc848.html.gz",
+      "sha256": "5e97b841ed0ac1c8bb1d3bc7eabcee842ca5c8c3653aab62b8092e9fcc82ed20"
+    },
+    {
+      "url": "https://axslogistiek.nl/solliciteer?job=a15Te000007LJA5IAO",
+      "final_url": "https://axslogistiek.nl/solliciteer/?job=a15Te000007LJA5IAO",
+      "status": 200,
+      "file": "41a8502afc8a65d38360.html.gz",
+      "sha256": "2496c188277d2958af408dca37dc4e7ecd642aa96cbdbb7ffe18c1d435a1ecb6"
+    }
+  ],
+  "events": [
+    {
+      "url": "https://axslogistiek.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.241
+    },
+    {
+      "url": "https://axslogistiek.nl/jobs/24173/hr-stage",
+      "status": 200,
+      "seconds": 0.762
+    },
+    {
+      "url": "https://axslogistiek.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.576
+    },
+    {
+      "url": "https://axslogistiek.nl/solliciteer?job=a15Te000007LJA5IAO",
+      "status": 200,
+      "seconds": 2.237
+    }
+  ],
+  "requests": 4,
+  "bytes_read": 341810,
+  "linked_attempted": true
+}
