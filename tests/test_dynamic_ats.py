@@ -136,6 +136,17 @@ class DynamicTests(unittest.TestCase):
 
 
 class ReplayTests(unittest.TestCase):
+    def test_nonpilot_reports_remain_deterministic_with_variable_timings(self):
+        import itertools
+        from types import SimpleNamespace
+        from scripts.replay_sprint18 import run
+        ticks=itertools.count()
+        # Deliberately different durations on every call. Production metrics
+        # for this experiment must not perturb unrelated source reports.
+        with patch.object(dynamic_ats,'time',SimpleNamespace(monotonic=lambda:next(ticks)**2)):
+            report=run()
+        self.assertTrue(report['inventory_replay']['two_collections_idempotent'])
+
     def test_fresh_capture_replays_with_stricter_final_checks(self):
         report=replay_live()
         self.assertEqual(sum(row['after']['state']=='verified' for row in report['rows']),2)

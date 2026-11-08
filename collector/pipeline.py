@@ -275,7 +275,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     link_status=state
                     if not closed:page_errors.append(dict(url=apply,error='Vacancy verification: '+str(exc)[:150]))
                     LOG.warning('Vacancy %s %s: %s',url,state,str(exc)[:150])
-            if observation.get('dynamic_ats'):
+            from .dynamic_ats import PILOTS
+            if source.get('id') in PILOTS and observation.get('dynamic_ats'):
                 report.setdefault('dynamic_ats',[]).append(dict(url=url,**observation['dynamic_ats']))
             langs=workplace_languages(record['text'])
             staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_requirements=language_summary(record['text'],langs),language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),valid_through=application.get('valid_through') if application else record.get('valid_through'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,verification=verification,status='open' if verified else 'unverified'))

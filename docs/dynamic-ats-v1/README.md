@@ -38,7 +38,7 @@ Ultimo pilot completo: **42 richieste trasmesse, 2 rendering, 22,816 secondi com
 
 Per trasparenza sono conservate **tutte e quattro le iterazioni di sviluppo**: 168 richieste conteggiate, 8 rendering, circa 91,2 secondi totali di verifica. Le prime due iterazioni conservavano unverified perché rifiutavano anche il tracker `analytics.floydhamilton.tech/matomo.js`. Quel tracker ora è soppresso come gli altri analytics, senza contattarlo o approvarlo. La terza ha dimostrato i due form; la quarta ha confermato il risultato con il trasporto definitivo senza redirect. I contatori delle prime tre iterazioni misurano le richieste iniziali intercettate; non attestano gli eventuali hop di redirect non intercettati. Solo l'ultima usa il trasporto che rifiuta ogni redirect. Nessuna ulteriore lettura live è necessaria per riprodurre il rapporto.
 
-`dynamic_ats` nei report per fonte e nei log registra tentativi, richieste, durata, byte browser, risorse soppresse/rifiutate, motivo di successo/fallimento ed esclusione. Il catalogo non contiene questi log diagnostici.
+`dynamic_ats` nei report delle sole tre fonti pilota e nei log registra tentativi, richieste, durata, byte browser, risorse soppresse/rifiutate, motivo di successo/fallimento ed esclusione. Il catalogo non contiene questi log diagnostici.
 
 ## Evidenze, replay e test
 
@@ -61,7 +61,7 @@ python3 -m collector.pipeline --validate
 python3 scripts/build.py
 ```
 
-Controlli locali superati: **282 test Python, 21 frontend**, classificazione su 64 esempi senza errori, registry/coverage di 1.882 aziende, validazione catalogo e build. Il rapporto JSON rigenerato due volte è identico byte per byte. La CI della PR viene controllata separatamente.
+Controlli locali superati: **283 test Python, 21 frontend**, classificazione su 64 esempi senza errori, registry/coverage di 1.882 aziende, validazione catalogo e build. Il rapporto JSON rigenerato due volte è identico byte per byte. La CI ha individuato una differenza di timing nei report dei replay di fonti estranee al pilot: la telemetria nei report è ora limitata alle tre fonti pilota, con regressione che forza durate diverse. La CI del commit definitivo viene controllata separatamente.
 
 I comandi predefiniti sono offline. `--capture DIRECTORY_NUOVA` è una lettura live delle sole tre candidature già note, rifiuta directory esistenti e non esegue discovery/raccolte complete. Non è richiesto per CI o riproduzione del rapporto.
 
