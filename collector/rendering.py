@@ -33,8 +33,10 @@ def cegid_inventory_search(target,payload,page_url):
             and -90<=coordinates['lat']<=90 and -180<=coordinates['lng']<=180)
     except (ValueError,TypeError,KeyError):return False
 
-def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses=None):
+def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses=None,application_read=False,application_toggle=False,metrics=None):
     """A fresh browser has no user cookies or credentials; no applications submitted."""
+    metrics = metrics if metrics is not None else {}
+    metrics.update(browser_requests=0, blocked_requests=0,browser_bytes=0,suppressed_resources=0)
     canonical_url(url)
     if not client.permitted(url):raise ValueError('robots.txt disallows browser navigation')
     if not _BROWSER_SLOTS.acquire(timeout=max(.05,client.remaining())):raise CollectionBudgetExceeded('Browser queue exceeded budget')
@@ -43,9 +45,56 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
         except ImportError as e:raise BrowserUnavailable('Playwright is not installed') from e
         snapshots=[];complete=True
         with sync_playwright() as p:
-            browser=p.chromium.launch(headless=True,args=['--disable-dev-shm-usage'])
-            context=browser.new_context(user_agent='Mozilla/5.0 (compatible; '+AGENT+')',ignore_https_errors=False)
+            browser=p.chromium.launch(headless=True,args=['--disable-dev-shm-usage'],
+                **({'timeout':min(20000,max(50,int(client.remaining()*1000)))} if application_read else {}))
+            context=browser.new_context(user_agent='Mozilla/5.0 (compatible; '+AGENT+')',ignore_https_errors=False,
+                **({'service_workers':'block'} if application_read else {}))
             page=context.new_page();page.set_default_timeout(4000)
+            denied=[]
+            def strict_route(route):
+                req=route.request
+                # No search POST exception in application mode. Every resource,
+                # including scripts, styles and frames, uses the existing budget.
+                if req.method not in ('GET','HEAD'):
+                    metrics['blocked_requests']+=1
+                    denied.append('non-read-method');return route.abort()
+                if req.resource_type in ('image','font','media') or re.search(r'google-analytics|googletagmanager|doubleclick|facebook|linkedin|^analytics\.',urlsplit(req.url).hostname or ''):
+                    metrics['suppressed_resources']+=1
+                    return route.abort()
+                try:
+                    canonical_url(req.url)
+                    if 'authorization' in req.headers:raise ValueError('authentication-excluded')
+                    if not allowed(req.url):raise ValueError('unapproved-host-or-navigation: '+urlsplit(req.url).netloc+urlsplit(req.url).path)
+                    if req.is_navigation_request() and canonical_url(req.url)!=canonical_url(url):raise ValueError('application-navigation-or-redirect')
+                    if re.search(r'/(?:login|signin|oauth|authenticate)(?:/|$)',urlsplit(req.url).path,re.I):raise ValueError('authentication-excluded')
+                    if not client.permitted(req.url):raise ValueError('robots.txt disallows browser resource')
+                    from .runtime import host_lock
+                    host=urlsplit(req.url).netloc
+                    lock=host_lock(host)
+                    if not lock.acquire(timeout=client.remaining()):raise CollectionBudgetExceeded('Dynamic host queue exceeded budget')
+                    try:
+                        client.check()
+                        client.pause(max(0,client.host_delays.get(host,client.delay)-(time.monotonic()-client.last.get(host,0))))
+                        client.check();client.last[host]=time.monotonic();client.requests+=1
+                        metrics['browser_requests']+=1
+                        # Playwright route handlers do not intercept every redirect
+                        # hop. Fetch with zero redirects, then fulfill the same
+                        # browser request; never let Chromium follow unseen hosts.
+                        response=route.fetch(max_redirects=0,max_retries=0,
+                            timeout=max(50,int(client.remaining()*1000)))
+                        try:
+                            if not 200<=response.status<300:raise ValueError('Dynamic resource HTTP '+str(response.status)+'; redirects excluded')
+                            data=response.body();metrics['browser_bytes']+=len(data)
+                            if metrics['browser_bytes']>20_000_000:raise ValueError('Dynamic resource memory budget exceeded')
+                            client.check()
+                            return route.fulfill(response=response,body=data)
+                        finally:response.dispose()
+                    finally:lock.release()
+                except Exception as exc:
+                    metrics['blocked_requests']+=1;denied.append(str(exc))
+                    metrics['denied']=denied[:8]
+                    return route.abort()
+
             def route_request(route):
                 req=route.request;host=urlsplit(req.url).hostname or ''
                 read_search=(req.method=='POST' and req.resource_type in ('xhr','fetch') and bool(re.search(r'/(?:jobs|search|positions|postings)(?:[/?]|$)',urlsplit(req.url).path,re.I)) and not re.search(r'apply|candidate|login|submit|mutation',req.url+' '+(req.post_data or ''),re.I))
@@ -60,7 +109,10 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
                         client.requests+=1
                     except Exception:return route.abort()
                 return route.continue_()
-            context.route('**/*',route_request)
+            context.route('**/*',strict_route if application_read else route_request)
+            if application_read:
+                context.route_web_socket('**/*',lambda socket: socket.close())
+                page.on('response',lambda response: denied.append('HTTP '+str(response.status)) if response.status>=400 else None)
             try:
                 client.check()
                 if cegid_search:
@@ -78,13 +130,30 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
                 if response and response.status in (401,403,429):raise ValueError('Rendered page access restricted: '+str(response.status))
                 try:page.wait_for_load_state('networkidle',timeout=min(4000,max(500,int(client.remaining()*1000))))
                 except Exception:pass
+                if application_read and application_toggle:
+                    # Observed Ubeeo non-submit div, never an arbitrary Apply button.
+                    toggles=page.locator('div.btn[onclick^="toggleForm("]')
+                    for n in range(min(toggles.count(),8)):
+                        toggle=toggles.nth(n)
+                        if (re.fullmatch(r"toggleForm\('[\w-]+'\)",toggle.get_attribute('onclick') or '')
+                            and toggle.inner_text().strip().lower()=='solliciteer direct'
+                            and toggle.is_visible()
+                            and toggle.locator('xpath=ancestor::form').count()==0):
+                            toggle.click(timeout=min(4000,max(50,int(client.remaining()*1000))))
+                            try:page.wait_for_load_state('networkidle',timeout=min(4000,max(50,int(client.remaining()*1000))))
+                            except Exception:pass
+                            break
+                if application_read and denied:raise ValueError('Dynamic browser request denied: '+denied[0])
                 seen=set()
                 for index in range(limit):
                     client.check();text=page.locator('body').inner_text(timeout=3000)
                     if BLOCK.search(text[:3000]):raise ValueError('Browser access challenge; no bypass attempted')
                     html=page.content();signature=hash(html)
                     if signature in seen:break
-                    seen.add(signature);snapshots.append((page.url,html.encode()))
+                    seen.add(signature)
+                    if application_read and len(html.encode())>20_000_000:raise ValueError('Rendered DOM exceeds memory limit')
+                    snapshots.append((page.url,html.encode()))
+                    if application_read:break
                     buttons=page.get_by_role('button',name=MORE).or_(page.get_by_role('link',name=MORE))
                     target=None
                     for n in range(min(buttons.count(),8)):

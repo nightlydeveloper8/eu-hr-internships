@@ -67,19 +67,20 @@ def structured_identifiers(doc, title):
     return identifiers
 
 
-def applicant_form(body):
-    for form in ApplicantForms(body).forms:
+def applicant_form(body,strict=False):
+    for form in ApplicantForms(body,strict=strict).forms:
         # Modern ATS forms bind controls by id/autocomplete instead of name.
         # Boolean HTML attributes have value None and carry no field semantics.
-        names=' '.join(str(i.get(key) or '') for i in form['fields']
+        names=' '.join(str(i.get(key) or '') for i in form['fields'] if not (strict and i.get('type')=='hidden')
                        for key in ('name','id','type','autocomplete','aria-label')).lower()
         attributes=' '.join(value for value in form['attrs'].values() if isinstance(value,str)).lower()
+        if strict and re.search(r'newsletter|job.?alert|cookie|consent|search|talent.?community|subscribe',attributes):continue
         application=bool(re.search(r'apply|applica|recruit|candidate',attributes) or re.search(r'resume|\bcv\b',names))
         if application and form['submit'] and 'email' in names and re.search(r'name|resume|\bcv\b',names):return True
     return False
 
 
-def verify_vacancy(record, source, client, stamp, observation=None):
+def _verify_vacancy(record, source, client, stamp, observation=None):
     """No successful HEAD, cached page or JSON-LD alone establishes an opening."""
     closure=None
     try:body, doc = checked_document(record['url'], source, client)
@@ -115,7 +116,9 @@ def verify_vacancy(record, source, client, stamp, observation=None):
         if not re.search(r'\bapply\b|solliciteer|solliciteren|bewerben|postuler|candidati|candidarsi|candidatar', fold(label)): continue
         target = canonical_url(urljoin(doc.url, href))
         if urlsplit(target).hostname in source['allowed_hosts'] and target != canonical_url(doc.url): targets.append(target)
-    if not targets: raise ValueError('No available vacancy-specific application entry established')
+    if not targets:
+        from .dynamic_ats import MissingDynamicForm
+        raise MissingDynamicForm('No available vacancy-specific application entry established',doc.url,body)
     # Do not treat a redirect to a careers/search page or another requisition as success.
     # A structured identifier on this freshly identified vacancy can bridge a
     # human-readable URL to the ATS ID in its observed application CTA. Never
@@ -133,6 +136,13 @@ def verify_vacancy(record, source, client, stamp, observation=None):
     if expected_ids and application_ids and expected_ids!=application_ids:raise ValueError('Application requisition differs from vacancy')
     if not same_title(application, record['title']) and (application.jobposts() or any(classify_role(h) for h in application.h1)):raise ValueError('Application identifies a different vacancy')
     if not same_title(application, record['title']) and not same_requisition(doc.url,application.url): raise ValueError('Application page does not identify the same vacancy')
-    if not applicant_form(app_body): raise ValueError('Applicant form not established; application may require JavaScript or an account')
+    if not applicant_form(app_body):
+        from .dynamic_ats import MissingDynamicForm
+        raise MissingDynamicForm('Applicant form not established; application may require JavaScript or an account',application.url,app_body)
     return dict(url=canonical_url(application.url), method='linked-same-vacancy-applicant-form',valid_through=fresh_deadline, vacancy_match='title' if same_title(application,record['title']) else 'vacancy-path-application-child',
                 inventory=record.get('inventory_evidence', 'not-established'))
+
+
+def verify_vacancy(record, source, client, stamp, observation=None):
+    from .dynamic_ats import verify_with_fallback
+    return verify_with_fallback(_verify_vacancy,record,source,client,stamp,observation)

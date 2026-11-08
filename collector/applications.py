@@ -22,18 +22,26 @@ class FormFields(HTMLParser):
 
 
 class ApplicantForms(HTMLParser):
-    def __init__(self, body):
-        super().__init__();self.forms=[];self.current=None
+    def __init__(self, body, strict=False):
+        super().__init__();self.forms=[];self.current=None;self.strict=strict;self.scopes=[]
         self.feed(body.decode('utf-8','replace'))
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
+        blocked=('disabled' in a or 'disabled' in a.get('class','').split() or 'hidden' in a or a.get('aria-hidden')=='true'
+                 or a.get('aria-disabled')=='true' or bool(re.search(r'display\s*:\s*none|visibility\s*:\s*hidden',a.get('style',''),re.I)))
+        inherited=any(value for _,value in self.scopes) if self.strict else False
+        if tag not in ('area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'):
+            self.scopes.append((tag,blocked))
         if tag=='form':
             self.current=dict(attrs=a,fields=[],submit=False);self.forms.append(self.current)
-        if self.current is not None and 'disabled' not in a and a.get('aria-disabled')!='true' and 'disabled' not in a.get('class','').split():
+        if self.current is not None and not (self.strict and (blocked or inherited)) and 'disabled' not in a and a.get('aria-disabled')!='true' and 'disabled' not in a.get('class','').split():
             if tag in ('input','textarea'):self.current['fields'].append(a)
             if (tag=='button' and a.get('type','submit')=='submit') or (tag=='input' and a.get('type')=='submit') or (tag=='a' and bool({'o_website_form_send','s_website_form_send'} & set(a.get('class','').split()))):self.current['submit']=True
     def handle_endtag(self,tag):
         if tag=='form':self.current=None
+        for index in range(len(self.scopes)-1,-1,-1):
+            if self.scopes[index][0]==tag:
+                del self.scopes[index:];break
 
 
 

@@ -1,0 +1,147 @@
+{
+  "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+  "id": "994018cb6659595e818f",
+  "kind": "live-read",
+  "stamp": "2026-11-08T09:08:42.406336+00:00",
+  "record": {
+    "id": "994018cb6659595e818f",
+    "external_id": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+    "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+    "source_name": "Oosterwolde Plastic Industrie B.V.",
+    "source_type": "universal-employer",
+    "source_posting_id": null,
+    "employer": "OPACKGROUP",
+    "title": "Stage Employer Branding",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Giessen",
+    "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+    "apply_url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+    "categories": [
+      "employer-branding"
+    ],
+    "category": "employer-branding",
+    "internship_type": "internship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "nl",
+      "confidence": "uncertain",
+      "method": "deterministic stopword heuristic"
+    },
+    "workplace_languages": [],
+    "language_requirements": {
+      "requirements_status": "unknown",
+      "required_languages": [],
+      "alternative_languages": [],
+      "english_support": "unknown",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "language_confidence": "unspecified",
+    "duration": null,
+    "enrollment": "Je volgt een hbo-opleiding in de richting Communicatie, Marketing, Human Resource Management of Commerciële Economie (of vergelijkbaar);.",
+    "work_mode": "unspecified",
+    "published_at": "2026-10-12T09:41:55.942307Z",
+    "valid_through": null,
+    "first_discovered_at": "2026-11-06T12:29:27.791705+00:00",
+    "last_seen_at": "2026-11-07T07:04:32.004378+00:00",
+    "last_verified_at": "2026-11-06T17:46:35.866063+00:00",
+    "link_status": "incomplete",
+    "verification": {
+      "state": "incomplete",
+      "checked_at": "2026-11-07T07:04:32.004378+00:00",
+      "policy_version": 2,
+      "reason": "No available vacancy-specific application entry established"
+    },
+    "status": "unverified",
+    "missing_count": 0,
+    "region_codes": [],
+    "text": "",
+    "location": "Giessen",
+    "posting_identifier": null
+  },
+  "source": {
+    "id": "auto-oosterwolde-plastic-industrie-b-v",
+    "company_id": "oosterwolde-plastic-industrie-b-v",
+    "employer": "Oosterwolde Plastic Industrie B.V.",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbijopackgroup.nl/oosterwolde-plastic-industry"
+    ],
+    "career_url": "https://werkenbijopackgroup.nl/oosterwolde-plastic-industry",
+    "allowed_hosts": [
+      "werkenbijopackgroup.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  "before": {
+    "state": "unverified",
+    "error": "No available vacancy-specific application entry established"
+  },
+  "after": {
+    "state": "verified",
+    "proof": {
+      "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+      "method": "rendered-same-vacancy-applicant-form",
+      "valid_through": null,
+      "vacancy_match": "title",
+      "inventory": "not-established"
+    },
+    "metrics": {
+      "renderings": 1,
+      "requests": 17,
+      "browser_requests": 17,
+      "blocked_requests": 0,
+      "seconds": 9.338,
+      "outcome": "verified",
+      "reason": "rendered-same-vacancy-applicant-form",
+      "total_seconds": 10.518
+    }
+  },
+  "requests": 19,
+  "bytes_http": 114126,
+  "events": [
+    {
+      "url": "https://werkenbijopackgroup.nl/robots.txt",
+      "seconds": 0.112
+    },
+    {
+      "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+      "seconds": 1.164
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://werkenbijopackgroup.nl/robots.txt",
+      "status": 200,
+      "final_url": "https://werkenbijopackgroup.nl/robots.txt",
+      "file": "f0e8e823eeeadd780002.html.gz",
+      "sha256": "26040f3266b6c78372a1acc9f03b83bb03d8743999f0bb877642d1673929db6d"
+    },
+    {
+      "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+      "status": 200,
+      "final_url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+      "file": "8121b560dfa7b2ffa0bb.html.gz",
+      "sha256": "9c9174fa10663154ca8f5c49044251985a548752b57ec6f37b0c47424af22af4"
+    },
+    {
+      "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+      "kind": "rendered-dom",
+      "file": "rendered-0.html.gz",
+      "sha256": "5cbe3eec55b5c7e610f4d20d095f7c3134ed1b4c6f96ab7c81c5d531e722ee8a"
+    }
+  ]
+}

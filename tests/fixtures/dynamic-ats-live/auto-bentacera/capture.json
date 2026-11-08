@@ -1,0 +1,152 @@
+{
+  "source_id": "auto-bentacera",
+  "id": "985543752c20a8abaeba",
+  "kind": "live-read",
+  "stamp": "2026-11-08T09:05:50.421173+00:00",
+  "record": {
+    "id": "985543752c20a8abaeba",
+    "external_id": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+    "source_id": "auto-bentacera",
+    "source_name": "Bentacera",
+    "source_type": "universal-employer",
+    "source_posting_id": null,
+    "employer": "Bentacera",
+    "title": "Traineeship Salarisprofessional",
+    "country": "NL",
+    "countries": [
+      "NL"
+    ],
+    "city": "Leeuwarden",
+    "url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+    "apply_url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+    "categories": [
+      "compensation-benefits"
+    ],
+    "category": "compensation-benefits",
+    "internship_type": "traineeship",
+    "internship_confidence": "confirmed",
+    "advertisement_language": {
+      "code": "nl",
+      "confidence": "uncertain",
+      "method": "deterministic stopword heuristic"
+    },
+    "workplace_languages": [],
+    "language_requirements": {
+      "requirements_status": "unknown",
+      "required_languages": [],
+      "alternative_languages": [],
+      "english_support": "unknown",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "language_confidence": "unspecified",
+    "duration": null,
+    "enrollment": null,
+    "work_mode": "unspecified",
+    "published_at": "2026-10-20T11:43:53.386713Z",
+    "valid_through": null,
+    "first_discovered_at": "2026-11-06T06:42:20.187115+00:00",
+    "last_seen_at": "2026-11-08T07:07:34.894007+00:00",
+    "last_verified_at": "2026-11-06T17:46:28.125083+00:00",
+    "link_status": "incomplete",
+    "verification": {
+      "state": "incomplete",
+      "checked_at": "2026-11-08T07:07:34.894007+00:00",
+      "policy_version": 2,
+      "reason": "No available vacancy-specific application entry established"
+    },
+    "status": "unverified",
+    "intake": {
+      "published_start": "2027-02",
+      "alternatives": [],
+      "state": "documented-future-start",
+      "checked_at": "2026-11-08T07:07:34.894007+00:00",
+      "evidence": [
+        "start in februari 2027"
+      ],
+      "provenance": "live",
+      "observed_via": "live"
+    },
+    "missing_count": 0,
+    "region_codes": [
+      "NL12"
+    ],
+    "text": "",
+    "location": "Leeuwarden",
+    "posting_identifier": null
+  },
+  "source": {
+    "id": "auto-bentacera",
+    "company_id": "bentacera",
+    "employer": "Bentacera",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.werkenbijbentacera.nl/",
+      "https://werkenbijbentacera.nl/",
+      "https://www.werkenbijbentacera.nl",
+      "https://werkenbijbentacera.nl"
+    ],
+    "career_url": "https://www.werkenbijbentacera.nl/",
+    "allowed_hosts": [
+      "werkenbijbentacera.nl",
+      "www.werkenbijbentacera.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
+  },
+  "before": {
+    "state": "unverified",
+    "error": "No available vacancy-specific application entry established"
+  },
+  "after": {
+    "state": "unverified",
+    "error": "Dynamic browser request denied: unapproved-host-or-navigation",
+    "metrics": {
+      "renderings": 1,
+      "requests": 18,
+      "browser_requests": 18,
+      "blocked_requests": 1,
+      "seconds": 10.077,
+      "outcome": "unverified",
+      "reason": "Dynamic browser request denied: unapproved-host-or-navigation",
+      "total_seconds": 11.254
+    }
+  },
+  "requests": 20,
+  "bytes_http": 119501,
+  "events": [
+    {
+      "url": "https://www.werkenbijbentacera.nl/robots.txt",
+      "seconds": 0.193
+    },
+    {
+      "url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+      "seconds": 1.141
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://www.werkenbijbentacera.nl/robots.txt",
+      "status": 200,
+      "final_url": "https://www.werkenbijbentacera.nl/robots.txt",
+      "file": "44535fc57a9a38b6f03f.html.gz",
+      "sha256": "9706ee5c6e99f8df63c956e2e4b8709397ff116e5ad4dd73825bb2c2a5e2330a"
+    },
+    {
+      "url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+      "status": 200,
+      "final_url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+      "file": "e0ba49abf3e9bb2d842a.html.gz",
+      "sha256": "b4f544fa6fd235fb13d2712b0421842d198a35a61853f6fb07395401513d3e37"
+    }
+  ]
+}
