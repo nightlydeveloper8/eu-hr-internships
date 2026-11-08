@@ -1,0 +1,424 @@
+{
+  "base_commit": "1d198a4",
+  "scope": "Three existing known candidates; no inventory/discovery",
+  "historical_html": {
+    "rows": [
+      {
+        "source_id": "auto-bentacera",
+        "id": "985543752c20a8abaeba",
+        "kind": "historical-html-replay",
+        "before": {
+          "state": "unverified",
+          "error": "No available vacancy-specific application entry established"
+        },
+        "after": {
+          "state": "unverified",
+          "error": "No available vacancy-specific application entry established",
+          "metrics": {
+            "renderings": 0,
+            "requests": 0,
+            "browser_requests": 0,
+            "blocked_requests": 0,
+            "seconds": 0,
+            "outcome": "excluded",
+            "reason": "pilot-disabled"
+          }
+        }
+      },
+      {
+        "source_id": "auto-centraal-beheer-achmea",
+        "id": "e83537f80a3c4be51eae",
+        "kind": "historical-html-replay",
+        "before": {
+          "state": "unverified",
+          "error": "Applicant form not established; application may require JavaScript or an account"
+        },
+        "after": {
+          "state": "unverified",
+          "error": "Applicant form not established; application may require JavaScript or an account",
+          "metrics": {
+            "renderings": 0,
+            "requests": 0,
+            "browser_requests": 0,
+            "blocked_requests": 0,
+            "seconds": 0,
+            "outcome": "excluded",
+            "reason": "pilot-disabled"
+          }
+        }
+      },
+      {
+        "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+        "id": "994018cb6659595e818f",
+        "kind": "historical-html-replay",
+        "before": {
+          "state": "unverified",
+          "error": "No available vacancy-specific application entry established"
+        },
+        "after": {
+          "state": "unverified",
+          "error": "No available vacancy-specific application entry established",
+          "metrics": {
+            "renderings": 0,
+            "requests": 0,
+            "browser_requests": 0,
+            "blocked_requests": 0,
+            "seconds": 0,
+            "outcome": "excluded",
+            "reason": "pilot-disabled"
+          }
+        }
+      }
+    ],
+    "live_requests": 0,
+    "production_catalog_modified": false
+  },
+  "rendered_dom_replay": {
+    "rows": [
+      {
+        "source_id": "auto-bentacera",
+        "id": "985543752c20a8abaeba",
+        "kind": "rendered-dom-replay",
+        "before": {
+          "state": "unverified",
+          "error": "No available vacancy-specific application entry established"
+        },
+        "after": {
+          "state": "verified",
+          "proof": {
+            "url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+            "method": "rendered-same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "not-established"
+          }
+        }
+      },
+      {
+        "source_id": "auto-centraal-beheer-achmea",
+        "id": "e83537f80a3c4be51eae",
+        "kind": "rendered-dom-replay",
+        "before": {
+          "state": "unverified",
+          "error": "Applicant form not established; application may require JavaScript or an account"
+        },
+        "after": {
+          "state": "unverified",
+          "error": "Applicant form not established; application may require JavaScript or an account"
+        }
+      },
+      {
+        "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+        "id": "994018cb6659595e818f",
+        "kind": "rendered-dom-replay",
+        "before": {
+          "state": "unverified",
+          "error": "No available vacancy-specific application entry established"
+        },
+        "after": {
+          "state": "verified",
+          "proof": {
+            "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+            "method": "rendered-same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "not-established"
+          }
+        }
+      }
+    ],
+    "live_requests": 0,
+    "production_catalog_modified": false
+  },
+  "live_attempts": [
+    {
+      "capture": "dynamic-ats-live",
+      "rows": [
+        {
+          "source_id": "auto-bentacera",
+          "id": "985543752c20a8abaeba",
+          "observed_at": "2026-11-08T09:05:50.421173+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Dynamic browser request denied: unapproved-host-or-navigation",
+          "total_requests": 20,
+          "renderings": 1,
+          "requests": 18,
+          "browser_requests": 18,
+          "blocked_requests": 1,
+          "seconds": 10.077,
+          "outcome": "unverified",
+          "reason": "Dynamic browser request denied: unapproved-host-or-navigation",
+          "total_seconds": 11.254
+        },
+        {
+          "source_id": "auto-centraal-beheer-achmea",
+          "id": "e83537f80a3c4be51eae",
+          "observed_at": "2026-11-08T09:06:01.702558+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Applicant form not established; application may require JavaScript or an account",
+          "total_requests": 3,
+          "renderings": 0,
+          "requests": 0,
+          "browser_requests": 0,
+          "blocked_requests": 0,
+          "seconds": 0,
+          "outcome": "excluded",
+          "reason": "captcha",
+          "total_seconds": 2.061
+        },
+        {
+          "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+          "id": "994018cb6659595e818f",
+          "observed_at": "2026-11-08T09:06:03.806814+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Dynamic browser request denied: unapproved-host-or-navigation",
+          "total_requests": 19,
+          "renderings": 1,
+          "requests": 17,
+          "browser_requests": 17,
+          "blocked_requests": 1,
+          "seconds": 9.384,
+          "outcome": "unverified",
+          "reason": "Dynamic browser request denied: unapproved-host-or-navigation",
+          "total_seconds": 10.812
+        }
+      ],
+      "requests": 42,
+      "renderings": 2
+    },
+    {
+      "capture": "dynamic-ats-diagnostic",
+      "rows": [
+        {
+          "source_id": "auto-bentacera",
+          "id": "985543752c20a8abaeba",
+          "observed_at": "2026-11-08T09:07:00.220937+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Dynamic browser request denied: unapproved-host-or-navigation: analytics.floydhamilton.tech/matomo.js",
+          "total_requests": 20,
+          "renderings": 1,
+          "requests": 18,
+          "browser_requests": 18,
+          "blocked_requests": 1,
+          "seconds": 9.853,
+          "denied": [
+            "unapproved-host-or-navigation: analytics.floydhamilton.tech/matomo.js"
+          ],
+          "outcome": "unverified",
+          "reason": "Dynamic browser request denied: unapproved-host-or-navigation: analytics.floydhamilton.tech/matomo.js",
+          "total_seconds": 10.462
+        },
+        {
+          "source_id": "auto-centraal-beheer-achmea",
+          "id": "e83537f80a3c4be51eae",
+          "observed_at": "2026-11-08T09:07:10.718346+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Applicant form not established; application may require JavaScript or an account",
+          "total_requests": 3,
+          "renderings": 0,
+          "requests": 0,
+          "browser_requests": 0,
+          "blocked_requests": 0,
+          "seconds": 0,
+          "outcome": "excluded",
+          "reason": "captcha",
+          "total_seconds": 1.282
+        },
+        {
+          "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+          "id": "994018cb6659595e818f",
+          "observed_at": "2026-11-08T09:07:12.038740+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Dynamic browser request denied: unapproved-host-or-navigation: analytics.floydhamilton.tech/matomo.js",
+          "total_requests": 19,
+          "renderings": 1,
+          "requests": 17,
+          "browser_requests": 17,
+          "blocked_requests": 1,
+          "seconds": 9.086,
+          "denied": [
+            "unapproved-host-or-navigation: analytics.floydhamilton.tech/matomo.js"
+          ],
+          "outcome": "unverified",
+          "reason": "Dynamic browser request denied: unapproved-host-or-navigation: analytics.floydhamilton.tech/matomo.js",
+          "total_seconds": 10.181
+        }
+      ],
+      "requests": 42,
+      "renderings": 2
+    },
+    {
+      "capture": "dynamic-ats-final",
+      "rows": [
+        {
+          "source_id": "auto-bentacera",
+          "id": "985543752c20a8abaeba",
+          "observed_at": "2026-11-08T09:08:30.556839+00:00",
+          "before": "unverified",
+          "after": "verified",
+          "proof": {
+            "url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+            "method": "rendered-same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "not-established"
+          },
+          "error": null,
+          "total_requests": 20,
+          "renderings": 1,
+          "requests": 18,
+          "browser_requests": 18,
+          "blocked_requests": 0,
+          "seconds": 9.944,
+          "outcome": "verified",
+          "reason": "rendered-same-vacancy-applicant-form",
+          "total_seconds": 10.568
+        },
+        {
+          "source_id": "auto-centraal-beheer-achmea",
+          "id": "e83537f80a3c4be51eae",
+          "observed_at": "2026-11-08T09:08:41.143119+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Applicant form not established; application may require JavaScript or an account",
+          "total_requests": 3,
+          "renderings": 0,
+          "requests": 0,
+          "browser_requests": 0,
+          "blocked_requests": 0,
+          "seconds": 0,
+          "outcome": "excluded",
+          "reason": "captcha",
+          "total_seconds": 1.239
+        },
+        {
+          "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+          "id": "994018cb6659595e818f",
+          "observed_at": "2026-11-08T09:08:42.406336+00:00",
+          "before": "unverified",
+          "after": "verified",
+          "proof": {
+            "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+            "method": "rendered-same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "not-established"
+          },
+          "error": null,
+          "total_requests": 19,
+          "renderings": 1,
+          "requests": 17,
+          "browser_requests": 17,
+          "blocked_requests": 0,
+          "seconds": 9.338,
+          "outcome": "verified",
+          "reason": "rendered-same-vacancy-applicant-form",
+          "total_seconds": 10.518
+        }
+      ],
+      "requests": 42,
+      "renderings": 2
+    },
+    {
+      "capture": "dynamic-ats-release",
+      "rows": [
+        {
+          "source_id": "auto-bentacera",
+          "id": "985543752c20a8abaeba",
+          "observed_at": "2026-11-08T09:13:29.686895+00:00",
+          "before": "unverified",
+          "after": "verified",
+          "proof": {
+            "url": "https://www.werkenbijbentacera.nl/vacatures/traineeship-salarisprofessional-leeuwarden-284",
+            "method": "rendered-same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "not-established"
+          },
+          "error": null,
+          "total_requests": 20,
+          "renderings": 1,
+          "requests": 18,
+          "browser_requests": 18,
+          "blocked_requests": 0,
+          "seconds": 9.888,
+          "browser_bytes": 1373636,
+          "suppressed_resources": 31,
+          "outcome": "verified",
+          "reason": "rendered-same-vacancy-applicant-form",
+          "total_seconds": 11.109
+        },
+        {
+          "source_id": "auto-centraal-beheer-achmea",
+          "id": "e83537f80a3c4be51eae",
+          "observed_at": "2026-11-08T09:13:40.813380+00:00",
+          "before": "unverified",
+          "after": "unverified",
+          "proof": null,
+          "error": "Applicant form not established; application may require JavaScript or an account",
+          "total_requests": 3,
+          "renderings": 0,
+          "requests": 0,
+          "browser_requests": 0,
+          "blocked_requests": 0,
+          "seconds": 0,
+          "outcome": "excluded",
+          "reason": "captcha",
+          "total_seconds": 1.284
+        },
+        {
+          "source_id": "auto-oosterwolde-plastic-industrie-b-v",
+          "id": "994018cb6659595e818f",
+          "observed_at": "2026-11-08T09:13:42.137753+00:00",
+          "before": "unverified",
+          "after": "verified",
+          "proof": {
+            "url": "https://werkenbijopackgroup.nl/vacatures/stage-employer-branding-giessen-385",
+            "method": "rendered-same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "not-established"
+          },
+          "error": null,
+          "total_requests": 19,
+          "renderings": 1,
+          "requests": 17,
+          "browser_requests": 17,
+          "blocked_requests": 0,
+          "seconds": 9.27,
+          "browser_bytes": 1332642,
+          "suppressed_resources": 29,
+          "outcome": "verified",
+          "reason": "rendered-same-vacancy-applicant-form",
+          "total_seconds": 10.423
+        }
+      ],
+      "requests": 42,
+      "renderings": 2
+    }
+  ],
+  "total_live_requests": 168,
+  "total_live_renderings": 8,
+  "verified_before": 0,
+  "verified_after": 2,
+  "conversion_before": 0,
+  "conversion_after": 0.6666666666666666,
+  "new_vacancies_discovered": 0,
+  "production_catalog_modified": false,
+  "historical_ids": 324,
+  "feature_enabled_by_default": false,
+  "synthetic_tests": "tests/test_dynamic_ats.py: behavior and fake browser transport; not live evidence"
+}
