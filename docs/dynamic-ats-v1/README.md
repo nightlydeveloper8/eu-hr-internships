@@ -61,7 +61,7 @@ python3 -m collector.pipeline --validate
 python3 scripts/build.py
 ```
 
-Controlli locali superati: **281 test Python, 21 frontend**, classificazione su 64 esempi senza errori, registry/coverage di 1.882 aziende, validazione catalogo e build. Il rapporto JSON rigenerato due volte è identico byte per byte. La CI della PR viene controllata separatamente.
+Controlli locali superati: **282 test Python, 21 frontend**, classificazione su 64 esempi senza errori, registry/coverage di 1.882 aziende, validazione catalogo e build. Il rapporto JSON rigenerato due volte è identico byte per byte. La CI della PR viene controllata separatamente.
 
 I comandi predefiniti sono offline. `--capture DIRECTORY_NUOVA` è una lettura live delle sole tre candidature già note, rifiuta directory esistenti e non esegue discovery/raccolte complete. Non è richiesto per CI o riproduzione del rapporto.
 

@@ -102,6 +102,12 @@ class DynamicTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.verify()
         self.assertEqual(self.render_calls,0)
 
+    def test_unapproved_cta_cannot_be_bypassed_using_inline_marker(self):
+        self.html=self.page(MARKER+b'<a href="https://evil.org/apply/123">Apply</a>')
+        with self.assertRaises(ValueError):self.verify()
+        self.assertEqual(self.render_calls,0)
+        self.assertEqual(self.observation['dynamic_ats']['reason'],'unapproved-application-host')
+
     def test_collected_expired_deadline_never_launches(self):
         self.record['valid_through']='2020-01-01'
         with self.assertRaisesRegex(ValueError,'deadline'):self.verify()

@@ -5,7 +5,7 @@ import re
 import threading
 import time
 from urllib.parse import urlsplit,urljoin
-from .classify import canonical_url
+from .classify import canonical_url,fold
 from .runtime import CollectionBudgetExceeded
 
 LOG=logging.getLogger(__name__)
@@ -61,9 +61,15 @@ def marker(body):
     return toggle,salesforce
 
 
-def exclusion(source,client,body):
+def exclusion(source,client,body,url):
     if source.get('id') not in PILOTS:return 'source-not-pilot'
     if os.environ.get('PEOPLE_PLACEMENT_DYNAMIC_ATS')!=ENABLE_VALUE:return 'pilot-disabled'
+    from .universal import Document
+    for href,label,_ in Document(body,url).links:
+        if re.search(r'\bapply\b|solliciteer|solliciteren|bewerben|postuler|candidati|candidarsi|candidatar',fold(label)):
+            target=urljoin(url,href)
+            if urlsplit(target).hostname not in source['allowed_hosts']:
+                return 'unapproved-application-host'
     from .applications import ApplicantForms
     for form in ApplicantForms(body).forms:
         attributes=' '.join(str(value or '') for value in form['attrs'].values())
@@ -92,7 +98,7 @@ def verify_with_fallback(verifier,record,source,client,stamp,observation):
             if expired(record.get('valid_through'),stamp):
                 event.update(outcome='excluded',reason='expired-collected-deadline')
                 raise ValueError('Dynamic fallback excluded: collected deadline has passed')
-            reason=exclusion(source,client,missing.body)
+            reason=exclusion(source,client,missing.body,missing.url)
             if reason:
                 event.update(outcome='excluded',reason=reason);raise
             global _RENDERINGS
