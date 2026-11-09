@@ -50,6 +50,7 @@ jobs:
       matrix:
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     env:
+      PEOPLE_PLACEMENT_DYNAMIC_ATS: ${{ vars.PEOPLE_PLACEMENT_DYNAMIC_ATS }}
       COLLECTOR_CACHE_DIR: .cache/collector
       PLAYWRIGHT_BROWSERS_PATH: .cache/ms-playwright
       PYTHONUNBUFFERED: '1'

@@ -67,7 +67,18 @@ I comandi predefiniti sono offline. `--capture DIRECTORY_NUOVA` è una lettura l
 
 ## Rischi e rollout controllato
 
-**Disattivato per impostazione predefinita**, nessuna modifica alle configurazioni del workflow o ai registry. Dopo review e merge, il primo rollout potrà impostare la variabile solo in un'esecuzione controllata sulle fonti pilota, con metriche e confronto dei risultati. La raccolta ordinaria resterà autonoma per le vacancy future di quelle fonti: nessun intervento manuale sul singolo annuncio. Il limite di un tentativo per fonte privilegia il costo e può lasciare altre candidature unverified nello stesso giro.
+**Disattivato per impostazione predefinita.** Il solo job `collect` di `.github/workflows/collect.yml` passa al collector la repository variable GitHub Actions `PEOPLE_PLACEMENT_DYNAMIC_ATS`. Se assente, vuota o diversa esattamente da `pilot-v1`, il fallback resta spento: nessun rendering o richiesta aggiuntiva del percorso dinamico. L'installazione Playwright già presente nel workflow resta invariata; non viene abilitato globalmente. Registry, catalogo, policy v2, controlli di sicurezza, budget e matrice dei 16 shard restano invariati.
+
+Dopo review e merge, per attivare il pilot:
+
+1. Aprire il repository su GitHub → **Settings → Secrets and variables → Actions → Variables → New repository variable**.
+2. Impostare **Name** `PEOPLE_PLACEMENT_DYNAMIC_ATS` e **Value** `pilot-v1`, quindi salvare. È una repository variable, non un secret; non servono token.
+3. Attendere la prossima raccolta quotidiana ordinaria, senza avviare raccolte complete manuali. Da quel momento il sistema resta autonomo anche per vacancy future, soltanto per `auto-bentacera`, `auto-oosterwolde-plastic-industrie-b-v` e `auto-centraal-beheer-achmea`, sempre subordinate ai controlli esistenti. Il limite di un tentativo per fonte può lasciare altre candidature unverified nello stesso giro.
+4. Controllare CI, tutti i job `collect` e `publish`, artifact `catalog-and-coverage` e metriche `dynamic_ats`: rendering, richieste, durata, errori e budget. Confrontare ID, stati e motivi prima/dopo, distinguendo le verifiche scadute dopo 48 ore. Le prove storiche non attestano nuove candidature in produzione: servono letture live della stessa vacancy e del suo application URL ufficiale. Bentacera `985543752c20a8abaeba` e OPACK `994018cb6659595e818f` sono i riferimenti da controllare; Achmea `e83537f80a3c4be51eae` deve restare prudente in presenza di CAPTCHA. Conservare solo metriche, nessun dato candidato.
+
+Per **disattivare/rollback**, tornare alla stessa scheda **Variables** ed eliminare `PEOPLE_PLACEMENT_DYNAMIC_ATS` (oppure svuotarla o assegnare un valore diverso da `pilot-v1`, ad esempio `off`). Il prossimo job che legge la variabile torna al solo percorso HTML: verificarne metriche e risultato. La modifica non interrompe un processo già avviato con il vecchio valore. In caso di CAPTCHA, robots, tentativi POST o costi anomali, disabilitare e segnalare senza aggirare i controlli. Nessuna modifica del catalogo è necessaria per il rollback.
+
+Questa PR prepara il collegamento e i test offline ([Issue #23](https://github.com/nightlydeveloper8/eu-hr-internships/issues/23)); non configura la variabile, non avvia raccolte complete e non esegue il merge.
 
 Il beneficio dimostrato è circoscritto ai due siti con template condiviso. Gli altri datori non entrano nel fallback. Non estendere l'allowlist sulla base di un DOM o di un errore: eventuali altri host ATS richiedono review separata. Achmea resta esclusa. Le forme e i toggle possono cambiare; un risultato sintetico positivo non giustifica nuove fonti. Falsi negativi per budget, tracker non riconosciuti, contenuti che richiedono interazioni ulteriori, HTTP non 2xx o form nascosti sono accettati.
 
