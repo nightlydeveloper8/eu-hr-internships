@@ -48063,5 +48063,35 @@
     "status": "automatic-collection-pending",
     "access_reviewed_on": "2026-11-07",
     "discovery_scope": "Bounded discovery from official reviewed start; no whole-inventory or zero-vacancy claim."
+  },
+  {
+    "id": "auto-sw-vastgoedverbetering",
+    "company_id": "sw-vastgoedverbetering",
+    "employer": "SW Vastgoedverbetering",
+    "adapter": "recruitee",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbij.swbv.nl",
+      "https://www.swbv.nl"
+    ],
+    "career_url": "https://werkenbij.swbv.nl/",
+    "allowed_hosts": [
+      "werkenbij.swbv.nl",
+      "www.swbv.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 100,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Official employer site links the SW recruitment domain; public Recruitee feed, runtime robots checks, no authentication or application submission.",
+    "status": "automatic-collection-pending",
+    "feed_url": "https://werkenbij.swbv.nl/api/offers/",
+    "discovery_scope": "Published offers in the official public Recruitee response; no company-wide census or inference from historical aggregator copies.",
+    "access_reviewed_on": "2026-11-09",
+    "report_feed_scope": true
   }
 ]

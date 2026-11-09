@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-08T01:14:02.630574+00:00",
+  "generated_at": "2026-11-09T06:07:32.981246+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -9,27 +9,27 @@
   "size_counting": "Documented employer/group qualification; group headcount is never assigned to a local establishment. Unknown size stays separate.",
   "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
   "summary": {
-    "employers": 35,
-    "qualified_employers": 20,
-    "distinct_groups": 35,
-    "qualified_groups": 20,
+    "employers": 36,
+    "qualified_employers": 21,
+    "distinct_groups": 36,
+    "qualified_groups": 21,
     "size_unknown": 15,
     "below_threshold": 0,
     "municipalities": 12,
     "municipalities_with_qualified_employers": 12,
-    "configured": 35,
-    "attempted_recently": 35,
+    "configured": 36,
+    "attempted_recently": 36,
     "collection_states": {
       "partial": 19,
       "discovery-incomplete": 8,
       "blocked-or-failed": 5,
-      "collected": 3
+      "collected": 4
     },
     "qualified_collection_states": {
       "partial": 12,
       "discovery-incomplete": 5,
       "blocked-or-failed": 1,
-      "collected": 2
+      "collected": 3
     },
     "verified_hr_internships": 2,
     "verified_hr_internships_qualified_employers": 1
@@ -149,17 +149,19 @@
       "code": "GM0114",
       "name": "Emmen",
       "settlements": 16,
-      "employers": 2,
-      "qualified_employers": 1,
+      "employers": 3,
+      "qualified_employers": 2,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
         "blocked-or-failed": 1,
-        "discovery-incomplete": 1
+        "discovery-incomplete": 1,
+        "collected": 1
       },
       "company_ids": [
         "emco-groep",
-        "gemeente-emmen"
+        "gemeente-emmen",
+        "sw-vastgoedverbetering"
       ]
     },
     {
@@ -168,19 +170,21 @@
       "code": "GM0118",
       "name": "Hoogeveen",
       "settlements": 11,
-      "employers": 6,
-      "qualified_employers": 4,
+      "employers": 7,
+      "qualified_employers": 5,
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
         "partial": 4,
-        "discovery-incomplete": 2
+        "discovery-incomplete": 2,
+        "collected": 1
       },
       "company_ids": [
         "doc-kaas-b-v",
         "nncz",
         "royal-a-ware",
         "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "sw-vastgoedverbetering",
         "tvm-verzekeringen",
         "unigarant"
       ]
@@ -316,7 +320,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.727320+00:00",
+      "last_attempt_at": "2026-11-08T10:21:06.025354+00:00",
       "public_job_records": 31,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -370,7 +374,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T01:10:11.311827+00:00",
+      "last_attempt_at": "2026-11-09T06:04:29.235343+00:00",
       "public_job_records": 93,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -412,7 +416,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.963846+00:00",
+      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -455,7 +459,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:34.745734+00:00",
+      "last_attempt_at": "2026-11-08T10:21:08.360494+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -497,8 +501,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:18.743278+00:00",
-      "public_job_records": 8,
+      "last_attempt_at": "2026-11-08T10:21:13.161742+00:00",
+      "public_job_records": 7,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -540,7 +544,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:30.429477+00:00",
+      "last_attempt_at": "2026-11-08T10:21:08.589619+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -582,7 +586,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:27.618248+00:00",
+      "last_attempt_at": "2026-11-08T10:21:07.828818+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -624,7 +628,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.047560+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -677,7 +681,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:21.074797+00:00",
+      "last_attempt_at": "2026-11-08T10:21:01.326513+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -719,7 +723,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.047560+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -761,7 +765,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:34.745734+00:00",
+      "last_attempt_at": "2026-11-08T10:21:08.360494+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -803,7 +807,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:32.549901+00:00",
+      "last_attempt_at": "2026-11-08T10:21:16.958716+00:00",
       "public_job_records": 85,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -845,7 +849,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.963846+00:00",
+      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -887,7 +891,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:26.776223+00:00",
+      "last_attempt_at": "2026-11-08T10:21:03.671349+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -929,7 +933,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:30.525301+00:00",
+      "last_attempt_at": "2026-11-08T10:21:13.770130+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -971,7 +975,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.963846+00:00",
+      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
       "public_job_records": 62,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1013,7 +1017,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.047560+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1055,7 +1059,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:27.618248+00:00",
+      "last_attempt_at": "2026-11-08T10:21:07.828818+00:00",
       "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1098,7 +1102,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:30.525301+00:00",
+      "last_attempt_at": "2026-11-08T10:21:13.770130+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1140,7 +1144,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T01:10:11.312298+00:00",
+      "last_attempt_at": "2026-11-09T06:04:29.236049+00:00",
       "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1177,7 +1181,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:18.743278+00:00",
+      "last_attempt_at": "2026-11-08T10:21:13.161742+00:00",
       "public_job_records": 19,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1220,15 +1224,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T01:10:11.312370+00:00",
-      "public_job_records": 100,
+      "last_attempt_at": "2026-11-09T06:04:29.236180+00:00",
+      "public_job_records": 64,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-cosis",
-          "message": "[{'url': 'https://www.cosis.nu/alles-over-cosis/werken-bij/een-carriere-als-medisch-of-gedragskundig-specialist-bij-cosis/voel-je-samen/bekijk-onze-vacatures', 'error': 'Only public HTTPS job URLs are allowed'}, {'url': 'https://www.cosis.nu/alles-over-cosis/werken-bij/een-carriere-als-medisch-of-gedragskundig-specialist-bij-cosis/voel-je-samen/$2203/bekijk-onze-vacatures', 'error': 'Only public HTTPS job URLs are allowed'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "interzorg-noord-nederland",
@@ -1262,7 +1261,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.963846+00:00",
+      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1315,13 +1314,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T01:12:36.931527+00:00",
-      "public_job_records": 21,
+      "last_attempt_at": "2026-11-08T10:21:10.427486+00:00",
+      "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-astron",
-          "message": "[{'url': 'https://www.astron.nl/careers-3', 'error': 'HTTP Error 500: Internal Server Error'}, {'url': 'https://astron.recruitee.com/api/offers', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -1357,7 +1356,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:23.290305+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.427486+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1399,7 +1398,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.047560+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1441,7 +1440,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:21.471356+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.053782+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1483,7 +1482,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.727320+00:00",
+      "last_attempt_at": "2026-11-08T10:21:06.025354+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [
         "0d026302ba6f8aedd558"
@@ -1522,7 +1521,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:18.743278+00:00",
+      "last_attempt_at": "2026-11-08T10:21:13.161742+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1564,7 +1563,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:32.549901+00:00",
+      "last_attempt_at": "2026-11-08T10:21:16.958716+00:00",
       "public_job_records": 8,
       "verified_hr_internship_ids": [
         "95dca55a4e83f8016444"
@@ -1603,7 +1602,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.047560+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1646,7 +1645,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:32.549901+00:00",
+      "last_attempt_at": "2026-11-08T10:21:16.958716+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1689,7 +1688,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:21.471356+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.053782+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1737,7 +1736,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:25.047560+00:00",
+      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1824,7 +1823,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-07T23:08:30.525301+00:00",
+      "last_attempt_at": "2026-11-08T10:21:13.770130+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1833,6 +1832,54 @@
           "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
+    },
+    {
+      "company_id": "sw-vastgoedverbetering",
+      "name": "SW Vastgoedverbetering",
+      "group_name": null,
+      "career_url": "https://werkenbij.swbv.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 450,
+        "employees_text": "Official employer page states more than four hundred and fifty professionals across six branches. Employer total, not headcount in Hoogeveen or Emmen.",
+        "scope": "employer",
+        "source_url": "https://www.swbv.nl/over-ons/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.swbv.nl/vestigingen/noord/",
+          "checked_on": "2026-11-09"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Emmen",
+          "municipality": "Emmen",
+          "municipality_code": "GM0114",
+          "settlement_code": "WP1988",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.swbv.nl/vestigingen/noord/",
+          "checked_on": "2026-11-09"
+        }
+      ],
+      "source_ids": [
+        "auto-sw-vastgoedverbetering"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-09T06:02:57.064129+00:00",
+      "public_job_records": 39,
+      "verified_hr_internship_ids": [],
+      "errors": []
     }
   ],
   "verified_hr_internship_ids": [

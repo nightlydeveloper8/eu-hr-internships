@@ -1,0 +1,150 @@
+{
+  "company_id": "centraal-beheer-achmea",
+  "stamp": "2026-11-08T08:12:18.471952+00:00",
+  "records": [
+    {
+      "source": {
+        "id": "auto-centraal-beheer-achmea",
+        "company_id": "centraal-beheer-achmea",
+        "employer": "Centraal Beheer Achmea",
+        "adapter": "universal-employer",
+        "enabled": true,
+        "start_urls": [
+          "https://www.werkenbijachmea.nl"
+        ],
+        "career_url": "https://www.werkenbijachmea.nl",
+        "allowed_hosts": [
+          "www.werkenbijachmea.nl"
+        ],
+        "target_countries": [
+          "NL"
+        ],
+        "max_pages": 70,
+        "max_requests": 110,
+        "collection_seconds": 120,
+        "max_navigation_depth": 3,
+        "max_render_pages": 4,
+        "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+        "status": "automatic-collection-pending"
+      },
+      "record": {
+        "id": "e83537f80a3c4be51eae",
+        "external_id": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+        "source_id": "auto-centraal-beheer-achmea",
+        "source_name": "Centraal Beheer Achmea",
+        "source_type": "universal-employer",
+        "source_posting_id": null,
+        "employer": "Achmea",
+        "title": "Hbo Meewerkstagiair HR Young Talent Recruitment",
+        "country": "NL",
+        "countries": [
+          "NL"
+        ],
+        "city": "Apeldoorn",
+        "url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+        "apply_url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+        "categories": [
+          "talent-acquisition",
+          "hr-generalist"
+        ],
+        "category": "talent-acquisition",
+        "internship_type": "internship",
+        "internship_confidence": "confirmed",
+        "advertisement_language": {
+          "code": "nl",
+          "confidence": "uncertain",
+          "method": "deterministic stopword heuristic"
+        },
+        "workplace_languages": [],
+        "language_requirements": {
+          "requirements_status": "unknown",
+          "required_languages": [],
+          "alternative_languages": [],
+          "english_support": "unknown",
+          "english_sufficiency": "unknown",
+          "english_sufficiency_evidence": null
+        },
+        "language_confidence": "unspecified",
+        "duration": null,
+        "enrollment": null,
+        "work_mode": "unspecified",
+        "published_at": "2026-10-07T12:30:10.816133Z",
+        "valid_through": null,
+        "first_discovered_at": "2026-11-06T17:46:45.667709+00:00",
+        "last_seen_at": "2026-11-07T07:04:33.159560+00:00",
+        "last_verified_at": "2026-11-06T17:46:45.667709+00:00",
+        "link_status": "incomplete",
+        "verification": {
+          "state": "incomplete",
+          "checked_at": "2026-11-07T07:04:33.159560+00:00",
+          "policy_version": 2,
+          "reason": "Application link lacks a matching vacancy identifier"
+        },
+        "status": "unverified",
+        "missing_count": 0,
+        "region_codes": [],
+        "text": "",
+        "location": "Apeldoorn",
+        "posting_identifier": null
+      },
+      "before": {
+        "error": "Application link lacks a matching vacancy identifier"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://www.werkenbijachmea.nl/robots.txt",
+      "final_url": "https://www.werkenbijachmea.nl/robots.txt",
+      "status": 200,
+      "file": "f17362e606f9823f1269.html.gz",
+      "sha256": "961931be8799157a5894240a3cc422485567718d2232b0503b0973ee1ecc2221"
+    },
+    {
+      "url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+      "final_url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+      "status": 200,
+      "file": "2d5007f54094004f73d9.html.gz",
+      "sha256": "756114f6b0dca7379d2dfc37175ea01a8c76e14f489ba85558ab3fa35b5b9552"
+    },
+    {
+      "url": "https://www.werkenbijachmea.nl/robots.txt",
+      "final_url": "https://www.werkenbijachmea.nl/robots.txt",
+      "status": 200,
+      "file": "f17362e606f9823f1269.html.gz",
+      "sha256": "961931be8799157a5894240a3cc422485567718d2232b0503b0973ee1ecc2221"
+    },
+    {
+      "url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj/solliciteer",
+      "final_url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj/solliciteer",
+      "status": 200,
+      "file": "8b83c6a7bda47c2a18d6.html.gz",
+      "sha256": "5fd0e8138692a1699fd71ef2b7a191ec124f837fda5f263a48d05add6fc04343"
+    }
+  ],
+  "events": [
+    {
+      "url": "https://www.werkenbijachmea.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.201
+    },
+    {
+      "url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj",
+      "status": 200,
+      "seconds": 0.966
+    },
+    {
+      "url": "https://www.werkenbijachmea.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.055
+    },
+    {
+      "url": "https://www.werkenbijachmea.nl/vacatures/hbo-meewerkstagiair-hr-young-talent-recruitment-apeldoorn-a0wqs00000e0dr7iaj/solliciteer",
+      "status": 200,
+      "seconds": 0.768
+    }
+  ],
+  "requests": 4,
+  "bytes_read": 222044,
+  "linked_attempted": true
+}

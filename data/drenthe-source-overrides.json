@@ -152,5 +152,19 @@
     "permission_basis": "Employer overview links this public career domain. Observed employer JS and browser request identify public pagination only; robots checked; no filters, candidate fields, login or application POSTs permitted.",
     "collection_seconds": 160,
     "max_requests": 100
+  },
+  "auto-sw-vastgoedverbetering": {
+    "adapter": "recruitee",
+    "feed_url": "https://werkenbij.swbv.nl/api/offers/",
+    "allowed_hosts": [
+      "werkenbij.swbv.nl",
+      "www.swbv.nl"
+    ],
+    "discovery_scope": "Published offers in the official public Recruitee response; no company-wide census or inference from historical aggregator copies.",
+    "access_reviewed_on": "2026-11-09",
+    "permission_basis": "Official employer site links the SW recruitment domain; public Recruitee feed, runtime robots checks, no authentication or application submission.",
+    "collection_seconds": 120,
+    "max_requests": 100,
+    "report_feed_scope": true
   }
 }

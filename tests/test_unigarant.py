@@ -5,6 +5,16 @@ from collector.unigarant import inventory_records,index_records
 from collector.employer_pages import index_records as html_index
 
 class UnigarantTests(unittest.TestCase):
+    def test_application_read_cannot_inherit_inventory_post_exceptions(self):
+        from unittest.mock import Mock
+        from collector.rendering import render_pages
+        for option in ('cegid_search','unigarant_search'):
+            client=Mock()
+            with self.assertRaisesRegex(ValueError,'cannot enable inventory POSTs'):
+                render_pages('https://werkenbijunigarant.nl/vacatures/',client,lambda url:True,
+                             application_read=True,**{option:True})
+            client.permitted.assert_not_called()
+
     def setUp(self):
         self.url='https://werkenbijunigarant.nl/vacatures/'
         self.source=dict(id='unigarant',employer='Unigarant',allowed_hosts=['werkenbijunigarant.nl'],index_urls=[self.url],index_error_pattern='Er ging iets mis',discovery_scope='Official public inventory')

@@ -1,0 +1,776 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-09T06:07:33.653878+00:00",
+  "province": "drenthe",
+  "baseline_commit": "e848e0587e5ca5e410963c04a14e7319d42d347c",
+  "exhaustive": false,
+  "removed": {
+    "companies": [],
+    "sources": [],
+    "catalog_urls": []
+  },
+  "preservation_checks_passed": true,
+  "preserved_other_region_workplaces": 1104,
+  "baseline_counts": {
+    "companies": 1882,
+    "sources": 1926,
+    "catalog": 324
+  },
+  "current_counts": {
+    "companies": 1883,
+    "sources": 1927,
+    "catalog": 324
+  },
+  "summary": {
+    "employers": 36,
+    "qualified_employers": 21,
+    "distinct_groups": 36,
+    "qualified_groups": 21,
+    "size_unknown": 15,
+    "below_threshold": 0,
+    "municipalities": 12,
+    "municipalities_with_qualified_employers": 12,
+    "configured": 36,
+    "attempted_recently": 36,
+    "collection_states": {
+      "partial": 19,
+      "discovery-incomplete": 8,
+      "blocked-or-failed": 5,
+      "collected": 4
+    },
+    "qualified_collection_states": {
+      "partial": 12,
+      "discovery-incomplete": 5,
+      "blocked-or-failed": 1,
+      "collected": 3
+    },
+    "verified_hr_internships": 2,
+    "verified_hr_internships_qualified_employers": 1
+  },
+  "municipalities": [
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1680",
+      "name": "Aa en Hunze",
+      "settlements": 35,
+      "employers": 2,
+      "qualified_employers": 2,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-aa-en-hunze",
+        "royal-avebe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "0d026302ba6f8aedd558",
+        "95dca55a4e83f8016444"
+      ],
+      "verified_hr_internships": 2,
+      "code": "GM0106",
+      "name": "Assen",
+      "settlements": 7,
+      "employers": 8,
+      "qualified_employers": 5,
+      "size_unknown": 3,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 6,
+        "collected": 2
+      },
+      "company_ids": [
+        "cosis",
+        "gemeente-assen",
+        "het-drentse-landschap",
+        "interzorg-noord-nederland",
+        "skk-kozijnwacht",
+        "vanboeijen",
+        "wilhelmina-ziekenhuis-assen",
+        "ziengs-schoenen"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1681",
+      "name": "Borger-Odoorn",
+      "settlements": 25,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 2,
+        "partial": 1
+      },
+      "company_ids": [
+        "avitec",
+        "gemeente-borger-odoorn",
+        "paas-b-v"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0109",
+      "name": "Coevorden",
+      "settlements": 25,
+      "employers": 4,
+      "qualified_employers": 2,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "center-parcs",
+        "emco-groep",
+        "forbo-novilon",
+        "gemeente-coevorden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1690",
+      "name": "De Wolden",
+      "settlements": 13,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3
+      },
+      "company_ids": [
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "zzwd-zorgcollectief"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0114",
+      "name": "Emmen",
+      "settlements": 16,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "emco-groep",
+        "gemeente-emmen",
+        "sw-vastgoedverbetering"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0118",
+      "name": "Hoogeveen",
+      "settlements": 11,
+      "employers": 7,
+      "qualified_employers": 5,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 4,
+        "discovery-incomplete": 2,
+        "collected": 1
+      },
+      "company_ids": [
+        "doc-kaas-b-v",
+        "nncz",
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "sw-vastgoedverbetering",
+        "tvm-verzekeringen",
+        "unigarant"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0119",
+      "name": "Meppel",
+      "settlements": 5,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2
+      },
+      "company_ids": [
+        "gemeente-meppel",
+        "scania"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1731",
+      "name": "Midden-Drenthe",
+      "settlements": 25,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 1
+      },
+      "company_ids": [
+        "astron",
+        "gemeente-midden-drenthe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1699",
+      "name": "Noordenveld",
+      "settlements": 21,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-noordenveld",
+        "vdl-wientjes-roden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1730",
+      "name": "Tynaarlo",
+      "settlements": 18,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-tynaarlo",
+        "groningen-airport-eelde"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1701",
+      "name": "Westerveld",
+      "settlements": 26,
+      "employers": 4,
+      "qualified_employers": 1,
+      "size_unknown": 3,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 2,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "astron",
+        "bats-uitzendburo",
+        "gemeente-westerveld",
+        "zzwd-zorgcollectief"
+      ]
+    }
+  ],
+  "source_attempts": [
+    {
+      "id": "auto-unigarant",
+      "employer": "Unigarant",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-09T06:04:29.236049+00:00",
+      "collected": 9,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 9,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 9,
+      "observed_scopes": [
+        {
+          "declared_job_count": 9,
+          "observed_jobs": 9,
+          "complete": true,
+          "url": "https://werkenbijunigarant.nl/vacatures"
+        }
+      ],
+      "discovery_scope": "Official unfiltered public inventory: exact /vacatures-ajax POST with only numeric page. Published titles and short descriptions read; count compared with records. Full detail/workplace and application templates remain unreviewed, so no full-source or absence-based closure claim.",
+      "explicit_empty": false,
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "cache_hits": 0,
+      "snapshot_kind": "public-job-search-inventory",
+      "page_discovery_mode": "published-titles-and-short-descriptions-with-HR-detail-enrichment",
+      "duration_seconds": 5.47,
+      "requests": 15,
+      "bytes_read": 2913
+    },
+    {
+      "id": "auto-cosis",
+      "employer": "Cosis",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-09T06:04:29.236180+00:00",
+      "collected": 64,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 64,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 70,
+      "sitemaps_read": 1,
+      "rendered_pages": 2,
+      "job_urls_discovered": 95,
+      "pending_urls": 108,
+      "unresolved_geography": 27,
+      "explicit_empty": false,
+      "methods": [
+        "browser",
+        "jobposting",
+        "robots-declared-sitemap",
+        "visible-html"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "werkenbij.cosis.nu",
+        "www.cosis.nu"
+      ],
+      "inventory_complete": false,
+      "duration_seconds": 75.59,
+      "requests": 86,
+      "bytes_read": 3007669
+    },
+    {
+      "id": "auto-royal-a-ware",
+      "employer": "Royal A-ware",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-09T06:04:29.235343+00:00",
+      "collected": 95,
+      "status": "partial",
+      "matching": 2,
+      "verification_states": {
+        "incomplete": 2
+      },
+      "observed_countries": [
+        "BE",
+        "ES",
+        "NL"
+      ],
+      "records_inspected": 93,
+      "page_failures": 4,
+      "page_errors": [
+        {
+          "url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
+          "error": "Vacancy verification: Current page does not identify the same vacancy"
+        },
+        {
+          "url": "https://werkenbijaware.com/vacatures/stage-hr-req2618",
+          "error": "Vacancy verification: Current page does not identify the same vacancy"
+        },
+        {
+          "url": "https://werkenbijaware.com/vacatures/manager-maintenance-req2157",
+          "error": "A-ware reviewed title, workplace, description or application form missing"
+        },
+        {
+          "url": "https://werkenbijaware.com/vacatures/operator-rijping-req1420",
+          "error": "A-ware workplace country requires review: Woerden"
+        }
+      ],
+      "page_errors_truncated": false,
+      "verified_closed_urls": [],
+      "complete": false,
+      "closure_complete": false,
+      "cache_hits": 93,
+      "snapshot_kind": "public-job-page-inventory",
+      "discovery_scope": "Official public vacancy index; unknown workplace countries fail explicitly",
+      "page_discovery_mode": "read-all-inventoried-job-pages",
+      "duration_seconds": 10.75,
+      "requests": 6,
+      "bytes_read": 1105864
+    },
+    {
+      "id": "auto-sw-vastgoedverbetering",
+      "employer": "SW Vastgoedverbetering",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-09T06:02:57.064129+00:00",
+      "collected": 39,
+      "status": "ok",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 39,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "complete": true,
+      "closure_complete": false,
+      "pages_read": 1,
+      "feed_records": 39,
+      "published_records": 39,
+      "discovery_scope": "Published offers in the official public Recruitee response; no company-wide census or inference from historical aggregator copies.",
+      "verified_closed_urls": [],
+      "inventory_complete": true,
+      "requests": 2,
+      "bytes_read": 458553,
+      "duration_seconds": 0.83
+    }
+  ],
+  "attempt_count": 4,
+  "distinct_attempted_sources": 4,
+  "invalid_complete_reports": [],
+  "language_decisions": [
+    {
+      "id": "a5ce8a272a48d5026b20",
+      "title": "Stage HR Heerenveen",
+      "city": "Heerenveen",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-08T10:21:03.671349+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "dc9a9a926f76c0aff13b",
+      "title": "Stage HR",
+      "city": "Almere",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-req2618",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-08T10:21:03.671349+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "9d0bee377ab034aabd48",
+      "title": "HR-stagiaire Hoogeveen",
+      "city": "Hoogeveen",
+      "status": "unverified",
+      "url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-08T10:21:13.161742+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "0d026302ba6f8aedd558",
+      "title": "Stagiair HR",
+      "city": "Assen",
+      "status": "open",
+      "url": "https://skk.nl/werken-bij-skk/stagiair-hr",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-08T10:21:06.025354+00:00",
+        "policy_version": 2,
+        "reason": "official-vacancy-email-instructions"
+      }
+    },
+    {
+      "id": "95dca55a4e83f8016444",
+      "title": "HR stagiair(e) - Scapino & Ziengs",
+      "city": "Assen",
+      "status": "open",
+      "url": "https://www.werkenbijziengs.nl/vacatures/hr-stagiaire-scapino-ziengs",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-08T10:21:16.958716+00:00",
+        "policy_version": 2,
+        "reason": "official-formie-same-requisition-form"
+      }
+    },
+    {
+      "id": "75f9275c0874b74af972",
+      "title": "Stage - Human Resource Management",
+      "city": "Meppel",
+      "status": "unverified",
+      "url": "https://jobs.scania.com/job/Meppel-Stage-Human-Resource-Management-7944HT/1454163033",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [],
+        "alternative_languages": [
+          "en",
+          "nl"
+        ],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        },
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        }
+      ],
+      "verification": {
+        "state": "blocked",
+        "checked_at": "2026-11-08T10:21:16.958716+00:00",
+        "policy_version": 2,
+        "reason": "robots.txt disallows https://jobs.scania.com/talentcommunity/apply/1454163033?locale=nl_NL"
+      }
+    },
+    {
+      "id": "5506269ba93324a54632",
+      "title": "Stage Recruitment Februari 2027",
+      "city": "Capelle aan den IJssel",
+      "status": "unverified",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-08T10:21:06.025354+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "a3b5d7cde7fe9d17a72e",
+      "title": "Stage Internal Communications and Employee Engagement Officer Februari 2027",
+      "city": "Capelle aan den IJssel",
+      "status": "unverified",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-08T10:21:06.025354+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    }
+  ],
+  "note": "Per-source checked_at retained. A full inventory in one query does not establish complete employer/market coverage. No merge or deployment performed.",
+  "catalog_equal_to_latest_main": true,
+  "scope": "Continuation of PR #20. Latest main catalog retained verbatim; four source reports refreshed. Previous phase reports remain historical. No merge into main, no production deployment.",
+  "primary_checks": [
+    {
+      "url": "https://www.swbv.nl/",
+      "final": "https://www.swbv.nl",
+      "checked_at": "2026-11-09T05:58:36.441366+00:00",
+      "error": null,
+      "body_sha256": "6c28f26302b6e922001029da4dbe4d148345d82649382445bcc58fdaec54e362"
+    },
+    {
+      "url": "https://www.swbv.nl/werken-bij/",
+      "final": "https://werkenbij.swbv.nl/",
+      "checked_at": "2026-11-09T05:58:37.900234+00:00",
+      "error": null,
+      "body_sha256": "95796700600a7dff2da48390c34d72eb90b021421a69e30211a0d181ee08ba41"
+    },
+    {
+      "url": "https://www.werkenbijsw.nl/",
+      "final": "https://www.werkenbijsw.nl",
+      "checked_at": "2026-11-09T05:58:36.625325+00:00",
+      "error": null,
+      "body_sha256": "2fe69ba9a361c446122508932c6da19a8ffbd55b12bcc86440fb27a8066cc30c"
+    },
+    {
+      "url": "https://werkenbij.swbv.nl/",
+      "final": "https://werkenbij.swbv.nl",
+      "checked_at": "2026-11-09T05:58:26.968949+00:00",
+      "error": null,
+      "body_sha256": "95796700600a7dff2da48390c34d72eb90b021421a69e30211a0d181ee08ba41"
+    },
+    {
+      "url": "https://werkenbij.swbv.nl/o/stagiair-hr",
+      "final": null,
+      "checked_at": "2026-11-09T05:58:27.423666+00:00",
+      "error": "HTTP Error 404: Not Found",
+      "body_sha256": null
+    },
+    {
+      "url": "https://www.swbv.nl/over-ons/",
+      "final": "https://www.swbv.nl/over-ons/",
+      "checked_at": "2026-11-09T05:58:27.154190+00:00",
+      "error": null,
+      "body_sha256": "03680de39d14bc0988461eb7a11813585bb919813d4ea85fee525c376f68ac2b"
+    },
+    {
+      "url": "https://www.swbv.nl/contact/",
+      "final": "https://www.swbv.nl/werkzaamheden/sijzenbaan/contact/",
+      "checked_at": "2026-11-09T05:58:28.576869+00:00",
+      "error": null,
+      "body_sha256": "bc220d40f86856322935adaff5af54cceaf205bfbaa9045c78f6f0c561fb1de6"
+    },
+    {
+      "url": "https://werkenbij.swbv.nl/api/offers/",
+      "final": "https://werkenbij.swbv.nl/api/offers",
+      "checked_at": "2026-11-09T05:59:18.596795+00:00",
+      "error": null,
+      "body_sha256": "5efc12e17339aa090485e0aed9935c2f623154d494d5244aa5024071b5e10c8d"
+    },
+    {
+      "url": "https://www.swbv.nl/vestigingen/",
+      "final": "https://www.swbv.nl/vestigingen/",
+      "checked_at": "2026-11-09T05:59:18.876789+00:00",
+      "error": null,
+      "body_sha256": "c324a82649835f81db1ad4d7cc10ec9c89cda3d6f4e8626203d57ab19766caa0"
+    },
+    {
+      "url": "https://www.swbv.nl/vestigingen/noord/",
+      "final": "https://www.swbv.nl/vestigingen/noord/",
+      "checked_at": "2026-11-09T06:01:39.476881+00:00",
+      "error": null,
+      "body_sha256": "40498e571b1d6d9ca7d48f510121319355edae85982c1ada40f84f1a5b695851"
+    },
+    {
+      "url": "https://www.werkenbijwza.nl/",
+      "final": null,
+      "checked_at": "2026-11-09T06:00:05.468149+00:00",
+      "error": "<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "body_sha256": null
+    },
+    {
+      "url": "https://www.wza.nl/over-wza/",
+      "final": null,
+      "checked_at": "2026-11-09T06:00:06.160529+00:00",
+      "error": "HTTP Error 404: Not Found",
+      "body_sha256": null
+    }
+  ],
+  "conflicts_resolved": [
+    "collector/rendering.py",
+    "data/catalog.json",
+    "data/coverage.json",
+    "data/company-coverage.json",
+    "data/drenthe-coverage.json"
+  ],
+  "old_pr_head": "7d3f1fd8e8111643bcd2f52f1992d20f0faeda7e",
+  "latest_main": "e848e0587e5ca5e410963c04a14e7319d42d347c",
+  "remote_branches": [
+    "  origin/HEAD                                  -> origin/main",
+    "  origin/diagnostic/issue-17-almere-access     b888b87 Add isolated Issue 17 access diagnostic",
+    "  origin/feat/drenthe-hr-internships           baf8630 Extend shared HR internship research and collection to Drenthe",
+    "  origin/feat/dynamic-ats-verification         684cd72 Keep pilot timing telemetry out of unrelated source reports",
+    "  origin/feat/flevoland-expansion              dee2586 [CF-Pages-Skip] Fix SMT duration extraction from posting age",
+    "  origin/feat/issue-18-coverage                11cde7f Recognize semantic applicant fields and measure first coverage batch (#18)",
+    "  origin/feat/issue-18-second-batch            b52a370 Keep ranking independent of Git refs in shallow CI checkouts",
+    "  origin/feat/provincial-factory-v1            2d91bdc [CF-Pages-Skip] Honor vacancy deadlines in Provincial Factory",
+    "  origin/feat/utrecht-expansion                deb67e3 Merge latest main into Utrecht and reverify current internship intakes",
+    "  origin/fix/ennatuurlijk-daily-reconciliation cb35f5e [CF-Pages-Skip] Preserve all transitive vacancy observations during reconciliation",
+    "  origin/fix/hr-vacancy-evidence               72e16f8 Require vacancy and application evidence for verified HR opportunities",
+    "  origin/fix/issue-10-catalog-accuracy         634ecf5 Fix employer ownership attribution and diagnose Issue 10 source budgets",
+    "  origin/fix/issue-14-intake                   5e3f27b Preserve intake evidence time and prioritize identified closed pages",
+    "  origin/fix/visible-unverified-opportunities  87474b8 Expose unverified opportunities and clarify collection limits",
+    "  origin/groningen-research                    ef81915 Document Groningen merge review, production baseline and pending authorization",
+    "  origin/main                                  e848e05 Refresh all-employer HR internship collection",
+    "  origin/research/drenthe-2026-11-08           7d3f1fd [CF-Pages-Skip] Deepen Drenthe employer evidence and repair Unigarant search",
+    "  origin/research/drenthe-followup-2026-11-07  801c10c Deepen Drenthe employer coverage and repair public Cegid discovery"
+  ]
+}

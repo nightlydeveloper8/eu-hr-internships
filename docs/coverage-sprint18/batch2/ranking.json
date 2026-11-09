@@ -1,0 +1,693 @@
+{
+  "base_commit": "2a9668545fd7fa64394014869d12b8b3eeb6b52d",
+  "catalog_updated_at": "2026-11-08T07:17:42.283693+00:00",
+  "global_statuses": {
+    "open": 24,
+    "unverified": 296,
+    "closed": 4
+  },
+  "scope": "Only the 17 remaining companies from the original shortlist",
+  "heuristic": "20 unverified + 40 missing form/identity + 30 no pending URLs + 20 known NL vacancy + 10 <=10 pages; exclusions first",
+  "request_budget_per_company": 8,
+  "seconds_per_company": 45,
+  "shortlist": [
+    {
+      "company_id": "defabrique-holding",
+      "name": "DeFabrique Holding",
+      "source_ids": [
+        "auto-defabrique-holding"
+      ],
+      "state": "partial",
+      "reasons": [
+        "Application link lacks a matching vacancy identifier"
+      ],
+      "pages_read": 1,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "89d7fee0c50ad218665a"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "89d7fee0c50ad218665a",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 10
+      },
+      "score": 120,
+      "excluded": null,
+      "rank": 1,
+      "selected": true
+    },
+    {
+      "company_id": "center-parcs",
+      "name": "Center Parcs",
+      "source_ids": [
+        "auto-center-parcs"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 2,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "5506269ba93324a54632",
+        "a3b5d7cde7fe9d17a72e"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "5506269ba93324a54632",
+          "requirements": []
+        },
+        {
+          "id": "a3b5d7cde7fe9d17a72e",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 10
+      },
+      "score": 120,
+      "excluded": null,
+      "rank": 2,
+      "selected": true
+    },
+    {
+      "company_id": "axs-logistiek",
+      "name": "AXS logistiek",
+      "source_ids": [
+        "auto-axs-logistiek"
+      ],
+      "state": "partial",
+      "reasons": [
+        "Application link lacks a matching vacancy identifier"
+      ],
+      "pages_read": 7,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "76560a31eb04332c6a70"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "76560a31eb04332c6a70",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 10
+      },
+      "score": 120,
+      "excluded": null,
+      "rank": 3,
+      "selected": true
+    },
+    {
+      "company_id": "bentacera",
+      "name": "Bentacera",
+      "source_ids": [
+        "auto-bentacera"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 22,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "985543752c20a8abaeba"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "985543752c20a8abaeba",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 110,
+      "excluded": null,
+      "rank": 4,
+      "selected": true
+    },
+    {
+      "company_id": "elevation-group-b-v",
+      "name": "Elevation Group B.V.",
+      "source_ids": [
+        "auto-elevation-group-b-v"
+      ],
+      "state": "discovery-incomplete",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 26,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "1e20ec5b490fb8e59447"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "1e20ec5b490fb8e59447",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 110,
+      "excluded": null,
+      "rank": 5,
+      "selected": true
+    },
+    {
+      "company_id": "oosterwolde-plastic-industrie-b-v",
+      "name": "Oosterwolde Plastic Industrie B.V.",
+      "source_ids": [
+        "auto-oosterwolde-plastic-industrie-b-v"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 29,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "994018cb6659595e818f"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "994018cb6659595e818f",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 110,
+      "excluded": null,
+      "rank": 6,
+      "selected": true
+    },
+    {
+      "company_id": "centraal-beheer-achmea",
+      "name": "Centraal Beheer Achmea",
+      "source_ids": [
+        "auto-centraal-beheer-achmea"
+      ],
+      "state": "partial",
+      "reasons": [
+        "Application link lacks a matching vacancy identifier"
+      ],
+      "pages_read": 69,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "e83537f80a3c4be51eae"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "e83537f80a3c4be51eae",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 110,
+      "excluded": null,
+      "rank": 7,
+      "selected": true
+    },
+    {
+      "company_id": "philips",
+      "name": "Philips",
+      "source_ids": [
+        "auto-philips"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 9,
+      "pending_urls": 113,
+      "candidate_ids": [
+        "903efc58fb2fabb24b59"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "903efc58fb2fabb24b59",
+          "requirements": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "ree in Human Resources, Business Administration or a related field, and you are fluent in Dutch and English.."
+            },
+            {
+              "code": "nl",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "elor’s degree in Human Resources, Business Administration or a related field, and you are fluent in Dutch and English.."
+            }
+          ]
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 0,
+        "nl_candidate": 20,
+        "low_cost": 10
+      },
+      "score": 90,
+      "excluded": null,
+      "rank": 8,
+      "selected": false
+    },
+    {
+      "company_id": "econvert-water-energy-b-v",
+      "name": "Econvert Water & Energy B.V.",
+      "source_ids": [
+        "auto-econvert-water-energy-b-v"
+      ],
+      "state": "discovery-incomplete",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 14,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "dc5c9c187393d5e44c21",
+        "c49b9bc729c9e10ad164",
+        "06bc9de5e3a7fdc95fe6",
+        "80b74c5d080475fed46f"
+      ],
+      "countries": [
+        "ES",
+        "FR"
+      ],
+      "explicit_languages": [
+        {
+          "id": "dc5c9c187393d5e44c21",
+          "requirements": []
+        },
+        {
+          "id": "c49b9bc729c9e10ad164",
+          "requirements": [
+            {
+              "code": "fr",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "📢 The Caribbean and Indian Ocean department is currently looking for an HR Trainee - french speaker to be based in our Gestagua office, in Madrid .."
+            },
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "✓ Fluent in both English and French ."
+            }
+          ]
+        },
+        {
+          "id": "06bc9de5e3a7fdc95fe6",
+          "requirements": []
+        },
+        {
+          "id": "80b74c5d080475fed46f",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 30,
+        "nl_candidate": 0,
+        "low_cost": 0
+      },
+      "score": 90,
+      "excluded": null,
+      "rank": 9,
+      "selected": false
+    },
+    {
+      "company_id": "royal-a-ware",
+      "name": "Royal A-ware",
+      "source_ids": [
+        "auto-royal-a-ware"
+      ],
+      "state": "partial",
+      "reasons": [
+        "Current page does not identify the same vacancy"
+      ],
+      "pages_read": 0,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "a5ce8a272a48d5026b20",
+        "dc9a9a926f76c0aff13b"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "a5ce8a272a48d5026b20",
+          "requirements": []
+        },
+        {
+          "id": "dc9a9a926f76c0aff13b",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 0,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 10
+      },
+      "score": 80,
+      "excluded": null,
+      "rank": 10,
+      "selected": false
+    },
+    {
+      "company_id": "politie",
+      "name": "Politie Nederland",
+      "source_ids": [
+        "auto-politie"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 27,
+      "pending_urls": 11,
+      "candidate_ids": [
+        "566c36cc1b457c8c7e92"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "566c36cc1b457c8c7e92",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 0,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 80,
+      "excluded": null,
+      "rank": 11,
+      "selected": false
+    },
+    {
+      "company_id": "manpower",
+      "name": "Manpower",
+      "source_ids": [
+        "auto-manpower"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 36,
+      "pending_urls": 2270,
+      "candidate_ids": [
+        "9f15d089bb2891361632"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "9f15d089bb2891361632",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 0,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 80,
+      "excluded": null,
+      "rank": 12,
+      "selected": false
+    },
+    {
+      "company_id": "technicum",
+      "name": "Technicum",
+      "source_ids": [
+        "auto-technicum"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 62,
+      "pending_urls": 930,
+      "candidate_ids": [
+        "82c47664462c588f6cbc",
+        "820ac13bd476aa4b454a"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "82c47664462c588f6cbc",
+          "requirements": []
+        },
+        {
+          "id": "820ac13bd476aa4b454a",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 0,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 80,
+      "excluded": null,
+      "rank": 13,
+      "selected": false
+    },
+    {
+      "company_id": "randstad-groep-nederland",
+      "name": "Randstad Groep Nederland",
+      "source_ids": [
+        "auto-randstad-groep-nederland"
+      ],
+      "state": "partial",
+      "reasons": [
+        "No available vacancy-specific application entry established"
+      ],
+      "pages_read": 70,
+      "pending_urls": 720,
+      "candidate_ids": [
+        "eab88084ba0a8d8c2125"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "eab88084ba0a8d8c2125",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 40,
+        "no_pending": 0,
+        "nl_candidate": 20,
+        "low_cost": 0
+      },
+      "score": 80,
+      "excluded": null,
+      "rank": 14,
+      "selected": false
+    },
+    {
+      "company_id": "yobbers",
+      "name": "Yobbers",
+      "source_ids": [
+        "auto-yobbers"
+      ],
+      "state": "partial",
+      "reasons": [
+        "Application redirected to a different URL; identity requires review"
+      ],
+      "pages_read": 5,
+      "pending_urls": 628,
+      "candidate_ids": [
+        "fa500fb554688d22ba6c"
+      ],
+      "countries": [
+        "ES"
+      ],
+      "explicit_languages": [
+        {
+          "id": "fa500fb554688d22ba6c",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 20,
+        "form_or_identity": 0,
+        "no_pending": 0,
+        "nl_candidate": 0,
+        "low_cost": 10
+      },
+      "score": 30,
+      "excluded": null,
+      "rank": 15,
+      "selected": false
+    },
+    {
+      "company_id": "unilever",
+      "name": "Unilever",
+      "source_ids": [
+        "employer-unilever"
+      ],
+      "state": "partial",
+      "reasons": [
+        "same-vacancy-applicant-form"
+      ],
+      "pages_read": 0,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "12e4d5cc93dc6e0323bb"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "12e4d5cc93dc6e0323bb",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 0,
+        "form_or_identity": 0,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 10
+      },
+      "score": 60,
+      "excluded": "already verified",
+      "rank": 16,
+      "selected": false
+    },
+    {
+      "company_id": "as-watson-benelux",
+      "name": "AS Watson Benelux",
+      "source_ids": [
+        "auto-as-watson-benelux"
+      ],
+      "state": "partial",
+      "reasons": [
+        "rendered-watson-same-requisition-form"
+      ],
+      "pages_read": 1,
+      "pending_urls": 0,
+      "candidate_ids": [
+        "4f1b149f7c7d6bd1b6fe",
+        "7878c54c7ee681ba8f6c"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "explicit_languages": [
+        {
+          "id": "4f1b149f7c7d6bd1b6fe",
+          "requirements": []
+        },
+        {
+          "id": "7878c54c7ee681ba8f6c",
+          "requirements": []
+        }
+      ],
+      "score_components": {
+        "unverified": 0,
+        "form_or_identity": 0,
+        "no_pending": 30,
+        "nl_candidate": 20,
+        "low_cost": 10
+      },
+      "score": 60,
+      "excluded": "already verified",
+      "rank": 17,
+      "selected": false
+    }
+  ]
+}

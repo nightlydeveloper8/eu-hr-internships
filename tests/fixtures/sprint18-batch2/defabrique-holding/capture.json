@@ -1,0 +1,156 @@
+{
+  "company_id": "defabrique-holding",
+  "stamp": "2026-11-08T08:11:52.349109+00:00",
+  "records": [
+    {
+      "source": {
+        "id": "auto-defabrique-holding",
+        "company_id": "defabrique-holding",
+        "employer": "DeFabrique Holding",
+        "adapter": "employer-index",
+        "enabled": true,
+        "start_urls": [
+          "https://www.defabriqueholding.nl/vacatures",
+          "https://www.defabriqueholding.nl"
+        ],
+        "career_url": "https://www.defabriqueholding.nl/vacatures",
+        "allowed_hosts": [
+          "www.defabriqueholding.nl",
+          "werkenbijdefabriqueholding.cvw.io"
+        ],
+        "target_countries": [
+          "NL"
+        ],
+        "max_pages": 70,
+        "max_requests": 100,
+        "collection_seconds": 180,
+        "max_navigation_depth": 3,
+        "max_render_pages": 4,
+        "permission_basis": "Official public employer feed or vacancy page and observed application entry; robots enforced at runtime; read-only checks, no applications sent.",
+        "status": "automatic-collection-pending",
+        "access_reviewed_on": "2026-11-07",
+        "index_urls": [
+          "https://www.defabriqueholding.nl/vacatures"
+        ],
+        "job_url_pattern": "^https://www\\.defabriqueholding\\.nl/vacatures/[^/?]+$",
+        "page_format": "reviewed-visible",
+        "reviewed_workplaces": [
+          {
+            "pattern": "Ons kantoor is gevestigd op de Westkanaaldijk op het industrieterrein Lage Weide in Utrecht",
+            "city": "Utrecht",
+            "country": "NL"
+          }
+        ],
+        "reviewed_advertisement_language": "nl",
+        "report_index_scope": true,
+        "inventory_scope_complete": false,
+        "discovery_scope": "Official vacancy list. Visible workplace extraction reviewed only for Utrecht HR office. Other locations, pagination and blocked CVW application remain incomplete; no complete employer inventory claimed."
+      },
+      "record": {
+        "id": "89d7fee0c50ad218665a",
+        "external_id": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+        "source_id": "auto-defabrique-holding",
+        "source_name": "DeFabrique Holding",
+        "source_type": "employer-index",
+        "source_posting_id": null,
+        "employer": "DeFabrique Holding",
+        "title": "Stage HRM",
+        "country": "NL",
+        "countries": [
+          "NL"
+        ],
+        "city": "Utrecht",
+        "url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+        "apply_url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+        "categories": [
+          "hr-generalist"
+        ],
+        "category": "hr-generalist",
+        "internship_type": "internship",
+        "internship_confidence": "confirmed",
+        "advertisement_language": {
+          "code": "nl",
+          "confidence": "confirmed",
+          "method": "source metadata"
+        },
+        "workplace_languages": [],
+        "language_requirements": {
+          "requirements_status": "unknown",
+          "required_languages": [],
+          "alternative_languages": [],
+          "english_support": "unknown",
+          "english_sufficiency": "unknown",
+          "english_sufficiency_evidence": null
+        },
+        "language_confidence": "unspecified",
+        "duration": "5 maanden",
+        "enrollment": null,
+        "work_mode": "unspecified",
+        "published_at": null,
+        "valid_through": null,
+        "first_discovered_at": "2026-11-07T07:57:15.990910+00:00",
+        "last_seen_at": "2026-11-08T07:07:35.030624+00:00",
+        "last_verified_at": null,
+        "link_status": "incomplete",
+        "verification": {
+          "state": "incomplete",
+          "checked_at": "2026-11-08T07:07:35.030624+00:00",
+          "policy_version": 2,
+          "reason": "Application link lacks a matching vacancy identifier"
+        },
+        "status": "unverified",
+        "missing_count": 0,
+        "region_codes": [
+          "NL35"
+        ],
+        "text": "",
+        "location": "Utrecht",
+        "posting_identifier": null
+      },
+      "before": {
+        "error": "Application link lacks a matching vacancy identifier"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://www.defabriqueholding.nl/robots.txt",
+      "final_url": "https://www.defabriqueholding.nl/robots.txt",
+      "status": 200,
+      "file": "3af50191cd41dd4d81e6.html.gz",
+      "sha256": "e48e8040145eda6d032e380b28bb12536f33bc222aa09bbdc1056dc87b58a550"
+    },
+    {
+      "url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+      "final_url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+      "status": 200,
+      "file": "ec016f898c9debda0afc.html.gz",
+      "sha256": "5e1918fedf390e4307ad8d66da6aebc851aef3febfb7f82b3ef380d8e15dcb39"
+    }
+  ],
+  "events": [
+    {
+      "url": "https://www.defabriqueholding.nl/robots.txt",
+      "status": 200,
+      "seconds": 0.708
+    },
+    {
+      "url": "https://www.defabriqueholding.nl/vacatures/stage-hrm-defabrique-holding",
+      "status": 200,
+      "seconds": 1.115
+    },
+    {
+      "url": "https://werkenbijdefabriqueholding.cvw.io/robots.txt",
+      "error": "HTTP Error 406: Not Acceptable",
+      "seconds": 0.189
+    },
+    {
+      "url": "https://werkenbijdefabriqueholding.cvw.io/ApplicationForm/AppForm?job=405317&channel=own_website&lang=nl-NL",
+      "error": "robots.txt unavailable: 406",
+      "seconds": 0.19
+    }
+  ],
+  "requests": 4,
+  "bytes_read": 64802,
+  "linked_attempted": true
+}
