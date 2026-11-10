@@ -432,23 +432,40 @@
   {
     "name": "Interzorg Noord Nederland",
     "website_url": "https://www.interzorg.nl/",
-    "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+    "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
     "municipality": "Assen",
     "locality": "Assen",
     "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
     "size": {
-      "qualification": "unknown",
-      "employees_min": null,
-      "employees_text": "Headcount not established in this initial source review.",
+      "qualification": "verified_50_plus",
+      "employees_min": 1400,
+      "employees_text": "Official organisation page states fourteen hundred employees, with more than 800 volunteers separately. Employer total across nine locations, not headcount of an individual site.",
       "scope": "employer",
-      "source_url": null,
+      "source_url": "https://www.interzorg.nl/uw-ons-verhaal/organisatie",
       "source_date": null
     },
     "employer_type": "healthcare",
     "group_name": null,
-    "checked_on": "2026-11-06",
+    "checked_on": "2026-11-10",
     "notes": [
-      "Official careers list includes Servicecentrum Assen and De Hullen Roden; size unknown."
+      "Official organisation page qualifies employee size; volunteers are excluded. Public vacancy listing reviewed separately. General learning/internship information does not establish an HR vacancy. The De Slinge site count is not used as the employer total."
+    ],
+    "additional_locations": [
+      {
+        "municipality": "Noordenveld",
+        "locality": "Roden",
+        "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+      },
+      {
+        "municipality": "Noordenveld",
+        "locality": "Peize",
+        "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+      },
+      {
+        "municipality": "Tynaarlo",
+        "locality": "Vries",
+        "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+      }
     ],
     "company_id": "interzorg-noord-nederland"
   },
@@ -874,5 +891,29 @@
       "Official published Recruitee inventory reviewed; an aggregator copy of Stagiair HR Hoogeveen is not promoted without a matching current official vacancy. Generic construction/office internship in Almelo or Deventer is not a Drenthe HR opening."
     ],
     "company_id": "sw-vastgoedverbetering"
+  },
+  {
+    "name": "Reestmond",
+    "website_url": "https://www.reestmond.nl/",
+    "career_url": "https://www.reestmond.nl/vacatures/",
+    "municipality": "Meppel",
+    "locality": "Meppel",
+    "presence_source_url": "https://www.reestmond.nl/contact/",
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_min": 270,
+      "employees_text": "Annual accounts 2025, printed page 21: 270 employees with SW indication employed at Reestmond on 31 December 2025 (228 FTE, 233 SE). Conservative employer lower bound for this employee category; not total personnel or the joint headcount with NoordWestGroep.",
+      "scope": "employer",
+      "source_url": "https://www.reestmond.nl/wp-content/uploads/2026/07/Jaarrekening-2025-Reestmond.pdf",
+      "source_date": "2025-12-31"
+    },
+    "employer_type": "public",
+    "group_name": null,
+    "checked_on": "2026-11-10",
+    "notes": [
+      "Official visitor address Eekhorstweg 4, Meppel. Service to Westerveld and Staphorst does not prove a workplace there.",
+      "Vacatures & Stageplekken offers generic mbo/hbo internship enquiries only; no specific HR internship or vacancy-specific application verified. Joint 800-person salary-administrator advertisement with NoordWestGroep is excluded from size and internship evidence."
+    ],
+    "company_id": "reestmond"
   }
 ]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-09T06:07:32.981246+00:00",
+  "generated_at": "2026-11-10T06:09:04.481044+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -9,27 +9,29 @@
   "size_counting": "Documented employer/group qualification; group headcount is never assigned to a local establishment. Unknown size stays separate.",
   "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
   "summary": {
-    "employers": 36,
-    "qualified_employers": 21,
-    "distinct_groups": 36,
-    "qualified_groups": 21,
-    "size_unknown": 15,
+    "employers": 37,
+    "qualified_employers": 23,
+    "distinct_groups": 37,
+    "qualified_groups": 23,
+    "size_unknown": 14,
     "below_threshold": 0,
     "municipalities": 12,
     "municipalities_with_qualified_employers": 12,
-    "configured": 36,
+    "configured": 37,
     "attempted_recently": 36,
     "collection_states": {
-      "partial": 19,
-      "discovery-incomplete": 8,
+      "partial": 18,
+      "discovery-incomplete": 10,
       "blocked-or-failed": 5,
-      "collected": 4
+      "collected": 3,
+      "not-recently-checked": 1
     },
     "qualified_collection_states": {
       "partial": 12,
-      "discovery-incomplete": 5,
+      "discovery-incomplete": 7,
       "blocked-or-failed": 1,
-      "collected": 3
+      "collected": 2,
+      "not-recently-checked": 1
     },
     "verified_hr_internships": 2,
     "verified_hr_internships_qualified_employers": 1
@@ -64,8 +66,8 @@
       "name": "Assen",
       "settlements": 7,
       "employers": 8,
-      "qualified_employers": 5,
-      "size_unknown": 3,
+      "qualified_employers": 6,
+      "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
         "partial": 6,
@@ -156,7 +158,7 @@
       "collection_states": {
         "blocked-or-failed": 1,
         "discovery-incomplete": 1,
-        "collected": 1
+        "not-recently-checked": 1
       },
       "company_ids": [
         "emco-groep",
@@ -175,9 +177,9 @@
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 4,
-        "discovery-incomplete": 2,
-        "collected": 1
+        "partial": 3,
+        "discovery-incomplete": 3,
+        "not-recently-checked": 1
       },
       "company_ids": [
         "doc-kaas-b-v",
@@ -195,15 +197,17 @@
       "code": "GM0119",
       "name": "Meppel",
       "settlements": 5,
-      "employers": 2,
-      "qualified_employers": 1,
+      "employers": 3,
+      "qualified_employers": 2,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2
+        "partial": 2,
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "gemeente-meppel",
+        "reestmond",
         "scania"
       ]
     },
@@ -232,16 +236,17 @@
       "code": "GM1699",
       "name": "Noordenveld",
       "settlements": 21,
-      "employers": 2,
-      "qualified_employers": 1,
+      "employers": 3,
+      "qualified_employers": 2,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 1,
+        "partial": 2,
         "discovery-incomplete": 1
       },
       "company_ids": [
         "gemeente-noordenveld",
+        "interzorg-noord-nederland",
         "vdl-wientjes-roden"
       ]
     },
@@ -251,17 +256,19 @@
       "code": "GM1730",
       "name": "Tynaarlo",
       "settlements": 18,
-      "employers": 2,
-      "qualified_employers": 1,
+      "employers": 3,
+      "qualified_employers": 2,
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
         "discovery-incomplete": 1,
+        "partial": 1,
         "collected": 1
       },
       "company_ids": [
         "gemeente-tynaarlo",
-        "groningen-airport-eelde"
+        "groningen-airport-eelde",
+        "interzorg-noord-nederland"
       ]
     },
     {
@@ -320,7 +327,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:06.025354+00:00",
+      "last_attempt_at": "2026-11-09T15:22:33.850571+00:00",
       "public_job_records": 31,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -374,7 +381,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-09T06:04:29.235343+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.300183+00:00",
       "public_job_records": 93,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -416,7 +423,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.373195+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -459,7 +466,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:08.360494+00:00",
+      "last_attempt_at": "2026-11-09T15:22:37.729127+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -501,13 +508,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:13.161742+00:00",
+      "last_attempt_at": "2026-11-09T15:22:29.519156+00:00",
       "public_job_records": 7,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-gemeente-assen",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.assen.nl', 'error': 'robots.txt unavailable: 403'}]"
         }
       ]
     },
@@ -544,7 +551,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:08.589619+00:00",
+      "last_attempt_at": "2026-11-09T15:25:08.100168+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -586,7 +593,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:07.828818+00:00",
+      "last_attempt_at": "2026-11-09T15:22:28.702164+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -628,7 +635,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.092593+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -681,7 +688,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:01.326513+00:00",
+      "last_attempt_at": "2026-11-09T15:22:29.792660+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -723,15 +730,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.092593+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-meppel",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-midden-drenthe",
@@ -765,7 +767,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:08.360494+00:00",
+      "last_attempt_at": "2026-11-09T15:22:37.729127+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -807,15 +809,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:16.958716+00:00",
-      "public_job_records": 85,
+      "last_attempt_at": "2026-11-09T15:22:30.161981+00:00",
+      "public_job_records": 79,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-noordenveld",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-tynaarlo",
@@ -849,7 +846,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.373195+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -891,7 +888,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:03.671349+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.300183+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -933,7 +930,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:13.770130+00:00",
+      "last_attempt_at": "2026-11-09T15:22:27.449609+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -975,7 +972,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.373195+00:00",
       "public_job_records": 62,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1017,7 +1014,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.092593+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1059,7 +1056,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:07.828818+00:00",
+      "last_attempt_at": "2026-11-09T15:22:28.702164+00:00",
       "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1102,15 +1099,10 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:13.770130+00:00",
+      "last_attempt_at": "2026-11-09T15:22:27.449609+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-tvm-verzekeringen",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "unigarant",
@@ -1142,12 +1134,17 @@
       "source_ids": [
         "auto-unigarant"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-09T06:04:29.236049+00:00",
-      "public_job_records": 9,
+      "last_attempt_at": "2026-11-09T15:22:32.480492+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-unigarant",
+          "message": "[{'url': 'https://www.unigarant.nl/vacature/schadebehandelaar-woon', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.unigarant.nl/vacature/schadebehandelaar-materieel-4', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.unigarant.nl/vacature/junior-productinrichting-pi-specialist', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ]
     },
     {
       "company_id": "wilhelmina-ziekenhuis-assen",
@@ -1181,13 +1178,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:13.161742+00:00",
-      "public_job_records": 19,
+      "last_attempt_at": "2026-11-09T15:22:29.519156+00:00",
+      "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-wilhelmina-ziekenhuis-assen",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.wza.nl/werken-en-leren/vacatures/template-vacature-detail', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -1224,22 +1221,27 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-09T06:04:29.236180+00:00",
-      "public_job_records": 64,
+      "last_attempt_at": "2026-11-09T15:22:32.300183+00:00",
+      "public_job_records": 91,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-cosis",
+          "message": "[{'url': 'https://www.cosis.nu/alles-over-cosis/onze-vacatures/begeleider-wonen-kind-jeugd-en-gezin', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.cosis.nu/alles-over-cosis/onze-vacatures/$80729/meer-over-solliciteren-bij-cosis', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.cosis.nu/alles-over-cosis/werken-bij/bekijk-onze-vacatures', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ]
     },
     {
       "company_id": "interzorg-noord-nederland",
       "name": "Interzorg Noord Nederland",
       "group_name": null,
-      "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+      "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_min": 1400,
+        "employees_text": "Official organisation page states fourteen hundred employees, with more than 800 volunteers separately. Employer total across nine locations, not headcount of an individual site.",
         "scope": "employer",
-        "source_url": null,
+        "source_url": "https://www.interzorg.nl/uw-ons-verhaal/organisatie",
         "source_date": null
       },
       "employer_type": "healthcare",
@@ -1253,7 +1255,40 @@
           "settlement_code": "WP2391",
           "location_confidence": "confirmed",
           "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
-          "checked_on": "2026-11-06"
+          "checked_on": "2026-11-10"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Roden",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "settlement_code": "WP1647",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+          "checked_on": "2026-11-10"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Peize",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "settlement_code": "WP1646",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+          "checked_on": "2026-11-10"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Vries",
+          "municipality": "Tynaarlo",
+          "municipality_code": "GM1730",
+          "settlement_code": "WP2912",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+          "checked_on": "2026-11-10"
         }
       ],
       "source_ids": [
@@ -1261,13 +1296,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:08.318661+00:00",
-      "public_job_records": 6,
+      "last_attempt_at": "2026-11-10T06:08:15.559733+00:00",
+      "public_job_records": 11,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-interzorg-noord-nederland",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/basisarts', 'error': 'Visible vacancy workplace requires review'}]"
         }
       ]
     },
@@ -1314,7 +1349,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.427486+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.129558+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1356,7 +1391,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.427486+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.129558+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1398,7 +1433,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.092593+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1440,7 +1475,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.053782+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.638271+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1482,7 +1517,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:06.025354+00:00",
+      "last_attempt_at": "2026-11-09T15:22:33.850571+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [
         "0d026302ba6f8aedd558"
@@ -1521,13 +1556,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:13.161742+00:00",
+      "last_attempt_at": "2026-11-09T15:22:29.519156+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-nncz",
-          "message": "[{'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-oproep-nb-2026-10-05', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/senior-verpleegkundige-def', 'error': 'Visible vacancy workplace requires review'}]"
+          "message": "[{'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-oproep-nb-2026-10-05', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/huishoudelijk-medewerker-h-2026-11-09', 'error': 'Visible vacancy workplace requires review'}]"
         }
       ]
     },
@@ -1563,7 +1598,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:16.958716+00:00",
+      "last_attempt_at": "2026-11-09T15:22:30.161981+00:00",
       "public_job_records": 8,
       "verified_hr_internship_ids": [
         "95dca55a4e83f8016444"
@@ -1602,7 +1637,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.092593+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1645,7 +1680,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:16.958716+00:00",
+      "last_attempt_at": "2026-11-09T15:22:30.161981+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1688,7 +1723,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.053782+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.638271+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1736,7 +1771,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:10.978289+00:00",
+      "last_attempt_at": "2026-11-09T15:22:32.092593+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1823,7 +1858,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-08T10:21:13.770130+00:00",
+      "last_attempt_at": "2026-11-09T15:22:27.449609+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1874,12 +1909,54 @@
       "source_ids": [
         "auto-sw-vastgoedverbetering"
       ],
-      "state": "collected",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-09T06:02:57.064129+00:00",
-      "public_job_records": 39,
+      "state": "not-recently-checked",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
+    },
+    {
+      "company_id": "reestmond",
+      "name": "Reestmond",
+      "group_name": null,
+      "career_url": "https://www.reestmond.nl/vacatures/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 270,
+        "employees_text": "Annual accounts 2025, printed page 21: 270 employees with SW indication employed at Reestmond on 31 December 2025 (228 FTE, 233 SE). Conservative employer lower bound for this employee category; not total personnel or the joint headcount with NoordWestGroep.",
+        "scope": "employer",
+        "source_url": "https://www.reestmond.nl/wp-content/uploads/2026/07/Jaarrekening-2025-Reestmond.pdf",
+        "source_date": "2025-12-31"
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Meppel",
+          "municipality": "Meppel",
+          "municipality_code": "GM0119",
+          "settlement_code": "WP1082",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.reestmond.nl/contact/",
+          "checked_on": "2026-11-10"
+        }
+      ],
+      "source_ids": [
+        "auto-reestmond"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-10T06:08:29.054269+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-reestmond",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     }
   ],
   "verified_hr_internship_ids": [

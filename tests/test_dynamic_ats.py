@@ -89,6 +89,35 @@ class DynamicTests(unittest.TestCase):
                 self.assertEqual(self.render_calls,0)
                 self.assertEqual(self.observation['dynamic_ats']['reason'],reason)
 
+    def test_unset_empty_and_inexact_values_have_no_dynamic_cost(self):
+        for value in (None, '', 'off', 'true', '1', 'pilot-v2', 'PILOT-V1', ' pilot-v1', 'pilot-v1 '):
+            with self.subTest(value=value),patch.dict(os.environ):
+                os.environ.pop('PEOPLE_PLACEMENT_DYNAMIC_ATS',None)
+                if value is not None:os.environ['PEOPLE_PLACEMENT_DYNAMIC_ATS']=value
+                with patch.object(self.client,'request',wraps=self.client.request) as request:
+                    with self.assertRaises(dynamic_ats.MissingDynamicForm):self.verify()
+                self.assertEqual(request.call_count,1) # ordinary vacancy read only
+                self.assertEqual(self.render_calls,0)
+                self.assertEqual(dynamic_ats._RENDERINGS,0)
+                self.assertFalse(getattr(self.client,'dynamic_ats_attempted',False))
+                event=self.observation['dynamic_ats']
+                self.assertEqual(event['reason'],'pilot-disabled')
+                for metric in ('renderings','requests','browser_requests','blocked_requests','seconds'):
+                    self.assertEqual(event[metric],0)
+
+    def test_exact_value_allows_only_the_three_pilot_source_ids(self):
+        pilots={'auto-bentacera','auto-oosterwolde-plastic-industrie-b-v','auto-centraal-beheer-achmea'}
+        self.assertEqual(dynamic_ats.PILOTS,pilots)
+        for source_id in sorted(pilots | {'other','auto-bentacera-extra','AUTO-BENTACERA',''}):
+            with self.subTest(source_id=source_id),patch.object(self,'source',dict(self.source,id=source_id)),patch.object(self.client,'dynamic_ats_attempted',False,create=True),patch.object(dynamic_ats,'_RENDERINGS',0):
+                if source_id in pilots:
+                    self.verify()
+                    self.assertEqual(self.render_calls,1)
+                else:
+                    with self.assertRaises(dynamic_ats.MissingDynamicForm):self.verify()
+                    self.assertEqual(self.render_calls,0)
+                    self.assertEqual(self.observation['dynamic_ats']['reason'],'source-not-pilot')
+
     def test_timeout_robots_and_budget_are_unverified(self):
         for error in (TimeoutError('timeout'),ValueError('robots.txt disallows browser navigation'),CollectionBudgetExceeded('budget')):
             with self.subTest(error=error),patch.object(self.client,'dynamic_ats_attempted',False,create=True),patch.object(dynamic_ats,'_RENDERINGS',0):

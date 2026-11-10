@@ -45865,13 +45865,14 @@
     "id": "auto-interzorg-noord-nederland",
     "company_id": "interzorg-noord-nederland",
     "employer": "Interzorg Noord Nederland",
-    "adapter": "universal-employer",
+    "adapter": "employer-index",
     "enabled": true,
     "start_urls": [
+      "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
       "https://www.interzorg.nl/je-bent-van-harte-welkom",
       "https://www.interzorg.nl"
     ],
-    "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+    "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
     "allowed_hosts": [
       "www.interzorg.nl"
     ],
@@ -45879,12 +45880,44 @@
       "NL"
     ],
     "max_pages": 70,
-    "max_requests": 110,
-    "collection_seconds": 120,
+    "max_requests": 55,
+    "collection_seconds": 100,
     "max_navigation_depth": 3,
     "max_render_pages": 4,
-    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "permission_basis": "Public employer HTML only with runtime robots checks. No AFAS candidate-creation route, form submission, authentication or new browser pilot enabled.",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+    ],
+    "job_url_pattern": "^https://www\\.interzorg\\.nl/je-bent-van-harte-welkom/vacatures/[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "\\bPlaats\\s+(?:De Slinge|Servicecentrum|Nieuw Graswijk)\\s*-\\s*Assen\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Assen",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+De Hullen\\s*-\\s*Roden\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Roden",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+De Hoprank\\s*-\\s*Peize\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Peize",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+Kornoeljehof\\s*-\\s*Vries\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Vries",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Observed official public vacancy list, with distinct links inventoried. Reviewed exact visible Plaats fields for six site names in Assen, Roden, Peize and Vries only; flexible or unknown workplaces fail closed. No published inventory total established; pagination and AFAS application entry remain unreviewed. General internship enquiries excluded; no absence-based closure.",
+    "access_reviewed_on": "2026-11-10"
   },
   {
     "id": "auto-astron",
@@ -48093,5 +48126,30 @@
     "discovery_scope": "Published offers in the official public Recruitee response; no company-wide census or inference from historical aggregator copies.",
     "access_reviewed_on": "2026-11-09",
     "report_feed_scope": true
+  },
+  {
+    "id": "auto-reestmond",
+    "company_id": "reestmond",
+    "employer": "Reestmond",
+    "adapter": "universal-employer",
+    "enabled": true,
+    "start_urls": [
+      "https://www.reestmond.nl/vacatures",
+      "https://www.reestmond.nl"
+    ],
+    "career_url": "https://www.reestmond.nl/vacatures/",
+    "allowed_hosts": [
+      "www.reestmond.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 110,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+    "status": "automatic-collection-pending"
   }
 ]

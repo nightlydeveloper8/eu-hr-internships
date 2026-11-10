@@ -166,5 +166,43 @@
     "collection_seconds": 120,
     "max_requests": 100,
     "report_feed_scope": true
+  },
+  "auto-interzorg-noord-nederland": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+    ],
+    "job_url_pattern": "^https://www\\.interzorg\\.nl/je-bent-van-harte-welkom/vacatures/[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "\\bPlaats\\s+(?:De Slinge|Servicecentrum|Nieuw Graswijk)\\s*-\\s*Assen\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Assen",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+De Hullen\\s*-\\s*Roden\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Roden",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+De Hoprank\\s*-\\s*Peize\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Peize",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+Kornoeljehof\\s*-\\s*Vries\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Vries",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Observed official public vacancy list, with distinct links inventoried. Reviewed exact visible Plaats fields for six site names in Assen, Roden, Peize and Vries only; flexible or unknown workplaces fail closed. No published inventory total established; pagination and AFAS application entry remain unreviewed. General internship enquiries excluded; no absence-based closure.",
+    "collection_seconds": 100,
+    "max_requests": 55,
+    "access_reviewed_on": "2026-11-10",
+    "permission_basis": "Public employer HTML only with runtime robots checks. No AFAS candidate-creation route, form submission, authentication or new browser pilot enabled."
   }
 }

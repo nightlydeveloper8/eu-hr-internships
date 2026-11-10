@@ -1,0 +1,786 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-10T06:09:05.191515+00:00",
+  "province": "drenthe",
+  "baseline_commit": "e761ef6b69698d4b277b9fa82aaf49835790b43b",
+  "exhaustive": false,
+  "removed": {
+    "companies": [],
+    "sources": [],
+    "catalog_urls": []
+  },
+  "preservation_checks_passed": true,
+  "preserved_other_region_workplaces": 1104,
+  "baseline_counts": {
+    "companies": 1882,
+    "sources": 1926,
+    "catalog": 324
+  },
+  "current_counts": {
+    "companies": 1884,
+    "sources": 1928,
+    "catalog": 324
+  },
+  "summary": {
+    "employers": 37,
+    "qualified_employers": 23,
+    "distinct_groups": 37,
+    "qualified_groups": 23,
+    "size_unknown": 14,
+    "below_threshold": 0,
+    "municipalities": 12,
+    "municipalities_with_qualified_employers": 12,
+    "configured": 37,
+    "attempted_recently": 36,
+    "collection_states": {
+      "partial": 18,
+      "discovery-incomplete": 10,
+      "blocked-or-failed": 5,
+      "collected": 3,
+      "not-recently-checked": 1
+    },
+    "qualified_collection_states": {
+      "partial": 12,
+      "discovery-incomplete": 7,
+      "blocked-or-failed": 1,
+      "collected": 2,
+      "not-recently-checked": 1
+    },
+    "verified_hr_internships": 2,
+    "verified_hr_internships_qualified_employers": 1
+  },
+  "municipalities": [
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1680",
+      "name": "Aa en Hunze",
+      "settlements": 35,
+      "employers": 2,
+      "qualified_employers": 2,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-aa-en-hunze",
+        "royal-avebe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "0d026302ba6f8aedd558",
+        "95dca55a4e83f8016444"
+      ],
+      "verified_hr_internships": 2,
+      "code": "GM0106",
+      "name": "Assen",
+      "settlements": 7,
+      "employers": 8,
+      "qualified_employers": 6,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 6,
+        "collected": 2
+      },
+      "company_ids": [
+        "cosis",
+        "gemeente-assen",
+        "het-drentse-landschap",
+        "interzorg-noord-nederland",
+        "skk-kozijnwacht",
+        "vanboeijen",
+        "wilhelmina-ziekenhuis-assen",
+        "ziengs-schoenen"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1681",
+      "name": "Borger-Odoorn",
+      "settlements": 25,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 2,
+        "partial": 1
+      },
+      "company_ids": [
+        "avitec",
+        "gemeente-borger-odoorn",
+        "paas-b-v"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0109",
+      "name": "Coevorden",
+      "settlements": 25,
+      "employers": 4,
+      "qualified_employers": 2,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "center-parcs",
+        "emco-groep",
+        "forbo-novilon",
+        "gemeente-coevorden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1690",
+      "name": "De Wolden",
+      "settlements": 13,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3
+      },
+      "company_ids": [
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "zzwd-zorgcollectief"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0114",
+      "name": "Emmen",
+      "settlements": 16,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
+        "not-recently-checked": 1
+      },
+      "company_ids": [
+        "emco-groep",
+        "gemeente-emmen",
+        "sw-vastgoedverbetering"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0118",
+      "name": "Hoogeveen",
+      "settlements": 11,
+      "employers": 7,
+      "qualified_employers": 5,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3,
+        "discovery-incomplete": 3,
+        "not-recently-checked": 1
+      },
+      "company_ids": [
+        "doc-kaas-b-v",
+        "nncz",
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "sw-vastgoedverbetering",
+        "tvm-verzekeringen",
+        "unigarant"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0119",
+      "name": "Meppel",
+      "settlements": 5,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-meppel",
+        "reestmond",
+        "scania"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1731",
+      "name": "Midden-Drenthe",
+      "settlements": 25,
+      "employers": 2,
+      "qualified_employers": 1,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 1
+      },
+      "company_ids": [
+        "astron",
+        "gemeente-midden-drenthe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1699",
+      "name": "Noordenveld",
+      "settlements": 21,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-noordenveld",
+        "interzorg-noord-nederland",
+        "vdl-wientjes-roden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1730",
+      "name": "Tynaarlo",
+      "settlements": 18,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-tynaarlo",
+        "groningen-airport-eelde",
+        "interzorg-noord-nederland"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1701",
+      "name": "Westerveld",
+      "settlements": 26,
+      "employers": 4,
+      "qualified_employers": 1,
+      "size_unknown": 3,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 2,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "astron",
+        "bats-uitzendburo",
+        "gemeente-westerveld",
+        "zzwd-zorgcollectief"
+      ]
+    }
+  ],
+  "source_attempts": [
+    {
+      "id": "auto-interzorg-noord-nederland",
+      "employer": "Interzorg Noord Nederland",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-10T06:06:53.483631+00:00",
+      "collected": 12,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 12,
+      "page_errors": [
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/helpende-plus",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/medewerker-gastvrijheid-en-restaurant",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/medewerker-wasserij",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/eerste-productiemedewerker-wasserij",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/facilitair-medewerker",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/helpende-plus-nachtdienst",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/basisarts",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/helpende-en-helpende-plus",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/verpleegkundige-3",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/verpleegkundige",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/helpende-of-helpende-plus",
+          "error": "Visible vacancy workplace requires review"
+        },
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/verzorgende-ig-6",
+          "error": "Visible vacancy workplace requires review"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 12,
+      "declared_job_count": null,
+      "discovery_scope": "Observed official public vacancy list, with distinct links inventoried. No published total established; pagination, full workplace templates and AFAS application entry remain unreviewed. General internship enquiries are excluded; no absence-based closure.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages",
+      "requests": 14,
+      "bytes_read": 983026,
+      "duration_seconds": 13.43
+    },
+    {
+      "id": "auto-reestmond",
+      "employer": "Reestmond",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-10T06:07:06.921316+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 4,
+      "sitemaps_read": 2,
+      "rendered_pages": 0,
+      "job_urls_discovered": 1,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.reestmond.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "requests": 5,
+      "bytes_read": 236266,
+      "duration_seconds": 4.13
+    },
+    {
+      "id": "auto-interzorg-noord-nederland",
+      "employer": "Interzorg Noord Nederland",
+      "adapter": "employer-index",
+      "checked_at": "2026-11-10T06:08:15.559733+00:00",
+      "collected": 12,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 11,
+      "page_failures": 1,
+      "page_errors": [
+        {
+          "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/basisarts",
+          "error": "Visible vacancy workplace requires review"
+        }
+      ],
+      "page_errors_truncated": false,
+      "complete": false,
+      "closure_complete": false,
+      "pages_read": 1,
+      "job_urls_discovered": 12,
+      "declared_job_count": null,
+      "discovery_scope": "Observed official public vacancy list, with distinct links inventoried. Reviewed exact visible Plaats fields for five site names in Assen, Roden, Peize and Vries only; flexible or unknown workplaces fail closed. No published inventory total established; pagination and AFAS application entry remain unreviewed. General internship enquiries excluded; no absence-based closure.",
+      "verified_closed_urls": [],
+      "inventory_complete": false,
+      "snapshot_kind": "public-job-page-inventory",
+      "page_discovery_mode": "read-all-inventoried-job-pages",
+      "requests": 14,
+      "bytes_read": 983026,
+      "duration_seconds": 13.48
+    },
+    {
+      "id": "auto-reestmond",
+      "employer": "Reestmond",
+      "adapter": "universal-employer",
+      "checked_at": "2026-11-10T06:08:29.054269+00:00",
+      "collected": 0,
+      "status": "partial",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [],
+      "records_inspected": 0,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "inventory_kind": "bounded-public-career-crawl",
+      "complete": false,
+      "closure_complete": false,
+      "verified_closed_urls": [],
+      "pages_read": 4,
+      "sitemaps_read": 2,
+      "rendered_pages": 0,
+      "job_urls_discovered": 1,
+      "pending_urls": 0,
+      "unresolved_geography": 0,
+      "explicit_empty": false,
+      "methods": [
+        "robots-declared-sitemap"
+      ],
+      "cache_hits": 0,
+      "allowed_hosts": [
+        "www.reestmond.nl"
+      ],
+      "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically",
+      "inventory_complete": false,
+      "requests": 5,
+      "bytes_read": 236266,
+      "duration_seconds": 3.74
+    }
+  ],
+  "attempt_count": 4,
+  "distinct_attempted_sources": 2,
+  "invalid_complete_reports": [],
+  "language_decisions": [
+    {
+      "id": "a5ce8a272a48d5026b20",
+      "title": "Stage HR Heerenveen",
+      "city": "Heerenveen",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-09T15:22:32.300183+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "dc9a9a926f76c0aff13b",
+      "title": "Stage HR",
+      "city": "Almere",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-req2618",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-09T15:22:32.300183+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "9d0bee377ab034aabd48",
+      "title": "HR-stagiaire Hoogeveen",
+      "city": "Hoogeveen",
+      "status": "unverified",
+      "url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-09T15:22:29.519156+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "0d026302ba6f8aedd558",
+      "title": "Stagiair HR",
+      "city": "Assen",
+      "status": "open",
+      "url": "https://skk.nl/werken-bij-skk/stagiair-hr",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-09T15:22:33.850571+00:00",
+        "policy_version": 2,
+        "reason": "official-vacancy-email-instructions"
+      }
+    },
+    {
+      "id": "95dca55a4e83f8016444",
+      "title": "HR stagiair(e) - Scapino & Ziengs",
+      "city": "Assen",
+      "status": "open",
+      "url": "https://www.werkenbijziengs.nl/vacatures/hr-stagiaire-scapino-ziengs",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-09T15:22:30.161981+00:00",
+        "policy_version": 2,
+        "reason": "official-formie-same-requisition-form"
+      }
+    },
+    {
+      "id": "75f9275c0874b74af972",
+      "title": "Stage - Human Resource Management",
+      "city": "Meppel",
+      "status": "unverified",
+      "url": "https://jobs.scania.com/job/Meppel-Stage-Human-Resource-Management-7944HT/1454163033",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [],
+        "alternative_languages": [
+          "en",
+          "nl"
+        ],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        },
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        }
+      ],
+      "verification": {
+        "state": "blocked",
+        "checked_at": "2026-11-09T15:22:30.161981+00:00",
+        "policy_version": 2,
+        "reason": "robots.txt disallows https://jobs.scania.com/talentcommunity/apply/1454163033?locale=nl_NL"
+      }
+    },
+    {
+      "id": "5506269ba93324a54632",
+      "title": "Stage Recruitment Februari 2027",
+      "city": "Capelle aan den IJssel",
+      "status": "unverified",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-09T15:22:33.850571+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "a3b5d7cde7fe9d17a72e",
+      "title": "Stage Internal Communications and Employee Engagement Officer Februari 2027",
+      "city": "Capelle aan den IJssel",
+      "status": "unverified",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-09T15:22:33.850571+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    }
+  ],
+  "note": "Per-source checked_at retained. A full inventory in one query does not establish complete employer/market coverage. No merge or deployment performed.",
+  "phase": "2026-11-10",
+  "catalog_equals_latest_main": true,
+  "new_verified_drenthe_internships": 0,
+  "primary_evidence": [
+    {
+      "url": "https://www.reestmond.nl/",
+      "final": "https://www.reestmond.nl",
+      "checked_at": "2026-11-10T05:59:59.874816+00:00",
+      "sha256": "38ad25f787a49f07aca4844f97b838668d394be08f051b63e2c65c44fced45aa"
+    },
+    {
+      "url": "https://www.reestmond.nl/over-reestmond/",
+      "checked_at": "2026-11-10T06:00:02.052930+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.reestmond.nl/vacatures/",
+      "final": "https://www.reestmond.nl/vacatures/",
+      "checked_at": "2026-11-10T06:00:06.424978+00:00",
+      "sha256": "fccbba45cae9f363c683db53d8b360eed7ddba1cd9df3be648c6be70e79ffd36"
+    },
+    {
+      "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/helpende-en-helpende-plus",
+      "final": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/helpende-en-helpende-plus",
+      "checked_at": "2026-11-10T06:00:01.123997+00:00",
+      "sha256": "1ed3c6cb2556254fa6b1d8ed110a76cd6e39681724b466f45ddc7f8675cfc7fe"
+    },
+    {
+      "url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+      "final": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+      "checked_at": "2026-11-10T06:00:02.491750+00:00",
+      "sha256": "8d1c587155a8fe868751e446e749ad4e9276cc6c1dd9d8153e3d35015f791330"
+    },
+    {
+      "url": "https://werkenbij.interzorg.nl/",
+      "final": "https://werkenbij.interzorg.nl",
+      "checked_at": "2026-11-10T06:00:00.563990+00:00",
+      "sha256": "4ac7a9d748f823336252c329455056814dd41dcedc0765540e984080701ec008"
+    },
+    {
+      "url": "https://www.reestmond.nl/over-ons/",
+      "final": "https://www.reestmond.nl/over-ons/",
+      "checked_at": "2026-11-10T06:05:37.810120+00:00",
+      "sha256": "2e715bdca306ba322db4d2d8d583c9ccfc1527282dc377129c858fefcd31d7d3"
+    },
+    {
+      "url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+      "final": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+      "checked_at": "2026-11-10T06:05:37.464245+00:00",
+      "sha256": "c6cf724848f14ae9ac818d53407b518aa7dc7b076d8f9ba22bff5b600212f72d"
+    },
+    {
+      "url": "https://www.interzorg.nl/leren-bij-interzorg",
+      "final": "https://www.interzorg.nl/leren-bij-interzorg",
+      "checked_at": "2026-11-10T06:05:38.030672+00:00",
+      "sha256": "fec6e202e53682c424e624d329fb24c54cb9fb2a9ddf57c915db899f3dc87035"
+    },
+    {
+      "url": "https://www.interzorg.nl/uw-ons-verhaal/organisatie",
+      "final": "https://www.interzorg.nl/uw-ons-verhaal/organisatie",
+      "checked_at": "2026-11-10T06:06:07.506888+00:00",
+      "sha256": "9efb61e5db811d4e2e84b1ccfdbaf70e52348aadd0e4a6e09c3e8c52c4b8e19c"
+    },
+    {
+      "url": "https://www.reestmond.nl/contact/",
+      "final": "https://www.reestmond.nl/contact/",
+      "checked_at": "2026-11-10T06:06:08.023592+00:00",
+      "sha256": "363e183fb32fd9d8f4b415ee85bd35b52bcc835b4f0b8045a11ed7f1726afecc"
+    },
+    {
+      "url": "https://www.reestmond.nl/wp-content/uploads/2026/07/Jaarrekening-2025-Reestmond.pdf",
+      "checked_on": "2026-11-10",
+      "sha256": "8fb48ddade378de13d9de830370dd4729675f0d0cb623f92b9fa4536c96ddcb8",
+      "pdf_page": 21,
+      "employees_min": 270,
+      "reference_date": "2025-12-31",
+      "scope": "SW-indicated employees in service of Reestmond; employer lower bound, not joint group or whole personnel total"
+    }
+  ],
+  "preserved_pr_head": "02d99d47157b3b11faddd88d3f35de73ff7e5842",
+  "resolved_conflicts": [
+    "data/company-coverage.json",
+    "data/coverage.json",
+    "data/drenthe-coverage.json"
+  ],
+  "other_sessions_wip": "Historical checkout inspected read-only and preserved; no changes to Dynamic ATS pilot settings or deployment."
+}
