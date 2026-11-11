@@ -19,6 +19,14 @@ CAREER=re.compile(r'career|karriere|werken.?bij|working.?at|work.?with.?us|join.
 JOBPATH=re.compile(r'/(?:jobs?|vacatures?|vacancy|positions?|postings?|offres?|stellenangebote|stellen|annunci|o)/[^/?#]+|[?&](?:jobid|job_id|vacancyid|positionid)=',re.I)
 NEXT=re.compile(r'^(?:next|next page|successiv[ao]|volgende|weiter|suivant|siguiente|próxim[ao]|następna|nästa|[›»→])$',re.I)
 EMPTY=re.compile(r'no (?:open |current |matching |available )?(?:jobs|positions|vacancies)|geen (?:openstaande )?vacatures|nessuna (?:posizione|offerta)|keine (?:offenen )?(?:stellen|jobs)|aucun(?:e)? (?:offre|poste)|no hay (?:ofertas|vacantes)',re.I)
+# A closed vacancy can disappear from the current inventory. Only a fresh,
+# same-URL page that names the *known* vacancy is evidence of its closure.
+CLOSED_NAMED_VACANCY=re.compile(r'\bde\s+vacature\s+["\u201c\u201d\u0027]([^"\u201c\u201d\u0027]+)["\u201c\u201d\u0027]\s+is\s+niet\s+meer\s+beschikbaar\b',re.I)
+def named_vacancy_closed(doc,expected_title):
+    return bool(expected_title and any(
+        fold(plain(m.group(1)))==fold(plain(expected_title))
+        for m in CLOSED_NAMED_VACANCY.finditer(doc.text)))
+
 CHALLENGE=re.compile(r'captcha|verify (?:you are|that you are) human|access denied|just a moment|security verification',re.I)
 PROVIDERS=('greenhouse.io','lever.co','recruitee.com','personio.de','personio.com','teamtailor.com','softgarden.de','ashbyhq.com','smartrecruiters.com','myworkdayjobs.com','myworkdaysite.com','successfactors.com','successfactors.eu','taleo.net','icims.com','intervieweb.it','inrecruiting.com','altamiraweb.com','workable.com','bamboohr.com','jobvite.com','applytojob.com','flatchr.io','welcomekit.co','oraclecloud.com','avature.net')
 LEGAL={'gmbh','co','kg','ag','spa','srl','bv','nv','sa','sas','ltd','inc','group','groep','the','and','netherlands','deutschland','italia','france'}
@@ -125,10 +133,10 @@ class Inventory(list):
 
 class Crawler:
     def __init__(self,source,client):
-        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=4 if source.get('ownership_scope')=='reviewed-hosts' else 3);self.state=self.cache.state();
+        self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.known_job_titles=source.get('known_job_titles',{});self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=4 if source.get('ownership_scope')=='reviewed-hosts' else 3);self.state=self.cache.state();
         if source.get('ownership_scope')=='reviewed-hosts' and self.state.get('ownership_policy_version')!=1:self.state={}
         self.state['ownership_policy_version']=1
-        self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set()
+        self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set();self.structured_identity_mismatches=0
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
@@ -212,6 +220,11 @@ class Crawler:
         doc=Document(body,final)
         if CHALLENGE.search(doc.text[:3000]) or (re.search(br'http-equiv=["\']refresh["\']',body,re.I) and b'/.well-known/sgcaptcha/' in body):
             raise ValueError('Access challenge; no bypass attempted')
+        # This is a fresh GET of the original vacancy URL, not a cached page,
+        # search-result disappearance, redirect or unrelated job notice.
+        if is_job and canonical_url(final)==canonical_url(url) and named_vacancy_closed(doc,self.known_job_titles.get(url)):
+            self.closed_urls.add(url);self.used_methods.add('official-named-vacancy-closure')
+            return dict(records=[],links=[],empty=False)
         # Employer-hosted Recruitee sites retain the platform credit/assets and
         # the documented /o/ posting paths. No board identifier is invented.
         platform_credit=any(re.search(r'https://[^/]*(?:recruitee\.com|recruiteecdn\.com)(?:/|$)',urljoin(final,href),re.I) for href,_,_ in doc.links) or bool(re.search(br'(?:src|href)=["\'][^"\']*recruitee(?:cdn)?\.com/',body,re.I))
@@ -241,6 +254,10 @@ class Crawler:
         for d in docs:
             posts=d.jobposts()
             for post in posts:
+                hiring=post.get('hiringOrganization',{})
+                owner=hiring.get('name') if isinstance(hiring,dict) else None
+                if owner and not employer_matches(plain(owner),self.source):
+                    self.structured_identity_mismatches+=1
                 from .verification import expired
                 try:
                     if expired(post.get('validThrough'),datetime.now(timezone.utc).isoformat()):
@@ -315,7 +332,7 @@ class Crawler:
         self.state['allowed_hosts']=sorted(self.allowed);self.state['pending']=remaining[:2000];self.cache.save_state(self.state)
         unresolved=sum(bool(r.get('geography_unresolved')) for r in self.records.values())
         complete=(bool(self.completed_feeds) and self.inventory or self.empty) and not self.incomplete and not self.errors and not remaining and not unresolved
-        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),verified_closed_urls=sorted(self.closed_urls),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed))
+        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),verified_closed_urls=sorted(self.closed_urls),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed),structured_identity_mismatches=self.structured_identity_mismatches,explicit_known_closures=len(self.closed_urls.intersection(self.known_job_titles)))
         if not self.inventory and not self.empty:stats['error']='No verified job inventory or explicit empty vacancy list found; discovery continues automatically'
         if not self.inventory and not self.empty and self.errors and all(
             re.search(r'Access challenge|robots\.txt disallows|HTTP Error: (?:401|403|429|451)',e['error'],re.I)
