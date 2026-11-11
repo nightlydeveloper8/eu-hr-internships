@@ -97,6 +97,23 @@ class ScopedEmployerIdentityTests(unittest.TestCase):
         self.assertFalse(is_reviewed_publisher('Achmea',s,
                                               'https://www.werkenbijachmea.nl/vacatures/hr-stage'))
 
+    def test_daily_collection_uses_scoped_review_without_rewriting_registry(self):
+        from collector.daily import collect_shard
+        original=self.by_id['auto-centraal-beheer-achmea']
+        company=next(c for c in self.companies if c['id']==original['company_id'])
+        seen=[]
+        def fake_process(source, client, stamp, *args, **kwargs):
+            seen.append(source)
+            return dict(report=dict(id=source['id'],status='partial',checked_at=stamp),
+                        jobs=[],closure_eligible=[])
+        with tempfile.TemporaryDirectory() as directory, \
+             patch('collector.daily.provision_files',return_value=([company],[original])), \
+             patch('collector.daily.process_source',side_effect=fake_process):
+            collect_shard(shard=0,shards=1,output=Path(directory)/'shard-0.json')
+        self.assertEqual(seen[0]['_reviewed_identity_hosts'],{'achmea':['www.werkenbijachmea.nl']})
+        self.assertNotIn('_reviewed_identity_hosts',original)
+        self.assertEqual(seen[0]['allowed_hosts'],original['allowed_hosts'])
+
     def test_all_historical_ids_preserved_without_migration_or_verification(self):
         """Registration must not rewrite historical advertisements or force open."""
         prior=read(ROOT/'data/catalog.json',{})
