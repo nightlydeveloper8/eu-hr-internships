@@ -1,13 +1,22 @@
 """Employer ownership is separate from link/application availability."""
 from urllib.parse import urlsplit
 from .classify import fold,canonical_url
+from .employer_resolution import is_reviewed_publisher, name_key
 
-def employer_matches(name,source):
-    def key(value):return ' '.join(fold(value).split())
-    return key(name) in {key(n) for n in [source['employer']]+source.get('employer_aliases',[])}
+def employer_matches(name,source,url=None):
+    key=name_key(name)
+    if key in {name_key(n) for n in [source['employer']]+source.get('employer_aliases',[])}:
+        return True
+    return is_reviewed_publisher(name,source,url)
 
 def owned_record(record,source):
-    if not employer_matches(record.get('employer',''),source):return False
+    name=record.get('employer','')
+    url=record.get('url')
+    if not employer_matches(name,source,url):return False
+    # Approved recruiting publishers are not equivalent to subsidiaries. A
+    # structured same-vacancy hiringOrganization is required on the reviewed host.
+    if is_reviewed_publisher(name,source,url) and record.get('employer_identity_evidence')!='jobposting-hiring-organization':
+        return False
     if source.get('require_employer_identity') and record.get('employer_identity_evidence')!='jobposting-hiring-organization':return False
     return (urlsplit(record['url']).hostname in source['allowed_hosts'] or
             record.get('employer_identity_evidence')=='jobposting-hiring-organization')

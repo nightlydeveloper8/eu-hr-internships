@@ -364,11 +364,16 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
 def run(source_ids=None,verify=True,output=ROOT/'data'):
     registry=read(ROOT/'data/sources.json',[])
     selected=[s for s in registry if s.get('enabled') and (not source_ids or s['id'] in source_ids)]
+    from .employer_resolution import reviewed_source, validate_reviews
+    selected_ids={s['id'] for s in selected}
+    identity_reviews=[r for r in read(ROOT/'data/employer-identity-reviews.json',[])
+                      if r.get('source_id') in selected_ids]
+    validate_reviews(identity_reviews,selected)
     prior=read(output/'catalog.json',{'jobs':[],'updated_at':None})
     prior_report=read(output/'coverage.json',{'sources':[]})
     counts={r['id']:r.get('collected',0) for r in prior_report.get('sources',[])}
     stamp=now();client=Client()
-    parts=[process_source(source,client,stamp,counts.get(source['id'],0),verify) for source in selected]
+    parts=[process_source(reviewed_source(source,identity_reviews),client,stamp,counts.get(source['id'],0),verify) for source in selected]
     return finalize(registry,selected,prior,prior_report,parts,stamp,output)
 
 def main():
