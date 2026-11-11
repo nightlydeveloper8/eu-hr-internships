@@ -90,7 +90,7 @@ def job_from_json(data,url,source):
     hiring=data.get('hiringOrganization',{});name=hiring.get('name') if isinstance(hiring,dict) else None
     job_url=safe_url(urljoin(url,data.get('url') or url))
     if not job_url:return None
-    if name and not employer_matches(plain(name),source):return None
+    if name and not employer_matches(plain(name),source,job_url):return None
     if not name and (source.get('require_employer_identity') or urlsplit(job_url).hostname not in source['allowed_hosts']):return None
     employment=data.get('employmentType','');employment=' '.join(str(x) for x in employment) if isinstance(employment,list) else str(employment or '')
     record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=None,published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting',valid_through=data.get('validThrough'))
