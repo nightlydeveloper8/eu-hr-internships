@@ -14,6 +14,7 @@ from .classify import canonical_url,plain,fold,classify_role,country_codes
 from .employer_pages import PageParser,walk_json
 from .runtime import CollectionBudgetExceeded,PageCache
 from .ownership import employer_matches,owned_record
+from .employer_resolution import is_reviewed_publisher
 
 CAREER=re.compile(r'career|karriere|werken.?bij|working.?at|work.?with.?us|join.?us|recrut|rejoignez|emploi|jobs|vacatur|lavora.?con|lavora.?in|lavoro|trabaja|trabajar|carriere|stellen|opportunit|oferty.?pracy|kariera|vacantes|candidatur',re.I)
 JOBPATH=re.compile(r'/(?:jobs?|vacatures?|vacancy|positions?|postings?|offres?|stellenangebote|stellen|annunci|o)/[^/?#]+|[?&](?:jobid|job_id|vacancyid|positionid)=',re.I)
@@ -91,6 +92,10 @@ def job_from_json(data,url,source):
     job_url=safe_url(urljoin(url,data.get('url') or url))
     if not job_url:return None
     if name and not employer_matches(plain(name),source,job_url):return None
+    # A third-party page cannot forge a reviewed publisher by pointing its
+    # JobPosting.url to the approved host. The evidence page must be there too.
+    if name and is_reviewed_publisher(plain(name),source,job_url):
+        if urlsplit(canonical_url(url)).hostname!=urlsplit(job_url).hostname:return None
     if not name and (source.get('require_employer_identity') or urlsplit(job_url).hostname not in source['allowed_hosts']):return None
     employment=data.get('employmentType','');employment=' '.join(str(x) for x in employment) if isinstance(employment,list) else str(employment or '')
     record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=None,published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting',valid_through=data.get('validThrough'))
