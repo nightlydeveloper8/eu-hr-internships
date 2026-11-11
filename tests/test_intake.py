@@ -160,9 +160,10 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(result['jobs'][0]['intake'], previous['jobs'][0]['intake'])
         self.assertEqual(result['jobs'][0]['status'], 'unverified')
 
-    def test_published_324_records_ownership_policy_and_review_blocks_survive(self):
-        prior = read(ROOT/'data/catalog.json', {})
-        self.assertEqual(len(prior['jobs']), 324)
+    def assert_catalog_preserved(self, prior):
+        ids = [j['id'] for j in prior['jobs']]
+        self.assertTrue(ids, 'Published catalog must not be empty')
+        self.assertEqual(len(ids), len(set(ids)), 'Published IDs must be unique')
         # Replay at the publication timestamp so freshness does not introduce
         # legitimate changes unrelated to this regression.
         stamp = prior['last_attempt_at']
@@ -175,6 +176,18 @@ class IntakeTests(unittest.TestCase):
                 self.assertEqual(current.get(field), old.get(field), (old['id'], field))
             self.assertEqual(current.get('verification', {}).get('policy_version'),
                              old.get('verification', {}).get('policy_version'))
+
+    def test_growing_catalog_preserves_existing_and_new_records(self):
+        prior = read(ROOT/'data/catalog.json', {})
+        extra = self.cycle({'jobs': []}, 'Stage vanaf februari 2027.',
+                           stamp=prior['last_attempt_at'])['jobs'][0]
+        self.assertNotIn(extra['id'], {j['id'] for j in prior['jobs']})
+        prior['jobs'].append(extra)
+        self.assert_catalog_preserved(prior)
+
+    def test_published_records_ownership_policy_and_review_blocks_survive(self):
+        prior = read(ROOT/'data/catalog.json', {})
+        self.assert_catalog_preserved(prior)
         blocked = [j for j in prior['jobs'] if j.get('review_note') and any(
             name in j['employer'].lower() for name in ('trunkrs', 'domino', 'var ', 'meerpaal'))]
         self.assertEqual(len(blocked), 2)
