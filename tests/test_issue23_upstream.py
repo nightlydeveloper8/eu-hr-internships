@@ -83,7 +83,7 @@ class KnownVacancyEvidenceTests(unittest.TestCase):
         self.assertEqual(updated['first_discovered_at'],target['first_discovered_at'])
 
     def test_daily_forwards_title_only_for_known_nonclosed_urls(self):
-        s=source()
+        s=source();s['enabled']=True
         company=dict(id='example',name='Example',source_ids=[s['id']])
         jobs=[dict(source_id=s['id'],url='https://example.org/jobs/hr',title='HR Intern',status='unverified'),
               dict(source_id=s['id'],url='https://example.org/jobs/closed',title='Closed HR Intern',status='closed')]
