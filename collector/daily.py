@@ -76,8 +76,11 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     selected=[s for s in enabled if shard_for(s['id'],shards)==shard and (not source_ids or s['id'] in source_ids)]
     counts={r['id']:r.get('collected',0) for r in read(ROOT/'data/coverage.json',{}).get('sources',[])}
     known={}
+    known_titles={}
     for job in read(ROOT/'data/catalog.json',{}).get('jobs',[]):
-        if job.get('status')!='closed':known.setdefault(job['source_id'],[]).append(job['url'])
+        if job.get('status')!='closed':
+            known.setdefault(job['source_id'],[]).append(job['url'])
+            known_titles.setdefault(job['source_id'],{})[job['url']]=job['title']
     regional={}
     for company in companies:
         research=[company[key] for key in ('friesland_research','groningen_research','drenthe_research','utrecht_research','flevoland_research') if company.get(key)]
@@ -88,7 +91,8 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     stamp=now();parts=[]
     company_for={sid:c for c in companies for sid in c.get('source_ids',[])}
     def work(source):
-        source=dict(source,known_job_urls=known.get(source['id'],[]))
+        source=dict(source,known_job_urls=known.get(source['id'],[]),
+                    known_job_titles=known_titles.get(source['id'],{}))
         started=time.monotonic();client=BudgetClient(seconds=seconds or source.get('collection_seconds',180 if source['adapter'] in ('employer-sitemap','employer-index') else 120),max_requests=source.get('max_requests',180))
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
         if part['report']['status']=='failed' and source['adapter']!='universal-employer' and client.remaining()>15:
