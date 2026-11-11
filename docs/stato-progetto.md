@@ -1,5 +1,22 @@
 # Stato di ripresa — People Placement
 
+## 11 novembre 2026 — identità aziendali contestuali (nuova PR, NON produzione)
+
+**Obiettivo:** distinguere datore pubblicato, identità del gruppo e dominio di recruiting senza importare automaticamente gli alias aziendali nel crawler o confondere annunci di un ATS condiviso con una controllata. Base `main` `0de282c597be00147792383bd596c761d5cac85f` con PR #25 integrata. PR #20, #26 e #27 non sono state modificate né integrate.
+
+**Audit offline del catalogo di 327 record (ultima raccolta riuscita il 10 novembre):** 1.882 aziende, 1.926 fonti, 30 aziende con alias nel registro e **zero fonti con `employer_aliases` espliciti**. 232 record in 29 fonti hanno un nome datore diverso dal nome fonte, **non equivalenti a 232 errori di ownership**; 108 di queste discrepanze provengono dalla fonte `auto-tilburg-university`, da non riassegnare automaticamente. Baseline e calcolo riproducibili con `python -m scripts.employer_identity_audit`. I dati sono storici, non attestano candidature aperte oggi.
+
+**Meccanismo proposto e isolamento:**
+- `collector/employer_resolution.py`: validazione fail-closed di relazioni con ID fonte/azienda, nome esatto del publisher, tipo di relazione, data, prova HTTPS e **singolo host già autorizzato**. Solo `official-recruiting-publisher` può consentire il match di `JobPosting.hiringOrganization` sul dominio esatto. `group-parent`, `brand`, `subsidiary` e `shared-ats` restano metadati non autorizzativi.
+- `data/employer-identity-reviews.json`: due prove ufficiali. **Achmea** è un publisher esplicito sul solo `www.werkenbijachmea.nl`, osservato nel portale corporate e marchi; non propaga FBTO/De Friesland, non inferisce la sede Centraal Beheer. **OPACKGROUP** è il gruppo di Oosterwolde Plastic Industry, come attestato sul sito ufficiale, ma non autorizza il collector della controllata a rivendicare stage corporate di Giessen.
+- `collector/daily.py` e `collector/pipeline.py`: leggono e validano le prove una volta per esecuzione/shard, applicandole **soltanto in memoria** alle rispettive fonti. Nessuna scrittura di `employer_aliases` in `data/sources.json`, nessun cambio host, query, budget, shard, rollout, CAPTCHA, policy v2.
+- `collector/ownership.py` e `collector/universal.py`: match rigoroso del nome pubblicato e del dominio di quell'annuncio, più identità strutturata sulla medesima vacancy. Il solo fatto di essere un gruppo o condividere un ATS non costituisce prova dell'ownership.
+- Regressioni offline in `tests/test_employer_resolution.py`: Achmea, alias di marchio non approvati, OPACKGROUP non autorizzato sulla fonte Oosterwolde, ATS universitario estraneo, prova mancante, host malevoli, catalogo invariato e idempotenza. L'audit non usa la rete.
+
+**Beneficio atteso, da non confondere con produzione:** una corrispondenza storica Achmea diviene leggibile dal filtro di identità ufficiale; zero verifiche di candidature nuove dimostrate, zero modifiche al catalogo e nessuna riscrittura automatica delle 108 attribuzioni Tilburg. **Costo incrementale di rete e rendering del risolutore: 0**, costo di esecuzione CI da misurare; il matching aggiunge solo una verifica esatta in memoria. La creazione della PR e l'esito finale CI sono da registrare separatamente. Prima di qualsiasi merge autorizzato controllare la suite completa, mantenere 327 ID e usare una raccolta ordinaria per valutare il recupero reale senza promuovere candidati per il solo nome.
+
+**Punto successivo:** revisionare la PR insieme alla PR #27, consolidare i checkpoint documentali con la PR #26 prima del merge, controllare prima il ripristino del daily post-#25, quindi raccogliere metriche sul prossimo ciclo effettivo (matched/verified/open, richieste, durata, fonti parziali, errori di ownership). Le riassegnazioni di OPACKGROUP/Tilburg richiedono prove individuali; non fare migrazioni massicce né allargare l'allowlist.
+
 ## 11 novembre 2026 — correzione del test che blocca la raccolta
 
 Obiettivo permanente: più stage HR distinti e candidabili da fonti ufficiali,
