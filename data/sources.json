@@ -48151,5 +48151,39 @@
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
     "status": "automatic-collection-pending"
+  },
+  {
+    "id": "auto-attero",
+    "company_id": "attero",
+    "employer": "Attero",
+    "adapter": "employer-index",
+    "enabled": true,
+    "start_urls": [
+      "https://www.attero.nl/nl/werken-bij/vacatures",
+      "https://www.attero.nl"
+    ],
+    "career_url": "https://www.attero.nl/nl/werken-bij/vacatures/",
+    "allowed_hosts": [
+      "www.attero.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 75,
+    "collection_seconds": 120,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Public employer HTML and embedded JobPosting only; runtime robots and ordinary budgets. No browser fallback, new ATS host or application action approved.",
+    "status": "automatic-collection-pending",
+    "index_urls": [
+      "https://www.attero.nl/nl/werken-bij/vacatures/"
+    ],
+    "job_url_pattern": "^https://www\\.attero\\.nl/nl/werken-bij/vacatures/\\d+-[^/?]+/?$",
+    "index_job_count_pattern": "Aantal vacatures:\\s*(\\d+)",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Unfiltered official vacancy page; distinct numeric vacancy URLs must match the current published Aantal vacatures count. Generic stageplek landing page excluded from count, while numbered general Stagiair programme retained for reading without inferring HR or a workplace. Complete means the observed count-matched inventory, not the employer/market; no absence-based closure.",
+    "access_reviewed_on": "2026-11-11"
   }
 ]

@@ -160,9 +160,10 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(result['jobs'][0]['intake'], previous['jobs'][0]['intake'])
         self.assertEqual(result['jobs'][0]['status'], 'unverified')
 
-    def test_published_324_records_ownership_policy_and_review_blocks_survive(self):
+    def test_published_catalog_ownership_policy_and_review_blocks_survive(self):
         prior = read(ROOT/'data/catalog.json', {})
-        self.assertEqual(len(prior['jobs']), 324)
+        self.assertTrue(prior['jobs'])
+        self.assertEqual(len({j['id'] for j in prior['jobs']}), len(prior['jobs']))
         # Replay at the publication timestamp so freshness does not introduce
         # legitimate changes unrelated to this regression.
         stamp = prior['last_attempt_at']

@@ -120,16 +120,17 @@
     "size": {
       "qualification": "unknown",
       "employees_min": null,
-      "employees_text": "Headcount not established in this initial source review.",
+      "employees_text": "Absolute employee headcount remains unestablished. Annual accounts 2024, pages 18–19, report FTE per 1,000 inhabitants, including external capacity in bezetting; neither ratio nor budgeted formation is an employee count.",
       "scope": "employer",
-      "source_url": null,
-      "source_date": null
+      "source_url": "https://www.werkenbijdeswo.nl/openen-downloadbaar-bestand-prs/jaarstukken-2024",
+      "source_date": "2024-12-31"
     },
     "employer_type": "public",
     "group_name": null,
     "checked_on": "2026-11-06",
     "notes": [
-      "Single shared employer for two municipalities; not counted as two independent organisations. Vacancy list explicitly includes a Zuidwolde workplace."
+      "Single shared employer for two municipalities; not counted as two independent organisations. Vacancy list explicitly includes a Zuidwolde workplace.",
+      "11 November 2026: official annual accounts reviewed; no qualification from the 900-person claim on third-party recruitment pages. General careers page also reviewed; no new specific HR internship established."
     ],
     "additional_locations": [
       {
@@ -915,5 +916,29 @@
       "Vacatures & Stageplekken offers generic mbo/hbo internship enquiries only; no specific HR internship or vacancy-specific application verified. Joint 800-person salary-administrator advertisement with NoordWestGroep is excluded from size and internship evidence."
     ],
     "company_id": "reestmond"
+  },
+  {
+    "name": "Attero",
+    "website_url": "https://www.attero.nl/",
+    "career_url": "https://www.attero.nl/nl/werken-bij/vacatures/",
+    "municipality": "Midden-Drenthe",
+    "locality": "Wijster",
+    "presence_source_url": "https://www.attero.nl/nl/locaties/wijster/",
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_min": 800,
+      "employees_text": "Official employer page states 800 employees across 18 locations. Employer total; not personnel at Wijster.",
+      "scope": "employer",
+      "source_url": "https://www.attero.nl/nl/over-attero/",
+      "source_date": null
+    },
+    "employer_type": "private",
+    "group_name": null,
+    "checked_on": "2026-11-11",
+    "notes": [
+      "Official Wijster visitor address Vamweg 7; Apeldoorn postal address is not the workplace.",
+      "Generic Stagiair posting has location Nader te bepalen and offers enquiries across disciplines/sites; not a specific HR internship in Wijster. Only an official specific vacancy and application can establish one."
+    ],
+    "company_id": "attero"
   }
 ]
