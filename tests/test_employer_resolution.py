@@ -44,6 +44,13 @@ class ScopedEmployerIdentityTests(unittest.TestCase):
         self.assertFalse(employer_matches('Achmea',s,'https://another.example/vacatures/hr-stage-123'))
         self.assertIsNone(job_from_json(info,'https://another.example/jobs/hr',s))
 
+    def test_third_party_html_cannot_forge_the_reviewed_official_url(self):
+        s=reviewed_source(self.by_id['auto-centraal-beheer-achmea'],self.reviews)
+        official='https://www.werkenbijachmea.nl/vacatures/hr-stage-123'
+        forged=posting(hiringOrganization={'name':'Achmea'},url=official)
+        self.assertIsNone(job_from_json(forged,'https://third-party.example/jobs/123',s))
+        self.assertIsNotNone(job_from_json(forged,official,s))
+
     def test_brand_alias_is_not_automatically_a_publisher(self):
         s=reviewed_source(self.by_id['auto-centraal-beheer-achmea'],self.reviews)
         url='https://www.werkenbijachmea.nl/vacatures/hr-stage-123'
