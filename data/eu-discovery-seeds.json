@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "scope": "EU27",
+  "default_mode": "offline",
+  "seeds": [
+    {
+      "id": "ikom-2026-de",
+      "country": "DE",
+      "url": "https://ikom-tum.de/de/messen/ikom/2026",
+      "parser": "ikom",
+      "access_reviewed": false,
+      "note": "Existing public career-fair directory; robots/current terms must be rechecked before live acquisition."
+    },
+    {
+      "id": "phdtalent-fr",
+      "country": "FR",
+      "url": "https://careerfair.phdtalent.fr/en/exhibitors/",
+      "parser": "phdtalent",
+      "access_reviewed": false,
+      "note": "Existing French exhibitor directory; no live acquisition until access reviewed."
+    }
+  ],
+  "pilot_research_candidates": [
+    {
+      "country": "BE",
+      "url": "https://vtk.ugent.be/en/career/students/activities/detail/5756/",
+      "status": "requires-link-and-robots-review",
+      "note": "University internship fair lists participating companies, but no approved extractor of employer-owned website links."
+    },
+    {
+      "country": "IE",
+      "url": "https://www.dcu.ie/careers/employers-we-work",
+      "status": "requires-link-and-robots-review",
+      "note": "University employer reference page; not yet a verified directory with direct official website links."
+    }
+  ],
+  "constraints": "No seeds authorized for live collection; no discovery job or new hosts activated."
+}

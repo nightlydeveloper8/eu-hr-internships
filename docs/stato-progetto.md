@@ -1,5 +1,18 @@
 # Stato di ripresa — People Placement
 
+## 12 novembre 2026 — secondo intervento EU discovery, indipendente dalla PR #33
+
+- Obiettivo: acquisire incrementalmente nuove aziende da directory/fiere universitarie ufficiali e verificabili, senza ricominciare la mappatura geografica, senza integrare automaticamente ATS o aumentare il budget del collector. La PR #33 resta in bozza e non e' prerequisito per il codice di questa branch.
+- Baseline main `e7056c3351d06bedaa1f0d4a8e443f5a6e424a78`, catalogo 12 novembre 20:21 UTC: **335 record, 20 open/verified HR internships, 303 unverified, 12 closed**, update partial. Aziende tentate 1.882, solo 56 collected e 31 verified-empty, 514 partial, 990 discovery-incomplete, 291 blocked/failed. Evidenza storica, non nuova verifica live.
+- Script storico `scripts/map_employers.py`: gia' acquisisce aziende dalle fiere Fontys, IKOM (DE), PhDTalent (FR), ma lo script storico verifica siti aziendali su piu' host e scrive direttamente `data/companies.json`. Il nuovo passaggio isola la sola acquisizione candidati da un singolo directory host, senza seguire link di aziende nuove o scrivere ai registri.
+- Modulo `collector/eu_directory_discovery.py` e CLI `scripts/eu_directory_discovery.py`: parser riutilizzati da directory gia' conosciute, parser configurabile a link di espositori esplicitamente marcati, dedup per nome e dominio contro registro e fra paesi, accodamento con provenienza e prima/ultima osservazione, conservazione candidati in caso di sorgente assente, quote per seed (max 100) e dimensione del body (max 1 MB).
+- Il live richiede il flag esplicito e `access_reviewed=true` per ogni seed; Client di raccolta con robots, GET-only, host identico anche nei redirect, max 6 richieste e 20 s per directory; nessuna scansione degli host aziendali o ATS. Config iniziale DE/FR in stato non autorizzato; BE/IE hanno pagine universitarie esplorative ma nessun feed ATS dimostrato e nessun parser live approvato.
+- Il risultato e' un **registro di indizi** e non annunci HR: 0 nuovi verified attestati, 0 nuove fonti abilitate, 0 crawl di produzione e 0 costi nuovi di raccolta in questa PR. Le prove con due aziende sintetiche BE/IE servono solo a dimostrare deduplica, identita' e idempotenza, non un risultato live. Non attribuire posti di lavoro dal paese della directory.
+- Regressioni: URL HTTPS, host/redirect/robots gate, cap budget, casi di source assente, due cicli deterministici, nessun effetto su catalogo/policy v2, pipeline e registri. CI Python/frontend/build da verificare; durata e costo CI da distinguere da budget del crawler.
+- Follow-up necessario: validazione legale/tecnica di almeno una fonte BE e IE che pubblica **link verso siti employer-owned** e non soltanto nomi; cattura live circoscritta e autorizzata, approvazione ATS e integrazione con i cicli quotidiani in una PR distinta. Prioritizzare budget in base al numero di opportunita' verified per costo, non al numero di aziende.
+- **Nessun merge, attivazione, schedule aggiuntivo, modifica alla produzione, aumento del Dynamic ATS pilot-v1 o nuova raccolta completa.**
+
+
 ## 12 novembre 2026, sera — PR per vista verified e allarme zero verificati
 
 - Main di riferimento: `48c7e44923466f7719bdd071ab86a62de9ca58e3`. PR #30 merged, raccolta automatica post-merge [#43249156225](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43249156225) riuscita (test, 16 shard, publish). Catalogo del 12 novembre 15:47 UTC: **332 record, 21 open/verified (tutti internship HR), 299 unverified, 12 closed**, secondo policy v2 e limite di freschezza frontend di 48 ore, calcolati alle 19:49 UTC. Questi conteggi non sostituiscono il controllo del deployment Cloudflare.
