@@ -18,21 +18,41 @@
       "parser": "phdtalent",
       "access_reviewed": false,
       "note": "Existing French exhibitor directory; no live acquisition until access reviewed."
+    },
+    {
+      "id": "pxl-jobevent-be",
+      "country": "BE",
+      "url": "https://www.pxl.be/bedrijven-en-organisaties/jobevent/deelnemende-bedrijven/",
+      "parser": "employer-table",
+      "page_marker": "Standhouders",
+      "access_reviewed": false,
+      "source_kind": "university-exhibitor-directory",
+      "note": "Official PXL list publishes employer-site links; web view confirmed 2026-11-12. robots.txt and site terms could not be directly verified; no automated GET authorized."
+    },
+    {
+      "id": "tech-alliance-members-ie",
+      "country": "IE",
+      "url": "https://techindustryalliance.ie/members/",
+      "parser": "employer-table",
+      "page_marker": "Member Listing 2026",
+      "access_reviewed": false,
+      "source_kind": "business-association-members-directory",
+      "note": "Official alliance member table publishes company-site links; web view confirmed 2026-11-12. robots.txt and terms not verified; member status is not recruitment proof."
     }
   ],
   "pilot_research_candidates": [
     {
       "country": "BE",
       "url": "https://vtk.ugent.be/en/career/students/activities/detail/5756/",
-      "status": "requires-link-and-robots-review",
-      "note": "University internship fair lists participating companies, but no approved extractor of employer-owned website links."
+      "status": "superseded-by-directory-link-source",
+      "note": "VTK event names-only list superseded for linked-site pilot by Hogeschool PXL."
     },
     {
       "country": "IE",
       "url": "https://www.dcu.ie/careers/employers-we-work",
-      "status": "requires-link-and-robots-review",
-      "note": "University employer reference page; not yet a verified directory with direct official website links."
+      "status": "superseded-by-directory-link-source",
+      "note": "DCU names-only list superseded for linked-site pilot by Tech Industry Alliance."
     }
   ],
-  "constraints": "No seeds authorized for live collection; no discovery job or new hosts activated."
+  "constraints": "All sources remain access_reviewed=false; no GitHub scheduled collection or ATS activation. No robots.txt or terms checks completed on two new hosts."
 }

@@ -74,12 +74,58 @@ class _LinkCards(HTMLParser):
             self.current = None
 
 
+
+class _EmployerTable(HTMLParser):
+    """Read only employer-name / external-website pairs from two-column tables."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.row = None
+        self.cell = None
+        self.rows = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "tr":
+            self.row = []
+        elif tag in ("td", "th") and self.row is not None:
+            self.cell = dict(tag=tag, text=[], links=[])
+        elif tag == "a" and self.cell is not None:
+            href = dict(attrs).get("href")
+            if href:
+                self.cell["links"].append(href)
+
+    def handle_data(self, value):
+        if self.cell is not None:
+            self.cell["text"].append(value)
+
+    def handle_endtag(self, tag):
+        if tag in ("td", "th") and self.cell is not None and self.row is not None:
+            self.row.append(self.cell)
+            self.cell = None
+        elif tag == "tr":
+            if self.row and len(self.row) >= 2 and all(x["tag"] == "td" for x in self.row[:2]):
+                name = " ".join(" ".join(self.row[0]["text"]).split())
+                for link in self.row[1]["links"]:
+                    if name and safe_https_url(link):
+                        self.rows.append((name, link))
+                        break
+            self.row = None
+            self.cell = None
+
+
 def extract_directory_rows(seed, html):
     """Use existing reviewed parsers, or a source-specific card marker."""
     if seed["parser"] in ("ikom", "phdtalent", "fontys"):
         # Reuse the mapping parsers without executing the old bulk importer.
         from scripts.map_employers import directory_rows
         return list(directory_rows(seed["parser"], html))
+    if seed["parser"] == "employer-table":
+        marker = seed.get("page_marker")
+        if (not isinstance(marker, str) or len(marker) < 5
+                or marker.casefold() not in html.casefold()):
+            raise ValueError("Employer-table page marker missing or changed")
+        parser = _EmployerTable()
+        parser.feed(html)
+        return [(name, website, seed["url"]) for name, website in parser.rows]
     if seed["parser"] == "employer-card":
         marker = seed.get("card_class")
         if not marker or not re.fullmatch(r"[A-Za-z0-9_-]{2,60}", marker):
@@ -127,12 +173,16 @@ def validate_seed(seed):
         raise ValueError("Invalid seed country")
     if not safe_https_url(seed["url"]):
         raise ValueError("Invalid official seed URL")
-    if seed["parser"] not in ("ikom", "phdtalent", "fontys", "employer-card"):
+    if seed["parser"] not in ("ikom", "phdtalent", "fontys", "employer-card", "employer-table"):
         raise ValueError("Unsupported seed parser")
     if not isinstance(seed["access_reviewed"], bool):
         raise ValueError("Missing explicit access review flag")
     if seed["parser"] == "employer-card" and not seed.get("card_class"):
         raise ValueError("Missing reviewed employer-card marker")
+    if seed["parser"] == "employer-table" and (
+            not isinstance(seed.get("page_marker"), str)
+            or len(seed["page_marker"]) < 5):
+        raise ValueError("Missing reviewed employer-table marker")
 
 
 def fetch_reviewed_seed(seed, seconds=20, max_requests=6):

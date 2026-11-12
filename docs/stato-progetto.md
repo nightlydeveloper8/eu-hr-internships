@@ -1,5 +1,16 @@
 # Stato di ripresa — People Placement
 
+## 12 novembre 2026 — estensione pilota BE/IE: nuove directory con siti aziendali, non ancora autorizzate per scraping
+
+- Recuperati checkpoint main `e7056c3351d06bedaa1f0d4a8e443f5a6e424a78`, PR #33 (draft) e PR #34 (draft); nessun merge.
+- Verificate tramite visualizzazione web due pagine pubbliche che **contengono collegamenti aziendali reali**: Hogeschool PXL (`https://www.pxl.be/bedrijven-en-organisaties/jobevent/deelnemende-bedrijven/`), e Tech Industry Alliance Member Listing 2026 (`https://techindustryalliance.ie/members/`). Le precedenti liste VTK/DCU contenevano soprattutto nomi e restano materiale secondario.
+- Nel campione limitato di **8 link per paese**, nessuna delle 16 imprese coincide per nome normalizzato o dominio con il registro da 1.882 aziende. Sono soltanto **16 lead in revisione**: dimensione, unicita' per gruppo, proprieta', sedi, ATS, stage HR e lingue non dimostrati. Nessun nuovo stage verified o datore operativo attestato. Evidenze: `docs/eu-discovery-web-evidence.json` con URL di origine e identificatori.
+- Aggiunto alla PR #34 un parser conservativo `employer-table` con marcatore di sezione esplicito, lettura riga nome+link HTTPS e test sintetici BE/IE per evitare falsi positivi di menu/nav. Le prove sul nuovo parser NON costituiscono replay dei documenti HTML reali.
+- **Accesso automatico non approvato:** l'accesso a robots.txt dei due host non e' riuscito tramite gli strumenti disponibili; condizioni del sito da controllare. Seed BE/IE inseriti con `access_reviewed=false`, nessun live run del collector, zero richieste di raccolta GitHub aggiunte, nessun cron/deploy/attivazione. Nessuna modifica a `data/companies.json`, `data/sources.json`, catalogo, policy v2, freschezza, host allowlist o Dynamic ATS #23.
+- I costi/benefici del nuovo ciclo quotidiano restano da misurare **dopo** review robots/termini ed un piccolo run autorizzato: requests, seconds, rendering, lead realmente nuovi ed eventuali stage verified. Il piano 70/20/10 e' un'ipotesi di budget, non applicata ai workflow.
+- Seguono CI Python/frontend/build per il commit finale PR, verifica di due cicli offline, e revisione prima di qualsiasi merge. Non confondere CI verde con produzione verificata.
+
+
 ## 12 novembre 2026 — secondo intervento EU discovery, indipendente dalla PR #33
 
 - Obiettivo: acquisire incrementalmente nuove aziende da directory/fiere universitarie ufficiali e verificabili, senza ricominciare la mappatura geografica, senza integrare automaticamente ATS o aumentare il budget del collector. La PR #33 resta in bozza e non e' prerequisito per il codice di questa branch.

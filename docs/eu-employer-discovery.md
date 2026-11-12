@@ -45,10 +45,37 @@ Tutti i seed committati ora hanno `access_reviewed=false`: il comando live non r
 | --- | --- | --- |
 | DE | IKOM TUM 2026 | Directory conosciuta dal vecchio importer, da riautorizzare prima di usare GET live |
 | FR | PhDTalent exhibitor directory | Directory conosciuta, da riautorizzare |
-| BE | UGent/VTK Internshipfair | Nomi dei partecipanti visibili; manca approvazione dell'estrattore dei link employer-owned |
+| BE | Hogeschool PXL Jobevent | Nomi e URL di siti aziendali osservati via web; robots e termini non ancora verificati |
 | IE | Dublin City University employer reference | La pagina pubblica non prova un elenco completo con collegamenti diretti ai siti dei datori; richiede validazione |
 
 Le ultime due sono **candidature di ricerca**, non feed di produzione né fonte ufficiale di vacancy. Non inventiamo siti o posizioni, non attribuiamo un workplace in base all'evento.
+
+## BE e IE — prime fonti con collegamenti ufficiali a datori (12 novembre 2026)
+
+Una verifica web delle pagine pubbliche ha individuato:
+
+- **Belgio:** [Hogeschool PXL — Deelnemende bedrijven](https://www.pxl.be/bedrijven-en-organisaties/jobevent/deelnemende-bedrijven/): tabella `Standhouders` con nome dell'espositore e collegamento cliccabile verso sito ufficiale o carriera dell'azienda.
+- **Irlanda:** [Tech Industry Alliance — Member Listing 2026](https://techindustryalliance.ie/members/): tabella `Company | Website`, con link diretti ai siti degli aderenti. Un membro di un'associazione **non** prova che stia reclutando; e' una fonte di soli candidati.
+
+La configurazione per entrambi usa il nuovo parser **employer-table**, con marcatore di sezione esplicito e lettura esclusiva delle righe nome+link HTTPS. Questa estensione e' un'opzione di riconoscimento; **non abbiamo catturato HTML grezzo autorizzato dai due host per eseguire realmente i nuovi parser**. I test usano piccole fixture HTML sintetiche, e non vanno scambiati con prove live di estrazione.
+
+`data/eu-discovery-seeds.json` conserva `access_reviewed=false` per PXL e Tech Industry Alliance. Entrambi i siti risultano consultabili attraverso una visualizzazione web, ma l'accesso diretto ai rispettivi **robots.txt non e' riuscito** e le condizioni di riuso automatico non sono state confermate. Pertanto nessuna chiamata di raccolta automatica e' stata eseguita e nessun nuovo host e' autorizzato. I vecchi candidati VTK e DCU (nomi senza link employer-owned sufficienti) rimangono documentati come superseded.
+
+### Campione di evidenze web (non un inventario completo)
+
+Il file `docs/eu-discovery-web-evidence.json` salva **8 collegamenti PXL e 8 collegamenti Tech Industry Alliance** osservati nelle rispettive pagine. Sono stati confrontati con l'attuale registro di 1.882 aziende sulla base del nome normalizzato e del dominio dichiarato:
+
+| Misura | BE | IE | Totale |
+|---|---:|---:|---:|
+| Aziende con link osservate nel campione | 8 | 8 | 16 |
+| Match esatti nome o dominio | 0 | 0 | 0 |
+| Lead da sottoporre a review identita'/gruppo | 8 | 8 | 16 |
+| Nuove aziende con unicita' societaria dimostrata | 0 | 0 | 0 |
+| Stage HR open/verified dimostrati | 0 | 0 | 0 |
+
+Il risultato e' **un incremento reale di lead candidati rispetto allo snapshot storico precedente**, che non aveva nuovi datori. Non e' un incremento di fonti operative, stage verificati o copertura nazionale. Non si sono controllate dimensioni, mansioni HR, language requirements, ATS, candidatura, robots del singolo datore o sovrapposizione fra gruppi.
+
+**Costi del prototipo aggiuntivo:** richieste crawler GitHub 0; browser rendering 0; nuove fonti attive 0; costo monetario non misurato. La consultazione web manualmente mirata delle pagine di provenienza non equivale a un run del collector. Prima del vero pilot misurare numero di richieste autorizzate, durata, bytes e 2 cicli live su una fotografia stabile.
 
 ## Verifica del riuso dello storico
 

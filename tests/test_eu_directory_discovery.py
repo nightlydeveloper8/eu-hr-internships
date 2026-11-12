@@ -110,6 +110,50 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(report["requests"], 0)
         self.assertEqual(report["source_metrics"][0]["status"], "no-new-observation")
 
+    def test_two_real_directory_formats_on_synthetic_html(self):
+        # Layout fixtures: they are NOT captures or proof of live source access.
+        examples = [
+            ("BE", "https://www.pxl.be/bedrijven-en-organisaties/jobevent/deelnemende-bedrijven/",
+             "Standhouders", "PXL Example", "https://pxl-example.test/"),
+            ("IE", "https://techindustryalliance.ie/members/",
+             "Member Listing 2026", "Irish Example", "https://irish-example.test/"),
+        ]
+        for country, page, marker, name, website in examples:
+            with self.subTest(country=country):
+                seed = dict(id="demo-" + country.lower(), country=country,
+                            url=page, parser="employer-table", page_marker=marker,
+                            access_reviewed=False)
+                html = ('<h2>' + marker + '</h2><table>'
+                        '<tr><th>Company</th><th>Website</th></tr>'
+                        '<tr><td>' + name + '</td><td><a href="' + website
+                        + '">Website</a></td></tr>'
+                        '<tr><td>Bad employer</td><td><a href="http://bad.test/">No HTTPS</a></td></tr>'
+                        '</table><nav><a href="https://noise.test/">Not an employer</a></nav>')
+                self.assertEqual(extract_directory_rows(seed, html),
+                                 [(name, website, page)])
+                observation = dict(html=html, observed_at="2026-11-12T19:00:00Z",
+                                   final_url=page, requests=0, duration_seconds=0)
+                result = build_discovery_queue([seed], {seed["id"]: observation},
+                                               self.companies)
+                self.assertEqual(result["pending_candidate_count"], 1)
+                self.assertEqual(result["enabled_ats_sources"], 0)
+                self.assertEqual(result["added_verified_hr_internships"], 0)
+                self.assertEqual(result["requests"], 0)
+                with self.assertRaises(DiscoveryAccessError):
+                    fetch_reviewed_seed(seed)
+
+    def test_be_ie_web_evidence_is_limited_and_unverified(self):
+        root = Path(__file__).resolve().parents[1]
+        report = json.loads((root / "docs/eu-discovery-web-evidence.json").read_text())
+        self.assertEqual(report["total_reviewed"], 16)
+        self.assertEqual(report["verified_hr_internships_added"], 0)
+        self.assertEqual(report["automated_http_requests"], 0)
+        self.assertEqual({r["country_discovery_scope"] for r in report["records"]},
+                         {"BE", "IE"})
+        self.assertTrue(all(r["review_status"] ==
+                            "identity-ownership-host-robots-review-required"
+                            for r in report["records"]))
+
     def test_existing_university_parsers_remain_reused(self):
         seed = dict(id="ikom-test", country="DE",
             url="https://ikom-tum.de/de/messen/ikom/2026",
@@ -120,7 +164,7 @@ class DiscoveryTests(unittest.TestCase):
     def test_live_seeds_default_disabled_in_repository(self):
         path = Path(__file__).resolve().parents[1]/"data/eu-discovery-seeds.json"
         data = json.loads(path.read_text())
-        self.assertEqual([x["country"] for x in data["seeds"]], ["DE", "FR"])
+        self.assertEqual([x["country"] for x in data["seeds"]], ["DE", "FR", "BE", "IE"])
         self.assertTrue(all(not x["access_reviewed"] for x in data["seeds"]))
         self.assertEqual([x["country"] for x in data["pilot_research_candidates"]],
                          ["BE", "IE"])
