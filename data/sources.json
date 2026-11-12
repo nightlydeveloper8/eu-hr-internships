@@ -48185,5 +48185,36 @@
     "inventory_scope_complete": true,
     "discovery_scope": "Unfiltered official vacancy page; distinct numeric vacancy URLs must match the current published Aantal vacatures count. Generic stageplek landing page excluded from count, while numbered general Stagiair programme retained for reading without inferring HR or a workplace. Complete means the observed count-matched inventory, not the employer/market; no absence-based closure.",
     "access_reviewed_on": "2026-11-11"
+  },
+  {
+    "id": "auto-intergas-verwarming-b-v",
+    "company_id": "intergas-verwarming-b-v",
+    "employer": "Intergas Verwarming B.V.",
+    "adapter": "recruitee",
+    "enabled": true,
+    "start_urls": [
+      "https://werkenbijintergas.nl",
+      "https://www.intergas-verwarming.nl"
+    ],
+    "career_url": "https://werkenbijintergas.nl/",
+    "allowed_hosts": [
+      "www.intergas-verwarming.nl",
+      "werkenbijintergas.nl",
+      "intergas.recruitee.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "max_pages": 70,
+    "max_requests": 55,
+    "collection_seconds": 100,
+    "max_navigation_depth": 3,
+    "max_render_pages": 4,
+    "permission_basis": "Corporate-to-careers-to-Recruitee official link chain reviewed; public metadata feed GET with runtime robots checks. No browser rollout, new application parser, login, candidate action or submission enabled.",
+    "status": "automatic-collection-pending",
+    "feed_url": "https://intergas.recruitee.com/api/offers/",
+    "report_feed_scope": true,
+    "discovery_scope": "Published offers in the linked official public Recruitee response, with draft filtering and pagination guard. Generic Stageplaats bij Intergas 2027 remains a general programme, not a specific HR vacancy. No absence-based closure.",
+    "access_reviewed_on": "2026-11-12"
   }
 ]

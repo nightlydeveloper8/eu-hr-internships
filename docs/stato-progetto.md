@@ -1,14 +1,48 @@
-# Stato della fase Drenthe — 11 novembre 2026
+# Stato di ripresa — People Placement
 
-Aggiornamento limitato al branch della PR #20. Il documento omonimo non tracciato nel checkout storico, con lo stato globale e di altre sessioni, è stato consultato in sola lettura e preservato.
+## 11 novembre 2026 — correzione del test che blocca la raccolta
 
-- Baseline main: `0e73e9a7b26d7c674110beb50697fd29a8e2fdf1`; precedente head PR `ab1a05c136479ab231caabf3d96d64f5a200e7cf` conservato nella storia.
-- [PR #20](https://github.com/nightlydeveloper8/eu-hr-internships/pull/20): ricerca in bozza, nessun merge in main o deployment. SHA del nuovo commit e CI sono nella descrizione della PR, evitando riferimenti circolari al proprio SHA.
-- [Quinta fase e residui](drenthe-2026-11-11.md): Attero aggiunge Wijster; 38 datori, 24 qualificati ≥50, 14 dimensioni ignote. 28 offerte inventariate, 27 dettagli letti, nessuna HR-stage; fonte parziale per JSON-LD malformato.
-- SWO resta di dimensione ignota dopo la verifica dei rapporti FTE nel bilancio. Boom Meppel fermata a robots 429: non ripetere il blocco nella stessa fase o aggirarlo.
-- Nessun nuovo stage HR candidabile verificato. Catalogo corrente di main identico byte per byte, ora 327 annunci. I tre nuovi record sono della raccolta quotidiana; 324 non è un tetto.
-- [Audit e prove](drenthe-2026-11-11-audit.json), [validazione locale](drenthe-2026-11-11-validation.json): test di conservazione reso indipendente dal numero storico di annunci, mantenendo controlli su tutti gli ID, ownership, stati, policy e review block.
-- Preservati WIP e ricerche/sedi delle altre province. Nessuna modifica al gate o al rollout Dynamic ATS. Nessuna raccolta completa manuale.
-- Prossima fase: località rurali poco coperte, organici assoluti per le 14 dimensioni ignote e candidature HR ufficiali specifiche; template e inventari ancora parziali. Riprendere Boom quando l'accesso ordinario lo permette; non indebolire i parser per il JSON-LD invalido Attero.
+Obiettivo permanente: più stage HR distinti e candidabili da fonti ufficiali,
+aggiornati ogni giorno; prima copertura dei Paesi Bassi, poi dell'Europa.
 
-Storico: [10 novembre](drenthe-2026-11-10.md), [9 novembre](drenthe-2026-11-09.md), [8 novembre](drenthe-2026-11-08.md).
+- Main di riferimento: `0e73e9a7b26d7c674110beb50697fd29a8e2fdf1`.
+- [Raccolta automatica fallita](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42978923468)
+  dell'11 novembre alle 08:21 Bruxelles: il test intake imponeva 324 record,
+  mentre la raccolta ordinaria precedente aveva portato il catalogo a 327.
+  Collect e publish saltati; errore riprodotto offline con Python 3.12.
+- [Ultima raccolta riuscita](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42774047883):
+  10 novembre, 18 job riusciti. Catalogo aggiornato alle 08:28 Bruxelles:
+  327 ID univoci, 22 open, 298 unverified, 7 closed; tutti i 324 ID precedenti
+  conservati. Sono stati storici, non nuove verifiche live dell'11 novembre.
+- Correzione limitata a `tests/test_intake.py`: eliminato il conteggio storico
+  fisso, mantenuti controlli su identità, campi, ownership, policy e review blocks;
+  aggiunta regressione con un record sintetico in più e replay alla data del catalogo.
+  Nessuna modifica a collector, catalogo, workflow, host, budget o gate ATS.
+- Lavoro isolato dal checkout storico con WIP. Accesso Git dalla shell non
+  disponibile; file aggiornati recuperati tramite connessione GitHub e confrontati
+  con i blob di main prima della consegna. Nessuna raccolta completa manuale.
+- Validazione con Python 3.12: 287 test Python (inclusi 12 intake), 21 frontend,
+  64 esempi di classificazione senza errori, validazione catalogo e build riusciti.
+  Tutti i blob locali di main coincidono con quelli remoti salvo il test modificato.
+  CI riportata nella PR; non confondere test con nuove opportunità.
+- Consegna tramite PR circoscritta, senza merge o rollout. La produzione resta
+  bloccata dal vecchio test finché la correzione non viene integrata.
+
+Prossimo passo: revisionare e integrare la PR solo con autorizzazione specifica,
+poi verificare il successivo ciclo automatico (nessun controllo futuro AI configurato).
+Completare quindi le evidenze su beneficio e costi Dynamic ATS della Issue #23;
+la Issue #18 resta il lavoro di miglioramento della copertura. PR #20 Drenthe
+separata, non integrata. Per la mappatura riprendere i checkpoint territoriali
+senza dichiarare completa una provincia sulla base dei soli datori censiti.
+
+## 12 novembre 2026 — Drenthe, PR #20 ancora separata
+
+Il testo globale precedente è conservato come fotografia della sessione che ha preparato #25. Il fix #25 è ora presente nella baseline main `0de282c`; questa fase non attesta il successivo ciclo di produzione. Preservati integralmente il test e la regressione aggiuntiva di main.
+
+- [Sesta fase e residui](drenthe-2026-11-12.md), [audit](drenthe-2026-11-12-audit.json), [validazione](drenthe-2026-11-12-validation.json). Precedente head PR `ff5da7c` conservato; nuovo SHA/CI nella descrizione della PR.
+- Intergas a Coevorden aggiunta con prove ufficiali di sede, organico arrotondato circa 500 e catena di recruiting. 39 datori, 25 qualificati ≥50, 14 dimensioni ignote. Feed pubblico: 14 pubblicati, nessuna vacancy HR specifica.
+- Programma generale Intergas 2027 che include HR registrato separatamente dalle vacancy. Incarico, periodo, lingue e usabilità del modulo non verificati come stage HR specifico. Nessuna nuova vacancy candidabile verificata.
+- Catalogo corrente di main identico byte per byte: 327 annunci. WIP storico, ricerche/sedi delle altre province e rollout ATS preservati; nessun merge in main, deployment o raccolta completa manuale.
+- Forbo/Aareon restano canali dinamici incompleti; il messaggio vuoto nel template Aareon non prova assenza. Proseguire su datori/località poco coperti e prove delle dimensioni ignote. Non ripetere i blocchi o trasformare programmi generali in vacancy.
+
+Storico Drenthe: rapporti datati 8–11 novembre, conservati nel branch della PR.

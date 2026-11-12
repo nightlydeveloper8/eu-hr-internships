@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-11T09:48:34.788639+00:00",
+  "generated_at": "2026-11-12T01:01:51.379613+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -9,28 +9,28 @@
   "size_counting": "Documented employer/group qualification; group headcount is never assigned to a local establishment. Unknown size stays separate.",
   "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
   "summary": {
-    "employers": 38,
-    "qualified_employers": 24,
-    "distinct_groups": 38,
-    "qualified_groups": 24,
+    "employers": 39,
+    "qualified_employers": 25,
+    "distinct_groups": 39,
+    "qualified_groups": 25,
     "size_unknown": 14,
     "below_threshold": 0,
     "municipalities": 12,
     "municipalities_with_qualified_employers": 12,
-    "configured": 38,
-    "attempted_recently": 36,
+    "configured": 39,
+    "attempted_recently": 37,
     "collection_states": {
       "partial": 20,
       "discovery-incomplete": 8,
       "blocked-or-failed": 5,
-      "collected": 3,
+      "collected": 4,
       "not-recently-checked": 2
     },
     "qualified_collection_states": {
       "partial": 14,
       "discovery-incomplete": 5,
       "blocked-or-failed": 1,
-      "collected": 2,
+      "collected": 3,
       "not-recently-checked": 2
     },
     "verified_hr_internships": 2,
@@ -110,20 +110,22 @@
       "code": "GM0109",
       "name": "Coevorden",
       "settlements": 25,
-      "employers": 4,
-      "qualified_employers": 2,
+      "employers": 5,
+      "qualified_employers": 3,
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
         "partial": 2,
         "blocked-or-failed": 1,
-        "discovery-incomplete": 1
+        "discovery-incomplete": 1,
+        "collected": 1
       },
       "company_ids": [
         "center-parcs",
         "emco-groep",
         "forbo-novilon",
-        "gemeente-coevorden"
+        "gemeente-coevorden",
+        "intergas-verwarming-b-v"
       ]
     },
     {
@@ -1990,6 +1992,43 @@
           "message": "[{'url': 'https://www.attero.nl/nl/werken-bij/vacatures/3645311-werkvoorbereider-mineraal', 'error': 'No supported JobPosting structured data; no page-text guessing'}]"
         }
       ]
+    },
+    {
+      "company_id": "intergas-verwarming-b-v",
+      "name": "Intergas Verwarming B.V.",
+      "group_name": null,
+      "career_url": "https://werkenbijintergas.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 500,
+        "employees_text": "Official careers homepage states approximately 500 colleagues. Rounded employer figure, not a measured minimum or headcount of Coevorden only; no reference date published.",
+        "scope": "employer",
+        "source_url": "https://werkenbijintergas.nl/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Coevorden",
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": "WP2147",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijintergas.nl/contact",
+          "checked_on": "2026-11-12"
+        }
+      ],
+      "source_ids": [
+        "auto-intergas-verwarming-b-v"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-12T01:01:19.556879+00:00",
+      "public_job_records": 14,
+      "verified_hr_internship_ids": [],
+      "errors": []
     }
   ],
   "verified_hr_internship_ids": [
@@ -2008,6 +2047,18 @@
       "scope_status": "medium_large",
       "checked_at": "2026-11-06T19:59:00+00:00",
       "availability_note": "General HR placement route for mbo/hbo/wo students; contact the employer to establish availability, assignment and workplace. No concrete HR vacancy was listed at the research check."
+    },
+    {
+      "employer": "Intergas Verwarming B.V.",
+      "title": "Stageplaats bij Intergas 2027 — HR among multiple possible departments",
+      "url": "https://intergas.recruitee.com/o/stageplaats-bij-intergas-2027",
+      "city": "Coevorden; exact department and assignment to agree",
+      "country": "NL",
+      "kind": "hr_internship_programme",
+      "application_status": "open_stage_request_not_confirmed_vacancy",
+      "scope_status": "medium_large",
+      "checked_at": "2026-11-12T01:00:49.957461+00:00",
+      "availability_note": "Current official general internship request, including HR & Recruitment among multiple disciplines. Department, assignment and period require matching; not a specific verified HR vacancy. Mbo/hbo/wo enrolment and preferably at least three months stated. Dutch advertisement alone does not establish required languages or English sufficiency. No application submitted."
     }
   ],
   "schedule": {
