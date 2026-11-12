@@ -92,6 +92,17 @@ class CandidatePilotTests(unittest.TestCase):
         self.assertEqual(result["additional_http_requests"], 0)
         self.assertEqual(result["additional_browser_renders"], 0)
 
+    def test_access_blocked_and_unsupported_counts(self):
+        self.scans[0]["ats_links"].extend([
+            "https://jobs.ashbyhq.com/example",
+            "https://crown.career.softgarden.de/jobs"])
+        result = pilot(self.companies, self.sources, self.scans)
+        country = next(c for c in result["countries"] if c["country"] == "DE")
+        self.assertEqual(country["blocked_or_unsupported"], 2)
+        self.assertEqual({p["status"] for p in result["proposals"] if p["company_id"] == "de"},
+                         {"requires-access-and-identity-review", "access-review", "unsupported-provider"})
+        self.assertTrue(all(p["enabled"] is False for p in result["proposals"]))
+
     def test_unofficial_page_redirect_and_unreviewed_evidence_fail_closed(self):
         self.scans.extend([
             dict(company_id="de", url="https://attacker.example/careers",
@@ -139,6 +150,13 @@ class CandidatePilotTests(unittest.TestCase):
         self.assertEqual([c["country"] for c in result["countries"]], ["DE", "FR", "BE", "IE"])
         self.assertEqual(result["newly_enabled_sources"], 0)
         self.assertTrue(all(not row["enabled"] for row in result["proposals"]))
+        baseline = json.loads((root / "docs/ats-discovery-review.json").read_text())
+        self.assertEqual(result["countries"], baseline["countries"])
+        self.assertEqual(result["observed_channel_count"], baseline["observed_channel_count"])
+        self.assertEqual({(p["company_id"], p["channel_key"], p["status"])
+                          for p in result["proposals"]},
+                         {(p["company_id"], p["channel_key"], p["status"])
+                          for p in baseline["proposals"]})
 
 
 if __name__ == "__main__":

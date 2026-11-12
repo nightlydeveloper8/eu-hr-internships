@@ -12,6 +12,12 @@ Preparare una coda di canali ufficiali di recruiting ATS per Germania (DE), Fran
 - BE e IE restano nel campione anche se le vecchie scansioni non forniscono collegamenti positivi. Zero scoperta NON significa zero opportunita' nel paese.
 - I `target_countries` dei datori sono candidati di ricerca, non evidenza che una vacancy sia ubicata in quel paese.
 
+## Esito misurato del campione storico (sei datori per paese, se disponibili)
+
+Il file `docs/ats-discovery-review.json` contiene la coda prodotta sullo snapshot storico e controllata da un test di regressione. Risultati del campione: DE 6 datori / 7 identita' ATS; FR 6 / 5; BE 6 / 0; IE 4 / 0. Le 12 identita' comprendono **6 gia' registrate**, **1 nuovo candidato in attesa di access review**, **1 access-review** e **4 provider non supportati**. Il candidato Personio Futrue e' gia' segnalato nella precedente `docs/additional-channel-review.json` per un robots.txt che ne nega l'accesso: **non va attivato senza nuova autorizzazione**, e non e' un risultato produttivo.
+
+Questo piccolo campione non dimostra un aumento delle fonti utilizzabili. E' utile soprattutto per rendere riproducibili i gap: in BE e IE serve ancora acquisire prove ufficiali nuove, e per FR emergono soprattutto integrazioni Teamtailor non ancora disponibili.
+
 ## Funzionalita'
 
 Il nuovo modulo `collector/ats_channel_discovery.py` riconosce tenant su Greenhouse, Lever, Recruitee e Personio XML da URL pubblicati nelle pagine censite. Collassa duplicati della stessa board/tenant, segnala se una fonte e' gia' presente nello stesso datore, rileva conflitti se un altro datore possiede la stessa board e produce esclusivamente candidature con `enabled=false`.

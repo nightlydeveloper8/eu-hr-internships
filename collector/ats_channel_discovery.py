@@ -122,7 +122,12 @@ def pilot(companies, sources, scans, countries=PILOT_COUNTRIES, per_country=6):
     selected_ids = set()
     for country in countries:
         candidates = [c for c in companies if country in c.get("target_countries", [])]
+        def can_reuse_adapter(company):
+            return any((identify_channel(url) or {}).get("gate") == "review-required"
+                       for item in scans_by_company[company["id"]]
+                       for url in item.get("ats_links", []))
         candidates.sort(key=lambda c: (
+            -int(can_reuse_adapter(c)),
             -int(any(item.get("ats_links") for item in scans_by_company[c["id"]])),
             c["id"]))
         chosen = candidates[:per_country]
@@ -147,8 +152,10 @@ def pilot(companies, sources, scans, countries=PILOT_COUNTRIES, per_country=6):
                         status = "ownership-review"
                     elif found["gate"] == "review-required":
                         status = "requires-access-and-identity-review"
+                    elif found["gate"] == "blocked-or-not-approved":
+                        status = "access-review"
                     else:
-                        status = found["gate"]
+                        status = "unsupported-provider"
                     queued[index] = dict(company_id=company_id, company_name=company["name"],
                         candidate_countries=sorted(set(company.get("target_countries", [])).intersection(countries)),
                         adapter=found["adapter"], tenant=found["tenant"],
