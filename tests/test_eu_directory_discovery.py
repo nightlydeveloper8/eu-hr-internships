@@ -154,6 +154,25 @@ class DiscoveryTests(unittest.TestCase):
                             "identity-ownership-host-robots-review-required"
                             for r in report["records"]))
 
+    def test_sixteen_career_audit_preserves_policy_v2_review_gate(self):
+        root = Path(__file__).resolve().parents[1]
+        audit = json.loads((root / "docs/eu-16-leads-career-channel-audit-2026-11-12.json").read_text())
+        entries = audit["entries"]
+        self.assertEqual(len(entries), 16)
+        self.assertEqual(sum(bool(e["official_company_recruiting_channel_observed"])
+                             for e in entries), 12)
+        self.assertEqual(sum(e["hr_internship_lead"] == "generic-hr-placement-mentioned"
+                             for e in entries), 2)
+        self.assertEqual(sum(bool(e["policy_v2_hr_internship_verified"])
+                             for e in entries), 0)
+        self.assertTrue(all(e["company_ownership_review_required"] for e in entries))
+        self.assertTrue(all(not e["automated_feed_collection_attempted"]
+                            for e in entries))
+        self.assertTrue(all(not d["access_reviewed"]
+                            for d in audit["directory_controls"]))
+        self.assertEqual(audit["totals"]["actual_two_live_acquisition_cycles"], 0)
+        self.assertEqual(audit["totals"]["additional_collector_http_requests"], 0)
+
     def test_existing_university_parsers_remain_reused(self):
         seed = dict(id="ikom-test", country="DE",
             url="https://ikom-tum.de/de/messen/ikom/2026",

@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "observed_date": "2026-11-12",
+  "scope": "Limited examination of 16 existing BE/IE discovery leads via publicly indexed official pages; not exhaustive live inventories",
+  "baseline": "nightlydeveloper8/eu-hr-internships main e7056c3351d06bedaa1f0d4a8e443f5a6e424a78",
+  "countries": {
+    "BE": {
+      "reviewed": 8,
+      "official_company_recruiting_channel_observed": 8,
+      "hr_specific_verified": 0
+    },
+    "IE": {
+      "reviewed": 8,
+      "official_company_recruiting_channel_observed": 4,
+      "hr_specific_verified": 0
+    }
+  },
+  "totals": {
+    "reviewed": 16,
+    "official_company_recruiting_channel_observed": 12,
+    "not_established_or_external_agency_only": 4,
+    "possible_generic_hr_placements": 2,
+    "verified_hr_internships_added": 0,
+    "automated_directory_downloads": 0,
+    "actual_two_live_acquisition_cycles": 0,
+    "additional_collector_http_requests": 0,
+    "additional_collector_browser_renders": 0
+  },
+  "directory_controls": [
+    {
+      "seed_id": "pxl-jobevent-be",
+      "robots_txt_status": "unretrievable-via-web-and-local-dns",
+      "terms_and_automated_access": "not-confirmed",
+      "access_reviewed": false,
+      "allowed_to_collect": false
+    },
+    {
+      "seed_id": "tech-alliance-members-ie",
+      "robots_txt_status": "unretrievable-via-web-and-local-dns",
+      "terms_and_automated_access": "not-confirmed",
+      "access_reviewed": false,
+      "allowed_to_collect": false
+    }
+  ],
+  "candidate_ats_links": [
+    {
+      "employer": "P&V Group",
+      "platform": "HR Organizer",
+      "observed_via": "https://jobs.pnvgroup.be/nl/studenten",
+      "integration": "not-supported-or-not-reviewed"
+    },
+    {
+      "employer": "Carbery Group",
+      "platform": "Workday",
+      "observed_via": "https://www.carbery.com/about/join-our-team/search-jobs/",
+      "integration": "not-supported-or-not-reviewed"
+    },
+    {
+      "employer": "Keelvar",
+      "platform": "Personio",
+      "observed_via": "https://www.keelvar.com/careers",
+      "integration": "recognized-existing-adapter-but-tenant-not-reviewed"
+    },
+    {
+      "employer": "Workvivo",
+      "platform": "Zoom group jobs",
+      "observed_via": "https://www.workvivo.com/careers/",
+      "integration": "group-ownership-not-reviewed"
+    }
+  ],
+  "entries": [
+    {
+      "country_discovery_scope": "BE",
+      "employer": "Axl & Trax",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://www.axl-trax.com/",
+      "channel_kind": "self-hosted-open-positions",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Official site has open positions for SAP security/consulting, no HR internship evidenced."
+    },
+    {
+      "country_discovery_scope": "BE",
+      "employer": "Easi",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://easi.net/en/jobs",
+      "channel_kind": "self-hosted-job-board",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Official internship listings in IT/consulting/marketing; no specific HR internship evidenced."
+    },
+    {
+      "country_discovery_scope": "BE",
+      "employer": "Fineko",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://www.fineko.be/werken-bij-fineko/vacatures/",
+      "channel_kind": "self-hosted-vacancies",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Current vacancies listed in finance/accountancy and spontaneous applications; no HR internship."
+    },
+    {
+      "country_discovery_scope": "BE",
+      "employer": "Finsiders",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://finsiders.lifeworx.group/en/career",
+      "channel_kind": "self-hosted-careers",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Finance consultancy recruitment; spontaneous candidate application has CAPTCHA; no HR-specific internship."
+    },
+    {
+      "country_discovery_scope": "BE",
+      "employer": "Goelen & Gaukema HR Partners",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://www.goelen.be/vacatures",
+      "channel_kind": "mixed-self-and-client-jobs",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Agency advertises own HR Consultant but job board mostly client positions; ownership per posting mandatory."
+    },
+    {
+      "country_discovery_scope": "BE",
+      "employer": "i-mens",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://www.i-mens.be/jobs-en-opleidingen/stages",
+      "channel_kind": "self-hosted-general-internship-intake",
+      "hr_internship_lead": "generic-hr-placement-mentioned",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "HR is explicitly listed among possible supporting-department internships; general request form is not a vacancy-specific application."
+    },
+    {
+      "country_discovery_scope": "BE",
+      "employer": "Noorderhart",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://jobs.noorderhart.be/",
+      "channel_kind": "self-hosted-jobs",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Official hospital jobs and student/stage information; HR-specific internship not evidenced."
+    },
+    {
+      "country_discovery_scope": "BE",
+      "employer": "P&V Group",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://jobs.pnvgroup.be/nl/studenten",
+      "channel_kind": "hr-organizer-tenant",
+      "hr_internship_lead": "generic-hr-placement-mentioned",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Two generic Stagiair listings (#V-28 and #V-37) mention HR among potential supporting departments, not dedicated HR vacancy."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "186 Digital",
+      "official_company_recruiting_channel_observed": false,
+      "channel_url": "https://186digital.com/",
+      "channel_kind": "unconfirmed-own-hiring-channel",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Official site/contact identified, but no employer-owned careers or hiring page established."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "6vv Analytics",
+      "official_company_recruiting_channel_observed": false,
+      "channel_url": "https://6vv.ie",
+      "channel_kind": "unconfirmed-own-hiring-channel",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Only business-directory identity located; no official recruiting channel established."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "Barden",
+      "official_company_recruiting_channel_observed": false,
+      "channel_url": "https://barden.ie/jobs/",
+      "channel_kind": "agency-client-job-board",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Job listings are principally external client mandates; no Barden employer-owned hiring inventory established."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "Bio Atlantis",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://www.bioatlantis.com/careers",
+      "channel_kind": "self-hosted-careers-with-email",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Careers page invites applications for open positions by email but no specific HR internship published."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "Carbery Group",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://www.carbery.com/about/join-our-team/search-jobs/",
+      "channel_kind": "workday-iframe",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Official employer page embeds carbery.wd3.myworkdayjobs.com; full job inventory not collected."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "Keelvar",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://keelvar.jobs.personio.com/?language=en",
+      "channel_kind": "personio-xml-candidate",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Official Keelvar site links to this Personio tenant; public board showed one senior US role, not HR internship."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "Workvivo",
+      "official_company_recruiting_channel_observed": true,
+      "channel_url": "https://www.workvivo.com/careers/",
+      "channel_kind": "parent-group-zoom-careers",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Official Workvivo page redirects applicants to Zoom Careers; ownership and Workvivo-specific scope require review."
+    },
+    {
+      "country_discovery_scope": "IE",
+      "employer": "Employflex",
+      "official_company_recruiting_channel_observed": false,
+      "channel_url": "https://employflex.ie/category/jobs/",
+      "channel_kind": "agency-client-job-board",
+      "hr_internship_lead": "none-observed",
+      "policy_v2_hr_internship_verified": false,
+      "company_ownership_review_required": true,
+      "robots_and_terms_checked_for_automation": false,
+      "automated_feed_collection_attempted": false,
+      "notes": "Recruitment agency listings serve clients; no own-company hiring channel established."
+    }
+  ],
+  "limitations": [
+    "Official careers page or general internship form does not establish a vacancy-specific HR opening under policy v2.",
+    "No directory live acquisition was permitted without confirming robots.txt and site reuse terms; two successful live cycles cannot be claimed.",
+    "Observed names/hosts can overlap groups or aliases and do not prove distinct legal employers.",
+    "Absence of a vacancy in the inspected published pages is not proof of market-wide absence.",
+    "Web retrieval and GitHub Actions CI costs are not a measure of recurring collector HTTP requests or monetary cost."
+  ]
+}

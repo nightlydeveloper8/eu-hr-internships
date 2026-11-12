@@ -77,6 +77,42 @@ Il risultato e' **un incremento reale di lead candidati rispetto allo snapshot s
 
 **Costi del prototipo aggiuntivo:** richieste crawler GitHub 0; browser rendering 0; nuove fonti attive 0; costo monetario non misurato. La consultazione web manualmente mirata delle pagine di provenienza non equivale a un run del collector. Prima del vero pilot misurare numero di richieste autorizzate, durata, bytes e 2 cicli live su una fotografia stabile.
 
+## Audit focalizzato dei 16 lead BE/IE (12 novembre 2026)
+
+Il rapporto riproducibile `docs/eu-16-leads-career-channel-audit-2026-11-12.json` distingue canale di recruiting aziendale individuato, annunci per conto di clienti e candidature HR verificate secondo policy v2. Le fonti sono pagine pubbliche ufficiali visualizzate e indicizzate via web, **non** download del crawler People Placement o inventari ATS completi.
+
+| Stato | Belgio | Irlanda | Totale |
+| --- | ---: | ---: | ---: |
+| Lead esaminati | 8 | 8 | 16 |
+| Canale aziendale recruiting/career individuato | 8 | 4 | **12** |
+| Solo annunci di agenzia per clienti / hiring non dimostrato | 0 | 4 | **4** |
+| Richieste generiche di stage che citano HR | 2 | 0 | **2** |
+| Specifiche vacancy stage HR policy v2 verified aggiunte | 0 | 0 | **0** |
+
+**I due lead HR generici, non verificati:**
+- [i-mens](https://www.i-mens.be/jobs-en-opleidingen/stages) elenca Human Resources tra le funzioni di supporto per possibili stage, ma usa una domanda generale per stage: manca vacancy HR specifica.
+- [P&V Group](https://jobs.pnvgroup.be/nl/studenten) pubblica due annunci generici `Stagiair` (Zwijndrecht NL, Heusden-Zolder BE) che citano HR fra vari reparti; non sono due stage HR distinti e dimostrati. Tenant HR Organizer `pnvgroup.hrorganizer.be` osservato.
+
+**ATS / canali riutilizzabili osservati (non attivati):**
+- [Keelvar](https://www.keelvar.com/careers) collega direttamente a `keelvar.jobs.personio.com` (Personio, connettore riutilizzabile gia' esistente). La board visibile presenta una posizione senior USA, non stage HR; robots/ownership del feed non ancora revisionati.
+- [Carbery](https://www.carbery.com/about/join-our-team/search-jobs/) incorpora `carbery.wd3.myworkdayjobs.com` (Workday: integrazione separata, non automatica).
+- [Workvivo](https://www.workvivo.com/careers/) rinvia alla pagina ufficiale carriere del gruppo Zoom; bisogna distinguere inventario del gruppo da vacancy realmente Workvivo.
+- [P&V Group](https://jobs.pnvgroup.be/nl/studenten) usa HR Organizer, non ancora oggetto di connettore approvato qui.
+
+**Classificazione cautelativa dei 4 senza inventario aziendale individuato:** 186 Digital e 6vv Analytics non hanno una careers page propria confermata; Barden ed Employflex pubblicano soprattutto annunci dei clienti in quanto agenzie: NON assegnare automaticamente quelle vacancy come offerte del proprio datore.
+
+### Robots e acquisizione live — BLOCCO NON RISOLTO
+
+Ho provato a consultare `https://www.pxl.be/robots.txt` e `https://techindustryalliance.ie/robots.txt` mediante strumenti web: entrambi non accessibili. Un ulteriore test diretto Python in ambiente isolato ha incontrato errori DNS su entrambi i domini. **L'impossibilita' di leggere robots.txt non significa robots disallow**, ma nemmeno fornisce autorizzazione al crawler: entrambi i seed restano `access_reviewed=false`. Nessuna pagina directory e' stata scaricata dal collector, nessun nuovo host e' autorizzato, nessun bypass tentato. I due cicli di test precedenti sono *replay sintetici*, NON due acquisizioni live riuscite.
+
+### Costi — solo valori osservati
+
+- **Nuovi GET collector sui due directory host:** 0; rendering: 0; costi monetari: non misurabili.
+- Confronto storico di `data/coverage.json` su `main` (non e' un preventivo): i **12 report Personio** insieme registrano **30 richieste logiche, ~20,75 secondi e ~0,87 MB**. Un tenant nuovo come Keelvar richiedera' il suo proprio budget e misurazione una volta autorizzato.
+- Greenhouse, Lever e Recruitee sono altri connettori efficienti, ma una stima di richieste/verified ottenuta dividendo metriche di report parziali e catalogo storico sarebbe fuorviante. **Nessuna quota 70/20/10 applicata**.
+
+**Prossimo checkpoint concreto:** recuperare robots.txt, termini e regole di riuso di entrambi i directory host da un accesso consentito, validare i parser su un solo HTML autentico per fonte, poi effettuare esattamente due raccolte controllate (minimo due finestre temporali distinte) con contatori per host, confronto ID/dedup e misure bytes/time; se bloccato, cercare fonti aperte alternative, mai aggirare il controllo. In seconda fase, check live separato su ATS Personio Keelvar e sui due lead HR generici; niente inserimento manuale di vacancy non provate.
+
 ## Verifica del riuso dello storico
 
 Ho confrontato `docs/employer-mapping-audit.json` con le aziende oggi censite, usando nome e dominio come chiavi conservative: **472 righe** (DE 233, FR 97, NL 142), tutte gia' presenti. **Nuove aziende effettivamente individuate nello storico = 0**. Il risultato evita di spendere altre risorse sullo stesso snapshot. Le due nuove aziende dei test unitari sono esempi sintetici; non contano verso la copertura europea.

@@ -1,5 +1,18 @@
 # Stato di ripresa — People Placement
 
+## 12 novembre 2026 — controllo tecnico directory e audit canali recruiting 16 lead
+
+- Ripresi main `e7056c3351d06bedaa1f0d4a8e443f5a6e424a78`, Issue #18/#23, PR #33 (draft) e PR #34 (draft). Non era disponibile `AGENTS.md` sul main (404). Preservati lavori paralleli, nessun merge.
+- Tentativo di accesso a `https://www.pxl.be/robots.txt` e `https://techindustryalliance.ie/robots.txt` via web: entrambe le URL non accessibili; test diretto senza redirect mediante Python: errore risoluzione DNS per entrambi. **Robots non confermato**, non equiparare a disallow e non abilitare. Termini del sito per accesso automatico ancora da verificare.
+- **Acquisizioni live 0, cicli live riusciti 0**; precedenti due cicli erano test offline con fixture. Nessun nuovo GET automatico sulle directory, nessuna richiesta verso gli host dei 16 datori, nessun browser render, nessun workflow giornaliero aggiuntivo.
+- Audit via pagine ufficiali pubblicamente recuperabili di **16 lead**: **12/16 hanno un canale recruiting aziendale identificabile** (8 BE, 4 IE); gli altri 4 in IE hanno solo un sito senza careers confermato oppure sono agenzie con annunci dei clienti e non opportunita' proprie. Report per-datore in `docs/eu-16-leads-career-channel-audit-2026-11-12.json`; le relative pagine possono essere ripubblicate/variare e non sono inventari completi.
+- **Due indizi HR generici**: i-mens cita stage HR fra funzioni supporto tramite domanda generale; P&V Group include HR in due annunci generici `Stagiair` (NL e BE) su HR Organizer. Non sono annunci HR distinti e verificati v2; **0 stage verified aggiunti**.
+- ATS riconosciuti da siti ufficiali: Keelvar→Personio (connettore gia' esistente; board pubblica 1 senior USA, nessun HR stage), Carbery→Workday iframe, P&V→HR Organizer, Workvivo→carriere gruppo Zoom (ownership/country da dimostrare). Nessuna integrazione o attivazione ATS.
+- Costi di questa attivita' per collector nuovi: **0 richieste, 0 rendering**, costo monetario non misurato; log storico `data/coverage.json` per 12 Personio: 30 richieste logiche, 20,75 sec, 0,87 MB cumulativi in quell'osservazione. **Non** extrapolare un costo giornaliero affidabile da uno snapshot vecchio o da test sintentici. Budget 70/20/10 non attivato.
+- Modifica proposta solo nella branch della PR #34: audit strutturato + test regressione che vieta di confondere lead/canale pubblico con verified policy v2. Stato e documentazione aggiornati. Restano da controllare CI finale, prove effettive di accesso consentito, due run live, costi e beneficio reale prima di qualsiasi merge o rollout.
+- Punto incompleto: controllo robots/termini in ambiente con accesso appropriato. Se non possibile, cercare directory ufficiali alternative con modalità di riuso consentita; non aggirare blocchi né aprire stream di scansione. Poi un unico lotto ridotto e due cicli con evidenze dettagliate.
+
+
 ## 12 novembre 2026 — estensione pilota BE/IE: nuove directory con siti aziendali, non ancora autorizzate per scraping
 
 - Recuperati checkpoint main `e7056c3351d06bedaa1f0d4a8e443f5a6e424a78`, PR #33 (draft) e PR #34 (draft); nessun merge.
