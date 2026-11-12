@@ -34,5 +34,4 @@ jobs:
             if(zeroVerified && !zeroIssue) await github.rest.issues.create({...context.repo,title:zeroTitle,body:zeroBody});
             if(zeroVerified && zeroIssue) await github.rest.issues.update({...context.repo,issue_number:zeroIssue.number,body:zeroBody});
             if(!zeroVerified && zeroIssue) await github.rest.issues.update({...context.repo,issue_number:zeroIssue.number,state:'closed'});
-            core.summary.addRaw(` Verified HR internships: ${counts.verifiedInternships}. Zero-verified alert: ${zeroVerified ? 'ACTIVE' : 'clear'}.`).write();
-            core.summary.addHeading('Catalog freshness').addRaw(`Last successful collection: ${data.updated_at || 'never'}. Status: ${stale ? 'STALE' : 'fresh'}.`).write();
+            core.summary.addHeading('Catalog freshness').addRaw(`Last successful collection: ${data.updated_at || 'never'}. Status: ${stale ? 'STALE' : 'fresh'}. Verified HR internships: ${counts.verifiedInternships}. Zero-verified alert: ${zeroVerified ? 'ACTIVE' : 'clear'}.`).write();
