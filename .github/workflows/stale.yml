@@ -24,4 +24,15 @@ jobs:
             const existing = issues.find(i=>i.title===title);
             if(stale && !existing) await github.rest.issues.create({...context.repo,title,body:'The last successful collection is older than 36 hours. Check Actions schedules, repository activity, source access and workflow permissions. GitHub may delay scheduled runs and disables public-repository schedules after 60 days without repository activity.'});
             if(!stale && existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,state:'closed'});
+            // Use the same policy-v2 and 48h criterion as the public frontend.
+            const {opportunityCounts} = await import(require('url').pathToFileURL(require('path').resolve('src/logic.js')).href);
+            const counts = opportunityCounts(Array.isArray(data.jobs) ? data.jobs : []);
+            const zeroVerified = counts.verifiedInternships === 0;
+            const zeroTitle = '[monitor] Zero currently verified HR internships';
+            const zeroIssue = issues.find(i=>i.title===zeroTitle);
+            const zeroBody = `Verified HR internships: ${counts.verifiedInternships}; archived records: ${Array.isArray(data.jobs) ? data.jobs.length : 'unavailable'}. Last published: ${data.updated_at || 'unknown'}. Policy v2 requires a matching current official application route with verification no older than 48h. Check the scheduled collection, publication and deployment. Do NOT promote historical/unverified listings. [Monitor run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}).`;
+            if(zeroVerified && !zeroIssue) await github.rest.issues.create({...context.repo,title:zeroTitle,body:zeroBody});
+            if(zeroVerified && zeroIssue) await github.rest.issues.update({...context.repo,issue_number:zeroIssue.number,body:zeroBody});
+            if(!zeroVerified && zeroIssue) await github.rest.issues.update({...context.repo,issue_number:zeroIssue.number,state:'closed'});
+            core.summary.addRaw(` Verified HR internships: ${counts.verifiedInternships}. Zero-verified alert: ${zeroVerified ? 'ACTIVE' : 'clear'}.`).write();
             core.summary.addHeading('Catalog freshness').addRaw(`Last successful collection: ${data.updated_at || 'never'}. Status: ${stale ? 'STALE' : 'fresh'}.`).write();
