@@ -61,6 +61,15 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual((self.seeds, self.snapshots, self.companies), originals)
         self.assertEqual(catalog, old)
 
+    def test_second_cycle_removes_previously_registered_candidate(self):
+        previous = build_discovery_queue(self.seeds, self.snapshots, self.companies)
+        registered = self.companies + [dict(id="newco", name="New Co",
+            website_url="https://newco.example/", career_url=None, aliases=[])]
+        result = build_discovery_queue(self.seeds, {}, registered, previous=previous)
+        self.assertEqual(result["pending_candidate_count"], 1)
+        self.assertEqual(result["candidates"][0]["name"], "Irish Group")
+        self.assertEqual(result["added_verified_hr_internships"], 0)
+
     def test_cross_host_redirect_and_bad_candidate_links_fail_closed(self):
         self.snapshots["official-be"]["final_url"] = "https://untrusted.example"
         with self.assertRaises(DiscoveryAccessError):

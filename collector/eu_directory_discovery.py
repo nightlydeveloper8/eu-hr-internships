@@ -170,6 +170,11 @@ def build_discovery_queue(seeds, snapshots, companies, previous=None, per_seed=4
     records = {}
     if previous:
         for row in previous.get("candidates", []):
+            if (company_key(row.get("name", "")) in existing_names
+                    or canonical_host(row.get("declared_website_url")) in existing_hosts):
+                # The candidate was integrated since the previous cycle.
+                # Do not keep it queued as a new employer.
+                continue
             records[row["key"]] = dict(row)
     stats = []
     seen_ids = set()
