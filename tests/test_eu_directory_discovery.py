@@ -10,6 +10,8 @@ from collector.eu_directory_discovery import (
     safe_https_url, SeedClient, DiscoveryAccessError, build_discovery_queue,
     extract_directory_rows, fetch_reviewed_seed
 )
+from collector.adapters import CheckedRedirect
+from urllib.request import Request
 
 
 class DiscoveryTests(unittest.TestCase):
@@ -97,6 +99,23 @@ class DiscoveryTests(unittest.TestCase):
             client.request(self.seeds[0]["url"], method="POST")
         with self.assertRaises(DiscoveryAccessError):
             client.request(self.seeds[0]["url"], robots=False)
+
+    def test_robots_redirect_is_host_locked_before_fetch(self):
+        # This must apply when the robots.txt fetch itself uses robots=False.
+        seed = dict(self.seeds[0], access_reviewed=True)
+        client = SeedClient(seed)
+        handler = CheckedRedirect(client, robots=False)
+        bad = "https://untrusted.example/robots.txt"
+        with self.assertRaisesRegex(ValueError, "outside approved source scope"):
+            handler.redirect_request(Request(seed["url"]), None, 302,
+                                     "Found", {}, bad)
+        with self.assertRaises(ValueError):
+            handler.redirect_request(Request(seed["url"]), None, 302,
+                                     "Found", {}, "http://career.uni.example/robots.txt")
+        self.assertTrue(client.redirect_scope_allowed(
+            "https://career.uni.example/robots.txt"))
+        self.assertFalse(client.redirect_scope_allowed(
+            "https://career.uni.example:443/robots.txt"))
 
     def test_offline_budget_and_empty_non_authorized_seed(self):
         with self.assertRaises(ValueError):

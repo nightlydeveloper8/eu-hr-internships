@@ -147,6 +147,9 @@ class SeedClient(BudgetClient):
         parsed = safe_https_url(url)
         return bool(parsed and parsed.hostname.lower() == self.seed_host)
 
+    def redirect_scope_allowed(self, url):
+        return self._approved(url)
+
     def permitted(self, url):
         if not self._approved(url):
             return False

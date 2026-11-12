@@ -113,6 +113,25 @@ Ho provato a consultare `https://www.pxl.be/robots.txt` e `https://techindustrya
 
 **Prossimo checkpoint concreto:** recuperare robots.txt, termini e regole di riuso di entrambi i directory host da un accesso consentito, validare i parser su un solo HTML autentico per fonte, poi effettuare esattamente due raccolte controllate (minimo due finestre temporali distinte) con contatori per host, confronto ID/dedup e misure bytes/time; se bloccato, cercare fonti aperte alternative, mai aggirare il controllo. In seconda fase, check live separato su ATS Personio Keelvar e sui due lead HR generici; niente inserimento manuale di vacancy non provate.
 
+## Audit delle alternative con riuso esplicito (12 novembre 2026)
+
+L'accesso diretto a `https://www.pxl.be/robots.txt` e `https://techindustryalliance.ie/robots.txt` rimane non verificabile tramite i canali disponibili. Gli host BE/IE non vengono quindi promossi a feed periodici. La loro consultazione via web NON e' autorizzazione allo scraping.
+
+| Sorgente ufficiale | Permesso disponibile / limitazioni | Valore reale per HR internships |
+| --- | --- | --- |
+| [CRO Open Data Ireland](https://opendata.cro.ie/dataset/companies) | Dati societari giornalieri CC BY 4.0, risorsa CSV e [API CKAN](https://opendata.cro.ie/dataset/companies/resource/3fef41bc-b8f4-4b10-8434-ce51c29b1bba) documentate. Licenza permette riuso con attribuzione. L'accesso diretto all'endpoint da questo ambiente non e' stato verificato. | Serve a disambiguare nomi/ID legali dei datori; non contiene siti careers o vacancy HR. Non scaricare l'intero dataset. |
+| [Belgian CBE Open Data](https://economie.fgov.be/en/themes/enterprises/crossroads-bank-enterprises/services-everyone/public-data-available-reuse/cbe-open-data) | CSV attivi e delta quotidiani gratis, ma richiedono registrazione, accettazione termini; SFTP dietro richiesta. La [licenza ufficiale](https://economie.fgov.be/sites/default/files/Files/Entreprises/BCE/Licence-BCE-Open-Data-Conditions-d-utilisation.pdf) specifica attribuzione di fonte/data, finalita' dichiarata e rispetto dati personali. Nessuna iscrizione tentata. | Verifica identita' e gruppi, NON vacancy. Non utilizzare il file completo/servizi a pagamento; no accesso senza registrazione. |
+| [Greenhouse Job Board API](https://docs.greenhouse.io/job-board) | Documentazione ufficiale pubblica i GET, senza autenticazione, per le board di datori identificati. Necessaria verifica dell'host, del tenant e dei robots per fonte. | Fonte diretta di inventari ufficiali, gia' supportata dal progetto; nessuna discovery universale automatica di tutte le aziende. |
+| [VDAB Vacancy API](https://extranet.vdab.be/api-center-excellence-coe/vacatures-ophalen-met-de-vacatures-api) | Richiede partner approvato e accordo; la pagina dichiara sospese nuove domande d'accesso. | Non utilizzabile come nuovo feed free immediato. Non aggirare autenticazione o termini. |
+
+**Scelta economica:** per questa fase niente dump interi CRO/CBE e niente servizi a pagamento. Riutilizzare CRO/CBE per verifiche puntuali degli identificativi quando accessibili con titolo adeguato, ma investire la scoperta *jobs-first* in board ufficiali note e connettori riusabili. Il criterio resta incremento di stage HR specifici verificati, non la quantita' di nuove registrazioni societarie.
+
+### Controlli piu' restrittivi del traffico HTTP
+
+La revisione del `CheckedRedirect` di `collector/adapters.py` evidenzia che durante il download `robots.txt` interno (`robots=False`) il redirect handler non chiamava `client.permitted` prima di seguire la destinazione. L'HTTP client delle directory ora passa una callback opzionale `redirect_scope_allowed`, controllata **su tutti i redirect**, inclusi `robots.txt`, prima che vengano seguiti. I client produttivi privi di questa callback conservano il comportamento precedente. Regressione: redirect robots verso host esterno, HTTP non sicuro e porte custom bloccati, senza rete.
+
+Non e' stata realizzata alcuna acquisizione live. **Due run reali: 0; nuovi stage HR verified: 0; requests collector aggiuntive: 0; nuove fonti attivate: 0; quota 70/20/10 non configurata.** L'API pubblica di un provider NON rende autorizzato lo scraping dei siti directory o di ATS a proprieta' incerta.
+
 ## Verifica del riuso dello storico
 
 Ho confrontato `docs/employer-mapping-audit.json` con le aziende oggi censite, usando nome e dominio come chiavi conservative: **472 righe** (DE 233, FR 97, NL 142), tutte gia' presenti. **Nuove aziende effettivamente individuate nello storico = 0**. Il risultato evita di spendere altre risorse sullo stesso snapshot. Le due nuove aziende dei test unitari sono esempi sintetici; non contano verso la copertura europea.

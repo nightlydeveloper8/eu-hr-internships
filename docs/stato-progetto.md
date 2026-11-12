@@ -1,5 +1,15 @@
 # Stato di ripresa — People Placement
 
+## 12 novembre 2026 — alternative ufficiali a directory non autorizzate e correzione scope redirect
+
+- Ricontrollati checkpoint, Issue #18/#23 e PR #33/#34; main `e7056c3351d06bedaa1f0d4a8e443f5a6e424a78`, PR #34 in bozza. Robots di Hogeschool PXL e Tech Industry Alliance non leggibili in modo affidabile dagli strumenti disponibili: **nessuna autorizzazione o nuova raccolta live**.
+- Trovate alternative di **re-use documentato**: Irlanda CRO dataset Company Records aggiornato quotidianamente, CC BY 4.0, CSV e CKAN API; Belgio CBE Open Data con CSV giornalieri gratuiti, ma **registrazione/termini obbligatori** e SFTP su richiesta; Greenhouse Job Board API documenta GET pubblico senza autenticazione per board ufficiali. Queste funzioni sono complementari: CRO/CBE sono dati societari, NON nuove offerte HR; Greenhouse richiede tenant gia' noto e rispetto robots/host. VDAB Vacancy API non ammette nuove richieste di accesso al momento.
+- Ricontrollati i-mens (modulo generico che cita possibili stage HR), P&V Group (due stage generalisti e HR menzionato tra reparti, singole pagine 403 al fetch) e Keelvar Personio (board con 1 lavoro senior USA). **0 nuove offerte HR specifiche verificabili policy v2**.
+- Piccola correzione reversibile proposta su PR #34: in `collector/adapters.py` aggiunto hook opzionale `redirect_scope_allowed` eseguito prima di ogni redirect, anche quando il client scarica `robots.txt` con `robots=False`; `SeedClient` limita il redirect all'host/HTTPS esatto dichiarato. Test regressione per off-host, http, porte custom; nessuna modifica a logiche di scraping produttivo per i client che non implementano hook.
+- **0 acquisizioni live, 0 cicli quotidiani misurati, 0 nuove fonti attivate, 0 richieste del collector addizionali, 0 rendering, 0 stage verified**. Costi monetari non misurati. Nessun merge, cron, rollout o quota budget 70/20/10.
+- Prossimo primo incompleto: accesso e permessi espliciti per sorgenti ricche di link career (PXL/TIA o alternative); se autorizzati, primo HTML autentico e due raccolte ridotte comparabili con ID, timestamp, bytes e durata. Separare i dati societari di CRO/CBE dalle vere vacancy e dalla classificazione della lingua.
+
+
 ## 12 novembre 2026 — controllo tecnico directory e audit canali recruiting 16 lead
 
 - Ripresi main `e7056c3351d06bedaa1f0d4a8e443f5a6e424a78`, Issue #18/#23, PR #33 (draft) e PR #34 (draft). Non era disponibile `AGENTS.md` sul main (404). Preservati lavori paralleli, nessun merge.
