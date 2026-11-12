@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback} from '../src/logic.js';
+import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
@@ -113,4 +113,28 @@ test('stale catalog shows archived leads as unverified without relaxing the 48-h
   assert.equal(unverifiedFallback({...catalog,jobs:[{...expired,last_verified_at:'2026-11-12T14:00:00Z'}]},clock),false);
   assert.equal(unverifiedFallback({...catalog,jobs:[{...expired,status:'closed'}]},clock),false);
   assert.equal(unverifiedFallback({...catalog,jobs:[]},clock),false);
+});
+
+test('verified-only is default, even when an expired catalog has unverified leads',()=>{
+  const clock=Date.parse('2026-11-12T19:49:00Z');
+  const expired={...base,last_verified_at:'2026-11-10T07:18:54Z'};
+  assert.equal(verifiedJob(expired,clock),false);
+  assert.equal(matches(expired,f),false);
+  assert.equal(matches(expired,{...f,unverified:true}),true);
+  assert.equal(shareableFilterParams({...f,unverified:true},f).toString(),'');
+  assert.equal(shareableFilterParams({...f,unverified:true,q:'recruitment'},f).toString(),'q=recruitment');
+  assert.equal(shareableFilterParams({...f,unverified:false,country:'NL'},f).get('country'),'NL');
+});
+
+test('monitor counts verified HR internships only with current policy v2 and 48h evidence',()=>{
+  const clock=Date.parse('2026-11-12T19:49:00Z');
+  const fresh={...base,last_verified_at:'2026-11-12T18:00:00Z'};
+  const stale={...base,id:'old',last_verified_at:'2026-11-10T07:00:00Z'};
+  const unverified={...base,id:'uncertain',status:'unverified'};
+  const closed={...base,id:'closed',status:'closed'};
+  const wrongPolicy={...base,id:'old-policy',verification:{state:'verified',policy_version:1}};
+  const working={...fresh,id:'working',internship_type:'working-student'};
+  assert.equal(opportunityCounts([stale,unverified,closed,wrongPolicy,working],clock).verifiedInternships,0);
+  assert.equal(opportunityCounts([fresh,stale,unverified,closed,wrongPolicy,working],clock).verifiedInternships,1);
+  assert.equal(opportunityCounts([fresh,stale,unverified,closed,wrongPolicy,working],clock+49*60*60*1000).verifiedInternships,0);
 });

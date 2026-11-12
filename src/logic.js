@@ -15,6 +15,15 @@ export function unverifiedFallback(catalog, clock = Date.now()) {
     && !catalog.jobs.some(job => verifiedJob(job, clock));
 }
 
+// The unverified view is an explicit session choice, never a persistent emergency URL.
+export function shareableFilterParams(filters, defaults) {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(filters)) {
+    if (key !== 'unverified' && value !== defaults[key]) params.set(key, String(value));
+  }
+  return params;
+}
+
 export function matches(job, filters, saved = new Set()) {
   if (job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
   if (filters.saved && !saved.has(job.id)) return false;
