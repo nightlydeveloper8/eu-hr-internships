@@ -160,3 +160,15 @@ jobs:
             if(unhealthy && !existing) await github.rest.issues.create({...context.repo,title,body});
             if(unhealthy && existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,body});
             if(!unhealthy && existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,state:'closed'});
+            // Independently alert when official HR internships reach zero fresh verifications.
+            const {opportunityCounts} = await import(require('url').pathToFileURL(require('path').resolve('src/logic.js')).href);
+            let catalog;
+            try { catalog = JSON.parse(fs.readFileSync('data/catalog.json','utf8')); } catch {}
+            const counts = opportunityCounts(Array.isArray(catalog?.jobs) ? catalog.jobs : []);
+            const zeroVerified = counts.verifiedInternships === 0;
+            const zeroTitle = '[monitor] Zero currently verified HR internships';
+            const zeroIssue = issues.find(i=>i.title===zeroTitle);
+            const zeroBody = `Verified HR internships: ${counts.verifiedInternships}; archived records: ${Array.isArray(catalog?.jobs) ? catalog.jobs.length : 'unavailable'}. Last published: ${catalog?.updated_at || 'unknown'}. Policy v2 requires a matching current official application route with verification no older than 48h. Check the collection shards, publication and deployment. Do NOT promote historical/unverified listings. [Collection run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}).`;
+            if(zeroVerified && !zeroIssue) await github.rest.issues.create({...context.repo,title:zeroTitle,body:zeroBody});
+            if(zeroVerified && zeroIssue) await github.rest.issues.update({...context.repo,issue_number:zeroIssue.number,body:zeroBody});
+            if(!zeroVerified && zeroIssue) await github.rest.issues.update({...context.repo,issue_number:zeroIssue.number,state:'closed'});
