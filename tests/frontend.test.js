@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs} from '../src/logic.js';
+import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
@@ -101,4 +101,16 @@ test('verified internship and working-student KPI subsets exclude stale and unve
  assert.equal(counts.verifiedInternships,1);assert.equal(counts.verifiedWorkingStudents,1);
  assert.equal(counts.unverified,2);assert.equal(counts.workingStudents,3);
 
+});
+
+test('stale catalog shows archived leads as unverified without relaxing the 48-hour rule',()=>{
+  const clock=Date.parse('2026-11-12T15:23:00Z');
+  const expired={...base,id:'archive',last_verified_at:'2026-11-10T07:18:54Z'};
+  const catalog={updated_at:'2026-11-10T07:28:10Z',jobs:[expired]};
+  assert.equal(verifiedJob(expired,clock),false);
+  assert.equal(unverifiedFallback(catalog,clock),true);
+  assert.equal(unverifiedFallback({...catalog,updated_at:'2026-11-12T14:00:00Z'},clock),false);
+  assert.equal(unverifiedFallback({...catalog,jobs:[{...expired,last_verified_at:'2026-11-12T14:00:00Z'}]},clock),false);
+  assert.equal(unverifiedFallback({...catalog,jobs:[{...expired,status:'closed'}]},clock),false);
+  assert.equal(unverifiedFallback({...catalog,jobs:[]},clock),false);
 });
