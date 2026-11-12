@@ -1,4 +1,4 @@
-import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback } from './logic.js';
+import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams } from './logic.js';
 const $ = id => document.getElementById(id);
 const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 const filters = {...defaults};
@@ -13,7 +13,7 @@ function fillRegions() { const select=$('region');select.replaceChildren();optio
 function syncControls() { fillRegions(); for (const [id,key] of Object.entries(bindings)) { if ($(id).type === 'checkbox') $(id).checked = filters[key]; else $(id).value = filters[key]; } for (const input of document.querySelectorAll('[name="mode"]')) input.checked = input.value === filters.mode; }
 function updateSaved() { $('saved-count').textContent = saved.size; $('saved-nav').setAttribute('aria-pressed',filters.saved); }
 function save(id, button) { if (saved.has(id)) saved.delete(id); else saved.add(id); try {localStorage.setItem('people-placement:saved',JSON.stringify([...saved]));} catch {persistent = false; notice();} updateSaved(); if (filters.saved) render(); else {button.setAttribute('aria-pressed',saved.has(id)); button.textContent = saved.has(id) ? '♥' : '♡'; button.setAttribute('aria-label',`${saved.has(id) ? 'Unsave' : 'Save'} this internship`);} }
-function reset() { Object.assign(filters,defaults); if (unverifiedFallback(catalog)) filters.unverified=true; limit=20; syncControls();render(); }
+function reset() { Object.assign(filters,defaults); limit=20; syncControls();render(); }
 function card(job) {
   const article = el('article','job-card');
   const heading = el('div','card-heading'); heading.append(el('div','company-monogram',job.employer[0]));
@@ -48,7 +48,7 @@ function card(job) {
   }
   details.append(dl);article.append(details);return article;
 }
-function urlState() { const params=new URLSearchParams();for(const [k,v] of Object.entries(filters)) if(v!==defaults[k]) params.set(k,String(v)); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
+function urlState() { const params=shareableFilterParams(filters,defaults); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
 function render() {
   const selection=opportunityCounts(catalog.jobs.filter(j=>matches(j,{...filters,unverified:true},saved)));
   const jobs=rankJobs(catalog.jobs.filter(j=>matches(j,filters,saved)),filters);
@@ -65,7 +65,25 @@ function render() {
   $('result-count').textContent=jobs.length;$('result-label').textContent=filters.saved ? (jobs.length===1 ? 'saved opportunity' : 'saved opportunities') : jobs.length===1 ? 'opportunity' : 'opportunities';
   $('scope-label').textContent=filters.country ? catalog.countries[filters.country] : filters.mode==='nl' ? 'The Netherlands first, then the rest of the EU' : 'Across all 27 European Union countries';
   const host=$('jobs');host.replaceChildren();host.setAttribute('aria-busy','false');
-  if (!jobs.length) {const empty=el('div','empty-state');empty.append(el('div','empty-icon',filters.saved?'♡':'◎'),el('h3','',filters.saved?'Your next chapter, saved here.':'A little room to explore.'),el('p','',filters.saved?'Save internships with the heart button. Your shortlist stays in this browser.':'No matching opportunities in our current collection. Try another country or widen your filters.'));const clear=el('button','', 'Show all opportunities');clear.addEventListener('click',reset);empty.append(clear);host.append(empty);}else for(const job of jobs.slice(0,limit)) host.append(card(job));
+  if (!jobs.length) {
+    const unverifiedLeadsAvailable = !filters.saved && !filters.unverified && selection.verified === 0 && selection.unverified > 0;
+    const empty=el('div','empty-state');
+    empty.append(
+      el('div','empty-icon',filters.saved?'♡':'◎'),
+      el('h3','',filters.saved?'Your next chapter, saved here.':unverifiedLeadsAvailable?'No currently verified matches':'A little room to explore.'),
+      el('p','',filters.saved?'Save internships with the heart button. Your shortlist stays in this browser.':unverifiedLeadsAvailable?`There are ${selection.unverified} unverified leads in this selection. These are NOT confirmed openings; please check availability on the employer's official website.`:'No matching opportunities in our current collection. Try another country or widen your filters.')
+    );
+    if(unverifiedLeadsAvailable){
+      const explore=el('button','','Explore unverified leads');
+      explore.addEventListener('click',()=>{filters.unverified=true;limit=20;syncControls();render();});
+      empty.append(explore);
+    }else{
+      const clear=el('button','','Reset filters');
+      clear.addEventListener('click',reset);
+      empty.append(clear);
+    }
+    host.append(empty);
+  }else for(const job of jobs.slice(0,limit)) host.append(card(job));
   $('load-more').hidden=jobs.length<=limit;
   $('show-all').hidden=jobs.length<=limit;
   $('show-all').textContent=`Show all ${jobs.length} matching opportunities`;
@@ -99,9 +117,9 @@ async function init(){try {const responses=await Promise.all(['catalog','coverag
   for(const [code,name] of Object.entries(catalog.categories))option($('category'),code,name);
   for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}
   for(const job of catalog.jobs)job.search_terms=[...job.countries.map(c=>catalog.countries[c]),...job.categories.map(c=>catalog.categories[c])];
-  const params=new URLSearchParams(location.search);for(const [key,def]of Object.entries(defaults)){if(!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
-  // Only fall back when there was no explicit verification-view preference in the URL.
-  if(!params.has('unverified') && unverifiedFallback(catalog)) filters.unverified=true;
+  const params=new URLSearchParams(location.search);for(const [key,def]of Object.entries(defaults)){if(key==='unverified'||!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
+  // Legacy emergency ?unverified=true links are ignored and removed by render().
+  // Unverified records require a conscious click and never persist across reloads.
   fillRegions();
   for(const [id,key]of Object.entries(bindings))if($(id).tagName==='SELECT'&&![...$(id).options].some(o=>o.value===filters[key]))filters[key]=defaults[key];if(!['eu','nl'].includes(filters.mode))filters.mode='nl';
   syncControls();for(const [id,key]of Object.entries(bindings))$(id).addEventListener(id==='search'?'input':'change',()=>{filters[key]=$(id).type==='checkbox'?$(id).checked:$(id).value;if(key==='country'){filters.region='';fillRegions();}limit=20;render();});
