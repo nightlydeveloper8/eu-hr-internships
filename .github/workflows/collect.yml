@@ -43,7 +43,8 @@ jobs:
           python scripts/build.py
   collect:
     needs: test
-    runs-on: ubuntu-latest
+    # Pin a Playwright-supported OS: ubuntu-latest moved to 26.04 and broke Chromium 1.60.0.
+    runs-on: ubuntu-24.04
     timeout-minutes: 55
     strategy:
       fail-fast: false
