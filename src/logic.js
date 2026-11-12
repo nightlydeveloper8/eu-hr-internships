@@ -7,6 +7,14 @@ export function verifiedJob(job, clock = Date.now()) {
   const stamp=Date.parse(job.last_verified_at || '');
   return job.status === 'open' && job.verification?.state === 'verified' && job.verification?.policy_version === 2 && Number.isFinite(stamp) && stamp <= clock && clock-stamp <= 48*60*60*1000;
 }
+// Emergency degraded view: expose archived records only as unverified when daily checks are stale.
+// This must never change verifiedJob(), policy v2, or the 48-hour freshness threshold.
+export function unverifiedFallback(catalog, clock = Date.now()) {
+  return stale(catalog?.updated_at, clock) && Array.isArray(catalog?.jobs)
+    && catalog.jobs.some(job => job.status !== 'closed')
+    && !catalog.jobs.some(job => verifiedJob(job, clock));
+}
+
 export function matches(job, filters, saved = new Set()) {
   if (job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
   if (filters.saved && !saved.has(job.id)) return false;
