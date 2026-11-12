@@ -1,5 +1,13 @@
 # Stato di ripresa — People Placement
 
+## 12 novembre 2026 — regressione automatica dell'allarme, in PR #32
+
+- Nuovo `tests/monitor-alert.test.js`: esegue i veri script incorporati nei workflow `collect.yml` e `stale.yml` con import ES-module reale di `src/logic.js`, filesystem simulato e metodi GitHub Issues in memoria. Casi per ciascun workflow: 0 HR internship verified → apertura; secondo 0 → aggiornamento senza doppioni; 1 internship verified fresca → chiusura; successivo 1 → nessuna azione; nuova assenza → nuovo alert mentre la Issue precedente resta chiusa. Esclude correttamente working-student, policy vecchia, stale, closed e unverified. Nessuna Issue reale creata.
+- Inclusione dei test nei comandi Node `package.json`, `.github/workflows/check.yml` e job di test `.github/workflows/collect.yml`. **Solo branch/PR, nessun merge**; attesi quattro nuovi test di percorso (+ due casi Node, uno per workflow, ciascuno con cinque passaggi). Niente dipendenze o servizi a pagamento, né richieste di raccolta aggiuntive.
+- Pubblicazione Cloudflare: tentativi GET a `https://people-placement-eu.pages.dev/` e `/data/catalog.json` da web e container falliti per impossibilita' di risolvere il dominio; nessuna evidenza di deploy correntemente verificabile. Serve controllo deployment ID/commit e verifica catalogo realmente servito quando disponibile. Non scambiare impossibilita' di test con prova di downtime.
+- Run `#43297447671`: ancora in esecuzione durante la preparazione; riconciliare il nuovo commit dati e la differenza reali solo dopo publish. Baseline prima del run: 332 record, 21 stage HR verified entro 48h, 299 unverified, 12 closed (catalogo 12 novembre 15:47 UTC).
+- Costo marginale previsto: zero chiamate di scraping o Cloudflare, test Node in RAM, nessun token/sottoservizio esterno, solo secondi di test su runner CI gia' attivi. Da verificare CI green e controlli sul deployment Cloudflare.
+
 ## 12 novembre 2026 — verifica successiva al merge #31 (sola lettura)
 
 - Merge #31 su main `a837eb9bc90fc4c22abc50c88c699f957f443d73`. La CI post-merge [#43297447739](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43297447739) è riuscita. Il workflow ordinario [#43297447671](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43297447671) è stato avviato automaticamente; all'ultimo controllo il test è verde, ma i 16 job collect erano ancora in corso, senza publish completato. **Non dichiarare completata la raccolta né nuove offerte da questo run**.
