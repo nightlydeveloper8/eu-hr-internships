@@ -19,7 +19,7 @@ File: `collector/eu_directory_discovery.py`, `scripts/eu_directory_discovery.py`
 Regole:
 - Solo pagine ufficiali presenti nel manifest; `access_reviewed=false` di default.
 - Modalità **offline** con file HTML già acquisiti e metadata di osservazione separati, quindi nessuna richiesta in esecuzione predefinita.
-- Modalità `--live` solo per seed autorizzati: GET/HTTPS, `robots.txt`, host di partenza obbligatorio anche prima dei redirect, 6 richieste e 20 secondi massimo per seed, 1 MB max, mai CAPTCHA/login/POST.
+- Modalità `--live` solo per seed autorizzati: GET/HTTPS, `robots.txt`, host di partenza obbligatorio anche prima dei redirect, 6 chiamate logiche e 20 secondi massimo per seed; i redirect HTTP interni possono generare richieste ulteriori e non sono conteggiati separatamente, 1 MB max, mai CAPTCHA/login/POST.
 - Parsing delle fiere universitarie già note senza eseguire il vecchio script massivo; per altre fonti si richiede un marcatore CSS card esplicitamente revisionato. Nessuna estrazione indiscriminata di link di navigazione, aggregatori, social o persone.
 - Deduplica per azienda e host, anche tra paesi; matching conservativo contro gli employer esistenti; i dati mancanti non chiudono candidature. Stato `identity-and-host-review-required`, mai verified.
 - Per un feed fallito o non rieseguito, preservare i candidati precedenti senza falsare l'ultimo timestamp osservato.
@@ -45,10 +45,16 @@ Tutti i seed committati ora hanno `access_reviewed=false`: il comando live non r
 | --- | --- | --- |
 | DE | IKOM TUM 2026 | Directory conosciuta dal vecchio importer, da riautorizzare prima di usare GET live |
 | FR | PhDTalent exhibitor directory | Directory conosciuta, da riautorizzare |
-| BE | UGent/VKT Internshipfair | Nomi dei partecipanti visibili; manca approvazione dell'estrattore dei link employer-owned |
+| BE | UGent/VTK Internshipfair | Nomi dei partecipanti visibili; manca approvazione dell'estrattore dei link employer-owned |
 | IE | Dublin City University employer reference | La pagina pubblica non prova un elenco completo con collegamenti diretti ai siti dei datori; richiede validazione |
 
 Le ultime due sono **candidature di ricerca**, non feed di produzione né fonte ufficiale di vacancy. Non inventiamo siti o posizioni, non attribuiamo un workplace in base all'evento.
+
+## Verifica del riuso dello storico
+
+Ho confrontato `docs/employer-mapping-audit.json` con le aziende oggi censite, usando nome e dominio come chiavi conservative: **472 righe** (DE 233, FR 97, NL 142), tutte gia' presenti. **Nuove aziende effettivamente individuate nello storico = 0**. Il risultato evita di spendere altre risorse sullo stesso snapshot. Le due nuove aziende dei test unitari sono esempi sintetici; non contano verso la copertura europea.
+
+La CI della PR #34 al commit `e4aca924a870e24bd053583b881a6fd5585e8515` e' verde (run [#43306446272](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43306446272) e [#43306529615](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43306529615)): **294 test Python**, **24 frontend**, 64 esempi di valutazione, build e company coverage. Durata test Python del run ispezionato 48,3 secondi, non tempo complessivo del job.
 
 ## Beneficio e costo
 
