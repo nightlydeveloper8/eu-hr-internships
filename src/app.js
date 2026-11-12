@@ -1,4 +1,4 @@
-import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts } from './logic.js';
+import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback } from './logic.js';
 const $ = id => document.getElementById(id);
 const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 const filters = {...defaults};
@@ -13,7 +13,7 @@ function fillRegions() { const select=$('region');select.replaceChildren();optio
 function syncControls() { fillRegions(); for (const [id,key] of Object.entries(bindings)) { if ($(id).type === 'checkbox') $(id).checked = filters[key]; else $(id).value = filters[key]; } for (const input of document.querySelectorAll('[name="mode"]')) input.checked = input.value === filters.mode; }
 function updateSaved() { $('saved-count').textContent = saved.size; $('saved-nav').setAttribute('aria-pressed',filters.saved); }
 function save(id, button) { if (saved.has(id)) saved.delete(id); else saved.add(id); try {localStorage.setItem('people-placement:saved',JSON.stringify([...saved]));} catch {persistent = false; notice();} updateSaved(); if (filters.saved) render(); else {button.setAttribute('aria-pressed',saved.has(id)); button.textContent = saved.has(id) ? '♥' : '♡'; button.setAttribute('aria-label',`${saved.has(id) ? 'Unsave' : 'Save'} this internship`);} }
-function reset() { Object.assign(filters,defaults); limit=20; syncControls();render(); }
+function reset() { Object.assign(filters,defaults); if (unverifiedFallback(catalog)) filters.unverified=true; limit=20; syncControls();render(); }
 function card(job) {
   const article = el('article','job-card');
   const heading = el('div','card-heading'); heading.append(el('div','company-monogram',job.employer[0]));
@@ -77,6 +77,7 @@ function render() {
 function notice() {
   const messages=[];
   if(stale(catalog.updated_at)) messages.push('The collection is older than 36 hours. Check the employer’s posting for current availability.');
+  if(unverifiedFallback(catalog)) messages.push('No listings currently pass the 48-hour verification rule. Previously collected records are available as unverified leads, NOT confirmed openings.');
   if(catalog.update_status==='failed')messages.push('The latest collection failed. Previously collected listings remain available; confirm availability with the employer.');
   if(!persistent)messages.push('Browser storage is unavailable. Saved jobs will last only for this visit.');
   $('data-notice').hidden=!messages.length;$('data-notice').textContent=messages.join(' ');
@@ -99,6 +100,8 @@ async function init(){try {const responses=await Promise.all(['catalog','coverag
   for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}
   for(const job of catalog.jobs)job.search_terms=[...job.countries.map(c=>catalog.countries[c]),...job.categories.map(c=>catalog.categories[c])];
   const params=new URLSearchParams(location.search);for(const [key,def]of Object.entries(defaults)){if(!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
+  // Only fall back when there was no explicit verification-view preference in the URL.
+  if(!params.has('unverified') && unverifiedFallback(catalog)) filters.unverified=true;
   fillRegions();
   for(const [id,key]of Object.entries(bindings))if($(id).tagName==='SELECT'&&![...$(id).options].some(o=>o.value===filters[key]))filters[key]=defaults[key];if(!['eu','nl'].includes(filters.mode))filters.mode='nl';
   syncControls();for(const [id,key]of Object.entries(bindings))$(id).addEventListener(id==='search'?'input':'change',()=>{filters[key]=$(id).type==='checkbox'?$(id).checked:$(id).value;if(key==='country'){filters.region='';fillRegions();}limit=20;render();});
