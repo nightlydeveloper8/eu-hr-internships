@@ -54,6 +54,14 @@ def shares_identifier(record, application):
     final_segment=urlsplit(record['url']).path.rstrip('/').split('/')[-1]
     if re.fullmatch(r'\d+|[0-9a-fA-F-]{32,36}',final_segment):candidates.append(final_segment)
     parts=[p for p in re.split(r'[/=?&]',urlsplit(application).path+'?'+urlsplit(application).query) if p]
+    # Workday embeds its requisition ID after an underscore in the observed
+    # application path. Match an already known ID exactly, never a substring
+    # or an ID invented from the CTA; normal host/title/form gates still apply.
+    target=urlsplit(application)
+    if (target.hostname or '').endswith('.myworkdayjobs.com'):
+        match=re.fullmatch(r'/[^/]+/job/[^/]+/[^/]+_(JR\d+)/apply/?',target.path)
+        if match and any(isinstance(value,(str,int)) and str(value)==match.group(1) for value in candidates):
+            return True
     return any(isinstance(value,(str,int)) and str(value) in parts for value in candidates)
 
 

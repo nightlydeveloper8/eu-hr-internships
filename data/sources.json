@@ -28001,6 +28001,7 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
+      "https://jobs.landal.com/nl-nl/vacatures/",
       "https://jobs.landal.com/",
       "https://www.landal.nl/",
       "https://jobs.landal.com",
@@ -28009,6 +28010,7 @@
     "career_url": "https://jobs.landal.com/",
     "allowed_hosts": [
       "jobs.landal.com",
+      "roompot.wd103.myworkdayjobs.com",
       "www.landal.nl"
     ],
     "target_countries": [
@@ -28019,8 +28021,9 @@
     "collection_seconds": 120,
     "max_navigation_depth": 3,
     "max_render_pages": 4,
-    "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "permission_basis": "Existing Landal source retained. Exact Workday tenant linked by current official vacancy and requisition reviewed with runtime robots/GET only. No browser pilot, account, candidate action or submission enabled; JavaScript SPA is not application evidence.",
+    "status": "automatic-collection-pending",
+    "access_reviewed_on": "2026-11-13"
   },
   {
     "id": "auto-van-heeckeren-groep",

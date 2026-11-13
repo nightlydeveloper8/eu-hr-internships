@@ -35200,6 +35200,17 @@
         "municipality_code": "GM0096",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.landal.nl/parken/vlieduyn"
+      },
+      {
+        "country": "NL",
+        "region_code": "NL13",
+        "city": "Nooitgedacht",
+        "municipality": "Aa en Hunze",
+        "municipality_code": "GM1680",
+        "settlement_code": "WP1174",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+        "checked_on": "2026-11-13"
       }
     ],
     "source_ids": [
@@ -35228,12 +35239,28 @@
     },
     "employee_size_evidence": {
       "qualification": "verified_50_plus",
-      "employees_min": 5500,
-      "employees_text": "5,500 employees on the group's facts-and-figures page.",
-      "scope": "group",
-      "source_url": "https://www.landal.nl/over-landal",
-      "source_date": null,
-      "source_type": "employer_website"
+      "employees_min": 450,
+      "employees_text": "Current official Hof van Saksen vacancy states more than 450 colleagues at the resort. Conservative documented employer lower bound from this site, not total Landal group headcount; not assigned to other parks.",
+      "scope": "employer",
+      "source_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+      "source_date": null
+    },
+    "drenthe_research": {
+      "checked_on": "2026-11-13",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 450,
+        "employees_text": "Current official Hof van Saksen vacancy states more than 450 colleagues at the resort. Conservative documented employer lower bound from this site, not total Landal group headcount; not assigned to other parks.",
+        "scope": "employer",
+        "source_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Landal",
+      "notes": [
+        "Existing shared Landal employer reused; Friesland workplaces, research and source attachment preserved. Official JobPosting gives Nooitgedacht, Drenthe, Borgerderstraat 12, 9449 PA; aggregator Gieten is not the workplace.",
+        "Stage HR JR104360 already exists in latest main. Application URL explicitly linked to Workday, but ordinary GET returns SPA redirect metadata without identified usable applicant form; remains unverified. February has no explicit year. Dutch text does not prove required language or English sufficiency."
+      ]
     }
   },
   {

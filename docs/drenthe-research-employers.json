@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "checked_on": "2026-11-06",
-  "scope": "Reviewed initial mapping and follow-ups through 12 November 2026; non-exhaustive. Per-row dates retained; collector outcomes separate.",
+  "scope": "Reviewed initial mapping and follow-ups through 13 November 2026; non-exhaustive. Per-row dates retained; collector outcomes separate.",
   "size_policy": "Only reviewed primary employer sources qualify. Employer/group headcounts are not site headcounts; unknown remains unknown; historical dates explicit.",
   "employers": [
     {
@@ -932,6 +932,30 @@
       "notes": [
         "Official visitor address Europark Allee 2, 7742 NA Coevorden. Utrecht Xperience Center not mapped by this provincial review.",
         "Official corporate homepage links werkenbijintergas.nl, which links intergas.recruitee.com. Public feed reviewed; generic Stageplaats bij Intergas 2027 includes HR among many departments but assignment and department require matching, so no specific HR vacancy is inferred."
+      ]
+    },
+    {
+      "name": "Landal",
+      "existing_company_id": "landal",
+      "website_url": "https://www.landal.nl/",
+      "career_url": "https://jobs.landal.com/",
+      "municipality": "Aa en Hunze",
+      "locality": "Nooitgedacht",
+      "presence_source_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 450,
+        "employees_text": "Current official Hof van Saksen vacancy states more than 450 colleagues at the resort. Conservative documented employer lower bound from this site, not total Landal group headcount; not assigned to other parks.",
+        "scope": "employer",
+        "source_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "group_name": "Landal",
+      "checked_on": "2026-11-13",
+      "notes": [
+        "Existing shared Landal employer reused; Friesland workplaces, research and source attachment preserved. Official JobPosting gives Nooitgedacht, Drenthe, Borgerderstraat 12, 9449 PA; aggregator Gieten is not the workplace.",
+        "Stage HR JR104360 already exists in latest main. Application URL explicitly linked to Workday, but ordinary GET returns SPA redirect metadata without identified usable applicant form; remains unverified. February has no explicit year. Dutch text does not prove required language or English sufficiency."
       ]
     }
   ],

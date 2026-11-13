@@ -234,5 +234,21 @@
     "max_requests": 55,
     "access_reviewed_on": "2026-11-12",
     "permission_basis": "Corporate-to-careers-to-Recruitee official link chain reviewed; public metadata feed GET with runtime robots checks. No browser rollout, new application parser, login, candidate action or submission enabled."
+  },
+  "auto-landal": {
+    "start_urls": [
+      "https://jobs.landal.com/nl-nl/vacatures/",
+      "https://jobs.landal.com/",
+      "https://www.landal.nl/",
+      "https://jobs.landal.com",
+      "https://www.landal.nl"
+    ],
+    "allowed_hosts": [
+      "jobs.landal.com",
+      "roompot.wd103.myworkdayjobs.com",
+      "www.landal.nl"
+    ],
+    "access_reviewed_on": "2026-11-13",
+    "permission_basis": "Existing Landal source retained. Exact Workday tenant linked by current official vacancy and requisition reviewed with runtime robots/GET only. No browser pilot, account, candidate action or submission enabled; JavaScript SPA is not application evidence."
   }
 }
