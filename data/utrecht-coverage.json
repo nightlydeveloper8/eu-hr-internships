@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-12T20:22:06.732879+00:00",
+  "generated_at": "2026-11-13T07:36:23.131814+00:00",
   "province": "Utrecht",
   "region_code": "NL35",
   "exhaustive": false,
@@ -325,8 +325,7 @@
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1,
-        "partial": 1
+        "partial": 2
       },
       "company_ids": [
         "gemeente-rhenen",
@@ -425,7 +424,8 @@
       "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2
+        "partial": 1,
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "gemeente-veenendaal",
@@ -561,8 +561,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:50.260078+00:00",
-      "public_job_records": 89,
+      "last_attempt_at": "2026-11-13T07:25:15.792717+00:00",
+      "public_job_records": 64,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -603,13 +603,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.647368+00:00",
-      "public_job_records": 26,
+      "last_attempt_at": "2026-11-13T07:25:26.309393+00:00",
+      "public_job_records": 42,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-rijkswaterstaat",
-          "message": "[{'url': 'https://werkenbij.rijkswaterstaat.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde/1346780', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://api.whatsapp.com/send?text=%0Ahttps%3A%2F%2Fwerkenbij.rijkswaterstaat.nl%2Fvacatures%2Ftechnisch-mendix-applicatiebeheerder%2F1339000', 'error': 'robots.txt disallows https://api.whatsapp.com/send?text=%0Ahttps%3A%2F%2Fwerkenbij.rijkswaterstaat.nl%2Fvacatures%2Ftechnisch-mendix-applicatiebeheerder%2F1339000'}, {'url': 'https://www.werkenvoornederland.nl/organisaties/ministerie-van-infrastructuur-en-waterstaat/rijkswaterstaat', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "[{'url': 'https://werkenbij.rijkswaterstaat.nl/vacatures/stage-organisatiepsychologie-hr-en-bestuurskunde/1346780', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenvoornederland.nl/organisaties/ministerie-van-infrastructuur-en-waterstaat/rijkswaterstaat', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbij.rijkswaterstaat.nl/vacatures?branches%5B%5D=CVG.24&jobType%5B%5D=Vacature', 'error': 'Rendered read: Rendered page access restricted: 403'}]"
         }
       ]
     },
@@ -646,7 +646,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:45.858913+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.791548+00:00",
       "public_job_records": 74,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -689,7 +689,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:49.332730+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.208858+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -732,7 +732,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:50.260078+00:00",
+      "last_attempt_at": "2026-11-13T07:25:15.792717+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -774,7 +774,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.835630+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.185300+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -812,7 +812,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:47.633292+00:00",
+      "last_attempt_at": "2026-11-13T07:25:10.954031+00:00",
       "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -855,7 +855,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.479518+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.033314+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -898,10 +898,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.647368+00:00",
-      "public_job_records": 7,
+      "last_attempt_at": "2026-11-13T07:25:26.309393+00:00",
+      "public_job_records": 6,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-gemeente-houten",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-ijsselstein",
@@ -935,7 +940,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:50.260078+00:00",
+      "last_attempt_at": "2026-11-13T07:25:15.792717+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -978,7 +983,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:50.260078+00:00",
+      "last_attempt_at": "2026-11-13T07:25:15.792717+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1015,7 +1020,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:49.332730+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.208858+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1057,7 +1062,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.479518+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.033314+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1099,7 +1104,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:42.594049+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.159877+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1136,7 +1141,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:57.929935+00:00",
+      "last_attempt_at": "2026-11-13T07:25:10.863721+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1172,10 +1177,10 @@
       "source_ids": [
         "auto-gemeente-rhenen"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.479518+00:00",
-      "public_job_records": 0,
+      "last_attempt_at": "2026-11-13T07:25:16.033314+00:00",
+      "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1216,7 +1221,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.479518+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.033314+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1259,8 +1264,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:41.497406+00:00",
-      "public_job_records": 19,
+      "last_attempt_at": "2026-11-13T07:25:13.380441+00:00",
+      "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1301,7 +1306,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:52.751428+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.550961+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1343,7 +1348,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:45.051508+00:00",
+      "last_attempt_at": "2026-11-13T07:25:15.556994+00:00",
       "public_job_records": 11,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1385,10 +1390,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:57.929935+00:00",
+      "last_attempt_at": "2026-11-13T07:25:10.863721+00:00",
       "public_job_records": 23,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-gemeente-vijfheerenlanden",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-wijk-bij-duurstede",
@@ -1422,7 +1432,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:42.594049+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.159877+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1475,7 +1485,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:50.260078+00:00",
+      "last_attempt_at": "2026-11-13T07:25:15.792717+00:00",
       "public_job_records": 22,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1517,7 +1527,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:53.101916+00:00",
+      "last_attempt_at": "2026-11-13T07:25:21.697758+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1560,8 +1570,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:42.594049+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-13T07:25:18.159877+00:00",
+      "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -1598,7 +1608,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:47.633292+00:00",
+      "last_attempt_at": "2026-11-13T07:25:10.954031+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1640,7 +1650,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:42.594049+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.159877+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1682,7 +1692,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:49.332730+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.208858+00:00",
       "public_job_records": 14,
       "verified_hr_internship_ids": [
         "feeafd529fbb03b9a107"
@@ -1721,7 +1731,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:49.332730+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.208858+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1758,7 +1768,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:57.929935+00:00",
+      "last_attempt_at": "2026-11-13T07:25:10.863721+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [
         "4f1b149f7c7d6bd1b6fe",
@@ -1799,8 +1809,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.647368+00:00",
-      "public_job_records": 35,
+      "last_attempt_at": "2026-11-13T07:25:26.309393+00:00",
+      "public_job_records": 22,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1841,7 +1851,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:52.751428+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.550961+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1883,13 +1893,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:47.633292+00:00",
+      "last_attempt_at": "2026-11-13T07:25:10.954031+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-domino-s-pizza-netherlands",
-          "message": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-online-marketing-januari27', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-crm-marketing-feb-26', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux', 'error': 'Visible vacancy workplace requires review'}]"
+          "message": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-online-marketing-januari27', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe', 'error': 'Reviewed visible vacancy title/description missing'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux', 'error': 'Visible vacancy workplace requires review'}]"
         }
       ]
     },
@@ -1925,7 +1935,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:52.751428+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.550961+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1968,7 +1978,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.755187+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.908766+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2009,12 +2019,17 @@
       "source_ids": [
         "auto-hso"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.647368+00:00",
-      "public_job_records": 12,
+      "last_attempt_at": "2026-11-13T07:25:26.309393+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-hso",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "berenschot",
@@ -2049,7 +2064,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.755187+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.908766+00:00",
       "public_job_records": 107,
       "verified_hr_internship_ids": [
         "68bbbe8c4218385f7c9d"
@@ -2093,13 +2108,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.254978+00:00",
+      "last_attempt_at": "2026-11-13T07:25:21.760530+00:00",
       "public_job_records": 7,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-terberg-techniek",
-          "message": "[{'url': 'https://www.royalterberggroup.com/nl/careers-nl/vacatures/4995512101/werkstudent?gh_jid=4995512101', 'error': 'HTTP Error 500: Internal Server Error'}, {'url': 'https://www.royalterberggroup.com/nl/careers-nl/vacatures/4970635101/field-service-engineer?gh_jid=4970635101', 'error': 'HTTP Error 500: Internal Server Error'}, {'url': 'https://www.royalterberggroup.com/nl/careers-nl/vacatures/5020386101/production-coordinator?gh_jid=5020386101', 'error': 'HTTP Error 500: Internal Server Error'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -2135,10 +2150,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.254978+00:00",
-      "public_job_records": 45,
+      "last_attempt_at": "2026-11-13T07:25:21.760530+00:00",
+      "public_job_records": 44,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-universiteit-utrecht",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "bcn",
@@ -2172,7 +2192,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:50.260078+00:00",
+      "last_attempt_at": "2026-11-13T07:25:15.792717+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2214,7 +2234,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:42.594049+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.159877+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2257,7 +2277,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.479518+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.033314+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2311,8 +2331,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:57.929935+00:00",
-      "public_job_records": 3,
+      "last_attempt_at": "2026-11-13T07:25:10.863721+00:00",
+      "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -2348,7 +2368,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.835630+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.185300+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2391,7 +2411,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:53.101916+00:00",
+      "last_attempt_at": "2026-11-13T07:25:21.697758+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2434,7 +2454,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.835630+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.185300+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2476,7 +2496,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:45.858913+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.791548+00:00",
       "public_job_records": 22,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2552,8 +2572,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.479518+00:00",
-      "public_job_records": 9,
+      "last_attempt_at": "2026-11-13T07:25:16.033314+00:00",
+      "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -2589,7 +2609,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:44.835630+00:00",
+      "last_attempt_at": "2026-11-13T07:25:18.185300+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2631,10 +2651,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:46.755187+00:00",
+      "last_attempt_at": "2026-11-13T07:25:16.908766+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-ouwehands-dierenpark",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "zorgdomein",
@@ -2668,7 +2693,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-12T20:10:41.497406+00:00",
+      "last_attempt_at": "2026-11-13T07:25:13.380441+00:00",
       "public_job_records": 20,
       "verified_hr_internship_ids": [],
       "errors": [
