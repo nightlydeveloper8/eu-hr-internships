@@ -72,3 +72,22 @@ Un dump JSON settimanale e i dump incrementali giornalieri sono documentati in h
 - Questo documento è un **preflight documentale**; nessuna raccolta Wikidata completata, nessun nuovo datore aggiunto, nessuna candidatura nuova, nessuna modifica a collector/allowlist/schedule/catalogo/produzione.
 - Gate aperti: robots WDQS direttamente verificato, posizione esplicita per API compatibile con policy del progetto, rete funzionante, query effettive, 50 candidati deduplicati, verifica ufficiale degli stage, costi osservati.
 - Nessun merge o rollout implicito nella PR documentale.
+
+
+## Verifica normativa supplementare (13 novembre, 17:24 CET) — nuova fonte primaria
+
+Fonte ufficiale Wikimedia **Robot policy**: https://wikitech.wikimedia.org/wiki/Robot_policy
+- Le regole generali richiedono esplicitamente `Honor Robots.txt. Honor every directive in our robots.txt file`. Questo vale come indicazione operativa anche nel contesto dei programmi che consumano automaticamente contenuti, non soltanto per crawler ad alto volume.
+- La stessa pagina contiene sezioni specifiche per REST API e Action API, che ne confermano l'uso programmato, con identità del client e limiti propri (Action API non autenticata: concorrenza 1 e meno di 5 richieste/s).
+- La pagina non esplicita che le API siano **esentate** dai `Disallow` del robots.txt. Non inferire quindi un'eccezione solo perché le API sono documentate o il test prevede 25+25 entità.
+- `https://www.wikidata.org/robots.txt` verificato da fonte primaria via browser: nel blocco `User-agent: *` sono ammessi solo alcuni percorsi specifici (tra cui `/w/api.php?action=mobileview&`); `Disallow: /w/` e `Disallow: /api/` restano operanti per i percorsi non esentati.
+- Il browser di verifica non è riuscito ad aprire `https://query.wikidata.org/robots.txt` né `https://query-main.wikidata.org/robots.txt`. Il resoconto di `/sparql` e `/bigdata` disallowed resta di fonte terza: https://www.opendataindex.nl/en/bron/wikidata, non un robots WDQS direttamente letto.
+
+**Interpretazione operativa prudente:** l'accesso tramite API/SPARQL pubblica è una modalità Wikimedia ufficiale, ma la documentazione trovata **non basta a certificare** che sia compatibile con la scelta People Placement di rispettare ogni disallow nei robots. Perciò non lanciare il pilota con uno user-agent alternativo, un proxy, l'interfaccia web al posto dell'API o altre forme di bypass. L'errore DNS del runtime è un limite **separato** da quello normativo.
+
+**Chiarimento puntuale da richiedere agli operatori Wikimedia**, senza invio autonomo:
+- Canale per accesso/bot: **bot-traffic@wikimedia.org** (pubblicato nella Robot policy).
+- Per eccezioni/chiarimenti formali: **legal@wikimedia.org** (pubblicato nella Wikimedia Foundation API Usage Guidelines: https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_API_Usage_Guidelines).
+- Domanda da porre: «Per un programma esterno identificabile, senza autenticazione, che richiede solo due letture SPARQL `GET /sparql` con `LIMIT 25` (società in Belgio e Irlanda, QID/P17/P856), le direttive `Disallow` pubblicate per `query.wikidata.org` impediscono qualunque GET programmato, oppure gli accessi API esplicitamente documentati sono soggetti a un'eccezione applicabile? Quale endpoint e procedura raccomandate per un pilota read-only conforme a robots e rate limiting? Il medesimo chiarimento vale per i batch di metadati in `/w/api.php` e `Special:EntityData`?» Non cercare né domandare un permesso di aggirare un controllo tecnico.
+
+**Gate aggiornato: BLOCCATO per raccolta live.** Per completarlo occorre risposta ufficiale o documentazione normativa univoca, robots dell'host effettivo verificato direttamente e rete HTTPS/DNS funzionante nel runtime. Richieste SPARQL di questo supplemento: **0**. Nessuna modifica allo stato di candidabilità né al denominatore delle conversioni.
