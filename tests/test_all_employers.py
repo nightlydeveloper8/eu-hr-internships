@@ -42,6 +42,28 @@ class AllEmployerTests(unittest.TestCase):
    rows=Crawler(source(),FakeClient(pages)).run()
   self.assertEqual(len(rows),1);self.assertEqual(rows[0]['countries'],['NL']);self.assertIn('work.example.net',rows.stats['allowed_hosts'])
   self.assertFalse(rows.stats['complete'])
+ def test_ats_script_resource_not_crawled_and_public_posting_remains_discoverable(self):
+  asset='https://js-www.smartrecruiters.com/career-site-ui/static/js/libs.1ca70.js'
+  vacancy='https://jobs.smartrecruiters.com/Example/744000155193669-intern-human-resources'
+  html='<main><h1>Example careers</h1><a href="'+vacancy+'">HR internship</a></main><script src="'+asset+'"></script>'
+  pages={'https://example.org':html,vacancy:'<script type="application/ld+json">'+json.dumps(posting(hiringOrganization={'name':'Example'}))+'</script>'}
+  c=FakeClient(pages)
+  with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):
+   result=Crawler(source(),c).run()
+  self.assertNotIn(asset,c.calls)
+  self.assertIn(vacancy,c.calls)
+  self.assertEqual(len(result),1)
+  self.assertEqual(result[0]['title'],'HR Intern')
+  self.assertFalse(result.stats['complete'])
+ def test_stale_ats_script_checkpoint_is_not_retried(self):
+  asset='https://js-www.smartrecruiters.com/career-site-ui/static/js/libs.1ca70.js'
+  c=FakeClient({'https://example.org':'<main><h1>Company</h1></main>'})
+  with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):
+   PageCache('auto-example').save_state({'allowed_hosts':['js-www.smartrecruiters.com'], 'pending':[{'url':asset,'job':False,'depth':1}]})
+   result=Crawler(source(),c).run()
+  self.assertNotIn(asset,c.calls)
+  self.assertEqual(result.stats['pending_urls'],0)
+  self.assertNotEqual(result.stats['status'],'ok')
  def test_partial_extraction_publishes_matches_but_never_closes_absent_jobs(self):
   s=source();r=job_from_json(posting(),'https://example.org/jobs/1',s)
   rows=Inventory([r],dict(status='partial',complete=False,allowed_hosts=['example.org']))
