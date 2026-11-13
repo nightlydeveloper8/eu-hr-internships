@@ -1,5 +1,17 @@
 # Stato di ripresa — People Placement
 
+## 13 novembre 2026 — Wikidata BE/IE, preflight documentato; pilota non eseguito
+
+- Ricostruita baseline da `main` `c1bd2b8`: catalogo 13/11 07:36 UTC `partial`, 336 annunci; Belgio 2 record (1 `open/verified` Veepee, 1 `unverified` JDE), Irlanda 0. Report paese: BE 12 datori identificati/4 monitorati, IE 5/1; non sono risultati Wikidata e non equivalgono a stage disponibili.
+- Esaminate policy ufficiali API Wikimedia, guida WDQS, documentazione dump e robots pubblico di `www.wikidata.org`. `/w/`, `/api/` e `/wiki/Special:` sono disallowed per crawler generici; `query.wikidata.org/robots.txt` non ottenuto da fonte primaria. La documentazione consente API mirate entro policy e prescrive robot policy per uso automatizzato su larga scala, ma la compatibilità con il vincolo rigoroso People Placement resta da chiarire sui singoli endpoint. Nessun workaround.
+- Preflight supplementare 13/11: la [Robot policy Wikimedia](https://wikitech.wikimedia.org/wiki/Robot_policy) prescrive espressamente di rispettare **ogni** direttiva robots anche agli operatori automatizzati, mentre documenta l'utilizzo delle API; non esplicita un'esenzione dai `Disallow`. Il robots ufficiale `www.wikidata.org` conferma `/w/` e `/api/` disallowed, il robots di WDQS non è leggibile direttamente nel browser disponibile. Gate normativo **non risolto**; separato dal precedente errore DNS. Canali ufficiali per chiarimento: `bot-traffic@wikimedia.org`, eventualmente `legal@wikimedia.org`. Nessuna richiesta inviata; **0 query/record** nel supplemento. Dettagli nel rapporto del pilota e nella PR #36.
+- Il runtime non risolve DNS `query.wikidata.org` né `www.wikidata.org`: 3 tentativi diagnostici terminati prima dell'HTTP, **0 richieste dati completate e 0 entità acquisite**; nessuna deduplicazione del campione 25+25, conversione o costo per candidatura misurato.
+- Protocollo e fonti in [`docs/wikidata-be-ie-preflight-2026-11-13.md`](wikidata-be-ie-preflight-2026-11-13.md). Un dump completo resta sproporzionato per 50 candidati; il break-even va misurato dopo un pilota autorizzato, non presunto.
+- Solo documentazione su branch `research/wikidata-be-ie-preflight-20261113`; nessuna modifica a collector, registri, workflow, budget, schedule, catalogo, Cloudflare o produzione. Nessun merge. `AGENTS.md` non compare nell'albero di `main` consultato.
+
+**Primo punto incompleto:** verificare da ambiente HTTPS funzionante il robots effettivo di WDQS e l'uso consentito dell'API secondo le regole del progetto; soltanto in seguito eseguire le due query bounded, deduplicare e verificare canali ufficiali/stage, registrando richieste e durata.
+
+
 ## 12 novembre 2026, sera — PR per vista verified e allarme zero verificati
 
 - Main di riferimento: `48c7e44923466f7719bdd071ab86a62de9ca58e3`. PR #30 merged, raccolta automatica post-merge [#43249156225](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43249156225) riuscita (test, 16 shard, publish). Catalogo del 12 novembre 15:47 UTC: **332 record, 21 open/verified (tutti internship HR), 299 unverified, 12 closed**, secondo policy v2 e limite di freschezza frontend di 48 ore, calcolati alle 19:49 UTC. Questi conteggi non sostituiscono il controllo del deployment Cloudflare.
