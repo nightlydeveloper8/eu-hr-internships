@@ -35,4 +35,4 @@ Individuare un **indice completo ufficiale e accessibile** di Bosch/JDE e verifi
 
 ## Stato della consegna
 
-Branch `fix/avoid-ats-static-asset-crawls`, modifiche circoscritte a `collector/universal.py`, test regressione e documentazione. Nessun merge, rollout, pubblicazione, raccolta completa, richiesta live a SmartRecruiters o nuova vacancy verified. Da verificare CI prima di considerare la PR pronta alla revisione.
+Branch `fix/avoid-ats-static-asset-crawls`, modifiche circoscritte a `collector/universal.py`, test regressione e documentazione. Nessun merge, rollout, pubblicazione, raccolta completa, richiesta live a SmartRecruiters o nuova vacancy verified. CI validata sul commit `f97fbb8`: [run #43466272089](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43466272089) riuscito, 289 test Python, 24 frontend, classificazione, coverage e build riusciti. Nessun run di raccolta live: costo e beneficio in produzione ancora non misurati.
