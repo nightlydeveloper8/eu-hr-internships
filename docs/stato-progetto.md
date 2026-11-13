@@ -1,5 +1,14 @@
 # Stato di ripresa — People Placement
 
+## 13 novembre 2026 — SmartRecruiters/Bosch: difetto strutturale e PR di efficienza
+
+- Analizzati dati `main` `c1bd2b8`: `auto-bosch` 0 record nel ciclo, 69 pagine/88 richieste/97,63 s, 337 URL pendenti, stato partial e robots disallow sull'API SmartRecruiters; errore su JS esterno statico e timeout rendering careers. Fonte pubblica Bosch BE con ID `744000155193669` assente dal catalogo, **solo candidata**: nessun nuovo open/verified dimostrato.
+- Le tre fonti SmartRecruiters native Delta Electronics, Avery Dennison, JDE sono disabilitate dopo un robots disallow. JDE universale: 7 record, partial, 92 richieste/65,75 s. Catalogo: 19 annunci con URL SmartRecruiters, 15 unverified, 4 closed, 0 verified; non assumere che siano aperti.
+- Corretta **su branch isolato** la scoperta impropria di URL di asset JS/CSS/CDN ATS come pagine di recruiting, inclusi checkpoint pendenti da cicli precedenti. Test sintetici: una pagina careers con link ATS reale e bundle statico conserva il job e non legge il bundle, senza false chiusure/inventario completo.
+- Nessun aggiramento robots, nuovo host/feed, modifica ai dati, scheduling o produzione; nessuna raccolta live. Beneficio di richieste/durata reali **non ancora misurato**, 0 nuove candidature verified attribuibili alla correzione; registrato il baseline in [audit SmartRecruiters](smartrecruiters-coverage-audit-2026-11-13.md).
+- **CI PR #37 riuscita**, run [#43466272089](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43466272089) al commit `f97fbb8`: 289 test Python, 24 frontend, classificazione e build riuscite. Prossimo passo: trovare una fonte **ufficiale consentita e completa** di inventario per Bosch/JDE (se presente) e verificare il link specifico di candidatura senza codificare una vacancy. Nessun merge/rollout senza autorizzazione. La PR Wikidata #36 rimane indipendente e documentale.
+
+
 ## 12 novembre 2026, sera — PR per vista verified e allarme zero verificati
 
 - Main di riferimento: `48c7e44923466f7719bdd071ab86a62de9ca58e3`. PR #30 merged, raccolta automatica post-merge [#43249156225](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43249156225) riuscita (test, 16 shard, publish). Catalogo del 12 novembre 15:47 UTC: **332 record, 21 open/verified (tutti internship HR), 299 unverified, 12 closed**, secondo policy v2 e limite di freschezza frontend di 48 ore, calcolati alle 19:49 UTC. Questi conteggi non sostituiscono il controllo del deployment Cloudflare.
