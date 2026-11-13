@@ -27,7 +27,7 @@ def provider_host(host):return host not in VENDOR_HOSTS and any(host.endswith('.
 
 def provider_resource(url):
     """Vendor JS/CDN resources are not recruiting pages or candidate inventory."""
-    p=urlsplit(url);host=p.hostname or ''
+    p=urlsplit(url or '');host=p.hostname or ''
     return bool(provider_host(host) and (
         host.startswith(('api.','cdn.','js-','static.'))
         or re.search(r'/(?:static|assets|_next|chunks)/',p.path,re.I)
