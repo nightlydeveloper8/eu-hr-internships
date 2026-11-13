@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "objective": "Compare two distinct, already completed production Greenhouse collection cycles; no live fetches are performed by this audit.",
+  "target": {
+    "source_id": "greenhouse-dim",
+    "employer": "DIM",
+    "board": "dim",
+    "country": "FR",
+    "official_board_url": "https://job-boards.greenhouse.io/dim",
+    "documented_api": "https://boards-api.greenhouse.io/v1/boards/dim/jobs?content=true",
+    "job_url": "https://job-boards.greenhouse.io/dim/jobs/8331346",
+    "hr_language_requirement": "English professional level stated; English-only eligibility not proven"
+  },
+  "cycles": [
+    {
+      "workflow_run_id": 42774047883,
+      "published_commit": "0e73e9a7b26d7c674110beb50697fd29a8e2fdf1",
+      "source_report": {
+        "id": "greenhouse-dim",
+        "checked_at": "2026-11-10T07:18:41.644698+00:00",
+        "status": "ok",
+        "adapter": "greenhouse",
+        "collected": 33,
+        "records_inspected": 33,
+        "page_failures": 0,
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "FR"
+        ],
+        "requests": 4,
+        "duration_seconds": 1.4,
+        "bytes_read": 304894
+      },
+      "verified_hr_jobs": [
+        {
+          "catalog_id": "270e918796f15d39a095",
+          "posting_id": "8331346",
+          "title": "Stage Chargé(e) de Développement RH (H/F) - Janvier 2027",
+          "status": "open",
+          "country": "FR",
+          "policy_version": 2,
+          "verification_state": "verified",
+          "verification_reason": "same-vacancy-applicant-form",
+          "checked_at": "2026-11-10T07:18:41.644698+00:00",
+          "url": "https://job-boards.greenhouse.io/dim/jobs/8331346",
+          "apply_url": "https://job-boards.greenhouse.io/dim/jobs/8331346"
+        }
+      ]
+    },
+    {
+      "workflow_run_id": 43297447671,
+      "published_commit": "e7056c3351d06bedaa1f0d4a8e443f5a6e424a78",
+      "source_report": {
+        "id": "greenhouse-dim",
+        "checked_at": "2026-11-12T20:10:53.101916+00:00",
+        "status": "ok",
+        "adapter": "greenhouse",
+        "collected": 33,
+        "records_inspected": 33,
+        "page_failures": 0,
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "FR"
+        ],
+        "requests": 4,
+        "duration_seconds": 1.4,
+        "bytes_read": 305000
+      },
+      "verified_hr_jobs": [
+        {
+          "catalog_id": "270e918796f15d39a095",
+          "posting_id": "8331346",
+          "title": "Stage Chargé(e) de Développement RH (H/F) - Janvier 2027",
+          "status": "open",
+          "country": "FR",
+          "policy_version": 2,
+          "verification_state": "verified",
+          "verification_reason": "same-vacancy-applicant-form",
+          "checked_at": "2026-11-12T20:10:53.101916+00:00",
+          "url": "https://job-boards.greenhouse.io/dim/jobs/8331346",
+          "apply_url": "https://job-boards.greenhouse.io/dim/jobs/8331346"
+        }
+      ]
+    }
+  ],
+  "restrictions": {
+    "production_changes": false,
+    "new_collection_executed": false,
+    "access_to_api_robots_not_confirmed_today": true,
+    "verified_new_in_second_cycle": 0,
+    "verified_preserved": 1,
+    "language_english_only_confirmed": false,
+    "monetary_cost_known": false
+  },
+  "evidence_sources": [
+    "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/42774047883",
+    "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43297447671",
+    "https://github.com/nightlydeveloper8/eu-hr-internships/blob/0e73e9a7b26d7c674110beb50697fd29a8e2fdf1/data/coverage.json",
+    "https://github.com/nightlydeveloper8/eu-hr-internships/blob/e7056c3351d06bedaa1f0d4a8e443f5a6e424a78/data/coverage.json",
+    "https://job-boards.greenhouse.io/dim/jobs/8331346"
+  ]
+}
