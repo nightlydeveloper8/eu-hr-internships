@@ -24,6 +24,15 @@ PROVIDERS=('greenhouse.io','lever.co','recruitee.com','personio.de','personio.co
 LEGAL={'gmbh','co','kg','ag','spa','srl','bv','nv','sa','sas','ltd','inc','group','groep','the','and','netherlands','deutschland','italia','france'}
 VENDOR_HOSTS=set(PROVIDERS)|{'www.'+p for p in PROVIDERS}|{'app.recruitee.com','blog.recruitee.com','landing.recruitee.com','support.recruitee.com','tagging-server.recruitee.com'}
 def provider_host(host):return host not in VENDOR_HOSTS and any(host.endswith('.'+p) for p in PROVIDERS)
+
+def provider_resource(url):
+    """Vendor JS/CDN resources are not recruiting pages or candidate inventory."""
+    p=urlsplit(url);host=p.hostname or ''
+    return bool(provider_host(host) and (
+        host.startswith(('api.','cdn.','js-','static.'))
+        or re.search(r'/(?:static|assets|_next|chunks)/',p.path,re.I)
+        or re.search(r'\.(?:m?js|css|map|woff2?|ttf|otf|eot|png|jpe?g|gif|svg|webp|ico|mp4|webm)(?:$|/)',p.path,re.I)
+    ))
 def safe_url(url):
     try:
         value=canonical_url(url);host=urlsplit(value).hostname
@@ -220,7 +229,7 @@ class Crawler:
             if self.feed(final):return dict(records=[],links=[],empty=self.empty)
         for embedded in re.findall(r'https://[^\s<>\"\']+',body.decode('utf-8','replace').replace('\\/','/')):
             target=safe_url(embedded.rstrip(');,'))
-            if target and provider_host(urlsplit(target).hostname) and self.allow(target,observed=True):doc.frames.append(target)
+            if target and provider_host(urlsplit(target).hostname) and not provider_resource(target) and self.allow(target,observed=True):doc.frames.append(target)
         docs=[doc]
         js_shell=not doc.jobposts() and not job_from_visible(doc,self.source,is_job) and (len(doc.text)<350 or not any(JOBPATH.search(u) or CAREER.search(label+' '+u) for u,label,_ in doc.links))
         has_more=any(re.search(r'load more|show more|carica|mostra|mehr|volgende|voir plus',b,re.I) for b in doc.buttons)
@@ -267,7 +276,7 @@ class Crawler:
                 if job or CAREER.search(label+' '+path) or (path in ('','/') and CAREER.search(urlsplit(target).hostname)) or 'next' in rel or NEXT.fullmatch(label.strip()):result['links'].append(dict(url=target,job=job,priority=0 if classify_role(label+' '+path.replace('-',' ')) else 1 if ('next' in rel or NEXT.fullmatch(label.strip()) or not job) else 2))
             for href in d.frames:
                 target=safe_url(urljoin(d.url,href.strip()))
-                if target and self.allow(target,observed=True) and (provider_host(urlsplit(target).hostname) or CAREER.search(target)):result['links'].append(dict(url=target,job=False))
+                if target and not provider_resource(target) and self.allow(target,observed=True) and (provider_host(urlsplit(target).hostname) or CAREER.search(target)):result['links'].append(dict(url=target,job=False))
             result['empty']|=bool(EMPTY.search(d.text))
         for record in result['records']:
             record['_text_observation']=dict(kind='live',checked_at=datetime.now(timezone.utc).isoformat())
@@ -286,7 +295,7 @@ class Crawler:
         seeds=[u for u in [self.state.get('preferred_career_url')]+self.source['start_urls'] if u and safe_url(u)]
         queue=deque((u,True,0) for u in self.source.get('known_job_urls',[]) if self.allow(u));queue.extend((u,False,0) for u in dict.fromkeys(seeds));pending=self.state.get('pending',[])
         for entry in pending:
-            if self.allow(entry.get('url','')):queue.append((entry['url'],entry.get('job',True),entry.get('depth',1)))
+            if not provider_resource(entry.get('url','')) and self.allow(entry.get('url','')):queue.append((entry['url'],entry.get('job',True),entry.get('depth',1)))
         max_pages=self.source.get('max_pages',60)
         try:
             while queue:
