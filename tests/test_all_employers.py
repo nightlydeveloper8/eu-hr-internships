@@ -52,6 +52,7 @@ class AllEmployerTests(unittest.TestCase):
    result=Crawler(source(),c).run()
   self.assertNotIn(asset,c.calls)
   self.assertIn(vacancy,c.calls)
+  self.assertEqual(c.calls,['https://example.org',vacancy])
   self.assertEqual(len(result),1)
   self.assertEqual(result[0]['title'],'HR Intern')
   self.assertFalse(result.stats['complete'])
