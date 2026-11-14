@@ -12,6 +12,22 @@ class Client:
     def remaining(self):return 100
 
 class DrentheSourceTests(unittest.TestCase):
+    def test_recruitee_feed_scope_filters_drafts_and_never_authorizes_absence_closure(self):
+        import json
+        from collector.public_feeds import recruitee_records
+        url='https://example.org/api/offers'
+        row=dict(id=1,title='Stage techniek',status='published',careers_url='https://example.org/o/stage',
+                 country_code='NL',city='Hoogeveen',description='Technische stage',requirements='')
+        data=dict(offers=[row,dict(row,id=2,status='draft')])
+        source=dict(id='test',employer='Test',allowed_hosts=['example.org'],feed_url=url,
+                    report_feed_scope=True,discovery_scope='Published records in observed public feed')
+        result=recruitee_records(source,Client({url:json.dumps(data)}))
+        self.assertEqual(len(result),1);self.assertEqual(result.stats['feed_records'],2)
+        self.assertEqual(result.stats['published_records'],1)
+        self.assertTrue(result.stats['complete']);self.assertFalse(result.stats['closure_complete'])
+        with self.assertRaisesRegex(ValueError,'pagination'):
+            recruitee_records(source,Client({url:json.dumps(dict(data,next_page='page2'))}))
+
     def test_email_requires_reviewed_address_and_current_application_instruction(self):
         url='https://example.org/jobs/hr';source=dict(application_check='official-email',application_email='hr@example.org',allowed_hosts=['example.org'])
         page='<main><h1>HR stage</h1><p>Stuur je motivatie en CV naar <a href="mailto:hr@example.org">hr@example.org</a></p></main>'

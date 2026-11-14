@@ -52,3 +52,27 @@ Completare quindi le evidenze su beneficio e costi Dynamic ATS della Issue #23;
 la Issue #18 resta il lavoro di miglioramento della copertura. PR #20 Drenthe
 separata, non integrata. Per la mappatura riprendere i checkpoint territoriali
 senza dichiarare completa una provincia sulla base dei soli datori censiti.
+
+## 12 novembre 2026 — Drenthe, PR #20 ancora separata
+
+Il testo globale precedente è conservato come fotografia della sessione che ha preparato #25. Il fix #25 è ora presente nella baseline main `0de282c`; questa fase non attesta il successivo ciclo di produzione. Preservati integralmente il test e la regressione aggiuntiva di main.
+
+- [Sesta fase e residui](drenthe-2026-11-12.md), [audit](drenthe-2026-11-12-audit.json), [validazione](drenthe-2026-11-12-validation.json). Precedente head PR `ff5da7c` conservato; nuovo SHA/CI nella descrizione della PR.
+- Intergas a Coevorden aggiunta con prove ufficiali di sede, organico arrotondato circa 500 e catena di recruiting. 39 datori, 25 qualificati ≥50, 14 dimensioni ignote. Feed pubblico: 14 pubblicati, nessuna vacancy HR specifica.
+- Programma generale Intergas 2027 che include HR registrato separatamente dalle vacancy. Incarico, periodo, lingue e usabilità del modulo non verificati come stage HR specifico. Nessuna nuova vacancy candidabile verificata.
+- Catalogo corrente di main identico byte per byte: 327 annunci. WIP storico, ricerche/sedi delle altre province e rollout ATS preservati; nessun merge in main, deployment o raccolta completa manuale.
+- Forbo/Aareon restano canali dinamici incompleti; il messaggio vuoto nel template Aareon non prova assenza. Proseguire su datori/località poco coperti e prove delle dimensioni ignote. Non ripetere i blocchi o trasformare programmi generali in vacancy.
+
+Storico Drenthe: rapporti datati 8–11 novembre, conservati nel branch della PR.
+
+## 13 novembre 2026 — Drenthe: sede Landal e verifica Workday incompleta
+
+- [Settima fase](drenthe-2026-11-13.md), [audit](drenthe-2026-11-13-audit.json), [validazione](drenthe-2026-11-13-validation.json). PR #20 ancora in bozza; baseline main `e7056c3`, precedente head PR `78d931f` preservato. Nuovo SHA e CI nella descrizione della PR.
+- Riutilizzata Landal per Hof van Saksen, Nooitgedacht (Aa en Hunze), conservando Friesland. 40 datori/gruppi, 26 qualificati ≥50, 14 dimensioni ignote. Organico locale documentato oltre 450: base minima del datore, non totale del gruppo.
+- Stage HR `95921c56e78ac43dffa1` già scoperto dal collector in main, ora associato a NL13. ID Workday JR104360 riconosciuto senza allentare host/titolo/form. Risposta SPA senza modulo identificato: resta unverified. Nessuna nuova vacancy verificata o ID aggiunto.
+- Finalizzazione isolata della scheda osservata: tutti i 335 ID conservati e gli altri 334 oggetti identici a main; nessuna nuova data di verifica, nessuna chiusura estranea. Busta del catalogo con timestamp globale precedente preservata; diagnostica e scheda hanno date proprie.
+- Preservati i fix main #30/#31, il WIP storico e il pilot ATS; nessun merge o deployment. Forbo Assendelft esclusa dalla ricerca Drenthe. Prossimo passo: organici ignoti, località e inventari incompleti; un eventuale browser Workday richiede review separata, non estensione automatica.
+
+## 14 novembre 2026 — Westerveld, organico qualificato
+
+[Rapporto corrente](drenthe-2026-11-14.md), [audit](drenthe-2026-11-14-audit.json), [validazione](drenthe-2026-11-14-validation.json). Baseline main `a33e530`, precedente head PR `cc72706` conservato. Fonte comunale ufficiale: circa 180–200 dipendenti. Lotto: 40 datori, 27 qualificati ≥50, 13 dimensioni ignote; nessun nuovo stage candidabile verificato. Catalogo conservato dal main più recente, salvo il ricalcolo della sola regione Landal, senza ripristinare osservazioni singole sopra il nuovo censimento. Nessuna raccolta completa, modifica al rollout, merge o produzione. Proseguire sulle dimensioni ignote e sui canali incompleti; commit e CI nella descrizione PR #20.

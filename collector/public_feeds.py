@@ -38,4 +38,9 @@ def recruitee_records(source,client):
         location='; '.join(cities+countries) or j.get('location','')
         out.append(dict(inventory_evidence='current-employer-feed',source_id=source['id'],external_id=str(j['id']),employer=source['employer'],title=plain(j['title']),location=location,text=plain((j.get('description') or '')+' '+(j.get('requirements') or '')),url=url,apply_url=url,countries=countries,language=None,published_at=None,employment=j.get('employment_type_code',''),city='; '.join(cities) or j.get('city'),country=countries[0] if len(countries)==1 else None,work_mode='remote' if j.get('remote') else 'hybrid' if j.get('hybrid') else None))
     if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate offers')
+    if source.get('report_feed_scope'):
+        from .universal import Inventory
+        return Inventory(out,dict(status='ok',complete=True,closure_complete=False,pages_read=1,
+            feed_records=len(data['offers']),published_records=len(out),
+            discovery_scope=source.get('discovery_scope')))
     return out

@@ -130,5 +130,125 @@
     "max_requests": 150,
     "access_reviewed_on": "2026-11-07",
     "permission_basis": "Public official park page links these Cegid filters. Reviewed public Nuxt getJobAds POST and /nl/annonce/:jobSlug route only; payload constrained, runtime robots checks. Candidate, authentication, subscription and map POSTs blocked; no application submitted."
+  },
+  "auto-unigarant": {
+    "adapter": "employer-index",
+    "unigarant_inventory_search": true,
+    "index_urls": [
+      "https://werkenbijunigarant.nl/vacatures/"
+    ],
+    "allowed_hosts": [
+      "werkenbijunigarant.nl",
+      "www.unigarant.nl"
+    ],
+    "job_url_pattern": "^https://werkenbijunigarant\\.nl/vacature/[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [],
+    "index_error_pattern": "Er ging iets mis bij het ophalen van de vacatures",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Official unfiltered public inventory: exact /vacatures-ajax POST with only numeric page. Published titles and short descriptions read; count compared with records. Full detail/workplace and application templates remain unreviewed, so no full-source or absence-based closure claim.",
+    "access_reviewed_on": "2026-11-08",
+    "permission_basis": "Employer overview links this public career domain. Observed employer JS and browser request identify public pagination only; robots checked; no filters, candidate fields, login or application POSTs permitted.",
+    "collection_seconds": 160,
+    "max_requests": 100
+  },
+  "auto-sw-vastgoedverbetering": {
+    "adapter": "recruitee",
+    "feed_url": "https://werkenbij.swbv.nl/api/offers/",
+    "allowed_hosts": [
+      "werkenbij.swbv.nl",
+      "www.swbv.nl"
+    ],
+    "discovery_scope": "Published offers in the official public Recruitee response; no company-wide census or inference from historical aggregator copies.",
+    "access_reviewed_on": "2026-11-09",
+    "permission_basis": "Official employer site links the SW recruitment domain; public Recruitee feed, runtime robots checks, no authentication or application submission.",
+    "collection_seconds": 120,
+    "max_requests": 100,
+    "report_feed_scope": true
+  },
+  "auto-interzorg-noord-nederland": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+    ],
+    "job_url_pattern": "^https://www\\.interzorg\\.nl/je-bent-van-harte-welkom/vacatures/[^/?]+/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "\\bPlaats\\s+(?:De Slinge|Servicecentrum|Nieuw Graswijk)\\s*-\\s*Assen\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Assen",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+De Hullen\\s*-\\s*Roden\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Roden",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+De Hoprank\\s*-\\s*Peize\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Peize",
+        "country": "NL"
+      },
+      {
+        "pattern": "\\bPlaats\\s+Kornoeljehof\\s*-\\s*Vries\\s+(?:Arbeidsovereenkomst|Salarisindicatie|Uren|Publicatiedatum)\\b",
+        "city": "Vries",
+        "country": "NL"
+      }
+    ],
+    "reviewed_advertisement_language": "nl",
+    "report_index_scope": true,
+    "inventory_scope_complete": false,
+    "discovery_scope": "Observed official public vacancy list, with distinct links inventoried. Reviewed exact visible Plaats fields for six site names in Assen, Roden, Peize and Vries only; flexible or unknown workplaces fail closed. No published inventory total established; pagination and AFAS application entry remain unreviewed. General internship enquiries excluded; no absence-based closure.",
+    "collection_seconds": 100,
+    "max_requests": 55,
+    "access_reviewed_on": "2026-11-10",
+    "permission_basis": "Public employer HTML only with runtime robots checks. No AFAS candidate-creation route, form submission, authentication or new browser pilot enabled."
+  },
+  "auto-attero": {
+    "adapter": "employer-index",
+    "index_urls": [
+      "https://www.attero.nl/nl/werken-bij/vacatures/"
+    ],
+    "job_url_pattern": "^https://www\\.attero\\.nl/nl/werken-bij/vacatures/\\d+-[^/?]+/?$",
+    "index_job_count_pattern": "Aantal vacatures:\\s*(\\d+)",
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Unfiltered official vacancy page; distinct numeric vacancy URLs must match the current published Aantal vacatures count. Generic stageplek landing page excluded from count, while numbered general Stagiair programme retained for reading without inferring HR or a workplace. Complete means the observed count-matched inventory, not the employer/market; no absence-based closure.",
+    "collection_seconds": 120,
+    "max_requests": 75,
+    "access_reviewed_on": "2026-11-11",
+    "permission_basis": "Public employer HTML and embedded JobPosting only; runtime robots and ordinary budgets. No browser fallback, new ATS host or application action approved."
+  },
+  "auto-intergas-verwarming-b-v": {
+    "adapter": "recruitee",
+    "feed_url": "https://intergas.recruitee.com/api/offers/",
+    "allowed_hosts": [
+      "www.intergas-verwarming.nl",
+      "werkenbijintergas.nl",
+      "intergas.recruitee.com"
+    ],
+    "report_feed_scope": true,
+    "discovery_scope": "Published offers in the linked official public Recruitee response, with draft filtering and pagination guard. Generic Stageplaats bij Intergas 2027 remains a general programme, not a specific HR vacancy. No absence-based closure.",
+    "collection_seconds": 100,
+    "max_requests": 55,
+    "access_reviewed_on": "2026-11-12",
+    "permission_basis": "Corporate-to-careers-to-Recruitee official link chain reviewed; public metadata feed GET with runtime robots checks. No browser rollout, new application parser, login, candidate action or submission enabled."
+  },
+  "auto-landal": {
+    "start_urls": [
+      "https://jobs.landal.com/nl-nl/vacatures/",
+      "https://jobs.landal.com/",
+      "https://www.landal.nl/",
+      "https://jobs.landal.com",
+      "https://www.landal.nl"
+    ],
+    "allowed_hosts": [
+      "jobs.landal.com",
+      "roompot.wd103.myworkdayjobs.com",
+      "www.landal.nl"
+    ],
+    "access_reviewed_on": "2026-11-13",
+    "permission_basis": "Existing Landal source retained. Exact Workday tenant linked by current official vacancy and requisition reviewed with runtime robots/GET only. No browser pilot, account, candidate action or submission enabled; JavaScript SPA is not application evidence."
   }
 }

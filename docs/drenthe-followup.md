@@ -1,5 +1,7 @@
 # Drenthe: approfondimento del 7 novembre 2026
 
+Fase successiva: [approfondimento dell’8 novembre 2026](drenthe-2026-11-08.md), con nuove presenze, qualificazioni e lettura Unigarant.
+
 Questa fase continua da main `699d1a4`, dopo la PR #4 e la verifica della produzione già concluse. Non ripete l'import CBS, il merge o la pubblicazione. Nessun merge in main, deployment di produzione, invio di candidatura o email è stato effettuato.
 
 ## Recupero del lavoro precedente
