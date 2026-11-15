@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-15",
+  "base_commit": "b51a602236b7190e2d77df5caad405b19347ce62",
+  "source_id": "auto-jde-peet-s",
+  "posting_id": "744000158015131",
+  "catalog_records": 1,
+  "observed_alias_urls": 3,
+  "distinct_opportunities": 1,
+  "before": {
+    "error": "Application link lacks a matching vacancy identifier",
+    "document_reads": 1,
+    "verified": false
+  },
+  "after": {
+    "error": "Application page does not identify the same vacancy",
+    "document_reads": 2,
+    "verified": false
+  },
+  "new_live_verified": 0,
+  "production_delta": 0,
+  "production_changed": false,
+  "source_scope_changed": false,
+  "robots_enforced": true,
+  "renderings": 0,
+  "live_requests": 9,
+  "live_duration_seconds": 17.505,
+  "live_cost_includes": "Initial vacancy/verification plus observed ATS target and one page each for Center Parcs and Landal; request counter includes robots, elapsed durations are sequential source times",
+  "source_costs": [
+    {
+      "source_id": "auto-jde-peet-s",
+      "requests": 5,
+      "duration_seconds": 4.685
+    },
+    {
+      "source_id": "auto-center-parcs",
+      "requests": 2,
+      "duration_seconds": 11.487
+    },
+    {
+      "source_id": "auto-landal",
+      "requests": 2,
+      "duration_seconds": 1.333
+    }
+  ],
+  "fixture_sha256": {
+    "vacancy.html.gz": "e1dacea639fe9a1aef55db00b43d98787f0d69b9c432caf8721c011d1a395f28",
+    "application.html.gz": "476709dd79b69a85baa1790dd2b9c229699aca945c5d479140d7631132373e69"
+  },
+  "remaining": {
+    "jde": "ATS returns posting JSON, no applicant form; do not mark verified",
+    "center_parcs": "Same-vacancy heading and JSON-LD, JavaScript Solliciteren button; no form or application href in static HTML",
+    "landal": "Observed Workday CTA has JR104108-1 while employer structured ID is JR104108; variant identity and application evidence not established"
+  },
+  "next_step": "Inspect reusable DigitalRecruiters read-only application flow under existing host/budget rules; no gate expansion or manual full collection"
+}

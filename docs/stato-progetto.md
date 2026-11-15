@@ -1,5 +1,49 @@
 # Stato di ripresa — People Placement
 
+## 15 novembre 2026 — identità JDE e confronto Center Parcs/Landal
+
+Ripresa dal primo punto incompleto sul main remoto `b51a602`. Checkout isolato
+`fix-jde-20261115`, ramo `fix/jde-application-evidence-20261115`; preservato il
+checkout principale e il lavoro delle altre sessioni.
+
+- **Modifica proposta, non integrata:** riconoscimento conservativo dello stesso
+  posting SmartRecruiters fra `job-posting-detail?id=` e prefisso numerico della
+  CTA osservata. Nessun ID inferito dalla sola CTA; query ripetute, ID discordanti,
+  host simili e ID nel tracking non bastano. Controlli titolo, host, redirect,
+  chiusura e modulo restano obbligatori. Nessuna configurazione host/gate cambiata.
+- **JDE: 0 nuove candidature verificate**, un solo record con tre URL osservate.
+  Lettura live ufficiale e target ATS con robots: il target restituisce JSON della
+  vacancy, non un modulo. Replay reale prima/dopo: errore d'identità risolto,
+  successivo errore `Application page does not identify the same vacancy` mantenuto.
+  Nessun aggiornamento del catalogo o timestamp di verifica da replay.
+- Confronto live circoscritto: Center Parcs ha titolo/JobPosting della stessa
+  vacancy e pulsante JavaScript `Solliciteren`, ma nessun href/modulo statico;
+  Landal pubblica `JR104108`, mentre la CTA Workday osservata contiene `JR104108-1`.
+  Nessuna promozione o presunzione di equivalenza della variante.
+- Costi complessivi della diagnosi: **9 richieste / 17,505 secondi-fonte /
+  0 rendering**, inclusi robots; JDE 5/4,685 s, Center Parcs 2/11,487 s,
+  Landal 2/1,333 s. La correzione aggiunge una lettura del target nel replay;
+  non dimostra un risparmio né nuove opportunità in produzione.
+- Report riproducibile: `docs/jde-application-identity-2026-11-15.json`, due
+  risposte reali compresse con SHA-256 e sei test nuovi, incluso replay in due cicli
+  senza mutazione del record. Corretto anche il test WEBO che assumeva uno stage
+  ancora assente dal catalogo: verifica ora inserimento e refresh/idempotenza.
+
+Validazione locale: **362 test Python 3.12 e 26 Node superati**, 64 esempi di
+classificazione senza errori, coverage e build riusciti. I file di copertura
+rigenerati solo nel timestamp sono stati esclusi dal diff.
+
+[PR #40 aperta](https://github.com/nightlydeveloper8/eu-hr-internships/pull/40),
+commit codice `1f223d046368e3edc3f50087e7b448e36658f261`. CI GitHub e preview
+avviate automaticamente, esito ancora da verificare. Nessun merge o attivazione.
+
+**Primo punto incompleto:** diagnosi riutilizzabile del flusso DigitalRecruiters
+Center Parcs attivato dal pulsante osservato, con letture non-submit e scope/budget
+esistenti. Per JDE serve una prova ufficiale di candidatura oltre al JSON; per
+Landal restano identità della variante Workday e modulo. Non ampliare rollout,
+non avviare raccolte complete. Catalogo/produzione invariati; confronto pubblico
+Cloudflare e Issue #18/#23 restano aperti. Nessun controllo AI futuro configurato.
+
 ## 15 novembre 2026 — esito della prima raccolta dopo #39
 
 Ripreso il primo punto incompleto senza avviare raccolte manuali.
