@@ -1,0 +1,561 @@
+{
+  "before": {
+    "ref": "a33e530f05a2bf1e6852b8fafce6766cee9a1d64",
+    "updated_at": "2026-11-14T07:21:01.525890+00:00",
+    "total": 340,
+    "states": {
+      "open": 19,
+      "unverified": 303,
+      "closed": 18
+    },
+    "fresh_verified_internships": 19,
+    "verified_by_country": {
+      "PT": 1,
+      "BE": 1,
+      "FR": 3,
+      "NL": 14
+    },
+    "sources": [
+      {
+        "source_id": "auto-daf-trucks",
+        "catalog_records": 2,
+        "verification_observations_before_latest_source_run": 2,
+        "retained_reason_counts": {
+          "sequence item 4: expected str instance, NoneType found": 2
+        },
+        "retained_observation_dates": {
+          "2026-11-06": 2
+        },
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-14T07:09:12.981093+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 30,
+          "pending_urls": 2264,
+          "requests": 69,
+          "bytes_read": 7086280,
+          "duration_seconds": 98.59,
+          "allowed_hosts": [
+            "cloud.email.randstad.nl",
+            "randstad.talent-pool.com",
+            "www.daf.com",
+            "www.daf.nl",
+            "www.randstad.be",
+            "www.randstad.nl",
+            "www.randstadenterprise.com",
+            "www.werkenbijrandstad.nl"
+          ],
+          "page_failures": 17
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.randstad.nl/vacatures/9215918/functioneel-beheerder-%7C-zwolle",
+            "error": "HTTP Error 410: Gone"
+          },
+          {
+            "url": "https://www.randstad.nl/vacatures/9215995/it-projectmanager-%7C-zwolle",
+            "error": "HTTP Error 410: Gone"
+          },
+          {
+            "url": "https://www.randstad.nl/vacatures/9215919/functioneel-beheerder-%7C-den-haag",
+            "error": "HTTP Error 410: Gone"
+          }
+        ]
+      },
+      {
+        "source_id": "auto-becton-dickinson",
+        "catalog_records": 1,
+        "verification_observations_before_latest_source_run": 1,
+        "retained_reason_counts": {
+          "sequence item 2: expected str instance, NoneType found": 1
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 1
+        },
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-14T07:09:12.161784+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 16,
+          "pending_urls": 285,
+          "requests": 88,
+          "bytes_read": 4833348,
+          "duration_seconds": 73.29,
+          "allowed_hosts": [
+            "bd.com",
+            "bdx.wd1.myworkdayjobs.com",
+            "eifu.bd.com",
+            "jobs.bd.com",
+            "www.bd.com"
+          ],
+          "page_failures": 68
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://bdx.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREER_SITE_USA",
+            "error": "HTTP Error 521: <none>"
+          },
+          {
+            "url": "https://jobs.bd.com/search-jobs/Friesland%2C%20NL/159/3/2750405-2755812/53x16667/5x83333/0/2",
+            "error": "robots.txt disallows https://jobs.bd.com/search-jobs/Friesland%2C%20NL/159/3/2750405-2755812/53x16667/5x83333/0/2"
+          },
+          {
+            "url": "https://bdx.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREER_SITE_USA/job/USA-CT---Canaan/Process-Engineer---JG4_R-556888",
+            "error": "HTTP Error 521: <none>"
+          }
+        ]
+      },
+      {
+        "source_id": "auto-belsimpel-gomibo-group",
+        "catalog_records": 1,
+        "verification_observations_before_latest_source_run": 1,
+        "retained_reason_counts": {
+          "sequence item 0: expected str instance, NoneType found": 1
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 1
+        },
+        "outside_declared_host_count": 1,
+        "outside_declared_hosts": {
+          "jobs.werkenbijbelsimpel.nl": 1
+        },
+        "latest_source_report": {
+          "checked_at": "2026-11-14T07:09:34.039307+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 28,
+          "pages_read": 32,
+          "pending_urls": 64,
+          "requests": 35,
+          "bytes_read": 13113037,
+          "duration_seconds": 101.53,
+          "allowed_hosts": [
+            "jobs.werkenbijbelsimpel.nl",
+            "werkenbijbelsimpel.nl",
+            "www.belsimpel.nl",
+            "www.werkenbijbelsimpel.nl"
+          ],
+          "page_failures": 0
+        },
+        "latest_page_errors": []
+      },
+      {
+        "source_id": "auto-tilburg-university",
+        "catalog_records": 108,
+        "verification_observations_before_latest_source_run": 100,
+        "retained_reason_counts": {
+          "No available vacancy-specific application entry established": 29,
+          "Time budget exhausted; checkpoint retained": 71
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 100
+        },
+        "outside_declared_host_count": 108,
+        "outside_declared_hosts": {
+          "www.nationalevacaturebank.nl": 108
+        },
+        "latest_source_report": {
+          "checked_at": "2026-11-14T07:09:11.096567+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 70,
+          "pending_urls": 30,
+          "requests": 80,
+          "bytes_read": 3568040,
+          "duration_seconds": 48.32,
+          "allowed_hosts": [
+            "www.tilburguniversity.edu"
+          ],
+          "page_failures": 3
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.tilburguniversity.edu/cdn-cgi/l/email-protection",
+            "error": "HTTP Error 404: Not Found"
+          },
+          {
+            "url": "https://www.tilburguniversity.edu/students/career/talent-developement/participation",
+            "error": "unsupported operand type(s) for +: 'NoneType' and 'str'"
+          },
+          {
+            "url": "https://www.tilburguniversity.edu/sites/default/files/download/Career%20Calendar%20TLS%20-%20The%20Spring%20Edition%202025.pdf",
+            "error": "Rendered read: Page.goto: Download is starting\nCall log:\n  - navigating to \"https://www.tilburguniversity.edu/sites/default/files/download/Career%20Calendar%20TLS%20-%20The%20"
+          }
+        ]
+      },
+      {
+        "source_id": "auto-randstad-italia-spa",
+        "catalog_records": 25,
+        "verification_observations_before_latest_source_run": 23,
+        "retained_reason_counts": {
+          "No available vacancy-specific application entry established": 11,
+          "Time budget exhausted; checkpoint retained": 12
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 23
+        },
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-14T07:09:33.773420+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 37,
+          "pending_urls": 2603,
+          "requests": 53,
+          "bytes_read": 25108291,
+          "duration_seconds": 102.47,
+          "allowed_hosts": [
+            "digitalcontent.randstad.it",
+            "odm-agenzielavoro.it",
+            "www.ilo.org",
+            "www.randstad.it"
+          ],
+          "page_failures": 3
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.randstad.it/offerte-lavoro/tirocinio-hr-talent-selection_torino_c26d164c-3681-451b-93fb-3d1468dc1f60",
+            "error": "HTTP Error 410: Gone"
+          },
+          {
+            "url": "https://odm-agenzielavoro.it/reclami",
+            "error": "robots.txt unavailable: 403"
+          },
+          {
+            "url": "https://www.randstad.it/s3fs-media/it-rs/public/2025-11/CCNL_SOMMINISTRAZIONE_21_luglio_2025.pdf",
+            "error": "Rendered read: Page.goto: Download is starting\nCall log:\n  - navigating to \"https://www.randstad.it/s3fs-media/it-rs/public/2025-11/CCNL_SOMMINISTRAZIONE_21_luglio_2025.pdf\", "
+          }
+        ]
+      },
+      {
+        "source_id": "auto-bmw-group",
+        "catalog_records": 3,
+        "verification_observations_before_latest_source_run": 0,
+        "retained_reason_counts": {},
+        "retained_observation_dates": {},
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-14T07:09:10.968297+00:00",
+          "status": "partial",
+          "matching": 3,
+          "collected": 6,
+          "pages_read": 6,
+          "pending_urls": 16,
+          "requests": 37,
+          "bytes_read": 818776,
+          "duration_seconds": 120.32,
+          "allowed_hosts": [
+            "career5.successfactors.eu",
+            "www.bmwgroup.jobs"
+          ],
+          "page_failures": 3
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.bmwgroup.jobs/de/en/jobfinder/job-description-copy.200020.html",
+            "error": "Vacancy verification: Application link lacks a matching vacancy identifier"
+          },
+          {
+            "url": "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.197182.html",
+            "error": "Vacancy verification: Time budget exhausted; checkpoint retained"
+          },
+          {
+            "url": "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.195478.html",
+            "error": "Vacancy verification: Time budget exhausted; checkpoint retained"
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "ref": "a70117cee3697bcf61238a1999e32baa916dca9a",
+    "updated_at": "2026-11-15T07:23:41.115178+00:00",
+    "total": 341,
+    "states": {
+      "open": 19,
+      "closed": 23,
+      "unverified": 299
+    },
+    "fresh_verified_internships": 19,
+    "verified_by_country": {
+      "PT": 1,
+      "BE": 1,
+      "FR": 3,
+      "NL": 14
+    },
+    "sources": [
+      {
+        "source_id": "auto-daf-trucks",
+        "catalog_records": 2,
+        "verification_observations_before_latest_source_run": 2,
+        "retained_reason_counts": {
+          "sequence item 4: expected str instance, NoneType found": 2
+        },
+        "retained_observation_dates": {
+          "2026-11-06": 2
+        },
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-15T07:11:11.703135+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 34,
+          "pending_urls": 2332,
+          "requests": 86,
+          "bytes_read": 8192908,
+          "duration_seconds": 100.46,
+          "allowed_hosts": [
+            "cloud.email.randstad.nl",
+            "randstad.talent-pool.com",
+            "www.daf.com",
+            "www.daf.nl",
+            "www.randstad.be",
+            "www.randstad.nl",
+            "www.randstadenterprise.com",
+            "www.werkenbijrandstad.nl"
+          ],
+          "page_failures": 9
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.randstad.nl/vacatures/758480/administratief-medewerker-bibob",
+            "error": "HTTP Error 410: Gone"
+          },
+          {
+            "url": "https://www.randstad.nl/vacatures/758425/junior-projectmanager",
+            "error": "HTTP Error 410: Gone"
+          },
+          {
+            "url": "https://www.randstad.nl/vacatures/758321/bibliotheekmedewerker",
+            "error": "HTTP Error 410: Gone"
+          }
+        ]
+      },
+      {
+        "source_id": "auto-becton-dickinson",
+        "catalog_records": 1,
+        "verification_observations_before_latest_source_run": 1,
+        "retained_reason_counts": {
+          "sequence item 2: expected str instance, NoneType found": 1
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 1
+        },
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-15T07:11:29.100721+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 34,
+          "pending_urls": 248,
+          "requests": 88,
+          "bytes_read": 3328840,
+          "duration_seconds": 54.08,
+          "allowed_hosts": [
+            "bd.com",
+            "bdx.wd1.myworkdayjobs.com",
+            "eifu.bd.com",
+            "jobs.bd.com",
+            "www.bd.com"
+          ],
+          "page_failures": 3
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://jobs.bd.com/search-jobs/Friesland%2C%20NL/159/3/2750405-2755812/53x16667/5x83333/0/2",
+            "error": "robots.txt disallows https://jobs.bd.com/search-jobs/Friesland%2C%20NL/159/3/2750405-2755812/53x16667/5x83333/0/2"
+          },
+          {
+            "url": "https://jobs.bd.com/search-jobs",
+            "error": "robots.txt disallows https://jobs.bd.com/search-jobs"
+          },
+          {
+            "url": "https://jobs.bd.com/en/search-jobs",
+            "error": "robots.txt disallows https://jobs.bd.com/en/search-jobs"
+          }
+        ]
+      },
+      {
+        "source_id": "auto-belsimpel-gomibo-group",
+        "catalog_records": 1,
+        "verification_observations_before_latest_source_run": 1,
+        "retained_reason_counts": {
+          "sequence item 0: expected str instance, NoneType found": 1
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 1
+        },
+        "outside_declared_host_count": 1,
+        "outside_declared_hosts": {
+          "jobs.werkenbijbelsimpel.nl": 1
+        },
+        "latest_source_report": {
+          "checked_at": "2026-11-15T07:11:35.491073+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 23,
+          "pages_read": 33,
+          "pending_urls": 48,
+          "requests": 37,
+          "bytes_read": 12672864,
+          "duration_seconds": 99.28,
+          "allowed_hosts": [
+            "jobs.werkenbijbelsimpel.nl",
+            "werkenbijbelsimpel.nl",
+            "www.belsimpel.nl",
+            "www.werkenbijbelsimpel.nl"
+          ],
+          "page_failures": 0
+        },
+        "latest_page_errors": []
+      },
+      {
+        "source_id": "auto-tilburg-university",
+        "catalog_records": 108,
+        "verification_observations_before_latest_source_run": 99,
+        "retained_reason_counts": {
+          "No available vacancy-specific application entry established": 28,
+          "Time budget exhausted; checkpoint retained": 71
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 99
+        },
+        "outside_declared_host_count": 108,
+        "outside_declared_hosts": {
+          "www.nationalevacaturebank.nl": 108
+        },
+        "latest_source_report": {
+          "checked_at": "2026-11-15T07:11:25.576774+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 70,
+          "pending_urls": 39,
+          "requests": 77,
+          "bytes_read": 3451521,
+          "duration_seconds": 46.53,
+          "allowed_hosts": [
+            "www.tilburguniversity.edu"
+          ],
+          "page_failures": 2
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.tilburguniversity.edu/cdn-cgi/l/email-protection",
+            "error": "HTTP Error 404: Not Found"
+          },
+          {
+            "url": "https://www.tilburguniversity.edu/students/career/talent-developement/participation",
+            "error": "unsupported operand type(s) for +: 'NoneType' and 'str'"
+          }
+        ]
+      },
+      {
+        "source_id": "auto-randstad-italia-spa",
+        "catalog_records": 25,
+        "verification_observations_before_latest_source_run": 22,
+        "retained_reason_counts": {
+          "No available vacancy-specific application entry established": 11,
+          "Time budget exhausted; checkpoint retained": 11
+        },
+        "retained_observation_dates": {
+          "2026-11-07": 22
+        },
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-15T07:11:31.107442+00:00",
+          "status": "partial",
+          "matching": 0,
+          "collected": 0,
+          "pages_read": 37,
+          "pending_urls": 2686,
+          "requests": 54,
+          "bytes_read": 23609520,
+          "duration_seconds": 100.68,
+          "allowed_hosts": [
+            "digitalcontent.randstad.it",
+            "odm-agenzielavoro.it",
+            "www.ilo.org",
+            "www.randstad.it"
+          ],
+          "page_failures": 2
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.randstad.it/offerte-lavoro/tirocinio-hr-talent-selection_torino_c26d164c-3681-451b-93fb-3d1468dc1f60",
+            "error": "HTTP Error 410: Gone"
+          },
+          {
+            "url": "https://www.randstad.it/offerte-lavoro/stage-recruiter-fmnb_garbagnate-milanese_4940e949-21e2-4cbe-8103-a966fdff61e9",
+            "error": "HTTP Error 410: Gone"
+          }
+        ]
+      },
+      {
+        "source_id": "auto-bmw-group",
+        "catalog_records": 3,
+        "verification_observations_before_latest_source_run": 0,
+        "retained_reason_counts": {},
+        "retained_observation_dates": {},
+        "outside_declared_host_count": 0,
+        "outside_declared_hosts": {},
+        "latest_source_report": {
+          "checked_at": "2026-11-15T07:11:12.189337+00:00",
+          "status": "partial",
+          "matching": 3,
+          "collected": 3,
+          "pages_read": 5,
+          "pending_urls": 21,
+          "requests": 30,
+          "bytes_read": 576092,
+          "duration_seconds": 121.27,
+          "allowed_hosts": [
+            "career5.successfactors.eu",
+            "www.bmwgroup.jobs"
+          ],
+          "page_failures": 3
+        },
+        "latest_page_errors": [
+          {
+            "url": "https://www.bmwgroup.jobs/de/en/jobfinder/job-description-copy.200020.html",
+            "error": "Vacancy verification: Time budget exhausted; checkpoint retained"
+          },
+          {
+            "url": "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.197182.html",
+            "error": "Vacancy verification: Time budget exhausted; checkpoint retained"
+          },
+          {
+            "url": "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.195478.html",
+            "error": "Vacancy verification: Time budget exhausted; checkpoint retained"
+          }
+        ]
+      }
+    ]
+  },
+  "delta_verified": 0,
+  "new_catalog_ids": [
+    "7b9e2037d73ee47523d6"
+  ],
+  "removed_catalog_ids": [],
+  "limitations": [
+    "Snapshots are historical collection evidence, not new live checks.",
+    "Outside declared hosts requires ownership review, not automatic reassignment.",
+    "Retained reasons do not describe the latest source run.",
+    "Zero newly collected records does not establish absence or closure."
+  ]
+}
