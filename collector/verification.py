@@ -2,7 +2,7 @@
 import re
 from datetime import datetime, timezone
 from urllib.error import HTTPError
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import parse_qs, urljoin, urlsplit
 from .classify import canonical_url, fold, plain, classify_role
 from .applications import checked_document, verify_application, ApplicationClosed, ApplicantForms
 
@@ -58,6 +58,22 @@ def shares_identifier(record, application):
     # application path. Match an already known ID exactly, never a substring
     # or an ID invented from the CTA; normal host/title/form gates still apply.
     target=urlsplit(application)
+    # Employer-hosted SmartRecruiters detail pages publish the posting ID in
+    # ?id=, while the observed ATS link prefixes its slug with the same ID.
+    # Read identity from the vacancy, never from the CTA alone. Duplicate or
+    # conflicting IDs fail closed; title/host/redirect/form gates still apply.
+    if target.hostname=='jobs.smartrecruiters.com':
+        match=re.fullmatch(r'/[^/]+/(\d{15})(?:-[^/]+)?/?',target.path)
+        vacancy=urlsplit(record['url'])
+        query=parse_qs(vacancy.query,keep_blank_values=True)
+        if re.fullmatch(r'/(?:[a-z]{2}-[A-Z]{2}/)?job-posting-detail/?',vacancy.path) and 'id' in query:
+            values=query['id']
+            if len(values)!=1 or not re.fullmatch(r'\d{15}',values[0]):return False
+            known=[str(value) for value in candidates if value is not None and re.fullmatch(r'\d{15}',str(value))]
+            if record.get('posting_identifier') and str(record['posting_identifier'])!=values[0]:return False
+            if any(value!=values[0] for value in known):return False
+            candidates.append(values[0])
+        return bool(match and any(isinstance(value,(str,int)) and str(value)==match.group(1) for value in candidates))
     if (target.hostname or '').endswith('.myworkdayjobs.com'):
         match=re.fullmatch(r'/[^/]+/job/[^/]+/[^/]+_(JR\d+)/apply/?',target.path)
         if match and any(isinstance(value,(str,int)) and str(value)==match.group(1) for value in candidates):

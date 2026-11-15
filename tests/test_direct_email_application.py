@@ -59,17 +59,23 @@ class DirectEmailApplicationTests(unittest.TestCase):
         self.assertEqual(part['jobs'][0]['status'],'open')
         self.assertFalse(part['report']['closure_complete'])
         prior=read(ROOT/'data/catalog.json',{})
-        with tempfile.TemporaryDirectory() as folder:
-            a,_=finalize(registry,[source],copy.deepcopy(prior),{},[part],STAMP,Path(folder)/'a')
-            b,_=finalize(registry,[source],copy.deepcopy(a),{},[part],STAMP,Path(folder)/'b')
-        self.assertEqual(a['jobs'],b['jobs'])
-        previous={j['id'] for j in prior['jobs']}
-        current={j['id'] for j in b['jobs']}
-        self.assertTrue(previous.issubset(current))
-        self.assertEqual(len(current-previous),1)
-        job=next(j for j in b['jobs'] if j['id'] not in previous)
-        self.assertEqual(job['region_codes'],['NL21'])
-        self.assertEqual(job['countries'],['NL'])
+        expected_id=part['jobs'][0]['id']
+        # The daily catalog can already contain WEBO. Exercise insertion and
+        # refresh explicitly rather than assuming production has not found it.
+        absent=copy.deepcopy(prior)
+        absent['jobs']=[j for j in absent['jobs'] if j['id']!=expected_id]
+        for baseline in (absent,prior):
+            with self.subTest(already_present=any(j['id']==expected_id for j in baseline['jobs'])):
+                with tempfile.TemporaryDirectory() as folder:
+                    a,_=finalize(registry,[source],copy.deepcopy(baseline),{},[part],STAMP,Path(folder)/'a')
+                    b,_=finalize(registry,[source],copy.deepcopy(a),{},[part],STAMP,Path(folder)/'b')
+                self.assertEqual(a['jobs'],b['jobs'])
+                previous={j['id'] for j in baseline['jobs']}
+                current={j['id'] for j in b['jobs']}
+                self.assertEqual(current,previous|{expected_id})
+                job=next(j for j in b['jobs'] if j['id']==expected_id)
+                self.assertEqual(job['region_codes'],['NL21'])
+                self.assertEqual(job['countries'],['NL'])
 
 
 if __name__=='__main__':unittest.main()
