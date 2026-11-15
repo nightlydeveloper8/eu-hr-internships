@@ -33,6 +33,10 @@ Validazione locale: **362 test Python 3.12 e 26 Node superati**, 64 esempi di
 classificazione senza errori, coverage e build riusciti. I file di copertura
 rigenerati solo nel timestamp sono stati esclusi dal diff.
 
+[PR #40 aperta](https://github.com/nightlydeveloper8/eu-hr-internships/pull/40),
+commit codice `1f223d046368e3edc3f50087e7b448e36658f261`. CI GitHub e preview
+avviate automaticamente, esito ancora da verificare. Nessun merge o attivazione.
+
 **Primo punto incompleto:** diagnosi riutilizzabile del flusso DigitalRecruiters
 Center Parcs attivato dal pulsante osservato, con letture non-submit e scope/budget
 esistenti. Per JDE serve una prova ufficiale di candidatura oltre al JSON; per
