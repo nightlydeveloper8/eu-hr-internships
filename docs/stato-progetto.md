@@ -1,5 +1,52 @@
 # Stato di ripresa — People Placement
 
+## 15 novembre 2026 — esito della prima raccolta dopo #39
+
+Ripreso il primo punto incompleto senza avviare raccolte manuali.
+[Raccolta #43750497445](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43750497445)
+conclusa con successo alle 20:20 ora svizzera: test, 16 shard e publish riusciti.
+Commit dati `1ad28a9cae8076d9181974fa4ea07940e263a93d`.
+
+- Catalogo: **345 → 346 ID; 19 → 20 open/verified; 303 unverified e 23 closed invariati**.
+  Tutti i vecchi ID conservati e nessun cambio di status sui record precedenti.
+  Le 20 verifiche aperte hanno checked_at del 15 novembre, fra 19:07:47 e 19:08:08 UTC.
+- **WEBO — Stage HRM, Rijssen**: nuovo ID `538388e73bc1c0592ab5`,
+  candidatura ufficiale via email documentata dal collector live, policy v2,
+  `official-vacancy-email-instructions`; inizio febbraio 2027, lingua di lavoro
+  sconosciuta. Nessuna email o candidatura inviata. È una nuova opportunità verificata,
+  già presente come vecchia scheda aggregatore unverified: non due opportunità distinte.
+  Fonte parziale: 11 richieste, 23,17 s, zero rendering. Gli errori su open application
+  e working student non invalidano la prova della vacancy HR né rendono completo l'inventario.
+- Cinque fonti nuove, costo complessivo **50 richieste / 71,73 secondi-fonte**:
+  WEBO 11/23,17 s → 1 HR verificato; Attero 30/35,85 s → 0 HR osservati,
+  lettura parziale (una scheda senza JobPosting); Intergas 2/1,21 s → inventario
+  14 offerte, 0 HR; SW 2/1,63 s → inventario 39 offerte, 0 HR;
+  Reestmond 5/9,87 s → discovery incompleta, non prova di zero offerte.
+  Questi tempi non sono tempo a muro né costo monetario.
+- Drenthe: 40/40 tentati, 27 con dimensione qualificata, 2 stage verificati totali
+  (1 presso datori qualificati). Stati: 21 partial, 10 discovery-incomplete,
+  5 blocked-or-failed, 4 collected. Provincia ancora incompleta.
+- Totale monitoraggio: 1.887 datori tentati; 57 collected, 31 verified-empty,
+  513 partial, 977 discovery-incomplete, 309 blocked-or-failed.
+- Cloudflare check-run `132927454054`: **success sul commit dati esatto 1ad28a9**,
+  deployment `a2442ea2-8a3b-4496-a134-1497fe0fdad6`.
+  Il success del deployment è attestato; confronto del catalogo servito ancora
+  incompleto: precedente accesso HTTP 403 e tentativo browser corrente in timeout.
+- Dynamic ATS: Bentacera, OPACK e Achmea restano unverified. Nessuna nuova prova
+  di beneficio di produzione per #23; #18/#23 rimangono aperte. Gate e rollout invariati.
+- Nessuna PR aperta all'avvio della ripresa. Nessun nuovo merge, ampliamento host,
+  rollout, modifica al catalogo o workflow manuale in questa attività.
+
+**Primo punto incompleto aggiornato:** diagnosi riutilizzabile dei link ufficiali
+di candidatura sui canali NL già letti, partendo da JDE: tre URL osservate nella raccolta condividono
+lo stesso posting ID `744000158015131` e falliscono `Application link lacks a matching vacancy identifier`;
+non sono tre opportunità distinte. Confrontare poi Center Parcs e Landal, preservando
+policy v2, robots e host autorizzati. Prove live circoscritte solo quando utili;
+nessuna raccolta completa manuale. Proseguire la copertura comunale NL tramite fonti
+ufficiali accessibili; CBS, Groothuis e Wikidata restano esclusi finché bloccati.
+Il confronto del sito servito resta una verifica indipendente da completare.
+Nessun controllo AI futuro configurato.
+
 ## 15 novembre 2026 — integrazione autorizzata delle PR pronte
 
 L'utente ha autorizzato esplicitamente squash and merge di tutto il lavoro pronto.
@@ -51,7 +98,7 @@ nessun nuovo verified attribuito al fix. DAF: richieste 86 → 75, durata
 100,46 → 86,13 s, pending 2.332 → 57, solo host www.daf.com. Inventario ancora
 parziale: il risparmio osservato non prova completezza né nuove candidature.
 
-**Primo punto incompleto:** leggere l'esito del run #43750497445, verificare
+**Punto di ripresa precedente (completato sopra):** leggere l'esito del run #43750497445, verificare
 publish, nuovi ID, freschezza e opportunità WEBO; misurare costi e canali Drenthe.
 Non dichiarare un incremento di produzione prima di quel risultato. Il controllo
 pubblico del catalogo Cloudflare ha restituito HTTP 403: deployment/contenuto
