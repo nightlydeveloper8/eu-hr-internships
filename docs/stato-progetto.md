@@ -1,5 +1,16 @@
 # Stato di ripresa — People Placement
 
+## Ripresa — verifica integrazione JDE
+
+Verificata via API GitHub la PR #40: squash merge completato il 15 novembre 2026,
+21:14:18 UTC, commit `216ea7300e5d666d6e78a0a1d2ba732d5109d502`.
+La correzione di identità è quindi su main; i dettagli sotto descrivono la diagnosi
+precedente al merge. Beneficio dimostrato dalla diagnosi: **0 nuove candidature**;
+il target JDE restituiva JSON senza modulo. Nessuna PR duplicata, nuovo merge o
+rollout in questa ripresa. Verifica della candidatura JDE e beneficio della raccolta
+dopo merge ancora non attestati. Il runtime locale è disconnesso; stato aggiornato
+tramite GitHub preservando il contenuto delle altre sessioni.
+
 ## 15 novembre 2026 — identità JDE e confronto Center Parcs/Landal
 
 Ripresa dal primo punto incompleto sul main remoto `b51a602`. Checkout isolato
