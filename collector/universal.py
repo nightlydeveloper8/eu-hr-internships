@@ -36,7 +36,9 @@ class Document(HTMLParser):
         super().__init__(convert_charrefs=True);self.url=url;self.links=[];self.frames=[];self.buttons=[];self.h1=[];self.main=[];self.body=[];self.locations=[];self.stack=[];self.anchor=None;self.heading=None;self.button=None;self.meta={}
         self.structured=PageParser();self.structured.feed(body.decode('utf-8','replace'));self.feed(body.decode('utf-8','replace'))
     def handle_starttag(self,tag,attrs):
-        a=dict(attrs);parent=self.stack[-1] if self.stack else {};ignored=parent.get('ignored',False) or tag in ('script','style','noscript','svg')
+        # HTMLParser represents valueless attributes as None. Presentation hints
+        # carry no text in that case; they must not abort the entire document.
+        a={key:value or '' for key,value in attrs};parent=self.stack[-1] if self.stack else {};ignored=parent.get('ignored',False) or tag in ('script','style','noscript','svg')
         main=parent.get('main',False) or tag in ('main','article') or a.get('role')=='main' or bool(re.search(r'entry-content|job-description|job-detail|vacancy-detail',a.get('class','')))
         footer=parent.get('footer',False) or tag in ('footer','nav','header')
         location=not footer and bool(re.search(r'(?:^|\s)(?:location|job[-_]?location|vacancy[-_]location|standort|locatie|job[-_]city|job[-_]address|workplace|joblocal|addressLocality)(?:\s|$)',a.get('class','')+' '+a.get('itemprop',''),re.I))
@@ -128,7 +130,9 @@ class Crawler:
         self.source=source;self.known_urls=set(source.get('known_job_urls',[]));self.client=client;self.scan_deadline=time.monotonic()+client.remaining()*.82 if hasattr(client,'remaining') else float('inf');self.cache=PageCache(source['id'],revision=4 if source.get('ownership_scope')=='reviewed-hosts' else 3);self.state=self.cache.state();
         if source.get('ownership_scope')=='reviewed-hosts' and self.state.get('ownership_policy_version')!=1:self.state={}
         self.state['ownership_policy_version']=1
-        self.allowed=set(source['allowed_hosts'])|set(self.state.get('allowed_hosts',[]));self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set()
+        self.allowed=set(source['allowed_hosts'])
+        if source.get('ownership_scope')!='reviewed-hosts':self.allowed.update(self.state.get('allowed_hosts',[]))
+        self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set()
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
@@ -143,6 +147,7 @@ class Crawler:
         # URL was explicitly published in a trusted employer's structured data/feed.
         url=safe_url(r['url'])
         if not url:return
+        if self.source.get('ownership_scope')=='reviewed-hosts' and not self.allow(url):return
         self.allowed.add(urlsplit(url).hostname);r['source_id']=self.source['id'];self.records[url]=r
     def feed(self,url):
         """Only documented endpoints with identifiers observed in employer links."""
@@ -174,12 +179,14 @@ class Crawler:
         except CollectionBudgetExceeded:raise
         except Exception as exc:self.errors.append(dict(url=feed or url,error='Feed: '+str(exc)[:160]));return False
     def visit(self,url,is_job=False,render=False):
+        if not self.allow(url):raise ValueError('Unreviewed career host')
         self.client.check();cached=self.cache.get(url,max_age_hours=12 if url in self.known_urls else 48) if is_job else None
         if cached:
             for record in cached.get('records',[]):record.pop('inventory_evidence',None)
             self.used_methods.add('cached-job-page');return cached
         body,_,final=self.client.request(url)
         if not safe_url(final):raise ValueError('Unsafe final URL')
+        if self.source.get('ownership_scope')=='reviewed-hosts' and not self.allow(final):raise ValueError('Unreviewed career redirect host')
         # A declared employer redirect is public provenance for its final host.
         self.allowed.add(urlsplit(final).hostname);self.pages+=1
         if body.lstrip().startswith(b'{'):
@@ -283,7 +290,7 @@ class Crawler:
         return (priority,self.cache.timestamp(url),depth)
 
     def run(self):
-        seeds=[u for u in [self.state.get('preferred_career_url')]+self.source['start_urls'] if u and safe_url(u)]
+        seeds=[u for u in [self.state.get('preferred_career_url')]+self.source['start_urls'] if u and self.allow(u)]
         queue=deque((u,True,0) for u in self.source.get('known_job_urls',[]) if self.allow(u));queue.extend((u,False,0) for u in dict.fromkeys(seeds));pending=self.state.get('pending',[])
         for entry in pending:
             if self.allow(entry.get('url','')):queue.append((entry['url'],entry.get('job',True),entry.get('depth',1)))
@@ -294,6 +301,7 @@ class Crawler:
                 if time.monotonic()>=self.scan_deadline or (hasattr(self.client,'max_requests') and self.client.requests>=self.client.max_requests*.8):self.incomplete=True;break
                 if self.pages>=max_pages:self.incomplete=True;break
                 url,is_job,depth=queue.popleft()
+                if not self.allow(url):continue
                 if url in self.urls_seen:continue
                 self.urls_seen.add(url)
                 try:
