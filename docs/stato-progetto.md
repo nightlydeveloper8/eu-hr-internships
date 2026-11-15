@@ -20,7 +20,7 @@ Non chiedere di nuovo l'autorizzazione per completare questa integrazione.
 - Registro proposto: 1.887 datori e 1.931 fonti, cinque datori/fonti nuovi
   (Attero, Intergas, Reestmond, SW Vastgoedverbetering e WEBO). Le altre modifiche
   estendono o correggono identità/sedi e canali di datori già censiti.
-- Tutti i 341 ID del catalogo corrente conservati, senza variazioni di status,
+- Tutti i 345 ID del catalogo corrente conservati, senza variazioni di status,
   identità o verifiche. Unica associazione aggiornata: Landal Nooitgedacht → NL13,
   derivata dalla sede ufficiale Drenthe già revisionata. Nessun snapshot storico
   di catalogo o coverage generale sovrascrive quello attuale.
@@ -37,7 +37,10 @@ Non chiedere di nuovo l'autorizzazione per completare questa integrazione.
 - Gate Dynamic ATS `pilot-v1`, allowlist del pilota e schedule invariati. Nessuna
   raccolta completa manuale, email, candidatura o automazione AI aggiunta.
 
-**Punto attuale:** pubblicare e verificare la CI della PR consolidata, poi squash
+**Punto attuale:** [PR #39](https://github.com/nightlydeveloper8/eu-hr-internships/pull/39)
+pubblicata e riallineata alla raccolta automatica #43748284250, riuscita dopo #38.
+Snapshot aggiornato 18:55 UTC: 345 record, 19 open/verified, 303 unverified,
+23 closed. Nessun rollback al vecchio catalogo. Verificare CI finale e squash
 merge già autorizzato; chiudere i rami PR duplicati senza eliminare prove. Leggere
 l'esecuzione automatica generata dal merge e il catalogo pubblicato per misurare
 verified freschi, host/costi e nuovi ID. Separare publish GitHub e deployment

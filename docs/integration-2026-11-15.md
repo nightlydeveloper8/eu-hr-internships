@@ -1,7 +1,7 @@
 # Integrazione delle PR pronte — 15 novembre 2026
 
 Autorizzazione dell'utente: squash and merge di tutto ciò che è pronto.
-Base: main `adf4c69`, con PR #38 già integrata. I checkout altrui sono preservati.
+Base aggiornata: main `19c4258`, pubblicato dalla raccolta automatica #43748284250 successiva alla PR #38; tutti i 345 ID e le verifiche recenti preservati. I checkout altrui sono preservati.
 
 | PR | Contenuto incluso | Limite mantenuto |
 |---|---|---|
@@ -29,7 +29,7 @@ generazione coverage e build riusciti. Test Node reali degli script workflow con
 GitHub Issues simulato, senza rete. Due piccoli conflitti di codice risolti
 combinando le modifiche, senza ripristinare i vecchi host permissivi.
 
-Confronto catalogo main: tutti i 341 ID conservati, nessun cambio di stato,
+Confronto catalogo main: tutti i 345 ID conservati, nessun cambio di stato,
 last_verified_at o application proof. Solo il campo region_codes di Landal
 95921c56e78ac43dffa1 passa da [] a [NL13] dalla sede Nooitgedacht revisionata.
 1.887 aziende e 1.931 source; tutti gli ID precedenti di entrambi i registri
