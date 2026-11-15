@@ -1,5 +1,31 @@
 # Stato di ripresa — People Placement
 
+## 15 novembre 2026 — primo checkpoint di riconciliazione Overijssel
+
+Base main `a70117c`; nessun collector, catalogo o registro modificato. Recuperate
+le sintesi OVI-01–17: 171 schede nominali, unici non determinati, piste in 25 comuni;
+non copertura completa. Mancano i dettagli integrali OVI-05–17.
+
+Tre pagine ufficiali di stage HR lette: De Nieuwe Zaak (Zwolle), WEBO
+(Rijssen-Holten), Groothuis Bouwgroep (Genemuiden/Zwartewaterland). Nessun match
+esatto nome/alias o dominio nel registro. Tutte unverified: candidature da
+completare; non confondere HTTP 200 o stage visibile con candidatura policy v2.
+8 richieste compresi robots, 440.566 byte, 71,138 secondi-fonte cumulati; zero
+rendering, fonti attivate, candidature o raccolte complete. Prove, limiti e riusi
+Elis/Wagenborg/Countus in `docs/overijssel-reconciliation-2026-11-15.md` e JSON.
+
+Prima attività: identità/canale della nuova pagina DNZ con suffisso -2;
+istruzioni di candidatura WEBO; stessa vacancy e form Groothuis. Poi integrare
+il primo lotto con adapter esistenti e report municipale parziale. Nessuna nuova
+PR di sola preparazione aperta per questo checkpoint, nessun merge o rollout.
+
+Separata [PR #38](https://github.com/nightlydeveloper8/eu-hr-internships/pull/38),
+commit `7586534`: fix parsing/checkpoint e restrizione scope DAF, CI/preview verdi,
+non merged. Le vecchie quattro eccezioni form DAF/BD/Belsimpel risalgono al 6–7
+novembre e il loro join era già corretto: evitare di rifare quel lavoro.
+Il confronto automatico 14/15 novembre resta 19 → 19 stage verified.
+Nessun controllo AI futuro o raccolta completa manuale configurati.
+
 ## 12 novembre 2026, sera — PR per vista verified e allarme zero verificati
 
 - Main di riferimento: `48c7e44923466f7719bdd071ab86a62de9ca58e3`. PR #30 merged, raccolta automatica post-merge [#43249156225](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43249156225) riuscita (test, 16 shard, publish). Catalogo del 12 novembre 15:47 UTC: **332 record, 21 open/verified (tutti internship HR), 299 unverified, 12 closed**, secondo policy v2 e limite di freschezza frontend di 48 ore, calcolati alle 19:49 UTC. Questi conteggi non sostituiscono il controllo del deployment Cloudflare.

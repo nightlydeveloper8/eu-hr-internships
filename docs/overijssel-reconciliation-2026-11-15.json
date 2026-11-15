@@ -1,0 +1,182 @@
+{
+  "base_main": "a70117cee3697bcf61238a1999e32baa916dca9a",
+  "historical_checkpoint": "OVI-01–OVI-17",
+  "historical_nominal_cards": 171,
+  "unique_employers_in_historical_register": null,
+  "historical_municipalities_with_leads": 25,
+  "exhaustive": false,
+  "new_sources_enabled": 0,
+  "new_verified_in_production": 0,
+  "current_page_observations": [
+    {
+      "company_lead": "de-nieuwe-zaak",
+      "name": "De Nieuwe Zaak",
+      "municipality": "Zwolle",
+      "url": "https://www.denieuwezaak.nl/vacatures/hr-meewerkstage-2",
+      "checked_at": "2026-11-15T17:48:53.363928+00:00",
+      "application_state": "unverified",
+      "production_enabled": false,
+      "status": 200,
+      "final_url": "https://www.denieuwezaak.nl/vacatures/hr-meewerkstage-2",
+      "headings": [
+        "HR Meewerkstage"
+      ],
+      "body_form": false,
+      "structured_titles": [],
+      "application_links": [
+        {
+          "url": "javascript:void(0)",
+          "label": "Solliciteer nu"
+        },
+        {
+          "url": "javascript:void(0)",
+          "label": "Solliciteer nu"
+        },
+        {
+          "url": "javascript:void(0)",
+          "label": "Solliciteren met Indeed"
+        }
+      ],
+      "reason": "Only public HTTPS job URLs are allowed",
+      "requests": 3,
+      "bytes_read": 146812,
+      "duration_seconds": 21.631,
+      "events": [
+        {
+          "url": "https://www.denieuwezaak.nl/robots.txt",
+          "status": 200,
+          "final_url": "https://www.denieuwezaak.nl/robots.txt"
+        },
+        {
+          "url": "https://www.denieuwezaak.nl/vacatures/hr-meewerkstage-2",
+          "status": 200,
+          "final_url": "https://www.denieuwezaak.nl/vacatures/hr-meewerkstage-2"
+        },
+        {
+          "url": "https://www.denieuwezaak.nl/vacatures/hr-meewerkstage-2",
+          "status": 200,
+          "final_url": "https://www.denieuwezaak.nl/vacatures/hr-meewerkstage-2"
+        }
+      ],
+      "body_sha256": "18738d76b49e8be83f1dd79d9ef43e3bad0056d1afc48129ae01222976e1b973",
+      "registry_name_or_host_matches": [],
+      "adapter_review": "required; no source enabled or host allowlist updated"
+    },
+    {
+      "company_lead": "webo",
+      "name": "WEBO",
+      "municipality": "Rijssen-Holten",
+      "url": "https://www.webo.nl/vacatures/stage-hrm/",
+      "checked_at": "2026-11-15T17:48:53.364217+00:00",
+      "application_state": "unverified",
+      "production_enabled": false,
+      "status": 200,
+      "final_url": "https://www.webo.nl/vacatures/stage-hrm/",
+      "headings": [
+        "Stage HRM"
+      ],
+      "body_form": false,
+      "structured_titles": [],
+      "application_links": [],
+      "reason": "<urlopen error timed out>",
+      "requests": 3,
+      "bytes_read": 160861,
+      "duration_seconds": 25.008,
+      "events": [
+        {
+          "url": "https://www.webo.nl/robots.txt",
+          "status": 200,
+          "final_url": "https://www.webo.nl/robots.txt"
+        },
+        {
+          "url": "https://www.webo.nl/vacatures/stage-hrm/",
+          "status": 200,
+          "final_url": "https://www.webo.nl/vacatures/stage-hrm/"
+        },
+        {
+          "url": "https://www.webo.nl/vacatures/stage-hrm/",
+          "error": "<urlopen error timed out>"
+        }
+      ],
+      "body_sha256": "14b560fbbab294cd5dec72e8448d95e7da0111e37f343314bdc4e6720aee5caf",
+      "registry_name_or_host_matches": [],
+      "adapter_review": "required; no source enabled or host allowlist updated"
+    },
+    {
+      "company_lead": "groothuis-bouwgroep",
+      "name": "Groothuis Bouwgroep",
+      "municipality": "Zwartewaterland",
+      "url": "https://werkenbijgroothuisbouwgroep.nl/vacature/stageplekhr/",
+      "checked_at": "2026-11-15T17:48:53.364558+00:00",
+      "application_state": "unverified",
+      "production_enabled": false,
+      "status": 200,
+      "final_url": "https://werkenbijgroothuisbouwgroep.nl/vacature/stageplekhr/",
+      "headings": [
+        "Bouwen aan jou HR-carrière bij Groothuis Bouwgroep!"
+      ],
+      "body_form": true,
+      "structured_titles": [
+        "Stageplek HR"
+      ],
+      "application_links": [
+        {
+          "url": "https://werkenbij.groothuisbouwgroep.nl/aanmaken-sollicitatie-incl-autorisatie-prs/standaard?VcSn=15%20",
+          "label": "Solliciteer direct"
+        },
+        {
+          "url": "https://werkenbij.groothuisbouwgroep.nl/aanmaken-sollicitatie-incl-autorisatie-prs/standaard?VcSn=15%20",
+          "label": "Solliciteer direct"
+        },
+        {
+          "url": "https://werkenbij.groothuisbouwgroep.nl/aanmaken-sollicitatie-incl-autorisatie-prs/standaard?VcSn=15 ",
+          "label": "Solliciteer direct"
+        }
+      ],
+      "reason": "No unambiguous HR internship title in visible heading",
+      "requests": 2,
+      "bytes_read": 132893,
+      "duration_seconds": 24.499,
+      "events": [
+        {
+          "url": "https://werkenbijgroothuisbouwgroep.nl/robots.txt",
+          "status": 200,
+          "final_url": "https://werkenbijgroothuisbouwgroep.nl/robots.txt"
+        },
+        {
+          "url": "https://werkenbijgroothuisbouwgroep.nl/vacature/stageplekhr/",
+          "status": 200,
+          "final_url": "https://werkenbijgroothuisbouwgroep.nl/vacature/stageplekhr/"
+        }
+      ],
+      "body_sha256": "6d7f09a8c006e6c6f80dc257727a3d454a8b34c0e42d05776f4ee05b9dff0e8b",
+      "registry_name_or_host_matches": [],
+      "adapter_review": "required; no source enabled or host allowlist updated",
+      "pilot_limitation": "The pilot expected an HR internship heading; this page instead identifies Stageplek HR in JobPosting metadata. An applicant form and an external CTA are present; vacancy-specific application and challenge review remain incomplete."
+    }
+  ],
+  "cost": {
+    "requests": 8,
+    "bytes_read": 440566,
+    "source_duration_seconds": 71.138,
+    "browser_renderings": 0
+  },
+  "existing_identity_reviews": [
+    {
+      "lead": "Elis Hardenberg",
+      "existing_company_id": "elis-cleanroom",
+      "review": "Confirm local entity and extend workplace, do not duplicate group."
+    },
+    {
+      "lead": "Wagenborg Nedlift Hengelo",
+      "existing_company_id": "royal-wagenborg",
+      "review": "Royal Wagenborg currently references auto-wagenborg-passagiersdiensten; do not assume passenger-service source covers Nedlift."
+    },
+    {
+      "lead": "Countus Markelo",
+      "existing_company_id": "countus-groep",
+      "review": "Reuse group only after confirming local workplace."
+    }
+  ],
+  "missing": "Complete OVI-05–17 row-level register and official evidence are not recovered; no fabricated reconstruction."
+}
