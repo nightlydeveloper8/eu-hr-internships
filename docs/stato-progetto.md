@@ -38,14 +38,25 @@ Questa sezione prevale sui vecchi prossimi passi sotto.
   candidature o raccolte complete. Nessun retry del 403. Prove nel rapporto
   `docs/career-scope-diagnosis-2026-11-15.md` e JSON associato. Nuovi verified: **0**.
 - Consegna sul branch `fix/career-scope-checkpoints-20261115`, senza merge,
-  ampliamento rollout o cambio al gate Dynamic ATS. CI remota da verificare sulla PR.
+  ampliamento rollout o cambio al gate Dynamic ATS. [PR #38](https://github.com/nightlydeveloper8/eu-hr-internships/pull/38)
+  aperta, commit `75865345ea81a140267861fda114e0c1b1368e11`: CI push
+  [#43743028328](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43743028328),
+  CI PR [#43743032505](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43743032505)
+  e preview Cloudflare riuscite. Nessuna prova di deployment in produzione.
 
-**Primo punto indipendente successivo:** riconciliazione Overijssel, già avviata
+**Lavoro indipendente Overijssel:** riconciliazione avviata
 recuperando i checkpoint storici. 171 schede nominali e piste in 25 comuni non sono
 aziende uniche né copertura completa. De Nieuwe Zaak, WEBO e altri lead con stage
 storici richiedono identità e prova ufficiale corrente; Elis, Wagenborg e Countus
 hanno corrispondenze nel registro da riusare/verificare. Lotto geografico separato
 da questa correzione, senza inventare i dettagli mancanti di OVI-05–17.
+Tre pagine ufficiali lette: De Nieuwe Zaak (Zwolle), WEBO (Rijssen-Holten),
+Groothuis Bouwgroep (Genemuiden/Zwartewaterland). Nessun match esatto nome/alias o
+dominio nel registro; tutte restano unverified. 8 richieste / 440.566 byte /
+71,138 secondi-fonte cumulati, zero rendering o attivazioni. Checkpoint separato
+in `overijssel-reconciliation-20261115/docs/overijssel-reconciliation-2026-11-15.*`.
+Prossimo intervento: risolvere identità/canale DNZ, istruzioni WEBO e candidatura
+Groothuis, poi prima integrazione provinciale parziale con adapter esistenti.
 Dopo eventuale merge autorizzato misurare il primo ciclo ordinario DAF/Tilburg;
 nessun controllo AI futuro aggiunto e nessuna raccolta completa manuale.
 
