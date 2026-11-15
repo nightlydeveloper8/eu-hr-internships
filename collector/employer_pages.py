@@ -153,6 +153,9 @@ def index_records(source,client):
     if source.get('cegid_inventory_search'):
         from .cegid import index_records as cegid_records
         return cegid_records(source,client)
+    if source.get('unigarant_inventory_search'):
+        from .unigarant import index_records as unigarant_records
+        return unigarant_records(source,client)
     from urllib.parse import urljoin
     records={};pattern=re.compile(source['job_url_pattern'])
     pending=list(source['index_urls']);seen=set();declared_total=None;empty_pages=set()
@@ -163,9 +166,11 @@ def index_records(source,client):
         seen.add(url)
         if source.get('index_rendered'):
             from .rendering import render_pages
+            options={}
+            if source.get('index_error_pattern'):options['index_error_pattern']=source['index_error_pattern']
             snapshots,render_complete=render_pages(url,client,
                 lambda target: urlsplit(target).hostname in source['allowed_hosts'],
-                limit=source.get('max_render_pages',5))
+                limit=source.get('max_render_pages',5),**options)
             if not snapshots or not render_complete:
                 raise ValueError('Rendered index inventory incomplete')
             # Retain links from every observed load-more snapshot.
@@ -173,6 +178,8 @@ def index_records(source,client):
         else:
             body,_,final=client.request(approved(url,source))
         approved(final,source)
+        if not source.get('index_rendered') and source.get('index_error_pattern') and re.search(source['index_error_pattern'],plain(body.decode('utf-8','replace')),re.I):
+            raise ValueError('Official vacancy inventory reports a loading error; not an empty list')
         empty=source.get('reviewed_empty_index')
         if empty:
             from .universal import Document
@@ -193,6 +200,14 @@ def index_records(source,client):
                     title=plain(posting.get('title'))
                     structured_titles[approved(final,source)]=title
                     parser.links.append([final,title])
+        if source.get('include_index_visible') and pattern.search(final):
+            # A reviewed seed may be a visible vacancy as well as a link list.
+            # It is still enriched and verified normally; this grants no opening.
+            from .universal import Document
+            from .classify import classify_role
+            doc=Document(body,final)
+            if source.get('page_format')!='reviewed-visible':raise ValueError('Visible index seed requires a reviewed page format')
+            if len(doc.h1)==1 and classify_role(doc.h1[0]):parser.links.append([final,doc.h1[0]])
         for href,label in parser.links:
             target=urljoin(final,href.strip())
             if source.get('index_page_pattern') and re.search(source['index_page_pattern'],target):

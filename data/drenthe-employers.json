@@ -120,16 +120,17 @@
     "size": {
       "qualification": "unknown",
       "employees_min": null,
-      "employees_text": "Headcount not established in this initial source review.",
+      "employees_text": "Absolute employee headcount remains unestablished. Annual accounts 2024, pages 18–19, report FTE per 1,000 inhabitants, including external capacity in bezetting; neither ratio nor budgeted formation is an employee count.",
       "scope": "employer",
-      "source_url": null,
-      "source_date": null
+      "source_url": "https://www.werkenbijdeswo.nl/openen-downloadbaar-bestand-prs/jaarstukken-2024",
+      "source_date": "2024-12-31"
     },
     "employer_type": "public",
     "group_name": null,
     "checked_on": "2026-11-06",
     "notes": [
-      "Single shared employer for two municipalities; not counted as two independent organisations. Vacancy list explicitly includes a Zuidwolde workplace."
+      "Single shared employer for two municipalities; not counted as two independent organisations. Vacancy list explicitly includes a Zuidwolde workplace.",
+      "11 November 2026: official annual accounts reviewed; no qualification from the 900-person claim on third-party recruitment pages. General careers page also reviewed; no new specific HR internship established."
     ],
     "additional_locations": [
       {
@@ -236,18 +237,19 @@
     "locality": null,
     "presence_source_url": "https://www.gemeentewesterveld.nl/",
     "size": {
-      "qualification": "unknown",
-      "employees_min": null,
-      "employees_text": "Headcount not established in this initial source review.",
+      "qualification": "verified_50_plus",
+      "employees_min": 180,
+      "employees_text": "Official municipal organisation page states approximately 180–200 employees; rounded employer range, not precise establishment headcount. No reference date published.",
       "scope": "employer",
-      "source_url": null,
+      "source_url": "https://www.gemeentewesterveld.nl/Alle_onderwerpen/Bestuur_en_organisatie/Zo_werkt_de_gemeente/Gemeentelijke_organisatie",
       "source_date": null
     },
     "employer_type": "public",
     "group_name": null,
-    "checked_on": "2026-11-06",
+    "checked_on": "2026-11-14",
     "notes": [
-      "Municipal presence only; 2022 organisation report mentions 200 people plus 40 contractors, not promoted to current payroll count."
+      "Municipal presence only; 2022 organisation report mentions 200 people plus 40 contractors, not promoted to current payroll count.",
+      "14 November: official organisation page establishes approximate employee range; no HR internship inferred from workforce or municipal presence."
     ],
     "company_id": "gemeente-westerveld"
   },
@@ -364,21 +366,21 @@
   {
     "name": "Unigarant",
     "website_url": "https://www.unigarant.nl/",
-    "career_url": "https://www.unigarant.nl/over-ons/",
+    "career_url": "https://werkenbijunigarant.nl/vacatures/",
     "municipality": "Hoogeveen",
     "locality": "Hoogeveen",
     "presence_source_url": "https://www.unigarant.nl/over-ons/",
     "size": {
-      "qualification": "unknown",
-      "employees_min": null,
-      "employees_text": "Headcount not established in this initial source review.",
+      "qualification": "verified_50_plus",
+      "employees_min": 650,
+      "employees_text": "Official employer overview publishes 650+ Unigarant colleagues; employer-wide, not ANWB group or office-specific staff count.",
       "scope": "employer",
-      "source_url": null,
+      "source_url": "https://www.unigarant.nl/over-ons/",
       "source_date": null
     },
     "employer_type": "private",
     "group_name": "ANWB",
-    "checked_on": "2026-11-06",
+    "checked_on": "2026-11-08",
     "notes": [
       "ANWB subsidiary; official profile confirms headquarters and links careers. Size not inferred from third-party current estimates."
     ],
@@ -413,16 +415,17 @@
     "locality": "Assen",
     "presence_source_url": "https://www.cosis.nu/",
     "size": {
-      "qualification": "unknown",
-      "employees_min": null,
-      "employees_text": "Headcount not established in this initial source review.",
+      "qualification": "verified_50_plus",
+      "employees_estimate": 4000,
+      "measurement": "approximate-headcount",
+      "employees_text": "Official 2025 quality report describes approximately 4000 employees across Groningen and Drenthe, separately from approximately 800 volunteers. Historical 2025 employer total, not Assen establishment headcount.",
       "scope": "employer",
-      "source_url": null,
-      "source_date": null
+      "source_url": "https://jaarbericht.cosis.nu/2025/kwaliteitsbeeld-2025/we-stellen-ons-even-voor-2/11-wat-doet-cosis",
+      "source_date": "2025"
     },
     "employer_type": "healthcare",
     "group_name": null,
-    "checked_on": "2026-11-06",
+    "checked_on": "2026-11-08",
     "notes": [
       "Servicebureau Lauwers 17 Assen; supporting P&O roles and internships explicitly described. No specific HR internship inferred."
     ],
@@ -431,30 +434,47 @@
   {
     "name": "Interzorg Noord Nederland",
     "website_url": "https://www.interzorg.nl/",
-    "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+    "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
     "municipality": "Assen",
     "locality": "Assen",
     "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
     "size": {
-      "qualification": "unknown",
-      "employees_min": null,
-      "employees_text": "Headcount not established in this initial source review.",
+      "qualification": "verified_50_plus",
+      "employees_min": 1400,
+      "employees_text": "Official organisation page states fourteen hundred employees, with more than 800 volunteers separately. Employer total across nine locations, not headcount of an individual site.",
       "scope": "employer",
-      "source_url": null,
+      "source_url": "https://www.interzorg.nl/uw-ons-verhaal/organisatie",
       "source_date": null
     },
     "employer_type": "healthcare",
     "group_name": null,
-    "checked_on": "2026-11-06",
+    "checked_on": "2026-11-10",
     "notes": [
-      "Official careers list includes Servicecentrum Assen and De Hullen Roden; size unknown."
+      "Official organisation page qualifies employee size; volunteers are excluded. Public vacancy listing reviewed separately. General learning/internship information does not establish an HR vacancy. The De Slinge site count is not used as the employer total."
+    ],
+    "additional_locations": [
+      {
+        "municipality": "Noordenveld",
+        "locality": "Roden",
+        "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+      },
+      {
+        "municipality": "Noordenveld",
+        "locality": "Peize",
+        "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+      },
+      {
+        "municipality": "Tynaarlo",
+        "locality": "Vries",
+        "presence_source_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures"
+      }
     ],
     "company_id": "interzorg-noord-nederland"
   },
   {
     "name": "ASTRON",
     "website_url": "https://www.astron.nl/",
-    "career_url": "https://www.astron.nl/careers-3/",
+    "career_url": "https://werkenbijastron.nl/",
     "municipality": "Westerveld",
     "locality": "Dwingeloo",
     "presence_source_url": "https://www.astron.nl/contact/",
@@ -468,9 +488,10 @@
     },
     "employer_type": "research",
     "group_name": null,
-    "checked_on": "2026-11-06",
+    "checked_on": "2026-11-08",
     "notes": [
-      "Official contact also lists telescope site Zwiggelte; no HR workplace inferred from observatory."
+      "Official contact also lists telescope site Zwiggelte; no HR workplace inferred from observatory.",
+      "Old astron.nl/careers-3/ returns HTTP 500. Public jobsatastron.nl redirects to werkenbijastron.nl, whose organisation/contact pages identify ASTRON. Career discovery start repaired; no headcount or HR internship inferred."
     ],
     "additional_locations": [
       {
@@ -810,5 +831,167 @@
       }
     ],
     "company_id": "zzwd-zorgcollectief"
+  },
+  {
+    "name": "Royal A-ware",
+    "existing_company_id": "royal-a-ware",
+    "website_url": "https://www.royal-aware.com/nl/",
+    "career_url": "https://werkenbijaware.com/",
+    "municipality": "De Wolden",
+    "locality": "Ruinerwold",
+    "presence_source_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651",
+    "additional_locations": [
+      {
+        "municipality": "Hoogeveen",
+        "locality": "Hoogeveen",
+        "presence_source_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651"
+      }
+    ],
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_estimate": 5300,
+      "employees_text": "Official group homepage describes more than 5,300 colleagues including food and AB Texel transport; not Lopik staff count.",
+      "scope": "group",
+      "source_url": "https://www.royal-aware.com/nl/",
+      "source_date": null,
+      "measurement": "approximate-headcount"
+    },
+    "employer_type": "private",
+    "group_name": "Royal A-ware",
+    "checked_on": "2026-11-08",
+    "notes": [
+      "Official current QA vacancy explicitly identifies Bouter Borrelgemak in Ruinerwold and Hoogeveen as part of Royal A-ware. Group presence reused; no new legal-employer identity inferred and no local HR internship inferred. Existing Friesland/Utrecht workplaces and channels retained."
+    ],
+    "company_id": "royal-a-ware"
+  },
+  {
+    "name": "SW Vastgoedverbetering",
+    "website_url": "https://www.swbv.nl/",
+    "career_url": "https://werkenbij.swbv.nl/",
+    "municipality": "Hoogeveen",
+    "locality": "Hoogeveen",
+    "presence_source_url": "https://www.swbv.nl/vestigingen/noord/",
+    "additional_locations": [
+      {
+        "municipality": "Emmen",
+        "locality": "Emmen",
+        "presence_source_url": "https://www.swbv.nl/vestigingen/noord/"
+      }
+    ],
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_min": 450,
+      "employees_text": "Official employer page states more than four hundred and fifty professionals across six branches. Employer total, not headcount in Hoogeveen or Emmen.",
+      "scope": "employer",
+      "source_url": "https://www.swbv.nl/over-ons/",
+      "source_date": null
+    },
+    "employer_type": "private",
+    "group_name": null,
+    "checked_on": "2026-11-09",
+    "notes": [
+      "Official published Recruitee inventory reviewed; an aggregator copy of Stagiair HR Hoogeveen is not promoted without a matching current official vacancy. Generic construction/office internship in Almelo or Deventer is not a Drenthe HR opening."
+    ],
+    "company_id": "sw-vastgoedverbetering"
+  },
+  {
+    "name": "Reestmond",
+    "website_url": "https://www.reestmond.nl/",
+    "career_url": "https://www.reestmond.nl/vacatures/",
+    "municipality": "Meppel",
+    "locality": "Meppel",
+    "presence_source_url": "https://www.reestmond.nl/contact/",
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_min": 270,
+      "employees_text": "Annual accounts 2025, printed page 21: 270 employees with SW indication employed at Reestmond on 31 December 2025 (228 FTE, 233 SE). Conservative employer lower bound for this employee category; not total personnel or the joint headcount with NoordWestGroep.",
+      "scope": "employer",
+      "source_url": "https://www.reestmond.nl/wp-content/uploads/2026/07/Jaarrekening-2025-Reestmond.pdf",
+      "source_date": "2025-12-31"
+    },
+    "employer_type": "public",
+    "group_name": null,
+    "checked_on": "2026-11-10",
+    "notes": [
+      "Official visitor address Eekhorstweg 4, Meppel. Service to Westerveld and Staphorst does not prove a workplace there.",
+      "Vacatures & Stageplekken offers generic mbo/hbo internship enquiries only; no specific HR internship or vacancy-specific application verified. Joint 800-person salary-administrator advertisement with NoordWestGroep is excluded from size and internship evidence."
+    ],
+    "company_id": "reestmond"
+  },
+  {
+    "name": "Attero",
+    "website_url": "https://www.attero.nl/",
+    "career_url": "https://www.attero.nl/nl/werken-bij/vacatures/",
+    "municipality": "Midden-Drenthe",
+    "locality": "Wijster",
+    "presence_source_url": "https://www.attero.nl/nl/locaties/wijster/",
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_min": 800,
+      "employees_text": "Official employer page states 800 employees across 18 locations. Employer total; not personnel at Wijster.",
+      "scope": "employer",
+      "source_url": "https://www.attero.nl/nl/over-attero/",
+      "source_date": null
+    },
+    "employer_type": "private",
+    "group_name": null,
+    "checked_on": "2026-11-11",
+    "notes": [
+      "Official Wijster visitor address Vamweg 7; Apeldoorn postal address is not the workplace.",
+      "Generic Stagiair posting has location Nader te bepalen and offers enquiries across disciplines/sites; not a specific HR internship in Wijster. Only an official specific vacancy and application can establish one."
+    ],
+    "company_id": "attero"
+  },
+  {
+    "name": "Intergas Verwarming B.V.",
+    "aliases": [
+      "Intergas"
+    ],
+    "website_url": "https://www.intergas-verwarming.nl/",
+    "career_url": "https://werkenbijintergas.nl/",
+    "municipality": "Coevorden",
+    "locality": "Coevorden",
+    "presence_source_url": "https://werkenbijintergas.nl/contact",
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_min": 500,
+      "employees_text": "Official careers homepage states approximately 500 colleagues. Rounded employer figure, not a measured minimum or headcount of Coevorden only; no reference date published.",
+      "scope": "employer",
+      "source_url": "https://werkenbijintergas.nl/",
+      "source_date": null
+    },
+    "employer_type": "private",
+    "group_name": null,
+    "checked_on": "2026-11-12",
+    "notes": [
+      "Official visitor address Europark Allee 2, 7742 NA Coevorden. Utrecht Xperience Center not mapped by this provincial review.",
+      "Official corporate homepage links werkenbijintergas.nl, which links intergas.recruitee.com. Public feed reviewed; generic Stageplaats bij Intergas 2027 includes HR among many departments but assignment and department require matching, so no specific HR vacancy is inferred."
+    ],
+    "company_id": "intergas-verwarming-b-v"
+  },
+  {
+    "name": "Landal",
+    "existing_company_id": "landal",
+    "website_url": "https://www.landal.nl/",
+    "career_url": "https://jobs.landal.com/",
+    "municipality": "Aa en Hunze",
+    "locality": "Nooitgedacht",
+    "presence_source_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+    "size": {
+      "qualification": "verified_50_plus",
+      "employees_min": 450,
+      "employees_text": "Current official Hof van Saksen vacancy states more than 450 colleagues at the resort. Conservative documented employer lower bound from this site, not total Landal group headcount; not assigned to other parks.",
+      "scope": "employer",
+      "source_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+      "source_date": null
+    },
+    "employer_type": "private",
+    "group_name": "Landal",
+    "checked_on": "2026-11-13",
+    "notes": [
+      "Existing shared Landal employer reused; Friesland workplaces, research and source attachment preserved. Official JobPosting gives Nooitgedacht, Drenthe, Borgerderstraat 12, 9449 PA; aggregator Gieten is not the workplace.",
+      "Stage HR JR104360 already exists in latest main. Application URL explicitly linked to Workday, but ordinary GET returns SPA redirect metadata without identified usable applicant form; remains unverified. February has no explicit year. Dutch text does not prove required language or English sufficiency."
+    ],
+    "company_id": "landal"
   }
 ]

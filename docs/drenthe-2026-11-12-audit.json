@@ -1,0 +1,638 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-12T01:01:51.977824+00:00",
+  "province": "drenthe",
+  "baseline_commit": "0de282c597be00147792383bd596c761d5cac85f",
+  "exhaustive": false,
+  "removed": {
+    "companies": [],
+    "sources": [],
+    "catalog_urls": []
+  },
+  "preservation_checks_passed": true,
+  "preserved_other_region_workplaces": 1104,
+  "baseline_counts": {
+    "companies": 1882,
+    "sources": 1926,
+    "catalog": 327
+  },
+  "current_counts": {
+    "companies": 1886,
+    "sources": 1930,
+    "catalog": 327
+  },
+  "summary": {
+    "employers": 39,
+    "qualified_employers": 25,
+    "distinct_groups": 39,
+    "qualified_groups": 25,
+    "size_unknown": 14,
+    "below_threshold": 0,
+    "municipalities": 12,
+    "municipalities_with_qualified_employers": 12,
+    "configured": 39,
+    "attempted_recently": 37,
+    "collection_states": {
+      "partial": 20,
+      "discovery-incomplete": 8,
+      "blocked-or-failed": 5,
+      "collected": 4,
+      "not-recently-checked": 2
+    },
+    "qualified_collection_states": {
+      "partial": 14,
+      "discovery-incomplete": 5,
+      "blocked-or-failed": 1,
+      "collected": 3,
+      "not-recently-checked": 2
+    },
+    "verified_hr_internships": 2,
+    "verified_hr_internships_qualified_employers": 1
+  },
+  "municipalities": [
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1680",
+      "name": "Aa en Hunze",
+      "settlements": 35,
+      "employers": 2,
+      "qualified_employers": 2,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-aa-en-hunze",
+        "royal-avebe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "0d026302ba6f8aedd558",
+        "95dca55a4e83f8016444"
+      ],
+      "verified_hr_internships": 2,
+      "code": "GM0106",
+      "name": "Assen",
+      "settlements": 7,
+      "employers": 8,
+      "qualified_employers": 6,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 6,
+        "collected": 2
+      },
+      "company_ids": [
+        "cosis",
+        "gemeente-assen",
+        "het-drentse-landschap",
+        "interzorg-noord-nederland",
+        "skk-kozijnwacht",
+        "vanboeijen",
+        "wilhelmina-ziekenhuis-assen",
+        "ziengs-schoenen"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1681",
+      "name": "Borger-Odoorn",
+      "settlements": 25,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 2,
+        "partial": 1
+      },
+      "company_ids": [
+        "avitec",
+        "gemeente-borger-odoorn",
+        "paas-b-v"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0109",
+      "name": "Coevorden",
+      "settlements": 25,
+      "employers": 5,
+      "qualified_employers": 3,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "center-parcs",
+        "emco-groep",
+        "forbo-novilon",
+        "gemeente-coevorden",
+        "intergas-verwarming-b-v"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1690",
+      "name": "De Wolden",
+      "settlements": 13,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3
+      },
+      "company_ids": [
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "zzwd-zorgcollectief"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0114",
+      "name": "Emmen",
+      "settlements": 16,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
+        "not-recently-checked": 1
+      },
+      "company_ids": [
+        "emco-groep",
+        "gemeente-emmen",
+        "sw-vastgoedverbetering"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0118",
+      "name": "Hoogeveen",
+      "settlements": 11,
+      "employers": 7,
+      "qualified_employers": 5,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 4,
+        "discovery-incomplete": 2,
+        "not-recently-checked": 1
+      },
+      "company_ids": [
+        "doc-kaas-b-v",
+        "nncz",
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "sw-vastgoedverbetering",
+        "tvm-verzekeringen",
+        "unigarant"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0119",
+      "name": "Meppel",
+      "settlements": 5,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "not-recently-checked": 1
+      },
+      "company_ids": [
+        "gemeente-meppel",
+        "reestmond",
+        "scania"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1731",
+      "name": "Midden-Drenthe",
+      "settlements": 25,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 2
+      },
+      "company_ids": [
+        "astron",
+        "attero",
+        "gemeente-midden-drenthe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1699",
+      "name": "Noordenveld",
+      "settlements": 21,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-noordenveld",
+        "interzorg-noord-nederland",
+        "vdl-wientjes-roden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1730",
+      "name": "Tynaarlo",
+      "settlements": 18,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-tynaarlo",
+        "groningen-airport-eelde",
+        "interzorg-noord-nederland"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1701",
+      "name": "Westerveld",
+      "settlements": 26,
+      "employers": 4,
+      "qualified_employers": 1,
+      "size_unknown": 3,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 2,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "astron",
+        "bats-uitzendburo",
+        "gemeente-westerveld",
+        "zzwd-zorgcollectief"
+      ]
+    }
+  ],
+  "source_attempts": [
+    {
+      "id": "auto-intergas-verwarming-b-v",
+      "employer": "Intergas Verwarming B.V.",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-12T01:01:19.556879+00:00",
+      "collected": 14,
+      "status": "ok",
+      "matching": 0,
+      "verification_states": {},
+      "observed_countries": [
+        "NL"
+      ],
+      "records_inspected": 14,
+      "page_failures": 0,
+      "page_errors": [],
+      "page_errors_truncated": false,
+      "complete": true,
+      "closure_complete": false,
+      "pages_read": 1,
+      "feed_records": 14,
+      "published_records": 14,
+      "discovery_scope": "Published offers in the linked official public Recruitee response, with draft filtering and pagination guard. Generic Stageplaats bij Intergas 2027 remains a general programme, not a specific HR vacancy. No absence-based closure.",
+      "verified_closed_urls": [],
+      "inventory_complete": true,
+      "requests": 2,
+      "bytes_read": 164974,
+      "duration_seconds": 0.68
+    }
+  ],
+  "attempt_count": 1,
+  "distinct_attempted_sources": 1,
+  "invalid_complete_reports": [],
+  "language_decisions": [
+    {
+      "id": "a5ce8a272a48d5026b20",
+      "title": "Stage HR Heerenveen",
+      "city": "Heerenveen",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-10T07:16:57.658598+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "dc9a9a926f76c0aff13b",
+      "title": "Stage HR",
+      "city": "Almere",
+      "status": "unverified",
+      "url": "https://werkenbijaware.com/vacatures/stage-hr-req2618",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-10T07:16:57.658598+00:00",
+        "policy_version": 2,
+        "reason": "Current page does not identify the same vacancy"
+      }
+    },
+    {
+      "id": "9d0bee377ab034aabd48",
+      "title": "HR-stagiaire Hoogeveen",
+      "city": "Hoogeveen",
+      "status": "unverified",
+      "url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-10T07:17:49.399270+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "0d026302ba6f8aedd558",
+      "title": "Stagiair HR",
+      "city": "Assen",
+      "status": "open",
+      "url": "https://skk.nl/werken-bij-skk/stagiair-hr",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-10T07:17:04.047788+00:00",
+        "policy_version": 2,
+        "reason": "official-vacancy-email-instructions"
+      }
+    },
+    {
+      "id": "95dca55a4e83f8016444",
+      "title": "HR stagiair(e) - Scapino & Ziengs",
+      "city": "Assen",
+      "status": "open",
+      "url": "https://www.werkenbijziengs.nl/vacatures/hr-stagiaire-scapino-ziengs",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-10T07:17:04.089368+00:00",
+        "policy_version": 2,
+        "reason": "official-formie-same-requisition-form"
+      }
+    },
+    {
+      "id": "75f9275c0874b74af972",
+      "title": "Stage - Human Resource Management",
+      "city": "Meppel",
+      "status": "unverified",
+      "url": "https://jobs.scania.com/job/Meppel-Stage-Human-Resource-Management-7944HT/1454163033",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [],
+        "alternative_languages": [
+          "en",
+          "nl"
+        ],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        },
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "alternative",
+          "method": "explicit-language-pattern",
+          "evidence": "beheers je de Nederlandse en/of Engelse taal goed, zowel mondeling als schriftelijk."
+        }
+      ],
+      "verification": {
+        "state": "blocked",
+        "checked_at": "2026-11-10T07:17:04.089368+00:00",
+        "policy_version": 2,
+        "reason": "robots.txt disallows https://jobs.scania.com/talentcommunity/apply/1454163033?locale=nl_NL"
+      }
+    },
+    {
+      "id": "5506269ba93324a54632",
+      "title": "Stage Recruitment Februari 2027",
+      "city": "Capelle aan den IJssel",
+      "status": "unverified",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-10T07:17:04.047788+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    },
+    {
+      "id": "a3b5d7cde7fe9d17a72e",
+      "title": "Stage Internal Communications and Employee Engagement Officer Februari 2027",
+      "city": "Capelle aan den IJssel",
+      "status": "unverified",
+      "url": "https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "workplace_languages": [],
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-10T07:17:04.047788+00:00",
+        "policy_version": 2,
+        "reason": "No available vacancy-specific application entry established"
+      }
+    }
+  ],
+  "note": "Per-source checked_at retained. A full inventory in one query does not establish complete employer/market coverage. No merge or deployment performed.",
+  "phase": "2026-11-12",
+  "catalog_equals_latest_main": true,
+  "new_verified_drenthe_internships": 0,
+  "new_general_programmes": 1,
+  "preserved_pr_head": "ff5da7c8bd59ed9a7a8939bee984bbb8ef0cfb5e",
+  "primary_evidence": [
+    {
+      "url": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/pxd3oi",
+      "final": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/pxd3oi",
+      "checked_at": "2026-11-12T00:58:16.996844+00:00",
+      "sha256": "a242949a2564c8072080d3c4c29b535cd1ae09fd8bf98cd2d957cfeca06efa7a"
+    },
+    {
+      "url": "https://www.aareon.nl/over-aareon",
+      "final": "https://www.aareon.nl/over-aareon",
+      "checked_at": "2026-11-12T00:58:16.910923+00:00",
+      "sha256": "4d4ccc9308cd0b616497c9411f186a97494196d983bba7b9f605cae659360bda"
+    },
+    {
+      "url": "https://www.aareon.nl/vestigingen",
+      "final": "https://www.aareon.nl/vestigingen",
+      "checked_at": "2026-11-12T00:58:17.397802+00:00",
+      "sha256": "0759ff19d36c1ac22403abca4e6406623d1ba827f9b7c80a922cc4f2f074a7d2"
+    },
+    {
+      "url": "https://www.intergas-verwarming.nl/",
+      "final": "https://www.intergas-verwarming.nl",
+      "checked_at": "2026-11-12T00:58:46.052060+00:00",
+      "sha256": "68d90f46ab6c98fa115b6f8de35cc8c58bd753a294d566cca539407137009bdd"
+    },
+    {
+      "url": "https://intergas.recruitee.com/",
+      "final": "https://intergas.recruitee.com",
+      "checked_at": "2026-11-12T00:58:45.879795+00:00",
+      "sha256": "b742723c5b707191526eceb79f2f394b46b9e8abf3e60e36b6ab3ba4d95a5aba"
+    },
+    {
+      "url": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/vacatureoverzicht/pf18yy",
+      "final": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/vacatureoverzicht/pf18yy",
+      "checked_at": "2026-11-12T00:58:57.849402+00:00",
+      "sha256": "1fbf83af3a5d87650249d7aae38bdd516ed6ee1cf0acae70299c173f5714cd11"
+    },
+    {
+      "url": "https://www.aareon.nl/vacatures",
+      "final": "https://www.aareon.nl/vacatures",
+      "checked_at": "2026-11-12T00:58:57.831523+00:00",
+      "sha256": "3531f5df635a09532a3b3dd79d20800809b0d50283eb0f91fd46741fc090dde4"
+    },
+    {
+      "url": "https://werkenbijintergas.nl/",
+      "final": "https://werkenbijintergas.nl",
+      "checked_at": "2026-11-12T00:59:10.472531+00:00",
+      "sha256": "8178bd38a2c69e93ca941034e2dff85e6990d7c806322324edcd0efbd7c7849e"
+    },
+    {
+      "url": "https://intergas.recruitee.com/o/stageplaats-bij-intergas-2027",
+      "final": "https://intergas.recruitee.com/o/stageplaats-bij-intergas-2027",
+      "checked_at": "2026-11-12T00:59:10.472689+00:00",
+      "sha256": "621cb59484617d27dfbf0161eb08ed5c99447284d96f0135f8f293befd180ce3"
+    },
+    {
+      "url": "https://intergas.recruitee.com/api/offers/",
+      "final": "https://intergas.recruitee.com/api/offers",
+      "checked_at": "2026-11-12T00:59:10.868633+00:00",
+      "sha256": "0b654fff21bd7781cf0e59df068fb27faa16e0a8114016b60033495c1528cf3a"
+    },
+    {
+      "url": "https://werkenbijintergas.nl/contact",
+      "final": "https://werkenbijintergas.nl/contact",
+      "checked_at": "2026-11-12T01:00:20.886984+00:00",
+      "sha256": "8eb1bab7f8f50dffa6f1a8b569779f9de37a08f4cf10c32750a82165036277a2"
+    }
+  ],
+  "programme_decision": {
+    "url": "https://intergas.recruitee.com/o/stageplaats-bij-intergas-2027",
+    "kind": "hr_internship_programme",
+    "confirmed_specific_hr_vacancy": false,
+    "application_form_usability_verified": false,
+    "languages_required": "unknown",
+    "english_sufficient": "unknown",
+    "advertisement_language": "nl",
+    "department_assignment_and_dates": "to agree; programme year 2027 is not an exact start date",
+    "enrolment": "mbo/hbo/wo",
+    "preferred_duration": "at least three months"
+  },
+  "source_chain": [
+    "https://www.intergas-verwarming.nl/",
+    "https://werkenbijintergas.nl/",
+    "https://intergas.recruitee.com/"
+  ],
+  "resolved_conflicts": {
+    "tests/test_intake.py": "Preserved main PR #25 implementation and additional growing-catalog regression in full.",
+    "docs/stato-progetto.md": "Preserved main global state and appended current scoped Drenthe update."
+  },
+  "historical_checkout_preserved": true
+}

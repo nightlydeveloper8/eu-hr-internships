@@ -104,7 +104,14 @@ def verify_application(record, source, client):
                        for href, _, _ in doc.links)
         instructions = re.search(r'(?:stuur|send|mail).{0,200}(?:cv|resume).{0,100}'
                                  + re.escape(address), doc.text, re.I)
-        if not address or not observed or not instructions:
+        # An explicit invitation to apply directly is sufficient even when the
+        # employer does not prescribe a CV. Mere contact/questions are not.
+        direct_application = re.search(
+            r'\b(?:wil je|wilt u)\s+direct reageren\?\s*(?:neem contact op|mail|stuur)'
+            r'[^.!?]{0,160}\b(?:via|naar)\s*'+re.escape(address), doc.text, re.I)
+        if direct_application and re.search(r'\b(?:niet|geen|vragen)\b',direct_application.group(0),re.I):
+            direct_application=None
+        if not address or not observed or not (instructions or direct_application):
             raise ValueError('Vacancy-specific email application instructions unavailable')
         return dict(url=record['url'], method='official-vacancy-email-instructions',
                     application_email=address, delivery_verified=False)

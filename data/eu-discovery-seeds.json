@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "scope": "EU27",
+  "default_mode": "offline",
+  "seeds": [
+    {
+      "id": "ikom-2026-de",
+      "country": "DE",
+      "url": "https://ikom-tum.de/de/messen/ikom/2026",
+      "parser": "ikom",
+      "access_reviewed": false,
+      "note": "Existing public career-fair directory; robots/current terms must be rechecked before live acquisition."
+    },
+    {
+      "id": "phdtalent-fr",
+      "country": "FR",
+      "url": "https://careerfair.phdtalent.fr/en/exhibitors/",
+      "parser": "phdtalent",
+      "access_reviewed": false,
+      "note": "Existing French exhibitor directory; no live acquisition until access reviewed."
+    },
+    {
+      "id": "pxl-jobevent-be",
+      "country": "BE",
+      "url": "https://www.pxl.be/bedrijven-en-organisaties/jobevent/deelnemende-bedrijven/",
+      "parser": "employer-table",
+      "page_marker": "Standhouders",
+      "access_reviewed": false,
+      "source_kind": "university-exhibitor-directory",
+      "note": "Official PXL list publishes employer-site links; web view confirmed 2026-11-12. robots.txt and site terms could not be directly verified; no automated GET authorized."
+    },
+    {
+      "id": "tech-alliance-members-ie",
+      "country": "IE",
+      "url": "https://techindustryalliance.ie/members/",
+      "parser": "employer-table",
+      "page_marker": "Member Listing 2026",
+      "access_reviewed": false,
+      "source_kind": "business-association-members-directory",
+      "note": "Official alliance member table publishes company-site links; web view confirmed 2026-11-12. robots.txt and terms not verified; member status is not recruitment proof."
+    }
+  ],
+  "pilot_research_candidates": [
+    {
+      "country": "BE",
+      "url": "https://vtk.ugent.be/en/career/students/activities/detail/5756/",
+      "status": "superseded-by-directory-link-source",
+      "note": "VTK event names-only list superseded for linked-site pilot by Hogeschool PXL."
+    },
+    {
+      "country": "IE",
+      "url": "https://www.dcu.ie/careers/employers-we-work",
+      "status": "superseded-by-directory-link-source",
+      "note": "DCU names-only list superseded for linked-site pilot by Tech Industry Alliance."
+    }
+  ],
+  "constraints": "All sources remain access_reviewed=false; no GitHub scheduled collection or ATS activation. No robots.txt or terms checks completed on two new hosts."
+}

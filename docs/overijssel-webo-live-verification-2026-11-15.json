@@ -1,0 +1,52 @@
+{
+  "checked_at": "2026-11-15T18:21:57.477950+00:00",
+  "source": {
+    "id": "auto-webo",
+    "employer": "WEBO",
+    "allowed_hosts": [
+      "www.webo.nl"
+    ],
+    "application_check": "official-email",
+    "application_email": "werken@webo.nl"
+  },
+  "record": {
+    "source_id": "auto-webo",
+    "external_id": "https://www.webo.nl/vacatures/stage-hrm/",
+    "url": "https://www.webo.nl/vacatures/stage-hrm/",
+    "title": "Stage HRM"
+  },
+  "state": "verified_in_bounded_live_pilot",
+  "production_enabled": false,
+  "proof": {
+    "url": "https://www.webo.nl/vacatures/stage-hrm/",
+    "method": "official-vacancy-email-instructions",
+    "application_email": "werken@webo.nl",
+    "delivery_verified": false,
+    "valid_through": null,
+    "vacancy_match": "title",
+    "inventory": "not-established"
+  },
+  "requests": 3,
+  "bytes_read": 321652,
+  "duration_seconds": 34.533,
+  "events": [
+    {
+      "url": "https://www.webo.nl/robots.txt",
+      "status": 200,
+      "final_url": "https://www.webo.nl/robots.txt",
+      "body_sha256": "62da1230b04d8964c7ba0d5a23ae57b8303eb1a931c819358815b2483a771106"
+    },
+    {
+      "url": "https://www.webo.nl/vacatures/stage-hrm/",
+      "status": 200,
+      "final_url": "https://www.webo.nl/vacatures/stage-hrm/",
+      "body_sha256": "1c113e32df09b16856cb6c6ceeb17d20980f68ae8b2a77dbbbba7c267b138168"
+    },
+    {
+      "url": "https://www.webo.nl/vacatures/stage-hrm/",
+      "status": 200,
+      "final_url": "https://www.webo.nl/vacatures/stage-hrm/",
+      "body_sha256": "1c113e32df09b16856cb6c6ceeb17d20980f68ae8b2a77dbbbba7c267b138168"
+    }
+  ]
+}
