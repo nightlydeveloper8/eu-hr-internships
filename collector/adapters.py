@@ -17,6 +17,11 @@ class CheckedRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         from .classify import canonical_url
         canonical_url(newurl)
+        # Optional stricter per-client redirect scope. This also applies to
+        # robots.txt fetches (robots=False), before any redirect is followed.
+        scope = getattr(self.client, "redirect_scope_allowed", None)
+        if scope is not None and not scope(newurl):
+            raise ValueError("Redirect outside approved source scope")
         # Check destination robots before urllib follows, including same-host redirects.
         if self.robots and not self.client.permitted(newurl):raise ValueError('robots.txt disallows redirect '+newurl)
         host=urlsplit(newurl).netloc

@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "mode": "offline-historical-review-only",
+  "countries": [
+    {
+      "country": "DE",
+      "companies_sampled": 6,
+      "sample_company_ids": [
+        "carpus-partner-ag",
+        "drive-consulting",
+        "enforto-gmbh",
+        "futrue-neurosciences-gmbh",
+        "micronova-ag",
+        "protiviti-gmbh"
+      ],
+      "detected_channels": 7,
+      "review_candidates": 1,
+      "already_registered": 5,
+      "ownership_review": 0,
+      "blocked_or_unsupported": 1
+    },
+    {
+      "country": "FR",
+      "companies_sampled": 6,
+      "sample_company_ids": [
+        "focus-entertainment",
+        "gac-group",
+        "inovarion",
+        "leyton",
+        "renaissance-fusion",
+        "spark-cleantech"
+      ],
+      "detected_channels": 5,
+      "review_candidates": 0,
+      "already_registered": 1,
+      "ownership_review": 0,
+      "blocked_or_unsupported": 4
+    },
+    {
+      "country": "BE",
+      "companies_sampled": 6,
+      "sample_company_ids": [
+        "ab-inbev",
+        "avery-dennison",
+        "choco",
+        "danone",
+        "jde-peet-s",
+        "malt"
+      ],
+      "detected_channels": 0,
+      "review_candidates": 0,
+      "already_registered": 0,
+      "ownership_review": 0,
+      "blocked_or_unsupported": 0
+    },
+    {
+      "country": "IE",
+      "companies_sampled": 4,
+      "sample_company_ids": [
+        "avery-dennison",
+        "dept",
+        "kerry",
+        "personio"
+      ],
+      "detected_channels": 0,
+      "review_candidates": 0,
+      "already_registered": 0,
+      "ownership_review": 0,
+      "blocked_or_unsupported": 0
+    }
+  ],
+  "proposals": [
+    {
+      "company_id": "carpus-partner-ag",
+      "company_name": "Carpus+Partner AG",
+      "candidate_countries": [
+        "DE"
+      ],
+      "adapter": "personio-xml",
+      "tenant": "carpus.jobs.personio.de",
+      "channel_key": "personio-xml:carpus.jobs.personio.de",
+      "observed_host": "carpus.jobs.personio.de",
+      "endpoint_hint": "https://carpus.jobs.personio.de/xml",
+      "status": "already-registered",
+      "registry_source_ids": [
+        "personio-xml-carpus-partner-ag"
+      ],
+      "evidence_pages": [
+        "https://www.carpus.de/work-with-us"
+      ],
+      "observed_links": [
+        "https://carpus.jobs.personio.de/job/2545976",
+        "https://carpus.jobs.personio.de/job/2681472",
+        "https://carpus.jobs.personio.de/job/2761714",
+        "https://carpus.jobs.personio.de/job/2768465",
+        "https://carpus.jobs.personio.de/job/2871348",
+        "https://carpus.jobs.personio.de/job/329342?_pc=271364#apply"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "drive-consulting",
+      "company_name": "DRIVE Consulting",
+      "candidate_countries": [
+        "DE"
+      ],
+      "adapter": "personio-xml",
+      "tenant": "drive-consulting.jobs.personio.de",
+      "channel_key": "personio-xml:drive-consulting.jobs.personio.de",
+      "observed_host": "drive-consulting.jobs.personio.de",
+      "endpoint_hint": "https://drive-consulting.jobs.personio.de/xml",
+      "status": "already-registered",
+      "registry_source_ids": [
+        "personio-xml-drive-consulting"
+      ],
+      "evidence_pages": [
+        "https://drive-consulting.de/karriere/"
+      ],
+      "observed_links": [
+        "https://drive-consulting.jobs.personio.de/"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "enforto-gmbh",
+      "company_name": "Enforto GmbH",
+      "candidate_countries": [
+        "DE"
+      ],
+      "adapter": "personio-xml",
+      "tenant": "evo-engineering-gmbh.jobs.personio.de",
+      "channel_key": "personio-xml:evo-engineering-gmbh.jobs.personio.de",
+      "observed_host": "evo-engineering-gmbh.jobs.personio.de",
+      "endpoint_hint": "https://evo-engineering-gmbh.jobs.personio.de/xml",
+      "status": "already-registered",
+      "registry_source_ids": [
+        "personio-xml-enforto-gmbh"
+      ],
+      "evidence_pages": [
+        "https://www.enforto.com/careers/"
+      ],
+      "observed_links": [
+        "https://evo-engineering-gmbh.jobs.personio.de",
+        "https://evo-engineering-gmbh.jobs.personio.de/"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "focus-entertainment",
+      "company_name": "Focus Entertainment",
+      "candidate_countries": [
+        "FR"
+      ],
+      "adapter": "recruitee",
+      "tenant": "focushomeinteractive.recruitee.com",
+      "channel_key": "recruitee:focushomeinteractive.recruitee.com",
+      "observed_host": "focushomeinteractive.recruitee.com",
+      "endpoint_hint": "https://focushomeinteractive.recruitee.com/api/offers/",
+      "status": "already-registered",
+      "registry_source_ids": [
+        "recruitee-focus-entertainment"
+      ],
+      "evidence_pages": [
+        "https://www.focus-entmt.com/en/careers"
+      ],
+      "observed_links": [
+        "https://focushomeinteractive.recruitee.com/",
+        "https://focushomeinteractive.recruitee.com/#section-170920"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "futrue-neurosciences-gmbh",
+      "company_name": "FUTRUE Neurosciences GmbH",
+      "candidate_countries": [
+        "DE"
+      ],
+      "adapter": "access-review",
+      "tenant": "jobs.ashbyhq.com",
+      "channel_key": "access-review:jobs.ashbyhq.com",
+      "observed_host": "jobs.ashbyhq.com",
+      "endpoint_hint": null,
+      "status": "access-review",
+      "registry_source_ids": [],
+      "evidence_pages": [
+        "https://futrue.com/karriere/"
+      ],
+      "observed_links": [
+        "https://jobs.ashbyhq.com/futrue-neuroscience?utm_source=0GOKmgdOpd",
+        "https://jobs.ashbyhq.com/futrue?utm_source=0GOKmgdOpd",
+        "https://jobs.ashbyhq.com/kijimea?utm_source=0GOKmgdOpd",
+        "https://jobs.ashbyhq.com/vertanical?utm_source=0GOKmgdOpd"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "futrue-neurosciences-gmbh",
+      "company_name": "FUTRUE Neurosciences GmbH",
+      "candidate_countries": [
+        "DE"
+      ],
+      "adapter": "personio-xml",
+      "tenant": "futrue.jobs.personio.de",
+      "channel_key": "personio-xml:futrue.jobs.personio.de",
+      "observed_host": "futrue.jobs.personio.de",
+      "endpoint_hint": "https://futrue.jobs.personio.de/xml",
+      "status": "requires-access-and-identity-review",
+      "registry_source_ids": [],
+      "evidence_pages": [
+        "https://futrue.com/karriere/"
+      ],
+      "observed_links": [
+        "https://futrue.jobs.personio.de/"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "inovarion",
+      "company_name": "Inovarion",
+      "candidate_countries": [
+        "FR"
+      ],
+      "adapter": "unsupported-provider",
+      "tenant": "inovarion-1670250444.teamtailor.com",
+      "channel_key": "unsupported-provider:inovarion-1670250444.teamtailor.com",
+      "observed_host": "inovarion-1670250444.teamtailor.com",
+      "endpoint_hint": null,
+      "status": "unsupported-provider",
+      "registry_source_ids": [],
+      "evidence_pages": [
+        "https://www.inovarion.com/join-us/"
+      ],
+      "observed_links": [
+        "https://inovarion-1670250444.teamtailor.com/jobs",
+        "https://inovarion-1670250444.teamtailor.com/jobs/2304826-candidature-spontanee",
+        "https://inovarion-1670250444.teamtailor.com/jobs/6119906-assistant-ingenieur-h-f-en-histologie",
+        "https://inovarion-1670250444.teamtailor.com/jobs/7466304-ingenieur-d-etudes-h-f-biologie-cellulaire-metabolisme",
+        "https://inovarion-1670250444.teamtailor.com/jobs/7636452-ingenieur-de-recherche-en-bioinformatique-h-f",
+        "https://inovarion-1670250444.teamtailor.com/jobs/8308699-technicien-ne-de-laboratoire-in-vivo-in-vitro",
+        "https://inovarion-1670250444.teamtailor.com/jobs/8310376-ingenieur-d-etudes-h-f-biologie-cellulaire-experimentation-animale"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "leyton",
+      "company_name": "Leyton",
+      "candidate_countries": [
+        "FR"
+      ],
+      "adapter": "unsupported-provider",
+      "tenant": "leyton.teamtailor.com",
+      "channel_key": "unsupported-provider:leyton.teamtailor.com",
+      "observed_host": "leyton.teamtailor.com",
+      "endpoint_hint": null,
+      "status": "unsupported-provider",
+      "registry_source_ids": [],
+      "evidence_pages": [
+        "https://leytonglobal-france.teamtailor.com/jobs"
+      ],
+      "observed_links": [
+        "https://leyton.teamtailor.com",
+        "https://leyton.teamtailor.com/cookie-policy"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "leyton",
+      "company_name": "Leyton",
+      "candidate_countries": [
+        "FR"
+      ],
+      "adapter": "unsupported-provider",
+      "tenant": "leytonglobal-france.teamtailor.com",
+      "channel_key": "unsupported-provider:leytonglobal-france.teamtailor.com",
+      "observed_host": "leytonglobal-france.teamtailor.com",
+      "endpoint_hint": null,
+      "status": "unsupported-provider",
+      "registry_source_ids": [],
+      "evidence_pages": [
+        "https://leytonglobal-france.teamtailor.com/jobs"
+      ],
+      "observed_links": [
+        "https://leytonglobal-france.teamtailor.com/",
+        "https://leytonglobal-france.teamtailor.com/connect/login",
+        "https://leytonglobal-france.teamtailor.com/data-privacy",
+        "https://leytonglobal-france.teamtailor.com/jobs",
+        "https://leytonglobal-france.teamtailor.com/jobs#main-content",
+        "https://leytonglobal-france.teamtailor.com/jobs/7646853-apprentissage-24-mois-master-1-business-developer-efficience-h-f",
+        "https://leytonglobal-france.teamtailor.com/jobs/7976198-consultant-sante-optim-de-la-facturation-hospitaliere-h-f",
+        "https://leytonglobal-france.teamtailor.com/jobs/8467978-consultant-fiscalite-nationale-indirecte-h-f",
+        "https://leytonglobal-france.teamtailor.com/jobs/8474400-analyste-fiscalite-nationale-indirecte-h-f",
+        "https://leytonglobal-france.teamtailor.com/jobs/8499614-consultant-payroll-optimisation-des-charges-sociales-nantes-h-f",
+        "https://leytonglobal-france.teamtailor.com/jobs/8507483-business-developer-b2b-confirme-e-pole-innovation-h-f",
+        "https://leytonglobal-france.teamtailor.com/jobs/8553638-stage-pfe-master-2-consultant-e-performance-environnementale-h-f",
+        "https://leytonglobal-france.teamtailor.com/jobs/8663083-stage-pfe-master-2-consultant-e-performance-environnementale-h-f",
+        "https://leytonglobal-france.teamtailor.com/sso_login"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "micronova-ag",
+      "company_name": "MicroNova AG",
+      "candidate_countries": [
+        "DE"
+      ],
+      "adapter": "personio-xml",
+      "tenant": "micronova.jobs.personio.de",
+      "channel_key": "personio-xml:micronova.jobs.personio.de",
+      "observed_host": "micronova.jobs.personio.de",
+      "endpoint_hint": "https://micronova.jobs.personio.de/xml",
+      "status": "already-registered",
+      "registry_source_ids": [
+        "personio-xml-micronova-ag"
+      ],
+      "evidence_pages": [
+        "https://karriere.micronova.de/index.html"
+      ],
+      "observed_links": [
+        "https://micronova.jobs.personio.de/",
+        "https://micronova.jobs.personio.de/?language=de"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "protiviti-gmbh",
+      "company_name": "Protiviti GmbH",
+      "candidate_countries": [
+        "DE"
+      ],
+      "adapter": "recruitee",
+      "tenant": "protiviti.recruitee.com",
+      "channel_key": "recruitee:protiviti.recruitee.com",
+      "observed_host": "protiviti.recruitee.com",
+      "endpoint_hint": "https://protiviti.recruitee.com/api/offers/",
+      "status": "already-registered",
+      "registry_source_ids": [
+        "recruitee-protiviti-gmbh"
+      ],
+      "evidence_pages": [
+        "https://www.protiviti.com/de-de/careers"
+      ],
+      "observed_links": [
+        "https://protiviti.recruitee.com/"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    },
+    {
+      "company_id": "renaissance-fusion",
+      "company_name": "Renaissance fusion",
+      "candidate_countries": [
+        "FR"
+      ],
+      "adapter": "unsupported-provider",
+      "tenant": "renaissancefusion.teamtailor.com",
+      "channel_key": "unsupported-provider:renaissancefusion.teamtailor.com",
+      "observed_host": "renaissancefusion.teamtailor.com",
+      "endpoint_hint": null,
+      "status": "unsupported-provider",
+      "registry_source_ids": [],
+      "evidence_pages": [
+        "https://renfusion.eu/jobs"
+      ],
+      "observed_links": [
+        "https://renaissancefusion.teamtailor.com/connect"
+      ],
+      "robots": "not-rechecked-offline",
+      "hosts": "not-authorized-by-discovery",
+      "enabled": false,
+      "verified_vacancies_added": 0
+    }
+  ],
+  "observed_channel_count": 12,
+  "newly_enabled_sources": 0,
+  "new_verified_internships": 0,
+  "additional_http_requests": 0,
+  "additional_browser_renders": 0,
+  "notes": [
+    "Historical scans do not prove current vacancy or current robots permission.",
+    "Target countries are research scope, not confirmed work locations.",
+    "No persistent source or catalog modifications; explicit review needed before onboarding."
+  ]
+}

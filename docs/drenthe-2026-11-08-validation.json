@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-11-08T01:16:24.844903+00:00",
+  "runtime": "Python 3.12 (same major/minor as CI), Playwright 1.60.0 from existing requirements",
+  "baseline_python_tests": 252,
+  "python_tests": 256,
+  "frontend_tests": 21,
+  "role_examples": 64,
+  "role_errors": 0,
+  "language_examples": 16,
+  "catalog_validation": true,
+  "registry_validation": true,
+  "import_idempotence": true,
+  "build": true,
+  "diff_check": true,
+  "nonselected_catalog_objects_preserved": true,
+  "checks": [
+    {
+      "name": "python",
+      "command": "python3 -m unittest discover -s tests -q",
+      "output_sha256": "682f52c8d61e688a4c133bcb4fa74113e6b376e28f6eced86a7537c315515c3a",
+      "output_tail": "ancy https://example.org/jobs/hr-intern blocked: robots.txt disallows vacancy\nVacancy https://example.org/jobs/hr-intern blocked: robots.txt disallows vacancy\nVacancy https://example.org/jobs/hr-intern blocked: robots.txt disallows vacancy\nVacancy https://example.org/jobs/hr-intern blocked: robots.txt disallows vacancy\nVacancy https://example.org/jobs/hr-intern blocked: robots.txt disallows vacancy\nVacancy https://example.org/jobs/hr-intern blocked: robots.txt disallows vacancy\nVacancy https://example.org/jobs/hr-intern closed: Published application deadline has passed\nVacancy https://example.org/jobs/hr-intern closed: Published application deadline has passed\nVacancy https://example.org/jobs/hr-intern closed: Published application deadline has passed\nVacancy https://example.org/jobs/hr-intern closed: Official application page says the posting is closed\ngreenhouse-adyen failed; previous data retained: network unavailable\nVacancy https://example.org/jobs/1 blocked: robots.txt disallows application\nVacancy https://example.org/jobs/1 incomplete: Current page does not identify the same vacancy\nVacancy https://example.org/jobs/123 blocked: robots.txt disallows job\nVacancy https://example.org/jobs/123 incomplete: No available vacancy-specific application entry established\nVacancy https://example.org/jobs/123 closed: Official application page says the posting is closed\n----------------------------------------------------------------------\nRan 256 tests in 8.939s\n\nOK\n{\"analyzed_companies\": 8, \"verified_before\": 0, \"verified_after\": 1, \"newly_discovered_hr\": 0, \"live_requests\": 26}\n"
+    },
+    {
+      "name": "frontend",
+      "command": "node --test tests/frontend.test.js",
+      "output_sha256": "e3ae7b84bf043973ed835992250bfaf5934811a193409786541c47d804c36819",
+      "output_tail": "✔ all independent filters compose (0.800042ms)\n✔ English ad alone never matches English workplace filter (0.045292ms)\n✔ closed always hidden and unverified optional (0.044334ms)\n✔ saved jobs filter uses local IDs (0.043125ms)\n✔ Netherlands priority is independent from country filtering (0.252083ms)\n✔ keyword relevance ranks title matches (0.053875ms)\n✔ accent-insensitive keyword search (0.304333ms)\n✔ all multi-country locations match independently (0.037459ms)\n✔ unknown dates sort after known recency (0.050208ms)\n✔ stale and malformed timestamps warn (0.072916ms)\n✔ unsafe link protocols rejected (0.066709ms)\n✔ regional filters require an explicitly mapped region (0.047417ms)\n✔ unknown language requirements remain discoverable (0.038583ms)\n✔ preferred English does not prove work support; alternatives are explicit choices (0.073417ms)\n✔ legacy, future and stale verification never appears as verified (0.041333ms)\n✔ opportunity counts separate archived, verified and opportunity types (0.500542ms)\n✔ verification explanations are useful without exposing parser errors (0.219292ms)\n✔ province jobs require workplace region and separate unverified internships (0.087208ms)\n✔ English advertisement alone proves neither workplace English nor sufficiency (0.034417ms)\n✔ complete recent employer inventories differ from configured collection (0.07075ms)\n✔ verified internship and working-student KPI subsets exclude stale and unverified roles (0.030917ms)\nℹ tests 21\nℹ suites 0\nℹ pass 21\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 45.822875\n"
+    },
+    {
+      "name": "evaluate",
+      "command": "python3 scripts/evaluate.py",
+      "output_sha256": "d33db881986e8290ae1bfc357cc1aaf97ab5244470cf8cc62bff5914b704d261",
+      "output_tail": "{\n  \"examples\": 64,\n  \"true_positives\": 37,\n  \"true_negatives\": 27,\n  \"false_positives\": 0,\n  \"false_negatives\": 0,\n  \"errors\": [],\n  \"limitation\": \"Small manually labelled regression set; these scores are not estimates of accuracy on all European jobs.\"\n}\n"
+    },
+    {
+      "name": "build",
+      "command": "python3 scripts/build.py",
+      "output_sha256": "c0bdb257b50fcac6e22a39dc09fceb7ea696907b6ad7aa7494ab488cf58ecbf2",
+      "output_tail": "Built dist/ — static files, no runtime services required\n"
+    }
+  ]
+}

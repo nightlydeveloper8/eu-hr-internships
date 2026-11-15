@@ -216,14 +216,16 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             partial_sources.add(source['id']);report['bulk_disappearance_quarantined']=True
             report['error']='Large inventory reduction; new valid matches accepted, absence-based closure disabled pending review'
         report['collected']=len(records)
-        staged=[];page_errors=[];inspected=[];verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
+        staged=[];page_errors=[];inspected=[];filter_reasons=Counter();verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
         if cache:
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
         for record in records:
             if source['adapter']=='universal-employer':
                 from .ownership import owned_record
-                if not owned_record(record,ownership_source):continue
+                if not owned_record(record,ownership_source):
+                    filter_reasons['ownership-rejected']+=1
+                    continue
             # Inventory hints and URL slugs are not job titles. Read structured
             # pages before filtering, including opaque IDs and untranslated URLs.
             text_observation=record.get('_text_observation',dict(kind='feed',checked_at=stamp))
@@ -255,7 +257,9 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             inspected.append(record)
             role=classify_role(record['title'],record['text'],record.get('employment',''))
             countries=record_countries(record)
-            if not role or not countries:continue
+            if not role or not countries:
+                filter_reasons['not-hr-student-role' if not role else 'hr-candidate-without-country']+=1
+                continue
             url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
             verified=None; link_status='not-checked'; application=None; closed=False
             observation={}
@@ -290,7 +294,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
         if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
-        report.update(status='partial' if source['id'] in partial_sources else 'ok',matching=len(staged),verification_states=dict(Counter(j['verification']['state'] for j in staged)),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
+        report.update(status='partial' if source['id'] in partial_sources else 'ok',candidate_filter_reasons=dict(filter_reasons),matching=len(staged),verification_states=dict(Counter(j['verification']['state'] for j in staged)),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
         report['verified_closed_urls']=sorted(verified_closed_urls)
         if bulk_disappearance:report['status']='partial'
@@ -305,6 +309,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
         if source.get('cegid_inventory_search'):
             report.update(snapshot_kind='public-job-search-inventory',page_discovery_mode='published-titles-and-locations-with-HR-detail-enrichment')
+        if source.get('unigarant_inventory_search'):
+            report.update(snapshot_kind='public-job-search-inventory',page_discovery_mode='published-titles-and-short-descriptions-with-HR-detail-enrichment')
         LOG.info('%s: %s public records; %s HR internships',source['id'],len(records),len(staged))
     except Exception as exc:
         from .verification import blocked_error
@@ -364,11 +370,16 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
 def run(source_ids=None,verify=True,output=ROOT/'data'):
     registry=read(ROOT/'data/sources.json',[])
     selected=[s for s in registry if s.get('enabled') and (not source_ids or s['id'] in source_ids)]
+    from .employer_resolution import reviewed_source, validate_reviews
+    selected_ids={s['id'] for s in selected}
+    identity_reviews=[r for r in read(ROOT/'data/employer-identity-reviews.json',[])
+                      if r.get('source_id') in selected_ids]
+    validate_reviews(identity_reviews,selected)
     prior=read(output/'catalog.json',{'jobs':[],'updated_at':None})
     prior_report=read(output/'coverage.json',{'sources':[]})
     counts={r['id']:r.get('collected',0) for r in prior_report.get('sources',[])}
     stamp=now();client=Client()
-    parts=[process_source(source,client,stamp,counts.get(source['id'],0),verify) for source in selected]
+    parts=[process_source(reviewed_source(source,identity_reviews),client,stamp,counts.get(source['id'],0),verify) for source in selected]
     return finalize(registry,selected,prior,prior_report,parts,stamp,output)
 
 def main():
