@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-15T18:55:57.278362+00:00",
+  "generated_at": "2026-11-15T19:20:14.560645+00:00",
   "province": "Flevoland",
   "region_code": "NL23",
   "exhaustive": false,
@@ -186,13 +186,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:25.715320+00:00",
+      "last_attempt_at": "2026-11-15T19:07:53.540943+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-alfen",
-          "message": "[{'url': 'https://alfen.com/werken-bij/vacatures', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/nl-nl/werken-bij/vacatures/senior-supply-chain-planner-1356006', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/nl-nl/werken-bij/vacatures/sales-manager-ess-1347551', 'error': 'HTTP Error 500: Internal Server Error'}]"
+          "message": "[{'url': 'https://alfen.com/werken-bij', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/nl-nl/werken-bij/vacatures/senior-supply-chain-planner-1356006', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -228,7 +228,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:18.943381+00:00",
+      "last_attempt_at": "2026-11-15T19:08:18.349956+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -270,10 +270,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:25.715320+00:00",
+      "last_attempt_at": "2026-11-15T19:07:53.540943+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-provincie-flevoland",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "marfo",
@@ -307,7 +312,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:20.843514+00:00",
+      "last_attempt_at": "2026-11-15T19:07:56.830511+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -344,7 +349,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:37.667161+00:00",
+      "last_attempt_at": "2026-11-15T19:07:49.606683+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -386,7 +391,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:23.187286+00:00",
+      "last_attempt_at": "2026-11-15T19:07:48.381080+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -428,7 +433,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:21.896238+00:00",
+      "last_attempt_at": "2026-11-15T19:07:58.147534+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -470,7 +475,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:21.557320+00:00",
+      "last_attempt_at": "2026-11-15T19:07:47.560025+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -512,7 +517,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:25.715320+00:00",
+      "last_attempt_at": "2026-11-15T19:07:53.540943+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [
         "36be83296822b67167cb"
@@ -551,7 +556,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:22.456549+00:00",
+      "last_attempt_at": "2026-11-15T19:08:08.054274+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -593,10 +598,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:18.943381+00:00",
+      "last_attempt_at": "2026-11-15T19:08:18.349956+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-groothuisbouw",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-noordoostpolder",
@@ -630,7 +640,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:44.866542+00:00",
+      "last_attempt_at": "2026-11-15T19:07:55.212354+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -672,10 +682,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:42.518642+00:00",
-      "public_job_records": 3,
+      "last_attempt_at": "2026-11-15T19:07:44.430686+00:00",
+      "public_job_records": 6,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-sea-fresh",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "urker-zalmhuys",
@@ -709,7 +724,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:18.943381+00:00",
+      "last_attempt_at": "2026-11-15T19:08:18.349956+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -751,7 +766,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:42.518642+00:00",
+      "last_attempt_at": "2026-11-15T19:07:44.430686+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -788,7 +803,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:44.960061+00:00",
+      "last_attempt_at": "2026-11-15T19:07:47.674622+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -830,7 +845,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:25.715320+00:00",
+      "last_attempt_at": "2026-11-15T19:07:53.540943+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -872,10 +887,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:44.960061+00:00",
+      "last_attempt_at": "2026-11-15T19:07:47.674622+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-royal-herkel",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-zeewolde",
@@ -909,7 +929,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-15T18:44:19.187404+00:00",
+      "last_attempt_at": "2026-11-15T19:07:56.385782+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
