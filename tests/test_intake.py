@@ -188,8 +188,15 @@ class IntakeTests(unittest.TestCase):
     def test_published_records_ownership_policy_and_review_blocks_survive(self):
         prior = read(ROOT/'data/catalog.json', {})
         self.assert_catalog_preserved(prior)
-        blocked = [j for j in prior['jobs'] if j.get('review_note') and any(
-            name in j['employer'].lower() for name in ('trunkrs', 'domino', 'var ', 'meerpaal'))]
+        # The cumulative catalog now also contains historical third-party mirrors
+        # with ownership-review notes. This regression targets the specifically
+        # reviewed vacancy URLs, not every record with a review_note.
+        reviewed_urls = {r['url'] for r in read(ROOT/'data/listing-reviews.json', [])
+                         if r.get('decision') == 'needs-verification'}
+        blocked = [j for j in prior['jobs'] if j.get('review_note')
+                   and j['url'] in reviewed_urls
+                   and any(name in j['employer'].lower()
+                           for name in ('trunkrs', 'domino', 'var ', 'meerpaal'))]
         self.assertEqual(len(blocked), 2)
         opportunities = read(ROOT/'data/flevoland-opportunities.json', [])
         flv = [j for j in opportunities if j['employer'] in ('Van Amersfoort Racing', 'Meerpaal')]
