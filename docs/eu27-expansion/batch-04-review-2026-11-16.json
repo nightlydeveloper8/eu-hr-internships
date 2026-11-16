@@ -1,0 +1,1270 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-16",
+  "mode": "bounded-live-review-not-production-catalog",
+  "base_commit": "464d87c3ad94c7eeedf6b4acbb3cbd9f866c4b9e",
+  "authorization": "User instructed next batch and autonomous squash/merge; only individually reviewed exact Recruitee tenants, existing adapter and budgets",
+  "baseline": {
+    "records": 355,
+    "updated_at": "2026-11-16T13:56:56.213088+00:00"
+  },
+  "admitted": [
+    {
+      "name": "Hotel TwentySeven",
+      "source": {
+        "id": "recruitee-hotel-twentyseven",
+        "company_id": "hotel-twentyseven",
+        "employer": "Hotel TwentySeven",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+        "allowed_hosts": [
+          "hoteltwentyseven.recruitee.com"
+        ],
+        "feed_url": "https://hoteltwentyseven.recruitee.com/api/offers/",
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "application_check": "recruitee-linked",
+        "report_feed_scope": true,
+        "target_countries": [
+          "NL"
+        ],
+        "reviewed_on": "2026-11-16",
+        "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+        "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+      },
+      "checked_at": "2026-11-16T15:49:05.180582+00:00",
+      "report": {
+        "id": "recruitee-hotel-twentyseven",
+        "employer": "Hotel TwentySeven",
+        "adapter": "recruitee",
+        "checked_at": "2026-11-16T15:49:05.180582+00:00",
+        "collected": 24,
+        "status": "ok",
+        "candidate_filter_reasons": {
+          "not-hr-student-role": 23
+        },
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "NL"
+        ],
+        "records_inspected": 24,
+        "page_failures": 0,
+        "page_errors": [],
+        "page_errors_truncated": false,
+        "complete": true,
+        "closure_complete": false,
+        "pages_read": 1,
+        "feed_records": 24,
+        "published_records": 24,
+        "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion",
+        "verified_closed_urls": [],
+        "inventory_complete": true
+      },
+      "jobs": [
+        {
+          "id": "dcfc2e4e0a27ee281c71",
+          "external_id": "2799164",
+          "source_id": "recruitee-hotel-twentyseven",
+          "source_name": "Hotel TwentySeven",
+          "source_type": "recruitee",
+          "source_posting_id": "2799164",
+          "employer": "Hotel TwentySeven",
+          "title": "HR Stagiair(e)",
+          "country": "NL",
+          "countries": [
+            "NL"
+          ],
+          "city": "Amsterdam",
+          "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "apply_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20/c/new",
+          "categories": [
+            "hr-generalist"
+          ],
+          "category": "hr-generalist",
+          "internship_type": "internship",
+          "internship_confidence": "confirmed",
+          "advertisement_language": {
+            "code": "nl",
+            "confidence": "uncertain",
+            "method": "deterministic stopword heuristic"
+          },
+          "workplace_languages": [],
+          "language_requirements": {
+            "requirements_status": "unknown",
+            "required_languages": [],
+            "alternative_languages": [],
+            "english_support": "unknown",
+            "english_sufficiency": "unknown",
+            "english_sufficiency_evidence": null
+          },
+          "language_confidence": "unspecified",
+          "duration": "4 maanden",
+          "enrollment": null,
+          "work_mode": "unspecified",
+          "published_at": null,
+          "valid_through": null,
+          "first_discovered_at": "2026-11-16T15:49:05.180582+00:00",
+          "last_seen_at": "2026-11-16T15:49:05.180582+00:00",
+          "last_verified_at": "2026-11-16T15:49:05.180582+00:00",
+          "link_status": "verified",
+          "verification": {
+            "state": "verified",
+            "checked_at": "2026-11-16T15:49:05.180582+00:00",
+            "policy_version": 2,
+            "reason": "official-recruitee-same-posting-visible-form"
+          },
+          "status": "open",
+          "application_verification": {
+            "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20/c/new",
+            "method": "official-recruitee-same-posting-visible-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed",
+            "checked_at": "2026-11-16T15:49:05.180582+00:00"
+          }
+        }
+      ],
+      "closure_eligible": [],
+      "requests": 5,
+      "bytes_read": 1747459,
+      "duration_seconds": 2.336,
+      "events": [
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/robots.txt",
+          "sha256": "1dd189b3777600644fca36adc458ce045d70eb90ffbc4db03e60555ab4a666ea",
+          "scratch_file": "a5d995a599ffcdca5aed64f4.gz",
+          "bytes": 92,
+          "seconds": 0.084
+        },
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/api/offers",
+          "sha256": "8cac8528e3faf27ffc43562cdaf63d9d82218420fa0d89efb273896f82ecd920",
+          "scratch_file": "d4aefdce9fb21ffc005f7c56.gz",
+          "bytes": 362689,
+          "seconds": 0.653
+        },
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "sha256": "4b197a043d6b5d4607333f515e1287f32411d6ec6c1137fc7ac63418cbf94bc7",
+          "scratch_file": "017500eb3c068cc9be09d55d.gz",
+          "bytes": 461342,
+          "seconds": 0.596
+        },
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "sha256": "4b197a043d6b5d4607333f515e1287f32411d6ec6c1137fc7ac63418cbf94bc7",
+          "scratch_file": "017500eb3c068cc9be09d55d.gz",
+          "bytes": 461342,
+          "seconds": 0.436
+        },
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20/c/new",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20/c/new",
+          "sha256": "8c867898d1a05f6fae51a40482ca53927484b411d17ea223affd7302772bea63",
+          "scratch_file": "21d70914c914b540de1dfbb6.gz",
+          "bytes": 461994,
+          "seconds": 0.591
+        }
+      ]
+    },
+    {
+      "name": "Bundl",
+      "source": {
+        "id": "recruitee-bundl",
+        "company_id": "bundl",
+        "employer": "Bundl",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://bundl.recruitee.com/o/hr-intern",
+        "allowed_hosts": [
+          "bundl.recruitee.com"
+        ],
+        "feed_url": "https://bundl.recruitee.com/api/offers/",
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "application_check": "recruitee-linked",
+        "report_feed_scope": true,
+        "target_countries": [
+          "BE"
+        ],
+        "reviewed_on": "2026-11-16",
+        "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+        "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+      },
+      "checked_at": "2026-11-16T15:49:05.180295+00:00",
+      "report": {
+        "id": "recruitee-bundl",
+        "employer": "Bundl",
+        "adapter": "recruitee",
+        "checked_at": "2026-11-16T15:49:05.180295+00:00",
+        "collected": 6,
+        "status": "ok",
+        "candidate_filter_reasons": {
+          "not-hr-student-role": 5
+        },
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "BE"
+        ],
+        "records_inspected": 6,
+        "page_failures": 0,
+        "page_errors": [],
+        "page_errors_truncated": false,
+        "complete": true,
+        "closure_complete": false,
+        "pages_read": 1,
+        "feed_records": 6,
+        "published_records": 6,
+        "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion",
+        "verified_closed_urls": [],
+        "inventory_complete": true
+      },
+      "jobs": [
+        {
+          "id": "37abbdcf9d7dc121ccb5",
+          "external_id": "2337025",
+          "source_id": "recruitee-bundl",
+          "source_name": "Bundl",
+          "source_type": "recruitee",
+          "source_posting_id": "2337025",
+          "employer": "Bundl",
+          "title": "HR Intern",
+          "country": "BE",
+          "countries": [
+            "BE"
+          ],
+          "city": "Antwerp",
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "apply_url": "https://bundl.recruitee.com/o/hr-intern/c/new",
+          "categories": [
+            "hr-generalist"
+          ],
+          "category": "hr-generalist",
+          "internship_type": "internship",
+          "internship_confidence": "confirmed",
+          "advertisement_language": {
+            "code": "en",
+            "confidence": "uncertain",
+            "method": "deterministic stopword heuristic"
+          },
+          "workplace_languages": [
+            {
+              "code": "en",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Fluent in English and Dutch.."
+            },
+            {
+              "code": "nl",
+              "confidence": "confirmed",
+              "requirement": "required-or-working",
+              "method": "explicit-language-pattern",
+              "evidence": "Fluent in English and Dutch.."
+            }
+          ],
+          "language_requirements": {
+            "requirements_status": "explicit",
+            "required_languages": [
+              "en",
+              "nl"
+            ],
+            "alternative_languages": [],
+            "english_support": "documented",
+            "english_sufficiency": "unknown",
+            "english_sufficiency_evidence": null
+          },
+          "language_confidence": "confirmed",
+          "duration": null,
+          "enrollment": null,
+          "work_mode": "hybrid",
+          "published_at": null,
+          "valid_through": null,
+          "first_discovered_at": "2026-11-16T15:49:05.180295+00:00",
+          "last_seen_at": "2026-11-16T15:49:05.180295+00:00",
+          "last_verified_at": "2026-11-16T15:49:05.180295+00:00",
+          "link_status": "verified",
+          "verification": {
+            "state": "verified",
+            "checked_at": "2026-11-16T15:49:05.180295+00:00",
+            "policy_version": 2,
+            "reason": "official-recruitee-same-posting-visible-form"
+          },
+          "status": "open",
+          "application_verification": {
+            "url": "https://bundl.recruitee.com/o/hr-intern/c/new",
+            "method": "official-recruitee-same-posting-visible-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed",
+            "checked_at": "2026-11-16T15:49:05.180295+00:00"
+          }
+        }
+      ],
+      "closure_eligible": [],
+      "requests": 5,
+      "bytes_read": 923181,
+      "duration_seconds": 2.304,
+      "events": [
+        {
+          "url": "https://bundl.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/robots.txt",
+          "sha256": "6f097c051ab84676d9a1080cf1bc5ef15c34b56ea76277e64641e9b080f8f0f1",
+          "scratch_file": "50fbc611966a51a302014f64.gz",
+          "bytes": 81,
+          "seconds": 0.171
+        },
+        {
+          "url": "https://bundl.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/api/offers",
+          "sha256": "e59b58a6f38f2ea80e88d0a2054ab8edb792ac58e3c029b063fa0ee483241158",
+          "scratch_file": "1d47e4ffd91c2e2d5a7f436c.gz",
+          "bytes": 69959,
+          "seconds": 0.601
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/o/hr-intern",
+          "sha256": "ad0eadfc7fbde06144d0d55ada70a222d91eec5aaff787043d90260ac8963f72",
+          "scratch_file": "b700e6e35c8249f56191b7f0.gz",
+          "bytes": 284171,
+          "seconds": 0.61
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/o/hr-intern",
+          "sha256": "ad0eadfc7fbde06144d0d55ada70a222d91eec5aaff787043d90260ac8963f72",
+          "scratch_file": "b700e6e35c8249f56191b7f0.gz",
+          "bytes": 284171,
+          "seconds": 0.437
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern/c/new",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/o/hr-intern/c/new",
+          "sha256": "4a8119039886b75d4c1510fddd19389428b1c45a67bcd77294f0e8ad2a6ec1fd",
+          "scratch_file": "a1f23b1e0fed2d88106e46f9.gz",
+          "bytes": 284799,
+          "seconds": 0.601
+        }
+      ]
+    },
+    {
+      "name": "Franklin Institute",
+      "source": {
+        "id": "recruitee-franklin-institute",
+        "company_id": "franklin-institute",
+        "employer": "Franklin Institute",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+        "allowed_hosts": [
+          "franklininstitute.recruitee.com"
+        ],
+        "feed_url": "https://franklininstitute.recruitee.com/api/offers/",
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "application_check": "recruitee-linked",
+        "report_feed_scope": true,
+        "target_countries": [
+          "DE"
+        ],
+        "reviewed_on": "2026-11-16",
+        "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+        "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+      },
+      "checked_at": "2026-11-16T15:49:05.180595+00:00",
+      "report": {
+        "id": "recruitee-franklin-institute",
+        "employer": "Franklin Institute",
+        "adapter": "recruitee",
+        "checked_at": "2026-11-16T15:49:05.180595+00:00",
+        "collected": 11,
+        "status": "ok",
+        "candidate_filter_reasons": {
+          "not-hr-student-role": 10
+        },
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "DE"
+        ],
+        "records_inspected": 11,
+        "page_failures": 0,
+        "page_errors": [],
+        "page_errors_truncated": false,
+        "complete": true,
+        "closure_complete": false,
+        "pages_read": 1,
+        "feed_records": 11,
+        "published_records": 11,
+        "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion",
+        "verified_closed_urls": [],
+        "inventory_complete": true
+      },
+      "jobs": [
+        {
+          "id": "22f73315cd53c36edb2e",
+          "external_id": "2791179",
+          "source_id": "recruitee-franklin-institute",
+          "source_name": "Franklin Institute",
+          "source_type": "recruitee",
+          "source_posting_id": "2791179",
+          "employer": "Franklin Institute",
+          "title": "Werkstudent/Praktikant HR - People & Culture (m/w/d)",
+          "country": "DE",
+          "countries": [
+            "DE"
+          ],
+          "city": "München",
+          "url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+          "apply_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd/c/new",
+          "categories": [
+            "people-operations",
+            "hr-generalist"
+          ],
+          "category": "people-operations",
+          "internship_type": "working-student",
+          "internship_confidence": "confirmed",
+          "advertisement_language": {
+            "code": "de",
+            "confidence": "uncertain",
+            "method": "deterministic stopword heuristic"
+          },
+          "workplace_languages": [],
+          "language_requirements": {
+            "requirements_status": "unknown",
+            "required_languages": [],
+            "alternative_languages": [],
+            "english_support": "unknown",
+            "english_sufficiency": "unknown",
+            "english_sufficiency_evidence": null
+          },
+          "language_confidence": "unspecified",
+          "duration": null,
+          "enrollment": null,
+          "work_mode": "unspecified",
+          "published_at": null,
+          "valid_through": null,
+          "first_discovered_at": "2026-11-16T15:49:05.180595+00:00",
+          "last_seen_at": "2026-11-16T15:49:05.180595+00:00",
+          "last_verified_at": "2026-11-16T15:49:05.180595+00:00",
+          "link_status": "verified",
+          "verification": {
+            "state": "verified",
+            "checked_at": "2026-11-16T15:49:05.180595+00:00",
+            "policy_version": 2,
+            "reason": "official-recruitee-same-posting-visible-form"
+          },
+          "status": "open",
+          "application_verification": {
+            "url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd/c/new",
+            "method": "official-recruitee-same-posting-visible-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed",
+            "checked_at": "2026-11-16T15:49:05.180595+00:00"
+          }
+        }
+      ],
+      "closure_eligible": [],
+      "requests": 5,
+      "bytes_read": 1098049,
+      "duration_seconds": 2.284,
+      "events": [
+        {
+          "url": "https://franklininstitute.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklininstitute.recruitee.com/robots.txt",
+          "sha256": "3b572188dd68e12d3c6977cce5b4d115a903e0144f015adc7b5007ba625e9be2",
+          "scratch_file": "46e25ba7e077407363672f7b.gz",
+          "bytes": 93,
+          "seconds": 0.095
+        },
+        {
+          "url": "https://franklininstitute.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklininstitute.recruitee.com/api/offers",
+          "sha256": "04ded9d339c8f23c896737d2281eba68e655831a1c5eb054981f9931504ea363",
+          "scratch_file": "5dac10b2e8ad877104859215.gz",
+          "bytes": 189449,
+          "seconds": 0.625
+        },
+        {
+          "url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+          "sha256": "386d72387ebf2231404353bd99b23ec326c0a2b3645348e4c6182b0c11e31ade",
+          "scratch_file": "e58ca486f3177af8c0880aa5.gz",
+          "bytes": 302625,
+          "seconds": 0.503
+        },
+        {
+          "url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+          "sha256": "386d72387ebf2231404353bd99b23ec326c0a2b3645348e4c6182b0c11e31ade",
+          "scratch_file": "e58ca486f3177af8c0880aa5.gz",
+          "bytes": 302625,
+          "seconds": 0.536
+        },
+        {
+          "url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd/c/new",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd/c/new",
+          "sha256": "ce43df87592a70ebb35607cb63928d4ce3af8b4667455205eadb938c46fa0b32",
+          "scratch_file": "03c71cc72a201bcc5c15cec1.gz",
+          "bytes": 303257,
+          "seconds": 0.553
+        }
+      ]
+    }
+  ],
+  "ownership": {
+    "Hotel TwentySeven": {
+      "name": "Hotel TwentySeven",
+      "checked_at": "2026-11-16T15:34:44.918278+00:00",
+      "pages": [
+        {
+          "url": "https://www.hoteltwentyseven.com/",
+          "final_url": "https://www.hoteltwentyseven.com",
+          "status": 200,
+          "headings": [],
+          "ats_links": [
+            {
+              "url": "https://hoteltwentyseven.recruitee.com/l/en",
+              "label": "CAREERS"
+            }
+          ],
+          "careers": [
+            {
+              "url": "https://hoteltwentyseven.recruitee.com/l/en",
+              "label": "CAREERS"
+            }
+          ]
+        }
+      ],
+      "requests": 2,
+      "bytes_read": 199377,
+      "duration_seconds": 0.648,
+      "events": [
+        {
+          "url": "https://www.hoteltwentyseven.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.hoteltwentyseven.com/robots.txt",
+          "sha256": "f744f309d223085d935fdf1611090585ac11ef0df689c26c47e4d612218e66b8",
+          "scratch_file": "29818a4d5a889d4c9c386b8e.gz",
+          "bytes": 1108,
+          "seconds": 0.081
+        },
+        {
+          "url": "https://www.hoteltwentyseven.com/",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.hoteltwentyseven.com",
+          "sha256": "02674b079f5b08d768fcd6dc8bc038ef7702b50add5ea6ef7162c00610a9c2ee",
+          "scratch_file": "496f39cfd9211161c40fa541.gz",
+          "bytes": 198269,
+          "seconds": 0.637
+        }
+      ]
+    },
+    "Bundl": {
+      "name": "Bundl",
+      "corporate_url": "https://www.bundl.com/careers",
+      "proposal": {
+        "action_id": "f1868ef25a42226921ad",
+        "name": "Bundl",
+        "adapter": "recruitee",
+        "observed_tenant": "bundl.recruitee.com",
+        "observed_url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+        "approved_for_production": false,
+        "enabled": false,
+        "required_reviews": [
+          "employer-to-ATS linkage and group ownership",
+          "robots/access for exact feed and vacancy hosts",
+          "bounded inventory completeness and geography",
+          "same-vacancy application and freshness",
+          "language/intake/type requirements",
+          "documented size if known"
+        ],
+        "next_step": "review and bounded pilot; do not load this proposal as a production source",
+        "candidate_feed_url": "https://bundl.recruitee.com/api/offers/"
+      },
+      "previous_jobs": [
+        {
+          "external_id": "2337025",
+          "title": "HR Intern",
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "countries": [
+            "BE"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "checked_at": "2026-11-16T15:27:33.387065+00:00",
+      "pages": [
+        {
+          "url": "https://www.bundl.com/careers",
+          "final_url": "https://www.bundl.com/careers",
+          "status": 200,
+          "headings": [
+            "Join the Bundl team, or one of our startups."
+          ],
+          "ats_links": [],
+          "career_links": [
+            {
+              "url": "https://www.bundl.com/careers",
+              "label": "Careers"
+            },
+            {
+              "url": "https://www.bundl.com/careers",
+              "label": "Careers"
+            },
+            {
+              "url": "https://www.bundl.com/internships",
+              "label": "Student jobs and internships"
+            },
+            {
+              "url": "https://www.bundl.com/careers",
+              "label": "Careers"
+            }
+          ]
+        },
+        {
+          "url": "https://www.bundl.com/internships",
+          "final_url": "https://www.bundl.com/internships",
+          "status": 200,
+          "headings": [
+            "Join the Bundl team as one of our interns or working students."
+          ],
+          "ats_links": [
+            {
+              "url": "https://bundl.recruitee.com/o/design-intern",
+              "label": "Design Intern Internship  ·  Europe based"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/growth-marketing-intern",
+              "label": "Growth Marketing Intern Internship  ·  Europe based"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/hr-intern",
+              "label": "HR Intern Internship  ·  Europe"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/venture-architect-intern",
+              "label": "Venture Architecture Intern Internship  ·  Europe based"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/design-intern",
+              "label": "published embedded URL"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/growth-marketing-intern",
+              "label": "published embedded URL"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/hr-intern",
+              "label": "published embedded URL"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/venture-architect-intern",
+              "label": "published embedded URL"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/design-intern",
+              "label": "published embedded URL"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/growth-marketing-intern",
+              "label": "published embedded URL"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/hr-intern",
+              "label": "published embedded URL"
+            },
+            {
+              "url": "https://bundl.recruitee.com/o/venture-architect-intern",
+              "label": "published embedded URL"
+            }
+          ],
+          "career_links": [
+            {
+              "url": "https://www.bundl.com/careers",
+              "label": "Careers"
+            },
+            {
+              "url": "https://www.bundl.com/careers",
+              "label": "Careers"
+            },
+            {
+              "url": "https://www.bundl.com/careers",
+              "label": "Careers"
+            }
+          ]
+        }
+      ],
+      "ownership_state": "official-employer-to-exact-tenant",
+      "ownership_url": "https://www.bundl.com/internships",
+      "tenant_links": [
+        {
+          "url": "https://bundl.recruitee.com/o/design-intern",
+          "label": "Design Intern Internship  ·  Europe based"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/growth-marketing-intern",
+          "label": "Growth Marketing Intern Internship  ·  Europe based"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "label": "HR Intern Internship  ·  Europe"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/venture-architect-intern",
+          "label": "Venture Architecture Intern Internship  ·  Europe based"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/design-intern",
+          "label": "published embedded URL"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/growth-marketing-intern",
+          "label": "published embedded URL"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "label": "published embedded URL"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/venture-architect-intern",
+          "label": "published embedded URL"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/design-intern",
+          "label": "published embedded URL"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/growth-marketing-intern",
+          "label": "published embedded URL"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "label": "published embedded URL"
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/venture-architect-intern",
+          "label": "published embedded URL"
+        }
+      ],
+      "requests": 3,
+      "bytes_read": 108304,
+      "duration_seconds": 2.651,
+      "events": [
+        {
+          "url": "https://www.bundl.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.bundl.com/robots.txt",
+          "sha256": "f8cca15dad316b8c9828547721687dda452e418fc2fba6692abc7115bc687895",
+          "scratch_file": "d8a65b717535232abd833413.gz",
+          "bytes": 150,
+          "seconds": 0.934
+        },
+        {
+          "url": "https://www.bundl.com/careers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.bundl.com/careers",
+          "sha256": "3c3987799b77eea6f3610a3175ade34c9563189ba7dd819b4ccb08f3ae8e6b36",
+          "scratch_file": "44fdb47741cb0d2031b39688.gz",
+          "bytes": 51498,
+          "seconds": 2.001
+        },
+        {
+          "url": "https://www.bundl.com/internships",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.bundl.com/internships",
+          "sha256": "341b84ac4d4f471c5db1147a7c5dbd07efcf2b7a0bb1586d12de694f14ae359f",
+          "scratch_file": "0da4e5ca1e49d72acaafab45.gz",
+          "bytes": 56656,
+          "seconds": 0.64
+        }
+      ]
+    },
+    "Franklin Institute": {
+      "name": "Franklin Institute",
+      "checked_at": "2026-11-16T15:45:33.413863+00:00",
+      "pages": [
+        {
+          "url": "https://www.franklin-institute.de/",
+          "status": 200,
+          "final_url": "https://franklin-institute.de/",
+          "headings": [
+            "Entfalte dein Potenzial mit neuen Skills"
+          ],
+          "ats_links": [],
+          "career_links": [
+            {
+              "url": "https://franklin-institute.de/career",
+              "label": "Karriere"
+            }
+          ],
+          "tenant_contexts": []
+        },
+        {
+          "url": "https://franklin-institute.de/career",
+          "status": 200,
+          "final_url": "https://franklin-institute.de/career",
+          "headings": [
+            "Wir leben Karriere. Auch deine."
+          ],
+          "ats_links": [
+            {
+              "url": "https://franklininstitute.recruitee.com/o/head-of-teaching-mwd-ki-future-skills-im-edtech-scale-up-100-remote",
+              "label": "Remote \n          \n         \n         Head of Teaching  (m/w/d) \n         KI & Future Skills im EdTech Scale-up \n       "
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/sales-operations-assistant-b2b-mwd",
+              "label": "München \n          \n         \n         Sales Operations Assistant B2B  (m/w/d) \n        \n       \n       \n         Vollze"
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/junior-customer-operations-managersupport-coordinator-mwd",
+              "label": "München \n          \n         \n         (Junior) Customer Operations Manager/Support Coordinator  (m/w/d) \n        \n     "
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/sales-manager-mwd",
+              "label": "München \n          \n         \n         Sales Manager  (m/w/d) \n        \n       \n       \n         Vollzeit · Festanstellu"
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/key-account-manager-b2b-mwd",
+              "label": "München \n          \n         \n         Key Account Manager B2B  (m/w/d) \n        \n       \n       \n         Vollzeit · Fe"
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/inside-sales-manager-b2c-mwd",
+              "label": "München (hybrid) \n          \n         \n         Inside Sales Manager B2C  (m/w/d) \n        \n       \n       \n         Vol"
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/customer-relations-manager-customer-success-coach-mwd-100-remote",
+              "label": "Remote \n          \n         \n         Customer Relations Manager / Customer Success Coach  (m/w/d) \n        \n       \n   "
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/career-coach-mwd-fur-arbeitsmarktintegration-100-remote",
+              "label": "Remote \n          \n         \n         Career Coach für Arbeitsmarktintegration  (m/w/d) \n        \n       \n       \n      "
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/werkstudent-operations-management-mwd",
+              "label": "München \n          \n         \n         Werkstudent Operations Management  (m/w/d) \n        \n       \n       \n         Tei"
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+              "label": "München \n          \n         \n         Werkstudent/Praktikant HR  (m/w/d) \n         People & Culture \n       \n       \n  "
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/ai-consultant-ki-automatisierungs-coach-mwd-100-remote",
+              "label": "Remote \n          \n         \n         AI Consultant / KI & Automatisierungs-Coach  (m/w/d) \n        \n       \n       \n   "
+            }
+          ],
+          "career_links": [
+            {
+              "url": "https://franklin-institute.de/career",
+              "label": "Offene Stellen ansehen"
+            },
+            {
+              "url": "https://franklin-institute.de/career",
+              "label": "11 offene Stellen"
+            },
+            {
+              "url": "https://franklininstitute.recruitee.com/o/career-coach-mwd-fur-arbeitsmarktintegration-100-remote",
+              "label": "Remote \n          \n         \n         Career Coach für Arbeitsmarktintegration  (m/w/d) \n        \n       \n       \n      "
+            },
+            {
+              "url": "https://franklin-institute.de/career",
+              "label": "Karriere"
+            },
+            {
+              "url": "https://franklin-institute.de/career",
+              "label": "Cookie Einstellungen"
+            }
+          ],
+          "tenant_contexts": [
+            "kum <span>2</span></button></div>\n      </div>\n      <div>\n    <a href=\"https://franklininstitute.recruitee.com/o/head-of-teaching-mwd-ki-future-skills-im-edtech-scale-up-100-remote\">\n      <span>\n        <span>\n          <span>Remote</span>\n          \n       ",
+            "  <span>, Anzeige öffnet sich in Recruitee</span>\n    </a>\n    <a href=\"https://franklininstitute.recruitee.com/o/sales-operations-assistant-b2b-mwd\">\n      <span>\n        <span>\n          <span>München</span>\n          \n        </span>\n        <span>Sales Ope",
+            "  <span>, Anzeige öffnet sich in Recruitee</span>\n    </a>\n    <a href=\"https://franklininstitute.recruitee.com/o/junior-customer-operations-managersupport-coordinator-mwd\">\n      <span>\n        <span>\n          <span>München</span>\n          \n        </span>\n"
+          ]
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 86692,
+      "seconds": 1.896,
+      "events": [
+        {
+          "url": "https://www.franklin-institute.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklin-institute.de/robots.txt",
+          "sha256": "d622237794fec6bc095fc0583cc0f3ac85ef1d7e8642c340dae8130524dd11a9",
+          "scratch_file": "05b08a81707306066d7a5fc8.gz",
+          "bytes": 981,
+          "seconds": 0.467
+        },
+        {
+          "url": "https://franklin-institute.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklin-institute.de/robots.txt",
+          "sha256": "d622237794fec6bc095fc0583cc0f3ac85ef1d7e8642c340dae8130524dd11a9",
+          "scratch_file": "dae5c3980c9f25d97e391cc0.gz",
+          "bytes": 981,
+          "seconds": 0.271
+        },
+        {
+          "url": "https://www.franklin-institute.de/",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklin-institute.de/",
+          "sha256": "7ff4e31cbbf5065f06142faa11498a5f4159cfd54ce155c8de3e0ce4624964b9",
+          "scratch_file": "caae0e8005adc8d6577279d6.gz",
+          "bytes": 57435,
+          "seconds": 1.387
+        },
+        {
+          "url": "https://franklin-institute.de/career",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://franklin-institute.de/career",
+          "sha256": "67abda8a6a2ade2d9952a7db905c38a0d47c09bf45515dafd2b1b8eac96f0496",
+          "scratch_file": "1abaf2d1b26ac6631ca5ed59.gz",
+          "bytes": 27295,
+          "seconds": 0.489
+        }
+      ]
+    }
+  },
+  "other_reviewed": [
+    {
+      "name": "Kickmaker",
+      "state": "pending-ownership",
+      "reason": "Corporate links WTTJ; intermediate page returned 403; no retry and no proven exact Lever tenant",
+      "evidence": {
+        "name": "Kickmaker",
+        "checked_at": "2026-11-16T15:45:33.413477+00:00",
+        "pages": [],
+        "error": "HTTPError: HTTP Error 403: Forbidden",
+        "requests": 2,
+        "bytes_read": 216,
+        "seconds": 0.544,
+        "events": [
+          {
+            "url": "https://www.welcometothejungle.com/robots.txt",
+            "method": "GET",
+            "status": 200,
+            "final_url": "https://www.welcometothejungle.com/robots.txt",
+            "sha256": "d837e33d3f8f5f0d45fc7c5987cab1f64449a8cfeac7246c1f1a6863cb18aa3e",
+            "scratch_file": "ec8bc12324ef277d58ab3934.gz",
+            "bytes": 216,
+            "seconds": 0.139
+          },
+          {
+            "url": "https://www.welcometothejungle.com/fr/companies/kickmaker/jobs",
+            "method": "GET",
+            "error": "HTTPError: HTTP Error 403: Forbidden",
+            "seconds": 0.543
+          }
+        ]
+      }
+    },
+    {
+      "name": "Zero Motorcycles",
+      "state": "pending-ownership",
+      "reason": "Corporate employment page embeds generic Recruitee widget; exact tenant binding not established"
+    },
+    {
+      "name": "The Social Hub",
+      "state": "pending-ownership-and-geography",
+      "reason": "Correct HTML and one published JS asset read; exact Greenhouse tenant link and actual job geography not established"
+    },
+    {
+      "name": "Settels Savenije",
+      "state": "not-admitted",
+      "reason": "Corporate Recruitee widget company 28485 matches ATS page companyId but application employer identity fails with proposed name; start February 2026 is past; no verified addition",
+      "evidence": {
+        "name": "Settels Savenije",
+        "source": {
+          "id": "recruitee-settels-savenije",
+          "company_id": "settels-savenije",
+          "employer": "Settels Savenije",
+          "adapter": "recruitee",
+          "enabled": false,
+          "career_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "allowed_hosts": [
+            "sttls.recruitee.com"
+          ],
+          "feed_url": "https://sttls.recruitee.com/api/offers/",
+          "max_requests": 12,
+          "collection_seconds": 45,
+          "application_check": "recruitee-linked",
+          "report_feed_scope": true,
+          "target_countries": [
+            "NL"
+          ],
+          "reviewed_on": "2026-11-16",
+          "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+          "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+        },
+        "checked_at": "2026-11-16T15:49:29.576880+00:00",
+        "report": {
+          "id": "recruitee-settels-savenije",
+          "employer": "Settels Savenije",
+          "adapter": "recruitee",
+          "checked_at": "2026-11-16T15:49:29.576880+00:00",
+          "collected": 24,
+          "status": "partial",
+          "candidate_filter_reasons": {
+            "not-hr-student-role": 23
+          },
+          "matching": 1,
+          "verification_states": {
+            "incomplete": 1
+          },
+          "observed_countries": [
+            "NL"
+          ],
+          "records_inspected": 24,
+          "page_failures": 1,
+          "page_errors": [
+            {
+              "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+              "error": "Vacancy verification: Recruitee posting belongs to another or unknown employer"
+            }
+          ],
+          "page_errors_truncated": false,
+          "complete": false,
+          "closure_complete": false,
+          "pages_read": 1,
+          "feed_records": 24,
+          "published_records": 24,
+          "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion",
+          "verified_closed_urls": [],
+          "inventory_complete": true
+        },
+        "jobs": [
+          {
+            "id": "63a9da9f3e5b683c27a3",
+            "external_id": "2389418",
+            "source_id": "recruitee-settels-savenije",
+            "source_name": "Settels Savenije",
+            "source_type": "recruitee",
+            "source_posting_id": "2389418",
+            "employer": "Settels Savenije",
+            "title": "Meewerk stage HRM",
+            "country": "NL",
+            "countries": [
+              "NL"
+            ],
+            "city": "Eindhoven",
+            "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+            "apply_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+            "categories": [
+              "hr-generalist"
+            ],
+            "category": "hr-generalist",
+            "internship_type": "internship",
+            "internship_confidence": "confirmed",
+            "advertisement_language": {
+              "code": "nl",
+              "confidence": "uncertain",
+              "method": "deterministic stopword heuristic"
+            },
+            "workplace_languages": [],
+            "language_requirements": {
+              "requirements_status": "unknown",
+              "required_languages": [],
+              "alternative_languages": [],
+              "english_support": "unknown",
+              "english_sufficiency": "unknown",
+              "english_sufficiency_evidence": null
+            },
+            "language_confidence": "unspecified",
+            "duration": "4 maanden",
+            "enrollment": "- Je volgt een HBO-opleiding HRM (of vergelijkbaar).",
+            "work_mode": "unspecified",
+            "published_at": null,
+            "valid_through": null,
+            "first_discovered_at": "2026-11-16T15:49:29.576880+00:00",
+            "last_seen_at": "2026-11-16T15:49:29.576880+00:00",
+            "last_verified_at": null,
+            "link_status": "incomplete",
+            "verification": {
+              "state": "incomplete",
+              "checked_at": "2026-11-16T15:49:29.576880+00:00",
+              "policy_version": 2,
+              "reason": "Recruitee posting belongs to another or unknown employer"
+            },
+            "status": "unverified",
+            "intake": {
+              "published_start": "2026-02",
+              "alternatives": [],
+              "state": "past-start",
+              "checked_at": "2026-11-16T15:49:29.576880+00:00",
+              "evidence": [
+                "Vanaf februari 2026"
+              ],
+              "provenance": "live",
+              "observed_via": "live"
+            }
+          }
+        ],
+        "closure_eligible": [],
+        "requests": 5,
+        "bytes_read": 1419939,
+        "duration_seconds": 2.287,
+        "events": [
+          {
+            "url": "https://sttls.recruitee.com/robots.txt",
+            "method": "GET",
+            "status": 200,
+            "final_url": "https://sttls.recruitee.com/robots.txt",
+            "sha256": "f51c6518193e6a125962c8a52a1db19d84a8e19a8a77080c596290880fedcaba",
+            "scratch_file": "8f9eab2c445e3a37022d87ed.gz",
+            "bytes": 81,
+            "seconds": 0.091
+          },
+          {
+            "url": "https://sttls.recruitee.com/api/offers",
+            "method": "GET",
+            "status": 200,
+            "final_url": "https://sttls.recruitee.com/api/offers",
+            "sha256": "d7eb6b7e2d1a903345b89a2c6ea61581e672b2709eeff8687d926750f85187fb",
+            "scratch_file": "69c37c6e97bc1a03282d3a42.gz",
+            "bytes": 299822,
+            "seconds": 0.68
+          },
+          {
+            "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+            "method": "GET",
+            "status": 200,
+            "final_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+            "sha256": "201c05f63891243503cf7e8f8278b94a397be5ce046019d46120f3485232b04a",
+            "scratch_file": "0944519d40c5123127c082db.gz",
+            "bytes": 373138,
+            "seconds": 0.539
+          },
+          {
+            "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+            "method": "GET",
+            "status": 200,
+            "final_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+            "sha256": "201c05f63891243503cf7e8f8278b94a397be5ce046019d46120f3485232b04a",
+            "scratch_file": "0944519d40c5123127c082db.gz",
+            "bytes": 373138,
+            "seconds": 0.474
+          },
+          {
+            "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm/c/new",
+            "method": "GET",
+            "status": 200,
+            "final_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm/c/new",
+            "sha256": "d2433891d7aaf9c852a3e033c0bbe1e37dc6aa2ca234b2f608682bc7569ba2e2",
+            "scratch_file": "e866aeb5dceba797978a304f.gz",
+            "bytes": 373760,
+            "seconds": 0.532
+          }
+        ]
+      }
+    }
+  ],
+  "costs": {
+    "requests": 52,
+    "bytes_read": 11849666,
+    "source_seconds": 26.114,
+    "renderings": 0,
+    "web_search_queries": 9,
+    "logical_requests_include_robots": true,
+    "redirect_http_requests_not_separately_counted": true
+  },
+  "pilot_costs": {
+    "requests": 15,
+    "bytes_read": 3768689,
+    "source_seconds": 6.924
+  },
+  "simulation": {
+    "mode": "offline-two-cycle-replay-no-new-live-evidence",
+    "old_ids_preserved": true,
+    "two_cycles_idempotent": true,
+    "before_records": 355,
+    "after_records": 358,
+    "new_jobs": [
+      {
+        "id": "dcfc2e4e0a27ee281c71",
+        "title": "HR Stagiair(e)",
+        "employer": "Hotel TwentySeven",
+        "internship_type": "internship"
+      },
+      {
+        "id": "37abbdcf9d7dc121ccb5",
+        "title": "HR Intern",
+        "employer": "Bundl",
+        "internship_type": "internship"
+      },
+      {
+        "id": "22f73315cd53c36edb2e",
+        "title": "Werkstudent/Praktikant HR - People & Culture (m/w/d)",
+        "employer": "Franklin Institute",
+        "internship_type": "working-student"
+      }
+    ]
+  },
+  "limitations": [
+    "Three sources do not establish full country or EU27 coverage",
+    "Franklin counts as working-student, not verified internship",
+    "Bundl requires English AND Dutch; Franklin text requires German AND English; current German extraction leaves languages unknown",
+    "Hotel workplace language unknown; no English-only claim",
+    "All company sizes unknown; no SME claim",
+    "Full returned feeds only; closure_complete false; no absence-based closures",
+    "Global document Accept fixed; API JSON explicit, robots plaintext; UA and restrictions unchanged"
+  ],
+  "production": {
+    "merged": false,
+    "activated_on_main": false,
+    "first_cycle_verified": false
+  }
+}

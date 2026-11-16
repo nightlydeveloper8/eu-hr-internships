@@ -48412,5 +48412,71 @@
     "collection_seconds": 75,
     "permission_basis": "Official employer site links to this exact public portal; robots and 10-second crawl-delay enforced; observed GET application route only; no submit or authentication",
     "reviewed_on": "2026-11-16"
+  },
+  {
+    "id": "recruitee-hotel-twentyseven",
+    "company_id": "hotel-twentyseven",
+    "employer": "Hotel TwentySeven",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+    "allowed_hosts": [
+      "hoteltwentyseven.recruitee.com"
+    ],
+    "feed_url": "https://hoteltwentyseven.recruitee.com/api/offers/",
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "recruitee-bundl",
+    "company_id": "bundl",
+    "employer": "Bundl",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://bundl.recruitee.com/o/hr-intern",
+    "allowed_hosts": [
+      "bundl.recruitee.com"
+    ],
+    "feed_url": "https://bundl.recruitee.com/api/offers/",
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "BE"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "recruitee-franklin-institute",
+    "company_id": "franklin-institute",
+    "employer": "Franklin Institute",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+    "allowed_hosts": [
+      "franklininstitute.recruitee.com"
+    ],
+    "feed_url": "https://franklininstitute.recruitee.com/api/offers/",
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "DE"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
   }
 ]

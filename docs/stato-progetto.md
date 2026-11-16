@@ -1,5 +1,18 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — lotto 04 e squash autonomi autorizzati
+
+L'utente ha autorizzato il prossimo lotto e gli squash and merge autonomi del lavoro pronto. **PR #44 integrata**, squash `464d87c3ad94c7eeedf6b4acbb3cbd9f866c4b9e`, esito confermato su main e nell'interfaccia GitHub. Raccolta ordinaria push #43898333473 riuscita: 18 job verdi, dati `b5e14d0`, 355→356 record, tutti gli ID conservati, 26 stage verificati invariati. BSH inglese documented, sufficienza da solo unknown; nuovo record automatico Deutsche Pfandbriefbank resta unverified. PR #41 resta draft e non pronta: non viene integrata.
+
+Lotto 04: Hotel TwentySeven NL e Bundl BE, due stage HR con candidatura verificata live; Franklin Institute DE, una posizione mista conteggiata working student. Tre collegamenti corporate→tenant esatti, 41 offerte totali nei feed, tre moduli visibili abilitati. Nuove aziende/fonti applicate atomicamente nel ramo `expand/eu27-batch04-20261116`, 12 richieste/45 s ciascuna, solo host Recruitee esatti. Nessun gate Dynamic ATS ampliato. Catalogo non modificato manualmente.
+
+Correzione riutilizzabile del client: documenti chiedono HTML, API JSON esplicito, robots testo semplice; altrimenti due CMS nascondevano Careers in frammenti JSON. 413 test Python, 26 Node, 64 esempi e build passati. Simulazione offline 355→358 record, ID precedenti conservati e due cicli identici; non è incremento di produzione. Piloti ammessi: 15 richieste/6,924 s/3.768.689 byte; ricerca totale lotto: 52/26,114 s/11.849.666 byte, nove query web, zero rendering.
+
+Kickmaker 403 intermedio senza retry; Zero Motorcycles e Social Hub ownership incompleta; Settels data inizio febbraio 2026 e identità non confermata dal verificatore: nessuno dei quattro attivato. Bundl inglese+olandese; Franklin tedesco+inglese nel testo, estrazione tedesca ancora unknown; Hotel lingua unknown. Nessuna dichiarazione English-only, dimensioni PMI o copertura nazionale completa.
+
+Prove: [BATCH-04-REVIEW.md](eu27-expansion/BATCH-04-REVIEW.md), `batch-04-review-2026-11-16.json`, bundle atomico e screenshot merge #44. **Primo punto incompleto:** pubblicare/revisionare PR lotto 04, integrare autonomamente solo dopo CI e controlli, poi misurare la raccolta ordinaria e il catalogo servito. Nessuna nuova automazione AI o raccolta completa manuale.
+
+
 
 
 
