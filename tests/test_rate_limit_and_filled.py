@@ -72,6 +72,19 @@ class RateLimitedHostTests(unittest.TestCase):
             self.assertEqual(client.request(origin, robots=False), (b"ok", 200, origin))
             self.assertEqual(calls, [origin, origin])
 
+    def test_redirect_to_previously_rate_limited_host_does_not_follow(self):
+        from urllib.request import Request
+        from collector.adapters import CheckedRedirect
+        _RATE_LIMITED_HOSTS.add("redirect-429.test")
+        client = BudgetClient(seconds=10, max_requests=3, delay=0)
+        with self.assertRaises(HTTPError) as error:
+            CheckedRedirect(client).redirect_request(
+                Request("https://other-429.test/jobs/1"), None, 302, "Found", {},
+                "https://redirect-429.test/jobs/9")
+        self.assertEqual(error.exception.code, 429)
+        self.assertEqual(client.requests, 0)
+        self.assertEqual(client.rate_limited_skips, 1)
+
     def test_non_429_failure_does_not_quarantine_host(self):
         url = "https://other-429.test/jobs/10"
         calls = []
