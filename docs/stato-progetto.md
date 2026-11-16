@@ -1,5 +1,21 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — lotto 07 CY/GR/HR/MT, preflight ufficiale incompleto
+
+**Risultato concreto:** 8 piste di ricerca per i 4 paesi del lotto 07; **tre schede HR ufficiali con identità distinta**, **zero nuove candidature policy v2 verified e zero nuove fonti attivate**. Il catalogo non viene modificato: riferimento all'ultimo dato di produzione già verificato **362 record, 28 stage HR open/verified in cinque paesi, 1 working student DE**, aggiornato alle 16:51:25 UTC. Nessuna nuova fonte, host, gate Dynamic ATS o workflow attivato; non presentare quattro paesi ricercati come quattro mappature completate.
+
+**Piste prioritarie:**
+- **Cipro:** Brainstorm Hospitality, HR Intern retribuito a Larnaca, ID Teamtailor **7649525**, presente nell'inventario datore; CTA con riquadro **Loading application form** ma campi non accertati.
+- **Grecia:** iKnowHow HR Intern (Talent Acquisition) a Neo Psychiko, Workable ID **3F368EAC02**. Collegamento **corporate→tenant Workable esatto** osservato e privacy ufficiale che conferma Workable; form anonimo e feed non verificati. Requisito inglese fluente e iscrizione idonea a istituto greco.
+- **Malta:** Marriott Westin Dragonara HR Intern ID **26132701**, presente anche nel listing ufficiale Westin; CTA su Oracle conserva ID ma non espone modulo leggibile al lettore. Indennità 835 EUR/mese lordi, almeno 5–6 mesi.
+- **Croazia:** Rimac People Operations Intern ha ancora pagina ufficiale ma non compare nelle **124 posizioni del board corrente**: non ammissibile come aperto. PLIVA AskHR scaduto 9 novembre e comunque working student, non stage.
+
+Xara MT ha stage HR soltanto su mirror esterni, mentre la lista ufficiale propone HR Executive; Hilton Malta non ha link di candidatura ufficiale accertato; Stoiximan CY cita HR Intern nel programma studenti, ma zero offerte corporate nell'inventario attuale. Non contare questi indizi.
+
+**Evidenze:** [BATCH-07-REVIEW.md](eu27-expansion/BATCH-07-REVIEW.md) e [batch-07-review-2026-11-16.json](eu27-expansion/batch-07-review-2026-11-16.json). Web consultato, nessun login/CAPTCHA/invio; tentativi robots non leggibili via tool e DNS non risolto nel runtime: **nessuna validazione live BudgetClient o modulo conforme policy v2**. Costo incrementale collector e produzione **0** (nessuna nuova fonte), mentre richieste/secondi del browser web non sono misurati come richieste collector. Massimo proposto (non misurato) 12 richieste/45 secondi per ciascuno di 3 pilot, 0 rendering.
+
+**Primo punto incompleto:** pilota robots+inventario+form per Brainstorm CY e iKnowHow GR con client in ambiente HTTPS idoneo; poi Marriott MT/Oracle sul percorso same-ID. Per HR trovare sostituto attuale a Rimac. Passare al lotto **08 AT/DE/DK/FI/PL/SE** senza rivisitare all'infinito host non consentiti. PR di questa attività è solo documentazione; CI, merge e produzione vanno distinti dai lead verificati.
+
 ## 16 novembre 2026 — lotto 06 (EE/LV/LT/BG/IT/HU/SI/SK), audit UE27 senza rollout
 
 **Baseline dopo PR #47:** workflow #43909444414 (raccolta) e #43909444577 (validazione) riusciti. Catalogo main 16 novembre 16:51:25 UTC: **362 annunci, 28 stage HR verified in cinque paesi, 1 working student DE, 306 unverified, 27 closed**. PR #47 squash merge 5364825: fix host 429 e messaggi filled. Nessun nuovo stage verificato attribuibile al lotto 06.
