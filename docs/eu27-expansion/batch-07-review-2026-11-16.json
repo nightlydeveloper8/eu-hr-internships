@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-16",
+  "batch": "07",
+  "countries": [
+    "CY",
+    "GR",
+    "HR",
+    "MT"
+  ],
+  "mode": "bounded-official-web-review-not-policy-v2-client-preflight",
+  "baseline": {
+    "source_commit": "bea9c85a787c536e0c43c0985219d0079ae3aa7e",
+    "catalog_updated_at": "2026-11-16T16:51:25.820161+00:00",
+    "catalog_records": 362,
+    "verified_hr_internships": 28,
+    "verified_hr_working_students": 1
+  },
+  "summary": {
+    "lead_rows": 8,
+    "distinct_employers": 8,
+    "priority_official_channels": 3,
+    "new_verified_hr_internships": 0,
+    "new_enabled_sources": 0,
+    "new_countries_with_verified_stage": 0
+  },
+  "measured_costs": {
+    "collector_requests": 0,
+    "collector_bytes_read": 0,
+    "collector_renderings": 0,
+    "extra_daily_requests": 0,
+    "web_search_request_count": null,
+    "web_search_wall_seconds": null,
+    "reason": "search UI is not a metered BudgetClient preflight; no production source enabled"
+  },
+  "pilot_ceiling_only": {
+    "per_source_requests": 12,
+    "per_source_seconds": 45,
+    "all_three_requests": 36,
+    "all_three_source_seconds": 135,
+    "renderings": 0,
+    "measured": false
+  },
+  "access_gates": {
+    "robots_for_new_hosts": "not-verifiable-in-this-environment; do not assume allowed",
+    "feed_inventory": "not audited by bounded collector",
+    "form_verification": "not confirmed on any candidate",
+    "policy_v2_passed": false
+  },
+  "leads": [
+    {
+      "country": "CY",
+      "employer": "Brainstorm Hospitality",
+      "role": "HR Intern",
+      "city": "Larnaca",
+      "vacancy_url": "https://careers.fridays.com.cy/jobs/7649525-hr-intern",
+      "inventory_url": "https://careers.fridays.com.cy/",
+      "id": "7649525",
+      "provider": "teamtailor",
+      "evidence": [
+        "official employer inventory currently lists HR Intern",
+        "matching employer vacancy with ID 7649525, paid internship and apply CTA",
+        "application modal says Loading application form"
+      ],
+      "status": "priority-unverified",
+      "blocker": "robots, bounded inventory and enabled same-vacancy form not attested",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "GR",
+      "employer": "iKnowHow S.A.",
+      "role": "HR Intern (Talent Acquisition)",
+      "city": "Neo Psychiko",
+      "vacancy_url": "https://apply.workable.com/ikh/j/3F368EAC02",
+      "inventory_url": "https://apply.workable.com/ikh/",
+      "id": "3F368EAC02",
+      "provider": "workable",
+      "employer_career_url": "https://www.iknowhow.com/careers/",
+      "evidence": [
+        "employer corporate careers links exactly to https://apply.workable.com/ikh/",
+        "employer privacy notice confirms Workable as career publisher",
+        "official vacancy HR Intern TA requires English and enrollment at eligible Greek education institution"
+      ],
+      "status": "priority-unverified",
+      "blocker": "robots, complete inventory and enabled same-vacancy applicant form not attested",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "MT",
+      "employer": "Marriott / Westin Dragonara",
+      "role": "Human Resources Intern (The Westin Dragonara Resort)",
+      "city": "St. Julian's",
+      "vacancy_url": "https://careers.marriott.com/human-resources-intern-the-westin-dragonara-resort/job/P1-7345932-0",
+      "inventory_url": "https://careers.marriott.com/brands/westin/jobs/page/52",
+      "id": "26132701",
+      "provider": "oracle-hcm",
+      "observed_apply_url": "https://ejwl.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/26132701/apply/email?posting_type=1",
+      "evidence": [
+        "employer official internship posting and current Westin brand inventory",
+        "official posting ID 26132701 matches Oracle apply CTA",
+        "5–6 month internship; allowance 835 EUR gross monthly"
+      ],
+      "status": "priority-unverified",
+      "blocker": "robots of Marriott and Oracle and anonymous form fields unverified; Oracle GET returns no readable lines",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "HR",
+      "employer": "Rimac Group",
+      "role": "People Operations Intern",
+      "city": "Zagreb",
+      "vacancy_url": "https://careers.rimac-group.com/position/people-operations-intern/",
+      "inventory_url": "https://careers.rimac-group.com/",
+      "id": null,
+      "provider": "employer-site",
+      "evidence": [
+        "old dedicated job page still exists",
+        "current official inventory ~124 vacancies has no People Operations Intern; only permanent HR positions"
+      ],
+      "status": "exclude-absent-current-inventory",
+      "blocker": "stale detail page is not proof of open posting",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "MT",
+      "employer": "Xara Collection",
+      "role": "HR Intern",
+      "city": "Mdina",
+      "vacancy_url": null,
+      "inventory_url": "https://xaracollection.com/xara-collection-vacancies/",
+      "id": null,
+      "provider": "unknown",
+      "evidence": [
+        "external LinkedIn/Hosco mirror reports HR internship",
+        "official employer current careers page shows HR Executive but no HR Intern"
+      ],
+      "status": "hold-not-current-official-inventory",
+      "blocker": "same vacancy absent official employer current list",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "MT",
+      "employer": "Hilton Malta",
+      "role": "Human Resources Recruitment Administrator Intern",
+      "city": "Malta",
+      "vacancy_url": null,
+      "inventory_url": null,
+      "id": null,
+      "provider": "unknown",
+      "evidence": [
+        "third-party board describes March 2027 HR trainee"
+      ],
+      "status": "hold-third-party-only",
+      "blocker": "no official Hilton-owned direct job and form found",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "CY",
+      "employer": "Stoiximan",
+      "role": "HR Intern",
+      "city": "unknown",
+      "vacancy_url": null,
+      "inventory_url": "https://apply.workable.com/stoiximan/?not_found=true",
+      "id": null,
+      "provider": "workable",
+      "evidence": [
+        "HR Intern appears in promotional student programme text",
+        "current Corporate Functions section shows no open jobs"
+      ],
+      "status": "exclude-programme-not-live-vacancy",
+      "blocker": "no current HR vacancy in live board",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "HR",
+      "employer": "PLIVA Hrvatska",
+      "role": "AskHR student job",
+      "city": "Zagreb",
+      "vacancy_url": "https://www.sczg.unizg.hr/poslovi/studentski-posao-u-odjelu-ljudskih-potencijala",
+      "inventory_url": null,
+      "id": "AskHR",
+      "provider": "university-student-centre",
+      "evidence": [
+        "university student-work posting",
+        "deadline expired 2026-11-09",
+        "student job not internship"
+      ],
+      "status": "exclude-expired-student-work",
+      "blocker": "deadline passed and different position type",
+      "verified": false,
+      "enabled": false
+    }
+  ],
+  "next_action": "limited BudgetClient pilots Brainstorm CY then iKnowHow GR then Marriott MT, stopping on robots/429/challenges and confirming same-ID anonymous applicant form; research new CRO official channels because Rimac old internship absent live inventory"
+}
