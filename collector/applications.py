@@ -33,7 +33,16 @@ class ApplicantForms(HTMLParser):
         if tag not in ('area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'):
             self.scopes.append((tag,blocked))
         if tag=='form':
-            self.current=dict(attrs=a,fields=[],submit=False);self.forms.append(self.current)
+            self.current=dict(attrs=a,fields=[],submit=False,disabled_submits=0);self.forms.append(self.current)
+        # Some applicant forms expose all candidate fields, but publish their
+        # submit button as disabled in the initial HTML. This is a DIAGNOSTIC,
+        # never a substitute for an enabled submit under policy v2.
+        if self.current is not None and not inherited and (
+            (tag=='button' and a.get('type','submit')=='submit') or
+            (tag=='input' and a.get('type')=='submit')) and (
+            'disabled' in a or a.get('aria-disabled')=='true' or
+            'disabled' in a.get('class','').split()):
+            self.current['disabled_submits']+=1
         if self.current is not None and not (self.strict and (blocked or inherited)) and 'disabled' not in a and a.get('aria-disabled')!='true' and 'disabled' not in a.get('class','').split():
             if tag in ('input','textarea'):self.current['fields'].append(a)
             if (tag=='button' and a.get('type','submit')=='submit') or (tag=='input' and a.get('type')=='submit') or (tag=='a' and bool({'o_website_form_send','s_website_form_send'} & set(a.get('class','').split()))):self.current['submit']=True
