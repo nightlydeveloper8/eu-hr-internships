@@ -38,8 +38,6 @@ def checked_bounded_get(client, url, max_bytes=MAX_BYTES):
         raise ValueError("Source not approved")
     if not client.permitted(url):
         raise ValueError("robots.txt disallows public dataset GET")
-    if not hasattr(client, "redirect_scope_allowed"):
-        raise ValueError("Client redirect policy unavailable")
     client.redirect_scope_allowed = lambda target: bool(
         https_url(target, {host}) and urlsplit(target).hostname == host
     )
