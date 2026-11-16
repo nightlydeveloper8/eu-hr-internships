@@ -63,7 +63,7 @@ class SwedishATSIdentityTests(TestCase):
         self.assertEqual(client.requests,2)
 
     def test_other_position_child_or_disabled_form_fails(self):
-        with self.assertRaisesRegex(ValueError,"different vacancy|same vacancy"):
+        with self.assertRaisesRegex(ValueError,"different vacancy|same vacancy|matching vacancy identifier"):
             case(body=parent_html(target="https://jobb.jobandtalent.com/jobs/9999-something/applications/new"))
         with self.assertRaises(ValueError):
             case(child=applicant_html(enabled=False))
