@@ -76,6 +76,31 @@ class PolicyReviewTests(TestCase):
         self.assertFalse(out["catalogue_entry_created"])
         self.assertFalse(out["production_activated"])
 
+    def test_non_link_employer_button_plus_feed_observed_child_still_requires_every_gate(self):
+        FakeBudget.pages[PARENT]=(f"<html><main><h1>{TITLE}</h1>"
+                                  "<p>Plats: Malmö, Hyllie</p>"
+                                  "<button type='button'>Skicka ansökan</button>"
+                                  "</main></html>").encode()
+        ok=review(candidate(),approved_host=HOST,approved_inventory_url=SITEMAP,
+                  client_factory=FakeBudget)
+        self.assertEqual(ok["status"],"policy-v2-evidence-passed-staging-only",ok.get("reason"))
+        self.assertEqual(ok["application_proof_method"],
+                         "public-feed-same-ATS-id-current-employer-CTA-and-enabled-form")
+        self.assertFalse(ok["catalogue_entry_created"])
+        FakeBudget.pages[PARENT]=(f"<html><main><h1>{TITLE}</h1>"
+                                  "<p>Plats: Malmö, Hyllie</p>"
+                                  "</main></html>").encode()
+        missing_cta=review(candidate(),approved_host=HOST,approved_inventory_url=SITEMAP,
+                           client_factory=FakeBudget)
+        self.assertEqual(missing_cta["status"],"review-required")
+
+    def test_source_published_different_ats_id_must_never_be_assigned_to_same_role(self):
+        wrong=APP.replace("8503489","9999999")
+        row=review(candidate(apply_url=wrong),approved_host=HOST,
+                   approved_inventory_url=SITEMAP,client_factory=FakeBudget)
+        self.assertEqual(row["status"],"review-required")
+        self.assertEqual(row["verified_vacancies_added"],0)
+
     def test_no_proof_when_feed_country_or_city_is_unestablished(self):
         a=review(candidate(workplace_country_evidence=False),approved_host=HOST,
                  approved_inventory_url=SITEMAP,client_factory=FakeBudget)
