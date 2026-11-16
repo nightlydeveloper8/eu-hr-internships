@@ -1,5 +1,17 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — seconda fase feed→ATS automatizzata, matrice UE27 e diagnostica reale
+
+**Intervento su PR #56, non merged:** aggiunto `collector/official_feed_verification.py` e CLI `scripts/verify_official_feed_candidates.py` per il controllo automatico di titolo, formulario abilitato e identità su host ATS esplicitamente ammessi in un preflight read-only, attraverso `_verify_vacancy()` e i parser policy v2 esistenti. Limiti: massimo 2 candidati nel workflow attuale, 4 richieste per candidato, host rigorosamente approvati, robots e redirect controllati, nessun login, CAPTCHA, rendering o invio candidature; il catalogo non è modificato.
+
+**Prove live:** [Actions #43962729079](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43962729079), 2 candidati, 4 richieste ATS e 132.116 byte: Jobandtalent presentava titolo coincidente e modulo abilitato, datore ancora da provare; Splendor aveva titolo diverso. Successivo [run #43964714978](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43964714978): **5 richieste ATS, 0 rendering**. Jobandtalent Sweden AB (JobTech ID 31558200): form visibile abilitato, titolo esatto e **nome legale del datore verificato su pagina privacy collegata dal medesimo host** (stato `same-vacancy-form-and-owner-evidence`). Splendor Plant (31613684): feed contiene `VT27` in più del titolo dell'ATS; variante stagionale diagnosticata con corrispondenza di tutti gli altri token, ma **form abilitato non osservato** nel DOM statico (`seasonal-title-variant-no-enabled-form`); non allentare la policy v2. **0 nuove vacancy policy-v2 pubblicate** e nessuna fonte attiva aggiunta.
+
+**Nuova estensione UE:** `docs/eu27-public-feed-readiness.json` classifica 27/27 paesi sulla disponibilità/restrizioni dei feed pubblici indipendenti. Una fonte effettivamente testata: JobTech svedese (CC0); una fonte aperta con schema rilevato ma non ancora letta live: dati quotidiani del MPSV ceco, con presenza di dati personali; normalizzatore offline `mpsv-cz` conserva solo ID, azienda, professione, URL specifica, paese e data. I feed FI, FR, BE hanno accesso soggetto a condizioni o sospeso, AT vieta automazione del portale; non confondere la matrice con copertura nazionale. EURES non interrogato: l'importatore richiede dati già ottenuti con accesso autorizzato.
+
+**Impatto:** primo candidato con dossier completo sul formulario e sul nome legale ATS, **non ancora una nuova stage verificata nel catalogo**. Restano: integrazione policy v2/end-to-end su fonte ufficiale e controllo periodico dell'ID; gestione formulari SPA/HaileyHR senza bypass e con budget; pilota MPSV con dati non personali, robots e feed effettivo; priorità alle fonti che aggiungono candidature davvero distinte. Tutto rimane su branch PR #56, senza merge o rollout.
+
+
+
 ## 16 novembre 2026 — primo risultato live con feed strutturato pubblico svedese
 
 **Due piloti reali JobTech CC0 completati senza attivare fonti in produzione.** [GitHub Actions #43960047644](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43960047644) e [#43960318146](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43960318146): ciascuno 30 hit esaminate, **2 candidati stage HR distinti su 2 datori**, **4 HTTP**, **0 render**, circa 324 KB e 5,977/6,837 secondi. Costo cumulato 8 richieste e 648.037 byte; non confondere con costo monetario o velocità dell'intero ciclo di produzione. La CI del preflight è verde per i test offline e per la lettura reale.
