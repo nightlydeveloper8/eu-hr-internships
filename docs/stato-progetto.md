@@ -1,6 +1,24 @@
 # Stato di ripresa — People Placement
 
 
+
+## 16 novembre 2026 — attivazione BSH specificamente autorizzata
+
+L'utente autorizza esplicitamente attivazione di BSH e misura del primo ciclo
+ordinario. Preparati insieme azienda `bsh-electrodomesticos-espana` e fonte attiva
+`index-bsh-es` nella PR #43: 1.892 → 1.893 aziende, 1.936 → 1.937 sorgenti.
+Unico host `jobs.bsh-group.de`, 10 richieste/75 secondi, crawl-delay 10 s;
+provisioner idempotente. Catalogo invariato: 352 ID, 25 verified, baseline
+`2e68639182be2bda95cc2c9bf87b1d065c6ffc57`. Evidenze e rollback atomico in
+`eu27-expansion/bsh-activation-2026-11-16.json`.
+
+PR #43 verde sul precedente head `c89babd`, nessuna review/commento bloccante.
+**Primo punto incompleto:** pubblicare head con attivazione, verificare CI,
+squash merge autorizzato e seguire il workflow ordinario avviato dal push.
+Misurare candidabilità reale BSH, variazione netta sui 25 verified, conservazione
+ID, costi, publish e catalogo effettivamente distribuito. Non importare il pilota;
+nessun workflow_dispatch, raccolta completa manuale o automazione aggiuntiva.
+
 ## 16 novembre 2026 — lotto IT/ES/PT/AT verificato, BSH preparata senza rollout
 
 **Otto indizi → una nuova integrazione ammissibile (BSH Spagna), una candidatura già in produzione (Emma), sei indizi non ammissibili.** Consegna nella [PR #43](https://github.com/nightlydeveloper8/eu-hr-internships/pull/43),

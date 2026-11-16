@@ -48371,5 +48371,46 @@
     "reviewed_on": "2026-11-16",
     "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
     "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "index-bsh-es",
+    "company_id": "bsh-electrodomesticos-espana",
+    "employer": "BSH Electrodomésticos España",
+    "adapter": "employer-index",
+    "enabled": true,
+    "career_url": "https://jobs.bsh-group.de/index/es",
+    "index_urls": [
+      "https://jobs.bsh-group.de/index/es"
+    ],
+    "allowed_hosts": [
+      "jobs.bsh-group.de"
+    ],
+    "target_countries": [
+      "ES"
+    ],
+    "job_url_pattern": "^https://jobs\\.bsh-group\\.de/\\d+-[^/]+/[a-z]{2}/job\\.html(?:\\?|$)",
+    "job_id_pattern": "\\.de/(\\d+)-",
+    "index_link_scope_id": "publicationsList",
+    "index_titles_complete": true,
+    "index_job_count_pattern": "(\\d+) offene Stellen",
+    "max_index_pages": 1,
+    "max_job_urls": 100,
+    "report_index_scope": true,
+    "inventory_scope_complete": true,
+    "discovery_scope": "Spanish portal regular publications only; exact count required, unsolicited applications excluded; no claim of global BSH coverage",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [
+      {
+        "pattern": "\\bModo de trabajo: Presencial Zaragoza Tus funciones\\b",
+        "city": "Zaragoza",
+        "country": "ES"
+      }
+    ],
+    "reviewed_advertisement_language": "es",
+    "application_check": "publication-linked",
+    "max_requests": 10,
+    "collection_seconds": 75,
+    "permission_basis": "Official employer site links to this exact public portal; robots and 10-second crawl-delay enforced; observed GET application route only; no submit or authentication",
+    "reviewed_on": "2026-11-16"
   }
 ]
