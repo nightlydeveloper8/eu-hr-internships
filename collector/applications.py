@@ -88,6 +88,41 @@ def verify_application(record, source, client):
     kind = source.get('application_check')
     if not kind: return None
     body, doc = checked_document(record['url'], source, client)
+    if kind=='recruitee-linked':
+        from .verification import same_title, structured_identifiers, applicant_form, expired
+        from .ownership import employer_matches
+        from datetime import datetime, timezone
+        expected=str(record.get('posting_identifier') or '')
+        target=record.get('observed_application_url')
+        if (source.get('adapter')!='recruitee' or record.get('inventory_evidence')!='current-employer-feed' or not expected.isdigit()
+            or not target or not same_title(doc,record['title'])
+            or structured_identifiers(doc,record['title'])!={expected}):
+            raise ValueError('Current Recruitee feed and vacancy identity required')
+        vacancy=urlsplit(doc.url);application=urlsplit(target)
+        if (vacancy.hostname!=application.hostname or application.query
+            or application.fragment or application.path.rstrip('/')!=vacancy.path.rstrip('/')+'/c/new'):
+            raise ValueError('Observed Recruitee entry does not retain the same vacancy')
+        app_body,app=checked_document(target,source,client)
+        if canonical_url(app.url)!=canonical_url(target) or not same_title(app,record['title']):
+            raise ValueError('Recruitee application redirected or identifies another vacancy')
+        if structured_identifiers(app,record['title'])!={expected}:
+            raise ValueError('Recruitee application posting identifier differs')
+        for page in (doc,app):
+            posts=[post for post in page.jobposts() if fold(plain(post.get('title')))==fold(record['title'])]
+            for post in posts:
+                organisation=post.get('hiringOrganization')
+                name=organisation.get('name') if isinstance(organisation,dict) else organisation
+                if not name or not employer_matches(plain(name),source,page.url):
+                    raise ValueError('Recruitee posting belongs to another or unknown employer')
+        stamp=datetime.now(timezone.utc).isoformat()
+        if any(expired(post.get('validThrough'),stamp) for post in app.jobposts()
+               if fold(plain(post.get('title')))==fold(record['title'])):
+            raise ApplicationClosed('Recruitee application deadline has passed')
+        # The vacancy can contain an inactive hidden tab. Only the observed
+        # application entry with visible enabled applicant fields establishes it.
+        if not applicant_form(app_body,strict=True):
+            raise ValueError('Visible enabled Recruitee application form not established')
+        return dict(url=canonical_url(app.url),method='official-recruitee-same-posting-visible-form')
     if kind == 'hlb-email':
         address = 'personeel@hlbbv.nl'
         if (source.get('application_email') != address

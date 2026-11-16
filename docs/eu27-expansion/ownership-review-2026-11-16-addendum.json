@@ -1,0 +1,163 @@
+{
+  "mode": "bounded-official-link-review",
+  "rows": [
+    {
+      "name": "Kickmaker",
+      "action_id": "4628c4fb659fbbd1308e",
+      "url": "https://www.kickmaker.fr/carriere/",
+      "ownership_state": "not-established",
+      "links": [],
+      "additional_requests": 2,
+      "final_url": "https://www.kickmaker.fr/carriere/",
+      "career_link_candidates": [
+        {
+          "url": "https://www.welcometothejungle.com/fr/companies/kickmaker",
+          "label": "Tout savoir pour rejoindre Kickmaker"
+        }
+      ],
+      "total_source_requests": 10,
+      "duration_seconds": 2.848,
+      "bytes_read": 233401,
+      "events": [
+        {
+          "url": "https://www.kickmaker.fr/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.kickmaker.fr/robots.txt",
+          "sha256": "ac7fc47f94bf2e7dfe53106da4d5ee77ed41a203886642a5bbb994192a422ae3",
+          "scratch_file": "cc99f393920dc3cf00a730b4.gz",
+          "bytes": 174,
+          "seconds": 0.859
+        },
+        {
+          "url": "https://www.kickmaker.fr/carriere/",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.kickmaker.fr/carriere/",
+          "sha256": "bc247675e8b6510dd635dd5bd7035d75775d7eb43a28425ce1fc38f32c574f5b",
+          "scratch_file": "5c2450bd7c2f55108220b729.gz",
+          "bytes": 233227,
+          "seconds": 2.809
+        }
+      ]
+    },
+    {
+      "name": "Settels Savenije group of companies",
+      "action_id": "1f295184aaace722f4f8",
+      "url": "https://www.sttls.nl/jobs",
+      "ownership_state": "not-established",
+      "links": [],
+      "additional_requests": 2,
+      "final_url": "https://www.sttls.nl/jobs",
+      "career_link_candidates": [
+        {
+          "url": "https://www.sttls.nl/jobs",
+          "label": "Careers"
+        },
+        {
+          "url": "https://www.sttls.nl/jobs",
+          "label": "Careers"
+        }
+      ],
+      "total_source_requests": 8,
+      "duration_seconds": 1.204,
+      "bytes_read": 14036,
+      "events": [
+        {
+          "url": "https://www.sttls.nl/robots.txt",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 404: Not Found",
+          "seconds": 0.158
+        },
+        {
+          "url": "https://www.sttls.nl/jobs",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.sttls.nl/jobs",
+          "sha256": "b3c8850d84c3aac8355b097088980777e92acbf1a206684b447b84e4bb5b2346",
+          "scratch_file": "8580a84fa60f3a361baa0451.gz",
+          "bytes": 14036,
+          "seconds": 1.201
+        }
+      ]
+    },
+    {
+      "name": "Hotel TwentySeven",
+      "action_id": "67200fb2de73e35b076a",
+      "url": "https://www.hoteltwentyseven.com/",
+      "ownership_state": "not-established",
+      "links": [],
+      "additional_requests": 2,
+      "final_url": "https://www.hoteltwentyseven.com",
+      "career_link_candidates": [],
+      "total_source_requests": 6,
+      "duration_seconds": 0.684,
+      "bytes_read": 299847,
+      "events": [
+        {
+          "url": "https://www.hoteltwentyseven.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.hoteltwentyseven.com/robots.txt",
+          "sha256": "f744f309d223085d935fdf1611090585ac11ef0df689c26c47e4d612218e66b8",
+          "scratch_file": "29818a4d5a889d4c9c386b8e.gz",
+          "bytes": 1108,
+          "seconds": 0.175
+        },
+        {
+          "url": "https://www.hoteltwentyseven.com/",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://www.hoteltwentyseven.com",
+          "sha256": "cc2e8f25e612570e7a9f4b3eb106170de5d0c2f7fcc7ec4372fb310f01ad1240",
+          "scratch_file": "496f39cfd9211161c40fa541.gz",
+          "bytes": 298739,
+          "seconds": 0.668
+        }
+      ]
+    },
+    {
+      "name": "Ibexa",
+      "action_id": "51beda42bae88be2f657",
+      "url": "https://ibexa.ai/en",
+      "ownership_state": "exact-employer-page-ats-link-observed",
+      "links": [
+        "https://ibexa.recruitee.com/"
+      ],
+      "additional_requests": 2,
+      "final_url": "https://ibexa.ai/en",
+      "total_source_requests": 6,
+      "duration_seconds": 1.192,
+      "bytes_read": 282847,
+      "events": [
+        {
+          "url": "https://ibexa.ai/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.ai/en/robots.txt",
+          "sha256": "718511de341dbfcfa2c5973401943c128abe2e3ad3026bd5d58c1f7734570ebe",
+          "scratch_file": "c6ad4f7997f685b72df5ab47.gz",
+          "bytes": 64,
+          "seconds": 0.563
+        },
+        {
+          "url": "https://ibexa.ai/en",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.ai/en",
+          "sha256": "839e55ffcd55f9be7cb6bfc4a6325413f3adf97c5c9771f0d3898558853caf22",
+          "scratch_file": "c91e687292506f629a7da1d6.gz",
+          "bytes": 282783,
+          "seconds": 1.156
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "employers": 4,
+    "ownership_links_observed": 1,
+    "additional_requests": 8,
+    "source_seconds": 5.928,
+    "wall_seconds": 2.849
+  }
+}

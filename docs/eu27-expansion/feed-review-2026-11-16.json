@@ -1,0 +1,2828 @@
+{
+  "schema_version": 1,
+  "mode": "bounded-feed-and-application-review-no-production-writes",
+  "base_commit": "e99f263ccb8758f400fd04d61f228ecec6bf3450",
+  "checked_at": "2026-11-16T10:19:23.506123+00:00",
+  "limits": {
+    "per_employer_requests": 12,
+    "per_employer_seconds": 45,
+    "workers": 4,
+    "renderings": 0
+  },
+  "summary": {
+    "employers": 29,
+    "inventories": {
+      "complete-feed-read": 21,
+      "not-established": 8
+    },
+    "records": 366,
+    "hr_student_roles": 20,
+    "technical_application_proofs": 10,
+    "requests": 105,
+    "bytes_read": 15852909,
+    "source_seconds": 51.397,
+    "wall_seconds": 13.607,
+    "new_verified": 0,
+    "new_enabled_sources": 0
+  },
+  "counting_note": "Logical requests include robots, not every redirect; technical application proof alone does not establish employer ownership.",
+  "rows": [
+    {
+      "action_id": "b7293bae7b07364fdc9f",
+      "name": "Altares Dun & Bradstreet",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:09.899405+00:00",
+      "source_proposal": {
+        "id": "eu27-b7293bae7b07364fdc9f",
+        "employer": "Altares Dun & Bradstreet",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+        "allowed_hosts": [
+          "altaresdunbradstreet.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://altaresdunbradstreet.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 4,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "altaresdunbradstreet.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+        "headings": [
+          "HR Stagiair(e)"
+        ],
+        "structured_employers": []
+      },
+      "requests": 3,
+      "bytes_read": 352170,
+      "duration_seconds": 1.448,
+      "events": [
+        {
+          "url": "https://altaresdunbradstreet.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://altaresdunbradstreet.recruitee.com/robots.txt",
+          "sha256": "be31195e11a646a083f04e6e2c2a5833f1357a8532a6a610265eb75bcc52c712",
+          "scratch_file": "a3a084d1b0266bc3df8b13db.gz",
+          "bytes": 96,
+          "seconds": 0.178
+        },
+        {
+          "url": "https://altaresdunbradstreet.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://altaresdunbradstreet.recruitee.com/api/offers",
+          "sha256": "67d5fd9388e0d408671bf983214208d523d6657699945cbf33c655eb2913e2b5",
+          "scratch_file": "6ec53f1eaba5202ad11b8dcb.gz",
+          "bytes": 65412,
+          "seconds": 0.794
+        },
+        {
+          "url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+          "sha256": "09e453d01544da6b45ff9e50cfcb0129fb32e3ba79a1a6e24151d7f27b59813d",
+          "scratch_file": "aea7e4df58240728fe7f2b58.gz",
+          "bytes": 286662,
+          "seconds": 0.634
+        }
+      ]
+    },
+    {
+      "action_id": "ef5350fcad18f4126967",
+      "name": "threon NV",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:09.899677+00:00",
+      "source_proposal": {
+        "id": "eu27-ef5350fcad18f4126967",
+        "employer": "threon NV",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://threon.recruitee.com/o/internship-hris-business-analysis",
+        "allowed_hosts": [
+          "threon.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://threon.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.threon.com/strategic-portfolio-management",
+          "label": "Who's threon?"
+        },
+        {
+          "url": "https://www.threon.com/who-we-work-for",
+          "label": "Life at threon"
+        },
+        {
+          "url": "https://www.threon.com/",
+          "label": "threon website"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 8,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "threon.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://threon.recruitee.com/o/internship-hris-business-analysis",
+        "headings": [
+          "Internship: HRIS business analysis"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "https://careers.recruiteecdn.com/image/upload/production/images/B6ce/kMcZewY2I5tJ.png",
+            "name": "threon NV"
+          }
+        ]
+      },
+      "requests": 3,
+      "bytes_read": 369091,
+      "duration_seconds": 1.491,
+      "events": [
+        {
+          "url": "https://threon.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://threon.recruitee.com/robots.txt",
+          "sha256": "5b3d62cb71699cc349f472f50ff4ee09ce7ccbc43be864b3ebd88492408b6fdd",
+          "scratch_file": "6774f13780a37d2d6ce84a97.gz",
+          "bytes": 82,
+          "seconds": 0.179
+        },
+        {
+          "url": "https://threon.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://threon.recruitee.com/api/offers",
+          "sha256": "b466a966a7e87f2da903bfb6f2e7769f37e121dfe9911b03ea8572c82f306f0c",
+          "scratch_file": "b5d0aa1816d0d6caa7d1a7f2.gz",
+          "bytes": 86460,
+          "seconds": 0.822
+        },
+        {
+          "url": "https://threon.recruitee.com/o/internship-hris-business-analysis",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://threon.recruitee.com/o/internship-hris-business-analysis",
+          "sha256": "5b08421b74ab706a7f7ffd39cb858d10d4e72709dac795d131c9f3b47ba58e86",
+          "scratch_file": "c79ee635223cb567f6f14cb0.gz",
+          "bytes": 282549,
+          "seconds": 0.655
+        }
+      ]
+    },
+    {
+      "action_id": "a22052a2d1db53d7bf0a",
+      "name": "Energieversum",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:09.899690+00:00",
+      "source_proposal": {
+        "id": "eu27-a22052a2d1db53d7bf0a",
+        "employer": "Energieversum",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://energieversum.jobs.personio.de/job/2679110",
+        "allowed_hosts": [
+          "energieversum.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://energieversum.jobs.personio.de/xml"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "requests": 2,
+      "bytes_read": 23,
+      "duration_seconds": 0.687,
+      "events": [
+        {
+          "url": "https://energieversum.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://energieversum.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "475d1f29954eb4e10404bba8.gz",
+          "bytes": 23,
+          "seconds": 0.227
+        },
+        {
+          "url": "https://energieversum.jobs.personio.de/xml",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 404: Not Found",
+          "seconds": 0.687
+        }
+      ]
+    },
+    {
+      "action_id": "b6d0b2004828b0535da0",
+      "name": "SAS LOOK UP SPACE",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:09.899844+00:00",
+      "source_proposal": {
+        "id": "eu27-b6d0b2004828b0535da0",
+        "employer": "SAS LOOK UP SPACE",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+        "allowed_hosts": [
+          "lookup.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://lookup.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2636945",
+          "title": "Stage -Juriste droit social RH (H/F)",
+          "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+          "countries": [
+            "FR"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 11,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "lookup.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+        "headings": [
+          "Stage -Juriste droit social RH (H/F)"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "https://careers.recruiteecdn.com/image/upload/production/images/B4L0/geap4jE8gH24.png",
+            "name": "SAS LOOK UP SPACE"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Stage -Juriste droit social RH (H/F)",
+          "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+          "external_id": "2636945",
+          "application_proof": {
+            "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 684622,
+      "duration_seconds": 1.928,
+      "events": [
+        {
+          "url": "https://lookup.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://lookup.recruitee.com/robots.txt",
+          "sha256": "9a98a40af9f5069f442f131540a6f3b25c7ca1ad0ffc7141b4dc75f2b1c97038",
+          "scratch_file": "65e17f9c07ff907d13a44e68.gz",
+          "bytes": 82,
+          "seconds": 0.191
+        },
+        {
+          "url": "https://lookup.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://lookup.recruitee.com/api/offers",
+          "sha256": "c1d7785cac68baadf9a211c37a6b4349e41f7cd8a2e8728693b9b3164575290b",
+          "scratch_file": "1aeb562de1c64339d25820be.gz",
+          "bytes": 149446,
+          "seconds": 0.851
+        },
+        {
+          "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+          "sha256": "f229ef7afbb78d847fd2f7cdce785fa49a5aaf31c29284d683a0a6f21dccef67",
+          "scratch_file": "4498e8552105eb205ec5d4b2.gz",
+          "bytes": 267547,
+          "seconds": 0.55
+        },
+        {
+          "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+          "sha256": "f229ef7afbb78d847fd2f7cdce785fa49a5aaf31c29284d683a0a6f21dccef67",
+          "scratch_file": "4498e8552105eb205ec5d4b2.gz",
+          "bytes": 267547,
+          "seconds": 0.469
+        }
+      ]
+    },
+    {
+      "action_id": "1edf4848c6a7bf782745",
+      "name": "Monsterscore",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:10.587265+00:00",
+      "source_proposal": {
+        "id": "eu27-1edf4848c6a7bf782745",
+        "employer": "Monsterscore",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+        "allowed_hosts": [
+          "monsterscore.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://monsterscore.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "570048",
+          "title": "Stageplek Human Resources Management",
+          "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+          "countries": [
+            "NL"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.monsterscore.nl",
+          "label": "Bedrijfswebsite"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 9,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "monsterscore.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+        "headings": [
+          "Stageplek Human Resources Management"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "",
+            "name": "Monsterscore"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Stageplek Human Resources Management",
+          "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+          "external_id": "570048",
+          "application_proof": {
+            "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 646828,
+      "duration_seconds": 2.046,
+      "events": [
+        {
+          "url": "https://monsterscore.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://monsterscore.recruitee.com/robots.txt",
+          "sha256": "334b4a41e15a61316e7e1a4c5d6244d2af1c8a1448345caadbc910b125c1d251",
+          "scratch_file": "1bba9cc39d5f1d559f1c1474.gz",
+          "bytes": 88,
+          "seconds": 0.153
+        },
+        {
+          "url": "https://monsterscore.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://monsterscore.recruitee.com/api/offers",
+          "sha256": "6f86f6865f93b39f71a608113cb4772425dbc84bd03c938167ced27b6c468d13",
+          "scratch_file": "a813166213c5caa62d7f5b09.gz",
+          "bytes": 92292,
+          "seconds": 0.79
+        },
+        {
+          "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+          "sha256": "325aee1a12a885f697a86ec12b92ce5e42b7a3b4712cef16f057d3fd2b1c7b1e",
+          "scratch_file": "3c9003289af81cb3a096fdb3.gz",
+          "bytes": 277224,
+          "seconds": 0.718
+        },
+        {
+          "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+          "sha256": "325aee1a12a885f697a86ec12b92ce5e42b7a3b4712cef16f057d3fd2b1c7b1e",
+          "scratch_file": "3c9003289af81cb3a096fdb3.gz",
+          "bytes": 277224,
+          "seconds": 0.502
+        }
+      ]
+    },
+    {
+      "action_id": "51beda42bae88be2f657",
+      "name": "Ibexa",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:11.347717+00:00",
+      "source_proposal": {
+        "id": "eu27-51beda42bae88be2f657",
+        "employer": "Ibexa",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+        "allowed_hosts": [
+          "ibexa.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://ibexa.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2802788",
+          "title": "Human Resources Internship",
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "countries": [
+            "BE"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 8,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "ibexa.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+        "headings": [
+          "Human Resources Internship"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "",
+            "name": "Ibexa"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Human Resources Internship",
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "external_id": "2802788",
+          "application_proof": {
+            "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 623246,
+      "duration_seconds": 1.821,
+      "events": [
+        {
+          "url": "https://ibexa.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/robots.txt",
+          "sha256": "424f8a287bdc440a4f4b69c3bec03b3b215271059f1275b850916600d5155537",
+          "scratch_file": "03f2805731ecf619dae3d5d8.gz",
+          "bytes": 81,
+          "seconds": 0.182
+        },
+        {
+          "url": "https://ibexa.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/api/offers",
+          "sha256": "6fbb4f7873be644bc7789e881b1d5ca870d14cecb341d6f3df0bed55766c02f4",
+          "scratch_file": "c06696443e4206a888fd70f2.gz",
+          "bytes": 105309,
+          "seconds": 0.924
+        },
+        {
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "sha256": "f0faa8098d511f6cb0fdf9b34c5a5455cbadac4269a8959946da7d9340e5293f",
+          "scratch_file": "55b40705eb1fa81cf89592f2.gz",
+          "bytes": 258928,
+          "seconds": 0.529
+        },
+        {
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "sha256": "f0faa8098d511f6cb0fdf9b34c5a5455cbadac4269a8959946da7d9340e5293f",
+          "scratch_file": "55b40705eb1fa81cf89592f2.gz",
+          "bytes": 258928,
+          "seconds": 0.332
+        }
+      ]
+    },
+    {
+      "action_id": "01971b916c2988174e05",
+      "name": "Kindernothilfe e.V.",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:11.390846+00:00",
+      "source_proposal": {
+        "id": "eu27-01971b916c2988174e05",
+        "employer": "Kindernothilfe e.V.",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+        "allowed_hosts": [
+          "kindernothilfe.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://kindernothilfe.jobs.personio.de/xml"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.kindernothilfe.de/jobs-und-karriere",
+          "label": ""
+        },
+        {
+          "url": "https://www.kindernothilfe.de/jobs-und-karriere/stellenmarkt",
+          "label": "Zurück zu allen Stellen"
+        },
+        {
+          "url": "https://www.kindernothilfe.de/jobs-und-karriere/praktikumsprogramm",
+          "label": "hier"
+        },
+        {
+          "url": "https://www.kindernothilfe.de/impressum",
+          "label": "Impressum"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 3,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "kindernothilfe.jobs.personio.de"
+      ],
+      "observed_page": {
+        "url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+        "headings": [
+          "Praktikum in der Personalabteilung"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "Kindernothilfe e.V.",
+            "logo": "https://assets.cdn.personio.de/logos/216822/social/e459b9edbe8877a8de8f024b01bc09a1.jpg"
+          }
+        ]
+      },
+      "requests": 3,
+      "bytes_read": 111611,
+      "duration_seconds": 1.394,
+      "events": [
+        {
+          "url": "https://kindernothilfe.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://kindernothilfe.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "a75a1a0a7f2d1c56248422d2.gz",
+          "bytes": 23,
+          "seconds": 0.162
+        },
+        {
+          "url": "https://kindernothilfe.jobs.personio.de/xml",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://kindernothilfe.jobs.personio.de/xml",
+          "sha256": "bf5b297c6494b1156d79ee305e39269f3502cf087d63eea4d0f936773b2220d4",
+          "scratch_file": "785184c0f03887dd341b78d1.gz",
+          "bytes": 18165,
+          "seconds": 0.785
+        },
+        {
+          "url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+          "sha256": "e73b9886f616a51925da45c0a26d8d29841127ab67b4a86537282bd668ec4b09",
+          "scratch_file": "796eeb65f957973497eb2d4c.gz",
+          "bytes": 93423,
+          "seconds": 0.601
+        }
+      ]
+    },
+    {
+      "action_id": "4628c4fb659fbbd1308e",
+      "name": "Kickmaker",
+      "adapter": "lever",
+      "checked_at": "2026-11-16T10:19:11.827589+00:00",
+      "source_proposal": {
+        "id": "eu27-4628c4fb659fbbd1308e",
+        "employer": "Kickmaker",
+        "adapter": "lever",
+        "enabled": false,
+        "career_url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+        "allowed_hosts": [
+          "jobs.lever.co",
+          "api.lever.co"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "board": "kickmaker"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "title": "Stage - Chasseur de talents (Recrutement)",
+          "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "countries": [
+            "FR"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.kickmaker.fr/",
+          "label": "Kickmaker Home Page"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 36,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "jobs.lever.co"
+      ],
+      "observed_page": {
+        "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+        "headings": [],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "Kickmaker",
+            "logo": "https://lever-client-logos.s3.us-west-2.amazonaws.com/5ff5f408-e19c-4a40-b495-92c70a5e0bd0-1638864054401.png"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Stage - Chasseur de talents (Recrutement)",
+          "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "external_id": "cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "application_proof": {
+            "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e/apply",
+            "method": "linked-same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "vacancy-path-application-child",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 6,
+      "bytes_read": 2819604,
+      "duration_seconds": 6.054,
+      "events": [
+        {
+          "url": "https://api.lever.co/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://api.lever.co/robots.txt",
+          "sha256": "6aa3556bd611889c4480a143bb6186f9d0c5e919c6b4c9901f3a6a8141549a1b",
+          "scratch_file": "4867a7bc0c3432487d4bff25.gz",
+          "bytes": 38,
+          "seconds": 0.889
+        },
+        {
+          "url": "https://api.lever.co/v0/postings/kickmaker?mode=json&limit=100&skip=0",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://api.lever.co/v0/postings/kickmaker?mode=json&limit=100&skip=0",
+          "sha256": "1f8014442bdbc5ec5e522aa7ca1669cfb100be759a1e26411c6ecb6aeb3c867f",
+          "scratch_file": "f239c64851d43e40d2ddaa2f.gz",
+          "bytes": 646221,
+          "seconds": 2.857
+        },
+        {
+          "url": "https://jobs.lever.co/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://jobs.lever.co/robots.txt",
+          "sha256": "09faf18d25b1e7dc9ced65db7eae6a653e2d19be60434b5ecea2f50ce41a5e36",
+          "scratch_file": "f30180d08fdb7f9b64572f20.gz",
+          "bytes": 2714,
+          "seconds": 0.138
+        },
+        {
+          "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "sha256": "7244a03fed4745de2c009b1c086d3b48b1d10d73009208bdfb8583012acf7e96",
+          "scratch_file": "667515fbb587fb1fd7bff81d.gz",
+          "bytes": 721274,
+          "seconds": 2.208
+        },
+        {
+          "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "sha256": "8903ae2c41f58c8de9c2d03517211458a8d83e8d68eebf4f2c8303e8ebcb9d70",
+          "scratch_file": "667515fbb587fb1fd7bff81d.gz",
+          "bytes": 721274,
+          "seconds": 0.486
+        },
+        {
+          "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e/apply",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e/apply",
+          "sha256": "6d36202ff7314b752bad6cdf0ba54c413d8827416352c8c54ccb7fd064e01cb5",
+          "scratch_file": "d9083ce96904da6b217ebcae.gz",
+          "bytes": 728083,
+          "seconds": 0.463
+        }
+      ]
+    },
+    {
+      "action_id": "202b0cf09349569b1a56",
+      "name": "Zero Motorcycles Inc.",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:12.633299+00:00",
+      "source_proposal": {
+        "id": "eu27-202b0cf09349569b1a56",
+        "employer": "Zero Motorcycles Inc.",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+        "allowed_hosts": [
+          "zeromotorcycles.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://zeromotorcycles.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2668002",
+          "title": "Human Resources (HR Europe) Intern HBO",
+          "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+          "countries": [
+            "NL"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.zeromotorcycles.com",
+          "label": "zeromotorcycles.recruitee.com"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 5,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "zeromotorcycles.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+        "headings": [
+          "Human Resources (HR Europe) Intern HBO"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "",
+            "name": "Zero Motorcycles Inc."
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Human Resources (HR Europe) Intern HBO",
+          "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+          "external_id": "2668002",
+          "application_proof": {
+            "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 604355,
+      "duration_seconds": 1.815,
+      "events": [
+        {
+          "url": "https://zeromotorcycles.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://zeromotorcycles.recruitee.com/robots.txt",
+          "sha256": "108868ac4ef7a0b79115b61c0a68c1bbdfb5f0d39963793b6761fa3306fb4cda",
+          "scratch_file": "e390555d0258cbe71226f611.gz",
+          "bytes": 91,
+          "seconds": 0.175
+        },
+        {
+          "url": "https://zeromotorcycles.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://zeromotorcycles.recruitee.com/api/offers",
+          "sha256": "eb66dc2aae6b81474f2c12eb9cc5ae2b8706316547f471176d15cbed67401cc7",
+          "scratch_file": "45b93e7361a254df7542530a.gz",
+          "bytes": 112150,
+          "seconds": 0.692
+        },
+        {
+          "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+          "sha256": "a06712c7350481a70a0f8a04127a210c48d3cd5f7c3659c4938539772b9b19a3",
+          "scratch_file": "4110b9f93bc39e7027e4fa9e.gz",
+          "bytes": 246057,
+          "seconds": 0.562
+        },
+        {
+          "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+          "sha256": "a06712c7350481a70a0f8a04127a210c48d3cd5f7c3659c4938539772b9b19a3",
+          "scratch_file": "4110b9f93bc39e7027e4fa9e.gz",
+          "bytes": 246057,
+          "seconds": 0.514
+        }
+      ]
+    },
+    {
+      "action_id": "4ee71272d2fe9d14a94e",
+      "name": "Toreon",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:12.785534+00:00",
+      "source_proposal": {
+        "id": "eu27-4ee71272d2fe9d14a94e",
+        "employer": "Toreon",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl",
+        "allowed_hosts": [
+          "toreon.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://toreon.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 6,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "toreon.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl",
+        "headings": [
+          "Stageplaats HRM & Recruitment"
+        ],
+        "structured_employers": []
+      },
+      "requests": 3,
+      "bytes_read": 520029,
+      "duration_seconds": 1.289,
+      "events": [
+        {
+          "url": "https://toreon.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://toreon.recruitee.com/robots.txt",
+          "sha256": "f2b2e6d67bbfc45c90975bef1c24a38ff3d912e545f2c6d50576d86daa61cff7",
+          "scratch_file": "08d0a6fe8981af57432fc2e2.gz",
+          "bytes": 82,
+          "seconds": 0.14
+        },
+        {
+          "url": "https://toreon.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://toreon.recruitee.com/api/offers",
+          "sha256": "dc1ccc6db9bac05954520e50353f9909d137e288b4a88d0815dd50d2f73a5849",
+          "scratch_file": "6f1619850937dcf34a3c6bcd.gz",
+          "bytes": 151111,
+          "seconds": 0.88
+        },
+        {
+          "url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl",
+          "sha256": "1c0c5cb031a8ed9a95c2130b1d2e98bd0191475020a719dffa9c0ff1adc31f13",
+          "scratch_file": "80c9f19ba720b83ef68f7f5b.gz",
+          "bytes": 368836,
+          "seconds": 0.391
+        }
+      ]
+    },
+    {
+      "action_id": "745f073212c70dab36e8",
+      "name": "LHLK Agentur für Kommunikation",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:13.168732+00:00",
+      "source_proposal": {
+        "id": "eu27-745f073212c70dab36e8",
+        "employer": "LHLK Agentur für Kommunikation",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://lhlk.jobs.personio.de/job/2849563",
+        "allowed_hosts": [
+          "lhlk.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://lhlk.jobs.personio.de/xml"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "requests": 2,
+      "bytes_read": 23,
+      "duration_seconds": 0.625,
+      "events": [
+        {
+          "url": "https://lhlk.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://lhlk.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "c584fb78df9111e03836545d.gz",
+          "bytes": 23,
+          "seconds": 0.116
+        },
+        {
+          "url": "https://lhlk.jobs.personio.de/xml",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 404: Not Found",
+          "seconds": 0.624
+        }
+      ]
+    },
+    {
+      "action_id": "c90dc0562d12f2c4c890",
+      "name": "Gérard Bertrand",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:13.793553+00:00",
+      "source_proposal": {
+        "id": "eu27-c90dc0562d12f2c4c890",
+        "employer": "Gérard Bertrand",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+        "allowed_hosts": [
+          "gerardbertrand.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://gerardbertrand.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2564123",
+          "title": "STAGE - Ressources Humaines – Déploiement SIRH (H/F)",
+          "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf",
+          "countries": [
+            "FR"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.gerard-bertrand.com/",
+          "label": "Site web de l'entreprise"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 22,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "gerardbertrand.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+        "headings": [
+          "STAGE - Ressources Humaines – Déploiement SIRH (H/F)"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "https://careers.recruiteecdn.com/image/upload/production/images/QLk/lBf6Z3eelIHU.jpeg",
+            "name": "Gérard Bertrand"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "STAGE - Ressources Humaines – Déploiement SIRH (H/F)",
+          "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf",
+          "external_id": "2564123",
+          "application_proof": {
+            "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 1025108,
+      "duration_seconds": 2.122,
+      "events": [
+        {
+          "url": "https://gerardbertrand.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://gerardbertrand.recruitee.com/robots.txt",
+          "sha256": "572ef9dd50d6c57acad22864016dc22a44300b0e60ecd862264a43a74b7e62fc",
+          "scratch_file": "91a1ed270fc0fb07100a1077.gz",
+          "bytes": 90,
+          "seconds": 0.12
+        },
+        {
+          "url": "https://gerardbertrand.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://gerardbertrand.recruitee.com/api/offers",
+          "sha256": "d2280399d7334d8a60ec85fc0fc9c770d266f841c1302e1f7ebfc9fb3cdc1019",
+          "scratch_file": "87c254fcb4562fe98067dd5f.gz",
+          "bytes": 196528,
+          "seconds": 0.748
+        },
+        {
+          "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+          "sha256": "abbeb5a2566017d4e5aaa641af22a9e7330042920718300184ea9278ade34faa",
+          "scratch_file": "a0aee3b965224d3985893483.gz",
+          "bytes": 414249,
+          "seconds": 0.69
+        },
+        {
+          "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf",
+          "sha256": "758347b3b120356948cba7537070d15554419b4567bcc0d96c1713f35daa5bd7",
+          "scratch_file": "1bea29a49ada610d64ab7315.gz",
+          "bytes": 414241,
+          "seconds": 0.624
+        }
+      ]
+    },
+    {
+      "action_id": "67200fb2de73e35b076a",
+      "name": "Hotel TwentySeven",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:14.074955+00:00",
+      "source_proposal": {
+        "id": "eu27-67200fb2de73e35b076a",
+        "employer": "Hotel TwentySeven",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20",
+        "allowed_hosts": [
+          "hoteltwentyseven.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://hoteltwentyseven.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2799164",
+          "title": "HR Stagiair(e)",
+          "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "countries": [
+            "NL"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 29,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "hoteltwentyseven.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20",
+        "headings": [
+          "HR Stagiair(e)"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "https://careers.recruiteecdn.com/image/upload/production/images/Alro/O6Wchin8aGBj.png",
+            "name": "Hotel TwentySeven"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "HR Stagiair(e)",
+          "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "external_id": "2799164",
+          "application_proof": {
+            "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 1487991,
+      "duration_seconds": 2.055,
+      "events": [
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/robots.txt",
+          "sha256": "1dd189b3777600644fca36adc458ce045d70eb90ffbc4db03e60555ab4a666ea",
+          "scratch_file": "a5d995a599ffcdca5aed64f4.gz",
+          "bytes": 92,
+          "seconds": 0.1
+        },
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/api/offers",
+          "sha256": "84276a16b3c88757dddd866c16f386e9a1045b5820afb806469490725cb62946",
+          "scratch_file": "d4aefdce9fb21ffc005f7c56.gz",
+          "bytes": 446364,
+          "seconds": 0.82
+        },
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20",
+          "sha256": "e49cdaf6435913c05252fc4f9791d7551247006cdecf8db02d1bd866d61f4bc0",
+          "scratch_file": "f805fdb3d844f4edccd444a2.gz",
+          "bytes": 520774,
+          "seconds": 0.699
+        },
+        {
+          "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+          "sha256": "af9c9f71e0288c3f72b36c0476cf349dfbb99969c5004ce7fd83653a8cd0345e",
+          "scratch_file": "017500eb3c068cc9be09d55d.gz",
+          "bytes": 520761,
+          "seconds": 0.465
+        }
+      ]
+    },
+    {
+      "action_id": "9b5ff4028ddfd69c4028",
+      "name": "Hotel Beveren",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:14.448819+00:00",
+      "source_proposal": {
+        "id": "eu27-9b5ff4028ddfd69c4028",
+        "employer": "Hotel Beveren",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://vandervalkbeveren.recruitee.com/o/hr-stage",
+        "allowed_hosts": [
+          "vandervalkbeveren.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://vandervalkbeveren.recruitee.com/api/offers/"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "ValueError: Unapproved employer-page host",
+      "requests": 2,
+      "bytes_read": 32055,
+      "duration_seconds": 0.648,
+      "events": [
+        {
+          "url": "https://vandervalkbeveren.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://vandervalkbeveren.recruitee.com/robots.txt",
+          "sha256": "ba01e177707d6e12b674093cb8bb8d71b24c03d1961e452a9e14f13f80f788be",
+          "scratch_file": "2a188538953112d203a18d87.gz",
+          "bytes": 93,
+          "seconds": 0.102
+        },
+        {
+          "url": "https://vandervalkbeveren.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://vandervalkbeveren.recruitee.com/api/offers",
+          "sha256": "38874f71fc1c0a995c6596ca9b2494ef91d2731cb2d4f1b0478ce44414d99fd0",
+          "scratch_file": "cd32457faf74ccc35f12e9b9.gz",
+          "bytes": 31962,
+          "seconds": 0.648
+        }
+      ]
+    },
+    {
+      "action_id": "42746cfe270726d969d1",
+      "name": "ISCC, Meo, 4C, GRAS, ClimatePal & TYC",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:15.096943+00:00",
+      "source_proposal": {
+        "id": "eu27-42746cfe270726d969d1",
+        "employer": "ISCC, Meo, 4C, GRAS, ClimatePal & TYC",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+        "allowed_hosts": [
+          "iscc-system-gmbh.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://iscc-system-gmbh.jobs.personio.de/xml"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2860524",
+          "title": "Intern – Office Management & HR",
+          "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "internship"
+        },
+        {
+          "external_id": "2860561",
+          "title": "Student Assistant – Office Management & HR",
+          "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860561",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "working-student"
+        }
+      ],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 16,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "iscc-system-gmbh.jobs.personio.de"
+      ],
+      "observed_page": {
+        "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+        "headings": [
+          "Praktikant:in – Office Management & HR"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "ISCC, Meo, 4C, GRAS, ClimatePal & TYC",
+            "logo": "https://assets.cdn.personio.de/logos/76550/social/9fee9ed82157ef9fca4dbf56413da304.png"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Intern – Office Management & HR",
+          "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524",
+          "external_id": "2860524",
+          "error": "ValueError: Current page does not identify the same vacancy"
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 385470,
+      "duration_seconds": 1.789,
+      "events": [
+        {
+          "url": "https://iscc-system-gmbh.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://iscc-system-gmbh.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "f0630638506c410221ec9023.gz",
+          "bytes": 23,
+          "seconds": 0.114
+        },
+        {
+          "url": "https://iscc-system-gmbh.jobs.personio.de/xml",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://iscc-system-gmbh.jobs.personio.de/xml",
+          "sha256": "b68956733360eea5d679dfa3b8919f57a4405e317d4858ca84c6bbde2e784711",
+          "scratch_file": "e0ef84462356ce15a7a5cf07.gz",
+          "bytes": 175457,
+          "seconds": 0.844
+        },
+        {
+          "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+          "sha256": "6b0b0e11c0e0d95c03645f7a20bc08f521e2e88b4835be061793bf9c0489aaf5",
+          "scratch_file": "329c0b7b42534728cd25d03a.gz",
+          "bytes": 105051,
+          "seconds": 0.672
+        },
+        {
+          "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524",
+          "sha256": "d186a81eed3286571b9875152504052cb3587886590e64c1791fd50702d0478f",
+          "scratch_file": "269bff106dbb257bae4e6337.gz",
+          "bytes": 104939,
+          "seconds": 0.238
+        }
+      ]
+    },
+    {
+      "action_id": "7b59dccb40979da93da6",
+      "name": "SKYTREE",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:15.916169+00:00",
+      "source_proposal": {
+        "id": "eu27-7b59dccb40979da93da6",
+        "employer": "SKYTREE",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+        "allowed_hosts": [
+          "skytree.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://skytree.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2753098",
+          "title": "HR & People Operations Intern",
+          "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+          "countries": [
+            "NL"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.skytree.tech/",
+          "label": "SKYTREE Skytree Website"
+        },
+        {
+          "url": "https://www.skytree.tech/",
+          "label": "SKYTREE Skytree Website"
+        },
+        {
+          "url": "https://www.skytree.tech/",
+          "label": "©2025 Skytree. All right reserved."
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 4,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "skytree.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+        "headings": [
+          "HR & People Operations Intern"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "https://careers.recruiteecdn.com/image/upload/production/images/Bugp/M2glTWAfUCik.png",
+            "name": "SKYTREE"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "HR & People Operations Intern",
+          "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+          "external_id": "2753098",
+          "application_proof": {
+            "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 591598,
+      "duration_seconds": 1.858,
+      "events": [
+        {
+          "url": "https://skytree.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://skytree.recruitee.com/robots.txt",
+          "sha256": "53cdd5a217a958256c6f9c6a5df6ae9e4d5fcd38d2ec6b24e30c160327c4a172",
+          "scratch_file": "193e250f475fa7c2eef30b3b.gz",
+          "bytes": 83,
+          "seconds": 0.119
+        },
+        {
+          "url": "https://skytree.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://skytree.recruitee.com/api/offers",
+          "sha256": "5b86b6ab5ada6a1354b087c7bd59bbfc2781af0c8bafd6590594216e89652c79",
+          "scratch_file": "b29cc68e625fa59b3739c1dd.gz",
+          "bytes": 72245,
+          "seconds": 0.779
+        },
+        {
+          "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+          "sha256": "bd7c8d14b355f3e91cda60c875887027a3f1f7826f63e6405570891620ad0aaf",
+          "scratch_file": "966d4b4a1bfb61da3799df41.gz",
+          "bytes": 259635,
+          "seconds": 0.473
+        },
+        {
+          "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+          "sha256": "bd7c8d14b355f3e91cda60c875887027a3f1f7826f63e6405570891620ad0aaf",
+          "scratch_file": "966d4b4a1bfb61da3799df41.gz",
+          "bytes": 259635,
+          "seconds": 0.573
+        }
+      ]
+    },
+    {
+      "action_id": "f1868ef25a42226921ad",
+      "name": "Bundl",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:16.130121+00:00",
+      "source_proposal": {
+        "id": "eu27-f1868ef25a42226921ad",
+        "employer": "Bundl",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+        "allowed_hosts": [
+          "bundl.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://bundl.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2337025",
+          "title": "HR Intern",
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "countries": [
+            "BE"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 6,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "bundl.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+        "headings": [
+          "HR Intern"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "",
+            "name": "Bundl"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "HR Intern",
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "external_id": "2337025",
+          "application_proof": {
+            "url": "https://bundl.recruitee.com/o/hr-intern",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 638390,
+      "duration_seconds": 1.914,
+      "events": [
+        {
+          "url": "https://bundl.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/robots.txt",
+          "sha256": "6f097c051ab84676d9a1080cf1bc5ef15c34b56ea76277e64641e9b080f8f0f1",
+          "scratch_file": "50fbc611966a51a302014f64.gz",
+          "bytes": 81,
+          "seconds": 0.246
+        },
+        {
+          "url": "https://bundl.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/api/offers",
+          "sha256": "67f0d11f2b4984e32606d10b676357d63934d43788ae3e0b5b11a9f3780c272f",
+          "scratch_file": "1d47e4ffd91c2e2d5a7f436c.gz",
+          "bytes": 69959,
+          "seconds": 0.739
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+          "sha256": "ade7ccecdb55297b208d91f2ecae511506a204fd39f335c4333bea842befd4dd",
+          "scratch_file": "60c1342f80de6d1dbfc314ba.gz",
+          "bytes": 284179,
+          "seconds": 0.659
+        },
+        {
+          "url": "https://bundl.recruitee.com/o/hr-intern",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://bundl.recruitee.com/o/hr-intern",
+          "sha256": "ad0eadfc7fbde06144d0d55ada70a222d91eec5aaff787043d90260ac8963f72",
+          "scratch_file": "b700e6e35c8249f56191b7f0.gz",
+          "bytes": 284171,
+          "seconds": 0.469
+        }
+      ]
+    },
+    {
+      "action_id": "8e1a5ab608d2beb5fb5b",
+      "name": "Studyflix GmbH",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:16.886335+00:00",
+      "source_proposal": {
+        "id": "eu27-8e1a5ab608d2beb5fb5b",
+        "employer": "Studyflix GmbH",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+        "allowed_hosts": [
+          "studyflix-gmbh.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://studyflix-gmbh.jobs.personio.de/xml"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "1119149",
+          "title": "Praktikum Human Resources & Recruiting (m/w/d)",
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "internship"
+        },
+        {
+          "external_id": "1119140",
+          "title": "Praktikum Recruiting / Personal / HR (m/w/d)",
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119140",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://studyflix.de/jobs-bei-studyflix",
+          "label": ""
+        },
+        {
+          "url": "https://studyflix.de/jobs-bei-studyflix",
+          "label": "Zurück zu allen Stellen"
+        },
+        {
+          "url": "https://studyflix.de/impressum",
+          "label": "Impressum"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 19,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "studyflix-gmbh.jobs.personio.de"
+      ],
+      "observed_page": {
+        "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+        "headings": [
+          "Praktikum Human Resources & Recruiting (m/w/d)"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "Studyflix GmbH",
+            "logo": "https://assets.cdn.personio.de/logos/103511/social/b88011c9a6695cc164ac3b3d7345b8f1.png"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Praktikum Human Resources & Recruiting (m/w/d)",
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+          "external_id": "1119149",
+          "error": "MissingDynamicForm: Applicant form not established; application may require JavaScript or an account"
+        },
+        {
+          "title": "Praktikum Recruiting / Personal / HR (m/w/d)",
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119140",
+          "external_id": "1119140",
+          "error": "MissingDynamicForm: Applicant form not established; application may require JavaScript or an account"
+        }
+      ],
+      "requests": 7,
+      "bytes_read": 540797,
+      "duration_seconds": 3.384,
+      "events": [
+        {
+          "url": "https://studyflix-gmbh.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://studyflix-gmbh.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "9f36d2f9568fdda03f85cad5.gz",
+          "bytes": 23,
+          "seconds": 0.074
+        },
+        {
+          "url": "https://studyflix-gmbh.jobs.personio.de/xml",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://studyflix-gmbh.jobs.personio.de/xml",
+          "sha256": "5fe9ef5ffc6f88a26c52a7ee07ac14aad7e5cea015be1462ab09ff658dbe66c1",
+          "scratch_file": "ff92e64cc752c2843d99e68b.gz",
+          "bytes": 96312,
+          "seconds": 0.795
+        },
+        {
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+          "sha256": "caf8c32c3ddd1462db8c571becb79762ffc7f7a64a30c10033d23f9375d93ac2",
+          "scratch_file": "16c5bb39686ad8072fdbc93c.gz",
+          "bytes": 93297,
+          "seconds": 0.503
+        },
+        {
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+          "sha256": "caf8c32c3ddd1462db8c571becb79762ffc7f7a64a30c10033d23f9375d93ac2",
+          "scratch_file": "16c5bb39686ad8072fdbc93c.gz",
+          "bytes": 93297,
+          "seconds": 0.441
+        },
+        {
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149/apply",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149/apply",
+          "sha256": "70ded3ed687f9861aa35d586a78428551c99345898eb0e5cb3b585da12198afb",
+          "scratch_file": "dc457b025c5fec46a533924e.gz",
+          "bytes": 82960,
+          "seconds": 0.587
+        },
+        {
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119140",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119140",
+          "sha256": "809239b6671e80b51ebab76d62eec42069879eb7db92cf5001faa92db9f3d263",
+          "scratch_file": "3ed31cb7fbc44934fee9d5cc.gz",
+          "bytes": 92241,
+          "seconds": 0.476
+        },
+        {
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119140/apply",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119140/apply",
+          "sha256": "cc8f2a78e451781adda94b587e740694421fa6153a379fa42ec91d11867e732f",
+          "scratch_file": "7df1df9d87b06b42562f8717.gz",
+          "bytes": 82667,
+          "seconds": 0.525
+        }
+      ]
+    },
+    {
+      "action_id": "432cbe6783e8768e83af",
+      "name": "Youvia BV",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:17.774653+00:00",
+      "source_proposal": {
+        "id": "eu27-432cbe6783e8768e83af",
+        "employer": "Youvia BV",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://werkenbijyouvia.recruitee.com/o/hr-stage-meewerkstage-human-resource-management-hrm",
+        "allowed_hosts": [
+          "werkenbijyouvia.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://werkenbijyouvia.recruitee.com/api/offers/"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "HTTPError: HTTP Error 429: Too Many Requests",
+      "requests": 2,
+      "bytes_read": 91,
+      "duration_seconds": 0.741,
+      "events": [
+        {
+          "url": "https://werkenbijyouvia.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://werkenbijyouvia.recruitee.com/robots.txt",
+          "sha256": "67f7e365fa1fbdaec48b7e22879dc8bbec20dfecbc4ef1ddf65e77823761d732",
+          "scratch_file": "bc2fc07d3a766b6890b684ec.gz",
+          "bytes": 91,
+          "seconds": 0.098
+        },
+        {
+          "url": "https://werkenbijyouvia.recruitee.com/api/offers",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 429: Too Many Requests",
+          "seconds": 0.741
+        }
+      ]
+    },
+    {
+      "action_id": "3e88f046de4d7b54d3b6",
+      "name": "CHR HAUTE SENNE",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:17.881809+00:00",
+      "source_proposal": {
+        "id": "eu27-3e88f046de4d7b54d3b6",
+        "employer": "CHR HAUTE SENNE",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://chrhautesenne.recruitee.com/o/stagiaire-en-ressources-humaines-developpement-des-ressources-humaines-soft-rh",
+        "allowed_hosts": [
+          "chrhautesenne.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://chrhautesenne.recruitee.com/api/offers/"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "HTTPError: HTTP Error 429: Too Many Requests",
+      "requests": 2,
+      "bytes_read": 89,
+      "duration_seconds": 0.747,
+      "events": [
+        {
+          "url": "https://chrhautesenne.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://chrhautesenne.recruitee.com/robots.txt",
+          "sha256": "cc0004b3a981ee146185a30491aef8f0d43381e0d60ad30d662c1ece3b7993bd",
+          "scratch_file": "71513fa0a880886710a09ced.gz",
+          "bytes": 89,
+          "seconds": 0.095
+        },
+        {
+          "url": "https://chrhautesenne.recruitee.com/api/offers",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 429: Too Many Requests",
+          "seconds": 0.746
+        }
+      ]
+    },
+    {
+      "action_id": "62a986e072fa415b7dcb",
+      "name": "Watson Farley & Williams LLP",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:18.044211+00:00",
+      "source_proposal": {
+        "id": "eu27-62a986e072fa415b7dcb",
+        "employer": "Watson Farley & Williams LLP",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+        "allowed_hosts": [
+          "watson-farley-williams-llp.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://watson-farley-williams-llp.jobs.personio.de/xml"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2634127",
+          "title": "Praktikant HR (m/w/d) - Recruiting & Employer Branding",
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.wfw.com/legal-and-regulatory/legal-notices-germany/",
+          "label": "Impressum"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 13,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "watson-farley-williams-llp.jobs.personio.de"
+      ],
+      "observed_page": {
+        "url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+        "headings": [
+          "Praktikant HR (m/w/d) - Recruiting & Employer Branding"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "Watson Farley & Williams LLP",
+            "logo": "https://assets.cdn.personio.de/logos/33204/social/5ed341d077c63f4fb4ec3a7d0d6cf10b.jpg"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Praktikant HR (m/w/d) - Recruiting & Employer Branding",
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+          "external_id": "2634127",
+          "error": "MissingDynamicForm: Applicant form not established; application may require JavaScript or an account"
+        }
+      ],
+      "requests": 5,
+      "bytes_read": 308740,
+      "duration_seconds": 2.268,
+      "events": [
+        {
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://watson-farley-williams-llp.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "b2ef1fa36840812c528fb775.gz",
+          "bytes": 23,
+          "seconds": 0.072
+        },
+        {
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/xml",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://watson-farley-williams-llp.jobs.personio.de/xml",
+          "sha256": "5b70338ddc684a76afe94a0048292df1e841e2632e0996accb7251b004100806",
+          "scratch_file": "7a89a004653940ce4eba3a39.gz",
+          "bytes": 53161,
+          "seconds": 0.696
+        },
+        {
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+          "sha256": "1b7970e4449ce2ec567e195ee3e4f871344bb894b84a6d80c2248ce018c42a22",
+          "scratch_file": "eacbdf826aa2b681bad8639d.gz",
+          "bytes": 90239,
+          "seconds": 0.64
+        },
+        {
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+          "sha256": "1b7970e4449ce2ec567e195ee3e4f871344bb894b84a6d80c2248ce018c42a22",
+          "scratch_file": "eacbdf826aa2b681bad8639d.gz",
+          "bytes": 90239,
+          "seconds": 0.51
+        },
+        {
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127/apply",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127/apply",
+          "sha256": "1730ec881cf0b338c765714277870676d2d3046f530d27935287a7e4f91de5b1",
+          "scratch_file": "b69bf079257d34e8c7a69bee.gz",
+          "bytes": 75078,
+          "seconds": 0.385
+        }
+      ]
+    },
+    {
+      "action_id": "23fcb0035c0943323708",
+      "name": "Droppie",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:18.516479+00:00",
+      "source_proposal": {
+        "id": "eu27-23fcb0035c0943323708",
+        "employer": "Droppie",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://droppie.recruitee.com/o/hr-stagiair",
+        "allowed_hosts": [
+          "droppie.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://droppie.recruitee.com/api/offers/"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "ValueError: robots.txt unavailable: 429",
+      "requests": 2,
+      "bytes_read": 0,
+      "duration_seconds": 0.207,
+      "events": [
+        {
+          "url": "https://droppie.recruitee.com/robots.txt",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 429: Too Many Requests",
+          "seconds": 0.206
+        },
+        {
+          "url": "https://droppie.recruitee.com/api/offers",
+          "method": "GET",
+          "error": "ValueError: robots.txt unavailable: 429",
+          "seconds": 0.206
+        }
+      ]
+    },
+    {
+      "action_id": "ffc96f49550469b35881",
+      "name": "eXtra Shop",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:18.628641+00:00",
+      "source_proposal": {
+        "id": "eu27-ffc96f49550469b35881",
+        "employer": "eXtra Shop",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://extrashop.recruitee.com/o/stage-alternance-rh-h-f-x?lang=fr",
+        "allowed_hosts": [
+          "extrashop.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://extrashop.recruitee.com/api/offers/"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "ValueError: robots.txt unavailable: 429",
+      "requests": 2,
+      "bytes_read": 0,
+      "duration_seconds": 0.199,
+      "events": [
+        {
+          "url": "https://extrashop.recruitee.com/robots.txt",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 429: Too Many Requests",
+          "seconds": 0.199
+        },
+        {
+          "url": "https://extrashop.recruitee.com/api/offers",
+          "method": "GET",
+          "error": "ValueError: robots.txt unavailable: 429",
+          "seconds": 0.199
+        }
+      ]
+    },
+    {
+      "action_id": "277a66d26d10ed511244",
+      "name": "Vamo",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:18.723319+00:00",
+      "source_proposal": {
+        "id": "eu27-277a66d26d10ed511244",
+        "employer": "Vamo",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://vamo.jobs.personio.de/job/2471392",
+        "allowed_hosts": [
+          "vamo.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://vamo.jobs.personio.de/xml"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2471392",
+          "title": "Praktikant (m/w/d) Human Resources",
+          "url": "https://vamo.jobs.personio.de/job/2471392",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.vamo-energy.com/impressum",
+          "label": "Impressum"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 19,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "vamo.jobs.personio.de"
+      ],
+      "observed_page": {
+        "url": "https://vamo.jobs.personio.de/job/2471392",
+        "headings": [
+          "Praktikant (m/w/d) Human Resources"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "Vamo",
+            "logo": "https://assets.cdn.personio.de/logos/162945/social/364dd07e38b3bcce17947d89842f7345.png"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Praktikant (m/w/d) Human Resources",
+          "url": "https://vamo.jobs.personio.de/job/2471392",
+          "external_id": "2471392",
+          "error": "MissingDynamicForm: Applicant form not established; application may require JavaScript or an account"
+        }
+      ],
+      "requests": 5,
+      "bytes_read": 455541,
+      "duration_seconds": 2.451,
+      "events": [
+        {
+          "url": "https://vamo.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://vamo.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "79f7641ef69fc7397002c019.gz",
+          "bytes": 23,
+          "seconds": 0.124
+        },
+        {
+          "url": "https://vamo.jobs.personio.de/xml",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://vamo.jobs.personio.de/xml",
+          "sha256": "858265033e69c37d2b50bb9d436838d37965b20954ed19fc5ddfa13e16d4829e",
+          "scratch_file": "cf7026499e3f4ab58ac8cb5d.gz",
+          "bytes": 161932,
+          "seconds": 0.93
+        },
+        {
+          "url": "https://vamo.jobs.personio.de/job/2471392",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://vamo.jobs.personio.de/job/2471392",
+          "sha256": "df00be5a87927e2f284d3833034b171e25c9969dae54a0c8a0e3ebc431c79513",
+          "scratch_file": "0bd25493e2193955c73998bf.gz",
+          "bytes": 100813,
+          "seconds": 0.474
+        },
+        {
+          "url": "https://vamo.jobs.personio.de/job/2471392",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://vamo.jobs.personio.de/job/2471392",
+          "sha256": "a2262fb556e628156fb2dcc7f1d34fd63007fe0fa96972726c59e72a388f92f4",
+          "scratch_file": "0bd25493e2193955c73998bf.gz",
+          "bytes": 100813,
+          "seconds": 0.421
+        },
+        {
+          "url": "https://vamo.jobs.personio.de/job/2471392/apply",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://vamo.jobs.personio.de/job/2471392/apply",
+          "sha256": "46736481d8cf538d2186923254543c87f5edfb6fa207fa3a1c575eac094c2113",
+          "scratch_file": "c13bee6235054e015cd42ced.gz",
+          "bytes": 91960,
+          "seconds": 0.574
+        }
+      ]
+    },
+    {
+      "action_id": "c46cbc25f35a649019be",
+      "name": "The Social Hub",
+      "adapter": "greenhouse",
+      "checked_at": "2026-11-16T10:19:18.828373+00:00",
+      "source_proposal": {
+        "id": "eu27-c46cbc25f35a649019be",
+        "employer": "The Social Hub",
+        "adapter": "greenhouse",
+        "enabled": false,
+        "career_url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101",
+        "allowed_hosts": [
+          "job-boards.greenhouse.io",
+          "boards-api.greenhouse.io"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "board": "thesocialhub"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "5016646101",
+          "title": "HR / People Operations Intern",
+          "url": "https://job-boards.eu.greenhouse.io/thesocialhub/jobs/5016646101",
+          "countries": [],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.thesocialhub.co/jobs",
+          "label": ""
+        },
+        {
+          "url": "https://movementontheground.com/",
+          "label": "Movement on the Ground"
+        },
+        {
+          "url": "https://tshtalentfoundation.org/",
+          "label": "TSH Talent Foundation"
+        },
+        {
+          "url": "https://www.thestudenthotel.com/globalassets/legal_documents/generic/recruitment/TSH-Applicant-Privacy-Statement.pdf",
+          "label": "Our Privacy Statement"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 109,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "job-boards.eu.greenhouse.io"
+      ],
+      "observed_page": {
+        "url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101",
+        "headings": [
+          "HR / People Operations Intern"
+        ],
+        "structured_employers": []
+      },
+      "application_attempts": [
+        {
+          "title": "HR / People Operations Intern",
+          "url": "https://job-boards.eu.greenhouse.io/thesocialhub/jobs/5016646101",
+          "external_id": "5016646101",
+          "error": "ValueError: Unreviewed application host"
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 1830015,
+      "duration_seconds": 3.216,
+      "events": [
+        {
+          "url": "https://boards-api.greenhouse.io/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://boards-api.greenhouse.io/robots.txt",
+          "sha256": "0bc35a3bc59e53b4932c848ba1f33890320d2de73fa0c1357555dd79c5629be9",
+          "scratch_file": "2f219410a1d444080b11cad3.gz",
+          "bytes": 131,
+          "seconds": 0.258
+        },
+        {
+          "url": "https://boards-api.greenhouse.io/v1/boards/thesocialhub/jobs?content=true",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://boards-api.greenhouse.io/v1/boards/thesocialhub/jobs?content=true",
+          "sha256": "8979030ff194edc65a35072b91ee675e2356b0f0f84cfa07d1b1d6d1ed250516",
+          "scratch_file": "cb9e25ba631e4f61f4d8fbee.gz",
+          "bytes": 1761622,
+          "seconds": 1.794
+        },
+        {
+          "url": "https://job-boards.greenhouse.io/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://job-boards.greenhouse.io/robots.txt",
+          "sha256": "17fb1dc3361b057783040fa7f58d72f18707170866d370bd3db6e547bee09058",
+          "scratch_file": "261b42e13986bbec6e0a3175.gz",
+          "bytes": 202,
+          "seconds": 0.185
+        },
+        {
+          "url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101",
+          "sha256": "bd1e62d7472ec055c5c7852b09b95dfc2339fdd28f1cac022ed6d6c6c31058d1",
+          "scratch_file": "6d578b180ae9245d3db018eb.gz",
+          "bytes": 68060,
+          "seconds": 1.315
+        }
+      ]
+    },
+    {
+      "action_id": "214ec644c21f9e90b189",
+      "name": "LIVE FAST DIE YOUNG",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:20.270585+00:00",
+      "source_proposal": {
+        "id": "eu27-214ec644c21f9e90b189",
+        "employer": "LIVE FAST DIE YOUNG",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://live-fast-die-young.jobs.personio.de/job/2257219",
+        "allowed_hosts": [
+          "live-fast-die-young.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://live-fast-die-young.jobs.personio.de/xml"
+      },
+      "inventory_state": "not-established",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [],
+      "corporate_link_candidates": [],
+      "new_verified": 0,
+      "production_enabled": false,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "requests": 2,
+      "bytes_read": 23,
+      "duration_seconds": 0.623,
+      "events": [
+        {
+          "url": "https://live-fast-die-young.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://live-fast-die-young.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "7c9b37fd3414ab4c066f3d39.gz",
+          "bytes": 23,
+          "seconds": 0.187
+        },
+        {
+          "url": "https://live-fast-die-young.jobs.personio.de/xml",
+          "method": "GET",
+          "error": "HTTPError: HTTP Error 404: Not Found",
+          "seconds": 0.623
+        }
+      ]
+    },
+    {
+      "action_id": "1f295184aaace722f4f8",
+      "name": "Settels Savenije group of companies",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:19:20.312924+00:00",
+      "source_proposal": {
+        "id": "eu27-1f295184aaace722f4f8",
+        "employer": "Settels Savenije group of companies",
+        "adapter": "recruitee",
+        "enabled": false,
+        "career_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+        "allowed_hosts": [
+          "sttls.recruitee.com"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://sttls.recruitee.com/api/offers/"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2389418",
+          "title": "Meewerk stage HRM",
+          "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "countries": [
+            "NL"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.sttls.nl/",
+          "label": "Company website"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 24,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "sttls.recruitee.com"
+      ],
+      "observed_page": {
+        "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+        "headings": [
+          "Meewerk stage HRM",
+          "Meewerkstage HRM bij Settels Savenije (Eindhoven)"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "logo": "",
+            "name": "settels savenije group of companies"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Meewerk stage HRM",
+          "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "external_id": "2389418",
+          "application_proof": {
+            "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+            "method": "same-vacancy-applicant-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "requests": 4,
+      "bytes_read": 1046179,
+      "duration_seconds": 1.954,
+      "events": [
+        {
+          "url": "https://sttls.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://sttls.recruitee.com/robots.txt",
+          "sha256": "f51c6518193e6a125962c8a52a1db19d84a8e19a8a77080c596290880fedcaba",
+          "scratch_file": "8f9eab2c445e3a37022d87ed.gz",
+          "bytes": 81,
+          "seconds": 0.221
+        },
+        {
+          "url": "https://sttls.recruitee.com/api/offers",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://sttls.recruitee.com/api/offers",
+          "sha256": "081f10cc93d7a7c333c871683a378d1ed4293777f6029552d233ce971cf2f9ad",
+          "scratch_file": "69c37c6e97bc1a03282d3a42.gz",
+          "bytes": 299822,
+          "seconds": 0.731
+        },
+        {
+          "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "sha256": "2641210fcad1edceecfe622542ed6a59ee97a89e45dd3f86b079fa6eb8419197",
+          "scratch_file": "0944519d40c5123127c082db.gz",
+          "bytes": 373138,
+          "seconds": 0.62
+        },
+        {
+          "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "sha256": "2641210fcad1edceecfe622542ed6a59ee97a89e45dd3f86b079fa6eb8419197",
+          "scratch_file": "0944519d40c5123127c082db.gz",
+          "bytes": 373138,
+          "seconds": 0.561
+        }
+      ]
+    },
+    {
+      "action_id": "d451b2181e218ed08e52",
+      "name": "IMAP GmbH",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:20.894313+00:00",
+      "source_proposal": {
+        "id": "eu27-d451b2181e218ed08e52",
+        "employer": "IMAP GmbH",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+        "allowed_hosts": [
+          "imap-gmbh-1.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://imap-gmbh-1.jobs.personio.de/xml"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "1034236",
+          "title": "Praktikum Personal- und Organisationsentwicklung",
+          "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "internship"
+        },
+        {
+          "external_id": "2284188",
+          "title": "Werkstudent:in Personal- und Organisationsentwicklung / Unternehmensberatung",
+          "url": "https://imap-gmbh-1.jobs.personio.de/job/2284188",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "working-student"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://imap-institut.de/impressum",
+          "label": "Impressum"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 7,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "imap-gmbh-1.jobs.personio.de"
+      ],
+      "observed_page": {
+        "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+        "headings": [
+          "Praktikum Personal- und Organisationsentwicklung"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "IMAP GmbH ",
+            "logo": "https://assets.cdn.personio.de/logos/121259/social/c3d884bd02f88f8059a496df8e8a8ad1.svg"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Praktikum Personal- und Organisationsentwicklung",
+          "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+          "external_id": "1034236",
+          "error": "MissingDynamicForm: Applicant form not established; application may require JavaScript or an account"
+        }
+      ],
+      "requests": 5,
+      "bytes_read": 355001,
+      "duration_seconds": 2.292,
+      "events": [
+        {
+          "url": "https://imap-gmbh-1.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://imap-gmbh-1.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "e6361b8a8030319b203364b0.gz",
+          "bytes": 23,
+          "seconds": 0.086
+        },
+        {
+          "url": "https://imap-gmbh-1.jobs.personio.de/xml",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://imap-gmbh-1.jobs.personio.de/xml",
+          "sha256": "5597933551e9cd2a3e2a9c07b9cc8a7f37be1b2e4b1acc12a0b71367041f463a",
+          "scratch_file": "3f5d475384ab096ddfa11cf2.gz",
+          "bytes": 54275,
+          "seconds": 0.758
+        },
+        {
+          "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+          "sha256": "87ea14d4d8894d769476c0ffe022390195a867ce10e91bf73dcae706033496de",
+          "scratch_file": "4796d82e66101ae8b3229706.gz",
+          "bytes": 105482,
+          "seconds": 0.572
+        },
+        {
+          "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+          "sha256": "87ea14d4d8894d769476c0ffe022390195a867ce10e91bf73dcae706033496de",
+          "scratch_file": "4796d82e66101ae8b3229706.gz",
+          "bytes": 105482,
+          "seconds": 0.387
+        },
+        {
+          "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236/apply",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236/apply",
+          "sha256": "33a61e7df6b9c1f950b6ac60a2e9287bef6102b28b3cff4b51982463f38a2a82",
+          "scratch_file": "ae1b039c50ecb99bd185035d.gz",
+          "bytes": 89739,
+          "seconds": 0.54
+        }
+      ]
+    },
+    {
+      "action_id": "00de243f3cdf20ab6f26",
+      "name": "Reformer Club GmbH",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:19:21.174499+00:00",
+      "source_proposal": {
+        "id": "eu27-00de243f3cdf20ab6f26",
+        "employer": "Reformer Club GmbH",
+        "adapter": "personio-xml",
+        "enabled": false,
+        "career_url": "https://reformer-club.jobs.personio.de/job/2669913",
+        "allowed_hosts": [
+          "reformer-club.jobs.personio.de"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 45,
+        "feed_url": "https://reformer-club.jobs.personio.de/xml"
+      },
+      "inventory_state": "complete-feed-read",
+      "ownership_state": "not-established",
+      "admissible": false,
+      "jobs": [
+        {
+          "external_id": "2669913",
+          "title": "Praktikum People & Culture (m/w/d)",
+          "url": "https://reformer-club.jobs.personio.de/job/2669913",
+          "countries": [
+            "DE"
+          ],
+          "internship_type": "internship"
+        }
+      ],
+      "corporate_link_candidates": [
+        {
+          "url": "https://www.reformer-club.com/imprint",
+          "label": "Impressum"
+        }
+      ],
+      "new_verified": 0,
+      "production_enabled": false,
+      "records": 8,
+      "feed_scope": "All records returned by existing adapter; national coverage still requires posting geography",
+      "observed_job_hosts": [
+        "reformer-club.jobs.personio.de"
+      ],
+      "observed_page": {
+        "url": "https://reformer-club.jobs.personio.de/job/2669913",
+        "headings": [
+          "Praktikum People & Culture (m/w/d)"
+        ],
+        "structured_employers": [
+          {
+            "@type": "Organization",
+            "name": "Reformer Club GmbH",
+            "logo": "https://assets.cdn.personio.de/logos/292518/social/d972bc8a92e5c34bc055ce550276333c.png"
+          }
+        ]
+      },
+      "application_attempts": [
+        {
+          "title": "Praktikum People & Culture (m/w/d)",
+          "url": "https://reformer-club.jobs.personio.de/job/2669913",
+          "external_id": "2669913",
+          "error": "MissingDynamicForm: Applicant form not established; application may require JavaScript or an account"
+        }
+      ],
+      "requests": 5,
+      "bytes_read": 424219,
+      "duration_seconds": 2.331,
+      "events": [
+        {
+          "url": "https://reformer-club.jobs.personio.de/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://reformer-club.jobs.personio.de/robots.txt",
+          "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+          "scratch_file": "a329cda5de58bcdeb25a021c.gz",
+          "bytes": 23,
+          "seconds": 0.14
+        },
+        {
+          "url": "https://reformer-club.jobs.personio.de/xml",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://reformer-club.jobs.personio.de/xml",
+          "sha256": "ccfdd4be7a375d953fe9b33ec6624cce5b3f7a9b3f5c1f9b3b3e9fd3025f1604",
+          "scratch_file": "be95e4f412ce75558d0877bd.gz",
+          "bytes": 103304,
+          "seconds": 0.768
+        },
+        {
+          "url": "https://reformer-club.jobs.personio.de/job/2669913",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://reformer-club.jobs.personio.de/job/2669913",
+          "sha256": "cc3425e302b0f11d6105dc90ef803225b42ffc1ac44437d39e9c070f940a5e5a",
+          "scratch_file": "a011c98e99df75f15530c177.gz",
+          "bytes": 110436,
+          "seconds": 0.698
+        },
+        {
+          "url": "https://reformer-club.jobs.personio.de/job/2669913",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://reformer-club.jobs.personio.de/job/2669913",
+          "sha256": "cc3425e302b0f11d6105dc90ef803225b42ffc1ac44437d39e9c070f940a5e5a",
+          "scratch_file": "a011c98e99df75f15530c177.gz",
+          "bytes": 110436,
+          "seconds": 0.342
+        },
+        {
+          "url": "https://reformer-club.jobs.personio.de/job/2669913/apply",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://reformer-club.jobs.personio.de/job/2669913/apply",
+          "sha256": "e18c87472b4ae38e17428c02a2e19afe878aae1611f17a6af30c2334d60c8424",
+          "scratch_file": "28ca1885dc2364a187bb4a92.gz",
+          "bytes": 100020,
+          "seconds": 0.491
+        }
+      ]
+    }
+  ]
+}

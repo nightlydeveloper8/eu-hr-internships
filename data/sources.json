@@ -48261,5 +48261,115 @@
     "permission_basis": "Official employer vacancy list and specific vacancy publish an explicit invitation to apply directly via the reviewed mailto address. Robots enforced per run; no email, submit, authentication or rendering.",
     "access_reviewed_on": "2026-11-15",
     "include_index_visible": true
+  },
+  {
+    "id": "recruitee-sas-look-up-space",
+    "employer": "SAS LOOK UP SPACE",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+    "allowed_hosts": [
+      "lookup.recruitee.com"
+    ],
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "feed_url": "https://lookup.recruitee.com/api/offers/",
+    "company_id": "sas-look-up-space",
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "FR"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "recruitee-monsterscore",
+    "employer": "Monsterscore",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+    "allowed_hosts": [
+      "monsterscore.recruitee.com"
+    ],
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "feed_url": "https://monsterscore.recruitee.com/api/offers/",
+    "company_id": "monsterscore",
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "recruitee-ibexa",
+    "employer": "Ibexa",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+    "allowed_hosts": [
+      "ibexa.recruitee.com"
+    ],
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "feed_url": "https://ibexa.recruitee.com/api/offers/",
+    "company_id": "ibexa",
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "BE"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "recruitee-gerard-bertrand",
+    "employer": "Gérard Bertrand",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+    "allowed_hosts": [
+      "gerardbertrand.recruitee.com"
+    ],
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "feed_url": "https://gerardbertrand.recruitee.com/api/offers/",
+    "company_id": "gerard-bertrand",
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "FR"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "recruitee-skytree",
+    "employer": "SKYTREE",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+    "allowed_hosts": [
+      "skytree.recruitee.com"
+    ],
+    "max_requests": 12,
+    "collection_seconds": 45,
+    "feed_url": "https://skytree.recruitee.com/api/offers/",
+    "company_id": "skytree",
+    "application_check": "recruitee-linked",
+    "report_feed_scope": true,
+    "target_countries": [
+      "NL"
+    ],
+    "reviewed_on": "2026-11-16",
+    "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+    "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
   }
 ]

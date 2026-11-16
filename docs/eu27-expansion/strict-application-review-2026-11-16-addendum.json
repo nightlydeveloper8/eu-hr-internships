@@ -1,0 +1,78 @@
+{
+  "mode": "live-visible-application-check-for-ownership-reviewed-feeds",
+  "rows": [
+    {
+      "name": "Ibexa",
+      "action_id": "51beda42bae88be2f657",
+      "proofs": [
+        {
+          "title": "Human Resources Internship",
+          "posting_identifier": "2802788",
+          "countries": [
+            "BE"
+          ],
+          "proof": {
+            "url": "https://ibexa.recruitee.com/o/human-resources-internship-2/c/new",
+            "method": "official-recruitee-same-posting-visible-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "current-employer-feed"
+          }
+        }
+      ],
+      "errors": [],
+      "additional_requests": 4,
+      "total_source_requests": 10,
+      "duration_seconds": 1.742,
+      "events": [
+        {
+          "url": "https://ibexa.recruitee.com/robots.txt",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/robots.txt",
+          "sha256": "424f8a287bdc440a4f4b69c3bec03b3b215271059f1275b850916600d5155537",
+          "scratch_file": "03f2805731ecf619dae3d5d8.gz",
+          "bytes": 81,
+          "seconds": 0.067
+        },
+        {
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "sha256": "f0faa8098d511f6cb0fdf9b34c5a5455cbadac4269a8959946da7d9340e5293f",
+          "scratch_file": "55b40705eb1fa81cf89592f2.gz",
+          "bytes": 258928,
+          "seconds": 0.656
+        },
+        {
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "sha256": "f0faa8098d511f6cb0fdf9b34c5a5455cbadac4269a8959946da7d9340e5293f",
+          "scratch_file": "55b40705eb1fa81cf89592f2.gz",
+          "bytes": 258928,
+          "seconds": 0.458
+        },
+        {
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2/c/new",
+          "method": "GET",
+          "status": 200,
+          "final_url": "https://ibexa.recruitee.com/o/human-resources-internship-2/c/new",
+          "sha256": "8a7dcab8cf61ee3e369ba7e548f64fab2d20fe9e4b3f190df0377550f40f178b",
+          "scratch_file": "c88aa4225234d3de7100b368.gz",
+          "bytes": 259575,
+          "seconds": 0.552
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "employers": 1,
+    "application_proofs": 1,
+    "requests": 4,
+    "source_seconds": 1.742,
+    "wall_seconds": 1.742
+  }
+}

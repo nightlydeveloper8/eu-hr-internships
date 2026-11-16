@@ -151,6 +151,12 @@ class CandidatePilotTests(unittest.TestCase):
         self.assertEqual(result["newly_enabled_sources"], 0)
         self.assertTrue(all(not row["enabled"] for row in result["proposals"]))
         baseline = json.loads((root / "docs/ats-discovery-review.json").read_text())
+        # The registry grows as reviewed employers are activated. Compare the
+        # historical report on its documented cohort, not a changing top-six.
+        historical_ids={cid for row in baseline['countries'] for cid in row['sample_company_ids']}
+        historical_companies=[c for c in companies if c['id'] in historical_ids]
+        self.assertEqual({c['id'] for c in historical_companies},historical_ids)
+        result=pilot(historical_companies,sources,scans,per_country=6)
         self.assertEqual(result["countries"], baseline["countries"])
         self.assertEqual(result["observed_channel_count"], baseline["observed_channel_count"])
         self.assertEqual({(p["company_id"], p["channel_key"], p["status"])

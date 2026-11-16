@@ -1,5 +1,146 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — attivazione autorizzata delle cinque fonti
+
+L'utente richiede esplicitamente integrazione e attivazione delle cinque fonti
+verificate, poi misura del primo ciclo ordinario. Autorizzazione specifica
+acquisita: non richiederla nuovamente per completare questo lotto.
+
+Preparati nel medesimo commit cinque datori e cinque sorgenti Recruitee attive:
+SAS LOOK UP SPACE, Monsterscore, Ibexa, Gérard Bertrand e SKYTREE. Datori
+1.887 → 1.892, sorgenti totali 1.931 → 1.936. Ogni sorgente usa soltanto il tenant
+esatto già revisionato, controllo `recruitee-linked`, budget 12 richieste/45 s,
+zero rendering. Nessun'altra fonte, gate Dynamic ATS, host o schedule estesi.
+`daily.provision` rimane idempotente e non genera sorgenti generiche aggiuntive.
+Catalogo manualmente invariato: baseline 347 ID, 20 open/verified, aggiornamento
+16 novembre 09:06:18 UTC. Dettagli e hash in `activation-2026-11-16.json`.
+
+Rafforzati i test di crescita del registro: Recruitee prova inserimento e refresh
+dello stesso ID; il replay ATS storico usa il campione documentato, così nuovi
+datori non invalidano i confronti storici.
+PR #42 già verde su `e449055`; l'head con attivazione richiede CI e review finali
+prima dello squash merge autorizzato. Rollback: revert congiunto delle cinque
+aggiunte aziende/fonti; non disabilitare le sole sorgenti lasciando i datori,
+altrimenti il provisioner genererebbe fallback generici.
+
+**Primo punto incompleto:** pubblicare e verificare l'head con attivazione,
+completare squash merge #42, controllare su main le cinque configurazioni effettive
+e seguire il workflow ordinario avviato dal push. Nessun workflow_dispatch o
+raccolta completa manuale. Confrontare tutti gli ID, 20 verified di baseline,
+nuovi stage distinti, freschezza, costi delle cinque sorgenti, publish e deployment.
+Finché il ciclo non conclude, beneficio di produzione non attestato. Nessuna
+nuova automazione AI configurata.
+
+## 16 novembre 2026 — verifica delle 29 proposte, cinque integrazioni ammissibili
+
+Richiesta esplicita: verificare datore→ATS, feed, inventario e candidature delle
+29 proposte, preparando l'integrazione senza merge o attivazioni. La PR #42 è
+ancora aperta allo head `7d5940b`; questo lavoro ne completa il contenuto.
+
+- **29 feed tentati, 21 inventari letti, 366 posizioni e 20 ruoli HR per studenti
+  classificati.** Quattro fonti hanno risposto 429, senza retry. Tre XML Personio
+  404; Hotel Beveren pubblica URL su un host diverso non approvato e rimane
+  escluso. Le otto letture non stabilite non sono inventari vuoti.
+- **Cinque stage distinti con prova live completa del pilota:** Monsterscore
+  (HRM, Amsterdam NL), SKYTREE (HR & People Operations, Amsterdam NL), Ibexa
+  (Human Resources, Louvain-la-Neuve BE), Gérard Bertrand (SIRH, Narbonne FR),
+  SAS LOOK UP SPACE (diritto sociale a supporto HR, Toulouse FR).
+  Per ognuno: collegamento ufficiale del datore al tenant esatto, feed letto,
+  ID/titolo/datore corrispondenti e candidatura con campi visibili abilitati.
+  Non equivalgono a cinque annunci già pubblicati sul sito.
+- Correzione riutilizzabile **opt-in** `application_check=recruitee-linked`:
+  conserva l'entry di candidatura realmente pubblicata nel feed, senza inventare
+  `/c/new`; verifica ID/titolo/datore sulle due pagine, percorso, host, redirect,
+  chiusure/scadenze e modulo visibile. Evita di prendere per prova il form nella
+  scheda nascosta della vacancy. Connettori Recruitee già registrati invariati.
+- Bundle fuori dal runtime: `docs/eu27-expansion/reviewed-integration-bundle.json`,
+  cinque aziende/fonti disabilitate, metadati e prove. **Non aggiungere da sole
+  aziende con fonti disabilitate:** `daily.provision` attiverebbe crawler generici.
+  L'eventuale attivazione richiede integrazione congiunta nel medesimo commit e
+  autorizzazione specifica. Nessun registry, catalogo o workflow modificato.
+- Verifica offline su risposte salvate con il codice finale: due cicli
+  **347 → 352 ID e 20 → 25 open/verified**, tutti gli ID precedenti conservati,
+  idempotenza confermata. È una simulazione, non un conteggio di produzione e
+  non rinnova le evidenze live. Il futuro collector dovrà rileggere tutto live;
+  nessuno snapshot di questo pilota viene importato nel catalogo.
+- Costo totale delle fasi: **165 richieste logiche**, 83,071 secondi-fonte,
+  24,570 secondi a muro cumulati dei processi, zero rendering; massimo osservato
+  10 richieste per datore su budget 12/45 secondi. Ulteriori 16 query web e
+  7 aperture/find per la ricerca di pagine ufficiali; costi monetari non misurati.
+- Restano **24 proposte non ammissibili**, con motivi nel report `REVIEW.md`:
+  accesso/feed, identità societaria/pubblicatore, applicazione o classificazione.
+  Altares e Toreon non mostrano nel feed lo stage HR indicizzato; non è una prova
+  generale di chiusura. threon HRIS richiede review del filtro. Dimensioni/gruppi
+  non qualificati come PMI; lingue e intake sconosciuti rimangono tali.
+
+Consegna nella [PR #42](https://github.com/nightlydeveloper8/eu-hr-internships/pull/42),
+con estensione opt-in e bundle disabilitato. **384 test Python 3.12, 26 Node,
+64 esempi di classificazione e build superati**; dieci nuove regressioni sul
+percorso Recruitee e due cicli con ID preservati. CI sul nuovo head da verificare.
+
+**Primo punto incompleto:** review della modifica e del bundle dei cinque datori,
+poi integrazione/attivazione solo con autorizzazione specifica. Dopo attivazione,
+misurare il primo ciclo ordinario reale (cinque prove pilota non garantiscono
+cinque nuove vacancy ancora aperte in quel ciclo). Avanzare in modo indipendente
+su fonti dei paesi successivi, senza ritentare qui i quattro 429 né avviare una
+raccolta completa manuale. Nessuna nuova automazione o schedulazione configurata.
+
+## 16 novembre 2026 — coda UE27 e primo lotto di espansione preparati
+
+Ripresa del lavoro locale interrotto sul ramo `plan/eu27-expansion-20261115`,
+checkout isolato `fix-jde-20261115`. Base aggiornata al main `e99f263` senza
+sovrascrivere il lavoro delle altre sessioni. Il catalogo delle 09:06 UTC ha
+347 record e 20 open/verified; nessun aumento attribuito a questa preparazione.
+La PR #40 è merged; #18/#23 restano aperte e non limitano la ricerca UE27
+richiesta esplicitamente dall'utente. NL resta prioritario senza attendere la
+mappatura completa delle 12 province per ricercare nel resto dell'UE.
+
+- Generatore offline riproducibile e coda per **27 paesi**, 1.926 identità di
+  ricerca, 2.202 attività su canali. Riutilizza registro, esiti recenti, catalogo
+  e scansioni esistenti. Le 39 nuove identità web sono da rivedere per gruppo e
+  dimensioni: non sono aziende giuridicamente uniche accertate o fonti attive.
+- **Primo lotto: 37 attività**, NL 11, BE 10, DE 11, FR 3, IE 2: 34 nuovi canali
+  candidati e 3 conversioni di crawler generici (2-CNNCT, Gemeente Achtkarspelen,
+  VTG GmbH Ingenieurbüro). Non è stato raggiunto l'obiettivo iniziale di 50:
+  connettori dedicati già attivi, vecchi recuperi, identità condivise e prove
+  contraddittorie sono esclusi, senza riempire il lotto con lavoro duplicato.
+- **29 bozze per adattatori già disponibili**, tutte disabilitate nel solo
+  documento `batch-01.json`; nessun file di produzione le carica. Restano da
+  dimostrare collegamento datore/tenant, identità del gruppo, accesso del feed,
+  completezza dell'inventario, sede e candidatura policy v2. Dimensioni non
+  qualificate per tutte le 37 attività: quota PMI della strategia non dimostrata.
+- Preflight live limitato a una pagina già osservata per canale supportato:
+  **33 datori, 34 tentativi** (Zero Motorcycles ha poi una nuova URL vacancy
+  osservata, distinta dalla precedente URL solo candidatura), **64 richieste
+  logiche, 7.137.457 byte, 34,168 secondi-fonte, 16,583 secondi a muro cumulati**
+  dei due processi, zero rendering. Robots e redirect sul solo host esatto
+  rispettati; nessuna candidatura, API inventory o raccolta completa.
+- **28 pagine con titolo corrispondente**, non 28 candidature verificate.
+  DocMedico 404; JD Sports FR restituisce board Netherlands; Theodo timeout;
+  Hospitality Recruiters redirect fuori scope, non seguito. Fidelity già
+  contraddetta da apertura 404 resta fuori dal lotto. eXtra Shop richiede
+  revisione del titolo e distinzione alternance/stage. Nessun aggiramento.
+- Ricerca web complessiva delle due sessioni: 40 query e 6 aperture; costi
+  monetari non misurati. **Nuove fonti attivate 0, nuove candidature verificate 0**.
+  Report: `docs/eu27-expansion/README.md`, `queue.json`, `batch-01.json`, manifest
+  degli indizi e due preflight con URL, date, hash e costi.
+
+Validazione: **374 test Python 3.12 e 26 test Node superati**, 64 esempi di
+classificazione senza errori, build riuscita; rigenerazione deterministica,
+nessuna modifica a catalogo, registry, workflow o codice di produzione.
+La coda completa è conservata anche compressa, oltre alla versione leggibile locale.
+
+[PR #42 aperta](https://github.com/nightlydeveloper8/eu-hr-internships/pull/42),
+commit codice `f5864f87f951071d1cac285f4a89250148776ed5`. CI/preview avviate
+automaticamente, esito ancora da verificare. Nessun merge o attivazione.
+
+**Primo punto incompleto:** review e pilota circoscritto delle 29 proposte di
+adattatore (priorità alle 28 con titolo live corrispondente), partendo dal legame
+ufficiale datore→tenant e dal feed completo. Preparare l'integrazione soltanto
+per canali con prove sufficienti, in un lotto; nessun merge/rollout implicito.
+Per gli altri 22 paesi esiste la coda nazionale, non una nuova mappatura live.
+Nessuna automazione di ricerca AI o nuova schedulazione configurata.
+
 ## Ripresa — verifica integrazione JDE
 
 Verificata via API GitHub la PR #40: squash merge completato il 15 novembre 2026,

@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "mode": "bounded-one-page-preflight-not-vacancy-verification",
+  "base_commit": "e99f263ccb8758f400fd04d61f228ecec6bf3450",
+  "catalog_updated_at": "2026-11-16T09:06:18.796495+00:00",
+  "checked_at": "2026-11-16T10:06:22.036820+00:00",
+  "scope": "Only observed new-employer URLs on reusable adapters, one page each",
+  "limits": {
+    "per_employer_requests": 4,
+    "per_employer_seconds": 20,
+    "workers": 4,
+    "browser_renderings": 0
+  },
+  "summary": {
+    "employers": 6,
+    "states": {
+      "same-title-page-observed": 6
+    },
+    "requests": 12,
+    "bytes_read": 1210150,
+    "source_seconds": 4.335,
+    "wall_seconds": 1.412,
+    "same_title_pages": 6,
+    "forms_on_same_title_pages": 0,
+    "new_verified": 0,
+    "new_enabled_sources": 0
+  },
+  "counting_note": "Logical request counters include robots lookups; redirects are not separately counted. No page is promoted to verified by this report.",
+  "rows": [
+    {
+      "company_key": "lead-244b72cb4f17f84e",
+      "name": "Altares Dun & Bradstreet",
+      "channel_key": "recruitee:altaresdunbradstreet.recruitee.com",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:06:20.624905+00:00",
+      "expected_title": "HR Stagiair(e)",
+      "url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+      "state": "same-title-page-observed",
+      "availability": "unverified",
+      "identity_review": "required",
+      "integration_ready": false,
+      "production_enabled": false,
+      "requests": 2,
+      "bytes_read": 286758,
+      "renderings": 0,
+      "http_status": 200,
+      "final_url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+      "body_sha256": "09e453d01544da6b45ff9e50cfcb0129fb32e3ba79a1a6e24151d7f27b59813d",
+      "title_match": true,
+      "headings": [
+        "HR Stagiair(e)"
+      ],
+      "structured_titles": [],
+      "applicant_form_present": false,
+      "duration_seconds": 0.788
+    },
+    {
+      "company_key": "lead-3da602fdfb57d3cb",
+      "name": "Zero Motorcycles Inc.",
+      "channel_key": "recruitee:zeromotorcycles.recruitee.com",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:06:20.625542+00:00",
+      "expected_title": "Human Resources (HR Europe) Intern HBO",
+      "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+      "state": "same-title-page-observed",
+      "availability": "unverified",
+      "identity_review": "required",
+      "integration_ready": false,
+      "production_enabled": false,
+      "requests": 2,
+      "bytes_read": 246148,
+      "renderings": 0,
+      "http_status": 200,
+      "final_url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+      "body_sha256": "a06712c7350481a70a0f8a04127a210c48d3cd5f7c3659c4938539772b9b19a3",
+      "title_match": true,
+      "headings": [
+        "Human Resources (HR Europe) Intern HBO"
+      ],
+      "structured_titles": [
+        "Human Resources (HR Europe) Intern HBO"
+      ],
+      "applicant_form_present": false,
+      "duration_seconds": 0.757
+    },
+    {
+      "company_key": "lead-1afad7315d132ace",
+      "name": "Kindernothilfe e.V.",
+      "channel_key": "personio-xml:kindernothilfe.jobs.personio.de",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:06:20.625650+00:00",
+      "expected_title": "Praktikum in der Personalabteilung",
+      "url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+      "state": "same-title-page-observed",
+      "availability": "unverified",
+      "identity_review": "required",
+      "integration_ready": false,
+      "production_enabled": false,
+      "requests": 2,
+      "bytes_read": 93446,
+      "renderings": 0,
+      "http_status": 200,
+      "final_url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+      "body_sha256": "92c0cada853afaa7f8eabd3ff98f685dcd1f57efb3ff0751519d15dc6770aa92",
+      "title_match": true,
+      "headings": [
+        "Praktikum in der Personalabteilung"
+      ],
+      "structured_titles": [
+        "Praktikum in der Personalabteilung"
+      ],
+      "applicant_form_present": false,
+      "duration_seconds": 0.708
+    },
+    {
+      "company_key": "lead-b6fd94adeaf6b5ea",
+      "name": "Settels Savenije group of companies",
+      "channel_key": "recruitee:sttls.recruitee.com",
+      "adapter": "recruitee",
+      "checked_at": "2026-11-16T10:06:20.625722+00:00",
+      "expected_title": "Meewerk stage HRM",
+      "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+      "state": "same-title-page-observed",
+      "availability": "unverified",
+      "identity_review": "required",
+      "integration_ready": false,
+      "production_enabled": false,
+      "requests": 2,
+      "bytes_read": 373219,
+      "renderings": 0,
+      "http_status": 200,
+      "final_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+      "body_sha256": "2641210fcad1edceecfe622542ed6a59ee97a89e45dd3f86b079fa6eb8419197",
+      "title_match": true,
+      "headings": [
+        "Meewerk stage HRM",
+        "Meewerkstage HRM bij Settels Savenije (Eindhoven)"
+      ],
+      "structured_titles": [
+        "Meewerk stage HRM"
+      ],
+      "applicant_form_present": false,
+      "duration_seconds": 0.742
+    },
+    {
+      "company_key": "lead-523b8ac1c18d6fa2",
+      "name": "ISCC, Meo, 4C, GRAS, ClimatePal & TYC",
+      "channel_key": "personio-xml:iscc-system-gmbh.jobs.personio.de",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:06:21.334115+00:00",
+      "expected_title": "Praktikant:in – Office Management & HR",
+      "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+      "state": "same-title-page-observed",
+      "availability": "unverified",
+      "identity_review": "required",
+      "integration_ready": false,
+      "production_enabled": false,
+      "requests": 2,
+      "bytes_read": 105074,
+      "renderings": 0,
+      "http_status": 200,
+      "final_url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+      "body_sha256": "3b1a3bbf39bce2ae3ec553638c6fd929944f179ab0e19c1368cad04a9dd2fd6a",
+      "title_match": true,
+      "headings": [
+        "Praktikant:in – Office Management & HR"
+      ],
+      "structured_titles": [
+        "Praktikant:in – Office Management & HR"
+      ],
+      "applicant_form_present": false,
+      "duration_seconds": 0.671
+    },
+    {
+      "company_key": "lead-de437d7d3b12c62b",
+      "name": "IMAP GmbH",
+      "channel_key": "personio-xml:imap-gmbh-1.jobs.personio.de",
+      "adapter": "personio-xml",
+      "checked_at": "2026-11-16T10:06:21.367460+00:00",
+      "expected_title": "Praktikum Personal- und Organisationsentwicklung",
+      "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+      "state": "same-title-page-observed",
+      "availability": "unverified",
+      "identity_review": "required",
+      "integration_ready": false,
+      "production_enabled": false,
+      "requests": 2,
+      "bytes_read": 105505,
+      "renderings": 0,
+      "http_status": 200,
+      "final_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+      "body_sha256": "e014f2b341f1f995910046069f83572633f51d4cd608e6b3a6dcddd6e770f360",
+      "title_match": true,
+      "headings": [
+        "Praktikum Personal- und Organisationsentwicklung"
+      ],
+      "structured_titles": [
+        "Praktikum Personal- und Organisationsentwicklung"
+      ],
+      "applicant_form_present": false,
+      "duration_seconds": 0.669
+    }
+  ]
+}
