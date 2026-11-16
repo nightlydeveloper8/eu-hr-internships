@@ -1,5 +1,57 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — coda UE27 e primo lotto di espansione preparati
+
+Ripresa del lavoro locale interrotto sul ramo `plan/eu27-expansion-20261115`,
+checkout isolato `fix-jde-20261115`. Base aggiornata al main `e99f263` senza
+sovrascrivere il lavoro delle altre sessioni. Il catalogo delle 09:06 UTC ha
+347 record e 20 open/verified; nessun aumento attribuito a questa preparazione.
+La PR #40 è merged; #18/#23 restano aperte e non limitano la ricerca UE27
+richiesta esplicitamente dall'utente. NL resta prioritario senza attendere la
+mappatura completa delle 12 province per ricercare nel resto dell'UE.
+
+- Generatore offline riproducibile e coda per **27 paesi**, 1.926 identità di
+  ricerca, 2.202 attività su canali. Riutilizza registro, esiti recenti, catalogo
+  e scansioni esistenti. Le 39 nuove identità web sono da rivedere per gruppo e
+  dimensioni: non sono aziende giuridicamente uniche accertate o fonti attive.
+- **Primo lotto: 37 attività**, NL 11, BE 10, DE 11, FR 3, IE 2: 34 nuovi canali
+  candidati e 3 conversioni di crawler generici (2-CNNCT, Gemeente Achtkarspelen,
+  VTG GmbH Ingenieurbüro). Non è stato raggiunto l'obiettivo iniziale di 50:
+  connettori dedicati già attivi, vecchi recuperi, identità condivise e prove
+  contraddittorie sono esclusi, senza riempire il lotto con lavoro duplicato.
+- **29 bozze per adattatori già disponibili**, tutte disabilitate nel solo
+  documento `batch-01.json`; nessun file di produzione le carica. Restano da
+  dimostrare collegamento datore/tenant, identità del gruppo, accesso del feed,
+  completezza dell'inventario, sede e candidatura policy v2. Dimensioni non
+  qualificate per tutte le 37 attività: quota PMI della strategia non dimostrata.
+- Preflight live limitato a una pagina già osservata per canale supportato:
+  **33 datori, 34 tentativi** (Zero Motorcycles ha poi una nuova URL vacancy
+  osservata, distinta dalla precedente URL solo candidatura), **64 richieste
+  logiche, 7.137.457 byte, 34,168 secondi-fonte, 16,583 secondi a muro cumulati**
+  dei due processi, zero rendering. Robots e redirect sul solo host esatto
+  rispettati; nessuna candidatura, API inventory o raccolta completa.
+- **28 pagine con titolo corrispondente**, non 28 candidature verificate.
+  DocMedico 404; JD Sports FR restituisce board Netherlands; Theodo timeout;
+  Hospitality Recruiters redirect fuori scope, non seguito. Fidelity già
+  contraddetta da apertura 404 resta fuori dal lotto. eXtra Shop richiede
+  revisione del titolo e distinzione alternance/stage. Nessun aggiramento.
+- Ricerca web complessiva delle due sessioni: 40 query e 6 aperture; costi
+  monetari non misurati. **Nuove fonti attivate 0, nuove candidature verificate 0**.
+  Report: `docs/eu27-expansion/README.md`, `queue.json`, `batch-01.json`, manifest
+  degli indizi e due preflight con URL, date, hash e costi.
+
+Validazione: **374 test Python 3.12 e 26 test Node superati**, 64 esempi di
+classificazione senza errori, build riuscita; rigenerazione deterministica,
+nessuna modifica a catalogo, registry, workflow o codice di produzione.
+La coda completa è conservata anche compressa, oltre alla versione leggibile locale.
+
+**Primo punto incompleto:** review e pilota circoscritto delle 29 proposte di
+adattatore (priorità alle 28 con titolo live corrispondente), partendo dal legame
+ufficiale datore→tenant e dal feed completo. Preparare l'integrazione soltanto
+per canali con prove sufficienti, in un lotto; nessun merge/rollout implicito.
+Per gli altri 22 paesi esiste la coda nazionale, non una nuova mappatura live.
+Nessuna automazione di ricerca AI o nuova schedulazione configurata.
+
 ## Ripresa — verifica integrazione JDE
 
 Verificata via API GitHub la PR #40: squash merge completato il 15 novembre 2026,

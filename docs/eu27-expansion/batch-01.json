@@ -1,0 +1,2853 @@
+{
+  "schema_version": 1,
+  "base_commit": "e99f263ccb8758f400fd04d61f228ecec6bf3450",
+  "catalog_updated_at": "2026-11-16T09:06:18.796495+00:00",
+  "collection_generated_at": "2026-11-16T09:06:18.796495+00:00",
+  "mode": "offline-preparation-no-production-changes",
+  "source_observations_on": "2026-11-15",
+  "new_live_verified": 0,
+  "country_is": "research target or explicitly labelled posting hint; never verified national coverage",
+  "preparation_cost": {
+    "search_queries": 40,
+    "page_open_attempts": 6,
+    "collector_requests": 64,
+    "collector_renderings": 0,
+    "probe_summary": {
+      "employers": 33,
+      "page_probe_attempts": 34,
+      "requests": 64,
+      "bytes_read": 7137457,
+      "source_seconds": 34.168,
+      "wall_seconds_separate_runs": 16.583,
+      "same_title_pages": 28,
+      "new_verified": 0,
+      "new_enabled_sources": 0
+    },
+    "monetary_cost": null
+  },
+  "inputs": [
+    "data/companies.json",
+    "data/sources.json",
+    "data/catalog.json",
+    "docs/career-channel-scan.json",
+    "data/employer-collection.json",
+    "docs/country-research-progress.json",
+    "docs/eu27-expansion/web-leads-2026-11-15.json"
+  ],
+  "scope": [
+    "NL",
+    "BE",
+    "DE",
+    "FR",
+    "IE"
+  ],
+  "target_channel_count": 50,
+  "actual_channel_count": 37,
+  "summary": {
+    "by_country": {
+      "NL": 11,
+      "BE": 10,
+      "DE": 11,
+      "FR": 3,
+      "IE": 2
+    },
+    "by_action": {
+      "new-employer-channel": 34,
+      "adapter-upgrade-existing-employer": 3
+    },
+    "by_adapter": {
+      "recruitee": 19,
+      "personio-xml": 11,
+      "universal-employer": 5,
+      "lever": 1,
+      "greenhouse": 1
+    },
+    "with_web_hr_lead": 34,
+    "with_catalog_hr_lead": 0,
+    "reusable_adapter_with_web_hr_lead": 29,
+    "size_unqualified": 37
+  },
+  "proposed_pilot_budget_upper_bound": {
+    "max_requests": 444,
+    "source_seconds": 1665,
+    "browser_renderings": 0,
+    "measured": false,
+    "description": "Maximum ceilings for a later authorized bounded pilot, not actual cost or approved rollout"
+  },
+  "rows": [
+    {
+      "action_id": "b7293bae7b07364fdc9f",
+      "company_key": "lead-244b72cb4f17f84e",
+      "name": "Altares Dun & Bradstreet",
+      "channel_key": "recruitee:altaresdunbradstreet.recruitee.com",
+      "channel_url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR Stagiair(e)",
+          "url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-16",
+          "source_ref": "turn8search6",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:06:20.624905+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4"
+      },
+      "batch_country": "NL",
+      "rank": 1
+    },
+    {
+      "action_id": "ef5350fcad18f4126967",
+      "company_key": "lead-1a50670970827c87",
+      "name": "threon NV",
+      "channel_key": "recruitee:threon.recruitee.com",
+      "channel_url": "https://threon.recruitee.com/o/internship-hris-business-analysis",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [
+        "BE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Internship: HRIS business analysis",
+          "url": "https://threon.recruitee.com/o/internship-hris-business-analysis",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search41",
+          "page_open": "not-attempted",
+          "note": "Review actual internal HRIS duties versus client/software consultancy before classification.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:32.006099+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://threon.recruitee.com/o/internship-hris-business-analysis"
+      },
+      "batch_country": "BE",
+      "rank": 2
+    },
+    {
+      "action_id": "a22052a2d1db53d7bf0a",
+      "company_key": "lead-00380acd2ba03b73",
+      "name": "Energieversum",
+      "channel_key": "personio-xml:energieversum.jobs.personio.de",
+      "channel_url": "https://energieversum.jobs.personio.de/job/2679110",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikant Human Resources (m/w/d)",
+          "url": "https://energieversum.jobs.personio.de/job/2679110",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search34",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:31.344871+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://energieversum.jobs.personio.de/job/2679110"
+      },
+      "batch_country": "DE",
+      "rank": 3
+    },
+    {
+      "action_id": "b6d0b2004828b0535da0",
+      "company_key": "lead-062a1c0c2efca17c",
+      "name": "SAS LOOK UP SPACE",
+      "channel_key": "recruitee:lookup.recruitee.com",
+      "channel_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "FR"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "page-open",
+          "title": "Stage -Juriste droit social RH (H/F)",
+          "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+          "countries": [
+            "FR"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn6search8",
+          "page_open": "success",
+          "note": "Employment-law role supporting HR; retain subtype and check student curriculum suitability.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:31.345027+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf"
+      },
+      "batch_country": "FR",
+      "rank": 4
+    },
+    {
+      "action_id": "1216868cfc0e39e651ba",
+      "company_key": "lead-274fa3e95af1fc5b",
+      "name": "TikTok",
+      "channel_key": "official-host:lifeattiktok.com",
+      "channel_url": "https://lifeattiktok.com/search/7694622895491205429",
+      "adapter": "universal-employer",
+      "adapter_reusable": false,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "IE"
+      ],
+      "vacancy_country_hints": [
+        "IE"
+      ],
+      "country_coverage_verified": false,
+      "score": 100,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "page-open",
+          "title": "HR Operations Lifecycle - Intern (HR Operations-EMEA) - 2027 Start",
+          "url": "https://lifeattiktok.com/search/7694622895491205429",
+          "countries": [
+            "IE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn7view3",
+          "page_open": "success",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "technical-discovery",
+      "integration_ready": false,
+      "batch_country": "IE",
+      "rank": 5
+    },
+    {
+      "action_id": "1edf4848c6a7bf782745",
+      "company_key": "lead-35dc41c673f3b937",
+      "name": "Monsterscore",
+      "channel_key": "recruitee:monsterscore.recruitee.com",
+      "channel_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Stageplek Human Resources Management",
+          "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn3search11",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:31.344222+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management"
+      },
+      "batch_country": "NL",
+      "rank": 6
+    },
+    {
+      "action_id": "51beda42bae88be2f657",
+      "company_key": "lead-36c73ec26c11eb02",
+      "name": "Ibexa",
+      "channel_key": "recruitee:ibexa.recruitee.com",
+      "channel_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [
+        "BE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "page-open",
+          "title": "Human Resources Internship",
+          "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn7view1",
+          "page_open": "success",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [
+        {
+          "employees_min": 350,
+          "employees_max": null,
+          "scope": "published international team description; group/legal boundary unreviewed",
+          "source_url": "https://ibexa.recruitee.com/o/human-resources-internship-2"
+        }
+      ],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:32.652907+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://ibexa.recruitee.com/o/human-resources-internship-2"
+      },
+      "batch_country": "BE",
+      "rank": 7
+    },
+    {
+      "action_id": "01971b916c2988174e05",
+      "company_key": "lead-1afad7315d132ace",
+      "name": "Kindernothilfe e.V.",
+      "channel_key": "personio-xml:kindernothilfe.jobs.personio.de",
+      "channel_url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikum in der Personalabteilung",
+          "url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-16",
+          "source_ref": "turn8search17",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:06:20.625650+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://kindernothilfe.jobs.personio.de/job/2845709"
+      },
+      "batch_country": "DE",
+      "rank": 8
+    },
+    {
+      "action_id": "4628c4fb659fbbd1308e",
+      "company_key": "lead-157d6c813140dd78",
+      "name": "Kickmaker",
+      "channel_key": "lever:kickmaker",
+      "channel_url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+      "adapter": "lever",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "FR"
+      ],
+      "vacancy_country_hints": [
+        "FR"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Stage - Chasseur de talents (Recrutement)",
+          "url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+          "countries": [
+            "FR"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn1search5",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:32.120022+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e"
+      },
+      "batch_country": "FR",
+      "rank": 9
+    },
+    {
+      "action_id": "4bcf4682b4e2bc19773e",
+      "company_key": "lead-34ccfa77c044b78b",
+      "name": "Logitech",
+      "channel_key": "official-host:logitech.wd5.myworkdayjobs.com",
+      "channel_url": "https://logitech.wd5.myworkdayjobs.com/fr-FR/Logitech/job/Early-Careers-Program-Intern_147590",
+      "adapter": "universal-employer",
+      "adapter_reusable": false,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "IE"
+      ],
+      "vacancy_country_hints": [
+        "IE"
+      ],
+      "country_coverage_verified": false,
+      "score": 100,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Early Careers Program Intern",
+          "url": "https://logitech.wd5.myworkdayjobs.com/fr-FR/Logitech/job/Early-Careers-Program-Intern_147590",
+          "countries": [
+            "IE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn2search9",
+          "page_open": "not-attempted",
+          "note": "Cork and London listed: only Cork is within EU27; older indexed observation; Workday form unproven.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "technical-discovery",
+      "integration_ready": false,
+      "batch_country": "IE",
+      "rank": 10
+    },
+    {
+      "action_id": "202b0cf09349569b1a56",
+      "company_key": "lead-3da602fdfb57d3cb",
+      "name": "Zero Motorcycles Inc.",
+      "channel_key": "recruitee:zeromotorcycles.recruitee.com",
+      "channel_url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Human Resources (HR Europe) Intern HBO",
+          "url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-16",
+          "source_ref": "turn10search3",
+          "page_open": "not-attempted",
+          "note": "Vacancy URL independently observed in new search; earlier application-only URL retained as history.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:06:20.625542+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo"
+      },
+      "batch_country": "NL",
+      "rank": 11
+    },
+    {
+      "action_id": "4ee71272d2fe9d14a94e",
+      "company_key": "lead-430d181671c7d99c",
+      "name": "Toreon",
+      "channel_key": "recruitee:toreon.recruitee.com",
+      "channel_url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [
+        "BE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Stageplaats HRM & Recruitment",
+          "url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn2search0",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:33.300775+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl"
+      },
+      "batch_country": "BE",
+      "rank": 12
+    },
+    {
+      "action_id": "745f073212c70dab36e8",
+      "company_key": "lead-3a1736093c6eab1a",
+      "name": "LHLK Agentur für Kommunikation",
+      "channel_key": "personio-xml:lhlk.jobs.personio.de",
+      "channel_url": "https://lhlk.jobs.personio.de/job/2849563",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [
+        "DE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikant:in mit Fokus HR & Employer Branding",
+          "url": "https://lhlk.jobs.personio.de/job/2849563",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn2search7",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:32.062715+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://lhlk.jobs.personio.de/job/2849563"
+      },
+      "batch_country": "DE",
+      "rank": 13
+    },
+    {
+      "action_id": "c90dc0562d12f2c4c890",
+      "company_key": "lead-6bddba5afcd3f771",
+      "name": "Gérard Bertrand",
+      "channel_key": "recruitee:gerardbertrand.recruitee.com",
+      "channel_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "FR"
+      ],
+      "vacancy_country_hints": [
+        "FR"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "STAGE - Ressources Humaines – Déploiement SIRH (H/F)",
+          "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+          "countries": [
+            "FR"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn6search7",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:33.680909+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr"
+      },
+      "batch_country": "FR",
+      "rank": 14
+    },
+    {
+      "action_id": "67200fb2de73e35b076a",
+      "company_key": "lead-48f7f0f993b395ab",
+      "name": "Hotel TwentySeven",
+      "channel_key": "recruitee:hoteltwentyseven.recruitee.com",
+      "channel_url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR Stagiair(e)",
+          "url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn3search25",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:32.123621+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20"
+      },
+      "batch_country": "NL",
+      "rank": 15
+    },
+    {
+      "action_id": "9b5ff4028ddfd69c4028",
+      "company_key": "lead-82317ca621b0e8c2",
+      "name": "Hotel Beveren",
+      "channel_key": "recruitee:vandervalkbeveren.recruitee.com",
+      "channel_url": "https://vandervalkbeveren.recruitee.com/o/hr-stage",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR stage",
+          "url": "https://vandervalkbeveren.recruitee.com/o/hr-stage",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search19",
+          "page_open": "not-attempted",
+          "note": "Van der Valk brand affiliation requires group deduplication review.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:34.069422+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://vandervalkbeveren.recruitee.com/o/hr-stage"
+      },
+      "batch_country": "BE",
+      "rank": 16
+    },
+    {
+      "action_id": "42746cfe270726d969d1",
+      "company_key": "lead-523b8ac1c18d6fa2",
+      "name": "ISCC, Meo, 4C, GRAS, ClimatePal & TYC",
+      "channel_key": "personio-xml:iscc-system-gmbh.jobs.personio.de",
+      "channel_url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [
+        "DE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikant:in – Office Management & HR",
+          "url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-16",
+          "source_ref": "turn9search0",
+          "page_open": "not-attempted",
+          "note": "Shared ATS names and mixed office/HR responsibilities require employer and role review.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:06:21.334115+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de"
+      },
+      "batch_country": "DE",
+      "rank": 17
+    },
+    {
+      "action_id": "7b59dccb40979da93da6",
+      "company_key": "lead-5f547c3d7f21546a",
+      "name": "SKYTREE",
+      "channel_key": "recruitee:skytree.recruitee.com",
+      "channel_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "page-open",
+          "title": "HR & People Operations Intern",
+          "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn3search10",
+          "page_open": "success",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:32.950528+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3"
+      },
+      "batch_country": "NL",
+      "rank": 18
+    },
+    {
+      "action_id": "f1868ef25a42226921ad",
+      "company_key": "lead-b135bde3cac57151",
+      "name": "Bundl",
+      "channel_key": "recruitee:bundl.recruitee.com",
+      "channel_url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [
+        "BE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "page-open",
+          "title": "HR Intern",
+          "url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn7view0",
+          "page_open": "success",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [
+        {
+          "employees_min": 55,
+          "employees_max": null,
+          "scope": "published team description; group/legal boundary unreviewed",
+          "source_url": "https://bundl.recruitee.com/o/hr-intern?lang=en"
+        }
+      ],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:34.784132+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://bundl.recruitee.com/o/hr-intern?lang=en"
+      },
+      "batch_country": "BE",
+      "rank": 19
+    },
+    {
+      "action_id": "8e1a5ab608d2beb5fb5b",
+      "company_key": "lead-7a1445c7a1069515",
+      "name": "Studyflix GmbH",
+      "channel_key": "personio-xml:studyflix-gmbh.jobs.personio.de",
+      "channel_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [
+        "DE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikum Human Resources & Recruiting (m/w/d)",
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn1search0",
+          "page_open": "not-attempted",
+          "note": "Mixed Praktikum/Werkstudium category; mandatory internship explicitly described; preserve role type.",
+          "availability": "unverified"
+        },
+        {
+          "kind": "indexed-search",
+          "title": "Praktikum Recruiting / Personal / HR (m/w/d)",
+          "url": "https://studyflix-gmbh.jobs.personio.de/job/1119140?language=de",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn2search6",
+          "page_open": "not-attempted",
+          "note": "Second observed posting on same tenant: not another channel or proven distinct opportunity.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:32.772079+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149"
+      },
+      "batch_country": "DE",
+      "rank": 20
+    },
+    {
+      "action_id": "432cbe6783e8768e83af",
+      "company_key": "lead-5ff8fea04eab627a",
+      "name": "Youvia BV",
+      "channel_key": "recruitee:werkenbijyouvia.recruitee.com",
+      "channel_url": "https://werkenbijyouvia.recruitee.com/o/hr-stage-meewerkstage-human-resource-management-hrm",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR-stage | Meewerkstage Human Resource Management (HRM)",
+          "url": "https://werkenbijyouvia.recruitee.com/o/hr-stage-meewerkstage-human-resource-management-hrm",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn3search9",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:33.697148+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://werkenbijyouvia.recruitee.com/o/hr-stage-meewerkstage-human-resource-management-hrm"
+      },
+      "batch_country": "NL",
+      "rank": 21
+    },
+    {
+      "action_id": "3e88f046de4d7b54d3b6",
+      "company_key": "lead-f099e5248b802f2b",
+      "name": "CHR HAUTE SENNE",
+      "channel_key": "recruitee:chrhautesenne.recruitee.com",
+      "channel_url": "https://chrhautesenne.recruitee.com/o/stagiaire-en-ressources-humaines-developpement-des-ressources-humaines-soft-rh",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Stagiaire en Ressources Humaines - Développement des ressources humaines (soft RH)",
+          "url": "https://chrhautesenne.recruitee.com/o/stagiaire-en-ressources-humaines-developpement-des-ressources-humaines-soft-rh",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search8",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:35.474121+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://chrhautesenne.recruitee.com/o/stagiaire-en-ressources-humaines-developpement-des-ressources-humaines-soft-rh"
+      },
+      "batch_country": "BE",
+      "rank": 22
+    },
+    {
+      "action_id": "62a986e072fa415b7dcb",
+      "company_key": "lead-95c558aad9b42c8d",
+      "name": "Watson Farley & Williams LLP",
+      "channel_key": "personio-xml:watson-farley-williams-llp.jobs.personio.de",
+      "channel_url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikant HR (m/w/d) - Recruiting & Employer Branding",
+          "url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search31",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:34.120284+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127"
+      },
+      "batch_country": "DE",
+      "rank": 23
+    },
+    {
+      "action_id": "23fcb0035c0943323708",
+      "company_key": "lead-71eaf37349ace0d4",
+      "name": "Droppie",
+      "channel_key": "recruitee:droppie.recruitee.com",
+      "channel_url": "https://droppie.recruitee.com/o/hr-stagiair",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR Stagiair",
+          "url": "https://droppie.recruitee.com/o/hr-stagiair",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn3search4",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:34.497170+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://droppie.recruitee.com/o/hr-stagiair"
+      },
+      "batch_country": "NL",
+      "rank": 24
+    },
+    {
+      "action_id": "ffc96f49550469b35881",
+      "company_key": "lead-0417819fd0127cc6",
+      "name": "eXtra Shop",
+      "channel_key": "recruitee:extrashop.recruitee.com",
+      "channel_url": "https://extrashop.recruitee.com/o/stage-alternance-rh-h-f-x?lang=fr",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 130,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Stage / Alternance - RH (H-F-X)",
+          "url": "https://extrashop.recruitee.com/o/stage-alternance-rh-h-f-x?lang=fr",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search27",
+          "page_open": "not-attempted",
+          "note": "Confirm workplace and distinguish internship from alternance.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "page-read-title-not-established",
+        "checked_at": "2026-11-16T10:02:31.344731+00:00",
+        "title_match": false,
+        "applicant_form_present": false,
+        "final_url": "https://extrashop.recruitee.com/o/stage-alternance-rh-h-f-x?lang=fr"
+      },
+      "batch_country": "BE",
+      "rank": 25
+    },
+    {
+      "action_id": "277a66d26d10ed511244",
+      "company_key": "lead-a42c94c05ab91cde",
+      "name": "Vamo",
+      "channel_key": "personio-xml:vamo.jobs.personio.de",
+      "channel_url": "https://vamo.jobs.personio.de/job/2471392",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [
+        "DE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikant (m/w/d) Human Resources",
+          "url": "https://vamo.jobs.personio.de/job/2471392",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search39",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:34.788623+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://vamo.jobs.personio.de/job/2471392"
+      },
+      "batch_country": "DE",
+      "rank": 26
+    },
+    {
+      "action_id": "c46cbc25f35a649019be",
+      "company_key": "lead-783d627739d2d312",
+      "name": "The Social Hub",
+      "channel_key": "greenhouse:thesocialhub",
+      "channel_url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101",
+      "adapter": "greenhouse",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR / People Operations Intern",
+          "url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn0search1",
+          "page_open": "not-attempted",
+          "note": "Page mentions inconsistent enrollment and start periods; clarify current intake before verification.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:35.240531+00:00",
+        "title_match": true,
+        "applicant_form_present": true,
+        "final_url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101"
+      },
+      "batch_country": "NL",
+      "rank": 27
+    },
+    {
+      "action_id": "4c431f62d9cafe7f0ada",
+      "company_key": "lead-03b5596e38129d49",
+      "name": "Schneider Electric",
+      "channel_key": "official-host:careers.se.com",
+      "channel_url": "https://careers.se.com/jobs/137167?lang=en-US",
+      "adapter": "universal-employer",
+      "adapter_reusable": false,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [
+        "BE"
+      ],
+      "country_coverage_verified": false,
+      "score": 100,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Intern Human Resources Generalist",
+          "url": "https://careers.se.com/jobs/137167?lang=en-US",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn2search3",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "technical-discovery",
+      "integration_ready": false,
+      "batch_country": "BE",
+      "rank": 28
+    },
+    {
+      "action_id": "214ec644c21f9e90b189",
+      "company_key": "lead-abce24eb5d3fc7e2",
+      "name": "LIVE FAST DIE YOUNG",
+      "channel_key": "personio-xml:live-fast-die-young.jobs.personio.de",
+      "channel_url": "https://live-fast-die-young.jobs.personio.de/job/2257219",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Pflichtpraktikant Human Resources & Office Administration (m/w/d)",
+          "url": "https://live-fast-die-young.jobs.personio.de/job/2257219",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn5search40",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:35.511852+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://live-fast-die-young.jobs.personio.de/job/2257219"
+      },
+      "batch_country": "DE",
+      "rank": 29
+    },
+    {
+      "action_id": "1f295184aaace722f4f8",
+      "company_key": "lead-b6fd94adeaf6b5ea",
+      "name": "Settels Savenije group of companies",
+      "channel_key": "recruitee:sttls.recruitee.com",
+      "channel_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [
+        "NL"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Meewerk stage HRM",
+          "url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+          "countries": [
+            "NL"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-16",
+          "source_ref": "turn9search6",
+          "page_open": "not-attempted",
+          "note": "Advertised intake February 2026 is past; do not assume intake reopened.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:06:20.625722+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm"
+      },
+      "batch_country": "NL",
+      "rank": 30
+    },
+    {
+      "action_id": "3cdbc42c69a8ff6836d1",
+      "company_key": "lead-09aaadc2d9dea801",
+      "name": "efficy Group",
+      "channel_key": "official-host:jobs.efficy.com",
+      "channel_url": "https://jobs.efficy.com/jobs/8550452-hr-operations-intern",
+      "adapter": "universal-employer",
+      "adapter_reusable": false,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [
+        "BE"
+      ],
+      "country_coverage_verified": false,
+      "score": 100,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR Operations Intern",
+          "url": "https://jobs.efficy.com/jobs/8550452-hr-operations-intern",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn2search4",
+          "page_open": "not-attempted",
+          "note": "Custom career host; provider not confirmed by this observation.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "technical-discovery",
+      "integration_ready": false,
+      "batch_country": "BE",
+      "rank": 31
+    },
+    {
+      "action_id": "d451b2181e218ed08e52",
+      "company_key": "lead-de437d7d3b12c62b",
+      "name": "IMAP GmbH",
+      "channel_key": "personio-xml:imap-gmbh-1.jobs.personio.de",
+      "channel_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [
+        "DE"
+      ],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikum Personal- und Organisationsentwicklung",
+          "url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-16",
+          "source_ref": "turn9search1",
+          "page_open": "not-attempted",
+          "note": "Consultancy/organisation-development role: classify HR derivative after full duties review.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:06:21.367460+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236"
+      },
+      "batch_country": "DE",
+      "rank": 32
+    },
+    {
+      "action_id": "d23aed3eb9765adf9ae2",
+      "company_key": "2-cnnct",
+      "name": "2-CNNCT",
+      "channel_key": "recruitee:2cnnct.recruitee.com",
+      "channel_url": "https://2cnnct.recruitee.com",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "adapter-upgrade-existing-employer",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 40,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [],
+      "source_ids": [
+        "auto-2-cnnct"
+      ],
+      "production_source_already_enabled": true,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [
+        {
+          "qualification": "unknown",
+          "employees_min": null,
+          "employees_text": null,
+          "scope": null,
+          "source_url": null,
+          "source_date": null
+        }
+      ],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "batch_country": "NL",
+      "rank": 33
+    },
+    {
+      "action_id": "ace9fd137f50a2713df4",
+      "company_key": "lead-3bf1cfab411a1fd1",
+      "name": "Syensqo",
+      "channel_key": "official-host:careers.syensqo.com",
+      "channel_url": "https://careers.syensqo.com/job/Belgium-Brussels-HR-Trainee-6-month-Internship/1363470955/",
+      "adapter": "universal-employer",
+      "adapter_reusable": false,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "BE"
+      ],
+      "vacancy_country_hints": [
+        "BE"
+      ],
+      "country_coverage_verified": false,
+      "score": 100,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "HR Trainee - 6 month Internship",
+          "url": "https://careers.syensqo.com/job/Belgium-Brussels-HR-Trainee-6-month-Internship/1363470955/",
+          "countries": [
+            "BE"
+          ],
+          "country_basis": "indexed-posting-workplace",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn2search2",
+          "page_open": "not-attempted",
+          "note": "Older indexed posting; distinguish student internship from traineeship using full text.",
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "technical-discovery",
+      "integration_ready": false,
+      "batch_country": "BE",
+      "rank": 34
+    },
+    {
+      "action_id": "00de243f3cdf20ab6f26",
+      "company_key": "lead-f764a51622277f3f",
+      "name": "Reformer Club GmbH",
+      "channel_key": "personio-xml:reformer-club.jobs.personio.de",
+      "channel_url": "https://reformer-club.jobs.personio.de/job/2669913",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "new-employer-channel",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 150,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [
+        {
+          "kind": "indexed-search",
+          "title": "Praktikum People & Culture (m/w/d)",
+          "url": "https://reformer-club.jobs.personio.de/job/2669913",
+          "countries": [
+            "DE"
+          ],
+          "country_basis": "research-target-only",
+          "observed_on": "2026-11-15",
+          "source_ref": "turn3search33",
+          "page_open": "not-attempted",
+          "note": null,
+          "availability": "unverified"
+        }
+      ],
+      "source_ids": [],
+      "production_source_already_enabled": false,
+      "access_review": "one-page-preflight-only; no inventory/host/production grant",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "preflight": {
+        "state": "same-title-page-observed",
+        "checked_at": "2026-11-16T10:02:35.626841+00:00",
+        "title_match": true,
+        "applicant_form_present": false,
+        "final_url": "https://reformer-club.jobs.personio.de/job/2669913"
+      },
+      "batch_country": "DE",
+      "rank": 35
+    },
+    {
+      "action_id": "288d8addc4315cfda00d",
+      "company_key": "gemeente-achtkarspelen",
+      "name": "Gemeente Achtkarspelen",
+      "channel_key": "recruitee:gemeenteachtkarspelen.recruitee.com",
+      "channel_url": "https://gemeenteachtkarspelen.recruitee.com/",
+      "adapter": "recruitee",
+      "adapter_reusable": true,
+      "action": "adapter-upgrade-existing-employer",
+      "research_countries": [
+        "NL"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 40,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [],
+      "source_ids": [
+        "auto-gemeente-achtkarspelen"
+      ],
+      "production_source_already_enabled": true,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [
+        {
+          "qualification": "unknown",
+          "employees_min": null,
+          "employees_text": null,
+          "scope": null,
+          "source_url": null,
+          "source_date": null
+        }
+      ],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "batch_country": "NL",
+      "rank": 36
+    },
+    {
+      "action_id": "94a7d8c87c54e612d1e1",
+      "company_key": "vtg-gmbh-ingenieurburo",
+      "name": "VTG GmbH Ingenieurbüro",
+      "channel_key": "personio-xml:vtg-gmbh-ingenieurbuero.jobs.personio.de",
+      "channel_url": "https://vtg-gmbh-ingenieurbuero.jobs.personio.de",
+      "adapter": "personio-xml",
+      "adapter_reusable": true,
+      "action": "adapter-upgrade-existing-employer",
+      "research_countries": [
+        "DE"
+      ],
+      "vacancy_country_hints": [],
+      "country_coverage_verified": false,
+      "score": 40,
+      "score_basis": "100 indexed HR lead or 50 unverified catalog candidate or 10 compatible discovery; +30 reusable adapter; +20 same-title live page",
+      "hr_evidence": [],
+      "source_ids": [
+        "auto-vtg-gmbh-ingenieurburo"
+      ],
+      "production_source_already_enabled": true,
+      "access_review": "not-performed-in-this-preparation",
+      "identity_review": "required",
+      "enabled_by_this_queue": false,
+      "verified_vacancies_added": 0,
+      "excluded_from_first_batch": false,
+      "exclusion_reason": null,
+      "budget_proposal": {
+        "max_requests": 12,
+        "seconds": 45,
+        "browser_renderings": 0
+      },
+      "next_action": "Review official employer linkage and group identity, robots and current posting; then bounded inventory/application pilot. No host/rollout grant.",
+      "size_evidence": [],
+      "size_band": "unknown-unless-separately-reviewed",
+      "execution_lane": "adapter-review",
+      "integration_ready": false,
+      "batch_country": "DE",
+      "rank": 37
+    }
+  ],
+  "adapter_proposals": [
+    {
+      "action_id": "b7293bae7b07364fdc9f",
+      "name": "Altares Dun & Bradstreet",
+      "adapter": "recruitee",
+      "observed_tenant": "altaresdunbradstreet.recruitee.com",
+      "observed_url": "https://altaresdunbradstreet.recruitee.com/l/en/o/hr-stagiaire-4",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://altaresdunbradstreet.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "ef5350fcad18f4126967",
+      "name": "threon NV",
+      "adapter": "recruitee",
+      "observed_tenant": "threon.recruitee.com",
+      "observed_url": "https://threon.recruitee.com/o/internship-hris-business-analysis",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://threon.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "a22052a2d1db53d7bf0a",
+      "name": "Energieversum",
+      "adapter": "personio-xml",
+      "observed_tenant": "energieversum.jobs.personio.de",
+      "observed_url": "https://energieversum.jobs.personio.de/job/2679110",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://energieversum.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "b6d0b2004828b0535da0",
+      "name": "SAS LOOK UP SPACE",
+      "adapter": "recruitee",
+      "observed_tenant": "lookup.recruitee.com",
+      "observed_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://lookup.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "1edf4848c6a7bf782745",
+      "name": "Monsterscore",
+      "adapter": "recruitee",
+      "observed_tenant": "monsterscore.recruitee.com",
+      "observed_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://monsterscore.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "51beda42bae88be2f657",
+      "name": "Ibexa",
+      "adapter": "recruitee",
+      "observed_tenant": "ibexa.recruitee.com",
+      "observed_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://ibexa.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "01971b916c2988174e05",
+      "name": "Kindernothilfe e.V.",
+      "adapter": "personio-xml",
+      "observed_tenant": "kindernothilfe.jobs.personio.de",
+      "observed_url": "https://kindernothilfe.jobs.personio.de/job/2845709",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://kindernothilfe.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "4628c4fb659fbbd1308e",
+      "name": "Kickmaker",
+      "adapter": "lever",
+      "observed_tenant": "kickmaker",
+      "observed_url": "https://jobs.lever.co/kickmaker/cbb4e455-1d74-4825-a04e-34d3ad2f886e",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_board": "kickmaker"
+    },
+    {
+      "action_id": "202b0cf09349569b1a56",
+      "name": "Zero Motorcycles Inc.",
+      "adapter": "recruitee",
+      "observed_tenant": "zeromotorcycles.recruitee.com",
+      "observed_url": "https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://zeromotorcycles.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "4ee71272d2fe9d14a94e",
+      "name": "Toreon",
+      "adapter": "recruitee",
+      "observed_tenant": "toreon.recruitee.com",
+      "observed_url": "https://toreon.recruitee.com/l/fr/o/stageplaats-hrm-recruitment?lang=nl",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://toreon.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "745f073212c70dab36e8",
+      "name": "LHLK Agentur für Kommunikation",
+      "adapter": "personio-xml",
+      "observed_tenant": "lhlk.jobs.personio.de",
+      "observed_url": "https://lhlk.jobs.personio.de/job/2849563",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://lhlk.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "c90dc0562d12f2c4c890",
+      "name": "Gérard Bertrand",
+      "adapter": "recruitee",
+      "observed_tenant": "gerardbertrand.recruitee.com",
+      "observed_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://gerardbertrand.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "67200fb2de73e35b076a",
+      "name": "Hotel TwentySeven",
+      "adapter": "recruitee",
+      "observed_tenant": "hoteltwentyseven.recruitee.com",
+      "observed_url": "https://hoteltwentyseven.recruitee.com/l/en/o/hr-stagiaire-20",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://hoteltwentyseven.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "9b5ff4028ddfd69c4028",
+      "name": "Hotel Beveren",
+      "adapter": "recruitee",
+      "observed_tenant": "vandervalkbeveren.recruitee.com",
+      "observed_url": "https://vandervalkbeveren.recruitee.com/o/hr-stage",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://vandervalkbeveren.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "42746cfe270726d969d1",
+      "name": "ISCC, Meo, 4C, GRAS, ClimatePal & TYC",
+      "adapter": "personio-xml",
+      "observed_tenant": "iscc-system-gmbh.jobs.personio.de",
+      "observed_url": "https://iscc-system-gmbh.jobs.personio.de/job/2860524?language=de",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://iscc-system-gmbh.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "7b59dccb40979da93da6",
+      "name": "SKYTREE",
+      "adapter": "recruitee",
+      "observed_tenant": "skytree.recruitee.com",
+      "observed_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://skytree.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "f1868ef25a42226921ad",
+      "name": "Bundl",
+      "adapter": "recruitee",
+      "observed_tenant": "bundl.recruitee.com",
+      "observed_url": "https://bundl.recruitee.com/o/hr-intern?lang=en",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://bundl.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "8e1a5ab608d2beb5fb5b",
+      "name": "Studyflix GmbH",
+      "adapter": "personio-xml",
+      "observed_tenant": "studyflix-gmbh.jobs.personio.de",
+      "observed_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://studyflix-gmbh.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "432cbe6783e8768e83af",
+      "name": "Youvia BV",
+      "adapter": "recruitee",
+      "observed_tenant": "werkenbijyouvia.recruitee.com",
+      "observed_url": "https://werkenbijyouvia.recruitee.com/o/hr-stage-meewerkstage-human-resource-management-hrm",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://werkenbijyouvia.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "3e88f046de4d7b54d3b6",
+      "name": "CHR HAUTE SENNE",
+      "adapter": "recruitee",
+      "observed_tenant": "chrhautesenne.recruitee.com",
+      "observed_url": "https://chrhautesenne.recruitee.com/o/stagiaire-en-ressources-humaines-developpement-des-ressources-humaines-soft-rh",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://chrhautesenne.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "62a986e072fa415b7dcb",
+      "name": "Watson Farley & Williams LLP",
+      "adapter": "personio-xml",
+      "observed_tenant": "watson-farley-williams-llp.jobs.personio.de",
+      "observed_url": "https://watson-farley-williams-llp.jobs.personio.de/job/2634127",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://watson-farley-williams-llp.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "23fcb0035c0943323708",
+      "name": "Droppie",
+      "adapter": "recruitee",
+      "observed_tenant": "droppie.recruitee.com",
+      "observed_url": "https://droppie.recruitee.com/o/hr-stagiair",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://droppie.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "ffc96f49550469b35881",
+      "name": "eXtra Shop",
+      "adapter": "recruitee",
+      "observed_tenant": "extrashop.recruitee.com",
+      "observed_url": "https://extrashop.recruitee.com/o/stage-alternance-rh-h-f-x?lang=fr",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://extrashop.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "277a66d26d10ed511244",
+      "name": "Vamo",
+      "adapter": "personio-xml",
+      "observed_tenant": "vamo.jobs.personio.de",
+      "observed_url": "https://vamo.jobs.personio.de/job/2471392",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://vamo.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "c46cbc25f35a649019be",
+      "name": "The Social Hub",
+      "adapter": "greenhouse",
+      "observed_tenant": "thesocialhub",
+      "observed_url": "https://job-boards.greenhouse.io/thesocialhub/jobs/5016646101",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_board": "thesocialhub"
+    },
+    {
+      "action_id": "214ec644c21f9e90b189",
+      "name": "LIVE FAST DIE YOUNG",
+      "adapter": "personio-xml",
+      "observed_tenant": "live-fast-die-young.jobs.personio.de",
+      "observed_url": "https://live-fast-die-young.jobs.personio.de/job/2257219",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://live-fast-die-young.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "1f295184aaace722f4f8",
+      "name": "Settels Savenije group of companies",
+      "adapter": "recruitee",
+      "observed_tenant": "sttls.recruitee.com",
+      "observed_url": "https://sttls.recruitee.com/o/meewerk-stage-hrm",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://sttls.recruitee.com/api/offers/"
+    },
+    {
+      "action_id": "d451b2181e218ed08e52",
+      "name": "IMAP GmbH",
+      "adapter": "personio-xml",
+      "observed_tenant": "imap-gmbh-1.jobs.personio.de",
+      "observed_url": "https://imap-gmbh-1.jobs.personio.de/job/1034236",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://imap-gmbh-1.jobs.personio.de/xml"
+    },
+    {
+      "action_id": "00de243f3cdf20ab6f26",
+      "name": "Reformer Club GmbH",
+      "adapter": "personio-xml",
+      "observed_tenant": "reformer-club.jobs.personio.de",
+      "observed_url": "https://reformer-club.jobs.personio.de/job/2669913",
+      "approved_for_production": false,
+      "enabled": false,
+      "required_reviews": [
+        "employer-to-ATS linkage and group ownership",
+        "robots/access for exact feed and vacancy hosts",
+        "bounded inventory completeness and geography",
+        "same-vacancy application and freshness",
+        "language/intake/type requirements",
+        "documented size if known"
+      ],
+      "next_step": "review and bounded pilot; do not load this proposal as a production source",
+      "candidate_feed_url": "https://reformer-club.jobs.personio.de/xml"
+    }
+  ]
+}
