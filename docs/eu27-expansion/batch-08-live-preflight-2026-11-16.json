@@ -1,0 +1,1718 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-16",
+  "project": "People Placement",
+  "batch": 8,
+  "reference_main_sha": "f44d21fb23f5d6930f55e244999a5d7610d918f7",
+  "mode": "three one-shot robots-guarded GET runs on isolated pilot branch, not production",
+  "runs": [
+    {
+      "key": "first",
+      "workflow_run_id": 43923132314,
+      "job_id": 133495399803,
+      "url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43923132314",
+      "run_result": "success",
+      "data": {
+        "schema_version": 1,
+        "mode": "batch08-one-time-GET-only",
+        "date": "2026-11-16",
+        "limits": {
+          "requests_each": 12,
+          "source_seconds_each": 45,
+          "renderings": 0
+        },
+        "rows": [
+          {
+            "country": "AT",
+            "employer": "Peek & Cloppenburg Austria",
+            "expected_identifier": "praktikum-hr-retail-at-cee",
+            "reviewed_hosts": [
+              "karriere.peek-cloppenburg.at",
+              "puc.csod.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "corporate_careers",
+                "requested_url": "https://karriere.peek-cloppenburg.at/",
+                "status": 200,
+                "final_url": "https://karriere.peek-cloppenburg.at",
+                "bytes": 155009,
+                "sha256": "f5ab6eae4b17962f8223ed915cd1e39cfb717dea3391acca967584fdfab6b684",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Karriere bei Peek & Clop­pen­burg",
+                  "Karriere bei Peek & Clop­pen­burg"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 2,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 1,
+                "apply_cta_links": [
+                  {
+                    "href": "/deine-bewerbung",
+                    "label": "Deine Bewerbung"
+                  },
+                  {
+                    "href": "/deine-bewerbung/bewerbung-bei-pc",
+                    "label": "Bewerbungstipps"
+                  },
+                  {
+                    "href": "/jobs",
+                    "label": "Jetzt bei P&C bewerben"
+                  },
+                  {
+                    "href": "/deine-bewerbung/bewerbung-bei-pc",
+                    "label": "Zu den Bewerbungstipps"
+                  }
+                ]
+              },
+              {
+                "kind": "official_ats_inventory",
+                "requested_url": "https://puc.csod.com/ux/ats/careersite/1/home?c=puc&country=at&lang=de-at&sq=",
+                "status": 200,
+                "final_url": "https://puc.csod.com/ux/ats/careersite/1/home?c=puc&country=at&lang=de-at",
+                "bytes": 5525,
+                "sha256": "6e3fa14d815b13bc080589287efca5c4431f5788d84f2c1f428291c3c130133f",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 4,
+            "bytes_read": 160813,
+            "source_seconds": 2.052,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "DE",
+            "employer": "Audi Business Innovation GmbH",
+            "expected_identifier": "2540621",
+            "reviewed_hosts": [
+              "www.audibusinessinnovation.de",
+              "audi-business-innovation-gmbh.jobs.personio.de"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "corporate_careers",
+                "requested_url": "https://www.audibusinessinnovation.de/career/",
+                "error_type": "ValueError",
+                "error": "robots.txt unavailable: 403",
+                "robots_guard_passed": false
+              },
+              {
+                "kind": "inventory",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de",
+                "bytes": 81392,
+                "sha256": "a83fa7b71b03a6fab7a26433689f897a938aa02a09e9124234854f83eea926a7",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Open positions"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "provider_xml",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/xml",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de/xml",
+                "bytes": 46814,
+                "sha256": "dfbba2112f18d5a8268846341c9549ca72a01d5c6743ac52e11135e99d2f83bf",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "xml_job_count_marker": 0
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621?language=de",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621?language=de",
+                "bytes": 175962,
+                "sha256": "2e91d3176d4bd924971167ac85cd78b081521bcdf29eadcc2d79b456d82c8756",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum People & Culture / HR (m/w/d)"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "/job/2540621/apply?language=de",
+                    "label": "Auf diese Stelle bewerben"
+                  },
+                  {
+                    "href": "/job/2540621/apply?language=de",
+                    "label": "Auf diese Stelle bewerben"
+                  }
+                ]
+              },
+              {
+                "kind": "application",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621/apply?language=de",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621/apply?language=de",
+                "bytes": 164467,
+                "sha256": "086cfbbbe31e579707fa01072b96364a8b229778b5b6cd2400ec766c7715879f",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum People & Culture / HR (m/w/d)"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 1,
+                "candidate_forms_with_email": 1,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 7,
+            "bytes_read": 468658,
+            "source_seconds": 3.736,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "DE",
+            "employer": "Studyflix GmbH",
+            "expected_identifier": "1119149",
+            "reviewed_hosts": [
+              "studyflix-gmbh.jobs.personio.de"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://studyflix-gmbh.jobs.personio.de/",
+                "status": 200,
+                "final_url": "https://studyflix-gmbh.jobs.personio.de",
+                "bytes": 225305,
+                "sha256": "d3555228f00d079b62cabc832935c9140251c1bed220f0a6d26eb378e91c039b",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Offene Stellen"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+                "status": 200,
+                "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+                "bytes": 93297,
+                "sha256": "54841a8ef71ecc200fa58f26159512692009d21a99a05260fc086d7e107fa594",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum Human Resources & Recruiting (m/w/d)"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "/job/1119149/apply",
+                    "label": "Auf diese Stelle bewerben"
+                  },
+                  {
+                    "href": "/job/1119149/apply",
+                    "label": "Auf diese Stelle bewerben"
+                  }
+                ]
+              },
+              {
+                "kind": "application",
+                "requested_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149/apply",
+                "status": 200,
+                "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149/apply",
+                "bytes": 82960,
+                "sha256": "70ded3ed687f9861aa35d586a78428551c99345898eb0e5cb3b585da12198afb",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum Human Resources & Recruiting (m/w/d)"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 1,
+                "candidate_forms_with_email": 1,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 4,
+            "bytes_read": 401585,
+            "source_seconds": 2.847,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "DK",
+            "employer": "A.P. Moller - Maersk",
+            "expected_identifier": "R199126",
+            "reviewed_hosts": [
+              "maersk.wd3.myworkdayjobs.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers",
+                "status": 200,
+                "final_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers",
+                "bytes": 7142,
+                "sha256": "b843f1b96854e6c4c9d5af06b3eb9f33426c2d7f468123ba331d908aab6e1f0c",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers/job/Talent-Acquisition-Intern---Early-Careers-_R199126",
+                "status": 200,
+                "final_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers/job/Talent-Acquisition-Intern---Early-Careers-_R199126",
+                "bytes": 17874,
+                "sha256": "227a2a0c23821de4e6234c807a8bac4bb95868b8cb383e1e398d926292aed9e9",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 3,
+            "bytes_read": 25807,
+            "source_seconds": 1.945,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "FI",
+            "employer": "StaffPoint Oy",
+            "expected_identifier": "3Bkmpb",
+            "reviewed_hosts": [
+              "www.staffpoint.fi",
+              "staffpoint.talentadore.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://www.staffpoint.fi/tyopaikat?field=4&field=5",
+                "status": 200,
+                "final_url": "https://www.staffpoint.fi/tyopaikat?field=4&field=5",
+                "bytes": 364614,
+                "sha256": "24c202be49f22d2ac4e1e535b855bb85a1399be1dfe42f84e7eee4debe539a73",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Hae työpaikkoja"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://www.staffpoint.fi/tyopaikat/hr-harjoittelija-horeca-tiimiin-staffpointille-3Bkmpb",
+                "status": 200,
+                "final_url": "https://www.staffpoint.fi/tyopaikat/hr-harjoittelija-horeca-tiimiin-staffpointille-3Bkmpb",
+                "bytes": 289761,
+                "sha256": "b1466800494d2522d3f8b72eabb0c08fd820edcbd21bfaaa941bc0fd5535ec81",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "HR-harjoittelija HoReCa -tiimiin StaffPointille"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                    "label": "Hae työpaikkaa Avautuu uudessa välilehdessä"
+                  },
+                  {
+                    "href": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                    "label": "Hae työpaikkaa Avautuu uudessa välilehdessä"
+                  }
+                ]
+              },
+              {
+                "kind": "application",
+                "requested_url": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                "status": 200,
+                "final_url": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                "bytes": 107378,
+                "sha256": "b4b8ae5918b8d2269afe42a4441e1adb9643897af665eaa1da89cc5f7feeaa63",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "HR-harjoittelija HoReCa -tiimiin StaffPointille",
+                  "HR-harjoittelija HoReCa -tiimiin StaffPointille"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 2,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 2,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 5,
+            "bytes_read": 762531,
+            "source_seconds": 5.282,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "PL",
+            "employer": "Michael Page Poland",
+            "expected_identifier": "JN-112026-7142697",
+            "reviewed_hosts": [
+              "www.michaelpage.pl"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "vacancy",
+                "requested_url": "https://www.michaelpage.pl/job-detail/sta%C5%BCysta-hr/ref/jn-112026-7142697?lang=pl&ng-jn=job-detail&ng-src=other-users-applied",
+                "status": 200,
+                "final_url": "https://www.michaelpage.pl/job-detail/sta%C5%BCysta-hr/ref/jn-112026-7142697?lang=pl&ng-jn=job-detail&ng-src=other-users-applied",
+                "bytes": 78409,
+                "sha256": "ff269923a5ba1a12017f8585c7ec329330534ca15b21ff2704fa8cc1b6bb3e46",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Stażysta - HR"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 2,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 1,
+                "apply_cta_links": [
+                  {
+                    "href": "/job-apply/sta%C5%BCysta-hr/ref/jn-112026-7142697?lang=pl&ng-src=other-users-applied&ng-jn=job-detail",
+                    "label": "Aplikuj"
+                  }
+                ]
+              }
+            ],
+            "requests": 2,
+            "bytes_read": 84275,
+            "source_seconds": 1.872,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "SE",
+            "employer": "SnabbPass AB",
+            "expected_identifier": "talent-acquisition-digital-growth-internship-ai-recruitment",
+            "reviewed_hosts": [
+              "www.snabbpass.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://www.snabbpass.com/en/career",
+                "status": 200,
+                "final_url": "https://www.snabbpass.com/en/career",
+                "bytes": 940071,
+                "sha256": "801eca860854faa8953dfa109d9da24ad825cc7410328be588b3d99abd790587",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "WORK WITH Us"
+                ],
+                "job_postings": 78,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "/en/career/talent-acquisition-digital-growth-internship-ai-recruitment",
+                    "label": "Talent Acquisition & Digital Growth Internship (Focus: AI & "
+                  },
+                  {
+                    "href": "/en/career/apply?job=talent-acquisition-digital-growth-internship-ai-recruitment",
+                    "label": "Apply for this role"
+                  },
+                  {
+                    "href": "/en/career/it-telekom-specialist",
+                    "label": "IT & Telekom Specialist Alingsås, Borås, Copenhagen  +35 Kon"
+                  },
+                  {
+                    "href": "/en/career/apply?job=it-telekom-specialist",
+                    "label": "Apply for this role"
+                  }
+                ]
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://www.snabbpass.com/en/career/talent-acquisition-digital-growth-internship-ai-recruitment",
+                "status": 200,
+                "final_url": "https://www.snabbpass.com/en/career/talent-acquisition-digital-growth-internship-ai-recruitment",
+                "bytes": 160754,
+                "sha256": "6aa84bfbb668abe9a50d5dc136606e26d5711272024030a62899054449faa373",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Talent Acquisition & Digital Growth Internship (Focus: AI & Recruitment)"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 3,
+            "bytes_read": 1101340,
+            "source_seconds": 3.387,
+            "host_rate_limited_skips": 0
+          }
+        ],
+        "totals": {
+          "sources": 7,
+          "countries": 6,
+          "requests": 28,
+          "body_bytes": 3005009,
+          "source_seconds": 21.121,
+          "forms_visible": 0,
+          "sources_enabled": 0,
+          "policy_v2_verified": 0,
+          "renderings": 0
+        }
+      }
+    },
+    {
+      "key": "repeat",
+      "workflow_run_id": 43923524759,
+      "job_id": 133496779425,
+      "url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43923524759",
+      "run_result": "success",
+      "data": {
+        "schema_version": 1,
+        "mode": "batch08-one-time-GET-only",
+        "date": "2026-11-16",
+        "limits": {
+          "requests_each": 12,
+          "source_seconds_each": 45,
+          "renderings": 0
+        },
+        "rows": [
+          {
+            "country": "AT",
+            "employer": "Peek & Cloppenburg Austria",
+            "expected_identifier": "praktikum-hr-retail-at-cee",
+            "reviewed_hosts": [
+              "karriere.peek-cloppenburg.at",
+              "puc.csod.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "corporate_careers",
+                "requested_url": "https://karriere.peek-cloppenburg.at/",
+                "status": 200,
+                "final_url": "https://karriere.peek-cloppenburg.at",
+                "bytes": 155009,
+                "sha256": "f5ab6eae4b17962f8223ed915cd1e39cfb717dea3391acca967584fdfab6b684",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Karriere bei Peek & Clop­pen­burg",
+                  "Karriere bei Peek & Clop­pen­burg"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 2,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 1,
+                "apply_cta_links": [
+                  {
+                    "href": "/deine-bewerbung",
+                    "label": "Deine Bewerbung"
+                  },
+                  {
+                    "href": "/deine-bewerbung/bewerbung-bei-pc",
+                    "label": "Bewerbungstipps"
+                  },
+                  {
+                    "href": "/jobs",
+                    "label": "Jetzt bei P&C bewerben"
+                  },
+                  {
+                    "href": "/deine-bewerbung/bewerbung-bei-pc",
+                    "label": "Zu den Bewerbungstipps"
+                  }
+                ]
+              },
+              {
+                "kind": "official_ats_inventory",
+                "requested_url": "https://puc.csod.com/ux/ats/careersite/1/home?c=puc&country=at&lang=de-at&sq=",
+                "status": 200,
+                "final_url": "https://puc.csod.com/ux/ats/careersite/1/home?c=puc&country=at&lang=de-at",
+                "bytes": 5525,
+                "sha256": "51f3bad52f8f658a1f7fc3abba46e8d9b91c2064dafd6a8a57602b32b802c41b",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 4,
+            "bytes_read": 160813,
+            "source_seconds": 2.167,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "DE",
+            "employer": "Audi Business Innovation GmbH",
+            "expected_identifier": "2540621",
+            "reviewed_hosts": [
+              "www.audibusinessinnovation.de",
+              "audi-business-innovation-gmbh.jobs.personio.de"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "corporate_careers",
+                "requested_url": "https://www.audibusinessinnovation.de/career/",
+                "error_type": "ValueError",
+                "error": "robots.txt unavailable: 403",
+                "robots_guard_passed": false
+              },
+              {
+                "kind": "inventory",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de",
+                "bytes": 81392,
+                "sha256": "ab71e5a5b4cb7386eec0eb28125ee332a4ee0312ee5b83f3a1628833ee5b3d35",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Open positions"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "provider_xml",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/xml",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de/xml",
+                "bytes": 46814,
+                "sha256": "dfbba2112f18d5a8268846341c9549ca72a01d5c6743ac52e11135e99d2f83bf",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "xml_job_count_marker": 0
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621?language=de",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621?language=de",
+                "bytes": 175962,
+                "sha256": "17940a73d5481f98ae3558d943c8f537cd06ebcfb7143cd1966c9a9094db0926",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum People & Culture / HR (m/w/d)"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "/job/2540621/apply?language=de",
+                    "label": "Auf diese Stelle bewerben"
+                  },
+                  {
+                    "href": "/job/2540621/apply?language=de",
+                    "label": "Auf diese Stelle bewerben"
+                  }
+                ]
+              },
+              {
+                "kind": "application",
+                "requested_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621/apply?language=de",
+                "status": 200,
+                "final_url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621/apply?language=de",
+                "bytes": 164467,
+                "sha256": "086cfbbbe31e579707fa01072b96364a8b229778b5b6cd2400ec766c7715879f",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum People & Culture / HR (m/w/d)"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 1,
+                "candidate_forms_with_email": 1,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 7,
+            "bytes_read": 468658,
+            "source_seconds": 3.201,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "DE",
+            "employer": "Studyflix GmbH",
+            "expected_identifier": "1119149",
+            "reviewed_hosts": [
+              "studyflix-gmbh.jobs.personio.de"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://studyflix-gmbh.jobs.personio.de/",
+                "status": 200,
+                "final_url": "https://studyflix-gmbh.jobs.personio.de",
+                "bytes": 225305,
+                "sha256": "5ade5dc3373ec1b73e3536e55f700196dc738d4b4b392a686a276e319f75af74",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Offene Stellen"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+                "status": 200,
+                "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149",
+                "bytes": 93297,
+                "sha256": "a0359a76ea073c2900b4bf9b0b8ca53016be22a8304c385e5a95e6433eab8ef3",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum Human Resources & Recruiting (m/w/d)"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "/job/1119149/apply",
+                    "label": "Auf diese Stelle bewerben"
+                  },
+                  {
+                    "href": "/job/1119149/apply",
+                    "label": "Auf diese Stelle bewerben"
+                  }
+                ]
+              },
+              {
+                "kind": "application",
+                "requested_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149/apply",
+                "status": 200,
+                "final_url": "https://studyflix-gmbh.jobs.personio.de/job/1119149/apply",
+                "bytes": 82960,
+                "sha256": "70ded3ed687f9861aa35d586a78428551c99345898eb0e5cb3b585da12198afb",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Praktikum Human Resources & Recruiting (m/w/d)"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 1,
+                "candidate_forms_with_email": 1,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 4,
+            "bytes_read": 401585,
+            "source_seconds": 2.422,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "DK",
+            "employer": "A.P. Moller - Maersk",
+            "expected_identifier": "R199126",
+            "reviewed_hosts": [
+              "maersk.wd3.myworkdayjobs.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers",
+                "status": 200,
+                "final_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers",
+                "bytes": 7142,
+                "sha256": "dc8968de3f1b8094dc0e8436551978111efc1839783600d38142676040e426bd",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers/job/Talent-Acquisition-Intern---Early-Careers-_R199126",
+                "status": 200,
+                "final_url": "https://maersk.wd3.myworkdayjobs.com/en-US/Maersk_Careers/job/Talent-Acquisition-Intern---Early-Careers-_R199126",
+                "bytes": 17874,
+                "sha256": "96d17e489883ff38c3401417c51890db02b10e2c1ffe3a1d85a2db3500fd3802",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 3,
+            "bytes_read": 25807,
+            "source_seconds": 1.917,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "FI",
+            "employer": "StaffPoint Oy",
+            "expected_identifier": "3Bkmpb",
+            "reviewed_hosts": [
+              "www.staffpoint.fi",
+              "staffpoint.talentadore.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://www.staffpoint.fi/tyopaikat?field=4&field=5",
+                "status": 200,
+                "final_url": "https://www.staffpoint.fi/tyopaikat?field=4&field=5",
+                "bytes": 364614,
+                "sha256": "ab475b76003a5e4115d25484b605a64639d4cd4e315a57d42ca76a334485ab75",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": false,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Hae työpaikkoja"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://www.staffpoint.fi/tyopaikat/hr-harjoittelija-horeca-tiimiin-staffpointille-3Bkmpb",
+                "status": 200,
+                "final_url": "https://www.staffpoint.fi/tyopaikat/hr-harjoittelija-horeca-tiimiin-staffpointille-3Bkmpb",
+                "bytes": 288572,
+                "sha256": "dd031bf5c4d4b7b2e52f06d86aabefd0d53ea99e76d418130dcbecb8893e0371",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "HR-harjoittelija HoReCa -tiimiin StaffPointille"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                    "label": "Hae työpaikkaa Avautuu uudessa välilehdessä"
+                  },
+                  {
+                    "href": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                    "label": "Hae työpaikkaa Avautuu uudessa välilehdessä"
+                  }
+                ]
+              },
+              {
+                "kind": "application",
+                "requested_url": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                "status": 200,
+                "final_url": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+                "bytes": 107378,
+                "sha256": "6e09db832e6b234b207c655594210441714f070bccf61afcbff0d9f604294c0d",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "HR-harjoittelija HoReCa -tiimiin StaffPointille",
+                  "HR-harjoittelija HoReCa -tiimiin StaffPointille"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 2,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 2,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 5,
+            "bytes_read": 761342,
+            "source_seconds": 4.202,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "PL",
+            "employer": "Michael Page Poland",
+            "expected_identifier": "JN-112026-7142697",
+            "reviewed_hosts": [
+              "www.michaelpage.pl"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "vacancy",
+                "requested_url": "https://www.michaelpage.pl/job-detail/sta%C5%BCysta-hr/ref/jn-112026-7142697?lang=pl&ng-jn=job-detail&ng-src=other-users-applied",
+                "status": 200,
+                "final_url": "https://www.michaelpage.pl/job-detail/sta%C5%BCysta-hr/ref/jn-112026-7142697?lang=pl&ng-jn=job-detail&ng-src=other-users-applied",
+                "bytes": 78409,
+                "sha256": "ff269923a5ba1a12017f8585c7ec329330534ca15b21ff2704fa8cc1b6bb3e46",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Stażysta - HR"
+                ],
+                "job_postings": 0,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 2,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 1,
+                "apply_cta_links": [
+                  {
+                    "href": "/job-apply/sta%C5%BCysta-hr/ref/jn-112026-7142697?lang=pl&ng-src=other-users-applied&ng-jn=job-detail",
+                    "label": "Aplikuj"
+                  }
+                ]
+              }
+            ],
+            "requests": 2,
+            "bytes_read": 84275,
+            "source_seconds": 1.007,
+            "host_rate_limited_skips": 0
+          },
+          {
+            "country": "SE",
+            "employer": "SnabbPass AB",
+            "expected_identifier": "talent-acquisition-digital-growth-internship-ai-recruitment",
+            "reviewed_hosts": [
+              "www.snabbpass.com"
+            ],
+            "policy_v2_verified": false,
+            "new_source_enabled": false,
+            "pages": [
+              {
+                "kind": "inventory",
+                "requested_url": "https://www.snabbpass.com/en/career",
+                "status": 200,
+                "final_url": "https://www.snabbpass.com/en/career",
+                "bytes": 940071,
+                "sha256": "801eca860854faa8953dfa109d9da24ad825cc7410328be588b3d99abd790587",
+                "expected_identifier_in_final_url": false,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "WORK WITH Us"
+                ],
+                "job_postings": 78,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": [
+                  {
+                    "href": "/en/career/talent-acquisition-digital-growth-internship-ai-recruitment",
+                    "label": "Talent Acquisition & Digital Growth Internship (Focus: AI & "
+                  },
+                  {
+                    "href": "/en/career/apply?job=talent-acquisition-digital-growth-internship-ai-recruitment",
+                    "label": "Apply for this role"
+                  },
+                  {
+                    "href": "/en/career/it-telekom-specialist",
+                    "label": "IT & Telekom Specialist Alingsås, Borås, Copenhagen  +35 Kon"
+                  },
+                  {
+                    "href": "/en/career/apply?job=it-telekom-specialist",
+                    "label": "Apply for this role"
+                  }
+                ]
+              },
+              {
+                "kind": "vacancy",
+                "requested_url": "https://www.snabbpass.com/en/career/talent-acquisition-digital-growth-internship-ai-recruitment",
+                "status": 200,
+                "final_url": "https://www.snabbpass.com/en/career/talent-acquisition-digital-growth-internship-ai-recruitment",
+                "bytes": 160754,
+                "sha256": "6aa84bfbb668abe9a50d5dc136606e26d5711272024030a62899054449faa373",
+                "expected_identifier_in_final_url": true,
+                "expected_identifier_in_html": true,
+                "robots_guard_passed": true,
+                "headings": [
+                  "Talent Acquisition & Digital Growth Internship (Focus: AI & Recruitment)"
+                ],
+                "job_postings": 1,
+                "explicit_closed": false,
+                "applicant_form_detected": false,
+                "html_forms_total": 0,
+                "candidate_forms_with_email": 0,
+                "candidate_forms_with_enabled_submit": 0,
+                "apply_cta_links": []
+              }
+            ],
+            "requests": 3,
+            "bytes_read": 1101340,
+            "source_seconds": 2.215,
+            "host_rate_limited_skips": 0
+          }
+        ],
+        "totals": {
+          "sources": 7,
+          "countries": 6,
+          "requests": 28,
+          "body_bytes": 3003820,
+          "source_seconds": 17.131,
+          "forms_visible": 0,
+          "sources_enabled": 0,
+          "policy_v2_verified": 0,
+          "renderings": 0
+        }
+      }
+    },
+    {
+      "key": "form_diagnostic",
+      "workflow_run_id": 43923560176,
+      "job_id": 133496895515,
+      "url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43923560176",
+      "run_result": "success",
+      "data": {
+        "schema_version": 1,
+        "mode": "one-time-structure-only",
+        "form_pages": [
+          {
+            "country": "DE",
+            "employer": "Audi Business Innovation",
+            "url": "https://audi-business-innovation-gmbh.jobs.personio.de/job/2540621/apply?language=de",
+            "http": 200,
+            "sha256": "086cfbbbe31e579707fa01072b96364a8b229778b5b6cd2400ec766c7715879f",
+            "bytes_read": 164467,
+            "forms": [
+              {
+                "id": null,
+                "method": null,
+                "action_path": "",
+                "name": null,
+                "nfields": 18,
+                "fields": [
+                  {
+                    "type": "text",
+                    "name": "first_name",
+                    "id": "field-first_name",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "last_name",
+                    "id": "field-last_name",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "email",
+                    "name": "email",
+                    "id": "field-email",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "phone",
+                    "id": "field-phone",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "available_from",
+                    "id": "field-available_from",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "salary_expectations",
+                    "id": "field-salary_expectations",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "location",
+                    "id": "field-location",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": null,
+                    "name": "gender",
+                    "id": "field-gender",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "date",
+                    "name": "birthday",
+                    "id": "field-birthday",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "custom_attribute_341679",
+                    "id": "field-custom_attribute_341679",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "custom_attribute_341680",
+                    "id": "field-custom_attribute_341680",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "custom_attribute_341691",
+                    "id": "field-custom_attribute_341691",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "custom_attribute_1186231",
+                    "id": "field-custom_attribute_1186231",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "custom_attribute_1200012",
+                    "id": "field-custom_attribute_1200012",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "file",
+                    "name": "documents.cv",
+                    "id": "doc-input-cv",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "file",
+                    "name": "documents.other",
+                    "id": "doc-input-other",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "file",
+                    "name": "documents.cover-letter",
+                    "id": "doc-input-cover-letter",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "file",
+                    "name": "documents.employment-reference",
+                    "id": "doc-input-employment-reference",
+                    "disabled": false,
+                    "hidden": false
+                  }
+                ],
+                "inside_submit": 1,
+                "outside_associated_submit": 0,
+                "formclass": "DynamicForm_formContainer__PHnT_"
+              }
+            ],
+            "buttons": [
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "LocaleSwitcher_selectTrigger__ZP9Vo select-trigger dropdown-menu",
+                "inside_form": false
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "LocaleSwitcher_selectTrigger__ZP9Vo select-trigger dropdown-menu",
+                "inside_form": false
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "DynamicForm_addFileButton__3mZlN add-file-button",
+                "inside_form": true
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "DynamicForm_addFileButton__3mZlN add-file-button",
+                "inside_form": true
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "DynamicForm_addFileButton__3mZlN add-file-button",
+                "inside_form": true
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "DynamicForm_addFileButton__3mZlN add-file-button",
+                "inside_form": true
+              },
+              {
+                "tag": "button",
+                "type": "submit",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": true,
+                "class": "Button_buttonWrapper___5Rvi Button_emphasized__bo9oK Button_large__Z2ozi career-btn-primar",
+                "inside_form": true
+              }
+            ],
+            "total_buttons": 7,
+            "any_form_submit": true,
+            "requests": 2,
+            "seconds": 1.239
+          },
+          {
+            "country": "DE",
+            "employer": "Studyflix GmbH",
+            "url": "https://studyflix-gmbh.jobs.personio.de/job/1119149/apply",
+            "http": 200,
+            "sha256": "70ded3ed687f9861aa35d586a78428551c99345898eb0e5cb3b585da12198afb",
+            "bytes_read": 82960,
+            "forms": [
+              {
+                "id": null,
+                "method": null,
+                "action_path": "",
+                "name": null,
+                "nfields": 8,
+                "fields": [
+                  {
+                    "type": "text",
+                    "name": "first_name",
+                    "id": "field-first_name",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "last_name",
+                    "id": "field-last_name",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "email",
+                    "name": "email",
+                    "id": "field-email",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "phone",
+                    "id": "field-phone",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "available_from",
+                    "id": "field-available_from",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "text",
+                    "name": "location",
+                    "id": "field-location",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "file",
+                    "name": "documents.cv",
+                    "id": "doc-input-cv",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "file",
+                    "name": "documents.other",
+                    "id": "doc-input-other",
+                    "disabled": false,
+                    "hidden": false
+                  }
+                ],
+                "inside_submit": 1,
+                "outside_associated_submit": 0,
+                "formclass": "DynamicForm_formContainer__PHnT_"
+              }
+            ],
+            "buttons": [
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "LocaleSwitcher_selectTrigger__ZP9Vo select-trigger dropdown-menu",
+                "inside_form": false
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "LocaleSwitcher_selectTrigger__ZP9Vo select-trigger dropdown-menu",
+                "inside_form": false
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "DynamicForm_addFileButton__3mZlN add-file-button",
+                "inside_form": true
+              },
+              {
+                "tag": "button",
+                "type": "button",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "DynamicForm_addFileButton__3mZlN add-file-button",
+                "inside_form": true
+              },
+              {
+                "tag": "button",
+                "type": "submit",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": true,
+                "class": "Button_buttonWrapper___5Rvi Button_emphasized__bo9oK Button_large__Z2ozi career-btn-primar",
+                "inside_form": true
+              }
+            ],
+            "total_buttons": 5,
+            "any_form_submit": true,
+            "requests": 2,
+            "seconds": 1.15
+          },
+          {
+            "country": "FI",
+            "employer": "StaffPoint Oy",
+            "url": "https://staffpoint.talentadore.com/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb?display=form_only",
+            "http": 200,
+            "sha256": "10f905b3129750e6ae189609a48535ad5c4c176b276c34991458416e98472119",
+            "bytes_read": 107378,
+            "forms": [
+              {
+                "id": "apply-form",
+                "method": "post",
+                "action_path": "/apply/hr-harjoittelija-horeca-tiimiin-staffpointille/3Bkmpb",
+                "name": null,
+                "nfields": 6,
+                "fields": [
+                  {
+                    "type": "hidden",
+                    "name": "_csrf_token",
+                    "id": "",
+                    "disabled": false,
+                    "hidden": true
+                  },
+                  {
+                    "type": "hidden",
+                    "name": "APPLICANT_ID",
+                    "id": "applicationToken",
+                    "disabled": false,
+                    "hidden": true
+                  },
+                  {
+                    "type": "hidden",
+                    "name": "invitation_token",
+                    "id": "",
+                    "disabled": false,
+                    "hidden": true
+                  },
+                  {
+                    "type": null,
+                    "name": "timezone",
+                    "id": "timezone",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": null,
+                    "name": "form_json",
+                    "id": "form_json",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "submit",
+                    "name": "",
+                    "id": "",
+                    "disabled": false,
+                    "hidden": false
+                  }
+                ],
+                "inside_submit": 1,
+                "outside_associated_submit": 0,
+                "formclass": "prevent-enter-submit"
+              },
+              {
+                "id": null,
+                "method": "post",
+                "action_path": "",
+                "name": null,
+                "nfields": 2,
+                "fields": [
+                  {
+                    "type": null,
+                    "name": "withdrawal_reason",
+                    "id": "withdrawal_reason",
+                    "disabled": false,
+                    "hidden": false
+                  },
+                  {
+                    "type": "submit",
+                    "name": "",
+                    "id": "submit-withdrawal",
+                    "disabled": false,
+                    "hidden": false
+                  }
+                ],
+                "inside_submit": 1,
+                "outside_associated_submit": 0,
+                "formclass": ""
+              }
+            ],
+            "buttons": [
+              {
+                "tag": "input",
+                "type": "submit",
+                "form": null,
+                "id": null,
+                "name": null,
+                "disabled": false,
+                "class": "button-rounded primary job-custom-bg-color ta-custom-string",
+                "inside_form": true
+              },
+              {
+                "tag": "input",
+                "type": "submit",
+                "form": null,
+                "id": "submit-withdrawal",
+                "name": null,
+                "disabled": false,
+                "class": "btn btn-primary",
+                "inside_form": true
+              }
+            ],
+            "total_buttons": 2,
+            "any_form_submit": true,
+            "requests": 2,
+            "seconds": 1.299
+          }
+        ],
+        "feeds": [
+          {
+            "country": "DE",
+            "employer": "Audi Business Innovation",
+            "url": "https://audi-business-innovation-gmbh.jobs.personio.de/xml",
+            "http": 200,
+            "bytes_read": 46814,
+            "sha256": "dfbba2112f18d5a8268846341c9549ca72a01d5c6743ac52e11135e99d2f83bf",
+            "root": "workzag-jobs",
+            "tag_counts": {
+              "position": 4,
+              "id": 4,
+              "name": 28
+            },
+            "top_tags": [
+              "workzag-jobs",
+              "position",
+              "id",
+              "subcompany",
+              "office",
+              "department",
+              "recruitingCategory",
+              "name",
+              "jobDescriptions",
+              "jobDescription",
+              "value",
+              "employmentType",
+              "seniority",
+              "schedule",
+              "keywords",
+              "occupation",
+              "occupationCategory",
+              "createdAt",
+              "salaryInformation",
+              "min"
+            ],
+            "requests": 1,
+            "seconds": 0.612
+          },
+          {
+            "country": "DE",
+            "employer": "Studyflix GmbH",
+            "url": "https://studyflix-gmbh.jobs.personio.de/xml",
+            "http": 200,
+            "bytes_read": 96312,
+            "sha256": "5fe9ef5ffc6f88a26c52a7ee07ac14aad7e5cea015be1462ab09ff658dbe66c1",
+            "root": "workzag-jobs",
+            "tag_counts": {
+              "position": 19,
+              "id": 19,
+              "name": 114
+            },
+            "top_tags": [
+              "workzag-jobs",
+              "position",
+              "id",
+              "office",
+              "additionalOffices",
+              "department",
+              "recruitingCategory",
+              "name",
+              "jobDescriptions",
+              "jobDescription",
+              "value",
+              "employmentType",
+              "seniority",
+              "schedule",
+              "occupation",
+              "occupationCategory",
+              "createdAt",
+              "yearsOfExperience"
+            ],
+            "requests": 1,
+            "seconds": 0.585
+          }
+        ],
+        "totals": {
+          "requests": 8,
+          "bytes_read": 497931,
+          "source_seconds": 4.885
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "requests": 64,
+    "bytes_read": 6506760,
+    "source_seconds": 43.137,
+    "renderings": 0,
+    "new_verified": 0,
+    "enabled": 0
+  },
+  "limitations": [
+    "First seven-channel probe was inadvertently repeated when a script change retriggered branch-push workflow; count both real runs.",
+    "Robots guard passed per URL except corporate Audi robots 403; explicit host-wide permission not established.",
+    "No applicant actions, browser rendering, CAPTCHA bypass, credentials, or production source rollout.",
+    "HTML form disabled submit on Audi/Studyflix; StaffPoint static HTML lacks applicant name/email/CV fields, and form submission is not policy-v2 verified.",
+    "Production catalog remains at last confirmed baseline 362 records/28 verified HR internships + 1 working student."
+  ],
+  "pilot_workflow_deleted_from_branch": true
+}
