@@ -49,6 +49,12 @@ jobs:
           lines.extend(['- '+key+': '+str(value) for key,value in summary.items()])
           Path('jobtech-summary.md').write_text('\n'.join(lines)+'\n')
           print(json.dumps(summary,sort_keys=True))
+          # CC0 source metadata, never full descriptions or contact details.
+          for candidate in report['candidates'][:10]:
+              print('DISCOVERY_CANDIDATE '+json.dumps({
+                  key:candidate.get(key) for key in
+                  ('provider_id','employer','title','country','url','apply_url')
+              },ensure_ascii=False,sort_keys=True))
           PY
           cat jobtech-summary.md >> "$GITHUB_STEP_SUMMARY"
       - name: Keep pilot artifact (no changes to catalog)
