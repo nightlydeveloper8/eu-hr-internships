@@ -119,6 +119,21 @@ def verify_candidate(candidate, approved_hosts, client_factory=BudgetClient):
             row["state"] = "blocked" if blocked_error(exc) else "unverified"
             row["reason"] = str(exc)[:220]
     finally:
+        # Useful, bounded diagnostics even on an exact-title failure; neither
+        # complete HTML nor personal applicant fields are stored in the report.
+        if "captured" in locals():
+            headings, jobs, owners = [], [], []
+            for page_url, content in list(captured.pages.items())[:2]:
+                doc = Document(content, page_url)
+                headings.extend(doc.h1[:3])
+                for post in doc.jobposts()[:3]:
+                    jobs.append(plain(post.get("title"))[:160])
+                    org = post.get("hiringOrganization")
+                    if isinstance(org, dict):
+                        owners.append(plain(org.get("name"))[:130])
+            row["observed_headings"] = headings[:4]
+            row["structured_job_titles"] = jobs[:4]
+            row["structured_hiring_organizations"] = owners[:4]
         row["requests"] = client.requests if client else 0
         row["bytes_read"] = client.bytes if client else 0
         row["elapsed_seconds"] = round(time.monotonic()-started, 3)
