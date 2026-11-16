@@ -211,7 +211,18 @@ def verify_application(record, source, client, vacancy_document=None):
             r'[^.!?]{0,160}\b(?:via|naar)\s*'+re.escape(address), doc.text, re.I)
         if direct_application and re.search(r'\b(?:niet|geen|vragen)\b',direct_application.group(0),re.I):
             direct_application=None
-        if not address or not observed or not (instructions or direct_application):
+        # English employer-originated direct applications (e.g. a job-specific
+        # "Apply now" mailto) need not request a CV explicitly. Both a reviewed
+        # exact-address CTA AND explicit positive instructions on this vacancy
+        # must be present. Footer contacts and questions never qualify.
+        english_apply = (
+            any(href.lower().split('?')[0] == 'mailto:' + address.lower()
+                and re.fullmatch(r'apply now|send (?:your )?application',fold(plain(label)).strip(),re.I)
+                for href,label,_ in doc.links)
+            and bool(re.search(r'\b(?:please|kindly)\s+send\s+(?:us\s+)?your\s+application\b',doc.text,re.I))
+            and not bool(re.search(r'\b(?:do not|don\x27t|never)\s+send\s+(?:us\s+)?your\s+application\b',doc.text,re.I))
+        )
+        if not address or not observed or not (instructions or direct_application or english_apply):
             raise ValueError('Vacancy-specific email application instructions unavailable')
         return dict(url=record['url'], method='official-vacancy-email-instructions',
                     application_email=address, delivery_verified=False)
