@@ -198,5 +198,20 @@
       "enabled": false
     }
   ],
-  "next_action": "limited BudgetClient pilots Brainstorm CY then iKnowHow GR then Marriott MT, stopping on robots/429/challenges and confirming same-ID anonymous applicant form; research new CRO official channels because Rimac old internship absent live inventory"
+  "next_action": "limited BudgetClient pilots Brainstorm CY then iKnowHow GR then Marriott MT, stopping on robots/429/challenges and confirming same-ID anonymous applicant form; research new CRO official channels because Rimac old internship absent live inventory",
+  "followup_live_preflight": {
+    "evidence_file": "docs/eu27-expansion/batch-07-live-preflight-2026-11-16.json",
+    "workflow_run": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43918927512",
+    "result": "success",
+    "bounded_get_requests": 11,
+    "body_bytes_read": 1356253,
+    "source_seconds": 5.403,
+    "renderings": 0,
+    "robots_client_guard": "passed on all three scoped host page paths; raw robots directives/status not recorded",
+    "visible_enabled_anonymous_forms": 0,
+    "stage_verified_count_delta": 0,
+    "new_sources_enabled": 0,
+    "extra_daily_requests": 0,
+    "note": "Earlier measured_costs fields represent the web-research stage only. The separate one-shot preflight has its own measured costs and was not a production rollout."
+  }
 }
