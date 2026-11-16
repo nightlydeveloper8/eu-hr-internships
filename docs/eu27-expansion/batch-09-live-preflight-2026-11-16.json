@@ -1,0 +1,868 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-16",
+  "mode": "one-shot-robots-guarded-readonly",
+  "max_requests_each": 10,
+  "max_source_seconds_each": 35,
+  "renderings": 0,
+  "policy_v2_verified": 0,
+  "sources_enabled": 0,
+  "rows": [
+    {
+      "country": "CZ",
+      "employer": "SAP",
+      "expected_id": "REF3475V",
+      "hosts": [
+        "jobs.sap.com"
+      ],
+      "pages": [
+        {
+          "kind": "inventory",
+          "requested_url": "https://jobs.sap.com/en/jobs/?location=Prague",
+          "status": 200,
+          "final": "https://jobs.sap.com/en/jobs/?location=Prague",
+          "bytes": 652619,
+          "sha256": "43a6c2239917df7b1e97000f913df26cbc68056294613ba14fbc31be9e860fb2",
+          "h1": [
+            "Open jobs"
+          ],
+          "title_present": true,
+          "expected_id_in_url": false,
+          "expected_id_in_body": false,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "/en/jobs/",
+              "label": "Jobs"
+            },
+            {
+              "href": "/en/jobs/",
+              "label": "View all jobs"
+            },
+            {
+              "href": "/en/jobs/saved-jobs/",
+              "label": "Saved jobs"
+            },
+            {
+              "href": "/en/jobs/saved-jobs/",
+              "label": "Saved Jobs"
+            },
+            {
+              "href": "/en/jobs/",
+              "label": "Jobs"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "vacancy",
+          "requested_url": "https://jobs.sap.com/en/jobs/744000161307409/sap-ixp-intern-recruiting-associate-tech-td-limited-full-time/",
+          "status": 200,
+          "final": "https://jobs.sap.com/en/jobs/744000161307409/sap-ixp-intern-recruiting-associate-tech-td-limited-full-time/",
+          "bytes": 376294,
+          "sha256": "4a74505799eeefd9a0c18a720901e2a45ca2eac233676441cd98d7be40f39973",
+          "h1": [
+            "SAP iXp Intern - Recruiting Associate (Tech TD) (limited full-time)"
+          ],
+          "title_present": true,
+          "expected_id_in_url": false,
+          "expected_id_in_body": true,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "/en/jobs/",
+              "label": "Jobs"
+            },
+            {
+              "href": "/en/jobs/",
+              "label": "View all jobs"
+            },
+            {
+              "href": "/en/jobs/saved-jobs/",
+              "label": "Saved jobs"
+            },
+            {
+              "href": "/en/jobs/saved-jobs/",
+              "label": "Saved Jobs"
+            },
+            {
+              "href": "https://jobs.smartrecruiters.com/SAPITBusinessSysteme/744000161307409-sap-ixp-intern-recruiting-associate-tech-td-limited-full-time-?oga=true",
+              "label": "Apply Now"
+            },
+            {
+              "href": "https://jobs.smartrecruiters.com/SAPITBusinessSysteme/744000161307409-sap-ixp-intern-recruiting-associate-tech-td-limited-full-time-?oga=true",
+              "label": "Apply Now"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 3,
+      "bytes_read": 1029164,
+      "source_seconds": 2.737,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "CZ",
+      "employer": "Amazon",
+      "expected_id": "10561439",
+      "hosts": [
+        "www.amazon.jobs"
+      ],
+      "pages": [
+        {
+          "kind": "inventory",
+          "requested_url": "https://www.amazon.jobs/en/search?base_query=human+resources+intern",
+          "status": 200,
+          "final": "https://www.amazon.jobs/en/search?base_query=human+resources+intern",
+          "bytes": 38283,
+          "sha256": "bced6b1b36a7a87d868c122203697d98006f714ad57195e6b4d78d3672c7d75d",
+          "h1": [],
+          "title_present": false,
+          "expected_id_in_url": false,
+          "expected_id_in_body": false,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "/en/job_categories",
+              "label": "Job categories"
+            },
+            {
+              "href": "/content/en/job-categories",
+              "label": "Job Categories"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "vacancy",
+          "requested_url": "https://www.amazon.jobs/en/jobs/10561439/operations-human-resources-partner-intern-6-months-2027",
+          "status": 200,
+          "final": "https://www.amazon.jobs/en/jobs/10561439/operations-human-resources-partner-intern-6-months-2027",
+          "bytes": 44811,
+          "sha256": "4757b917b56301e85a4be1b72432b3ef968cdf594af269454e8e62fd503a29b2",
+          "h1": [
+            "Operations Human Resources Partner Intern (6 Months) - 2027"
+          ],
+          "title_present": false,
+          "expected_id_in_url": true,
+          "expected_id_in_body": true,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [
+            {
+              "href": "mailto:?body=https%3A%2F%2Fwww.amazon.jobs%2Fen%2Fjobs%2F10561439&subject=Take%20a%20look%20at%20this%20job",
+              "label": ""
+            }
+          ],
+          "apply_links": [
+            {
+              "href": "/en/job_categories",
+              "label": "Job categories"
+            },
+            {
+              "href": "https://www.amazon.jobs/applicant/jobs/10561439/apply",
+              "label": "Apply now"
+            },
+            {
+              "href": "https://www.amazon.jobs/en/privacy_page",
+              "label": "https://www.amazon.jobs/en/privacy_page"
+            },
+            {
+              "href": "https://amazon.jobs/content/en/how-we-hire/accommodations",
+              "label": "https://amazon.jobs/content/en/how-we-hire/accommodations"
+            },
+            {
+              "href": "/content/en/job-categories",
+              "label": "Job Categories"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 3,
+      "bytes_read": 83418,
+      "source_seconds": 2.093,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "RO",
+      "employer": "BAT",
+      "expected_id": "81347",
+      "hosts": [
+        "careers.bat.com"
+      ],
+      "pages": [
+        {
+          "kind": "inventory",
+          "requested_url": "https://careers.bat.com/en/search_jobs/bucharest/1045/1/1",
+          "status": 200,
+          "final": "https://careers.bat.com/en/search_jobs/bucharest/1045/1/1",
+          "bytes": 154910,
+          "sha256": "66d81cbd49e7b51cdc32fccd78edee5a05ad14e570ebb3b601f2c7b0e56f2f3d",
+          "h1": [
+            "Discover Opportunities"
+          ],
+          "title_present": true,
+          "expected_id_in_url": false,
+          "expected_id_in_body": false,
+          "form_count": 3,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 3,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "/en/saved-jobs",
+              "label": "0 \r\n            \r\n            Saved Jobs"
+            },
+            {
+              "href": "#default-setup-job",
+              "label": "Jobs For You"
+            },
+            {
+              "href": "#default-setup-recent",
+              "label": "Recently Viewed Jobs"
+            },
+            {
+              "href": "#default-setup-save",
+              "label": "Saved Jobs"
+            },
+            {
+              "href": "/EN/search-jobs",
+              "label": "View more jobs"
+            },
+            {
+              "href": "/en/why-bat",
+              "label": "Why BAT? \r\n                        \r\n                       "
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "vacancy",
+          "requested_url": "https://careers.bat.com/en/job/bucharest/hr-intern/1045/46198641856",
+          "status": 200,
+          "final": "https://careers.bat.com/en/job/bucharest/hr-intern/1045/46198641856",
+          "bytes": 172375,
+          "sha256": "3c5e2caceebfb3db6287868fe1eaa0cf67908384c394f1334b87a6b58d576998",
+          "h1": [
+            "HR Intern"
+          ],
+          "title_present": true,
+          "expected_id_in_url": false,
+          "expected_id_in_body": true,
+          "form_count": 3,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 2,
+          "mailto_links": [
+            {
+              "href": "mailto:?subject=HR%20Intern&body=https%3a%2f%2fcareers.bat.com%2fen%2fjob%2fbucharest%2fhr-intern%2f1045%2f46198641856%3futm_source%3demail%26utm_medium%3dsocial_post%26utm_campaign%3dBritish_American_Tobacco_social",
+              "label": "Email"
+            }
+          ],
+          "apply_links": [
+            {
+              "href": "/en/saved-jobs",
+              "label": "0 \r\n            \r\n            Saved Jobs"
+            },
+            {
+              "href": "https://careers.bat.com/apply?req=81347&locale=en_GB",
+              "label": "Apply Now"
+            },
+            {
+              "href": "#anchor-responsibilities",
+              "label": "Job Details"
+            },
+            {
+              "href": "https://careers.bat.com/apply?req=81347&locale=en_GB",
+              "label": "Apply Now"
+            },
+            {
+              "href": "https://careers.bat.com/apply?req=81347&locale=en_GB",
+              "label": "Apply Now"
+            },
+            {
+              "href": "#default-setup-job",
+              "label": "Jobs For You"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "apply",
+          "requested_url": "https://careers.bat.com/en/apply?locale=en_GB&req=81347",
+          "status": 200,
+          "final": "https://careers.bat.com/en/apply?locale=en_GB&req=81347",
+          "bytes": 35158,
+          "sha256": "03f73d3ba90db9a051900501a9d319225e2b000887c117f1dbaaf2fd23af884b",
+          "h1": [
+            "Hi there"
+          ],
+          "title_present": false,
+          "expected_id_in_url": true,
+          "expected_id_in_body": true,
+          "form_count": 2,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 1,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "/en/saved-jobs",
+              "label": "0 \r\n            \r\n            Saved Jobs"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 4,
+      "bytes_read": 362482,
+      "source_seconds": 2.468,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "RO",
+      "employer": "Marquardt",
+      "expected_id": "sUQZQQ",
+      "hosts": [
+        "www.marquardt.com",
+        "marquardt-ro.mingle.ro"
+      ],
+      "pages": [
+        {
+          "kind": "vacancy",
+          "requested_url": "https://www.marquardt.com/careers/job-search/detail/hr-internship-french-english-speakers-f-m",
+          "status": 200,
+          "final": "https://www.marquardt.com/careers/job-search/detail/hr-internship-french-english-speakers-f-m",
+          "bytes": 410,
+          "sha256": "2944a0214ac55fbbc37eb54543a412416ce571ce17f77f36762fc00a2ceae9b0",
+          "h1": [],
+          "title_present": false,
+          "expected_id_in_url": false,
+          "expected_id_in_body": false,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "apply",
+          "requested_url": "https://marquardt-ro.mingle.ro/en/apply/sUQZQQ",
+          "status": 200,
+          "final": "https://marquardt-ro.mingle.ro/en/apply/sUQZQQ",
+          "bytes": 24743,
+          "sha256": "7bdef9cd50199d740e94199e48105f2cb44f9f865b2fa66c364b4ace89cf4887",
+          "h1": [],
+          "title_present": true,
+          "expected_id_in_url": true,
+          "expected_id_in_body": true,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 4,
+      "bytes_read": 27506,
+      "source_seconds": 2.886,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "IE",
+      "employer": "TikTok",
+      "expected_id": "7694622895491205429",
+      "hosts": [
+        "lifeattiktok.com",
+        "careers.tiktok.com"
+      ],
+      "pages": [
+        {
+          "kind": "vacancy",
+          "requested_url": "https://lifeattiktok.com/search/7694622895491205429",
+          "status": 200,
+          "final": "https://lifeattiktok.com/search/7694622895491205429",
+          "bytes": 100517,
+          "sha256": "867acf3db7bf6b298a0fc4bc3f9681cffe839c1d964a1968f1dee95aa71c496c",
+          "h1": [],
+          "title_present": true,
+          "expected_id_in_url": true,
+          "expected_id_in_body": true,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "https://lifeattiktok.com/apply",
+              "label": "Applying to TikTok"
+            },
+            {
+              "href": "https://lifeattiktok.com/search",
+              "label": "Jobs"
+            },
+            {
+              "href": "https://careers.tiktok.com/position/application",
+              "label": "Apply"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "apply",
+          "requested_url": "https://careers.tiktok.com/resume/7694622895491205429/apply",
+          "status": 200,
+          "final": "https://lifeattiktok.com/resume/7694622895491205429/apply",
+          "bytes": 496203,
+          "sha256": "d69a5381c7af56718f0fa567e9d7001594676315a8ae7e7eb1f68cd067fb0e6b",
+          "h1": [],
+          "title_present": false,
+          "expected_id_in_url": true,
+          "expected_id_in_body": false,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 4,
+      "bytes_read": 597424,
+      "source_seconds": 3.421,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "LU",
+      "employer": "PANDOO",
+      "expected_id": "hr-intern-f/m/d",
+      "hosts": [
+        "pandoo.lu"
+      ],
+      "pages": [
+        {
+          "kind": "inventory",
+          "requested_url": "https://pandoo.lu/jobs",
+          "status": 200,
+          "final": "https://pandoo.lu/jobs",
+          "bytes": 28395,
+          "sha256": "a0d31c7cbb1e0e0ab51360d32d2b7530eb5fe5ccddc2d45255621fe8e38e4253",
+          "h1": [],
+          "title_present": true,
+          "expected_id_in_url": false,
+          "expected_id_in_body": true,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [
+            {
+              "href": "mailto:hello@pandoo.lu",
+              "label": "hello@pandoo.lu"
+            }
+          ],
+          "apply_links": [
+            {
+              "href": "/jobs",
+              "label": "Jobs"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "vacancy",
+          "requested_url": "https://pandoo.lu/hr-intern-f/m/d",
+          "status": 200,
+          "final": "https://pandoo.lu/hr-intern-f/m/d",
+          "bytes": 17340,
+          "sha256": "5927b1c01f108025aaec8e95a76b06c09b9a432dc617a3c107b09e059948a583",
+          "h1": [
+            "HR Intern (F/M/D)"
+          ],
+          "title_present": true,
+          "expected_id_in_url": true,
+          "expected_id_in_body": true,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [
+            {
+              "href": "mailto:hr@pandoo.lu",
+              "label": "Apply now"
+            },
+            {
+              "href": "mailto:hello@pandoo.lu",
+              "label": "hello@pandoo.lu"
+            }
+          ],
+          "apply_links": [
+            {
+              "href": "/jobs",
+              "label": "Jobs"
+            },
+            {
+              "href": "mailto:hr@pandoo.lu",
+              "label": "Apply now"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 3,
+      "bytes_read": 45842,
+      "source_seconds": 4.632,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "LU",
+      "employer": "EY",
+      "expected_id": "1749932",
+      "hosts": [
+        "careers.ey.com"
+      ],
+      "pages": [
+        {
+          "kind": "vacancy",
+          "requested_url": "https://careers.ey.com/ey/job/Luxembourg-HR-Mobility-Intern-L-1855/1444849033/",
+          "status": 200,
+          "final": "https://careers.ey.com/ey/job/Luxembourg-HR-Mobility-Intern-L-1855/1444849033",
+          "bytes": 195119,
+          "sha256": "211951195673ec67c15373ce22527f3ad9aada682cf81feb4f337e119d2f5e5e",
+          "h1": [
+            "HR Mobility Intern"
+          ],
+          "title_present": true,
+          "expected_id_in_url": false,
+          "expected_id_in_body": true,
+          "form_count": 4,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 2,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "#",
+              "label": "Job search"
+            },
+            {
+              "href": "#",
+              "label": "Job search"
+            },
+            {
+              "href": "#",
+              "label": "Job search"
+            },
+            {
+              "href": "/talentcommunity/apply/1444849033/?locale=en_GB",
+              "label": "Apply now »"
+            },
+            {
+              "href": "#",
+              "label": "Start applying with LinkedIn"
+            },
+            {
+              "href": "#",
+              "label": "Apply Now"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 2,
+      "bytes_read": 195371,
+      "source_seconds": 2.462,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "LU",
+      "employer": "Deloitte Luxembourg",
+      "expected_id": "13618",
+      "hosts": [
+        "jobs.deloitte.lu"
+      ],
+      "pages": [
+        {
+          "kind": "vacancy",
+          "requested_url": "https://jobs.deloitte.lu/job/Learning-%26-Development-Intern/13618-en_GB",
+          "status": 200,
+          "final": "https://jobs.deloitte.lu/job/Learning-%26-Development-Intern/13618-en_GB",
+          "bytes": 68642,
+          "sha256": "d71e585f8153e6c7a7225c54c8bbf9b1a5b18d82058c20b71ad022ad3412cbe7",
+          "h1": [
+            "Job Title: Learning & Development Intern"
+          ],
+          "title_present": true,
+          "expected_id_in_url": true,
+          "expected_id_in_body": true,
+          "form_count": 0,
+          "applicant_form_visible_enabled": false,
+          "forms_with_submit": 0,
+          "mailto_links": [],
+          "apply_links": [
+            {
+              "href": "/go/View-all-Jobs/9826901/",
+              "label": "View all Jobs"
+            },
+            {
+              "href": "/go/View-all-Jobs/9826901/",
+              "label": "View all Jobs"
+            },
+            {
+              "href": "/talentcommunity/apply/13618/?locale=en_GB",
+              "label": "Apply now"
+            },
+            {
+              "href": "/talentcommunity/apply/13618/?locale=en_GB",
+              "label": "Apply now"
+            },
+            {
+              "href": "/",
+              "label": "Job Search Home"
+            },
+            {
+              "href": "/viewalljobs/",
+              "label": "View All Jobs"
+            }
+          ],
+          "closed_text_detected": false,
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "requests": 2,
+      "bytes_read": 68894,
+      "source_seconds": 1.534,
+      "rate_limited_skips": 0
+    }
+  ],
+  "totals": {
+    "sources": 8,
+    "countries": 4,
+    "requests": 25,
+    "bytes_read": 2410101,
+    "source_seconds": 22.233,
+    "verified": 0,
+    "enabled": 0,
+    "renderings": 0
+  },
+  "provenance": {
+    "workflow_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43926439506",
+    "head_commit": "f8ff30a6ee51608a233b192fd7b5db02e927a9e6",
+    "run_status": "success",
+    "policy": "robots guard for each visited URL, no POST, login, rendering, CAPTCHA bypass or application sending",
+    "workflow_removed_from_pilot_branch": true,
+    "allowed_source_in_production": false
+  },
+  "pandoo_single_source_verification": {
+    "runs": [
+      {
+        "stage": "first-uncorrected-filter",
+        "run_id": 43928876091,
+        "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43928876091",
+        "workflow_conclusion": "success",
+        "logic_result": {
+          "mode": "one-time-readonly-review",
+          "date": "2026-11-16",
+          "verified_catalog_jobs": 0,
+          "new_enabled_sources": 0,
+          "email_sent": false,
+          "delivery_verified": false,
+          "error_type": "ValueError",
+          "error": "Only public HTTPS job URLs are allowed",
+          "application_channel_matched": false,
+          "requests": 3,
+          "bytes_read": 45842,
+          "source_seconds": 5.201,
+          "renderings": 0
+        }
+      },
+      {
+        "stage": "deduplicated-link-fix-needed",
+        "run_id": 43929207076,
+        "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43929207076",
+        "workflow_conclusion": "success",
+        "logic_result": {
+          "mode": "one-time-readonly-review",
+          "date": "2026-11-16",
+          "verified_catalog_jobs": 0,
+          "new_enabled_sources": 0,
+          "email_sent": false,
+          "delivery_verified": false,
+          "inventory": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/jobs",
+            "body_sha256": "a0d31c7cbb1e0e0ab51360d32d2b7530eb5fe5ccddc2d45255621fe8e38e4253",
+            "bytes": 28395,
+            "exact_role_link_count": 3,
+            "text_mentions_hr_intern": true
+          },
+          "vacancy": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/hr-intern-f/m/d",
+            "body_sha256": "5927b1c01f108025aaec8e95a76b06c09b9a432dc617a3c107b09e059948a583",
+            "bytes": 17340,
+            "h1": [
+              "HR Intern (F/M/D)"
+            ],
+            "observed_mailto_labels": [
+              " Apply now"
+            ],
+            "explicit_apply_instruction": true
+          },
+          "error_type": "ValueError",
+          "error": "Employer inventory missing single exact job link",
+          "application_channel_matched": false,
+          "requests": 3,
+          "bytes_read": 45842,
+          "source_seconds": 3.786,
+          "renderings": 0
+        }
+      },
+      {
+        "stage": "final-verified-mailto",
+        "run_id": 43929440391,
+        "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43929440391",
+        "workflow_conclusion": "success",
+        "logic_result": {
+          "mode": "one-time-readonly-review",
+          "date": "2026-11-16",
+          "verified_catalog_jobs": 0,
+          "new_enabled_sources": 0,
+          "email_sent": false,
+          "delivery_verified": false,
+          "inventory": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/jobs",
+            "body_sha256": "a0d31c7cbb1e0e0ab51360d32d2b7530eb5fe5ccddc2d45255621fe8e38e4253",
+            "bytes": 28395,
+            "exact_role_link_count": 1,
+            "text_mentions_hr_intern": true
+          },
+          "vacancy": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/hr-intern-f/m/d",
+            "body_sha256": "5927b1c01f108025aaec8e95a76b06c09b9a432dc617a3c107b09e059948a583",
+            "bytes": 17340,
+            "h1": [
+              "HR Intern (F/M/D)"
+            ],
+            "observed_mailto_labels": [
+              " Apply now"
+            ],
+            "explicit_apply_instruction": true
+          },
+          "direct_application_proof": {
+            "method": "official-vacancy-email-instructions",
+            "application_email": "hr@pandoo.lu",
+            "delivery_verified": false,
+            "reused_snapshot_requests": 1
+          },
+          "application_channel_matched": true,
+          "workplace_confirmed_from_job_page": false,
+          "reason_not_catalog_verified": "Company office location appears in page footer, but the specific internship workplace is not explicitly established by the vacancy; no source registered.",
+          "requests": 3,
+          "bytes_read": 45842,
+          "source_seconds": 3.739,
+          "renderings": 0
+        }
+      }
+    ],
+    "latest_result": {
+      "mode": "one-time-readonly-review",
+      "date": "2026-11-16",
+      "verified_catalog_jobs": 0,
+      "new_enabled_sources": 0,
+      "email_sent": false,
+      "delivery_verified": false,
+      "inventory": {
+        "http": 200,
+        "final_url": "https://pandoo.lu/jobs",
+        "body_sha256": "a0d31c7cbb1e0e0ab51360d32d2b7530eb5fe5ccddc2d45255621fe8e38e4253",
+        "bytes": 28395,
+        "exact_role_link_count": 1,
+        "text_mentions_hr_intern": true
+      },
+      "vacancy": {
+        "http": 200,
+        "final_url": "https://pandoo.lu/hr-intern-f/m/d",
+        "body_sha256": "5927b1c01f108025aaec8e95a76b06c09b9a432dc617a3c107b09e059948a583",
+        "bytes": 17340,
+        "h1": [
+          "HR Intern (F/M/D)"
+        ],
+        "observed_mailto_labels": [
+          " Apply now"
+        ],
+        "explicit_apply_instruction": true
+      },
+      "direct_application_proof": {
+        "method": "official-vacancy-email-instructions",
+        "application_email": "hr@pandoo.lu",
+        "delivery_verified": false,
+        "reused_snapshot_requests": 1
+      },
+      "application_channel_matched": true,
+      "workplace_confirmed_from_job_page": false,
+      "reason_not_catalog_verified": "Company office location appears in page footer, but the specific internship workplace is not explicitly established by the vacancy; no source registered.",
+      "requests": 3,
+      "bytes_read": 45842,
+      "source_seconds": 3.739,
+      "renderings": 0
+    },
+    "requires_explicit_workplace_evidence": true,
+    "production_source_registered": false,
+    "stage_status": "not-promoted"
+  },
+  "all_pilot_measured_costs": {
+    "requests": 34,
+    "bytes_read": 2547627,
+    "source_seconds": 34.959,
+    "new_verified": 0,
+    "new_enabled_sources": 0,
+    "extra_daily_requests": 0,
+    "renderings": 0
+  },
+  "workflow_cleanup": {
+    "batch09_one_shot_removed_from_branch": true,
+    "pandoo_one_shot_workflows_removed_from_branch": true
+  }
+}
