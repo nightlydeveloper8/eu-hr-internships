@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-16",
+  "kind": "disabled-source-proposal-not-production",
+  "identity": {
+    "company_name": "PANDOO Administration",
+    "country_research_target": "LU",
+    "evidence_employer_page": "https://pandoo.lu/jobs",
+    "role_page": "https://pandoo.lu/hr-intern-f/m/d",
+    "workplace_country_verified": false,
+    "company_size_qualification": "unknown",
+    "job_type": "internship",
+    "language_requirements": {
+      "en": "required",
+      "fr": "preferred",
+      "de": "preferred"
+    }
+  },
+  "company_proposal": {
+    "id": "pandoo-administration-luxembourg",
+    "name": "PANDOO Administration",
+    "website_url": "https://pandoo.lu",
+    "career_url": "https://pandoo.lu/jobs",
+    "target_countries": [
+      "LU"
+    ],
+    "source_ids": [
+      "eu-pandoo-lu"
+    ],
+    "size_qualification": "unknown"
+  },
+  "source_proposal": {
+    "id": "eu-pandoo-lu",
+    "company_id": "pandoo-administration-luxembourg",
+    "employer": "PANDOO Administration",
+    "adapter": "employer-index",
+    "enabled": false,
+    "career_url": "https://pandoo.lu/jobs",
+    "index_urls": [
+      "https://pandoo.lu/jobs",
+      "https://pandoo.lu/hr-intern-f/m/d"
+    ],
+    "job_url_pattern": "^https://pandoo\\.lu/hr-intern-f/m/d/?$",
+    "page_format": "reviewed-visible",
+    "reviewed_workplaces": [],
+    "reviewed_advertisement_language": "en",
+    "application_check": "official-email",
+    "application_email": "hr@pandoo.lu",
+    "allowed_hosts": [
+      "pandoo.lu"
+    ],
+    "target_countries": [
+      "LU"
+    ],
+    "include_index_visible": true,
+    "inventory_scope_complete": false,
+    "report_index_scope": true,
+    "max_index_pages": 2,
+    "max_requests": 8,
+    "collection_seconds": 40,
+    "max_render_pages": 0,
+    "permission_basis": "Observed direct employer careers index plus exact HR Intern vacancy with affirmative Apply now mailto; robots guard passed on these GET URLs in scoped pilot; no emails sent, no workplace assumed.",
+    "discovery_scope": "Only this direct HR internship and exact current employer index; no assumption of complete national or employer inventory."
+  },
+  "admission_gates": [
+    {
+      "criterion": "current-exact-employer-job-and-mailto",
+      "status": "passed-one-shot",
+      "evidence": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43929440391"
+    },
+    {
+      "criterion": "specific-internship-workplace-location",
+      "status": "missing",
+      "reason": "Company Luxembourg postal footer is not explicit internship workplace"
+    },
+    {
+      "criterion": "documented-employer-size-if-qualification-required",
+      "status": "unknown"
+    },
+    {
+      "criterion": "daily-stability-after-authorized-activation",
+      "status": "not-run"
+    },
+    {
+      "criterion": "policy-v2-verified-catalog-job",
+      "status": "not-established"
+    },
+    {
+      "criterion": "specific-rollout-approval",
+      "status": "not-given"
+    }
+  ],
+  "baseline_effect": {
+    "registry_changed": false,
+    "catalog_changed": false,
+    "enabled_sources_delta": 0,
+    "verified_internships_delta": 0,
+    "extra_daily_requests": 0
+  },
+  "next_step": "Seek explicit role location on official employer source; do not fill reviewed_workplaces by copying company footer; if proven, test bounded collector then obtain specific rollout approval."
+}
