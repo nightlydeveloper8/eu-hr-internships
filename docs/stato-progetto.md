@@ -1,5 +1,14 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — riconciliazione pre-merge e limiti reali di Splendor (follow-up)
+
+**Riconciliazione del catalogo ordinario:** letti i 362 record del catalogo pubblicato su `main` (SHA `8aad7fa`). La sola scheda svedese preesistente è Bosch (stage HR, ancora unverified), **nessun Jobandtalent o Splendor Plant**: Jobandtalent `31558200`/`8503489` appare quindi *nuovo rispetto al catalogo esaminato*, senza esclusione automatica di possibili mirror non identificati. Aggiunta `catalog_overlap()` al dossier live in PR #56: verifica URL JobTech, URL ATS genitore, URL applicazione, percorso host e possibili mirror datore+titolo+paese; non produce pubblicazioni. Regressioni offline a copertura degli identificativi e dei mirror.
+
+**Splendor, secondo tentativo live dopo soppressione tracker:** il blocco di `posthog.com` era un tracker opzionale che ora viene soppresso dal renderer per privacy/costo; tuttavia una seconda lettura sul medesimo host ha esaurito il budget (17 richieste totali, 16 del browser, 16 risorse soppresse e 4 negate, circa 1,818 MB di browser). Action [#43971017967](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43971017967). Stato **`incomplete-access-or-render`**, nessun modulo verificato, nessuna chiusura provata. Non ampliare indiscriminatamente richieste né aggirare altri host. Il workflow costoso `dynamic-splendor-preflight.yml` è stato cambiato in `workflow_dispatch` esclusivo: **non si rilancia automaticamente alle prossime modifiche PR**, per tutelare budget. Nessuna ulteriore procedura di candidatura eseguita.
+
+**Intervento ancora soltanto in PR #56**, senza merge, aggiunta fonti alla raccolta ordinaria o aggiornamenti al catalogo; codice dei controlli e stato documentato. Lo stage Jobandtalent supera un dossier policy-v2 live *staging only*, ma occorre la futura integrazione controllata nel ciclo di raccolta e pubblicazione previa specifica autorizzazione. EURES non interrogato.
+
+
 
 ## 16 novembre 2026 — verifica end-to-end Jobandtalent, diagnosi Splendor, piloti CZ/LV e prossimo paese LT
 
