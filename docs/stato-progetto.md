@@ -161,3 +161,7 @@ servito non attestati dal runtime, distinzione conservata rispetto a GitHub.
 Issue #18 e #23 restano aperte finché tutti i criteri di produzione non sono provati.
 Le vecchie modifiche locali WEBO sono già incluse: non creare una PR duplicata
 partendo dal checkout storico. Dettagli in docs/integration-2026-11-15.md.
+
+## 16 novembre 2026 — Drenthe, continuità dopo consolidamento
+
+PR #20 già consolidata in #39: ripresa da main `f746adb`, nessun ramo storico riaperto. [Rapporto](drenthe-2026-11-16.md) e [prova strutturata](drenthe-2026-11-16-evidence.json). Pista organico Emmen individuata nella ricerca ufficiale indicizzata; lettura live fermata da robots 403, quindi dimensione ancora ignota e dati invariati (40 datori, 27 qualificati, 13 ignoti). Nessuna nuova vacancy verificata, raccolta completa, modifica al gate, merge o deploy. Riprendere la pista dopo accesso ordinario ristabilito; proseguire sulle altre lacune senza ripetere oggi il blocco o le diagnosi ATS già concluse.
