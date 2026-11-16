@@ -26,6 +26,14 @@ class BudgetClient(Client):
         if seconds>=self.remaining():raise CollectionBudgetExceeded('Required host delay exceeds remaining budget; checkpoint retained')
         time.sleep(seconds)
 
+    def permitted(self,url):
+        # Redirects call permitted() before following the destination. Keep
+        # a previously rate-limited host closed even through another host's URL.
+        if urlsplit(url).netloc in _RATE_LIMITED_HOSTS:
+            self.rate_limited_skips+=1
+            raise HTTPError(url,429,'Redirect target rate-limited earlier in this collection process',None,None)
+        return super().permitted(url)
+
     def request(self,url,method='GET',robots=True,timeout=12,attempts=1,accept=None):
         url=canonical_url(url);host=urlsplit(url).netloc;self.check();lock=host_lock(host)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')
