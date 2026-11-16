@@ -31,9 +31,9 @@ def run():
   ib,istat,ifinal=client.request(INDEX,robots=True,timeout=10,attempts=1)
   body,status,final=client.request(URL,robots=True,timeout=10,attempts=1)
   idx=Document(ib,ifinal);doc=Document(body,final)
-  exact=[urljoin(ifinal,href) for href,label,_ in idx.links
+  exact={canonical_url(urljoin(ifinal,href)) for href,label,_ in idx.links
         if urlsplit(urljoin(ifinal,href)).scheme=="https"
-        and canonical_url(urljoin(ifinal,href))==canonical_url(URL)]
+        and canonical_url(urljoin(ifinal,href))==canonical_url(URL)}
   out["inventory"]={"http":istat,"final_url":ifinal,"body_sha256":hashlib.sha256(ib).hexdigest(),
     "bytes":len(ib),"exact_role_link_count":len(exact),"text_mentions_hr_intern":"HR Intern" in idx.text}
   out["vacancy"]={"http":status,"final_url":final,"body_sha256":hashlib.sha256(body).hexdigest(),
