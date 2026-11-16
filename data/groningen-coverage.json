@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-16T13:57:13.288210+00:00",
+  "generated_at": "2026-11-16T15:51:13.637464+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -284,7 +284,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:24.232894+00:00",
+      "last_attempt_at": "2026-11-16T15:39:15.136807+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -326,7 +326,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:22.365893+00:00",
+      "last_attempt_at": "2026-11-16T15:39:25.137031+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -368,7 +368,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:48.225901+00:00",
+      "last_attempt_at": "2026-11-16T15:39:40.630144+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -412,13 +412,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:46:04.220746+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-16T15:39:12.336742+00:00",
+      "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-rijksuniversiteit-groningen-campus-fryslan",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.rug.nl/about-ug/work-with-us/lerenwerken/!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.rug.nl/cf/over-campus-fryslan/vacatures/!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.umcg.nl/NL/UMCG/werken_in_het_umcg/vacatures/paginas/default.aspx?c=Medischwetenschappelijk_personeel', 'error': 'robots.txt unavailable: 403'}]"
         }
       ]
     },
@@ -454,7 +454,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:29.283301+00:00",
+      "last_attempt_at": "2026-11-16T15:39:43.922300+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
@@ -493,13 +493,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:44.676055+00:00",
-      "public_job_records": 4,
+      "last_attempt_at": "2026-11-16T15:39:44.043125+00:00",
+      "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-ikea-ingka-group",
-          "message": "[{'url': 'https://jobs.ikea.com/en/job/groningen/hr-stage/24107/102900957200', 'error': 'Vacancy verification: robots.txt disallows https://ikea.avature.net/nl_NL/External/JobDetail?jobId=376337&source=Talent+Brew+Career+Page'}, {'url': 'https://jobs.ikea.com/en/job/groningen/hr-stagiair-e-rcmp-ikea/24107/102759645920', 'error': 'Vacancy verification: robots.txt disallows https://ikea.avature.net/nl_NL/External/JobDetail?jobId=375629&source=Talent+Brew+Career+Page'}, {'url': 'https://jobs.ikea.com/en/job/groningen/traineeship/24107/97141074352', 'error': 'No supported JobPosting structured data; no page-text guessing'}]"
+          "message": "[{'url': 'https://jobs.ikea.com/en/job/groningen/hr-stagiair-e-rcmp-ikea/24107/102759645920', 'error': 'Vacancy verification: robots.txt disallows https://ikea.avature.net/nl_NL/External/JobDetail?jobId=375629&source=Talent+Brew+Career+Page'}, {'url': 'https://jobs.ikea.com/en/job/groningen/traineeship/24107/97141074352', 'error': 'No supported JobPosting structured data; no page-text guessing'}]"
         }
       ]
     },
@@ -535,7 +535,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:58.728736+00:00",
+      "last_attempt_at": "2026-11-16T15:39:15.134701+00:00",
       "public_job_records": 23,
       "verified_hr_internship_ids": [
         "0aa70507b5a3cbedd17b"
@@ -590,7 +590,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:33.857155+00:00",
+      "last_attempt_at": "2026-11-16T15:39:19.699819+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -634,7 +634,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:39.720100+00:00",
+      "last_attempt_at": "2026-11-16T15:40:06.239037+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -676,10 +676,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:26.384682+00:00",
-      "public_job_records": 40,
+      "last_attempt_at": "2026-11-16T15:39:54.057642+00:00",
+      "public_job_records": 72,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-belsimpel-gomibo-group",
+          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime/nl', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbijbelsimpel.nl/ons_verhaal.html', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ]
     },
     {
       "company_id": "veiligheidsregio-groningen",
@@ -714,8 +719,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:26.384682+00:00",
-      "public_job_records": 11,
+      "last_attempt_at": "2026-11-16T15:39:54.057642+00:00",
+      "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -756,7 +761,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:48.225901+00:00",
+      "last_attempt_at": "2026-11-16T15:39:40.630144+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -798,7 +803,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:56.955605+00:00",
+      "last_attempt_at": "2026-11-16T15:39:38.034850+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -835,7 +840,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:22.365893+00:00",
+      "last_attempt_at": "2026-11-16T15:39:25.137031+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -877,7 +882,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:39.720100+00:00",
+      "last_attempt_at": "2026-11-16T15:40:06.239037+00:00",
       "public_job_records": 12,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -936,7 +941,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:39.720100+00:00",
+      "last_attempt_at": "2026-11-16T15:40:06.239037+00:00",
       "public_job_records": 12,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -984,7 +989,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:44.676055+00:00",
+      "last_attempt_at": "2026-11-16T15:39:44.043125+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1021,7 +1026,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:44.676055+00:00",
+      "last_attempt_at": "2026-11-16T15:39:44.043125+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1063,7 +1068,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:48.225901+00:00",
+      "last_attempt_at": "2026-11-16T15:39:40.630144+00:00",
       "public_job_records": 12,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1105,7 +1110,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:45.345299+00:00",
+      "last_attempt_at": "2026-11-16T15:40:04.712299+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1147,7 +1152,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:22.365893+00:00",
+      "last_attempt_at": "2026-11-16T15:39:25.137031+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1211,7 +1216,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:44.676055+00:00",
+      "last_attempt_at": "2026-11-16T15:39:44.043125+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1253,7 +1258,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:44.676055+00:00",
+      "last_attempt_at": "2026-11-16T15:39:44.043125+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1328,7 +1333,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:33.857155+00:00",
+      "last_attempt_at": "2026-11-16T15:39:19.699819+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1381,15 +1386,10 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:46:04.220746+00:00",
+      "last_attempt_at": "2026-11-16T15:39:12.336742+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-solidus",
-          "message": "[{'url': 'https://solidus.com/careers?job_locations=belgium', 'error': 'HTTP Error 500: Internal Server Error'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "treant",
@@ -1423,13 +1423,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:45.345299+00:00",
-      "public_job_records": 48,
+      "last_attempt_at": "2026-11-16T15:40:04.712299+00:00",
+      "public_job_records": 50,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-treant",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.treant.nl/werken-leren/vacatures/kom-op-speeddate-bij-treant-thuis', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -1487,7 +1487,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:56.648718+00:00",
+      "last_attempt_at": "2026-11-16T15:39:17.715927+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1529,7 +1529,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:33.857155+00:00",
+      "last_attempt_at": "2026-11-16T15:39:19.699819+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1571,7 +1571,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:39.720100+00:00",
+      "last_attempt_at": "2026-11-16T15:40:06.239037+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1613,7 +1613,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:26.384682+00:00",
+      "last_attempt_at": "2026-11-16T15:39:54.057642+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1655,7 +1655,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-16T13:45:56.955605+00:00",
+      "last_attempt_at": "2026-11-16T15:39:38.034850+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
