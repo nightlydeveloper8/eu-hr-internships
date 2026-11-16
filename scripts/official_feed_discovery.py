@@ -56,7 +56,7 @@ def authorisation_evidence(path):
 
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--provider",required=True,choices=["jobtech-se","eures-authorized-input"])
+    p.add_argument("--provider",required=True,choices=["jobtech-se","eures-authorized-input","mpsv-cz"])
     p.add_argument("--live",action="store_true",help="JobTech SE only, explicit bounded GET")
     p.add_argument("--input",type=Path,help="Licensed normalized JSON input; must be an array")
     p.add_argument("--authorization",type=Path,help="Auditable EURES partner permission; not an automatic legal review")
@@ -67,10 +67,10 @@ def main(argv=None):
         p.error("Cannot overwrite production data")
     if args.live == bool(args.input):
         p.error("Choose exactly one of --live or --input")
-    if args.provider=="eures-authorized-input" and args.live:
-        p.error("EURES automated fetching is not available in this program")
-    if args.provider=="jobtech-se" and args.authorization:
-        p.error("JobTech SE does not need an EURES grant")
+    if args.provider!="jobtech-se" and args.live:
+        p.error("Live fetching is available only for the reviewed JobTech API")
+    if args.provider!="eures-authorized-input" and args.authorization:
+        p.error("EURES grants are applicable only to EURES upstream inputs")
     if args.provider=="eures-authorized-input":
         try:
             grant=authorisation_evidence(args.authorization)
@@ -94,7 +94,7 @@ def main(argv=None):
         report.update(requests=0,bytes_read=0,rendering_count=0,
                       checked_at=datetime.now(timezone.utc).isoformat(),
                       collector_registry_modified=False)
-    report["authorisation"]=grant if grant else {"kind":"public-cc0" if args.provider=="jobtech-se" else "missing"}
+    report["authorisation"]=grant if grant else {"kind":"public-cc0" if args.provider=="jobtech-se" else "official-czech-open-data-privacy-review" if args.provider=="mpsv-cz" else "missing"}
     report["elapsed_seconds"]=round(time.monotonic()-started,3)
     report["baseline_catalog_jobs"]=len(catalog["jobs"])
     report["catalog_modified"]=False
