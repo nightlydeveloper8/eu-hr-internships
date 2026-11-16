@@ -21,19 +21,28 @@ La priorità di pilot è Brainstorm (singolo job nell'inventario corrente), poi 
 - **Malta:** per Xara Collection le pubblicazioni Hosco/LinkedIn indicano HR Intern, ma la [lista aziendale](https://xaracollection.com/xara-collection-vacancies/) contiene **HR Executive** e non lo stage; non confondere i due ruoli. Hilton HR Trainee marzo 2027 è documentato solo da siti terzi, senza identità ATS ufficiale precisa: non ammissibile.
 - **Cipro:** il [board Stoiximan](https://apply.workable.com/stoiximan/?not_found=true) menziona HR Intern in materiale promozionale, ma dichiara **zero posizioni aperte in Corporate Functions**; non contarlo come stage live.
 
-## Costi e operazioni
+## Preflight reale con il client del progetto — 16 novembre, 17:29 UTC
 
-Sono state consultate pagine pubbliche e CTA tramite ricerca web, **senza inviare candidature, effettuare login, bypassare CAPTCHA o aprire zone protette**. I tentativi di lettura robots dai siti ATS col lettore web non hanno restituito dati utilizzabili; una prova HTTPS via runtime ha fallito la risoluzione DNS. Pertanto **robots, inventari completi e moduli anonimi non sono verificati**. Nessun crawler di produzione eseguito su queste fonti.
+Dopo la ricerca web è stata eseguita **una singola prova GET-only** con il vero `collector.runtime.BudgetClient` su un ramo pilota separato, con `robots=True`, redirect limitati agli host pubblici già identificati, **12 richieste e 45 secondi-fonte massimo** per datore. GitHub Actions [#43918927512](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43918927512) **success**. Evidenze grezze riproducibili, inclusi SHA256 dei corpi letti, nel [JSON del preflight](batch-07-live-preflight-2026-11-16.json).
 
-**Impatto reale:** 0 nuovi stage verificati, 0 nuove fonti abilitate, 0 richieste quotidiane in più, nessun catalogo modificato. Costi misurabili nel collector relativi a nuove fonti: **0 richieste, 0 rendering, 0 byte**; costi della navigazione web non misurati con BudgetClient.
+| Fonte | Richieste logiche totali, inclusi robots | Byte letti | Secondi-fonte | HTTP delle pagine | Form candidato HTML visibile |
+| --- | ---: | ---: | ---: | --- | --- |
+| Brainstorm CY | **3** | 100.676 | 1,965 | 200 inventario; 200 vacancy | **No** |
+| iKnowHow GR | **3** | 15.300 | 1,072 | 200 board; 200 vacancy | **No** |
+| Marriott MT | **5** | 1.240.277 | 2,366 | 200 board; 200 vacancy; 200 Oracle | **No** |
+| **Totale** | **11** | **1.356.253** | **5,403** | Nessun HTTP 429 | **0 su 3** |
 
-**Budget solo proposto, non misurato:** massimo 12 richieste e 45 secondi-fonte per ciascuno dei tre canali (tetto 36 richieste e 135 secondi cumulati), senza rendering. Non abilita nuovi host o automatismi.
+La guardia `robots.txt` del client ha **consentito le URL richieste**: non significa che tutte le sezioni degli host siano autorizzate. Il probe **non conserva contenuto/status delle singole risposte robots** e quindi non si possono attestare direttive precise. Non sono stati usati browser, renderer, autenticazione, POST, invio o CAPTCHA. **Nessuna fonte è stata attivata né nel ramo principale né nel workflow giornaliero.**
+
+**Qualità delle prove:** Brainstorm restituisce nel corpo dell'inventario il titolo HR Intern e sulla scheda lo stesso titolo/ID; il form resta non visibile. iKnowHow restituisce HTTP 200 e il testo del ruolo sulla singola pagina, ma la pagina board viene letta come HTML shell senza titolo HR nel testo estratto; inventario completo **non dimostrato**. Marriott restituisce la scheda HR con titolo e la destinazione Oracle con ID 26132701, ma quest'ultima è una shell senza campi candidati nel DOM statico; anche il listing Westin non contiene il titolo HR nel testo estratto dal client. Non sono perciò tre verifiche policy v2 riuscite.
+
+**Beneficio reale:** confermato l'accesso robots-guarded e la lettura limitata delle tre schede; **0 nuove candidature verificate**, **0 fonti abilitate**, **0 richieste quotidiane aggiunte**. Il costo misurato di questa attività è **11 GET logici e 1,36 MB di corpi letti** con **5,403 s-fonte**; il costo aggiuntivo del monitoraggio ordinario resta **zero** perché non c'è rollout. Le ricerche web sono state svolte separatamente e non sono metriche del BudgetClient. Nessuna prova di produzione ottenuta per questi nuovi canali.
 
 ## Prossimo punto incompleto
 
-1. Preflight con BudgetClient e robots sui singoli host di **Brainstorm CY** e **iKnowHow GR**: inventario, job ID e modulo candidato abilitato dello stesso annuncio; fermare gli host non consentiti.
-2. Controllo separato **Marriott MT → Oracle** solo se il percorso esatto è consentito e il modulo anonimo leggibile, senza login.
+1. **Dopo il preflight GET già riuscito:** individuare un modo ufficiale, riutilizzabile e consentito di ottenere il modulo anonimo abilitato per Brainstorm Teamtailor e iKnowHow Workable, senza rendere più permissiva la policy v2; verificare completezza del board Workable.
+2. **Marriott MT → Oracle:** host e ID del percorso verificati in GET, ma solo shell HTML: lasciare unverified finché il modulo anonimo non è osservabile senza login o rendering non autorizzato.
 3. **Croazia:** sostituire Rimac non attuale con un nuovo inventario HR student ufficiale realmente aperto. Non promuovere annunci chiusi o lavori studenteschi a stage.
 4. Solo dopo le prove policy v2 predisporre bundle atomico/rollout specifico e misurare due cicli. Lotto 08 AT/DE/DK/FI/PL/SE già pianificato, **non schedulato**.
 
-Questa PR cambia **solo documentazione** e il checkpoint globale; non altera registry, collector, catalogo, workflow o policy v2. PR #41 e #46 restano draft non pronti.
+Questa PR cambia **solo documentazione** e il checkpoint globale; non altera registry, collector, catalogo, workflow o policy v2. Il workflow pilota GET-only vive su un ramo separato non integrato e non è una schedulazione quotidiana. PR #41 e #46 restano draft non pronti.
