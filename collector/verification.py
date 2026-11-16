@@ -168,7 +168,10 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
         target = canonical_url(urljoin(doc.url, href))
         if urlsplit(target).hostname in source['allowed_hosts'] and target != canonical_url(doc.url): targets.append(target)
     if not targets:
-        if disabled_submit_applicant_form(body):
+        # Preserve the existing dynamic-ATS fallback for non-Personio hosts.
+        # Personio already exposes candidate fields, so rendering a disabled
+        # submit again adds cost but cannot establish an enabled application.
+        if (urlsplit(doc.url).hostname or '').endswith('.jobs.personio.de') and disabled_submit_applicant_form(body):
             raise ValueError('Applicant fields visible but submit disabled in initial HTML; availability unverified')
         from .dynamic_ats import MissingDynamicForm
         raise MissingDynamicForm('No available vacancy-specific application entry established',doc.url,body)
@@ -190,7 +193,7 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     if not same_title(application, record['title']) and (application.jobposts() or any(classify_role(h) for h in application.h1)):raise ValueError('Application identifies a different vacancy')
     if not same_title(application, record['title']) and not same_requisition(doc.url,application.url): raise ValueError('Application page does not identify the same vacancy')
     if not applicant_form(app_body):
-        if disabled_submit_applicant_form(app_body):
+        if (urlsplit(application.url).hostname or '').endswith('.jobs.personio.de') and disabled_submit_applicant_form(app_body):
             raise ValueError('Applicant fields visible but submit disabled in initial HTML; availability unverified')
         from .dynamic_ats import MissingDynamicForm
         raise MissingDynamicForm('Applicant form not established; application may require JavaScript or an account',application.url,app_body)
