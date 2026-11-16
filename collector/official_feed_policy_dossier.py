@@ -12,9 +12,10 @@ from .classify import canonical_url, fold, plain, classify_role
 from .official_feed_discovery import https_url
 from .official_feed_verification import CapturedClient, verify_candidate
 from .runtime import BudgetClient
-from .verification import _verify_vacancy, blocked_error
+from .verification import _verify_vacancy, blocked_error, same_title, same_requisition, applicant_form, structured_identifiers, expired
 from .universal import Document
-from .applications import ensure_open_document
+from .applications import ensure_open_document, checked_document, ApplicantForms
+from .dynamic_ats import MissingDynamicForm
 
 
 def ats_parent(application_url, host):
@@ -28,6 +29,56 @@ def ats_parent(application_url, host):
     return dict(job_page=urlunsplit(("https",host,m["parent"],"","")),
                 ats_id=m["id"],application_url=checked)
 
+
+
+def _published_source_child_fallback(candidate, vacancy, source, captured):
+    """Specific known Teamtailor path when employer CTA is a non-link button.
+
+    The caller has already read an identified employer parent. The external
+    public feed supplied the child URL, not the parser. No CTA target is
+    invented from a button. Separate ID/path, identical title, published
+    employer CTA and strict same-vacancy form all remain mandatory.
+    """
+    parent_url=vacancy["url"]
+    app_url=vacancy["apply_url"]
+    body=captured.pages.get(canonical_url(parent_url))
+    if not body:
+        raise ValueError("Current employer vacancy HTML unavailable")
+    doc=Document(body,parent_url)
+    ensure_open_document(doc)
+    if not same_title(doc,vacancy["title"]):
+        raise ValueError("Current employer page does not name the same role")
+    if not same_requisition(parent_url,app_url):
+        raise ValueError("Observed application URL does not belong to employer ATS job")
+    if not re.search(r"\b(?:skicka\s+ansokan|ansok|ansokan)\b",fold(doc.text)):
+        raise ValueError("Employer vacancy has no visible applicant CTA")
+    # An existing Teamtailor parent→child path with one fixed ATS ID is
+    # required. Do not accept generic /apply, locale pages, or wrong IDs.
+    parent=ats_parent(app_url,urlsplit(parent_url).hostname)
+    if not parent or canonical_url(parent["job_page"])!=canonical_url(parent_url):
+        raise ValueError("Source application ATS ID differs from current employer vacancy")
+    if str(vacancy["posting_identifier"])!=parent["ats_id"]:
+        raise ValueError("Unexpected ATS identifier")
+    ids=structured_identifiers(doc,vacancy["title"])
+    if ids and ids!={parent["ats_id"]}:
+        raise ValueError("Employer parent structured identifier conflict")
+    app_body,app=checked_document(app_url,source,captured)
+    if canonical_url(app.url)!=canonical_url(app_url) or not same_title(app,vacancy["title"]):
+        raise ValueError("Application redirected or does not identify same current vacancy")
+    form_ids=structured_identifiers(app,vacancy["title"])
+    if form_ids and form_ids!={parent["ats_id"]}:
+        raise ValueError("Application structured identifier differs")
+    for post in app.jobposts():
+        if fold(plain(post.get("title")))==fold(vacancy["title"]) and expired(post.get("validThrough"),datetime.now(timezone.utc).isoformat()):
+            raise ValueError("Application deadline expired")
+    for form in ApplicantForms(app_body,strict=True).forms:
+        action=form["attrs"].get("action")
+        if action and not https_url(urljoin(app.url,action),{urlsplit(parent_url).hostname}):
+            raise ValueError("Applicant form action host is unreviewed")
+    if not applicant_form(app_body,strict=True):
+        raise ValueError("Same-vacancy application form is not visible and enabled")
+    return dict(url=canonical_url(app.url),method="public-feed-same-ATS-id-current-employer-CTA-and-enabled-form",
+                vacancy_match="title",inventory=vacancy["inventory_evidence"])
 
 def review(candidate, *, approved_host, approved_inventory_url=None,
            client_factory=BudgetClient):
@@ -74,7 +125,10 @@ def review(candidate, *, approved_host, approved_inventory_url=None,
                      posting_identifier=parent["ats_id"],external_id=parent["ats_id"],
                      employer=candidate["employer"],title=candidate["title"],
                      inventory_evidence="reviewed-employer-public-job-page")
-        proof=_verify_vacancy(vacancy,source,captured,datetime.now(timezone.utc).isoformat())
+        try:
+            proof=_verify_vacancy(vacancy,source,captured,datetime.now(timezone.utc).isoformat())
+        except MissingDynamicForm:
+            proof=_published_source_child_fallback(candidate,vacancy,source,captured)
         page=captured.pages.get(canonical_url(parent["job_page"]))
         if not page:
             raise ValueError("Employer vacancy parent page not read")
