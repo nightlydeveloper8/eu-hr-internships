@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "observed_date": "2026-11-16",
+  "name": "EU27 batch06 targeted country expansion",
+  "mode": "web-official-role-review-not-full-collector-preflight",
+  "scope_countries": [
+    "EE",
+    "LV",
+    "LT",
+    "BG",
+    "IT",
+    "HU",
+    "SI",
+    "SK"
+  ],
+  "catalog_baseline": {
+    "updated_at": "2026-11-16T16:51:25.820161+00:00",
+    "total_jobs": 362,
+    "verified_hr_internships": 28,
+    "verified_hr_working_students": 1,
+    "verified_internship_country_count": 5
+  },
+  "limits": {
+    "collector_requests": 0,
+    "collector_duration_seconds": null,
+    "collector_bytes_read": null,
+    "renderings": 0,
+    "web_search_http_requests_not_metered": true,
+    "cost_monetary": null,
+    "robot_policy": "No added employer or ATS host was approved for crawling or production in this review; web access is not a bot-policy preflight.",
+    "source_admission": "none; all leads require exact host robots, ownership, feed completeness, same-vacancy form and policy v2"
+  },
+  "summary": {
+    "target_countries": 8,
+    "role_leads": 10,
+    "distinct_employers": 9,
+    "potential_higher_priority": 4,
+    "excluded_or_non_internship": 5,
+    "verified_new": 0,
+    "enabled_new": 0
+  },
+  "rows": [
+    {
+      "country": "LV",
+      "employer": "DIGI MEDIA",
+      "role": "HR Manager Intern",
+      "location": "Riga",
+      "vacancy_url": "https://digimedia.studio/careers/hr-manager-intern/",
+      "official_career_url": "https://digimedia.studio/careers/",
+      "evidence": [
+        "current-careers-listing",
+        "same-employer-role-page",
+        "visible-application-fields-in-web-render"
+      ],
+      "application_url": "https://digimedia.studio/careers/hr-manager-intern/",
+      "limits": [
+        "robots-and-bounded-collector-read-not-attested",
+        "form-html-and-enabled-submit-not-verified-by-budget-client"
+      ],
+      "decision": "pilot-priority-1",
+      "verified": false,
+      "enabled": false,
+      "language": "English required"
+    },
+    {
+      "country": "LT",
+      "employer": "Girteka",
+      "role": "Intern in Recruitment and HR Team",
+      "location": "Vilnius",
+      "vacancy_url": "https://careers.girteka.eu/job/Vilnius-Intern-in-Recruitment-and-HR-Team/1375077055/",
+      "official_career_url": "https://careers.girteka.eu/",
+      "evidence": [
+        "employer-owned-career-page",
+        "posted-2026-10-30",
+        "same-job-number-in-apply-CTA"
+      ],
+      "application_url": "https://careers.girteka.eu/talentcommunity/apply/1375077055/?locale=en_GB",
+      "limits": [
+        "CTA-resolved-to-general-portal-home-in-web-tool",
+        "anonymous-same-vacancy-form-not-established",
+        "robots-and-inventory-not-attested"
+      ],
+      "decision": "pilot-priority-2-unverified",
+      "verified": false,
+      "enabled": false,
+      "language": "English required; Russian/Portuguese/Spanish optional"
+    },
+    {
+      "country": "BG",
+      "employer": "Coca-Cola Europacific Partners",
+      "role": "Internship Program 2027 - People Services with German language skills",
+      "location": "Sofia/Varna",
+      "vacancy_url": "https://www.ccep.jobs/en/job/varna/internship-program-2027-people-services-with-german-anguage-skills/1299/46554924352",
+      "official_career_url": "https://www.ccep.jobs/",
+      "evidence": [
+        "employer-branded-career-page",
+        "posting-id-114108",
+        "apply-CTA-on-employer-site"
+      ],
+      "application_url": "https://jobs.ccep.com/careers/apply?job_id=114108&lang=en_US",
+      "limits": [
+        "application-target-redirected-to-different-query-pid",
+        "form-not-established",
+        "English-and-German-required",
+        "robots-and-inventory-not-attested"
+      ],
+      "decision": "hold-application-incomplete",
+      "verified": false,
+      "enabled": false,
+      "language": "English and German required"
+    },
+    {
+      "country": "BG",
+      "employer": "Gameloft",
+      "role": "HR Intern (long-term labor contract)",
+      "location": "Sofia",
+      "vacancy_url": "https://www.gameloft.com/jobs/HR%20Intern%20(long-term%20labor%20contract)-744000083478145",
+      "official_career_url": "https://www.gameloft.com/careers",
+      "evidence": [
+        "employer-page-remains-visible",
+        "apply-link-goes-to-smartrecruiters-expired-page"
+      ],
+      "application_url": "https://jobs.smartrecruiters.com/Gameloft/744000083478145-hr-intern-long-term-labor-contract-",
+      "limits": [
+        "ATS-explicit-expired-path"
+      ],
+      "decision": "exclude-expired",
+      "verified": false,
+      "enabled": false,
+      "language": "unknown"
+    },
+    {
+      "country": "IT",
+      "employer": "Heritage Holdings",
+      "role": "HR Internship",
+      "location": "Milan",
+      "vacancy_url": "https://job-boards.eu.greenhouse.io/heritageholdings/jobs/4945490101",
+      "official_career_url": null,
+      "evidence": [
+        "current-16-job-greenhouse-board",
+        "HR-department-posting",
+        "visible-application-fields-and-submit-in-web-render",
+        "requisition-id-4945490101"
+      ],
+      "application_url": "https://job-boards.eu.greenhouse.io/heritageholdings/jobs/4945490101",
+      "limits": [
+        "exact-corporate-employer-to-tenant-link-not-established",
+        "robots-and-collector-API-inventory-not-attested",
+        "not-policy-v2-live-collector-verified"
+      ],
+      "decision": "pilot-priority-1-identity-review",
+      "verified": false,
+      "enabled": false,
+      "language": "English required"
+    },
+    {
+      "country": "IT",
+      "employer": "Heritage Holdings",
+      "role": "HR Recruiter Internship",
+      "location": "Milan",
+      "vacancy_url": "https://job-boards.eu.greenhouse.io/heritageholdings/jobs/4945390101",
+      "official_career_url": null,
+      "evidence": [
+        "current-16-job-greenhouse-board",
+        "HR-department-posting",
+        "visible-application-fields-and-submit-in-web-render",
+        "requisition-id-4945390101"
+      ],
+      "application_url": "https://job-boards.eu.greenhouse.io/heritageholdings/jobs/4945390101",
+      "limits": [
+        "exact-corporate-employer-to-tenant-link-not-established",
+        "robots-and-collector-API-inventory-not-attested",
+        "not-policy-v2-live-collector-verified"
+      ],
+      "decision": "pilot-priority-1-identity-review",
+      "verified": false,
+      "enabled": false,
+      "language": "English required"
+    },
+    {
+      "country": "EE",
+      "employer": "Bolt",
+      "role": "Talent Acquisition Intern",
+      "location": "Tallinn",
+      "vacancy_url": "https://bolt.eu/en/careers/positions/?gh_jid=8505592002&page=11",
+      "official_career_url": "https://bolt.eu/en/careers/positions/",
+      "evidence": [
+        "older-employer-pagination-listed-role",
+        "bolt.eu-robots-allow-all-observed",
+        "external-job-board-says-no-longer-accepting-and-2026-11-02-deadline"
+      ],
+      "application_url": null,
+      "limits": [
+        "current-live-same-vacancy-CTA-and-form-not-established",
+        "external-deadline-past"
+      ],
+      "decision": "exclude-pending-fresh-official-application",
+      "verified": false,
+      "enabled": false,
+      "language": "English required"
+    },
+    {
+      "country": "HU",
+      "employer": "Betsson Group",
+      "role": "HR & Office Intern",
+      "location": "Budapest",
+      "vacancy_url": "https://job-boards.greenhouse.io/betsson/jobs/8187971",
+      "official_career_url": "https://betssongroup.com/careers/",
+      "evidence": [
+        "historic-job-page-has-form",
+        "current-greenhouse-board-no-longer-lists-this-position",
+        "corporate-website-declares-no-internship-openings"
+      ],
+      "application_url": null,
+      "limits": [
+        "stale-vacancy-page-must-not-override-current-inventory"
+      ],
+      "decision": "exclude-not-in-current-inventory",
+      "verified": false,
+      "enabled": false,
+      "language": "English required"
+    },
+    {
+      "country": "SI",
+      "employer": "Danfoss",
+      "role": "HR Intern HR Service Center EMEA",
+      "location": "Ljubljana",
+      "vacancy_url": null,
+      "official_career_url": "https://www.danfoss.com/en/about-danfoss/careers/",
+      "evidence": [
+        "historic-third-party-hint-only",
+        "external-index-reports-removed-from-employer-board-2026-10-30"
+      ],
+      "application_url": null,
+      "limits": [
+        "exact-official-job-url-not-recovered",
+        "not-current-official-inventory"
+      ],
+      "decision": "exclude-stale",
+      "verified": false,
+      "enabled": false,
+      "language": "English CV specified in historical lead"
+    },
+    {
+      "country": "SK",
+      "employer": "Adient",
+      "role": "Part-Time Student HR department",
+      "location": "Bratislava",
+      "vacancy_url": "https://adient.wd3.myworkdayjobs.com/en-US/External/job/Part---Time-Student-HR-department_R-29080",
+      "official_career_url": null,
+      "evidence": [
+        "official-workday-student-role"
+      ],
+      "application_url": null,
+      "limits": [
+        "working-student-not-confirmed-internship",
+        "form-and-ownership-not-established"
+      ],
+      "decision": "separate-working-student-lane",
+      "verified": false,
+      "enabled": false,
+      "language": "unknown"
+    }
+  ],
+  "follow_up_batches": [
+    {
+      "batch": "07",
+      "countries": [
+        "CY",
+        "GR",
+        "HR",
+        "MT",
+        "SI",
+        "SK"
+      ],
+      "goal": "official local-language and pan-European employer ATS, no aggregator ingestion"
+    },
+    {
+      "batch": "08",
+      "countries": [
+        "AT",
+        "DE",
+        "DK",
+        "FI",
+        "PL",
+        "SE"
+      ],
+      "goal": "revisit blocked historic sources with alternative official channels only"
+    },
+    {
+      "batch": "09",
+      "countries": [
+        "CZ",
+        "RO",
+        "IE",
+        "LU",
+        "HU",
+        "IT"
+      ],
+      "goal": "complete review of pending exact ATS identity/forms and deduplicate old leads"
+    },
+    {
+      "batch": "10",
+      "countries": [
+        "EE",
+        "LV",
+        "LT",
+        "BG",
+        "NL",
+        "BE",
+        "FR",
+        "ES",
+        "PT"
+      ],
+      "goal": "measure repeatable cycles and gap close; not a claim of full country coverage"
+    }
+  ]
+}
