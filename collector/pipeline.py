@@ -356,11 +356,17 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
         except (ValueError,TypeError,KeyError):age=float('inf')
         if job['status']=='open' and (age<0 or age>48*3600):
             job['status']='unverified';job['link_status']='stale';job['verification']=dict(job.get('verification',{}),state='incomplete',reason='Verification timestamp is future, invalid or older than 48 hours')
+    # Do not retain legacy university/referral assignments as recoverable
+    # employer vacancies; keep their IDs, history and closed status intact.
+    from .ownership import quarantine_historical_external_jobs
+    jobs=quarantine_historical_external_jobs(jobs,registry)
+    result['jobs']=jobs
     validate_catalog(result)
     report_by_id.update({r['id']:r for r in reports})
     counts=Counter(c for j in jobs if j['status']!='closed' for c in j['countries'])
     all_reports=list(report_by_id.values())
     coverage={'generated_at':stamp,'exhaustive':False,'sources':all_reports,'countries':[{'code':c,'name':n,'listings':counts[c],'sources_with_observed_jobs':sum(c in r.get('observed_countries',[]) for r in all_reports if r['status']=='ok'),'discovery_candidates':sum(c in s.get('target_countries',[]) for s in registry if not s.get('enabled'))} for c,n in COUNTRIES.items()],'quality':{'total':len(jobs),'open':sum(j['status']=='open' for j in jobs),'unverified':sum(j['status']=='unverified' for j in jobs),'confirmed_english':sum(any(l['code']=='en' and l['requirement']!='preferred' for l in j['workplace_languages']) for j in jobs if j['status']!='closed'),'sources_succeeded':len(successful),'sources_attempted':len(selected),'sources_partial':len(partial_sources)}}
+    coverage['quality']['historical_unreviewed_external_records']=sum(bool(j.get('ownership_risk',{}).get('state')=='historical-unreviewed-external-host') for j in jobs)
     coverage['quality'].update(verified_internships=sum(j['status']=='open' and j['internship_type']=='internship' for j in jobs),verified_working_students=sum(j['status']=='open' and j['internship_type']=='working-student' for j in jobs),verified_traineeships=sum(j['status']=='open' and j['internship_type']=='traineeship' for j in jobs))
     # Validate both documents before either is exported; the build copies only a successful run.
     write(output/'coverage.json',coverage); write(output/'catalog.json',result)
