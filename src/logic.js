@@ -1,4 +1,5 @@
 export const fold = value => String(value ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+export const unreviewedExternal = job => job.ownership_risk?.state === 'historical-unreviewed-external-host';
 export function languageInfo(job) {
   const explicit = (job.workplace_languages || []).filter(l => l.confidence === 'confirmed' && ['required','required-or-working','working','alternative'].includes(l.requirement));
   return job.language_requirements || {requirements_status:explicit.length ? 'explicit' : 'unknown', english_support:(job.workplace_languages || []).some(l=>l.code==='en' && l.confidence==='confirmed' && ['required','required-or-working','working','alternative'].includes(l.requirement)) ? 'documented' : 'unknown', english_sufficiency:'unknown'};
@@ -11,7 +12,7 @@ export function verifiedJob(job, clock = Date.now()) {
 // This must never change verifiedJob(), policy v2, or the 48-hour freshness threshold.
 export function unverifiedFallback(catalog, clock = Date.now()) {
   return stale(catalog?.updated_at, clock) && Array.isArray(catalog?.jobs)
-    && catalog.jobs.some(job => job.status !== 'closed')
+    && catalog.jobs.some(job => job.status !== 'closed' && !unreviewedExternal(job))
     && !catalog.jobs.some(job => verifiedJob(job, clock));
 }
 
@@ -25,7 +26,7 @@ export function shareableFilterParams(filters, defaults) {
 }
 
 export function matches(job, filters, saved = new Set()) {
-  if (job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
+  if (unreviewedExternal(job) || job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
   if (filters.saved && !saved.has(job.id)) return false;
   if (filters.country && !job.countries.includes(filters.country)) return false;
   if (filters.region && !(job.region_codes || []).includes(filters.region)) return false;
@@ -69,13 +70,13 @@ export function verificationMessage(job, clock = Date.now()) {
   return 'We could not confirm the current vacancy and its application route. The listing may still be open; check the original employer page.';
 }
 export function opportunityCounts(jobs, clock = Date.now()) {
-  const active = jobs.filter(job => job.status !== 'closed');
+  const active = jobs.filter(job => job.status !== 'closed' && !unreviewedExternal(job));
   return {total:active.length,verified:active.filter(job => verifiedJob(job,clock)).length,
     unverified:active.filter(job => !verifiedJob(job,clock)).length,
     verifiedInternships:active.filter(job => verifiedJob(job,clock) && job.internship_type==='internship').length,
     verifiedWorkingStudents:active.filter(job => verifiedJob(job,clock) && job.internship_type==='working-student').length,
     verifiedTraineeships:active.filter(job => verifiedJob(job,clock) && job.internship_type==='traineeship').length,
-    closed:jobs.length-active.length,
+    closed:jobs.filter(job => job.status === 'closed').length,
     internships:active.filter(job => job.internship_type==='internship').length,
     workingStudents:active.filter(job => job.internship_type==='working-student').length,
     traineeships:active.filter(job => job.internship_type==='traineeship').length};

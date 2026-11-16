@@ -138,3 +138,21 @@ test('monitor counts verified HR internships only with current policy v2 and 48h
   assert.equal(opportunityCounts([fresh,stale,unverified,closed,wrongPolicy,working],clock).verifiedInternships,1);
   assert.equal(opportunityCounts([fresh,stale,unverified,closed,wrongPolicy,working],clock+49*60*60*1000).verifiedInternships,0);
 });
+
+test('historical external publisher records stay in JSON but never display as official leads',()=>{
+ const mirrored={...base,id:'historical-referral',status:'unverified',
+     source_id:'auto-tilburg-university',url:'https://www.nationalevacaturebank.nl/vacature/123',
+     ownership_risk:{state:'historical-unreviewed-external-host',
+                     original_source_id:'auto-tilburg-university',observed_host:'www.nationalevacaturebank.nl'}};
+ assert.equal(matches(mirrored,{...f,unverified:true}),false);
+ assert.equal(matches(mirrored,f),false);
+ const counts=opportunityCounts([base,mirrored],Date.now());
+ assert.equal(counts.total,1);
+ assert.equal(counts.verifiedInternships,1);
+ assert.equal(counts.unverified,0);
+ assert.equal(counts.closed,0);
+ const clock=Date.parse('2026-11-16T20:00:00Z');
+ const staleCatalog={updated_at:'2026-11-12T00:00:00Z',jobs:[mirrored]};
+ assert.equal(unverifiedFallback(staleCatalog,clock),false);
+ assert.equal(unverifiedFallback({...staleCatalog,jobs:[mirrored,{...mirrored,id:'valid-lead',ownership_risk:undefined}]},clock),true);
+});
