@@ -120,7 +120,7 @@ def workplace_languages(text):
             optional = bool(re.search(r'plus|advantage|bonus|preferred|nice.to.have|appreciated|souhait|apprecie|von vorteil|deseable|valorable|preferible',tail))
             optional = optional or bool(re.match(r'preferred languages?(?: are)?\s*:',s) or re.match(r'preferred languages? are\b',s))
             optional = optional or bool(re.search(r'(?:preferred|preferably|nice.to.have|ideally)\s+(?:\w+\s+){0,2}$',s[max(start+1,m.start()-35):m.start()]))
-            optional = optional or bool(re.search(r'(?:deseable|valorable|preferible)(?:\s+\w+){0,5}\s*$',s[max(start+1,m.start()-65):m.start()]))
+            optional = optional or bool(re.search(r'(?:deseable|valorable|preferible)\s*:?\s*(?:\w+\s+){0,5}$',s[max(start+1,m.start()-65):m.start()]))
             mentions=sorted((x.start(),x.end()) for p in LANG_ALIASES.values() for x in re.finditer(r'\b(?:'+p+r')\b',s))
             alternative=any(re.fullmatch(r'\s+(?:or|and\s*/\s*or|oder|of|en\s*/\s*of|ou|oppure)\s+',s[a[1]:b[0]]) and m.start() in (a[0],b[0]) for a,b in zip(mentions,mentions[1:]))
             working=bool(re.search(r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|(?:working|corporate|company|business|official|main) language|work in',local))

@@ -32,7 +32,7 @@ class LocalizedEvidenceTests(unittest.TestCase):
         body=(Path(__file__).parent/'fixtures/bsh-publication/vacancy.html').read_bytes();text=Document(body,'https://jobs.bsh-group.de/job').text
         summary=language_summary(text);self.assertEqual(summary['english_support'],'documented');self.assertEqual(summary['english_sufficiency'],'unknown')
     def test_spanish_optional_levels_remain_optional(self):
-        for text in ['Inglés nivel B2 deseable.','Valorable nivel B2 de inglés.','Preferible nivel alto de inglés.']:
+        for text in ['Inglés nivel B2 deseable.','Valorable nivel B2 de inglés.','Preferible nivel alto de inglés.','Valorable: nivel B2 de inglés.','Deseable: inglés nivel B2.']:
             with self.subTest(text=text):
                 langs=workplace_languages(text);self.assertEqual([l['requirement'] for l in langs],['preferred']);self.assertEqual(language_summary(text,langs)['english_support'],'unknown')
     def test_spanish_negated_levels_are_not_workplace_evidence(self):

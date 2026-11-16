@@ -6,7 +6,8 @@
 ## 16 novembre 2026 — lotto DE/DK/PL/FI verificato, nessuna nuova fonte ammissibile
 
 **Quattro indizi → zero nuove fonti attivabili, zero nuovi stage aggiunti.**
-Ramo `review/eu27-de-dk-pl-fi-20261116`, base main `876794a`.
+Consegna nella [PR #44](https://github.com/nightlydeveloper8/eu-hr-internships/pull/44),
+ramo `review/eu27-de-dk-pl-fi-20261116`, base main `876794a`.
 Rapporto [BATCH-03-REVIEW.md](eu27-expansion/BATCH-03-REVIEW.md) e
 [evidenze JSON](eu27-expansion/batch-03-review-2026-11-16.json).
 
