@@ -1,0 +1,18 @@
+name: PANDOO Luxembourg one-shot policy-v2 mailto proof
+on:
+  push:
+    branches:
+      - pilot/eu27-pandoo-direct-email-20261116
+permissions:
+  contents: read
+jobs:
+  check-once:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Two official GET and strict email application evidence
+        run: python -m scripts.one_shot_pandoo_proof
