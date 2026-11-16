@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "mode": "one-time-bounded-readonly-preflight",
+  "policy_version": 2,
+  "requests_max_per_source": 12,
+  "seconds_max_per_source": 45,
+  "renderings": 0,
+  "rows": [
+    {
+      "country": "CY",
+      "employer": "Brainstorm Hospitality",
+      "job_id": "7649525",
+      "pages": [
+        {
+          "kind": "inventory",
+          "url": "https://careers.fridays.com.cy/",
+          "page_closure": "none-detected",
+          "http_status": 200,
+          "final_url": "https://careers.fridays.com.cy",
+          "bytes": 56777,
+          "sha256": "6714ddfdad35ca1b785533cd0d8060d3e1d98429a183a8aee5e0222f81f87d74",
+          "headings": [
+            "Γίνε ένας από εμάς"
+          ],
+          "title_in_text": true,
+          "job_id_in_url": false,
+          "applicant_form_visible_enabled": false,
+          "observed_link_labels": [],
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "vacancy",
+          "url": "https://careers.fridays.com.cy/jobs/7649525-hr-intern",
+          "page_closure": "none-detected",
+          "http_status": 200,
+          "final_url": "https://careers.fridays.com.cy/jobs/7649525-hr-intern",
+          "bytes": 43633,
+          "sha256": "75228e7222b1b1bd7a38435cb0a1a82672d8d95521fb69b429508ed819d2a08b",
+          "headings": [
+            "HR Intern",
+            "HR Intern"
+          ],
+          "title_in_text": true,
+          "job_id_in_url": true,
+          "applicant_form_visible_enabled": false,
+          "observed_link_labels": [],
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "notes": "Page/forms alone are not policy-v2 proof; no sources activated",
+      "requests": 3,
+      "bytes_read": 100676,
+      "seconds": 1.965,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "GR",
+      "employer": "iKnowHow S.A.",
+      "job_id": "3F368EAC02",
+      "pages": [
+        {
+          "kind": "inventory",
+          "url": "https://apply.workable.com/ikh/",
+          "page_closure": "none-detected",
+          "http_status": 200,
+          "final_url": "https://apply.workable.com/ikh",
+          "bytes": 7523,
+          "sha256": "5995428a31507c86ec7e164bcf121c0c976f3c400ff09acd7113bc2b4f157adc",
+          "headings": [],
+          "title_in_text": false,
+          "job_id_in_url": false,
+          "applicant_form_visible_enabled": false,
+          "observed_link_labels": [],
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "vacancy",
+          "url": "https://apply.workable.com/ikh/j/3F368EAC02",
+          "page_closure": "none-detected",
+          "http_status": 200,
+          "final_url": "https://apply.workable.com/ikh/j/3F368EAC02",
+          "bytes": 7699,
+          "sha256": "04b34125abcb2352f0c3fd1a702b1b1eb3a634f22356beaf86c924d48a5a8887",
+          "headings": [],
+          "title_in_text": true,
+          "job_id_in_url": true,
+          "applicant_form_visible_enabled": false,
+          "observed_link_labels": [],
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "notes": "Page/forms alone are not policy-v2 proof; no sources activated",
+      "requests": 3,
+      "bytes_read": 15300,
+      "seconds": 1.072,
+      "rate_limited_skips": 0
+    },
+    {
+      "country": "MT",
+      "employer": "Marriott / Westin Dragonara",
+      "job_id": "26132701",
+      "pages": [
+        {
+          "kind": "inventory",
+          "url": "https://careers.marriott.com/brands/westin/jobs/page/52",
+          "page_closure": "none-detected",
+          "http_status": 200,
+          "final_url": "https://careers.marriott.com/brands/westin/jobs/page/52",
+          "bytes": 675179,
+          "sha256": "11c43bd29f1fd01e32c6a31aee480b2fd96b1267c7a9a32d8cd6b625fcf21dc4",
+          "headings": [],
+          "title_in_text": false,
+          "job_id_in_url": false,
+          "applicant_form_visible_enabled": false,
+          "observed_link_labels": [],
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "vacancy",
+          "url": "https://careers.marriott.com/human-resources-intern-the-westin-dragonara-resort/job/P1-7345932-0",
+          "page_closure": "none-detected",
+          "http_status": 200,
+          "final_url": "https://careers.marriott.com/human-resources-intern-the-westin-dragonara-resort/job/P1-7345932-0",
+          "bytes": 559803,
+          "sha256": "53e29ee72c9cd7ad5488b4bfa82746499ab333fdfebb8c971fb754bdf5ab2fc7",
+          "headings": [
+            "Human Resources Intern (The Westin Dragonara Resort)"
+          ],
+          "title_in_text": true,
+          "job_id_in_url": false,
+          "applicant_form_visible_enabled": false,
+          "observed_link_labels": [
+            " \n\n                                         \n    \t\t\t\t\t\t\t\t\t\t\t Apply Now \n\n       ",
+            " \n                                                 \n    \t\t\t\t\t\t\t\t\t\t\t\t\t Apply Now "
+          ],
+          "robots_guard_passed": true
+        },
+        {
+          "kind": "application",
+          "url": "https://ejwl.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/26132701/apply/email?posting_type=1",
+          "page_closure": "none-detected",
+          "http_status": 200,
+          "final_url": "https://ejwl.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/26132701/apply/email?posting_type=1",
+          "bytes": 5232,
+          "sha256": "96014962be3f18bed7bdb60c6f1ef4f47aeb9beca21e79431ac7e1d5c0b9c258",
+          "headings": [],
+          "title_in_text": false,
+          "job_id_in_url": true,
+          "applicant_form_visible_enabled": false,
+          "observed_link_labels": [],
+          "robots_guard_passed": true
+        }
+      ],
+      "verified": false,
+      "enabled": false,
+      "notes": "Page/forms alone are not policy-v2 proof; no sources activated",
+      "requests": 5,
+      "bytes_read": 1240277,
+      "seconds": 2.366,
+      "rate_limited_skips": 0
+    }
+  ],
+  "totals": {
+    "requests": 11,
+    "bytes_read": 1356253,
+    "source_seconds": 5.403,
+    "verified": 0,
+    "enabled": 0
+  },
+  "provenance": {
+    "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43918927512",
+    "pilot_branch": "pilot/eu27-batch07-readonly-20261116",
+    "pilot_commit": "a4f8301f34d981ff176ee02c1c6f2e58404b0445",
+    "logged_at": "2026-11-16T17:29:46Z",
+    "run_conclusion": "success",
+    "method": "Existing collector.runtime.BudgetClient with robots=True, exact host redirect scope, only reviewed GET URLs, 12 requests/45 seconds per source",
+    "caveat": "Robots guard passed for these URLs only; raw robots directives/status not recorded. No applicant form verified. This is not production source activation."
+  }
+}
