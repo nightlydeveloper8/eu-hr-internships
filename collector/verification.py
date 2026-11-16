@@ -46,7 +46,7 @@ def same_requisition(vacancy, application):
     a,b=urlsplit(vacancy),urlsplit(application)
     path=a.path.rstrip('/')
     return a.hostname==b.hostname and len(path.split('/'))>=3 and bool(
-        re.fullmatch(re.escape(path)+r'/(?:apply|application|solliciteer)',b.path.rstrip('/')))
+        re.fullmatch(re.escape(path)+r'/(?:apply|application|solliciteer|applications/new)',b.path.rstrip('/')))
 
 
 def shares_identifier(record, application):
@@ -165,7 +165,7 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     # Follow only observed calls to action on approved employer/provider hosts.
     targets = []
     for href, label, _ in doc.links:
-        if not re.search(r'\bapply\b|solliciteer|solliciteren|bewerben|postuler|candidati|candidarsi|candidatar', fold(label)): continue
+        if not re.search(r'\bapply\b|solliciteer|solliciteren|bewerben|postuler|candidati|candidarsi|candidatar|\bansok\b|\bansokan\b', fold(label)): continue
         target = canonical_url(urljoin(doc.url, href))
         if urlsplit(target).hostname in source['allowed_hosts'] and target != canonical_url(doc.url): targets.append(target)
     if not targets:
