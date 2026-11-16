@@ -1,7 +1,7 @@
 """Offline policy-v2 reuse and host-scope regressions for feed -> application."""
 from unittest import TestCase
 from urllib.parse import urlsplit
-from collector.official_feed_verification import verify_candidate, verify_candidates
+from collector.official_feed_verification import verify_candidate, verify_candidates, academic_term_title_variant
 
 
 TITLE = "HR Internship Recruitment"
@@ -112,6 +112,48 @@ class VerifyLicensedFeedTests(TestCase):
         self.assertEqual(out["applications_submitted"],0)
         self.assertFalse(out["production_enabled"])
         self.assertEqual(out["renderings"],0)
+
+
+    def test_sweden_term_marker_drifts_are_diagnostic_not_verified(self):
+        self.assertTrue(academic_term_title_variant(
+            "HR Internship VT27 Recruitment", "HR Internship Recruitment"))
+        self.assertFalse(academic_term_title_variant(
+            "HR Internship VT27 Recruitment", "HR Internship Payroll"))
+        self.assertFalse(academic_term_title_variant(
+            "HR Internship VT27 HT26 Recruitment", "HR Internship Recruitment"))
+        self.assertFalse(academic_term_title_variant(
+            "Sales VT27", "Sales"))
+        row=self.run_candidate(record=candidate(title="HR Internship VT27 Recruitment"),
+                               body=html(title="HR Internship Recruitment"))
+        self.assertEqual(row["state"],"seasonal-title-variant-form-observed-review-required")
+        self.assertTrue(row["seasonal_title_variant"])
+        self.assertFalse(row["vacancy_match"])
+        self.assertTrue(row["enabled_form"])
+        self.assertFalse(row["added_verified_internship"])
+
+    def test_same_host_explicit_legal_page_can_add_separate_owner_evidence(self):
+        raw=html(employer="Other Recruiting Provider")
+        raw=raw.replace(b"</main>",b'<a href="/privacy-policy">Privacy Policy</a></main>')
+        FakeClient.bodies={
+            APP:(raw,APP),
+            "https://jobs.example.test/privacy-policy":(
+                b"<html><body>Registered employer: Example Sweden AB</body></html>",
+                "https://jobs.example.test/privacy-policy")}
+        row=verify_candidate(candidate(),{"jobs.example.test"},client_factory=FakeClient)
+        self.assertEqual(row["state"],"same-vacancy-form-and-owner-evidence")
+        self.assertEqual(row["employer_identity_evidence"],
+                         "same-host-legal-page-names-employer")
+        self.assertEqual(row["requests"],2)
+        self.assertFalse(row["added_verified_internship"])
+
+    def test_cross_host_legal_link_does_not_grant_owner_status(self):
+        raw=html(employer="Other Recruiting Provider")
+        raw=raw.replace(b"</main>",b'<a href="https://other.example/privacy">Privacy Policy</a></main>')
+        FakeClient.bodies={APP:(raw,APP)}
+        row=verify_candidate(candidate(),{"jobs.example.test"},client_factory=FakeClient)
+        self.assertEqual(row["state"],"form-observed-employer-identity-unverified")
+        self.assertEqual(row["requests"],1)
+
 
     def test_reject_non_jobtech_candidate_and_no_independent_identity_assumption(self):
         a=self.run_candidate(record=candidate(provider="eures-authorized-input"))
