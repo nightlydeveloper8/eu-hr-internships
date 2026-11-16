@@ -103,18 +103,24 @@ class RecruiteeApplicationTests(unittest.TestCase):
         self.assertEqual(client.calls,[self.source['feed_url']])
 
     def test_two_pipeline_cycles_preserve_existing_ids_without_production_writes(self):
-        root=FOLDER.parents[2];prior=json.loads((root/'data/catalog.json').read_text());old={j['id'] for j in prior['jobs']}
+        root=FOLDER.parents[2];prior=json.loads((root/'data/catalog.json').read_text())
         part=process_source(self.source,self.client,STAMP)
         self.assertEqual(len(part['jobs']),1)
         self.assertEqual(part['jobs'][0]['status'],'open')
         self.assertEqual(part['jobs'][0]['verification']['policy_version'],2)
-        with tempfile.TemporaryDirectory() as folder:
-            first,_=finalize([self.source],[self.source],copy.deepcopy(prior),{},[part],STAMP,Path(folder)/'first')
-            second,_=finalize([self.source],[self.source],copy.deepcopy(first),{},[part],STAMP,Path(folder)/'second')
-        self.assertEqual(first['jobs'],second['jobs'])
-        ids={j['id'] for j in first['jobs']}
-        self.assertEqual(len(ids-old),1)
-        self.assertTrue(old.issubset(ids))
+        expected_id=part['jobs'][0]['id']
+        # The ordinary collector can publish this exact posting after activation.
+        # Test insertion and refresh explicitly, independent of production growth.
+        absent=copy.deepcopy(prior)
+        absent['jobs']=[j for j in absent['jobs'] if j['id']!=expected_id]
+        for baseline in (absent,prior):
+            with self.subTest(already_present=any(j['id']==expected_id for j in baseline['jobs'])):
+                old={j['id'] for j in baseline['jobs']}
+                with tempfile.TemporaryDirectory() as folder:
+                    first,_=finalize([self.source],[self.source],copy.deepcopy(baseline),{},[part],STAMP,Path(folder)/'first')
+                    second,_=finalize([self.source],[self.source],copy.deepcopy(first),{},[part],STAMP,Path(folder)/'second')
+                self.assertEqual(first['jobs'],second['jobs'])
+                self.assertEqual({j['id'] for j in first['jobs']},old|{expected_id})
         self.assertFalse(self.source['enabled'])
 
 

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "state": "activation-prepared-not-merged",
+  "authorization": "User explicitly requested integration and activation of the five reviewed sources in the current turn",
+  "source_ids": [
+    "recruitee-sas-look-up-space",
+    "recruitee-monsterscore",
+    "recruitee-ibexa",
+    "recruitee-gerard-bertrand",
+    "recruitee-skytree"
+  ],
+  "company_ids": [
+    "sas-look-up-space",
+    "monsterscore",
+    "ibexa",
+    "gerard-bertrand",
+    "skytree"
+  ],
+  "companies_before": 1887,
+  "companies_after": 1892,
+  "sources_before": 1931,
+  "sources_after": 1936,
+  "catalog_before": {
+    "sha256": "e9af23a48b0e802be7b95124ecb536145f6d1292b4a733934581cbf3feb88c62",
+    "updated_at": "2026-11-16T09:06:18.796495+00:00",
+    "records": 347,
+    "open_verified": 20
+  },
+  "catalog_modified": false,
+  "provision_idempotent": true,
+  "per_source_max_requests": 12,
+  "per_source_seconds": 45,
+  "scope": "Only five reviewed exact tenant hosts; Dynamic ATS gate and workflow schedule unchanged",
+  "collection": "Existing push-to-main/scheduled workflow only; no manual workflow dispatch",
+  "rollback": "Revert the five company and source additions together in one commit; do not disable only the five sources because daily.provision would create generic fallback sources",
+  "production_benefit_verified": false
+}

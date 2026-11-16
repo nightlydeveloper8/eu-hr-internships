@@ -1,5 +1,36 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — attivazione autorizzata delle cinque fonti
+
+L'utente richiede esplicitamente integrazione e attivazione delle cinque fonti
+verificate, poi misura del primo ciclo ordinario. Autorizzazione specifica
+acquisita: non richiederla nuovamente per completare questo lotto.
+
+Preparati nel medesimo commit cinque datori e cinque sorgenti Recruitee attive:
+SAS LOOK UP SPACE, Monsterscore, Ibexa, Gérard Bertrand e SKYTREE. Datori
+1.887 → 1.892, sorgenti totali 1.931 → 1.936. Ogni sorgente usa soltanto il tenant
+esatto già revisionato, controllo `recruitee-linked`, budget 12 richieste/45 s,
+zero rendering. Nessun'altra fonte, gate Dynamic ATS, host o schedule estesi.
+`daily.provision` rimane idempotente e non genera sorgenti generiche aggiuntive.
+Catalogo manualmente invariato: baseline 347 ID, 20 open/verified, aggiornamento
+16 novembre 09:06:18 UTC. Dettagli e hash in `activation-2026-11-16.json`.
+
+Rafforzati i test di crescita del registro: Recruitee prova inserimento e refresh
+dello stesso ID; il replay ATS storico usa il campione documentato, così nuovi
+datori non invalidano i confronti storici.
+PR #42 già verde su `e449055`; l'head con attivazione richiede CI e review finali
+prima dello squash merge autorizzato. Rollback: revert congiunto delle cinque
+aggiunte aziende/fonti; non disabilitare le sole sorgenti lasciando i datori,
+altrimenti il provisioner genererebbe fallback generici.
+
+**Primo punto incompleto:** pubblicare e verificare l'head con attivazione,
+completare squash merge #42, controllare su main le cinque configurazioni effettive
+e seguire il workflow ordinario avviato dal push. Nessun workflow_dispatch o
+raccolta completa manuale. Confrontare tutti gli ID, 20 verified di baseline,
+nuovi stage distinti, freschezza, costi delle cinque sorgenti, publish e deployment.
+Finché il ciclo non conclude, beneficio di produzione non attestato. Nessuna
+nuova automazione AI configurata.
+
 ## 16 novembre 2026 — verifica delle 29 proposte, cinque integrazioni ammissibili
 
 Richiesta esplicita: verificare datore→ATS, feed, inventario e candidature delle
