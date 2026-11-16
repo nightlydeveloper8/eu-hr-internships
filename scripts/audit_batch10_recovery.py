@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 import json
 
 from scripts.build_eu27_expansion_queue import ROOT
+from scripts.audit_eu27_coverage import eligible
 
 COUNTRIES=("NL","BE","FR","ES","PT")
 
@@ -64,7 +65,7 @@ def audit(catalog, registry):
         row=rows[country]
         row['total']+=1;totals['total']+=1
         status=job.get('status')
-        if status=='open' and job.get('verification',{}).get('state')=='verified' and job.get('link_status')=='verified':
+        if eligible(job, catalog.get('updated_at')):
             row['verified_record']+=1
             totals['verified_record']+=1
             if job.get('internship_type')=='internship':
