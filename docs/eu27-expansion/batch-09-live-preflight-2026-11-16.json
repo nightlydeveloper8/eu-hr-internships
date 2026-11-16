@@ -691,5 +691,178 @@
     "policy": "robots guard for each visited URL, no POST, login, rendering, CAPTCHA bypass or application sending",
     "workflow_removed_from_pilot_branch": true,
     "allowed_source_in_production": false
+  },
+  "pandoo_single_source_verification": {
+    "runs": [
+      {
+        "stage": "first-uncorrected-filter",
+        "run_id": 43928876091,
+        "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43928876091",
+        "workflow_conclusion": "success",
+        "logic_result": {
+          "mode": "one-time-readonly-review",
+          "date": "2026-11-16",
+          "verified_catalog_jobs": 0,
+          "new_enabled_sources": 0,
+          "email_sent": false,
+          "delivery_verified": false,
+          "error_type": "ValueError",
+          "error": "Only public HTTPS job URLs are allowed",
+          "application_channel_matched": false,
+          "requests": 3,
+          "bytes_read": 45842,
+          "source_seconds": 5.201,
+          "renderings": 0
+        }
+      },
+      {
+        "stage": "deduplicated-link-fix-needed",
+        "run_id": 43929207076,
+        "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43929207076",
+        "workflow_conclusion": "success",
+        "logic_result": {
+          "mode": "one-time-readonly-review",
+          "date": "2026-11-16",
+          "verified_catalog_jobs": 0,
+          "new_enabled_sources": 0,
+          "email_sent": false,
+          "delivery_verified": false,
+          "inventory": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/jobs",
+            "body_sha256": "a0d31c7cbb1e0e0ab51360d32d2b7530eb5fe5ccddc2d45255621fe8e38e4253",
+            "bytes": 28395,
+            "exact_role_link_count": 3,
+            "text_mentions_hr_intern": true
+          },
+          "vacancy": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/hr-intern-f/m/d",
+            "body_sha256": "5927b1c01f108025aaec8e95a76b06c09b9a432dc617a3c107b09e059948a583",
+            "bytes": 17340,
+            "h1": [
+              "HR Intern (F/M/D)"
+            ],
+            "observed_mailto_labels": [
+              " Apply now"
+            ],
+            "explicit_apply_instruction": true
+          },
+          "error_type": "ValueError",
+          "error": "Employer inventory missing single exact job link",
+          "application_channel_matched": false,
+          "requests": 3,
+          "bytes_read": 45842,
+          "source_seconds": 3.786,
+          "renderings": 0
+        }
+      },
+      {
+        "stage": "final-verified-mailto",
+        "run_id": 43929440391,
+        "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43929440391",
+        "workflow_conclusion": "success",
+        "logic_result": {
+          "mode": "one-time-readonly-review",
+          "date": "2026-11-16",
+          "verified_catalog_jobs": 0,
+          "new_enabled_sources": 0,
+          "email_sent": false,
+          "delivery_verified": false,
+          "inventory": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/jobs",
+            "body_sha256": "a0d31c7cbb1e0e0ab51360d32d2b7530eb5fe5ccddc2d45255621fe8e38e4253",
+            "bytes": 28395,
+            "exact_role_link_count": 1,
+            "text_mentions_hr_intern": true
+          },
+          "vacancy": {
+            "http": 200,
+            "final_url": "https://pandoo.lu/hr-intern-f/m/d",
+            "body_sha256": "5927b1c01f108025aaec8e95a76b06c09b9a432dc617a3c107b09e059948a583",
+            "bytes": 17340,
+            "h1": [
+              "HR Intern (F/M/D)"
+            ],
+            "observed_mailto_labels": [
+              " Apply now"
+            ],
+            "explicit_apply_instruction": true
+          },
+          "direct_application_proof": {
+            "method": "official-vacancy-email-instructions",
+            "application_email": "hr@pandoo.lu",
+            "delivery_verified": false,
+            "reused_snapshot_requests": 1
+          },
+          "application_channel_matched": true,
+          "workplace_confirmed_from_job_page": false,
+          "reason_not_catalog_verified": "Company office location appears in page footer, but the specific internship workplace is not explicitly established by the vacancy; no source registered.",
+          "requests": 3,
+          "bytes_read": 45842,
+          "source_seconds": 3.739,
+          "renderings": 0
+        }
+      }
+    ],
+    "latest_result": {
+      "mode": "one-time-readonly-review",
+      "date": "2026-11-16",
+      "verified_catalog_jobs": 0,
+      "new_enabled_sources": 0,
+      "email_sent": false,
+      "delivery_verified": false,
+      "inventory": {
+        "http": 200,
+        "final_url": "https://pandoo.lu/jobs",
+        "body_sha256": "a0d31c7cbb1e0e0ab51360d32d2b7530eb5fe5ccddc2d45255621fe8e38e4253",
+        "bytes": 28395,
+        "exact_role_link_count": 1,
+        "text_mentions_hr_intern": true
+      },
+      "vacancy": {
+        "http": 200,
+        "final_url": "https://pandoo.lu/hr-intern-f/m/d",
+        "body_sha256": "5927b1c01f108025aaec8e95a76b06c09b9a432dc617a3c107b09e059948a583",
+        "bytes": 17340,
+        "h1": [
+          "HR Intern (F/M/D)"
+        ],
+        "observed_mailto_labels": [
+          " Apply now"
+        ],
+        "explicit_apply_instruction": true
+      },
+      "direct_application_proof": {
+        "method": "official-vacancy-email-instructions",
+        "application_email": "hr@pandoo.lu",
+        "delivery_verified": false,
+        "reused_snapshot_requests": 1
+      },
+      "application_channel_matched": true,
+      "workplace_confirmed_from_job_page": false,
+      "reason_not_catalog_verified": "Company office location appears in page footer, but the specific internship workplace is not explicitly established by the vacancy; no source registered.",
+      "requests": 3,
+      "bytes_read": 45842,
+      "source_seconds": 3.739,
+      "renderings": 0
+    },
+    "requires_explicit_workplace_evidence": true,
+    "production_source_registered": false,
+    "stage_status": "not-promoted"
+  },
+  "all_pilot_measured_costs": {
+    "requests": 34,
+    "bytes_read": 2547627,
+    "source_seconds": 34.959,
+    "new_verified": 0,
+    "new_enabled_sources": 0,
+    "extra_daily_requests": 0,
+    "renderings": 0
+  },
+  "workflow_cleanup": {
+    "batch09_one_shot_removed_from_branch": true,
+    "pandoo_one_shot_workflows_removed_from_branch": true
   }
 }
