@@ -89,14 +89,17 @@
     "opened_verified": 0,
     "last_seen": "2026-11-07T07:04:32.004378+00:00",
     "first_line_ownership_gap": "Historical third-party job-board references from different employers carried source_id auto-tilburg-university even though Tilburg is not the hiring organization.",
-    "fix_scope": "Only after individually reviewed ownership transfers, and only for source configurations ownership_scope=reviewed-hosts or require_employer_identity. Preserve jobs/id/status closed and mark external unverified entries review-required.",
+    "fix_scope": "Only after individually reviewed ownership transfers, and only for source configurations ownership_scope=reviewed-hosts or require_employer_identity. Preserve jobs/id/status closed and mark external unverified entries review-required. UI additionally hides only annotated historical external referrals in the opt-in unverified view; raw catalog keeps every job.",
     "production_effect_measured": false,
     "offline_effect_expected": {
       "newly_flagged_historical_external_records": 108,
       "old_unverified_removed_from_recovery_queue": 98,
       "recovery_queue_before": 209,
       "recovery_queue_after": 111,
-      "added_verified_jobs": 0
+      "added_verified_jobs": 0,
+      "public_unverified_leads_excluded_once_catalog_published": 98,
+      "archived_records_deleted": 0,
+      "non_ownership_risk_jobs_hidden": 0
     }
   },
   "recovery_queue": {
