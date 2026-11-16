@@ -1,5 +1,14 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — primo risultato live con feed strutturato pubblico svedese
+
+**Due piloti reali JobTech CC0 completati senza attivare fonti in produzione.** [GitHub Actions #43960047644](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43960047644) e [#43960318146](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43960318146): ciascuno 30 hit esaminate, **2 candidati stage HR distinti su 2 datori**, **4 HTTP**, **0 render**, circa 324 KB e 5,977/6,837 secondi. Costo cumulato 8 richieste e 648.037 byte; non confondere con costo monetario o velocità dell'intero ciclo di produzione. La CI del preflight è verde per i test offline e per la lettura reale.
+
+**Candidati reali, non verificati:** `31558200` — Jobandtalent Sweden AB, *Praktik inom HR och rekrytering i Malmö - våren 2027*, https://arbetsformedlingen.se/platsbanken/annonser/31558200 (URL di candidatura del feed su `jobb.jobandtalent.com`); `31613684` — Splendor Plant Aktiebolag, *HR-praktik VT27*, https://arbetsformedlingen.se/platsbanken/annonser/31613684 (URL di candidatura del feed su `splendorplant.careers.haileyhr.app`). **0 nuovi stage policy-v2 verified**: la disponibilità effettiva del modulo, identità datore e same-ID ancora da verificare sui rispettivi host ufficiali. Non attestare un annuncio come candidabile sulla sola base dell'API pubblica.
+
+**Modifiche effettive:** PR #56 su branch dedicata; connettore `collector/official_feed_discovery.py`, CLI, test e workflow di preflight limitato a PR; produzione e catalogo restano invariati, EURES solo import di dati ottenuti tramite upstream autorizzato; **nessun accesso EURES eseguito**. Prossimo intervento: verificare modulo per queste due vacancy specifiche e inventari ufficiali di altre fonti pubbliche europee, poi misurare il beneficio su stage realmente candidabili; prima di attivare fonti su `main` serve autorizzazione specifica.
+
+
 ## 16 novembre 2026 — connettore per fonti strutturate UE27 e metadati EURES autorizzati
 
 **Obiettivo:** un unico canale di scoperta strutturato per job board pubbliche con identificativo stabile, volto ad aumentare stage HR realmente verificabili anziché il numero di crawler universali. PR separata su branch `feat/jobtech-se-licensed-hr-discovery-20261116`; **nessun merge, nessuna fonte nuova attivata, nessun rollout**.
