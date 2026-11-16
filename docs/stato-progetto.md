@@ -1,5 +1,17 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — lotto 06 (EE/LV/LT/BG/IT/HU/SI/SK), audit UE27 senza rollout
+
+**Baseline dopo PR #47:** workflow #43909444414 (raccolta) e #43909444577 (validazione) riusciti. Catalogo main 16 novembre 16:51:25 UTC: **362 annunci, 28 stage HR verified in cinque paesi, 1 working student DE, 306 unverified, 27 closed**. PR #47 squash merge 5364825: fix host 429 e messaggi filled. Nessun nuovo stage verificato attribuibile al lotto 06.
+
+**Ricognizione lotto 06:** 8 paesi, 10 indizi, 9 datori, **0 nuove fonti abilitate / 0 nuove candidature policy v2**. Piste ancora non ammesse: DIGI MEDIA LV (ruolo HR e form visibile sulla pagina aziendale), Girteka LT (stage HR ma candidatura /talentcommunity incompleta), CCEP BG (People Services 2027, inglese e tedesco, form non stabilito), Heritage IT (due HR stage nel board Greenhouse corrente, ID 4945490101/4945390101, moduli presenti ma manca link dal sito corporate al tenant esatto). Altre cinque evidenze: Gameloft BG candidatura expired; Bolt EE scadenza esterna passata; Betsson HU ruolo non presente nel board corrente; Danfoss SI rimosso; Adient SK working student e non stage.
+
+Prove in [BATCH-06-REVIEW.md](eu27-expansion/BATCH-06-REVIEW.md) e [JSON](eu27-expansion/batch-06-review-2026-11-16.json). [Piano EU27](eu27-expansion/EU27-MAPPING-PLAN.md) assegna i 27 paesi ai lotti 06–10 senza sovrapposizioni, ma pianificare non equivale a mappare. Nuovo script audit offline dei 27 paesi e test con filtro v2/freschezza, nessuna nuova esecuzione programmata. Nessuna copertura nazionale dichiarata completa.
+
+**Costi:** 0 nuove richieste collector, 0 rendering e 0 carico quotidiano aggiuntivo perché nessuna fonte attivata. Ricerca web svolta, ma byte/durata/richieste web non misurate come costi collector. Accesso HTTPS diretto al preflight bloccato da DNS e robots dei canali prioritari non disponibili al tool: nessuna prova completa di inventario/candidatura.
+
+**Primo punto incompleto:** preflight limitato con BudgetClient e robots su DIGI MEDIA LV e Heritage IT (una fonte, due posizioni), poi Girteka LT se il link arriva a modulo stesso annuncio. Misurare richieste, secondi, byte, deduplica e ripetibilità su due cicli. Review CI della PR audit e procedere col lotto 07 CY/GR/HR/MT senza promuovere indizi bloccati.
+
 ## 16 novembre 2026 — lotto 04 attivo e produzione verificata
 
 **Risultato reale: 26 → 28 stage HR verificati, più 1 working student in Germania.** Tre nuove fonti ufficiali attive: Hotel TwentySeven (stage NL, Amsterdam), Bundl (stage BE, Antwerp) e Franklin Institute (posizione mista DE, München, conteggiata working student). Nessuna candidatura inviata, nessuna raccolta completa manuale, nessun gate Dynamic ATS o schedule ampliato.
