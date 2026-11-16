@@ -1,5 +1,57 @@
 # People Placement — EU27 structured discovery: JobTech and EURES input
 
+## November 16 live outcome: application verification and second-country schema
+
+Read-only ATS verification is now implemented in
+\`collector/official_feed_verification.py\` and exposed through
+\`scripts/verify_official_feed_candidates.py\`. The shared JobTech parser
+produces candidates; the second pass reads *only* exact feed-published
+application URLs on explicit preflight host allowlists. It reuses the
+project's no-browser \`_verify_vacancy()\` (policy v2), adds strict enabled
+applicant-form checks, and requires an independently observed company-name
+signal before recording employer ownership evidence. One observed same-host
+privacy/legal link is allowed per candidate, with no guessed policy URLs.
+
+The latest [CI preflight #43964714978](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43964714978)
+performed 5 ATS GETs (including robots), 0 renderings, and reported:
+
+- Jobandtalent Sweden AB — JobTech 31558200: exact current job title,
+  enabled same-vacancy application form and company legal name on a privacy
+  page linked from the same recruiting host. State:
+  \`same-vacancy-form-and-owner-evidence\`. **Not in public catalog**.
+- Splendor Plant — JobTech 31613684: public feed adds academic semester
+  \`VT27\` to the employer's current title; a strict, single-token
+  seasonal variant diagnostic identifies this *without* changing policy
+  v2's exact-title gate. Initial employer page did not expose an enabled
+  applicant form. State: \`seasonal-title-variant-no-enabled-form\`.
+  **Not verified.**
+
+Neither stage has been promoted, and no applicant data were submitted.
+This is a PR-only preflight, not a successful daily catalog integration.
+
+**Czech extension:** The public MPSV/Úřad práce nationwide vacancies
+dataset is published daily and its catalog identifies no copyright/database
+right restriction, but notes the presence of personal data. The official
+daily JSON schema is
+https://data.mpsv.cz/od/soubory/volna-mista-prirustek/volna-mista-prirustek.schema.json .
+The common normalizer now supports a **bounded offline \`mpsv-cz\` input**:
+stable \`portalId\`, occupation, organization, candidate employer vacancy URL,
+country and publication date. Applicant contacts, telephone numbers, email
+addresses, workplace addresses and full text are **not** retained; generic
+company homepages and expired records are rejected. No MPSV live read or
+Czech vacancy verification has occurred.
+
+Run a bounded, operator-provided permitted JSON sample only:
+
+    python -m scripts.official_feed_discovery \
+      --provider mpsv-cz --input /tmp/selected-mpsv-rows.json \
+      --output /tmp/cz-review.json
+
+The EU27 access/readiness evidence matrix is saved in
+\`docs/eu27-public-feed-readiness.json\`, with 27 countries and explicit
+unknowns. It is not a claim that 27 public feeds are available.
+
+
 **Date:** 2026-11-16. This is a proposed, opt-in integration in a separate PR,
 not an activated daily collection source.
 
