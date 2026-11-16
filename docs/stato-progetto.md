@@ -1,5 +1,15 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — lotto 05 CZ/RO/SE/IE: indizi revisionati, nessuna nuova candidatura verificata
+
+**Risultato reale:** baseline di produzione invariata a **28 stage HR verificati + 1 working student**, 361 annunci nel catalogo dell'ultimo ciclo ordinario documentato. La revisione del lotto 05 ha escluso tre URL specifici indisponibili e mantenuto bloccata una quarta candidatura: **Electrolux SE JR81378 è esplicitamente “filled” nel corpo della pagina ufficiale**, benché HTTP 200 e JobPosting siano ancora presenti; **Continental RO** è chiusa; **Fidelity IE** dà 404; **Manifesto CZ** ha candidatura non stabilita e 429 su URL distinti: non ritentata. Non sono 4 opportunità perse dalla produzione: erano indizi non verified.
+
+Nuovo report [BATCH-05-REVIEW.md](eu27-expansion/BATCH-05-REVIEW.md) sul ramo `review/eu27-cz-ro-se-ie-batch05-20261116`. Raccolti via ricerca web **sei indizi** per quattro paesi, nessuno ammesso: Marquardt Romania (HR internship, francese+inglese, non retribuito), SLB Romania (HR internship), BAT Romania (HR intern), Amazon CZ (HR Partner intern, ceco+inglese C1 e CTA verso accesso), TikTok IE (HR Operations intern, **datore già nella coda del lotto 01**, senza modulo confermato) e P&G SE (HR Summer Internship 2027, **sola traccia esterna, manca scheda ufficiale**). Questi sono piste, non candidature aperte policy v2. Non duplicare TikTok, né inferire requisito solo inglese dalle pagine multi-lingua. Altri risultati Electrolux JR81338 e JR81695 hanno scadenza indicizzata 8 novembre 2026; nessuna promozione.
+
+La revisione è **solo documentazione su branch/PR**, non una modifica al runtime. **0 nuove fonti abilitate; 0 nuove candidature verified; 0 nuovi costi quotidiani; nessun merge, raccolta completa, rendering, invio candidatura, modifica catalogo, host o workflow.** Costi del **preflight precedente**: 27 richieste logiche, 14,721 secondi-fonte, 1.222.790 byte e 14 query; i costi di navigazione web di questa review non sono misurati come richieste collector. Nessun test automatico del collector eseguito in questa sola revisione documentale.
+
+**Primo punto incompleto:** scegliere solo candidati con collegamento datore→canale ufficiale, robots e inventario verificati, stessa vacancy e modulo anonimo realmente visibile. Priorità Marquardt/SLB RO e un sostituto ufficiale SE; lasciare Amazon e TikTok unverified senza autenticazione. Correzioni tecniche riutilizzabili da testare in PR separata: prevalenza “filled/expired” sul JobPosting strutturato e stop host dopo primo HTTP 429 per evitare richieste inutili. Non ripetere il blocco Manifesto oggi. Nessuna attivazione/rollout autorizzata da questa revisione.
+
 ## 16 novembre 2026 — lotto 04 attivo e produzione verificata
 
 **Risultato reale: 26 → 28 stage HR verificati, più 1 working student in Germania.** Tre nuove fonti ufficiali attive: Hotel TwentySeven (stage NL, Amsterdam), Bundl (stage BE, Antwerp) e Franklin Institute (posizione mista DE, München, conteggiata working student). Nessuna candidatura inviata, nessuna raccolta completa manuale, nessun gate Dynamic ATS o schedule ampliato.
