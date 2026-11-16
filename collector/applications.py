@@ -151,7 +151,7 @@ def odoo_application(doc, source, client, title):
 def verify_application(record, source, client, vacancy_document=None):
     kind = source.get('application_check')
     if not kind: return None
-    body, doc = vacancy_document if kind=='publication-linked' and vacancy_document else checked_document(record['url'], source, client)
+    body, doc = vacancy_document if kind in ('publication-linked','official-email') and vacancy_document else checked_document(record['url'], source, client)
     if kind=='publication-linked':return publication_application(record,source,client,body,doc)
     if kind=='recruitee-linked':
         from .verification import same_title, structured_identifiers, applicant_form, expired
