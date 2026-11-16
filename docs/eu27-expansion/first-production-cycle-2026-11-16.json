@@ -1,0 +1,251 @@
+{
+  "run_id": "43857890201",
+  "base_ref": "e99f263ccb8758f400fd04d61f228ecec6bf3450",
+  "data_ref": "origin/main",
+  "data_commit": "00b211644fb3fb8194b4b65b555b7ee22d243b97",
+  "before_fresh_verified": 20,
+  "after_fresh_verified": 25,
+  "before_updated_at": "2026-11-16T09:06:18.796495+00:00",
+  "after_updated_at": "2026-11-16T11:41:24.691675+00:00",
+  "before_records": 347,
+  "after_records": 352,
+  "all_previous_ids_preserved": true,
+  "before_statuses": {
+    "open": 20,
+    "closed": 26,
+    "unverified": 301
+  },
+  "after_statuses": {
+    "open": 25,
+    "closed": 28,
+    "unverified": 299
+  },
+  "all_five_sources_enabled": true,
+  "five_sources_reported": true,
+  "new_source_jobs": [
+    {
+      "id": "a89755d13bd5d25fbc08",
+      "title": "Human Resources Internship",
+      "employer": "Ibexa",
+      "countries": [
+        "BE"
+      ],
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T11:29:30.183530+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T11:29:30.183530+00:00",
+      "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+      "apply_url": "https://ibexa.recruitee.com/o/human-resources-internship-2/c/new"
+    },
+    {
+      "id": "2db52d7cbad5fb71de3b",
+      "title": "Stageplek Human Resources Management",
+      "employer": "Monsterscore",
+      "countries": [
+        "NL"
+      ],
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T11:29:35.972536+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T11:29:35.972536+00:00",
+      "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+      "apply_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management/c/new"
+    },
+    {
+      "id": "ec3c57030e9fc4ad15a0",
+      "title": "Stage -Juriste droit social RH (H/F)",
+      "employer": "SAS LOOK UP SPACE",
+      "countries": [
+        "FR"
+      ],
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T11:29:44.522003+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T11:29:44.522003+00:00",
+      "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+      "apply_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf/c/new"
+    },
+    {
+      "id": "d509c978c696c4ee6d83",
+      "title": "HR & People Operations Intern",
+      "employer": "SKYTREE",
+      "countries": [
+        "NL"
+      ],
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T11:29:48.041127+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T11:29:48.041127+00:00",
+      "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+      "apply_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3/c/new"
+    },
+    {
+      "id": "3c5b99cfd57a0ec51cca",
+      "title": "STAGE - Ressources Humaines – Déploiement SIRH (H/F)",
+      "employer": "Gérard Bertrand",
+      "countries": [
+        "FR"
+      ],
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T11:29:58.502578+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T11:29:58.502578+00:00",
+      "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf",
+      "apply_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf/c/new"
+    }
+  ],
+  "new_source_distinct_verified": 5,
+  "source_costs": [
+    {
+      "id": "recruitee-monsterscore",
+      "status": "ok",
+      "collected": 9,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "checked_at": "2026-11-16T11:29:35.972536+00:00",
+      "requests": 5,
+      "duration_seconds": 3.95,
+      "bytes_read": 924678,
+      "error": null,
+      "page_errors": [],
+      "complete": true,
+      "closure_complete": false
+    },
+    {
+      "id": "recruitee-skytree",
+      "status": "ok",
+      "collected": 4,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "checked_at": "2026-11-16T11:29:48.041127+00:00",
+      "requests": 5,
+      "duration_seconds": 3.62,
+      "bytes_read": 851887,
+      "error": null,
+      "page_errors": [],
+      "complete": true,
+      "closure_complete": false
+    },
+    {
+      "id": "recruitee-gerard-bertrand",
+      "status": "ok",
+      "collected": 22,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "checked_at": "2026-11-16T11:29:58.502578+00:00",
+      "requests": 5,
+      "duration_seconds": 3.46,
+      "bytes_read": 1439967,
+      "error": null,
+      "page_errors": [],
+      "complete": true,
+      "closure_complete": false
+    },
+    {
+      "id": "recruitee-sas-look-up-space",
+      "status": "ok",
+      "collected": 11,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "checked_at": "2026-11-16T11:29:44.522003+00:00",
+      "requests": 5,
+      "duration_seconds": 2.64,
+      "bytes_read": 952788,
+      "error": null,
+      "page_errors": [],
+      "complete": true,
+      "closure_complete": false
+    },
+    {
+      "id": "recruitee-ibexa",
+      "status": "ok",
+      "collected": 8,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "checked_at": "2026-11-16T11:29:30.183530+00:00",
+      "requests": 5,
+      "duration_seconds": 2.43,
+      "bytes_read": 882821,
+      "error": null,
+      "page_errors": [],
+      "complete": true,
+      "closure_complete": false
+    }
+  ],
+  "total_new_source_requests": 25,
+  "total_new_source_seconds": 16.1,
+  "changed_previous_statuses": [
+    {
+      "id": "f7f6cb2ffbbdf07a0e48",
+      "before": "unverified",
+      "after": "closed"
+    },
+    {
+      "id": "9bdc9d892b1f3d35f7f8",
+      "before": "unverified",
+      "after": "closed"
+    }
+  ],
+  "total_new_source_bytes": 5052141,
+  "all_sources_within_request_budget": true,
+  "all_sources_within_time_budget": true,
+  "manual_catalog_modified": false,
+  "workflow_conclusion": "success",
+  "workflow_jobs_successful": 18,
+  "workflow_jobs_total": 18,
+  "manual_workflow_dispatch": false,
+  "frontend_verified_internships": 25,
+  "cloudflare": {
+    "commit": "00b211644fb3fb8194b4b65b555b7ee22d243b97",
+    "conclusion": "success",
+    "deployment_id": "04844850-2805-45e9-977c-beb80a2b6a63"
+  },
+  "served_catalog": {
+    "url": "https://people-placement-eu.pages.dev/data/catalog.json",
+    "http_status": 200,
+    "exact_bytes_match_git_catalog": true,
+    "sha256": "44f3b1b89744a4f7cfcfb6d2c4881a6b55ec55b7907a840a24ef9d95647073d0",
+    "checked_at": "2026-11-16T11:43:40.562854+00:00"
+  },
+  "overall_employer_health": {
+    "verified-empty": 29,
+    "blocked-or-failed": 321,
+    "partial": 514,
+    "discovery-incomplete": 964,
+    "collected": 64,
+    "companies": 1892,
+    "configured": 1892,
+    "attempted": 1892
+  },
+  "closure_note": "All five inventories complete; closure_complete false remains explicit. This first cycle does not prove future closure handling or a second live refresh."
+}

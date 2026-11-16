@@ -1,5 +1,7 @@
 # People Placement — coda UE27 e lotto 01
 
+> Aggiornamento dopo la fase qui documentata: le cinque fonti sono state integrate e attivate con autorizzazione nella PR #42. Primo ciclo reale: 20 → 25 stage verificati; pubblicazione e catalogo pubblico confermati. Vedi [rapporto di produzione](first-production-cycle-2026-11-16.json) e [stato corrente](../stato-progetto.md). Le bozze e i conteggi sotto descrivono la fase preparatoria.
+
 Questa coda documenta la prima selezione, senza attivazioni. Gli esiti successivi di feed, identità e candidature sono separati in [REVIEW.md](REVIEW.md).
 Le osservazioni web sono indizi e possono essere scadute. Paesi candidati, sedi delle vacancy e copertura operativa restano distinti.
 

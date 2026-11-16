@@ -1,0 +1,111 @@
+{
+  "observed_date": "2026-11-16",
+  "state": "research-only-no-runtime-changes",
+  "evidence_level": "Search retrieval of official employer/ATS pages; not live admissibility or application verification",
+  "queries_this_followup": 11,
+  "records": [
+    {
+      "country": "IT",
+      "employer": "Kering / Ginori 1735",
+      "title": "GINORI 1735 - Human Resources Intern",
+      "city": "Sesto Fiorentino",
+      "observed_url": "https://www.kering.com/it/talenti/offerte-di-lavoro/europe/ginori-1735-human-resources-intern/",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "IT",
+      "employer": "Kering / Gucci",
+      "title": "GUCCI Human Resources Intern",
+      "city": "Milano",
+      "observed_url": "https://www.kering.com/en/talent/job-offers/europe/gucci-human-resources-intern/",
+      "queue_action": "same-group-as-ginori-review-one-channel",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "IT",
+      "employer": "Société Générale",
+      "title": "HR Internship",
+      "city": "Milano",
+      "observed_url": "https://careers.societegenerale.com/en/job-offers/hr-internship-26000NCI-en",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "ES",
+      "employer": "ENGIE",
+      "title": "Beca - Administración del Personal",
+      "city": "Madrid",
+      "observed_url": "https://jobs.engie.com/job/Beca-Administración-del-Personal/72363-es_ES/",
+      "queue_action": "existing-employer-new-country-host-review",
+      "existing_source_id": "auto-engie",
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "ES",
+      "employer": "BSH",
+      "title": "Prácticas Recursos Humanos - Formación",
+      "city": "Zaragoza",
+      "observed_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "AT",
+      "employer": "Revolution Event",
+      "title": "Praktikum Human Resources (w/m/d)",
+      "city": "Puch bei Hallein",
+      "observed_url": "https://revolution-event-gmbh.jobs.personio.de/?language=de",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "PT",
+      "employer": "Unit4",
+      "title": "Talent Acquisition Program Intern",
+      "city": "Lisbon",
+      "observed_url": "https://careers.unit4.com/job?fuid=6c347a37-f25c-46c1-b805-e04c95eb62d6&srpid=71b3464e-ae6f-47d0-af8b-90cf32781a43",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false
+    },
+    {
+      "country": "PT",
+      "employer": "Emma – The Sleep Company",
+      "title": "People Process Automation Intern",
+      "city": "Lisbon",
+      "observed_url": "https://jobs.lever.co/emma-sleep/ed8efcfe-efe9-436a-877f-16a42265911d/apply",
+      "queue_action": "existing-channel-yield-check-only",
+      "existing_source_id": "lever-emma-sleep",
+      "verified": false,
+      "enabled": false
+    }
+  ],
+  "admission_gates": [
+    "Exact employer identity and employer to ATS relationship",
+    "Deduplicate employer/group and existing source channel",
+    "robots and allowed-host review before automation",
+    "Supported complete feed inventory within budget",
+    "Fresh matching vacancy ID/title and visible application proof policy v2",
+    "Languages and internship eligibility from original description"
+  ],
+  "notes": [
+    "Ginori and Gucci are two observations of the same group, not two independent sources",
+    "ENGIE currently monitors Italian employer hosts; Spain is a new host review, not an automatic extension",
+    "Emma already has a Lever source: do not duplicate it",
+    "Reedsy excluded from new-source shortlist because Ashby connector already exists",
+    "No additional source activation authorized by this research"
+  ]
+}

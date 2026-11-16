@@ -1,5 +1,7 @@
 # Verifica dei 29 canali UE27
 
+> Aggiornamento dopo la fase qui documentata: le cinque fonti sono state integrate e attivate con autorizzazione nella PR #42. Primo ciclo reale: 20 → 25 stage verificati; pubblicazione e catalogo pubblico confermati. Vedi [rapporto di produzione](first-production-cycle-2026-11-16.json) e [stato corrente](../stato-progetto.md). Le bozze e i conteggi sotto descrivono la fase preparatoria.
+
 **5 fonti ammissibili preparate, 5 stage distinti con prova live e candidatura visibile.** Nessuna fonte attivata e nessun annuncio aggiunto al sito.
 
 Le vecchie 10 prove tecniche non sono 10 stage verificati: le offerte Recruitee possono includere un modulo in una scheda nascosta. Il controllo nuovo richiede l’URL pubblicato nel feed, lo stesso ID/titolo/datore e un modulo visibile abilitato. È opt-in per le nuove fonti; i connettori esistenti non cambiano.

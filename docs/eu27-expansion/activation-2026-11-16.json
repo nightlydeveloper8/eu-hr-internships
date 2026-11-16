@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "state": "activation-prepared-not-merged",
+  "state": "active-production-first-cycle-measured",
   "authorization": "User explicitly requested integration and activation of the five reviewed sources in the current turn",
   "source_ids": [
     "recruitee-sas-look-up-space",
@@ -33,5 +33,18 @@
   "scope": "Only five reviewed exact tenant hosts; Dynamic ATS gate and workflow schedule unchanged",
   "collection": "Existing push-to-main/scheduled workflow only; no manual workflow dispatch",
   "rollback": "Revert the five company and source additions together in one commit; do not disable only the five sources because daily.provision would create generic fallback sources",
-  "production_benefit_verified": false
+  "production_benefit_verified": true,
+  "activation_commit": "bb2dfbd22d72209725eeb17a10ad5e9ca420670c",
+  "merge_commit": "87e3c56fa0daac6e5badccabde713e2210a3f1a2",
+  "pull_request": 42,
+  "first_collection_run_id": 43857890201,
+  "first_collection_event": "push",
+  "ci": "passed",
+  "first_collection_conclusion": "success",
+  "data_commit": "00b211644fb3fb8194b4b65b555b7ee22d243b97",
+  "distinct_new_verified_internships": 5,
+  "verified_before": 20,
+  "verified_after": 25,
+  "measurement_report": "first-production-cycle-2026-11-16.json",
+  "served_catalog_verified": true
 }

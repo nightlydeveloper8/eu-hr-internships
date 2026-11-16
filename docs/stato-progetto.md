@@ -1,35 +1,57 @@
 # Stato di ripresa — People Placement
 
-## 16 novembre 2026 — attivazione autorizzata delle cinque fonti
+## 16 novembre 2026 — cinque fonti attive, primo ciclo e sito verificati
 
-L'utente richiede esplicitamente integrazione e attivazione delle cinque fonti
-verificate, poi misura del primo ciclo ordinario. Autorizzazione specifica
-acquisita: non richiederla nuovamente per completare questo lotto.
+**Risultato reale: 20 → 25 stage HR aperti e verificati (+5 distinti, +25%).**
+PR [#42](https://github.com/nightlydeveloper8/eu-hr-internships/pull/42) integrata
+con squash su autorizzazione specifica dell'utente: head `bb2dfbd`, merge
+`87e3c56fa0daac6e5badccabde713e2210a3f1a2`. CI e preview verdi, nessuna review
+bloccante. 384 test Python, 26 Node e build superati.
 
-Preparati nel medesimo commit cinque datori e cinque sorgenti Recruitee attive:
-SAS LOOK UP SPACE, Monsterscore, Ibexa, Gérard Bertrand e SKYTREE. Datori
-1.887 → 1.892, sorgenti totali 1.931 → 1.936. Ogni sorgente usa soltanto il tenant
-esatto già revisionato, controllo `recruitee-linked`, budget 12 richieste/45 s,
-zero rendering. Nessun'altra fonte, gate Dynamic ATS, host o schedule estesi.
-`daily.provision` rimane idempotente e non genera sorgenti generiche aggiuntive.
-Catalogo manualmente invariato: baseline 347 ID, 20 open/verified, aggiornamento
-16 novembre 09:06:18 UTC. Dettagli e hash in `activation-2026-11-16.json`.
+Aggiunti insieme cinque datori e cinque sorgenti Recruitee abilitate:
+Monsterscore e SKYTREE (NL), Ibexa (BE), Gérard Bertrand e SAS LOOK UP SPACE (FR).
+Quest'ultimo è diritto sociale a supporto HR: sottotipo esplicito.
+Registro 1.887 → 1.892 datori, 1.931 → 1.936 sorgenti; provision idempotente.
+Ogni sorgente usa soltanto il tenant esatto revisionato, `recruitee-linked`,
+12 richieste/45 s. Nessun altro host, gate Dynamic ATS o schedule esteso.
+Rollback: revert congiunto delle cinque aggiunte aziende/fonti; disabilitare le
+sole fonti lasciando i datori genererebbe fallback generici via provisioner.
 
-Rafforzati i test di crescita del registro: Recruitee prova inserimento e refresh
-dello stesso ID; il replay ATS storico usa il campione documentato, così nuovi
-datori non invalidano i confronti storici.
-PR #42 già verde su `e449055`; l'head con attivazione richiede CI e review finali
-prima dello squash merge autorizzato. Rollback: revert congiunto delle cinque
-aggiunte aziende/fonti; non disabilitare le sole sorgenti lasciando i datori,
-altrimenti il provisioner genererebbe fallback generici.
+Il merge ha avviato il workflow esistente, evento push, senza workflow_dispatch:
+[run 43857890201](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43857890201),
+**18 job riusciti**, pubblicazione automatica `00b211644fb3fb8194b4b65b555b7ee22d243b97`.
+Catalogo 16 novembre 11:41:24 UTC: **347 → 352 ID**, tutti i 347 precedenti
+preservati, cinque nuove candidature con prova live policy v2. I due cambiamenti
+su record precedenti sono unverified → closed, senza riduzione dei 20 verified.
+Conteggio della logica frontend confermato: 25 verifiedInternships.
 
-**Primo punto incompleto:** pubblicare e verificare l'head con attivazione,
-completare squash merge #42, controllare su main le cinque configurazioni effettive
-e seguire il workflow ordinario avviato dal push. Nessun workflow_dispatch o
-raccolta completa manuale. Confrontare tutti gli ID, 20 verified di baseline,
-nuovi stage distinti, freschezza, costi delle cinque sorgenti, publish e deployment.
-Finché il ciclo non conclude, beneficio di produzione non attestato. Nessuna
-nuova automazione AI configurata.
+Costo incrementale delle cinque fonti nel ciclo: **25 richieste (5 ciascuna),
+16,1 secondi-fonte cumulati, 5.052.141 byte**, nessun errore; budget rispettati.
+Non è la durata a muro dell'intero workflow né un costo monetario misurato.
+Inventari completi; `closure_complete=false` resta esplicito: questo primo ciclo
+non dimostra ancora il refresh successivo o il comportamento di chiusura live.
+Rapporto: `docs/eu27-expansion/first-production-cycle-2026-11-16.json`;
+autorizzazione/configurazione: `activation-2026-11-16.json`.
+
+**Produzione verificata:** Cloudflare Pages success sul commit dati `00b2116`,
+deployment `04844850-2805-45e9-977c-beb80a2b6a63`. GET del catalogo pubblico
+HTTP 200, timestamp e 352 record corrispondenti, confronto byte per byte identico
+al file su Git. Nessuna modifica manuale del catalogo o importazione di replay.
+La raccolta quotidiana preesistente rimane schedulata alle 06:17 UTC.
+Nessuna nuova automazione AI configurata.
+
+**Limiti e primo punto incompleto:** il successo di questi cinque canali non
+rende completa la copertura UE27. Il report generale conserva 321 datori
+blocked-or-failed, 514 partial e 964 discovery-incomplete; non sono inventari vuoti.
+Restano 24 proposte del primo lotto non ammissibili. Per espandere i paesi,
+preparati otto indizi ufficiali in IT/ES/PT/AT in
+`next-country-leads-2026-11-16.json`: ancora da rivedere, nessuna fonte attivata.
+Deduplicare Kering/Ginori/Gucci come gruppo; Emma è già monitorata; ENGIE ES
+richiede review di host diverso dall'attuale fonte italiana. Prossimo intervento:
+verificare in un lotto datore→ATS, accesso, inventario e candidature dei nuovi
+canali IT/ES/PT/AT. Ulteriore rollout richiede autorizzazione specifica.
+Il secondo ciclo live delle cinque fonti compete alla pianificazione ordinaria;
+nessuna promessa di controllo AI automatico successivo.
 
 ## 16 novembre 2026 — verifica delle 29 proposte, cinque integrazioni ammissibili
 
