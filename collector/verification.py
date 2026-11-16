@@ -191,7 +191,7 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     application_ids=structured_identifiers(application,record['title'])
     expected_ids=identifiers or ({str(record['posting_identifier'])} if record.get('posting_identifier') else set())
     if expected_ids and application_ids and expected_ids!=application_ids:raise ValueError('Application requisition differs from vacancy')
-    if not same_title(application, record['title']) and (application.jobposts() or any(classify_role(h) for h in application.h1)):raise ValueError('Application identifies a different vacancy')
+    if not same_title(application, record['title']) and (application.jobposts() or any(classify_role(h) for h in application.h1) or (urlsplit(application.url).path.rstrip('/').endswith('/applications/new') and bool(application.h1))):raise ValueError('Application identifies a different vacancy')
     if not same_title(application, record['title']) and not same_requisition(doc.url,application.url): raise ValueError('Application page does not identify the same vacancy')
     if not applicant_form(app_body):
         if (urlsplit(application.url).hostname or '').endswith('.jobs.personio.de') and disabled_submit_applicant_form(app_body):
