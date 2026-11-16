@@ -1,6 +1,8 @@
-# Lotto 04 — tre fonti ufficiali pronte per raccolta quotidiana
+# Lotto 04 — tre fonti ufficiali attive e produzione verificata
 
-Il pilota live del 16 novembre 2026 dimostra **due stage distinti candidabili e una posizione working student**. Questa verifica non è una pubblicazione in produzione e non costituisce copertura nazionale completa.
+**Produzione verificata:** PR #45 integrata con squash `8ab36e9`; ciclo ordinario [#43901780885](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43901780885), 18 job riusciti, dati `d764bec`. **26 → 28 stage verificati, 0 → 1 working student**, 356 → 361 record, tutti gli ID precedenti conservati. Due ulteriori record trovati dal ciclo ordinario restano unverified: TNG e Yobbers. Cloudflare sul commit dati riuscito; GET pubblico 200, catalogo identico byte per byte. Prova in [batch-04-first-production-cycle-2026-11-16.json](batch-04-first-production-cycle-2026-11-16.json).
+
+La ricerca e il pilota sotto documentano l’ammissione delle tre fonti, senza costituire copertura nazionale completa.
 
 | Datore | Paese | Tipo | Inventario | Candidatura |
 |---|---|---|---:|---|
@@ -33,4 +35,4 @@ Simulazione offline su catalogo 355 record: 358 dopo integrazione, tutti i 355 I
 
 Registri applicati atomicamente (tre aziende + tre fonti attive). Rollback: rimuovere entrambe le serie insieme; disabilitare solo le fonti attiverebbe il fallback generico del provisioner.
 
-Validazione: 413 test Python, 26 Node, 64 esempi di classificazione, generazione coverage e build. PR #44 precedente effettivamente integrata con squash 464d87c; ciclo ordinario #43898333473 riuscito con 18 job verdi, dati b5e14d0: 356 record e 26 stage verificati, ID precedenti conservati, inglese BSH documentato. Dettagli in pr44-first-production-cycle-2026-11-16.json. Questo lotto richiede ancora PR, CI, squash e misura del primo ciclo ordinario prima di attestare produzione.
+Validazione: 413 test Python, 26 Node, 64 esempi di classificazione, generazione coverage e build. PR #44 precedente effettivamente integrata con squash 464d87c; ciclo ordinario #43898333473 riuscito con 18 job verdi, dati b5e14d0: 356 record e 26 stage verificati, ID precedenti conservati, inglese BSH documentato. Dettagli in pr44-first-production-cycle-2026-11-16.json. PR, CI, squash, attivazione e primo ciclo ordinario di questo lotto sono completati e verificati sopra. Costi effettivi delle tre fonti nel primo ciclo: **15 richieste / 8,84 secondi-fonte / 3.768.689 byte**, nessun rendering, tutte entro i budget.

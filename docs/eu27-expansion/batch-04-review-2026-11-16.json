@@ -1263,8 +1263,14 @@
     "Global document Accept fixed; API JSON explicit, robots plaintext; UA and restrictions unchanged"
   ],
   "production": {
-    "merged": false,
-    "activated_on_main": false,
-    "first_cycle_verified": false
+    "merged": true,
+    "merge_commit": "8ab36e93483118b9a886bc2b51d8c17f9b916e4e",
+    "pull_request": 45,
+    "activated_on_main": true,
+    "first_cycle_verified": true,
+    "ordinary_run": 43901780885,
+    "production_evidence": "batch-04-first-production-cycle-2026-11-16.json",
+    "verified_internships_added": 2,
+    "verified_working_students_added": 1
   }
 }

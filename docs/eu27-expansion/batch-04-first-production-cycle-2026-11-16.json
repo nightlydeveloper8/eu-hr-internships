@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "run_id": 43901780885,
+  "merge_commit": "8ab36e93483118b9a886bc2b51d8c17f9b916e4e",
+  "data_commit": "d764bececa798a089893754afde022dff9a2f90e",
+  "before_data_commit": "b5e14d0ce83aa34318490e9a30aa01405d931508",
+  "before_records": 356,
+  "after_records": 361,
+  "before_updated_at": "2026-11-16T15:50:51.974182+00:00",
+  "after_updated_at": "2026-11-16T16:08:16.539910+00:00",
+  "before_counts": {
+    "total": 328,
+    "verified": 26,
+    "unverified": 302,
+    "verifiedInternships": 26,
+    "verifiedWorkingStudents": 0,
+    "verifiedTraineeships": 0,
+    "closed": 28,
+    "internships": 288,
+    "workingStudents": 30,
+    "traineeships": 10
+  },
+  "after_counts": {
+    "total": 334,
+    "verified": 29,
+    "unverified": 305,
+    "verifiedInternships": 28,
+    "verifiedWorkingStudents": 1,
+    "verifiedTraineeships": 0,
+    "closed": 27,
+    "internships": 292,
+    "workingStudents": 32,
+    "traineeships": 10
+  },
+  "all_previous_ids_preserved": true,
+  "lost_ids": [],
+  "new_jobs": [
+    {
+      "id": "37abbdcf9d7dc121ccb5",
+      "title": "HR Intern",
+      "employer": "Bundl",
+      "source_id": "recruitee-bundl",
+      "countries": [
+        "BE"
+      ],
+      "internship_type": "internship",
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T15:58:01.467801+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T15:58:01.467801+00:00",
+      "url": "https://bundl.recruitee.com/o/hr-intern",
+      "apply_url": "https://bundl.recruitee.com/o/hr-intern/c/new",
+      "language_requirements": {
+        "requirements_status": "explicit",
+        "required_languages": [
+          "en",
+          "nl"
+        ],
+        "alternative_languages": [],
+        "english_support": "documented",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      }
+    },
+    {
+      "id": "7a8b78dd0294acfee3d6",
+      "title": "Werkstudierende im Bereich People & Events (m/w/d)",
+      "employer": "TNG Technology Consulting GmbH",
+      "source_id": "personio-xml-tng-technology-consulting-gmbh",
+      "countries": [
+        "DE"
+      ],
+      "internship_type": "working-student",
+      "status": "unverified",
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-16T15:58:06.464373+00:00",
+        "policy_version": 2,
+        "reason": "Applicant form not established; application may require JavaScript or an account"
+      },
+      "last_verified_at": null,
+      "url": "https://tngtech.jobs.personio.de/job/96064",
+      "apply_url": "https://tngtech.jobs.personio.de/job/96064",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      }
+    },
+    {
+      "id": "835c2c042667e920a779",
+      "title": "Praktikant*in im Recruitment (m/w/d)",
+      "employer": "Yobbers",
+      "source_id": "auto-yobbers",
+      "countries": [
+        "ES"
+      ],
+      "internship_type": "internship",
+      "status": "unverified",
+      "verification": {
+        "state": "incomplete",
+        "checked_at": "2026-11-16T15:58:18.562109+00:00",
+        "policy_version": 2,
+        "reason": "Application link lacks a matching vacancy identifier"
+      },
+      "last_verified_at": null,
+      "url": "https://www.yobbers.com/de/jobs-ausland/working-in-spain-valencia-yobbers-intern-recruitment",
+      "apply_url": "https://www.yobbers.com/de/jobs-ausland/working-in-spain-valencia-yobbers-intern-recruitment",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      }
+    },
+    {
+      "id": "22f73315cd53c36edb2e",
+      "title": "Werkstudent/Praktikant HR - People & Culture (m/w/d)",
+      "employer": "Franklin Institute",
+      "source_id": "recruitee-franklin-institute",
+      "countries": [
+        "DE"
+      ],
+      "internship_type": "working-student",
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T15:58:23.018110+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T15:58:23.018110+00:00",
+      "url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+      "apply_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd/c/new",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      }
+    },
+    {
+      "id": "dcfc2e4e0a27ee281c71",
+      "title": "HR Stagiair(e)",
+      "employer": "Hotel TwentySeven",
+      "source_id": "recruitee-hotel-twentyseven",
+      "countries": [
+        "NL"
+      ],
+      "internship_type": "internship",
+      "status": "open",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-16T15:58:45.348555+00:00",
+        "policy_version": 2,
+        "reason": "official-recruitee-same-posting-visible-form"
+      },
+      "last_verified_at": "2026-11-16T15:58:45.348555+00:00",
+      "url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+      "apply_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20/c/new",
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      }
+    }
+  ],
+  "source_costs": [
+    {
+      "id": "recruitee-hotel-twentyseven",
+      "enabled": true,
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "status": "ok",
+      "checked_at": "2026-11-16T15:58:45.348555+00:00",
+      "requests": 5,
+      "duration_seconds": 3.89,
+      "bytes_read": 1747459,
+      "collected": 24,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "complete": true,
+      "closure_complete": false,
+      "error": null,
+      "page_errors": []
+    },
+    {
+      "id": "recruitee-bundl",
+      "enabled": true,
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "status": "ok",
+      "checked_at": "2026-11-16T15:58:01.467801+00:00",
+      "requests": 5,
+      "duration_seconds": 2.53,
+      "bytes_read": 923181,
+      "collected": 6,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "complete": true,
+      "closure_complete": false,
+      "error": null,
+      "page_errors": []
+    },
+    {
+      "id": "recruitee-franklin-institute",
+      "enabled": true,
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "status": "ok",
+      "checked_at": "2026-11-16T15:58:23.018110+00:00",
+      "requests": 5,
+      "duration_seconds": 2.42,
+      "bytes_read": 1098049,
+      "collected": 11,
+      "matching": 1,
+      "verification_states": {
+        "verified": 1
+      },
+      "complete": true,
+      "closure_complete": false,
+      "error": null,
+      "page_errors": []
+    }
+  ],
+  "cost_totals": {
+    "requests": 15,
+    "source_seconds": 8.84,
+    "bytes_read": 3768689,
+    "renderings": 0
+  },
+  "countries_with_verified_opportunities": {
+    "PT": {
+      "total": 1,
+      "verified": 1,
+      "unverified": 0,
+      "verifiedInternships": 1,
+      "verifiedWorkingStudents": 0,
+      "verifiedTraineeships": 0,
+      "closed": 0,
+      "internships": 1,
+      "workingStudents": 0,
+      "traineeships": 0
+    },
+    "BE": {
+      "total": 3,
+      "verified": 3,
+      "unverified": 0,
+      "verifiedInternships": 3,
+      "verifiedWorkingStudents": 0,
+      "verifiedTraineeships": 0,
+      "closed": 0,
+      "internships": 3,
+      "workingStudents": 0,
+      "traineeships": 0
+    },
+    "FR": {
+      "total": 5,
+      "verified": 5,
+      "unverified": 0,
+      "verifiedInternships": 5,
+      "verifiedWorkingStudents": 0,
+      "verifiedTraineeships": 0,
+      "closed": 0,
+      "internships": 5,
+      "workingStudents": 0,
+      "traineeships": 0
+    },
+    "NL": {
+      "total": 18,
+      "verified": 18,
+      "unverified": 0,
+      "verifiedInternships": 18,
+      "verifiedWorkingStudents": 0,
+      "verifiedTraineeships": 0,
+      "closed": 0,
+      "internships": 18,
+      "workingStudents": 0,
+      "traineeships": 0
+    },
+    "ES": {
+      "total": 1,
+      "verified": 1,
+      "unverified": 0,
+      "verifiedInternships": 1,
+      "verifiedWorkingStudents": 0,
+      "verifiedTraineeships": 0,
+      "closed": 0,
+      "internships": 1,
+      "workingStudents": 0,
+      "traineeships": 0
+    },
+    "DE": {
+      "total": 1,
+      "verified": 1,
+      "unverified": 0,
+      "verifiedInternships": 0,
+      "verifiedWorkingStudents": 1,
+      "verifiedTraineeships": 0,
+      "closed": 0,
+      "internships": 0,
+      "workingStudents": 1,
+      "traineeships": 0
+    }
+  },
+  "previous_verified_lost": [],
+  "public_site": {
+    "url": "https://people-placement-eu.pages.dev/data/catalog.json",
+    "status": 200,
+    "checked_at": "2026-11-16T16:09:32.055Z",
+    "bytes": 888716,
+    "sha256": "178b1336074332eb35333579cecd2cf3bb3c2dce259ef155822437cea0871660",
+    "equals_published_data": true,
+    "updated_at": "2026-11-16T16:08:16.539910+00:00"
+  },
+  "limitations": [
+    "Returned-feed completeness does not establish country completeness",
+    "Working student remains separate from internship",
+    "Unknown language sufficiency and company size remain unknown",
+    "No manual full collection or catalog promotion"
+  ],
+  "verified_at": "2026-11-16T16:09:20.238Z",
+  "workflow": {
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": 18,
+    "successful_jobs": 18,
+    "manual_dispatch": false,
+    "event": "push"
+  },
+  "cloudflare_deployment": {
+    "head_sha": "d764bececa798a089893754afde022dff9a2f90e",
+    "check": "Cloudflare Pages",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "ci": {
+    "head_sha": "f406f162a8e487b6cd202feacfdfb2874dd90212",
+    "pull_request_run": 43901406534,
+    "branch_run": 43901346530,
+    "post_merge_run": 43901780674,
+    "all_successful": true,
+    "python_tests": 413,
+    "node_tests": 26,
+    "classification_examples": 64
+  }
+}
