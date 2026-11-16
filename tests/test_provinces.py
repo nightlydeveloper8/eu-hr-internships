@@ -129,6 +129,11 @@ class PartialAvailabilityTests(unittest.TestCase):
         self.assertEqual(part['closure_eligible'],[])
         prior=copy.deepcopy(read(ROOT/'data/catalog.json',{}))
         retained=copy.deepcopy(prior['jobs'][0]);retained.update(id='old-same-source',source_id=source['id'],employer='Example',url='https://example.org/jobs/old',apply_url='https://example.org/jobs/old',status='open',last_verified_at=stamp,last_seen_at=stamp,valid_through=None,verification={},link_status='verified')
+        # A real catalog record can acquire legitimate identity_aliases on a daily
+        # merge. Synthetic, unrelated posting fixtures must never inherit those
+        # aliases or the deduplicator will (correctly) combine their identities.
+        retained.pop('identity_aliases',None);retained.pop('duplicate_source_ids',None)
+        retained['source_posting_id']=None
         proven=copy.deepcopy(retained);proven.update(id='old-proven-same-source',url='https://example.org/jobs/proven',apply_url='https://example.org/jobs/proven',verification=dict(state='verified',policy_version=2,checked_at=stamp))
         prior['jobs'].extend([retained,proven])
         before={j['id'] for j in prior['jobs']}
