@@ -1,5 +1,16 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — connettore per fonti strutturate UE27 e metadati EURES autorizzati
+
+**Obiettivo:** un unico canale di scoperta strutturato per job board pubbliche con identificativo stabile, volto ad aumentare stage HR realmente verificabili anziché il numero di crawler universali. PR separata su branch `feat/jobtech-se-licensed-hr-discovery-20261116`; **nessun merge, nessuna fonte nuova attivata, nessun rollout**.
+
+**Codice preparato:** `collector/official_feed_discovery.py` normalizza dati da JobTech svedese (API pubblica CC0) e, attraverso un contratto identico, metadati EURES forniti da upstream già autorizzato. `scripts/official_feed_discovery.py` espone pilota esplicito JobTech con massimo 3 ricerche, 120 hit, 12 richieste e 65 secondi, controlli robots, redirect sul solo host API e nessuna visita a moduli di candidatura. EURES rimane solo import da JSON con file prova dell'autorizzazione e **zero chiamate dirette al portale o API EURES**: le condizioni del servizio riservano l'estrazione per ulteriore elaborazione ai partner riconosciuti. Un link EURES non equivale a licenza di estrazione. I controlli sul file prova non autenticano giuridicamente il permesso.
+
+**Nessun falso guadagno:** per ogni riga prodotta `verification_state=unverified`, nessuna trasformazione diretta in catalogo; serve ancora accertamento datore ufficiale, stessa vacancy, candidatura, sede e freschezza policy v2. Test offline in `tests/test_official_feed_discovery.py`; documentazione `docs/eu27-structured-discovery.md`. **0 nuove stage verified, 0 nuove fonti abilitate, 0 GET esterni realmente eseguiti in questa sessione**. Non attribuire rendimento in produzione né latenza risparmiata senza pilota live e ciclo ordinario.
+
+**Baseline verificata:** catalogo main `8aad7fa` con 362 record, 27 internship verified più un working student, 307 unverified, 27 closed; solo 13/27 paesi con record, 5/27 con internship verified. Una fonte configurata non significa copertura nazionale. L'immediato passo tecnico è eseguire il pilota pubblico JobTech su runner con HTTPS, misurare rendimento e affiancare almeno un controllo ufficiale di formulario prima di proporre integrazione. EURES può essere collegato alla medesima normalizzazione solo quando esiste un valido accesso applicabile.
+
+
 ## 16 novembre 2026 — lotto 10 NL/BE/FR/ES/PT: 108 mirror storici fuori ownership, raccolta ordinaria pubblicata
 
 **Risultato reale:** analizzati offline i 257 annunci del lotto 10 nel catalogo delle 16:51 UTC: **28 stage HR policy v2 verified**, 209 non verificati e 20 chiusi. **108** record storici legati a `auto-tilburg-university` provengono invece da `www.nationalevacaturebank.nl` (98 unverified, 10 closed), cioè un portale esterno con tanti datori differenti, non stage ufficiali dell'università. Nessun record aveva `last_verified_at`, l'ultima osservazione era del 7 novembre. Non ampliare budget Tilburg per tentare di recuperarli come stage ufficiali.
