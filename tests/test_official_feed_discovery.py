@@ -8,7 +8,7 @@ import unittest
 
 from collector.official_feed_discovery import (
     JOBTECH_QUERIES, eures_candidate, https_url, jobtech_candidate,
-    jobtech_search, normalize, discovery_report
+    jobtech_search, normalize, discovery_report, mpsv_cz_candidate
 )
 from scripts.official_feed_discovery import authorisation_evidence, main
 
@@ -177,6 +177,45 @@ class OfficialDiscoveryTests(unittest.TestCase):
             self.assertFalse(report["catalog_modified"])
             self.assertEqual(report["candidate_count"],1)
             self.assertEqual(report["requests"],0)
+
+
+    def test_czech_government_open_data_keeps_only_nonpersonal_fields(self):
+        record=dict(portalId=24835,
+            pozadovanaProfese={"cs":"Stáž HR"},
+            zamestnavatel={"nazev":"Prague Example s.r.o.","ico":"12345678"},
+            upresnujiciInformace={"cs":"Stáž v lidských zdrojích"},
+            urlAdresa="https://employer.example/jobs/hr-staz-24835",
+            datumVlozeni="2026-11-16T12:00:00Z",expirace="2027-12-31",
+            kontaktniPracoviste={"email":"applicant-contact@example.org",
+                                 "telefon":"+420 111 222"},
+            mistoVykonuPrace={"pracoviste":[{"email":"person@example.org"}]})
+        row=mpsv_cz_candidate(record)
+        self.assertEqual((row["provider"],row["country"],row["provider_id"]),
+                         ("mpsv-cz","CZ","24835"))
+        self.assertEqual(row["verification_state"],"unverified")
+        self.assertIsNone(row["apply_url"])
+        self.assertNotIn("contact",json.dumps(row).lower())
+        self.assertNotIn("example.org",json.dumps(row))
+        self.assertNotIn("description",row)
+        self.assertNotIn("ico",json.dumps(row))
+        result=normalize([record,record],"mpsv-cz")
+        self.assertEqual(result["candidate_count"],1)
+        self.assertEqual(result["rejected"]["duplicate-in-input"],1)
+        self.assertEqual(result["verified_vacancies_added"],0)
+
+    def test_czech_general_homepage_old_deadline_and_missing_name_are_rejected(self):
+        record=dict(portalId=1,pozadovanaProfese={"cs":"Stáž HR"},
+            zamestnavatel={"nazev":"Example Company"},
+            urlAdresa="https://example.org/jobs/hr",expirace="2027-12-31")
+        self.assertIsNotNone(mpsv_cz_candidate(record))
+        record["urlAdresa"]="https://example.org/"
+        self.assertIsNone(mpsv_cz_candidate(record))
+        record["urlAdresa"]="https://example.org/jobs/hr"
+        record["expirace"]="2020-02-01"
+        self.assertIsNone(mpsv_cz_candidate(record))
+        record["expirace"]="2027-12-31"
+        record["zamestnavatel"]=None
+        self.assertIsNone(mpsv_cz_candidate(record))
 
 
 if __name__=="__main__":
