@@ -1,5 +1,18 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — lotto 07 CY/GR/HR/MT, GET pilot misurato senza fonti attive
+
+**Risultato reale:** 8 indizi esaminati in 4 paesi, tre vacancy HR di fonte ufficiale con identità precisa ma **0 nuove candidature verified policy v2** e **0 nuove fonti enabled**. Baseline di produzione invariata nell'ultimo catalogo letto: **362 record, 28 stage HR open/verified in 5 paesi, 1 working student DE** (16 novembre 16:51:25 UTC). Nessun rollout né aggiornamento del catalogo da questo lotto.
+
+**Piste prioritarie e prove:** Brainstorm Hospitality **CY** HR Intern Larnaca, Teamtailor ID **7649525**, inventario aziendale corrente e pagina specifica; form dinamico non leggibile in HTML statico. iKnowHow **GR** HR Intern (Talent Acquisition), Workable ID **3F368EAC02**, collegamento corporate→tenant esatto; form HTML statico assente e feed del board non stabilito. Marriott Westin **MT** HR Intern, ID **26132701**, listing aziendale e CTA Oracle con job ID conservato, ma l'HTML della pagina Oracle non mostra campi per candidarsi. Requisiti iKnowHow inglese fluente e iscrizione a istituto greco, Marriott stage 5–6 mesi/€835 lordi mensili. **Croazia:** Rimac People Operations Intern non appare nel board attuale nonostante la pagina vecchia; PLIVA AskHR scaduta il 9 novembre ed è working student, non stage. Xara MT HR Intern solo su mirror, Hilton MT solo fonte terza, Stoiximan CY programma HR senza vacancy corporate attuale: nessuno ammesso.
+
+**Preflight GET reale e limitato:** su ramo separato di GitHub Actions, [run #43918927512](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43918927512) **success**. Client originale BudgetClient con controllo robots attivo e allowlist redirect esatta. **11 richieste logiche totali**, di cui Brainstorm 3, iKnowHow 3, Marriott/Oracle 5; **1.356.253 byte letti** e **5,403 secondi-fonte cumulati**, **0 rendering, 0 HTTP 429**. Le 3 vacancy hanno HTTP 200, ma **nessuna pagina ha mostrato campi e submit anonimi abilitati**. La guardia robots ha consentito *queste URL*; il dump non registra direttive/status dei robots, né prova accesso all'intero sito. L'ambiente locale aveva DNS non disponibile, perciò la prova è stata eseguita sul runner; solo GET, niente login, CAPTCHA, POST o candidature. Nessuna fonte attivata: **incremento richieste quotidiane 0**, costo effettivo del singolo test 11 GET e 1,36 MB, costo monetario non misurato.
+
+Prove in [BATCH-07-REVIEW.md](eu27-expansion/BATCH-07-REVIEW.md), [JSON indizi](eu27-expansion/batch-07-review-2026-11-16.json) e [JSON del probe live](eu27-expansion/batch-07-live-preflight-2026-11-16.json); il workflow pilota NON è su main, non è programmato come raccolta quotidiana. Modificati solo documenti e stato, PR dell'attività da verificare CI/merge. Le PR #41 e #46 restano draft indipendenti e non ready.
+
+**Primo punto incompleto:** individuare per Teamtailor/Workable un percorso ufficiale e riutilizzabile verso il vero modulo anonimo senza abilitare indiscriminatamente renderer o variare policy v2; Oracle resta blocked/unverified quanto a form. In HR trovare una vacancy corrente sostitutiva. **Prossimo lotto 08: AT/DE/DK/FI/PL/SE**. Non dichiarare mappatura completa dei quattro paesi.
+
+
 ## 16 novembre 2026 — lotto 06 (EE/LV/LT/BG/IT/HU/SI/SK), audit UE27 senza rollout
 
 **Baseline dopo PR #47:** workflow #43909444414 (raccolta) e #43909444577 (validazione) riusciti. Catalogo main 16 novembre 16:51:25 UTC: **362 annunci, 28 stage HR verified in cinque paesi, 1 working student DE, 306 unverified, 27 closed**. PR #47 squash merge 5364825: fix host 429 e messaggi filled. Nessun nuovo stage verificato attribuibile al lotto 06.
