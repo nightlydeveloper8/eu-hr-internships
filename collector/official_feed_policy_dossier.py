@@ -80,6 +80,45 @@ def _published_source_child_fallback(candidate, vacancy, source, captured):
     return dict(url=canonical_url(app.url),method="public-feed-same-ATS-id-current-employer-CTA-and-enabled-form",
                 vacancy_match="title",inventory=vacancy["inventory_evidence"])
 
+
+def catalog_overlap(candidate, dossier, catalog_jobs):
+    """Conservative staging-only check for already published comparable jobs.
+
+    Both public-feed URL and employer ATS parent/application identities count.
+    Employer/title/country joins flag possible mirrors for human review rather
+    than automatically claiming that they are the same requisition.
+    """
+    if not isinstance(catalog_jobs,list):
+        raise ValueError("Catalog job entries must be an array")
+    urls={canonical_url(value) for value in (
+        candidate.get("url"),candidate.get("apply_url"),
+        dossier.get("ats_job_url"),dossier.get("application_url"))
+        if https_url(value)}
+    paths={(urlsplit(url).hostname,urlsplit(url).path.rstrip("/")) for url in urls}
+    exact, possible = [], []
+    for job in catalog_jobs:
+        if not isinstance(job,dict):
+            continue
+        observed=[]
+        for field in ("url","apply_url"):
+            value=job.get(field)
+            if not https_url(value):
+                continue
+            uri=canonical_url(value)
+            if uri in urls or (urlsplit(uri).hostname,urlsplit(uri).path.rstrip("/")) in paths:
+                observed.append(field)
+        if observed:
+            exact.append(dict(id=job.get("id"),matched_fields=observed))
+        elif (fold(plain(job.get("employer")))==fold(plain(candidate.get("employer"))) and
+                fold(plain(job.get("title")))==fold(plain(candidate.get("title"))) and
+                job.get("country")==candidate.get("country")):
+            possible.append(dict(id=job.get("id"),reason="same-employer-title-country"))
+    return dict(catalog_jobs_compared=len(catalog_jobs),
+                exact_url_or_path_count=len(exact),possible_mirror_count=len(possible),
+                exact_matches=exact[:15],possible_mirrors=possible[:15],
+                no_known_overlap=not exact and not possible,
+                caveat="Offline snapshot identity review; not proof no other mirror exists")
+
 def review(candidate, *, approved_host, approved_inventory_url=None,
            client_factory=BudgetClient):
     start=time.monotonic()
