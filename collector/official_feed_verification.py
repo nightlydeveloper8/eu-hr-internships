@@ -9,7 +9,8 @@ from __future__ import annotations
 
 from collections import Counter
 from datetime import datetime, timezone
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urljoin
+import re
 import time
 
 from .official_feed_discovery import https_url
@@ -49,6 +50,56 @@ def _identity_matches(body, url, employer, title):
             return True
     return False
 
+
+
+def academic_term_title_variant(feed_title, official_title):
+    """Limited diagnostic: only VT/HT year markers may be absent at source.
+
+    No fuzzy distance, synonym expansion, employer-name substitution or
+    promotion to verified. The observed ATS title must otherwise be identical.
+    """
+    def tokens(value):
+        return re.findall(r"[a-z0-9]+", fold(plain(value)))
+    expected, actual = tokens(feed_title), tokens(official_title)
+    if not expected or not actual or len(actual) < 6 or expected == actual:
+        return False
+    term_positions = [i for i, x in enumerate(expected)
+                      if re.fullmatch(r"(?:vt|ht)(?:\d{2}|\d{4})", x)]
+    return len(term_positions) == 1 and [
+        x for i, x in enumerate(expected) if i not in term_positions
+    ] == actual
+
+
+def _legal_page_owner_evidence(captured, first_url, employer):
+    """One observed *same-host* public legal/privacy link; no guessed pages.
+
+    Named legal entity on the actual recruiting host strengthens ownership.
+    This does not establish full policy-v2 verification independently.
+    """
+    page = captured.pages.get(canonical_url(first_url))
+    if not page:
+        return None
+    doc = Document(page, first_url)
+    host = urlsplit(first_url).hostname
+    for href, label, _ in doc.links:
+        if not re.search(r"privacy|integritet|datenschutz|impressum|legal",fold(label)):
+            continue
+        target = https_url(urljoin(first_url, href), {host})
+        if not target or canonical_url(target) == canonical_url(first_url):
+            continue
+        try:
+            body, status, final = captured.request(target)
+            if status != 200 or canonical_url(final) != canonical_url(target):
+                continue
+            legal = fold(Document(body, final).text)
+            name = fold(plain(employer))
+            if name and re.search(r"(?<!\w)"+re.escape(name)+r"(?!\w)",legal):
+                return target
+        except Exception:
+            # No legal-page evidence is not a failed vacancy form read.
+            continue
+        break  # At most one legal page per employer/candidate.
+    return None
 
 def verify_candidate(candidate, approved_hosts, client_factory=BudgetClient):
     """Validate same vacancy/form and employer evidence, never publish it.
@@ -110,7 +161,13 @@ def verify_candidate(candidate, approved_hosts, client_factory=BudgetClient):
             row["employer_identity_evidence"] = "same-vacancy-jobposting-hiring-organization"
             row["state"] = "same-vacancy-form-and-owner-evidence"
         else:
-            row["state"] = "form-observed-employer-identity-unverified"
+            evidence_url = _legal_page_owner_evidence(captured, url, candidate["employer"])
+            if evidence_url:
+                row["employer_identity_evidence"] = "same-host-legal-page-names-employer"
+                row["employer_identity_evidence_url"] = evidence_url
+                row["state"] = "same-vacancy-form-and-owner-evidence"
+            else:
+                row["state"] = "form-observed-employer-identity-unverified"
         # This report alone does not establish a fully verified production
         # opportunity; unique ID, origin, location and review are still needed.
         row["reason"] = "Live public HTML inspected; production policy-v2 review still required"
@@ -118,6 +175,25 @@ def verify_candidate(candidate, approved_hosts, client_factory=BudgetClient):
         if row["state"] != "host-review-required":
             row["state"] = "blocked" if blocked_error(exc) else "unverified"
             row["reason"] = str(exc)[:220]
+            # Some public feeds add a Swedish academic term (VT27/HT26) to
+            # an otherwise identical official title. Report that separately;
+            # it can never bypass policy v2's exact same-title requirement.
+            if ("Current page does not identify the same vacancy" in str(exc)
+                    and "captured" in locals() and "url" in locals()):
+                body = captured.pages.get(canonical_url(url))
+                if body:
+                    page = Document(body, url)
+                    matches = [title for title in page.h1
+                               if academic_term_title_variant(candidate["title"], title)]
+                    if len(set(matches)) == 1:
+                        row["seasonal_title_variant"] = True
+                        row["official_title_observed"] = matches[0]
+                        row["enabled_form"] = applicant_form(body, strict=True)
+                        row["state"] = ("seasonal-title-variant-form-observed-review-required"
+                                        if row["enabled_form"] else
+                                        "seasonal-title-variant-no-enabled-form")
+                        row["reason"] = ("Academic term differs but remaining title matches; "
+                                         "exact policy-v2 title proof NOT bypassed")
     finally:
         # Useful, bounded diagnostics even on an exact-title failure; neither
         # complete HTML nor personal applicant fields are stored in the report.
