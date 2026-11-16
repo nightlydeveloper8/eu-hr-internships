@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "base_commit": "876794ae28578f16500a4ce3aaf2efe32e7a3e8d",
+  "checked_at": "2026-11-16T14:24:05.322076+00:00",
+  "mode": "four-countries-bounded-review-no-production-writes",
+  "summary": {
+    "observations": 4,
+    "read_complete_ats_inventories": 2,
+    "inventoried_positions": 66,
+    "technical_same_posting_visible_forms": 1,
+    "new_admissible_sources": 0,
+    "new_fully_verified_opportunities": 0,
+    "new_enabled_sources": 0,
+    "production_catalog_added": 0
+  },
+  "rows": [
+    {
+      "country": "DE",
+      "employer": "Constructor TECH",
+      "title": "HR Intern",
+      "observed_url": "https://job-boards.greenhouse.io/constructortech",
+      "checked_at": "2026-11-16T14:08:34.764695+00:00",
+      "ready_for_integration": false,
+      "verified": false,
+      "enabled": false,
+      "state": "technical-candidate-ownership-not-established",
+      "inventory_records": 28,
+      "hr_student_candidates": 1,
+      "posting_id": "4772353101",
+      "vacancy_url": "https://job-boards.eu.greenhouse.io/constructortech/jobs/4772353101",
+      "same_title_page": true,
+      "strict_visible_enabled_form": true,
+      "application_identity": "same page and posting URL as current feed; actual form application-form, applicant fields and enabled submit",
+      "corporate_website": "https://constructor.tech/about-us",
+      "official_employer_to_exact_tenant_link": "not-established",
+      "ownership_notes": "Corporate Careers shell loads observed same-origin /api/v2/jobs from an observed public JS asset; robots disallows API. Denied request not fetched. No tenant URL in inspected corporate HTML/assets/privacy. ATS backlink and consistent branding do not replace required employer-to-tenant evidence.",
+      "employer_size": {
+        "reported": "310+ employees",
+        "evidence_url": "https://constructor.tech/about-us",
+        "qualification": "self-reported team size; not a legal SME classification"
+      },
+      "language": "English CV instruction and English classes do not prove workplace English",
+      "eligibility": "Degree in HR/Business/Psychology or related field; form asks about Constructor institutions and Bremen with Yes/No choices, not asserted as exclusive eligibility rules",
+      "duration": "from 2 months or more as published",
+      "scope_notes": "Remote/hybrid/office options mentioned; no inference of eligibility to work from any EU country",
+      "pending_gates": [
+        "Official employer-to-exact Greenhouse tenant evidence",
+        "Runtime strict-form regression review before any activation"
+      ]
+    },
+    {
+      "country": "DK",
+      "employer": "FirstMind",
+      "title": "Global Talent Intern",
+      "observed_url": "https://job-boards.greenhouse.io/firstmind?gh_src=55ec4a0c3us",
+      "checked_at": "2026-11-16T14:08:34.765079+00:00",
+      "ready_for_integration": false,
+      "verified": false,
+      "enabled": false,
+      "state": "indexed-role-absent-from-current-complete-feed",
+      "inventory_records": 38,
+      "hr_student_candidates": 0,
+      "expected_role_in_feed": false,
+      "classification_note": "No Global Talent Intern posting returned; this is not a current classifier miss. Sales/advisory Talent roles and UK-only/general internships were not promoted.",
+      "availability_note": "Absence from current tenant feed, not a universal closure determination",
+      "official_employer_to_exact_tenant_link": "not-reviewed-further-after-target-absence"
+    },
+    {
+      "country": "PL",
+      "employer": "Saint-Gobain",
+      "title": "Stażysta/Stażystka w dziale HR",
+      "observed_url": "https://joinus.saint-gobain.com/en/pol/tpr/i/46130/329013/stazystastazystka-w-dziale-hr?editorial_page=about_us&page=5",
+      "checked_at": "2026-11-16T14:08:34.764954+00:00",
+      "ready_for_integration": false,
+      "verified": false,
+      "enabled": false,
+      "state": "access-403-no-retry",
+      "error": "HTTPError: HTTP Error 403: Forbidden",
+      "inventory_state": "not-established",
+      "application_state": "not-established",
+      "classification_note": "Observed Polish title reproduced offline: old filter misses full stazysta/stazystka forms; fix prepared, not a live availability proof",
+      "existing_source_ids": [
+        "auto-saint-gobain",
+        "auto-saint-gobain-italia"
+      ],
+      "employer_dedup": "Existing employer; no duplicate company created"
+    },
+    {
+      "country": "FI",
+      "employer": "Barona Teollisuus Oy",
+      "title": "HR-harjoittelija teollisuuden tiimiin, Tampere, Barona",
+      "observed_url": "https://www.baronacareers.com/fi/en/jobs/hr-harjoittelija-teollisuuden-tiimiin-tampere-barona-barona-teollisuus-oy",
+      "checked_at": "2026-11-16T14:08:34.765029+00:00",
+      "ready_for_integration": false,
+      "verified": false,
+      "enabled": false,
+      "state": "sign-in-application-not-established",
+      "posting_id": "116361",
+      "page_employer": "Barona Teollisuus Oy",
+      "title_match": true,
+      "strict_visible_form": false,
+      "application_entry_label": "Sign in and Apply",
+      "application_state": "No anonymous applicant form or observed anonymous application URL established; no login performed",
+      "inventory_state": "not-established",
+      "official_platform_link": "https://www.barona.fi/en/barona/ -> https://www.baronacareers.com/fi/fi/job",
+      "ownership_note": "Corporate group-to-platform link confirmed; exact legal hiring entity is asserted by current JobPosting, not independently incorporated into registry",
+      "language_skills_published": [
+        "English",
+        "Finnish"
+      ],
+      "english_only": false,
+      "valid_through": "2026-12-08T00:00:00+00:00",
+      "eligibility": "University student; unpaid study-related placement from January 2027, then possible fixed-term employment; exact original description retained only in temporary raw evidence"
+    }
+  ],
+  "costs": {
+    "logical_requests": 22,
+    "source_seconds": 10.94,
+    "bytes_read": 1962584,
+    "renderings": 0,
+    "web_search_queries": 5,
+    "per_country": {
+      "DE": {
+        "requests": 12,
+        "source_seconds": 4.801,
+        "bytes_read": 1245160
+      },
+      "DK": {
+        "requests": 2,
+        "source_seconds": 1.993,
+        "bytes_read": 392443
+      },
+      "PL": {
+        "requests": 2,
+        "source_seconds": 0.57,
+        "bytes_read": 0
+      },
+      "FI": {
+        "requests": 6,
+        "source_seconds": 3.576,
+        "bytes_read": 324981
+      }
+    }
+  },
+  "limits": {
+    "per_employer_logical_requests": 12,
+    "per_employer_source_seconds": 45,
+    "max_workers": 4,
+    "browser_renderings": 0
+  },
+  "budget_respected": true,
+  "request_manifest": [
+    {
+      "country": "DE",
+      "url": "https://job-boards.greenhouse.io/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://job-boards.greenhouse.io/robots.txt",
+      "sha256": "17fb1dc3361b057783040fa7f58d72f18707170866d370bd3db6e547bee09058",
+      "scratch_file": "261b42e13986bbec6e0a3175.gz",
+      "bytes": 202,
+      "seconds": 0.16
+    },
+    {
+      "country": "DE",
+      "url": "https://job-boards.greenhouse.io/constructortech",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://job-boards.greenhouse.io/constructortech",
+      "sha256": "26bb09574d31198c7b76f88ca550599b4dc3432f400f48e8342d436984ccb35f",
+      "scratch_file": "8b1d8974285b9ed46e16d20c.gz",
+      "bytes": 46008,
+      "seconds": 0.744
+    },
+    {
+      "country": "DE",
+      "url": "https://boards-api.greenhouse.io/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://boards-api.greenhouse.io/robots.txt",
+      "sha256": "0bc35a3bc59e53b4932c848ba1f33890320d2de73fa0c1357555dd79c5629be9",
+      "scratch_file": "2f219410a1d444080b11cad3.gz",
+      "bytes": 131,
+      "seconds": 0.148
+    },
+    {
+      "country": "DE",
+      "url": "https://boards-api.greenhouse.io/v1/boards/constructortech/jobs?content=true",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://boards-api.greenhouse.io/v1/boards/constructortech/jobs?content=true",
+      "sha256": "19da2ddbc5db0384cde65fd46934f3ec262d52dd55535d7976182d2592ff30f8",
+      "scratch_file": "63533da33db2f86a7b842166.gz",
+      "bytes": 258675,
+      "seconds": 0.698
+    },
+    {
+      "country": "DK",
+      "url": "https://job-boards.greenhouse.io/firstmind",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://job-boards.greenhouse.io/firstmind",
+      "sha256": "1e4b56707a22d3a2fc2e730cc2484885e32c01cfdcc79f117e519e2f13fd8a17",
+      "scratch_file": "595a435a53a64f154f8ffb25.gz",
+      "bytes": 49152,
+      "seconds": 1.234
+    },
+    {
+      "country": "DK",
+      "url": "https://boards-api.greenhouse.io/v1/boards/firstmind/jobs?content=true",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://boards-api.greenhouse.io/v1/boards/firstmind/jobs?content=true",
+      "sha256": "dbf69da4943ba95f054bad7dbc61c1a5a0a55993152690d411962079bc723ec9",
+      "scratch_file": "492150c3fcbef9686beeeb61.gz",
+      "bytes": 343291,
+      "seconds": 0.72
+    },
+    {
+      "country": "PL",
+      "url": "https://joinus.saint-gobain.com/robots.txt",
+      "method": "GET",
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "seconds": 0.29
+    },
+    {
+      "country": "PL",
+      "url": "https://joinus.saint-gobain.com/en/pol/tpr/i/46130/329013/stazystastazystka-w-dziale-hr?editorial_page=about_us&page=5",
+      "method": "GET",
+      "error": "HTTPError: HTTP Error 403: Forbidden",
+      "seconds": 0.57
+    },
+    {
+      "country": "FI",
+      "url": "https://www.baronacareers.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.baronacareers.com/robots.txt",
+      "sha256": "ca9a43b2ca26df9e29d8fe055e31aca3d64bb8563d58a82058d7c31e929cdb89",
+      "scratch_file": "6fffaf858ee484ef3bba9bf2.gz",
+      "bytes": 219,
+      "seconds": 0.287
+    },
+    {
+      "country": "FI",
+      "url": "https://www.baronacareers.com/fi/en/jobs/hr-harjoittelija-teollisuuden-tiimiin-tampere-barona-barona-teollisuus-oy",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.baronacareers.com/fi/en/jobs/hr-harjoittelija-teollisuuden-tiimiin-tampere-barona-barona-teollisuus-oy",
+      "sha256": "212d15a81884789828438092b4e81322dc88d5c00d49e9b16d2801697ae84073",
+      "scratch_file": "5a234718d8e03eb5e5213435.gz",
+      "bytes": 106385,
+      "seconds": 0.842
+    },
+    {
+      "country": "DE",
+      "url": "https://constructor.tech/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://constructor.tech/robots.txt",
+      "sha256": "62fde313bd920dbb2987bca1ed6cad4b71f99debdcfb468e4f211b117b679842",
+      "scratch_file": "1568b3650b8c9593f1fff570.gz",
+      "bytes": 77,
+      "seconds": 0.165
+    },
+    {
+      "country": "DE",
+      "url": "https://constructor.tech/about-us",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://constructor.tech/about-us",
+      "sha256": "ab7e9a6c199d7ca6b71a762abc1b453a850d07f1fbe9ed0bd13ee3a6056fded1",
+      "scratch_file": "2bc4d33647bfce98be8e1887.gz",
+      "bytes": 368929,
+      "seconds": 0.779
+    },
+    {
+      "country": "DE",
+      "url": "https://job-boards.eu.greenhouse.io/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://job-boards.eu.greenhouse.io/robots.txt",
+      "sha256": "17fb1dc3361b057783040fa7f58d72f18707170866d370bd3db6e547bee09058",
+      "scratch_file": "5c7f81795ba3c461ae7d71a5.gz",
+      "bytes": 202,
+      "seconds": 0.097
+    },
+    {
+      "country": "DE",
+      "url": "https://job-boards.eu.greenhouse.io/constructortech/jobs/4772353101",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://job-boards.eu.greenhouse.io/constructortech/jobs/4772353101",
+      "sha256": "8fde913362f26adcf53abb68f6e1a8c2df983632746ab1ad96a73ecd51aba938",
+      "scratch_file": "0b895b711cdffd9a2a05a12c.gz",
+      "bytes": 53632,
+      "seconds": 0.708
+    },
+    {
+      "country": "FI",
+      "url": "https://barona.fi/robots.txt",
+      "method": "GET",
+      "error": "ValueError: Redirect outside approved source scope",
+      "seconds": 0.323
+    },
+    {
+      "country": "FI",
+      "url": "https://barona.fi/",
+      "method": "GET",
+      "error": "ValueError: Redirect outside approved source scope",
+      "seconds": 0.323
+    },
+    {
+      "country": "DE",
+      "url": "https://constructor.tech/assets/app-index-xWMWsA7y.js",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://constructor.tech/assets/app-index-xWMWsA7y.js",
+      "sha256": "4fbb14c1c3c252b16bc59f3cf59e3ddb6078b182308ec342f99a91ed41dfddfa",
+      "scratch_file": "8ea8635b52d798c2d231dac5.gz",
+      "bytes": 221114,
+      "seconds": 0.196
+    },
+    {
+      "country": "FI",
+      "url": "https://www.barona.fi/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.barona.fi/robots.txt",
+      "sha256": "99129fb19da72f195400c678326c32d94458edf4f3041710dde44278475d97ed",
+      "scratch_file": "147104ad727e7bb80eb0374c.gz",
+      "bytes": 205,
+      "seconds": 0.75
+    },
+    {
+      "country": "FI",
+      "url": "https://www.barona.fi/en/barona/",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.barona.fi/en/barona/",
+      "sha256": "7a0dbd96c72d0f1ef58054a62b536edffd29bad9c471e69654419ac8237ce2fc",
+      "scratch_file": "30d00a233d35d0af7d1fba15.gz",
+      "bytes": 218172,
+      "seconds": 1.953
+    },
+    {
+      "country": "DE",
+      "url": "https://constructor.tech/assets/ch-BubJobBoard-BcmMUsOD.js",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://constructor.tech/assets/ch-BubJobBoard-BcmMUsOD.js",
+      "sha256": "4f36500505e39e099de2e1acc29a10fba5979df81271006f76654db30e6a10be",
+      "scratch_file": "70a089c17131405890a3b6d3.gz",
+      "bytes": 4980,
+      "seconds": 0.085
+    },
+    {
+      "country": "DE",
+      "url": "https://constructor.tech/api/v2/jobs",
+      "method": "GET",
+      "error": "ValueError: robots.txt disallows https://constructor.tech/api/v2/jobs",
+      "seconds": 0.0
+    },
+    {
+      "country": "DE",
+      "url": "https://constructor.tech/privacy-notice",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://constructor.tech/privacy-notice",
+      "sha256": "7500c5e33122408241dc62c7a7061baca3a4ee95ffde876e9f0fd928bf92ebe7",
+      "scratch_file": "88bf98cfe0bb8f9e33565a64.gz",
+      "bytes": 291210,
+      "seconds": 0.24
+    }
+  ],
+  "counting_note": "Logical requests include robots and requests rejected before fetching content; redirect hops not separately counted. Current-session robots responses reused only with same directives and delays, no bypass.",
+  "prepared_improvements": {
+    "kind": "offline-semantics-replay-not-new-availability",
+    "polish_title": "Stażysta/Stażystka w dziale HR",
+    "polish_before": null,
+    "polish_after": {
+      "categories": [
+        "hr-generalist"
+      ],
+      "category": "hr-generalist",
+      "internship_type": "internship",
+      "internship_confidence": "confirmed"
+    },
+    "work_experience_title": "Specjalista HR – wymagany staż pracy 5 lat",
+    "work_experience_before": {
+      "categories": [
+        "hr-generalist"
+      ],
+      "category": "hr-generalist",
+      "internship_type": "internship",
+      "internship_confidence": "confirmed"
+    },
+    "work_experience_after": null,
+    "bsh_language_before": {
+      "requirements_status": "unknown",
+      "required_languages": [],
+      "alternative_languages": [],
+      "english_support": "unknown",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "bsh_language_after": {
+      "requirements_status": "explicit",
+      "required_languages": [
+        "en"
+      ],
+      "alternative_languages": [],
+      "english_support": "documented",
+      "english_sufficiency": "unknown",
+      "english_sufficiency_evidence": null
+    },
+    "verified_jobs_changed": 0,
+    "last_verified_at_refreshed": false
+  },
+  "production_baseline": {
+    "records": 355,
+    "fresh_verified_internships": 26,
+    "catalog_updated_at": "2026-11-16T13:56:56.213088+00:00",
+    "catalog_sha256": "7cc228126b7e0f31519eb50d3e961650179e2cc8f97e5a817061d56d2603c649"
+  },
+  "catalog_modified": false,
+  "registry_modified": false,
+  "workflow_modified": false,
+  "gate_expanded": false,
+  "limitations": [
+    "No company/source is admissible for activation from this batch",
+    "Constructor form proof alone is not complete employer ownership proof",
+    "No repeated 403, authentication, CAPTCHA bypass, blocked API download or full manual collection",
+    "Changes to classification/language extraction remain proposed code; no production count or freshness updated"
+  ]
+}

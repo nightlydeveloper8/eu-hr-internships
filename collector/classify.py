@@ -19,7 +19,9 @@ CATEGORIES = {
  'hr-administration': ('HR administration', r'hr admin|personnel admin|administration du personnel|personaladministration|personeelsadministratie|amministrazione del personale'),
  'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
-INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bstaz\b|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
+INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
+# Placement nouns are distinct from Polish 'staz pracy' (work experience).
+POLISH_PLACEMENT = r'\bstaz(?:ysta|ystka|ysci|ystki)\b|(?:^|[|:–—-]\s*)(?:(?:p[łl]atny|letni|wakacyjny|studencki)\s+)?staz\b(?!\s+pracy\b)'
 CITY_COUNTRIES = {
  'NL': 'amsterdam|rotterdam|utrecht|eindhoven|hoofddorp|oegstgeest|amersfoort|wageningen|haarlem|zaandam|leiden|den haag|hilversum|breda|delft|nijmegen|groningen|tilburg|enschede|apeldoorn|arnhem|den bosch',
  'DE':'berlin|munich|munchen|hamburg|frankfurt|cologne|koln|dusseldorf|stuttgart|leipzig|karlsruhe|walldorf|heidelberg', 'FR':'paris|rueil.malmaison|neuilly|nanterre|saint.ouen|saint.denis|lyon|marseille|bordeaux|lille|toulouse|nantes|boulogne|issy|clichy',
@@ -83,6 +85,7 @@ def classify_role(title, text='', employment=''):
     # Spanish placement titles use 'Prácticas'. A phrase about good practices
     # inside a permanent HR title/description is not a placement signal.
     signal = signal or re.search(r'^practicas\b',title) or re.search(r'^practicas\b',employment)
+    signal = signal or re.search(POLISH_PLACEMENT,title) or re.search(POLISH_PLACEMENT,employment)
     if not signal: return None
     kind = 'working-student' if re.search(r'werkstud(?:ent|ierende)|working.student|student assistant',title+' '+employment) else 'traineeship' if re.search(r'trainee',title+' '+employment) else 'internship'
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
@@ -98,7 +101,10 @@ def workplace_languages(text):
         # Application language / language classes / marketing are not workplace evidence.
         if re.search(r'(?:applications?|cv|resume|cover letter).{0,45}(?:in english|in french)|language (?:classes|courses)|(?:english|french|german).{0,15}(?:lessons|classes|courses)',s): continue
         cue = r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|preferred|preferably|nice.to.have|a plus|von vorteil|required|mandatory|essential|must|requis|obligatoire|verplicht|vereist|parl(?:ez|er)|couramment|\bfluen|proficien|command of|(?:official|corporate|company|business|main|working) language|working (?:proficiency|in)|work in|communication(?: and \w+)? skills|communicat\w* (?:in|skills)|spea[kc]|written and (?:verbal|spoken)|oral and written|writ\w* strong|comfortable.{0,30}english|maitrise|courant|biling|kenntnisse|beherrschen|vloeiend|beheers|niveau|livello|conoscenza|dominio|competencia'
-        if not re.search(cue,s): continue
+        # Spanish level requirements are workplace evidence; language courses
+        # and CV language instructions are not.
+        if re.search(r'\b(?:clases|cursos?)\s+(?:de\s+)?(?:ingles|frances|aleman|idiomas)\b|(?:cv|curriculum|carta de presentacion|solicitud).{0,60}\ben ingles\b',s):continue
+        if not re.search(cue+r'|\bnivel\b',s): continue
         for code,pattern in LANG_ALIASES.items():
             m = re.search(r'\b(?:'+pattern+r')\b',s)
             if not m: continue
@@ -107,13 +113,14 @@ def workplace_languages(text):
             local = s[max(start+1,m.start()-45):m.end()+65]
             following=re.search(r',|\b(?:but|maar|mais|aber)\b',s[m.end():])
             if following:local=s[max(start+1,m.start()-45):m.end()+following.start()]
-            if re.search(r'not (?:required|necessary|essential|mandatory)|(?:do not|don.t) (?:need|require)|no need to (?:speak|know)|no .{0,20}(?:required|necessary)|nicht erforderlich|niet vereist|pas (?:requis|necessaire)',local): continue
+            if re.search(r'not (?:required|necessary|essential|mandatory)|(?:do not|don.t) (?:need|require)|no need to (?:speak|know)|no .{0,20}(?:required|necessary)|nicht erforderlich|niet vereist|pas (?:requis|necessaire)|no (?:se )?(?:requiere|exige)|no (?:es )?(?:necesario|obligatorio|requerido|imprescindible)',local): continue
             tail = local[local.find(m.group(0))+len(m.group(0)):]
             next_language = '|'.join(LANG_ALIASES.values())
             tail = re.split(r'\b(?:additional languages|other languages|'+next_language+r')\b',tail,maxsplit=1)[0]
-            optional = bool(re.search(r'plus|advantage|bonus|preferred|nice.to.have|appreciated|souhait|apprecie|von vorteil',tail))
+            optional = bool(re.search(r'plus|advantage|bonus|preferred|nice.to.have|appreciated|souhait|apprecie|von vorteil|deseable|valorable|preferible',tail))
             optional = optional or bool(re.match(r'preferred languages?(?: are)?\s*:',s) or re.match(r'preferred languages? are\b',s))
             optional = optional or bool(re.search(r'(?:preferred|preferably|nice.to.have|ideally)\s+(?:\w+\s+){0,2}$',s[max(start+1,m.start()-35):m.start()]))
+            optional = optional or bool(re.search(r'(?:deseable|valorable|preferible)\s*:?\s*(?:\w+\s+){0,5}$',s[max(start+1,m.start()-65):m.start()]))
             mentions=sorted((x.start(),x.end()) for p in LANG_ALIASES.values() for x in re.finditer(r'\b(?:'+p+r')\b',s))
             alternative=any(re.fullmatch(r'\s+(?:or|and\s*/\s*or|oder|of|en\s*/\s*of|ou|oppure)\s+',s[a[1]:b[0]]) and m.start() in (a[0],b[0]) for a,b in zip(mentions,mentions[1:]))
             working=bool(re.search(r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|(?:working|corporate|company|business|official|main) language|work in',local))
