@@ -1,0 +1,716 @@
+{
+  "schema_version": 1,
+  "base_commit": "2e68639182be2bda95cc2c9bf87b1d065c6ffc57",
+  "checked_at": "2026-11-16T12:14:50.397777+00:00",
+  "mode": "eight-observations-reviewed-one-disabled-integration-no-production-write",
+  "rows": [
+    {
+      "country": "IT",
+      "employer": "Kering / Ginori 1735",
+      "title": "GINORI 1735 - Human Resources Intern",
+      "city": "Sesto Fiorentino",
+      "observed_url": "https://www.kering.com/it/talenti/offerte-di-lavoro/europe/ginori-1735-human-resources-intern/",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false,
+      "state": "application-robots-disallowed",
+      "admissible_new_source": false,
+      "reason": "Original Ginori vacancy identifies R172404 and publishes careers.kering.com/careers/R172404; robots disallows that observed application path. No alternative route tried.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "not-established"
+    },
+    {
+      "country": "IT",
+      "employer": "Kering / Gucci",
+      "title": "GUCCI Human Resources Intern",
+      "city": "Milano",
+      "observed_url": "https://www.kering.com/en/talent/job-offers/europe/gucci-human-resources-intern/",
+      "queue_action": "same-group-as-ginori-review-one-channel",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false,
+      "state": "redirected-to-general-list",
+      "admissible_new_source": false,
+      "reason": "Original Gucci URL redirects to Europe listing; same vacancy identity unavailable. Not asserted closed.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "not-established"
+    },
+    {
+      "country": "IT",
+      "employer": "Société Générale",
+      "title": "HR Internship",
+      "city": "Milano",
+      "observed_url": "https://careers.societegenerale.com/en/job-offers/hr-internship-26000NCI-en",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false,
+      "state": "application-authentication-not-verified",
+      "admissible_new_source": false,
+      "reason": "Vacancy 26000NCI matches; observed Taleo GET returns JavaScript redirection to /careersection/iam/accessmanagement/login.jsf. No login performed; no applicant form established.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "not-established"
+    },
+    {
+      "country": "ES",
+      "employer": "ENGIE",
+      "title": "Beca - Administración del Personal",
+      "city": "Madrid",
+      "observed_url": "https://jobs.engie.com/job/Beca-Administración-del-Personal/72363-es_ES/",
+      "queue_action": "existing-employer-new-country-host-review",
+      "existing_source_id": "auto-engie",
+      "verified": false,
+      "enabled": false,
+      "state": "application-robots-disallowed",
+      "admissible_new_source": false,
+      "reason": "Same Madrid vacancy and observed apply route established; robots disallows /talentcommunity/apply/72363. No workaround.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "not-established"
+    },
+    {
+      "country": "ES",
+      "employer": "BSH",
+      "title": "Prácticas Recursos Humanos - Formación",
+      "city": "Zaragoza",
+      "observed_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": true,
+      "enabled": false,
+      "state": "admissible-prepared-not-active",
+      "admissible_new_source": true,
+      "reason": "Official employer links to exact portal. Regular published list declares and returns 15 positions; 2 unsolicited entries excluded. Same posting 46112, title, visible enabled form, fresh policy-v2 proof in bounded pilot.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "bounded-live-pilot",
+      "pilot_report": {
+        "id": "index-bsh-es",
+        "employer": "BSH Electrodomésticos España",
+        "adapter": "employer-index",
+        "checked_at": "2026-11-16T12:10:45.610519+00:00",
+        "collected": 15,
+        "status": "ok",
+        "candidate_filter_reasons": {
+          "not-hr-student-role": 14
+        },
+        "matching": 1,
+        "verification_states": {
+          "verified": 1
+        },
+        "observed_countries": [
+          "ES"
+        ],
+        "records_inspected": 15,
+        "page_failures": 0,
+        "page_errors": [],
+        "page_errors_truncated": false,
+        "complete": true,
+        "closure_complete": false,
+        "pages_read": 1,
+        "job_urls_discovered": 15,
+        "declared_job_count": 15,
+        "discovery_scope": "Spanish portal regular publications only; exact count required, unsolicited applications excluded; no claim of global BSH coverage",
+        "verified_closed_urls": [],
+        "inventory_complete": true,
+        "snapshot_kind": "public-job-page-inventory",
+        "page_discovery_mode": "read-all-inventoried-job-pages"
+      },
+      "pilot_jobs": [
+        {
+          "id": "8ffac4254d72988264f1",
+          "external_id": "46112",
+          "source_id": "index-bsh-es",
+          "source_name": "BSH Electrodomésticos España",
+          "source_type": "employer-index",
+          "source_posting_id": null,
+          "employer": "BSH Electrodomésticos España",
+          "title": "Prácticas Recursos Humanos - Formación",
+          "country": "ES",
+          "countries": [
+            "ES"
+          ],
+          "city": "Zaragoza",
+          "url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+          "apply_url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new?persist_lang=es",
+          "categories": [
+            "hr-generalist"
+          ],
+          "category": "hr-generalist",
+          "internship_type": "internship",
+          "internship_confidence": "confirmed",
+          "advertisement_language": {
+            "code": "es",
+            "confidence": "confirmed",
+            "method": "source metadata"
+          },
+          "workplace_languages": [],
+          "language_requirements": {
+            "requirements_status": "unknown",
+            "required_languages": [],
+            "alternative_languages": [],
+            "english_support": "unknown",
+            "english_sufficiency": "unknown",
+            "english_sufficiency_evidence": null
+          },
+          "language_confidence": "unspecified",
+          "duration": null,
+          "enrollment": null,
+          "work_mode": "unspecified",
+          "published_at": null,
+          "valid_through": null,
+          "first_discovered_at": "2026-11-16T12:10:45.610519+00:00",
+          "last_seen_at": "2026-11-16T12:10:45.610519+00:00",
+          "last_verified_at": "2026-11-16T12:10:45.610519+00:00",
+          "link_status": "verified",
+          "verification": {
+            "state": "verified",
+            "checked_at": "2026-11-16T12:10:45.610519+00:00",
+            "policy_version": 2,
+            "reason": "official-publication-same-posting-visible-form"
+          },
+          "status": "open",
+          "application_verification": {
+            "url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new?persist_lang=es",
+            "method": "official-publication-same-posting-visible-form",
+            "valid_through": null,
+            "vacancy_match": "title",
+            "inventory": "not-established",
+            "checked_at": "2026-11-16T12:10:45.610519+00:00"
+          }
+        }
+      ],
+      "declared_regular_positions": 15,
+      "excluded_unsolicited_positions": 2,
+      "english_evidence": "Inglés nivel B2",
+      "english_only": "not-established",
+      "notes": [
+        "Full-title filter recognizes Spanish Prácticas prefix; does not infer internship status from description-only practices",
+        "Automated workplace-language extraction does not currently parse this B2 sentence; manual English evidence retained in bundle, no forced English-only tag",
+        "Closure absence proof deliberately remains disabled"
+      ]
+    },
+    {
+      "country": "AT",
+      "employer": "Revolution Event",
+      "title": "Praktikum Human Resources (w/m/d)",
+      "city": "Puch bei Hallein",
+      "observed_url": "https://revolution-event-gmbh.jobs.personio.de/?language=de",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false,
+      "state": "dynamic-form-not-established",
+      "admissible_new_source": false,
+      "reason": "Official employer links to exact Personio tenant. XML reads 8 positions, including HR 2768940. Observed application has same title and visible fields, disabled submit and cf-turnstile container; no enabled-form proof or browser/CAPTCHA interaction. Feed country unresolved by current adapter for office Puch bei Hallein.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "not-established"
+    },
+    {
+      "country": "PT",
+      "employer": "Unit4",
+      "title": "Talent Acquisition Program Intern",
+      "city": "Lisbon",
+      "observed_url": "https://careers.unit4.com/job?fuid=6c347a37-f25c-46c1-b805-e04c95eb62d6&srpid=71b3464e-ae6f-47d0-af8b-90cf32781a43",
+      "queue_action": "new-channel-review",
+      "existing_source_id": null,
+      "verified": false,
+      "enabled": false,
+      "state": "rate-limited-no-retry",
+      "admissible_new_source": false,
+      "reason": "robots lookup returns 429; inventory and application unavailable, not an empty inventory. No retry or alternate host.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "not-established"
+    },
+    {
+      "country": "PT",
+      "employer": "Emma – The Sleep Company",
+      "title": "People Process Automation Intern",
+      "city": "Lisbon",
+      "observed_url": "https://jobs.lever.co/emma-sleep/ed8efcfe-efe9-436a-877f-16a42265911d/apply",
+      "queue_action": "existing-channel-yield-check-only",
+      "existing_source_id": "lever-emma-sleep",
+      "verified": true,
+      "enabled": false,
+      "state": "already-monitored-verified",
+      "admissible_new_source": false,
+      "reason": "Existing Lever source and posting already in main catalog; no new network requests or duplicate integration. Fresh policy-v2 production evidence reused.",
+      "production_enabled_by_this_work": false,
+      "verification_kind": "existing-production-proof",
+      "existing_evidence": {
+        "id": "78410cb4dca747f2dcf8",
+        "url": "https://jobs.lever.co/emma-sleep/ed8efcfe-efe9-436a-877f-16a42265911d",
+        "apply_url": "https://jobs.lever.co/emma-sleep/ed8efcfe-efe9-436a-877f-16a42265911d/apply",
+        "last_verified_at": "2026-11-16T11:29:36.483395+00:00",
+        "verification": {
+          "state": "verified",
+          "checked_at": "2026-11-16T11:29:36.483395+00:00",
+          "policy_version": 2,
+          "reason": "linked-same-vacancy-applicant-form"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "observations": 8,
+    "employer_groups": 7,
+    "new_admissible_sources": 1,
+    "new_distinct_live_verified_in_pilot": 1,
+    "already_monitored_verified": 1,
+    "other_observations_not_admissible": 6,
+    "new_sources_enabled": 0,
+    "production_catalog_added": 0
+  },
+  "review_costs": {
+    "logical_requests": 34,
+    "source_seconds": 54.583,
+    "bytes_read": 2268020,
+    "per_company": {
+      "www.kering.com": {
+        "requests": 5,
+        "source_seconds": 3.701,
+        "bytes_read": 417467
+      },
+      "careers.societegenerale.com": {
+        "requests": 4,
+        "source_seconds": 1.351,
+        "bytes_read": 713266
+      },
+      "jobs.engie.com": {
+        "requests": 4,
+        "source_seconds": 1.046,
+        "bytes_read": 301094
+      },
+      "jobs.bsh-group.de": {
+        "requests": 8,
+        "source_seconds": 42.98,
+        "bytes_read": 403904
+      },
+      "revolution-event-gmbh.jobs.personio.de": {
+        "requests": 11,
+        "source_seconds": 5.288,
+        "bytes_read": 432289
+      },
+      "careers.unit4.com": {
+        "requests": 2,
+        "source_seconds": 0.217,
+        "bytes_read": 0
+      }
+    },
+    "limits": {
+      "per_company_requests": 12,
+      "per_company_seconds": 45,
+      "workers": 4,
+      "browser_renderings": 0
+    },
+    "search_queries": 3
+  },
+  "single_source_pilot": {
+    "logical_requests": 5,
+    "source_seconds": 60.682,
+    "bytes_read": 109503,
+    "renderings": 0,
+    "budget_requests": 10,
+    "budget_seconds": 75,
+    "budget_respected": true,
+    "checked_at": "2026-11-16T12:10:45.610519+00:00",
+    "requests_manifest": [
+      {
+        "url": "https://jobs.bsh-group.de/robots.txt",
+        "method": "GET",
+        "status": 200,
+        "final_url": "https://jobs.bsh-group.de/robots.txt",
+        "sha256": "ff748f408ed81952e8581231a2f2c3aa2d6ab7b292b58f6c3e2a48e414b4a4de",
+        "scratch_file": "f00685597ab1b1db0e43b90a.gz",
+        "bytes": 295,
+        "seconds": 0.21
+      },
+      {
+        "url": "https://jobs.bsh-group.de/index/es",
+        "method": "GET",
+        "status": 200,
+        "final_url": "https://jobs.bsh-group.de/index/es",
+        "sha256": "213d42d60714438170a3970cf6a84bd16f97c199a015e1ed68c08523762a87c9",
+        "scratch_file": "e8443f426191f792897351c6.gz",
+        "bytes": 19409,
+        "seconds": 10.485
+      },
+      {
+        "url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/de/job.html",
+        "method": "GET",
+        "status": 200,
+        "final_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+        "sha256": "a08c1719abd83f2cd1287032b3452ba23f2815a5854be3b4213b79819b2fe589",
+        "scratch_file": "990cf08d6b0b62bb9c946cae.gz",
+        "bytes": 21126,
+        "seconds": 19.742
+      },
+      {
+        "url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+        "method": "GET",
+        "status": 200,
+        "final_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+        "sha256": "347ddae80d08ca4a1a8513683da036720ee3cb0d6f6fe933596e5b4d02f1563c",
+        "scratch_file": "2d3f84760a893546481832fb.gz",
+        "bytes": 21126,
+        "seconds": 10.008
+      },
+      {
+        "url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new",
+        "method": "GET",
+        "status": 200,
+        "final_url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new?persist_lang=es",
+        "sha256": "c96393bf35c6dba52b11f61b8b9e0bf54f5b63b979e94eeda98fd3fa7a3cfa2b",
+        "scratch_file": "c2b591a642fd1df084a01113.gz",
+        "bytes": 47547,
+        "seconds": 20.394
+      }
+    ],
+    "original_discovery_mode_label": "read-all-inventoried-job-pages",
+    "final_discovery_mode_label": "reviewed-full-index-titles-then-matching-pages",
+    "label_note": "After live pilot only the legacy reporting label was corrected; no additional live run for a reporting-only correction"
+  },
+  "total_costs": {
+    "logical_requests": 39,
+    "source_seconds": 115.265,
+    "bytes_read": 2377523,
+    "renderings": 0
+  },
+  "request_counting_note": "Logical counters include robots checks and requests rejected before content fetch; HTTP redirect hops are not separately counted. The observed BSH crawl-delay is 10 seconds and is enforced. Search-engine queries are separate. No monetary estimate.",
+  "review_request_manifest": [
+    {
+      "url": "https://www.kering.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.kering.com/robots.txt",
+      "sha256": "94bb01a52ba34c4d69c5fd45fac1b52ff68e22cd0dfcc34c7f417b920ad233ae",
+      "scratch_file": "9081af0e944e6259e248da79.gz",
+      "bytes": 465,
+      "seconds": 0.158
+    },
+    {
+      "url": "https://www.kering.com/it/talenti/offerte-di-lavoro/europe/ginori-1735-human-resources-intern",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.kering.com/it/talenti/offerte-di-lavoro/europe/ginori-1735-human-resources-intern/",
+      "sha256": "05a3ed280bfbc3bf901d62aefcc115b162dcef12e1c2fef98a4ecc8ef5f6bc9f",
+      "scratch_file": "f4e2f091ed1a839d5af0fe06.gz",
+      "bytes": 114815,
+      "seconds": 1.368
+    },
+    {
+      "url": "https://www.kering.com/en/talent/job-offers/europe/gucci-human-resources-intern",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.kering.com/en/talent/job-offers/europe/",
+      "sha256": "69866e6f0f98bef9548113cb9f26aed6b09ce2fada6f1415e9818c176fd85196",
+      "scratch_file": "eda2795543bbe2e1742e355d.gz",
+      "bytes": 301912,
+      "seconds": 2.149
+    },
+    {
+      "url": "https://careers.societegenerale.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://careers.societegenerale.com/robots.txt",
+      "sha256": "a3728708c6e1e0a75f9f602f9db599e319f2527a256024880e3aef3096e29e6a",
+      "scratch_file": "5d2c807c5c86f9a5c34f4bd6.gz",
+      "bytes": 2209,
+      "seconds": 0.238
+    },
+    {
+      "url": "https://careers.societegenerale.com/en/job-offers/hr-internship-26000NCI-en",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://careers.societegenerale.com/en/job-offers/hr-internship-26000NCI-en",
+      "sha256": "b18103fc753efa2898f42e8baed4a2290631b48577853ce2f08c439bd35cf102",
+      "scratch_file": "02ebae2dfa91f7e848f9c7d9.gz",
+      "bytes": 709525,
+      "seconds": 0.718
+    },
+    {
+      "url": "https://jobs.engie.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.engie.com/robots.txt",
+      "sha256": "91669efc2767d124199e1d848655af18d64ac71e61ae1227be7b6aa866f03caf",
+      "scratch_file": "05369416bc3c7a7a5c7b1b4a.gz",
+      "bytes": 252,
+      "seconds": 0.181
+    },
+    {
+      "url": "https://jobs.engie.com/job/Beca-Administraci%C3%B3n-del-Personal/72363-es_ES",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.engie.com/job/Beca-Administraci%C3%B3n-del-Personal/72363-es_ES",
+      "sha256": "ffdf2f2e0d514964062fc1a99f981df3133d2884d16da7aeeef11ffc9167a1e1",
+      "scratch_file": "8d1a6a5caa40db9cba254c3b.gz",
+      "bytes": 300590,
+      "seconds": 0.937
+    },
+    {
+      "url": "https://jobs.bsh-group.de/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.bsh-group.de/robots.txt",
+      "sha256": "ff748f408ed81952e8581231a2f2c3aa2d6ab7b292b58f6c3e2a48e414b4a4de",
+      "scratch_file": "f00685597ab1b1db0e43b90a.gz",
+      "bytes": 295,
+      "seconds": 0.206
+    },
+    {
+      "url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+      "sha256": "9207019fbea1076e2799c4ebc7d4d13010337292211610a4160b7b0181c9cb08",
+      "scratch_file": "2d3f84760a893546481832fb.gz",
+      "bytes": 21126,
+      "seconds": 10.208
+    },
+    {
+      "url": "https://revolution-event-gmbh.jobs.personio.de/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://revolution-event-gmbh.jobs.personio.de/robots.txt",
+      "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+      "scratch_file": "56706504573ad9ea9bc4522b.gz",
+      "bytes": 23,
+      "seconds": 0.177
+    },
+    {
+      "url": "https://revolution-event-gmbh.jobs.personio.de?language=de",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://revolution-event-gmbh.jobs.personio.de?language=de",
+      "sha256": "6bf3a891e6c9b4b81ba1b1382f16dbf6c4bcf52ed8da3418f01c7d3bdfd3d4ac",
+      "scratch_file": "6862a55043e219620ad1b6c9.gz",
+      "bytes": 126407,
+      "seconds": 0.683
+    },
+    {
+      "url": "https://careers.unit4.com/robots.txt",
+      "method": "GET",
+      "error": "HTTPError: HTTP Error 429: Too Many Requests",
+      "seconds": 0.217
+    },
+    {
+      "url": "https://careers.unit4.com/job?fuid=6c347a37-f25c-46c1-b805-e04c95eb62d6&srpid=71b3464e-ae6f-47d0-af8b-90cf32781a43",
+      "method": "GET",
+      "error": "ValueError: robots.txt unavailable: 429",
+      "seconds": 0.217
+    },
+    {
+      "url": "https://careers.kering.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://careers.kering.com/robots.txt",
+      "sha256": "e658ad39f6765e6fdcbdb8a13cf3d4808327ad1c701c92c64a46052f3b9e2a29",
+      "scratch_file": "e01c55d9274f883020740f12.gz",
+      "bytes": 275,
+      "seconds": 0.132
+    },
+    {
+      "url": "https://careers.kering.com/careers/R172404?source=Keringcom_Slots",
+      "method": "GET",
+      "error": "ValueError: robots.txt disallows https://careers.kering.com/careers/R172404?source=Keringcom_Slots",
+      "seconds": 0.132
+    },
+    {
+      "url": "https://socgen.taleo.net/robots.txt",
+      "method": "GET",
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "seconds": 0.136
+    },
+    {
+      "url": "https://socgen.taleo.net/careersection/sgcareers/jobapply.ftl?job=26000NCI&src=CWS-1&lang=en",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://socgen.taleo.net/careersection/sgcareers/jobapply.ftl?job=26000NCI&src=CWS-1&lang=en",
+      "sha256": "abe41e87c20e58502c660d6b9a9ee68becf950018fdad54b7d13d00b2abbd92e",
+      "scratch_file": "8a0d5f14ea8322311abd3420.gz",
+      "bytes": 1532,
+      "seconds": 0.615
+    },
+    {
+      "url": "https://jobs.engie.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.engie.com/robots.txt",
+      "sha256": "91669efc2767d124199e1d848655af18d64ac71e61ae1227be7b6aa866f03caf",
+      "scratch_file": "05369416bc3c7a7a5c7b1b4a.gz",
+      "bytes": 252,
+      "seconds": 0.096
+    },
+    {
+      "url": "https://jobs.engie.com/talentcommunity/apply/72363/?locale=es_ES",
+      "method": "GET",
+      "error": "ValueError: robots.txt disallows https://jobs.engie.com/talentcommunity/apply/72363?locale=es_ES",
+      "seconds": 0.096
+    },
+    {
+      "url": "https://jobs.bsh-group.de/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.bsh-group.de/robots.txt",
+      "sha256": "ff748f408ed81952e8581231a2f2c3aa2d6ab7b292b58f6c3e2a48e414b4a4de",
+      "scratch_file": "f00685597ab1b1db0e43b90a.gz",
+      "bytes": 295,
+      "seconds": 0.149
+    },
+    {
+      "url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new?persist_lang=es",
+      "sha256": "e1c3cbcd5d92b666e712786681fb76c83b711701f8516ace6735310d557aab60",
+      "scratch_file": "c2b591a642fd1df084a01113.gz",
+      "bytes": 47547,
+      "seconds": 20.433
+    },
+    {
+      "url": "https://www.revolutionevent.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.revolutionevent.com/robots.txt",
+      "sha256": "e6e3c527078a1fd06b42ba7e3eb2fabd38a4eedd6dbf0a46378b6a5b8175ff32",
+      "scratch_file": "0c70c959dc99ffeee7886f99.gz",
+      "bytes": 329,
+      "seconds": 0.192
+    },
+    {
+      "url": "https://www.revolutionevent.com/jobs/",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.revolutionevent.com/jobs/",
+      "sha256": "9eb67a3de47362dba066520ec6e743ace00ce86ef10b73297c4b56fdcce12062",
+      "scratch_file": "0e79a36e33f393f42ee1973e.gz",
+      "bytes": 37140,
+      "seconds": 1.402
+    },
+    {
+      "url": "https://revolution-event-gmbh.jobs.personio.de/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://revolution-event-gmbh.jobs.personio.de/robots.txt",
+      "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+      "scratch_file": "56706504573ad9ea9bc4522b.gz",
+      "bytes": 23,
+      "seconds": 0.055
+    },
+    {
+      "url": "https://revolution-event-gmbh.jobs.personio.de/xml",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://revolution-event-gmbh.jobs.personio.de/xml",
+      "sha256": "7acbf88e3f0bc17d7a5e89c4d33ea59422d09d8ec19465715e5cb20586ebfd14",
+      "scratch_file": "59a66b1862ae0d357c70a0f0.gz",
+      "bytes": 46037,
+      "seconds": 0.635
+    },
+    {
+      "url": "https://revolution-event-gmbh.jobs.personio.de/job/2768940?language=de",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://revolution-event-gmbh.jobs.personio.de/job/2768940?language=de",
+      "sha256": "2dde7575a09b9d5ed231ff4521dc3ab250797efd36cb25f2c32246145b7d7c2b",
+      "scratch_file": "e1e3f9d210e68a0586b1f0cd.gz",
+      "bytes": 90295,
+      "seconds": 0.52
+    },
+    {
+      "url": "https://revolution-event-gmbh.jobs.personio.de/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://revolution-event-gmbh.jobs.personio.de/robots.txt",
+      "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+      "scratch_file": "56706504573ad9ea9bc4522b.gz",
+      "bytes": 23,
+      "seconds": 0.05
+    },
+    {
+      "url": "https://revolution-event-gmbh.jobs.personio.de/job/2768940/apply?language=de",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://revolution-event-gmbh.jobs.personio.de/job/2768940/apply?language=de",
+      "sha256": "56f024f6ddc942319e333fdfda4483e87076c6a2ae86456c6ce16bd38c246d39",
+      "scratch_file": "56b1a91cf535d4eaf6f577fb.gz",
+      "bytes": 90757,
+      "seconds": 0.69
+    },
+    {
+      "url": "https://www.revolutionevent.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.revolutionevent.com/robots.txt",
+      "sha256": "e6e3c527078a1fd06b42ba7e3eb2fabd38a4eedd6dbf0a46378b6a5b8175ff32",
+      "scratch_file": "0c70c959dc99ffeee7886f99.gz",
+      "bytes": 329,
+      "seconds": 0.065
+    },
+    {
+      "url": "https://www.revolutionevent.com/kontakt/",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.revolutionevent.com/kontakt/",
+      "sha256": "cfb7c1342ed6487d42adc77f2210b4d00ebb3a6601c0ceb4c96d8dbcfbec2d4f",
+      "scratch_file": "d56fa7a9cc6bcb19ccd0116c.gz",
+      "bytes": 40926,
+      "seconds": 1.289
+    },
+    {
+      "url": "https://jobs.bsh-group.de/index/es",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.bsh-group.de/index/es",
+      "sha256": "027c7c433b63ff7765b4cddc50d0bcb5c11dd7c8b75e93d6b640cb05ccc1f816",
+      "scratch_file": "e8443f426191f792897351c6.gz",
+      "bytes": 19409,
+      "seconds": 0.404
+    },
+    {
+      "url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/de/job.html",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+      "sha256": "065a91e7917387148df6390da5236dca16abb769b425cf96e6b54b519bdd7f9f",
+      "scratch_file": "990cf08d6b0b62bb9c946cae.gz",
+      "bytes": 21126,
+      "seconds": 10.26
+    },
+    {
+      "url": "https://www.bsh-group.com/robots.txt",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.bsh-group.com/robots.txt",
+      "sha256": "ba3a92b06bea567e936cfcf96cb12f8065fad4515918d99b73e916e5868a7db7",
+      "scratch_file": "bf3c163f18d51468301a34b4.gz",
+      "bytes": 1267,
+      "seconds": 0.395
+    },
+    {
+      "url": "https://www.bsh-group.com/es/trabajar-en-bsh/ofertas-de-empleo-y-practicas",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://www.bsh-group.com/es/es/trabajar-en-bsh/bienvenido-a-bsh/",
+      "sha256": "513cb7adc4e0d9faaa41484ff1d091d46ee05977953dce8d266a70a824d44263",
+      "scratch_file": "edf14b74a87572dd9b16b594.gz",
+      "bytes": 292839,
+      "seconds": 1.628
+    }
+  ],
+  "production_baseline": {
+    "records": 352,
+    "verified": 25,
+    "updated_at": "2026-11-16T11:41:24.691675+00:00",
+    "catalog_sha256": "44f3b1b89744a4f7cfcfb6d2c4881a6b55ec55b7907a840a24ef9d95647073d0"
+  },
+  "catalog_modified": false,
+  "registry_modified": false,
+  "workflow_modified": false,
+  "limitations": [
+    "One cold live pilot, not two cycles; future availability not guaranteed",
+    "One Spanish portal of BSH, not global BSH or national Spain coverage",
+    "Revolution Event states team of 25 on its posting; not represented as a documented 50+ employer or fully integrated source",
+    "No login, CAPTCHA bypass, application submit, recurring AI task or full manual collection"
+  ]
+}

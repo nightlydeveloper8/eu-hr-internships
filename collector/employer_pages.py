@@ -138,15 +138,24 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
     return result
 
 class JobLinksParser(HTMLParser):
-    def __init__(self):
+    def __init__(self,scope_id=None):
         super().__init__(convert_charrefs=True);self.links=[];self.anchors=[]
+        self.scope_id=scope_id;self.stack=[];self.scope_count=0
     def handle_starttag(self,tag,attrs):
-        if tag=='a':
-            attrs=dict(attrs);self.anchors.append([attrs.get('href',''),''])
+        attrs=dict(attrs)
+        selected=bool(self.scope_id and attrs.get('id')==self.scope_id)
+        if selected:self.scope_count+=1
+        if tag not in ('area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'):
+            self.stack.append((tag,selected))
+        if tag=='a' and (not self.scope_id or any(selected for _,selected in self.stack)):
+            self.anchors.append([attrs.get('href',''),''])
     def handle_data(self,data):
         for anchor in self.anchors:anchor[1]+=' '+data
     def handle_endtag(self,tag):
         if tag=='a' and self.anchors:self.links.append(self.anchors.pop())
+        for index in range(len(self.stack)-1,-1,-1):
+            if self.stack[index][0]==tag:
+                del self.stack[index:];break
 
 def index_records(source,client):
     """Inventory actual links in reviewed official lists; never infer job paths."""
@@ -185,7 +194,11 @@ def index_records(source,client):
             from .universal import Document
             doc=Document(body,final)
             if empty['heading'] in doc.h1 and re.search(empty['pattern'],doc.text):empty_pages.add(url)
-        parser=JobLinksParser();parser.feed(body.decode('utf-8','replace'))
+        parser=JobLinksParser(source.get('index_link_scope_id'));parser.feed(body.decode('utf-8','replace'))
+        if source.get('index_link_scope_id') and parser.scope_count!=1:
+            raise ValueError('Reviewed job index container missing or duplicated')
+        if source.get('index_titles_complete') and not source.get('index_job_count_pattern'):
+            raise ValueError('Complete index titles require a reviewed published inventory count')
         if source.get('index_job_count_pattern'):
             match=re.search(source['index_job_count_pattern'],plain(body.decode('utf-8','replace')))
             if not match:raise ValueError('Reviewed published job count missing')
@@ -217,8 +230,10 @@ def index_records(source,client):
             target=approved(target,source)
             key=re.search(source['job_id_pattern'],target).group(1) if source.get('job_id_pattern') else target
             title=structured_titles.get(target,plain(label))
+            if source.get('index_titles_complete') and (not title or title.endswith(('...','…'))):
+                raise ValueError('Reviewed full index title missing or truncated')
             if key in records and len(records[key]['title'])>=len(title):continue
-            records[key]=dict(source_id=source['id'],external_id=key,employer=source['employer'],title=title,location='',text='',url=target,apply_url=target,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True)
+            records[key]=dict(source_id=source['id'],external_id=key,employer=source['employer'],title=title,location='',text='',url=target,apply_url=target,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=not source.get('index_titles_complete',False))
         if len(records)>source.get('max_job_urls',5000):raise ValueError('Job index safety limit')
     if empty_pages:
         if records or empty_pages!=seen or declared_total not in (None,0):
@@ -231,5 +246,6 @@ def index_records(source,client):
         complete=source.get('inventory_scope_complete',False)
         return Inventory(records.values(),dict(status='ok' if complete else 'partial',complete=complete,
             closure_complete=False,pages_read=len(seen),job_urls_discovered=len(records),
+            page_discovery_mode='reviewed-full-index-titles-then-matching-pages' if source.get('index_titles_complete') else 'read-all-inventoried-job-pages',
             declared_job_count=declared_total,discovery_scope=source.get('discovery_scope')))
     return list(records.values())

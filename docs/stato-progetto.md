@@ -1,5 +1,47 @@
 # Stato di ripresa — People Placement
 
+
+## 16 novembre 2026 — lotto IT/ES/PT/AT verificato, BSH preparata senza rollout
+
+**Otto indizi → una nuova integrazione ammissibile (BSH Spagna), una candidatura già in produzione (Emma), sei indizi non ammissibili.** Consegna nel ramo
+`review/eu27-it-es-pt-at-20261116`, base main `2e68639182be2bda95cc2c9bf87b1d065c6ffc57`.
+Rapporto [BATCH-02-REVIEW.md](eu27-expansion/BATCH-02-REVIEW.md), evidenze e costi
+[batch-02-review-2026-11-16.json](eu27-expansion/batch-02-review-2026-11-16.json).
+
+BSH: collegamento ufficiale datore→portale, 15 posizioni effettive coincidenti
+con il conteggio pubblicato, due candidature spontanee escluse. Uno stage HR
+Formación a Zaragoza, ID 46112; modulo dello stesso ID/titolo visibile abilitato.
+**Pilota singola fonte riuscito: 5 richieste, 60,682 secondi, 109.503 byte,
+zero rendering/errori**, budget 10/75 rispettato; crawl-delay 10 s e redirect
+rispettati. Beneficio potenziale +1; **zero nuovi annunci pubblicati**.
+Annuncio spagnolo, inglese B2 documentato; solo inglese non stabilito e frase B2
+non ancora riconosciuta dall'estrattore automatico delle lingue, senza tag forzati.
+
+Correzioni riutilizzabili: prefisso spagnolo Prácticas nel filtro; scope esatto e
+conteggio degli elenchi, titoli completi opt-in prima di aprire le schede;
+`publication-linked` verifica CTA osservata, identità e modulo dello stesso ID.
+**395 test Python, 26 Node, 64 esempi e build superati**, 11 nuove regressioni,
+due cicli offline con ID conservati. Fixture non sono nuove prove live.
+Dopo il pilota corretta l'etichetta di report sui titoli: comportamento di rete
+invariato. Bundle [batch-02-integration-bundle.json](eu27-expansion/batch-02-integration-bundle.json)
+fuori runtime, fonte disabilitata: nessun registry/catalogo/workflow modificato,
+nessun merge, gate o host di produzione esteso. Inserire azienda e fonte attiva
+insieme solo dopo autorizzazione specifica, evitando fallback generici.
+
+Altri esiti: Ginori/Kering e ENGIE bloccati da robots sul percorso di candidatura;
+Gucci rimanda al listone (non dichiarato chiuso); Société Générale reindirizza
+via JavaScript al login Taleo (nessuna autenticazione); Revolution Event ha XML
+con 8 posizioni e una HR ma submit disabilitato/cf-turnstile e paese office non
+risolto dal connettore; Unit4 429 su robots, nessun retry; Emma già verificata,
+nessun doppione o nuova richiesta. **Costo totale lotto e pilota: 39 richieste
+logiche, 115,265 secondi-fonte cumulati, zero rendering**, più tre query web.
+Produzione resta baseline 352 record / 25 stage verificati del ciclo precedente.
+
+**Primo punto incompleto:** review della PR, eventuale attivazione specificamente
+autorizzata e primo ciclo ordinario BSH; nessuna raccolta completa manuale o
+nuova automazione. Proseguire la ricerca di canali accessibili nei paesi non
+coperti senza concentrare la sessione sui blocchi tecnici di questo lotto.
+
 ## 16 novembre 2026 — cinque fonti attive, primo ciclo e sito verificati
 
 **Risultato reale: 20 → 25 stage HR aperti e verificati (+5 distinti, +25%).**
