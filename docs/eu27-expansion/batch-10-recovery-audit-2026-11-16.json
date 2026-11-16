@@ -188,5 +188,54 @@
     "robots_bypass": false,
     "source_ownership_quarantine_pending_merge": true
   },
-  "next": "After daily run completes and latest catalog publishes, compare exact baseline, merge tested quarantine without cancelling an in-progress scheduled run, then run ordinary collection and assess whether erroneous historical unverified opportunities are flagged while verified IDs remain intact."
+  "next": "After daily run completes and latest catalog publishes, compare exact baseline, merge tested quarantine without cancelling an in-progress scheduled run, then run ordinary collection and assess whether erroneous historical unverified opportunities are flagged while verified IDs remain intact.",
+  "followup_ordinary_collection": {
+    "run_id": 43931128227,
+    "run_url": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43931128227",
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "jobs_success": {
+      "test": 1,
+      "collect_shards": 16,
+      "publish": 1
+    },
+    "data_commit": "9ea137359a3d858b7471fd059dd6a2a81d3b2b24",
+    "catalog_updated_at": "2026-11-16T18:53:11.246235+00:00",
+    "catalog_update_status": "partial",
+    "total_records": 362,
+    "existing_records_changed": 134,
+    "new_record_ids": 0,
+    "removed_record_ids": 0,
+    "verified_hr_internships_before": 28,
+    "verified_hr_internships_after": 28,
+    "verified_working_students_before": 1,
+    "verified_working_students_after": 1,
+    "gained_verified_ids": 0,
+    "lost_verified_ids": 0,
+    "employer_outcomes": {
+      "attempted": 1896,
+      "collected": 67,
+      "partial": 530,
+      "blocked_or_failed": 277,
+      "discovery_incomplete": 990,
+      "verified_empty": 32
+    },
+    "coverage_quality": {
+      "sources_succeeded": 670,
+      "sources_attempted": 1894,
+      "sources_partial": 1507
+    },
+    "cloudflare_pages_check": {
+      "commit_sha": "9ea137359a3d858b7471fd059dd6a2a81d3b2b24",
+      "name": "Cloudflare Pages",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "direct_public_catalog_http_read": "could-not-verify-directly-with-web-reader",
+    "notes": [
+      "GitHub workflow success indicates test, all shards and publish jobs succeeded; catalog is partial because not every employer is operational.",
+      "No new verified internships or employers with confirmed new vacancies.",
+      "This run precedes the batch10 ownership quarantine patch, which has not yet been merged."
+    ]
+  }
 }
