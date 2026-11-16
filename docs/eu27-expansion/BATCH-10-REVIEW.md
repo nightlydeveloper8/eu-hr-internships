@@ -44,7 +44,7 @@ La [raccolta #43931128227](https://github.com/nightlydeveloper8/eu-hr-internship
 - `data/catalog.json.update_status` **partial** e `data/coverage.json`: 670 fonti succeeded su 1.894 tentate, 1.507 partial (i raggruppamenti del report aziende e delle fonti non sono la stessa misura).
 - Check GitHub **Cloudflare Pages = success** sul medesimo commit dati `9ea1373`. Il lettore web non ha potuto scaricare il catalogo pubblico per confrontarne byte e hash: **la verifica indipendente GET pubblica rimane non eseguita**.
 
-**Importante:** questa raccolta è precedente alla patch di quarantena storica del lotto 10. Il fatto che il workflow sia verde non implica che la mappatura dei cinque paesi, né quella UE27, sia completa.
+**Regressione del fixture dopo il ciclo ordinario:** il catalogo pubblicato ha aggiunto a un record esistente un alias di deduplicazione valido (`identity_aliases`). Un test di conservazione degli ID copiava quel record per costruire due posti sintetici diversi, ereditandone l'alias e facendoli fondere correttamente. Il fixture ora azzera soltanto gli alias/ID di posting ereditati per gli annunci fittizi: **nessuna modifica alla deduplica di produzione**.\n\n**Importante:** questa raccolta è precedente alla patch di quarantena storica del lotto 10. Il fatto che il workflow sia verde non implica che la mappatura dei cinque paesi, né quella UE27, sia completa.
 
 ## Modifiche, costi e punto incompleto
 
