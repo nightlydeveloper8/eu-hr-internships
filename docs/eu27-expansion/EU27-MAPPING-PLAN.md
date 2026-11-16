@@ -48,7 +48,7 @@ Un paese può avere temporaneamente **zero stage aperti** anche con buone fonti;
 
 I lotti **06–10** coprono esattamente una volta i 27 codici paese. È una **pianificazione**, non cinque job schedulati e non un completamento delle mappature:
 
-- **06 — EE, LV, LT, BG, IT, HU, SI, SK**: completata la ricognizione mirata su dieci indizi, quattro esclusi o separati e cinque piste da confermare; nessuna fonte attivata. <Link in Markdown not needed>
+- **06 — EE, LV, LT, BG, IT, HU, SI, SK**: completata la ricognizione mirata su dieci indizi, cinque esclusi o separati e cinque piste da confermare; nessuna fonte attivata.
 - **07 — CY, GR, HR, MT**: canali ufficiali e termini in greco, croato e lingue locali; almeno un inventario aziendale completo per datore esaminato, poi espandere la coda.
 - **08 — AT, DE, DK, FI, PL, SE**: sostituire canali scaduti/bloccati con feed pubblici ufficiali; evitare workaround robots, 403, login e CAPTCHA.
 - **09 — CZ, RO, IE, LU**: convertire le piste già raccolte quando i moduli sono specifici e accessibili, senza ripetere Manifesto 429 o offerte chiuse.
