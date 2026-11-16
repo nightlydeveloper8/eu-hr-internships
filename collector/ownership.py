@@ -38,3 +38,37 @@ def apply_ownership_reviews(jobs,reviews):
             if not job['duplicate_source_ids']:job.pop('duplicate_source_ids')
         result.append(job)
     return result
+
+def quarantine_historical_external_jobs(jobs, registry):
+    """Preserve but flag old third-party jobs attributed to a restricted employer.
+
+    A previous crawler may have followed a student/referral portal and stored
+    postings under the referring university. The new reviewed-hosts policy
+    rejects these during discovery; that alone cannot repair *historical*
+    catalog rows, which remain in the cumulative archive. Only an individual
+    positive ownership review may transfer those records to an actual employer.
+    No network, mass deletion, closing, or ownership guess happens here.
+    """
+    sources={source['id']:source for source in registry if source.get('id')}
+    flagged=[]
+    for original in jobs:
+        source=sources.get(original.get('source_id'))
+        host=urlsplit(original.get('url') or '').hostname
+        if (not source or not host or
+            not (source.get('ownership_scope')=='reviewed-hosts' or source.get('require_employer_identity')) or
+            host in source.get('allowed_hosts',[]) or original.get('ownership_review')):
+            flagged.append(original)
+            continue
+        job=dict(original)
+        job['ownership_risk']=dict(state='historical-unreviewed-external-host',
+                                   original_source_id=source['id'], observed_host=host)
+        job['review_note']='Historical external job-board link; original employer ownership and direct application require individual evidence'
+        if job.get('status')!='closed':
+            job['status']='unverified'
+            job['link_status']='review-required'
+            job['last_verified_at']=None
+            job['verification']=dict(job.get('verification') or {},
+                policy_version=2,state='incomplete',
+                reason='Historical external URL outside source reviewed employer hosts; official vacancy ownership not established')
+        flagged.append(job)
+    return flagged
