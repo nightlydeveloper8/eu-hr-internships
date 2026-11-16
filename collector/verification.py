@@ -104,6 +104,31 @@ def applicant_form(body,strict=False):
     return False
 
 
+
+def disabled_submit_applicant_form(body):
+    """Recognise an applicant form with an initially disabled submit, not its cause.
+
+    This is NOT evidence of a live, enabled form or of eventual candidability.
+    It prevents pointless browser fallback on a fully visible static form.
+    Hidden, newsletter, alert and generic contact forms remain excluded.
+    """
+    for form in ApplicantForms(body,strict=True).forms:
+        if form['submit'] or not form.get('disabled_submits'):
+            continue
+        attributes=' '.join(v for v in form['attrs'].values() if isinstance(v,str)).lower()
+        if re.search(r'newsletter|job.?alert|cookie|consent|search|talent.?community|subscribe',attributes):
+            continue
+        fields=form['fields']
+        names=' '.join(str(i.get(k) or '') for i in fields
+                       if i.get('type')!='hidden'
+                       for k in ('name','id','type','autocomplete','aria-label')).lower()
+        is_applicant=bool(re.search(r'apply|applica|recruit|candidate',attributes)
+                          or re.search(r'resume|\bcv\b',names))
+        if is_applicant and 'email' in names and re.search(r'name|resume|\bcv\b',names):
+            return True
+    return False
+
+
 def _verify_vacancy(record, source, client, stamp, observation=None):
     """No successful HEAD, cached page or JSON-LD alone establishes an opening."""
     closure=None
@@ -143,6 +168,8 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
         target = canonical_url(urljoin(doc.url, href))
         if urlsplit(target).hostname in source['allowed_hosts'] and target != canonical_url(doc.url): targets.append(target)
     if not targets:
+        if disabled_submit_applicant_form(body):
+            raise ValueError('Applicant fields visible but submit disabled in initial HTML; availability unverified')
         from .dynamic_ats import MissingDynamicForm
         raise MissingDynamicForm('No available vacancy-specific application entry established',doc.url,body)
     # Do not treat a redirect to a careers/search page or another requisition as success.
@@ -163,6 +190,8 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     if not same_title(application, record['title']) and (application.jobposts() or any(classify_role(h) for h in application.h1)):raise ValueError('Application identifies a different vacancy')
     if not same_title(application, record['title']) and not same_requisition(doc.url,application.url): raise ValueError('Application page does not identify the same vacancy')
     if not applicant_form(app_body):
+        if disabled_submit_applicant_form(app_body):
+            raise ValueError('Applicant fields visible but submit disabled in initial HTML; availability unverified')
         from .dynamic_ats import MissingDynamicForm
         raise MissingDynamicForm('Applicant form not established; application may require JavaScript or an account',application.url,app_body)
     return dict(url=canonical_url(application.url), method='linked-same-vacancy-applicant-form',valid_through=fresh_deadline, vacancy_match='title' if same_title(application,record['title']) else 'vacancy-path-application-child',
