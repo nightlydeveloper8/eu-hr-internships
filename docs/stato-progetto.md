@@ -3,8 +3,8 @@
 
 ## 16 novembre 2026 — lotto IT/ES/PT/AT verificato, BSH preparata senza rollout
 
-**Otto indizi → una nuova integrazione ammissibile (BSH Spagna), una candidatura già in produzione (Emma), sei indizi non ammissibili.** Consegna nel ramo
-`review/eu27-it-es-pt-at-20261116`, base main `2e68639182be2bda95cc2c9bf87b1d065c6ffc57`.
+**Otto indizi → una nuova integrazione ammissibile (BSH Spagna), una candidatura già in produzione (Emma), sei indizi non ammissibili.** Consegna nella [PR #43](https://github.com/nightlydeveloper8/eu-hr-internships/pull/43),
+ramo `review/eu27-it-es-pt-at-20261116`, base main `2e68639182be2bda95cc2c9bf87b1d065c6ffc57`.
 Rapporto [BATCH-02-REVIEW.md](eu27-expansion/BATCH-02-REVIEW.md), evidenze e costi
 [batch-02-review-2026-11-16.json](eu27-expansion/batch-02-review-2026-11-16.json).
 

@@ -100,6 +100,7 @@ class PublicationTests(unittest.TestCase):
         part=process_source(self.source,self.client,STAMP);first=part['jobs'];report=part['report']
         self.assertEqual(len(first),1);self.assertEqual(first[0]['status'],'open');self.assertEqual(first[0]['country'],'ES')
         self.assertEqual(report['collected'],15);self.assertEqual(len(self.client.calls),4)
+        self.assertEqual(report['page_discovery_mode'],'reviewed-full-index-titles-then-matching-pages')
         previous=json.loads((ROOT/'data/catalog.json').read_text());expected=first[0]['id']
         absent=copy.deepcopy(previous);absent['jobs']=[j for j in absent['jobs'] if j['id']!=expected]
         for baseline in [absent,previous]:
