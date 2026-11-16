@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-16",
+  "batch": "10",
+  "mode": "offline-catalog-reconciliation-plus-targeted-employer-web-review",
+  "source_commit": "25df4e10ac584ba1f39fc366fe964a55866dd459",
+  "catalog_updated_at": "2026-11-16T16:51:25.820161+00:00",
+  "scope_countries": [
+    "NL",
+    "BE",
+    "FR",
+    "ES",
+    "PT"
+  ],
+  "baseline": {
+    "all_catalog_records": 362,
+    "scoped_records": 257,
+    "verified_hr_internships": 28,
+    "working_students_in_scope": 0,
+    "unverified": 209,
+    "closed": 20,
+    "verified_by_country": {
+      "NL": 18,
+      "BE": 3,
+      "FR": 5,
+      "ES": 1,
+      "PT": 1
+    }
+  },
+  "by_country": [
+    {
+      "code": "NL",
+      "total": 194,
+      "verified_internships": 18,
+      "unverified": 160,
+      "closed": 16,
+      "historical_wrong_owner": 108,
+      "historical_unverified": 98,
+      "historical_closed": 10,
+      "eligible_for_evidence_review": 62
+    },
+    {
+      "code": "BE",
+      "total": 4,
+      "verified_internships": 3,
+      "unverified": 1,
+      "closed": 0,
+      "historical_wrong_owner": 0,
+      "eligible_for_evidence_review": 1
+    },
+    {
+      "code": "FR",
+      "total": 45,
+      "verified_internships": 5,
+      "unverified": 36,
+      "closed": 4,
+      "historical_wrong_owner": 0,
+      "eligible_for_evidence_review": 36
+    },
+    {
+      "code": "ES",
+      "total": 13,
+      "verified_internships": 1,
+      "unverified": 12,
+      "closed": 0,
+      "historical_wrong_owner": 0,
+      "eligible_for_evidence_review": 12
+    },
+    {
+      "code": "PT",
+      "total": 1,
+      "verified_internships": 1,
+      "unverified": 0,
+      "closed": 0,
+      "historical_wrong_owner": 0,
+      "eligible_for_evidence_review": 0
+    }
+  ],
+  "historical_ownership_findings": {
+    "source_id": "auto-tilburg-university",
+    "source_employer": "Tilburg University",
+    "reviewed_allowed_hosts": [
+      "www.tilburguniversity.edu"
+    ],
+    "external_host": "www.nationalevacaturebank.nl",
+    "total": 108,
+    "unverified": 98,
+    "closed": 10,
+    "opened_verified": 0,
+    "last_seen": "2026-11-07T07:04:32.004378+00:00",
+    "first_line_ownership_gap": "Historical third-party job-board references from different employers carried source_id auto-tilburg-university even though Tilburg is not the hiring organization.",
+    "fix_scope": "Only after individually reviewed ownership transfers, and only for source configurations ownership_scope=reviewed-hosts or require_employer_identity. Preserve jobs/id/status closed and mark external unverified entries review-required.",
+    "production_effect_measured": false,
+    "offline_effect_expected": {
+      "newly_flagged_historical_external_records": 108,
+      "old_unverified_removed_from_recovery_queue": 98,
+      "recovery_queue_before": 209,
+      "recovery_queue_after": 111,
+      "added_verified_jobs": 0
+    }
+  },
+  "recovery_queue": {
+    "size": 111,
+    "by_country": {
+      "NL": 62,
+      "BE": 1,
+      "FR": 36,
+      "ES": 12,
+      "PT": 0
+    },
+    "top_issue_groups": [
+      {
+        "cause": "no-observed-application-entry",
+        "count": 44
+      },
+      {
+        "cause": "application-requisition-identity",
+        "count": 18
+      },
+      {
+        "cause": "title-or-application-identity-mismatch",
+        "count": 16
+      },
+      {
+        "cause": "robots-403-unavailable",
+        "count": 8
+      }
+    ],
+    "note": "These remaining records are evidence-review candidates only. No claim that all are open, unique or actually recoverable."
+  },
+  "official_source_spot_checks": [
+    {
+      "country": "FR",
+      "employer": "L'Oréal",
+      "url": "https://careers.loreal.com/fr/emploi/paris/stage-rh-6-mois-de-janvier-a-juin-2027-region-parisienne-master-1-ou-2-1700-brut-mensuels-nombreuse/3456/36074467072",
+      "title": "Stage RH | Janvier–juin 2027",
+      "employer_posting_id": "229626",
+      "finding": "Official vacancy displays HR stage, Paris, posted 2026-10-29, reference 229626 and separate apply host careers-apply.loreal.com; web reader got HTTP 406 for Applicationmethods?jobId=229626. The existing source does not approve that host; no applicant-form proof.",
+      "promoted": false
+    },
+    {
+      "country": "NL",
+      "employer": "DAF Trucks",
+      "url": "https://www.daf.com/en/working-at-daf/vacancies/hbo-meewerkstage-hr-officer",
+      "finding": "Employer page describes HR Officer internship at PACCAR Parts Eindhoven with Dutch required and application button; no anonymous same-vacancy form confirmed. Related historical catalog records fail with NoneType-join; do not guess recovery.",
+      "promoted": false
+    },
+    {
+      "country": "NL",
+      "employer": "AXS Logistiek",
+      "url": "https://axslogistiek.nl/jobs/24173/hr-stage/",
+      "finding": "An indexed HR Stage employer page exists, but a fresh web reader opening produced 404; cannot claim open/current from cached snippet or fix URL identity without a fresh employer application.",
+      "promoted": false
+    },
+    {
+      "country": "BE",
+      "employer": "JDE Peet's",
+      "url": "https://jobs.smartrecruiters.com/JACOBSDOUWEEGBERTS/744000155017321-internship-stage-human-resources",
+      "finding": "Only one unverified BE record in snapshot. Previous collector reports title/identity mismatch; do not count HTTP200 or repeated mirrors without same vacancy/form.",
+      "promoted": false
+    },
+    {
+      "country": "ES",
+      "employer": "Amazon",
+      "finding": "Eight ES records have robots.txt unavailable 403; no broad retries or bypass. One other ES BSH stage was verified previously.",
+      "promoted": false
+    },
+    {
+      "country": "PT",
+      "employer": "Emma",
+      "finding": "One HR internship verified in last catalog, no unverified PT records to recover from this snapshot.",
+      "promoted": false
+    }
+  ],
+  "costs": {
+    "new_live_collector_requests": 0,
+    "new_live_collector_bytes": 0,
+    "new_live_collector_seconds": 0,
+    "new_renderings": 0,
+    "additional_daily_requests_if_merged": 0,
+    "web_research_requests_not_metered_by_collector": true,
+    "monetary_cost_not_measured": true
+  },
+  "rollout": {
+    "sources_enabled": 0,
+    "registry_mutations": 0,
+    "applications_sent": 0,
+    "robots_bypass": false,
+    "source_ownership_quarantine_pending_merge": true
+  },
+  "next": "After daily run completes and latest catalog publishes, compare exact baseline, merge tested quarantine without cancelling an in-progress scheduled run, then run ordinary collection and assess whether erroneous historical unverified opportunities are flagged while verified IDs remain intact."
+}
