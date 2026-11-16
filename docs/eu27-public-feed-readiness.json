@@ -13,11 +13,13 @@
   "summary": {
     "countries": 27,
     "public_feed_live_pilot_countries": 1,
+    "other_live_national_open_data_samples_countries": 2,
     "other_official_open_data_schema_identified": 1,
-    "access_conditional_or_suspended": 3,
+    "formal_or_conditional_access_countries": 4,
     "portal_automation_prohibited": 1,
-    "national_reusable_feed_not_confirmed": 1,
-    "additional_not_reviewed": 19
+    "national_reusable_feed_not_confirmed": 2,
+    "additional_not_reviewed": 17,
+    "caution": "Counts by mutually distinct reviewed category, not number of live job opportunities; Lithuania's active flag and student targeting not yet tested"
   },
   "countries": [
     {
@@ -142,19 +144,19 @@
     },
     {
       "country": "LV",
-      "service": null,
-      "readiness": "not-reviewed",
-      "official_reference": null,
-      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
-      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+      "service": "NVA public-sector vacancies (CC0 daily dataset)",
+      "readiness": "live-limited-sample-zero-internships",
+      "official_reference": "https://data.gov.lv/dati/eng/dataset/vakances/resource/7f68f6fc-a0f9-4c31-b43c-770e97a06fda",
+      "access_evidence": "CC0-1.0, daily public-sector-only; PR #56 first 150 CKAN datastore records contained 11 HR title cues and 0 internships; 2 requests, 87,073 bytes; schema lacks employer name and specific application URL.",
+      "next_action": "Do not promote; assess other official employer-linked feeds; consider wider bounded test only if useful after Lithuania"
     },
     {
       "country": "LT",
-      "service": null,
-      "readiness": "not-reviewed",
-      "official_reference": null,
-      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
-      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+      "service": "Užimtumo tarnyba official nationally published active job vacancies",
+      "readiness": "licensed-national-feed-schema-reviewed-no-live-pilot",
+      "official_reference": "https://data.gov.lt/datasets/?category_id=96&selected_facets=creator_exact%3A3",
+      "access_evidence": "National vacancy/employer data; active-today vacancy flag plus added target groups incl. students April 24 2026; CSV/JSON/JSONL/API. Open portal distribution metadata changed May 6 2026; current data freshness and access rights must be verified; web access has returned HTTP 429, must respect rate limit and no bypass.",
+      "next_action": "Prioritize ONE public metadata/robots/license preflight when allowed; do not call API if rate-limited; avoid contact and natural-person data, inspect job-specific original application evidence"
     },
     {
       "country": "LU",
@@ -182,11 +184,11 @@
     },
     {
       "country": "PL",
-      "service": null,
-      "readiness": "not-reviewed",
-      "official_reference": null,
-      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
-      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+      "service": "ePraca national government employment vacancy service for integrations",
+      "readiness": "formal-transfer-access-required",
+      "official_reference": "https://oferty.praca.gov.pl/portal/assets/for-integrators/warunki-udostepniania-ofert-pracy-z-systemu-ePraca.pdf",
+      "access_evidence": "Automatic external transfer explicitly contemplated; needs signed application, eligibility and Poland-specific formalities including KRAZ for some republishing services, plus business registration/IP requirements; not a public unrestricted API.",
+      "next_action": "Keep unactivated pending official access eligibility evidence; independent employer ATS remains alternative"
     },
     {
       "country": "PT",
