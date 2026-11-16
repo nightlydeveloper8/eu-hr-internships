@@ -45,6 +45,10 @@ classificazione senza errori, build riuscita; rigenerazione deterministica,
 nessuna modifica a catalogo, registry, workflow o codice di produzione.
 La coda completa è conservata anche compressa, oltre alla versione leggibile locale.
 
+[PR #42 aperta](https://github.com/nightlydeveloper8/eu-hr-internships/pull/42),
+commit codice `f5864f87f951071d1cac285f4a89250148776ed5`. CI/preview avviate
+automaticamente, esito ancora da verificare. Nessun merge o attivazione.
+
 **Primo punto incompleto:** review e pilota circoscritto delle 29 proposte di
 adattatore (priorità alle 28 con titolo live corrispondente), partendo dal legame
 ufficiale datore→tenant e dal feed completo. Preparare l'integrazione soltanto
