@@ -155,7 +155,7 @@ class SeedClient(BudgetClient):
             return False
         return super().permitted(url)
 
-    def request(self, url, method="GET", robots=True, timeout=12, attempts=1):
+    def request(self, url, method="GET", robots=True, timeout=12, attempts=1, accept=None):
         if not self._approved(url) or method != "GET" or not robots:
             # robots=False is permitted only for the existing Client's internal
             # robots.txt fetch, and only on the exact approved source host.
@@ -163,7 +163,7 @@ class SeedClient(BudgetClient):
                     and urlsplit(url).path == "/robots.txt"):
                 raise DiscoveryAccessError("Request outside reviewed seed scope")
         return super().request(url, method=method, robots=robots, timeout=timeout,
-                               attempts=1)
+                               attempts=1,accept=accept)
 
 
 def validate_seed(seed):

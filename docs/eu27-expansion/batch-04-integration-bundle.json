@@ -1,0 +1,136 @@
+{
+  "companies": [
+    {
+      "id": "hotel-twentyseven",
+      "name": "Hotel TwentySeven",
+      "website_url": "https://www.hoteltwentyseven.com/",
+      "career_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+      "evidence_url": "https://www.hoteltwentyseven.com/",
+      "source_ids": [
+        "recruitee-hotel-twentyseven"
+      ],
+      "target_countries": [
+        "NL"
+      ],
+      "workplaces": [],
+      "review_status": "monitoring-enabled-awaiting-first-run",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "bounded live current feed and same-posting visible enabled form; type and intake retained"
+    },
+    {
+      "id": "bundl",
+      "name": "Bundl",
+      "website_url": "https://www.bundl.com/internships",
+      "career_url": "https://bundl.recruitee.com/o/hr-intern",
+      "evidence_url": "https://www.bundl.com/internships",
+      "source_ids": [
+        "recruitee-bundl"
+      ],
+      "target_countries": [
+        "BE"
+      ],
+      "workplaces": [],
+      "review_status": "monitoring-enabled-awaiting-first-run",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "bounded live current feed and same-posting visible enabled form; type and intake retained"
+    },
+    {
+      "id": "franklin-institute",
+      "name": "Franklin Institute",
+      "website_url": "https://franklin-institute.de/career",
+      "career_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+      "evidence_url": "https://franklin-institute.de/career",
+      "source_ids": [
+        "recruitee-franklin-institute"
+      ],
+      "target_countries": [
+        "DE"
+      ],
+      "workplaces": [],
+      "review_status": "monitoring-enabled-awaiting-first-run",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "bounded live current feed and same-posting visible enabled form; type and intake retained"
+    }
+  ],
+  "sources": [
+    {
+      "id": "recruitee-hotel-twentyseven",
+      "company_id": "hotel-twentyseven",
+      "employer": "Hotel TwentySeven",
+      "adapter": "recruitee",
+      "enabled": true,
+      "career_url": "https://hoteltwentyseven.recruitee.com/o/hr-stagiaire-20",
+      "allowed_hosts": [
+        "hoteltwentyseven.recruitee.com"
+      ],
+      "feed_url": "https://hoteltwentyseven.recruitee.com/api/offers/",
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "NL"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+    },
+    {
+      "id": "recruitee-bundl",
+      "company_id": "bundl",
+      "employer": "Bundl",
+      "adapter": "recruitee",
+      "enabled": true,
+      "career_url": "https://bundl.recruitee.com/o/hr-intern",
+      "allowed_hosts": [
+        "bundl.recruitee.com"
+      ],
+      "feed_url": "https://bundl.recruitee.com/api/offers/",
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "BE"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+    },
+    {
+      "id": "recruitee-franklin-institute",
+      "company_id": "franklin-institute",
+      "employer": "Franklin Institute",
+      "adapter": "recruitee",
+      "enabled": true,
+      "career_url": "https://franklininstitute.recruitee.com/o/werkstudentpraktikant-hr-people-culture-mwd",
+      "allowed_hosts": [
+        "franklininstitute.recruitee.com"
+      ],
+      "feed_url": "https://franklininstitute.recruitee.com/api/offers/",
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "DE"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+    }
+  ],
+  "activation_scope": "only three exact Recruitee tenants reviewed above",
+  "rollback": "Remove these companies and sources atomically; disabled-only source would fall back to generic provisioner",
+  "user_authorization": "next batch and autonomous squash and merge on 2026-11-16",
+  "runtime_reads_this_file": false
+}
