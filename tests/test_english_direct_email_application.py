@@ -56,7 +56,7 @@ class EnglishDirectEmailTests(unittest.TestCase):
                 verify_vacancy(RECORD,SOURCE,Pages(case),STAMP)
 
     def test_english_mailto_does_not_override_explicit_closed_notice(self):
-        page=Pages(html("HR Intern has been filled. If interested, please send us your application."))
+        page=Pages(html("This job has been filled. If interested, please send us your application."))
         with self.assertRaises(ValueError):
             verify_vacancy(RECORD,SOURCE,page,STAMP)
 
