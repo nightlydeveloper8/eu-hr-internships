@@ -124,7 +124,12 @@ def checked_document(url, source, client):
 def ensure_open_document(doc):
     from .universal import CHALLENGE
     if CHALLENGE.search(doc.text[:3000]): raise ValueError('Application access challenge')
-    if re.search(r'(?:vacature|vacancy|position|job|posting).{0,45}(?:niet (?:meer )?beschikbaar|niet meer open|is gesloten|is closed|has closed|has (?:now )?expired|no longer available|no longer accepting)|solliciteren.{0,25}niet meer mogelijk|offre.{0,30}(?:expiree|pourvue)|stelle.{0,30}(?:besetzt|geschlossen)', fold(doc.text), re.I):
+    # Official career pages sometimes retain a valid-looking JobPosting after
+    # closing the vacancy (observed Electrolux JR81378: HTTP 200 plus "filled").
+    # The visible closure takes precedence over residual structured metadata.
+    text = fold(doc.text)
+    if re.search(r'(?:vacature|vacancy|position|job|posting).{0,45}(?:niet (?:meer )?beschikbaar|niet meer open|is gesloten|is closed|has closed|has (?:now )?expired|no longer available|no longer accepting)|solliciteren.{0,25}niet meer mogelijk|offre.{0,30}(?:expiree|pourvue)|stelle.{0,30}(?:besetzt|geschlossen)', text, re.I) or re.search(
+        r'\b(?:job|position|vacancy|posting)\b.{0,90}\b(?:has been filled|is already filled|is filled)\b', text, re.I):
         raise ApplicationClosed('Official application page says the posting is closed')
 
 

@@ -3,12 +3,13 @@ from contextlib import contextmanager
 from datetime import datetime,timezone
 import gzip,hashlib,json,os,threading,time
 from pathlib import Path
+from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from .adapters import Client
 from .classify import canonical_url
 
 class CollectionBudgetExceeded(RuntimeError):pass
-_LOCK=threading.Lock();_HOST_LOCKS={};_LAST={};_DELAYS={};_ROBOTS={}
+_LOCK=threading.Lock();_HOST_LOCKS={};_LAST={};_DELAYS={};_ROBOTS={};_RATE_LIMITED_HOSTS=set()
 def host_lock(host):
     with _LOCK:return _HOST_LOCKS.setdefault(host,threading.RLock())
 
@@ -16,6 +17,7 @@ class BudgetClient(Client):
     def __init__(self,seconds=120,max_requests=100,delay=.5):
         super().__init__(delay);self.deadline=time.monotonic()+seconds;self.max_requests=max_requests;self.requests=0;self.bytes=0
         self.last=_LAST;self.host_delays=_DELAYS;self.robots=_ROBOTS;self.last_response_url=None
+        self.rate_limited_skips=0
     def remaining(self):return max(0,self.deadline-time.monotonic())
     def check(self):
         if self.remaining()<.05:raise CollectionBudgetExceeded('Time budget exhausted; checkpoint retained')
@@ -24,12 +26,37 @@ class BudgetClient(Client):
         if seconds>=self.remaining():raise CollectionBudgetExceeded('Required host delay exceeds remaining budget; checkpoint retained')
         time.sleep(seconds)
 
+    def permitted(self,url):
+        # Redirects call permitted() before following the destination. Keep
+        # a previously rate-limited host closed even through another host's URL.
+        if urlsplit(url).netloc in _RATE_LIMITED_HOSTS:
+            self.rate_limited_skips+=1
+            raise HTTPError(url,429,'Redirect target rate-limited earlier in this collection process',None,None)
+        return super().permitted(url)
+
     def request(self,url,method='GET',robots=True,timeout=12,attempts=1,accept=None):
-        url=canonical_url(url);self.check();lock=host_lock(urlsplit(url).netloc)
+        url=canonical_url(url);host=urlsplit(url).netloc;self.check();lock=host_lock(host)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')
         try:
-            self.check();self.requests+=1
-            result=super().request(url,method=method,robots=robots,timeout=max(.05,min(timeout,self.remaining())),attempts=attempts,accept=accept)
+            self.check()
+            # A 429 is a host-level rate limit, not a failed vacancy: do not
+            # spend more requests on that host during this collection process.
+            # The shared set also protects subsequent employer clients/shards
+            # within the same Python process. A fresh daily process resets it.
+            if host in _RATE_LIMITED_HOSTS:
+                self.rate_limited_skips+=1
+                raise HTTPError(url,429,'Host rate-limited earlier in this collection process',None,None)
+            self.requests+=1
+            try:
+                result=super().request(url,method=method,robots=robots,
+                    timeout=max(.05,min(timeout,self.remaining())),attempts=attempts,accept=accept)
+            except HTTPError as exc:
+                if exc.code==429:
+                    # Redirects may reach another approved host; quarantine the
+                    # host that actually returned 429, not its referring host.
+                    limited_host=urlsplit(exc.geturl() or url).netloc or host
+                    with _LOCK:_RATE_LIMITED_HOSTS.add(limited_host)
+                raise
             self.bytes+=len(result[0]);self.last_response_url=result[2];return result
         finally:lock.release()
 
