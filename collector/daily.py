@@ -107,6 +107,9 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
                 primary_error=part['report'].get('error');part=process_source(fallback,client,stamp,verify=True,cache=PageCache(source['id']))
                 part['report'].update(primary_adapter=source['adapter'],primary_error=primary_error)
         report=part['report'];report.update(duration_seconds=round(time.monotonic()-started,2),requests=client.requests,bytes_read=client.bytes,shard=shard)
+        # Report the saved same-host attempts only when a rate limit occurred.
+        # They are local early exits, not successful HTTP reads or new vacancies.
+        if client.rate_limited_skips:report['rate_limited_skips']=client.rate_limited_skips
         return part
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures={pool.submit(work,s):s for s in selected}
