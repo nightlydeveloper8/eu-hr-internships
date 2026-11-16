@@ -1,0 +1,18 @@
+name: EU27 batch08 one-shot read-only pilot
+on:
+  push:
+    branches:
+      - pilot/eu27-batch08-readonly-20261116
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bounded robots-aware GET-only sample
+        run: python -m scripts.one_shot_batch08_preflight
