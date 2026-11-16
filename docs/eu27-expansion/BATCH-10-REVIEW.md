@@ -46,6 +46,12 @@ La [raccolta #43931128227](https://github.com/nightlydeveloper8/eu-hr-internship
 
 **Regressione del fixture dopo il ciclo ordinario:** il catalogo pubblicato ha aggiunto a un record esistente un alias di deduplicazione valido (`identity_aliases`). Un test di conservazione degli ID copiava quel record per costruire due posti sintetici diversi, ereditandone l'alias e facendoli fondere correttamente. Il fixture ora azzera soltanto gli alias/ID di posting ereditati per gli annunci fittizi: **nessuna modifica alla deduplica di produzione**.\n\n**Importante:** questa raccolta è precedente alla patch di quarantena storica del lotto 10. Il fatto che il workflow sia verde non implica che la mappatura dei cinque paesi, né quella UE27, sia completa.
 
+## Costo reale del ciclo ordinario e priorità di efficienza
+
+Nei **1.894 rapporti di fonte aggiornati** del ciclo #43931128227 (esclusi 19 rapporti storici), il collector registra **36.174 richieste**, **4.159.256.878 byte**, **3.286 rendering** e **43.410,44 secondi-fonte cumulati**. Le **1.832 fonti che non hanno prodotto alcun match HR nel ciclo** hanno assorbito **34.192 richieste**, **3.765.755.480 byte**, **3.187 rendering** e **41.230,44 secondi-fonte**. Le 62 fonti con almeno un match hanno consumato 1.982 richieste, 393.501.398 byte, 99 rendering e 2.180 secondi-fonte.
+
+Una fonte senza match in questo ciclo **non è necessariamente vuota né inutile in futuro**: occorrono misure su più giorni e una strategia conservativa di frequenza/budget per contenere lo spreco senza perdere candidature. Sono costi tecnici osservati, non fatture né durata end-to-end; nessun risparmio attribuibile alla patch storica è stato ancora misurato su una raccolta successiva al merge. Priorità dopo questa PR: adattare in modo riutilizzabile i budget di scoperta, preservando canali con annunci verificati e fonti periodicamente produttive.
+
 ## Modifiche, costi e punto incompleto
 
 **Patch preparata su ramo distinto**: `collector/ownership.py` (quarantena conservativa dei soli record storici su host esterno non approvato), `collector/pipeline.py` (applicata dopo deduplica/riconciliazione e conteggiata in coverage), `scripts/audit_batch10_recovery.py` (audit offline) e regression test, insieme a questo documento, [evidenza JSON](batch-10-recovery-audit-2026-11-16.json) e `docs/stato-progetto.md`. Nessuna rimozione da `data/catalog.json`, nessuna modifica a `data/sources.json` e `data/companies.json`, nessun runtime ATS abilitato.
