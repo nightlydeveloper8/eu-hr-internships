@@ -9,6 +9,10 @@ on:
       - 'collector/official_feed_verification.py'
       - 'scripts/verify_official_feed_candidates.py'
       - 'tests/test_official_feed_verification.py'
+      - 'collector/official_feed_policy_dossier.py'
+      - 'scripts/review_jobtech_policy.py'
+      - 'tests/test_official_feed_policy_dossier.py'
+      - 'collector/verification.py'
       - '.github/workflows/official-feed-preflight.yml'
   workflow_dispatch:
 
@@ -90,6 +94,31 @@ jobs:
           print(text)
           PY
           cat application-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Jobandtalent policy v2 evidence — company sitemap, city, separate ATS ID
+        run: |
+          python -m scripts.review_jobtech_policy \
+            --input .staging/preflight/jobtech-se.json \
+            --provider-id 31558200 \
+            --approved-host jobb.jobandtalent.com \
+            --reviewed-inventory https://jobb.jobandtalent.com/sitemap \
+            --output .staging/preflight/jobandtalent-policy-dossier.json
+      - name: Summarize staging-only policy-v2 proof
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('.staging/preflight/jobandtalent-policy-dossier.json')
+          report=json.loads(p.read_text())
+          fields=('status','public_id','ats_posting_id','employer_city_match',
+                  'job_identity_match','owner_evidence','official_inventory_confirmed',
+                  'requests','bytes_read','reason','verified_vacancies_added')
+          value={k:report.get(k) for k in fields}
+          print("POLICY_V2_EVIDENCE_SUMMARY "+json.dumps(value,ensure_ascii=False,sort_keys=True))
+          with Path('jobandtalent-policy-summary.md').open('w') as f:
+              f.write("## Jobandtalent staging only — NOT catalog publication\n\n")
+              f.write(json.dumps(value,ensure_ascii=False,indent=2)+"\n")
+          PY
+          cat jobandtalent-policy-summary.md >> "$GITHUB_STEP_SUMMARY"
       - name: Keep pilot artifact (no changes to catalog)
         if: success()
         uses: actions/upload-artifact@v4
@@ -98,4 +127,5 @@ jobs:
           path: |
             .staging/preflight/jobtech-se.json
             .staging/preflight/jobtech-application-checks.json
+            .staging/preflight/jobandtalent-policy-dossier.json
           retention-days: 7
