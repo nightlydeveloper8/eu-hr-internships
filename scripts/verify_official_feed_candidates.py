@@ -36,7 +36,9 @@ def main(argv=None):
         print("APPLICATION_PROBE "+json.dumps(
             {k:row.get(k) for k in
              ("provider_id","employer","state","vacancy_match","enabled_form",
-              "employer_identity_evidence","requests","reason")},
+              "employer_identity_evidence","observed_headings",
+              "structured_job_titles","structured_hiring_organizations",
+              "requests","reason")},
             ensure_ascii=False,sort_keys=True))
     return result
 
