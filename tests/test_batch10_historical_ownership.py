@@ -97,7 +97,7 @@ class HistoricalOwnershipQuarantineTests(unittest.TestCase):
         before=[copy.deepcopy(j) for j in [old_unverified,old_closed,true_verified]]
         with tempfile.TemporaryDirectory() as tmp:
             catalog,coverage=finalize(registry,[],dict(prior,jobs=before),{},[],
-                                     '2026-11-16T18:55:00+00:00',Path(tmp))
+                                     prior['last_attempt_at'],Path(tmp))
         self.assertEqual({j['id'] for j in catalog['jobs']},{j['id'] for j in before})
         affected={j['id']:j for j in catalog['jobs']}
         self.assertEqual(affected[old_unverified['id']]['link_status'],'review-required')
