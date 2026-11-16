@@ -5,11 +5,11 @@ from collector.applications import ApplicantForms
 from collector.dynamic_ats import MissingDynamicForm
 from collector.verification import applicant_form, disabled_submit_applicant_form, verify_vacancy
 
-URL = "https://example.org/jobs/2540621"
+URL = "https://example.jobs.personio.de/job/2540621"
 APPLY = URL + "/apply"
 STAMP = "2026-11-16T17:00:00+00:00"
 SOURCE = {"id":"test", "employer":"Employer", "adapter":"lever",
-          "allowed_hosts":["example.org"]}
+          "allowed_hosts":["example.jobs.personio.de"]}
 RECORD = {"source_id":"test", "external_id":"2540621", "posting_identifier":"2540621",
           "employer":"Employer", "title":"HR Intern", "text":"HR tasks",
           "url":URL, "apply_url":APPLY, "inventory_evidence":"current-employer-feed"}
@@ -70,11 +70,20 @@ class DisabledSubmitTests(unittest.TestCase):
         self.assertEqual(pages.calls,[URL])
 
     def test_application_child_with_disabled_submit_is_also_incomplete(self):
-        pages=Pages({URL:'<h1>HR Intern</h1><a href="/jobs/2540621/apply">Apply</a>',
+        pages=Pages({URL:'<h1>HR Intern</h1><a href="/job/2540621/apply">Apply</a>',
                      APPLY:'<h1>HR Intern</h1>'+form()})
         with self.assertRaisesRegex(ValueError, "submit disabled in initial HTML"):
             verify_vacancy(RECORD,SOURCE,pages,STAMP)
         self.assertEqual(pages.calls,[URL,APPLY])
+
+    def test_other_ats_keep_dynamic_fallback_and_existing_exclusion_logic(self):
+        url = "https://example.org/jobs/2540621"
+        other = dict(RECORD,url=url,apply_url=url+"/apply")
+        source = dict(SOURCE,allowed_hosts=["example.org"])
+        pages=Pages({url:'<h1>HR Intern</h1>'+form()})
+        with self.assertRaises(MissingDynamicForm):
+            verify_vacancy(other,source,pages,STAMP)
+        self.assertEqual(pages.calls,[url])
 
     def test_an_enabled_form_remains_eligible_without_policy_relaxation(self):
         pages=Pages({URL:'<h1>HR Intern</h1>'+form(submit="")})
