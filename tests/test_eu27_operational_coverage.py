@@ -1,5 +1,7 @@
 """EU27 readiness is about verified placements, never index or company counts."""
 import copy
+import json
+from pathlib import Path
 import unittest
 
 from scripts.audit_eu27_coverage import EU27, audit, eligible, posting_country
@@ -69,6 +71,17 @@ class EU27AuditTests(unittest.TestCase):
         self.assertEqual(next(c for c in result["countries"] if c["country"] == "LV")["verified_hr_internships"], 1)
         with self.assertRaisesRegex(ValueError, "unique"):
             audit(catalog([job("same"), job("same")]), [], [])
+
+    def test_mapped_batch_schedule_has_all_eu27_once(self):
+        path = Path(__file__).resolve().parents[1] / "docs/eu27-expansion/batch-06-review-2026-11-16.json"
+        report = json.loads(path.read_text(encoding="utf-8"))
+        countries = list(report["scope_countries"])
+        for next_batch in report["follow_up_batches"]:
+            countries.extend(next_batch["countries"])
+        self.assertEqual(len(countries), len(EU27))
+        self.assertEqual(set(countries), set(EU27))
+        self.assertEqual(report["summary"]["verified_new"], 0)
+        self.assertTrue(all(not r["verified"] and not r["enabled"] for r in report["rows"]))
 
     def test_original_inputs_not_mutated(self):
         inputs = (catalog([job("1")]), [dict(id="c", target_countries=["LT"], source_ids=["source-1"])],
