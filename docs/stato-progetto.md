@@ -2,22 +2,64 @@
 
 
 
-## 16 novembre 2026 — attivazione BSH specificamente autorizzata
+## 16 novembre 2026 — BSH attiva, primo ciclo e pubblicazione verificati
 
-L'utente autorizza esplicitamente attivazione di BSH e misura del primo ciclo
-ordinario. Preparati insieme azienda `bsh-electrodomesticos-espana` e fonte attiva
-`index-bsh-es` nella PR #43: 1.892 → 1.893 aziende, 1.936 → 1.937 sorgenti.
-Unico host `jobs.bsh-group.de`, 10 richieste/75 secondi, crawl-delay 10 s;
-provisioner idempotente. Catalogo invariato: 352 ID, 25 verified, baseline
-`2e68639182be2bda95cc2c9bf87b1d065c6ffc57`. Evidenze e rollback atomico in
-`eu27-expansion/bsh-activation-2026-11-16.json`.
+**Risultato reale: 25 → 26 stage HR aperti e verificati (+1 distinto), primo
+stage verificato in Spagna.** PR [#43](https://github.com/nightlydeveloper8/eu-hr-internships/pull/43)
+integrata con squash su autorizzazione specifica dell'utente: head attivazione
+`d0903bd01f75617aeb3453adcb5234b958f55119`, merge
+`e101e7415b08c14b543a259053f1e67719310b5e`. CI e preview verdi, nessuna review
+bloccante; 395 test Python, 26 Node e build superati.
 
-PR #43 verde sul precedente head `c89babd`, nessuna review/commento bloccante.
-**Primo punto incompleto:** pubblicare head con attivazione, verificare CI,
-squash merge autorizzato e seguire il workflow ordinario avviato dal push.
-Misurare candidabilità reale BSH, variazione netta sui 25 verified, conservazione
-ID, costi, publish e catalogo effettivamente distribuito. Non importare il pilota;
-nessun workflow_dispatch, raccolta completa manuale o automazione aggiuntiva.
+Azienda `bsh-electrodomesticos-espana` e fonte `index-bsh-es` aggiunte insieme:
+1.892 → 1.893 aziende, 1.936 → 1.937 sorgenti. Fonte abilitata su main,
+unico host `jobs.bsh-group.de`, budget 10 richieste/75 s, crawl-delay 10 s;
+provisioner idempotente. Nessun altro gate, host di produzione o schedule esteso.
+Rollback: revert congiunto di azienda e fonte; disabilitare solo la fonte
+lasciando l'azienda attiverebbe il fallback generico.
+
+Raccolta ordinaria avviata automaticamente dal merge, evento push:
+[run 43878488280](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43878488280),
+**18 job riusciti**, publish `946ebb7911641301defebd6e2d4d403210ead018`.
+Catalogo del 16 novembre 14:56:56 ora svizzera (13:56:56 UTC): **352 → 355 ID**,
+tutti i 352 precedenti preservati, nessun precedente stato modificato.
+Un nuovo stage verificato: BSH, Prácticas Recursos Humanos - Formación,
+Zaragoza, ID 46112. Gli altri due nuovi record (FITZ traineeship e Rohde & Schwarz
+working student) restano **unverified** e non aumentano le opportunità disponibili.
+Conteggio frontend confermato: **26 verifiedInternships**, zero altri tipi verificati.
+
+BSH nel ciclo: 15 posizioni effettive, una corrispondenza HR con prova live
+policy v2, inventario completo nello scope revisionato, nessun errore;
+**5 richieste logiche, 61,16 secondi-fonte, 109.503 byte**, budget rispettati.
+Zero rendering nel percorso BSH; non è il tempo a muro dell'intero workflow.
+Chiusure per assenza ancora disabilitate; un solo ciclo ordinario non prova
+il refresh seguente o disponibilità futura. Annuncio spagnolo, inglese B2
+documentato manualmente; la frase B2 non è ancora riconosciuta dall'estrattore,
+solo inglese non stabilito: nessun tag forzato.
+
+Cloudflare Pages success sul commit dati `946ebb7`, deployment
+`f093bcb5-b3be-4c5c-82ec-b2967fa7a32b`. Catalogo pubblico GET HTTP 200 e identico
+byte per byte al file Git: pubblicazione e distribuzione effettivamente verificate.
+Nessuna modifica manuale del catalogo, importazione di replay, workflow_dispatch,
+raccolta completa manuale o nuova automazione AI. La pianificazione quotidiana
+preesistente resta invariata (06:17 UTC, 07:17 ora svizzera in questa data).
+Report: [bsh-first-production-cycle-2026-11-16.json](eu27-expansion/bsh-first-production-cycle-2026-11-16.json);
+autorizzazione/baseline/rollback: [bsh-activation-2026-11-16.json](eu27-expansion/bsh-activation-2026-11-16.json).
+
+Stage verificati osservati: NL 17, FR 5, BE 2, PT 1, ES 1. Sono cinque paesi con
+opportunità recenti, non cinque mappature nazionali complete; gli zeri negli
+altri paesi non provano mercati vuoti. Durante l'attesa preparati quattro indizi
+ufficiali per DE/DK/PL/FI in
+[next-uncovered-country-leads-2026-11-16.json](eu27-expansion/next-uncovered-country-leads-2026-11-16.json),
+8 query di ricerca, zero feed letti o nuove fonti attivate. Saint-Gobain è già
+censita e richiede un nuovo canale-paese, non una nuova azienda.
+
+**Primo punto incompleto:** verificare in lotto identità, inventario, candidatura
+e lingue dei nuovi canali DE/DK/PL/FI, priorità agli indizi HR espliciti già
+compatibili col classificatore. FirstMind richiede prova delle mansioni HR,
+Saint-Gobain review della forma polacca Stażysta/Stażystka. Mantenere fuori
+runtime le proposte fino a nuova autorizzazione specifica. Il secondo ciclo BSH
+compete alla raccolta ordinaria; nessun controllo AI futuro promesso.
 
 ## 16 novembre 2026 — lotto IT/ES/PT/AT verificato, BSH preparata senza rollout
 

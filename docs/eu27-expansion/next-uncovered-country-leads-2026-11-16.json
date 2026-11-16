@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "observed_date": "2026-11-16",
+  "mode": "independent-research-while-BSH-ordinary-cycle-runs",
+  "search_queries": 8,
+  "feed_requests": 0,
+  "browser_renderings": 0,
+  "rows": [
+    {
+      "country": "DE",
+      "employer": "Constructor TECH",
+      "title": "HR Intern",
+      "location": "Germany, Bremen",
+      "observed_url": "https://job-boards.greenhouse.io/constructortech",
+      "provider": "greenhouse",
+      "queue_action": "review-exact-tenant-and-official-employer-link",
+      "classifier": "title-recognized-offline",
+      "verified": false,
+      "enabled": false,
+      "evidence_level": "Search-retrieved official employer/ATS page; no live inventory or application proof"
+    },
+    {
+      "country": "DK",
+      "employer": "FirstMind",
+      "title": "Global Talent Intern",
+      "location": "Copenhagen, Denmark",
+      "observed_url": "https://job-boards.greenhouse.io/firstmind?gh_src=55ec4a0c3us",
+      "provider": "greenhouse",
+      "queue_action": "review-employer-group-identity-and-role-classification",
+      "classifier": "not-recognized-title-alone; HR duties must be established, never inferred from talent label",
+      "verified": false,
+      "enabled": false,
+      "evidence_level": "Search-retrieved official employer/ATS page; no live inventory or application proof"
+    },
+    {
+      "country": "PL",
+      "employer": "Saint-Gobain",
+      "title": "Stażysta/Stażystka w dziale HR",
+      "location": "Kolo, Poland",
+      "observed_url": "https://joinus.saint-gobain.com/en/pol/tpr/i/46130/329013/stazystastazystka-w-dziale-hr?editorial_page=about_us&page=5",
+      "provider": "official-employer",
+      "existing_source_ids": [
+        "auto-saint-gobain",
+        "auto-saint-gobain-italia"
+      ],
+      "queue_action": "existing-employer-new-official-country-channel-review",
+      "classifier": "Polish stazysta/stazystka title not recognized by current internship expression",
+      "verified": false,
+      "enabled": false,
+      "evidence_level": "Search-retrieved official employer/ATS page; no live inventory or application proof"
+    },
+    {
+      "country": "FI",
+      "employer": "Barona Teollisuus Oy",
+      "title": "HR-harjoittelija teollisuuden tiimiin, Tampere, Barona",
+      "location": "Tampere, Finland",
+      "observed_url": "https://www.baronacareers.com/fi/en/jobs/hr-harjoittelija-teollisuuden-tiimiin-tampere-barona-barona-teollisuus-oy",
+      "provider": "official-employer",
+      "queue_action": "review-employer-identity-inventory-and-application",
+      "classifier": "title-recognized-offline",
+      "language_lead": "English and Finnish listed; not an English-only lead",
+      "verified": false,
+      "enabled": false,
+      "evidence_level": "Search-retrieved official employer/ATS page; no live inventory or application proof"
+    }
+  ],
+  "notes": [
+    "Four observed channels, not four newly verified internships or approved hosts",
+    "Countries were chosen from zero fresh verified postings in the current catalog; that is not a claim of empty markets or complete mapping",
+    "Saint-Gobain is an existing employer; review one additional official country channel rather than duplicating the company",
+    "No official qualifying Czech or Swedish page confirmed in these query results; no quota filling with aggregator pages",
+    "No new source activation or gate expansion"
+  ]
+}

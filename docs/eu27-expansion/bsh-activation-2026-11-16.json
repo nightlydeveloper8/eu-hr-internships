@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "state": "activation-prepared-not-merged",
+  "state": "active-production-first-cycle-measured",
   "authorization": "User explicitly requests specifically authorized activation of BSH and measurement of first ordinary cycle in current turn",
   "base_commit": "2e68639182be2bda95cc2c9bf87b1d065c6ffc57",
   "pr": 43,
@@ -28,9 +28,22 @@
     "updated_at": "2026-11-16T11:41:24.691675+00:00",
     "sha256": "44f3b1b89744a4f7cfcfb6d2c4881a6b55ec55b7907a840a24ef9d95647073d0"
   },
-  "catalog_modified": false,
   "scope": "Only reviewed BSH Spain regular publications and same-ID application template. Existing gates, workflow and other source hosts unchanged.",
   "collection": "Existing push-to-main/scheduled workflow only, no manual full collection or dispatch",
   "rollback": "Revert company and source additions together; disabling only the source would cause generic provisioner fallback",
-  "production_benefit_verified": false
+  "production_benefit_verified": true,
+  "activation_head": "d0903bd01f75617aeb3453adcb5234b958f55119",
+  "merge_commit": "e101e7415b08c14b543a259053f1e67719310b5e",
+  "first_collection_run_id": 43878488280,
+  "first_collection_event": "push",
+  "activation_ci": "passed",
+  "first_collection_conclusion": "success",
+  "data_commit": "946ebb7911641301defebd6e2d4d403210ead018",
+  "distinct_new_verified_internships": 1,
+  "verified_before": 25,
+  "verified_after": 26,
+  "measurement_report": "bsh-first-production-cycle-2026-11-16.json",
+  "served_catalog_verified": true,
+  "manual_catalog_modified": false,
+  "catalog_modified_by_ordinary_collection": true
 }

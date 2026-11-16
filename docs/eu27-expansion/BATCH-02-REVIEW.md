@@ -1,5 +1,7 @@
 # Lotto 02 — Italia, Spagna, Portogallo e Austria
 
+> Aggiornamento successivo alla preparazione: BSH è stata attivata con autorizzazione nella PR #43. Primo ciclo ordinario: 25 → 26 stage verificati; catalogo e sito pubblico confermati. Vedi [rapporto di produzione](bsh-first-production-cycle-2026-11-16.json). Il resto del documento fotografa la fase preparatoria.
+
 **Otto indizi verificati: una nuova fonte ammissibile preparata (BSH Spagna), uno stage già monitorato (Emma), sei indizi non ammissibili. Nessuna attivazione o modifica del catalogo.**
 
 | Paese | Datore / indizio | Esito effettivo |
