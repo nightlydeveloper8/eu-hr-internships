@@ -6,6 +6,9 @@ on:
       - 'collector/official_feed_discovery.py'
       - 'scripts/official_feed_discovery.py'
       - 'tests/test_official_feed_discovery.py'
+      - 'collector/official_feed_verification.py'
+      - 'scripts/verify_official_feed_candidates.py'
+      - 'tests/test_official_feed_verification.py'
       - '.github/workflows/official-feed-preflight.yml'
   workflow_dispatch:
 
@@ -22,7 +25,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify offline parser and safety gates
-        run: python -m unittest discover -s tests -p test_official_feed_discovery.py -v
+        run: python -m unittest discover -s tests -p 'test_official_feed*.py' -v
       - name: Bounded publicly licensed Swedish JobTech discovery (not catalog)
         run: |
           python -m scripts.official_feed_discovery \
@@ -57,10 +60,42 @@ jobs:
               },ensure_ascii=False,sort_keys=True))
           PY
           cat jobtech-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Read exact employer ATS vacancy and applicant form, opt-in reviewed hosts
+        # These two hostnames are limited preflight leads observed in JobTech,
+        # not blanket source-owner approvals or automatic onboarding.
+        run: |
+          python -m scripts.verify_official_feed_candidates \
+            --input .staging/preflight/jobtech-se.json \
+            --approved-host jobb.jobandtalent.com \
+            --approved-host splendorplant.careers.haileyhr.app \
+            --max-candidates 2 \
+            --output .staging/preflight/jobtech-application-checks.json
+      - name: Application preflight summary and evidence states
+        if: success()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('.staging/preflight/jobtech-application-checks.json').read_text())
+          lines=['## Read-only application preflight (not policy-v2 production)', '',
+                 '- ATS requests: '+str(data['requests']),
+                 '- ATS bytes: '+str(data['bytes_read']),
+                 '- State counts: '+str(data['states']),
+                 '- Verified internships added: 0', '']
+          for r in data['rows']:
+              lines.append('- '+str(r['provider_id'])+' '+str(r['employer'])+': '
+                  +str(r['state'])+'; '+str(r.get('reason') or ''))
+          text='\n'.join(lines)+'\n'
+          Path('application-summary.md').write_text(text)
+          print(text)
+          PY
+          cat application-summary.md >> "$GITHUB_STEP_SUMMARY"
       - name: Keep pilot artifact (no changes to catalog)
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: jobtech-se-licensed-preflight
-          path: .staging/preflight/jobtech-se.json
+          path: |
+            .staging/preflight/jobtech-se.json
+            .staging/preflight/jobtech-application-checks.json
           retention-days: 7
