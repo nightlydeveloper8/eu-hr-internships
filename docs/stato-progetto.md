@@ -2,6 +2,49 @@
 
 
 
+
+## 16 novembre 2026 — lotto DE/DK/PL/FI verificato, nessuna nuova fonte ammissibile
+
+**Quattro indizi → zero nuove fonti attivabili, zero nuovi stage aggiunti.**
+Ramo `review/eu27-de-dk-pl-fi-20261116`, base main `876794a`.
+Rapporto [BATCH-03-REVIEW.md](eu27-expansion/BATCH-03-REVIEW.md) e
+[evidenze JSON](eu27-expansion/batch-03-review-2026-11-16.json).
+
+Constructor: 28 posizioni nel feed, uno stage HR a Bremen, ID 4772353101,
+modulo stesso titolo/ID visibile abilitato. Marchio e sito coerenti, ma nessun
+collegamento ufficiale azienda→tenant esatto stabilito nelle pagine consentite.
+Careers usa l'endpoint pubblicato `/api/v2/jobs`, vietato da robots: contenuto
+non scaricato. Proposta incompleta fuori runtime in
+`batch-03-constructor-pending-proposal.json`; non integrare sulla sola prova del
+modulo o del backlink ATS→azienda. Limite di 12 richieste raggiunto; stop su questo caso.
+
+FirstMind: 38 posizioni nel feed, Global Talent Intern assente, zero HR studenti
+classificati; non è un errore attuale del filtro e non si promuovono ruoli sales.
+Saint-Gobain: scheda HTTP 403 dopo robots 404, nessun retry; inventario e
+candidatura sconosciuti, datore già censito. Barona: JobPosting 116361 a Tampere,
+collegamento corporate→Barona Careers confermato; pagina “Sign in and Apply”,
+nessuna candidatura anonima stabilita e nessun login. Inglese e finlandese
+elencati, non una proposta di lavoro con solo inglese.
+
+Preparati due miglioramenti riutilizzabili: forme polacche Stażysta/Stażystka
+riconosciute, “staż pracy” distinto dall'esperienza richiesta in ruoli permanenti;
+“Inglés nivel B2” riconosciuto con esclusione di corsi/CV e gestione di
+opzionalità/negazione. Replay BSH: requisito inglese unknown → documented,
+**inglese sufficiente da solo resta unknown**, nessuna disponibilità o timestamp
+rinnovati. La lingua del CV e i corsi Constructor restano esclusi.
+
+**407 test Python, 26 Node, 64 esempi e build passati**, 12 nuove regressioni.
+Costo verifica: **22 richieste logiche, 10,940 secondi-fonte cumulati,
+1.962.584 byte, zero rendering**, più cinque query web. Budget per datore 12/45 s
+rispettato. Catalogo/registri/workflow invariati, nessun gate/host di produzione
+esteso, nessun merge o attivazione; baseline **26 stage verificati** preservata.
+
+**Primo punto incompleto:** review della PR con i filtri corretti; eventuale
+merge richiede autorizzazione specifica. Nuovo lotto con collegamento pubblico
+datore→ATS e candidatura anonima controllati in anticipo. Constructor resta
+incompleta per ownership; non spendere una nuova sessione soltanto sui blocchi
+di questo lotto e non aggirare 403/API vietate/sign-in.
+
 ## 16 novembre 2026 — BSH attiva, primo ciclo e pubblicazione verificati
 
 **Risultato reale: 25 → 26 stage HR aperti e verificati (+1 distinto), primo

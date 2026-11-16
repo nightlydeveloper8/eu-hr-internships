@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "mode": "incomplete-source-proposal-not-integration-bundle",
+  "runtime_reads_this_file": false,
+  "activation_authorized": false,
+  "ready_for_integration": false,
+  "source_proposal": {
+    "id": "greenhouse-constructor-tech",
+    "employer": "Constructor TECH",
+    "adapter": "greenhouse",
+    "board": "constructortech",
+    "api_host": "boards-api.greenhouse.io",
+    "enabled": false,
+    "career_url": "https://job-boards.eu.greenhouse.io/constructortech",
+    "allowed_hosts": [
+      "boards-api.greenhouse.io",
+      "job-boards.eu.greenhouse.io"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "max_requests": 12,
+    "collection_seconds": 45
+  },
+  "company_proposal": null,
+  "missing_gates": [
+    "Official employer-to-exact Greenhouse tenant evidence",
+    "Runtime strict-form regression review before any activation"
+  ],
+  "evidence_report": "batch-03-review-2026-11-16.json",
+  "warning": "Do not add to runtime or create company fallback; employer-to-tenant evidence not established. Do not read blocked constructor.tech/api/v2/jobs."
+}
