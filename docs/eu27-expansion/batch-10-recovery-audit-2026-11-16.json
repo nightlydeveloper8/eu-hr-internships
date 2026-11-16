@@ -239,6 +239,33 @@
       "GitHub workflow success indicates test, all shards and publish jobs succeeded; catalog is partial because not every employer is operational.",
       "No new verified internships or employers with confirmed new vacancies.",
       "This run precedes the batch10 ownership quarantine patch, which has not yet been merged."
-    ]
+    ],
+    "measured_fresh_source_costs": {
+      "source_count": 1894,
+      "requests": 36174,
+      "bytes_read": 4159256878,
+      "source_seconds_cumulative": 43410.44,
+      "rendered_pages": 3286,
+      "zero_hr_matching_source_count": 1832,
+      "zero_hr_matching_costs": {
+        "requests": 34192,
+        "bytes_read": 3765755480,
+        "source_seconds_cumulative": 41230.44,
+        "rendered_pages": 3187
+      },
+      "nonzero_hr_matching_source_count": 62,
+      "nonzero_hr_matching_costs": {
+        "requests": 1982,
+        "bytes_read": 393501398,
+        "source_seconds_cumulative": 2180,
+        "rendered_pages": 99
+      },
+      "checked_at_range": [
+        "2026-11-16T18:42:34.914352+00:00",
+        "2026-11-16T18:43:26.886646+00:00"
+      ],
+      "exclusions": "19 historical source reports excluded because they were not checked in this run",
+      "warning": "A source with zero HR matching positions in this cycle is not proven permanently empty; cost is cumulative by source, not wall clock, and monetary charges were not measured."
+    }
   }
 }
