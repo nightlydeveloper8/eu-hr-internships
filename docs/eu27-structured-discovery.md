@@ -71,10 +71,20 @@ stores the full input description. No valid grant has been asserted here.
 
 ## Measured, not assumed
 
-- Requests actually executed for this implementation: 0 external feed GETs.
+- Requests actually executed in two PR preflights: 8 HTTP requests; zero EURES GETs.
 - New production sources enabled: 0. New verified internships: 0.
-- The Swedish pilot has **not** been run live in the current environment.
-  Its number of matches, bytes and wall time remain unknown.
+- The official public feed pilot **has now run twice** in PR-specific GitHub Actions:
+  https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43960047644
+  and https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43960318146
+  Each inspected 30 hits via 4 HTTP requests with zero renders and returned
+  2 distinct candidate internships from 2 employers. Run 1: 324,016 bytes
+  and 5.977 seconds; run 2: 324,021 bytes and 6.837 seconds.
+  Candidate IDs were 31558200 (Jobandtalent Sweden AB, HR & recruiting
+  internship Malmö) and 31613684 (Splendor Plant Aktiebolag, HR praktik).
+  Both carry source-published job-specific application URLs, which are
+  unverified until employer ownership, same-vacancy application and freshness
+  satisfy policy v2. No new verified opportunities. These metrics reflect
+  only the fixed three-query pilot, NOT an exhaustive Sweden inventory.
 - The EU baseline at 2026-11-16 19:26 UTC: 362 catalog records, 27 verified
   HR internship entries plus one verified working student; 13/27 countries
   have catalog records, 5/27 have verified HR internships.
