@@ -1,5 +1,14 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — ricerca EURES esterna senza estrazione di vacancy (PR separata)
+
+**Vincolo verificato:** le condizioni specifiche del servizio ufficiale EURES *Find a job* vietano l'estrazione automatizzata o manuale dei dati delle vacancy per ulteriore elaborazione **oppure** ripubblicazione, e riservano l'accesso alle API a organizzazioni partner EURES riconosciute dall'ufficio nazionale competente. Il fatto che People Placement colleghi solo alla pagina EURES elimina la ripubblicazione ma **non** rende lecita l'estrazione per costruire un indice. Fonte ufficiale: https://europa.eu/eures/portal/jv-se/home?lang=en ; supporto: https://eures.europa.eu/eures-services/help-and-support_en .
+
+**Implementazione preparata:** aggiunto alla pagina principale un collegamento esterno diretto alla ricerca ufficiale EURES, in sezione separata dai risultati del collector. Non si trasferiscono automaticamente filtri paese/parole chiave perché non si conosce una URL parametrica EURES ufficialmente documentata; l'utente seleziona filtri sul portale. Nessuna chiamata HTTP verso EURES eseguita dal collector o dal browser di People Placement; zero nuovi annunci indicizzati, zero nuove vacancy verified, zero fonti abilitate, zero richieste/rendering del collector. Documentazione in `docs/eures-direct-search.md`, regression test statico in `tests/eures.test.js`.
+
+**Stato:** modifica su branch e PR distinta, **non su main, non merged, non verificata in produzione**. L'accesso EURES tramite feed/API per indicizzare automaticamente vacancy rimane bloccato finché non esiste autorizzazione applicabile; alternativa prioritaria: integrazioni indipendenti dei servizi per l'impiego nazionali con condizioni e feed di accesso propri, oppure ATS ufficiali verificabili. Catalogo baseline: 362 annunci (27 internship HR aperte verified e 1 working student; 307 unverified, 27 closed); 13/27 paesi hanno record, 5/27 stage verified. 
+
+
 ## 16 novembre 2026 — lotto 10 NL/BE/FR/ES/PT: 108 mirror storici fuori ownership, raccolta ordinaria pubblicata
 
 **Risultato reale:** analizzati offline i 257 annunci del lotto 10 nel catalogo delle 16:51 UTC: **28 stage HR policy v2 verified**, 209 non verificati e 20 chiusi. **108** record storici legati a `auto-tilburg-university` provengono invece da `www.nationalevacaturebank.nl` (98 unverified, 10 closed), cioè un portale esterno con tanti datori differenti, non stage ufficiali dell'università. Nessun record aveva `last_verified_at`, l'ultima osservazione era del 7 novembre. Non ampliare budget Tilburg per tentare di recuperarli come stage ufficiali.
