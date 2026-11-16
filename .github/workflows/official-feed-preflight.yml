@@ -1,0 +1,60 @@
+name: JobTech CC0 licensed feed preflight
+
+on:
+  pull_request:
+    paths:
+      - 'collector/official_feed_discovery.py'
+      - 'scripts/official_feed_discovery.py'
+      - 'tests/test_official_feed_discovery.py'
+      - '.github/workflows/official-feed-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-se-hr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify offline parser and safety gates
+        run: python -m unittest discover -s tests -p test_official_feed_discovery.py -v
+      - name: Bounded publicly licensed Swedish JobTech discovery (not catalog)
+        run: |
+          python -m scripts.official_feed_discovery \
+            --provider jobtech-se --live --per-query 10 \
+            --output .staging/preflight/jobtech-se.json
+      - name: Report actual discovery metrics (no full texts)
+        if: success()
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          report=json.loads(Path('.staging/preflight/jobtech-se.json').read_text())
+          summary={
+              'requests':report['requests'], 'bytes':report['bytes_read'],
+              'elapsed_seconds':report['elapsed_seconds'],
+              'hits_examined':report['input_records'],
+              'hr_internship_candidates':report['candidate_count'],
+              'new_verified_internships':report['verified_vacancies_added'],
+              'employers':len({x['employer'] for x in report['candidates']}),
+              'countries':dict(Counter(x['country'] for x in report['candidates']))
+          }
+          lines=['## JobTech SE bounded discovery, NOT production', '']
+          lines.extend(['- '+key+': '+str(value) for key,value in summary.items()])
+          Path('jobtech-summary.md').write_text('\n'.join(lines)+'\n')
+          print(json.dumps(summary,sort_keys=True))
+          PY
+          cat jobtech-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep pilot artifact (no changes to catalog)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobtech-se-licensed-preflight
+          path: .staging/preflight/jobtech-se.json
+          retention-days: 7
