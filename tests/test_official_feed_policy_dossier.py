@@ -1,6 +1,6 @@
 """Offline end-to-end policy-v2 dossier: public JobTech → employer ATS."""
 from unittest import TestCase
-from collector.official_feed_policy_dossier import review,ats_parent
+from collector.official_feed_policy_dossier import review,ats_parent,catalog_overlap
 
 HOST="jobb.jobandtalent.com"
 TITLE="Praktik inom HR och rekrytering i Malmö - våren 2027"
@@ -53,6 +53,27 @@ class FakeBudget:
 class PolicyReviewTests(TestCase):
     def setUp(self):
         FakeBudget.pages=html_pages()
+
+    def test_catalog_overlap_flags_direct_urls_and_other_aliases_without_promoting(self):
+        lead=candidate()
+        d={"ats_job_url":PARENT,"application_url":APP}
+        no=catalog_overlap(lead,d,[dict(id="boschswe",employer="Bosch",
+                                      title="Internship in HR",country="SE",
+                                      url="https://jobs.smartrecruiters.com/bosch/swedish-intern")])
+        self.assertTrue(no["no_known_overlap"])
+        self.assertEqual(no["catalog_jobs_compared"],1)
+        with_parent=catalog_overlap(lead,d,[dict(id="a",url=PARENT,
+                                                 employer="Other",title="Unrelated",country="DE")])
+        self.assertEqual(with_parent["exact_url_or_path_count"],1)
+        self.assertFalse(with_parent["no_known_overlap"])
+        with_referral=catalog_overlap(lead,d,[dict(id="b",url=APP,
+                                                   employer="Other",title="Unrelated",country="DE")])
+        self.assertEqual(with_referral["exact_url_or_path_count"],1)
+        title_mirror=catalog_overlap(lead,d,[dict(id="c",employer=lead["employer"],
+                                                   title=TITLE,country="SE",
+                                                   url="https://some-other.example/job")])
+        self.assertEqual(title_mirror["possible_mirror_count"],1)
+        self.assertFalse(title_mirror["no_known_overlap"])
 
     def test_ats_identifier_does_not_conflate_with_jobtech_id(self):
         result=ats_parent(APP,HOST)
