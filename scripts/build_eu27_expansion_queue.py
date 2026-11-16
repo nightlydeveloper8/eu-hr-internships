@@ -274,7 +274,7 @@ def build(companies,sources,catalog,scans,collection,progress,leads,base_commit,
 
 def render(queue,batch):
     lines=['# People Placement — coda UE27 e lotto 01','',
-        'Coda generata offline con preflight live circoscritto separato; nessuna nuova fonte attiva, nessuna raccolta completa, nessuna nuova candidatura verificata.',
+        'Questa coda documenta la prima selezione, senza attivazioni. Gli esiti successivi di feed, identità e candidature sono separati in [REVIEW.md](REVIEW.md).',
         'Le osservazioni web sono indizi e possono essere scadute. Paesi candidati, sedi delle vacancy e copertura operativa restano distinti.','',
         f"Base: `{queue['base_commit']}`; catalogo: {queue['catalog_updated_at']}; esiti raccolta: {queue['collection_generated_at']}.",'',
         f"Coda: {queue['summary']['companies']} identità di ricerca e {queue['summary']['channel_tasks']} attività su canali. "

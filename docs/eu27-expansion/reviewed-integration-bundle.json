@@ -1,0 +1,760 @@
+{
+  "schema_version": 1,
+  "mode": "reviewed-disabled-integration-bundle",
+  "reviewed_on": "2026-11-16",
+  "runtime_reads_this_file": false,
+  "activation_authorized": false,
+  "warning": "Do not add these disabled companies alone: daily.provision would auto-enable generic sources. Apply company+reviewed-source atomically only under explicit activation authorization.",
+  "companies": [
+    {
+      "id": "sas-look-up-space",
+      "name": "SAS LOOK UP SPACE",
+      "website_url": "https://www.lookupspace.com/careers",
+      "career_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+      "evidence_url": "https://www.lookupspace.com/careers",
+      "source_ids": [
+        "recruitee-sas-look-up-space"
+      ],
+      "target_countries": [
+        "FR"
+      ],
+      "workplaces": [],
+      "review_status": "publication-identity-reviewed",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "live bounded review; not a production catalog entry"
+    },
+    {
+      "id": "monsterscore",
+      "name": "Monsterscore",
+      "website_url": "https://monsterscore.nl/werken-bij",
+      "career_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+      "evidence_url": "https://monsterscore.nl/werken-bij",
+      "source_ids": [
+        "recruitee-monsterscore"
+      ],
+      "target_countries": [
+        "NL"
+      ],
+      "workplaces": [],
+      "review_status": "publication-identity-reviewed",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "live bounded review; not a production catalog entry"
+    },
+    {
+      "id": "ibexa",
+      "name": "Ibexa",
+      "website_url": "https://ibexa.ai/en",
+      "career_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+      "evidence_url": "https://ibexa.ai/en",
+      "source_ids": [
+        "recruitee-ibexa"
+      ],
+      "target_countries": [
+        "BE"
+      ],
+      "workplaces": [],
+      "review_status": "publication-identity-reviewed",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "live bounded review; not a production catalog entry"
+    },
+    {
+      "id": "gerard-bertrand",
+      "name": "Gérard Bertrand",
+      "website_url": "https://www.gerard-bertrand.com/",
+      "career_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+      "evidence_url": "https://www.gerard-bertrand.com/",
+      "source_ids": [
+        "recruitee-gerard-bertrand"
+      ],
+      "target_countries": [
+        "FR"
+      ],
+      "workplaces": [],
+      "review_status": "publication-identity-reviewed",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "live bounded review; not a production catalog entry"
+    },
+    {
+      "id": "skytree",
+      "name": "SKYTREE",
+      "website_url": "https://skytree.tech/en-en/careers",
+      "career_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+      "evidence_url": "https://skytree.tech/en-en/careers",
+      "source_ids": [
+        "recruitee-skytree"
+      ],
+      "target_countries": [
+        "NL"
+      ],
+      "workplaces": [],
+      "review_status": "publication-identity-reviewed",
+      "group_identity": "not asserted beyond reviewed publishing scope",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "live bounded review; not a production catalog entry"
+    }
+  ],
+  "sources": [
+    {
+      "id": "recruitee-sas-look-up-space",
+      "employer": "SAS LOOK UP SPACE",
+      "adapter": "recruitee",
+      "enabled": false,
+      "career_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+      "allowed_hosts": [
+        "lookup.recruitee.com"
+      ],
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "feed_url": "https://lookup.recruitee.com/api/offers/",
+      "company_id": "sas-look-up-space",
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "FR"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+    },
+    {
+      "id": "recruitee-monsterscore",
+      "employer": "Monsterscore",
+      "adapter": "recruitee",
+      "enabled": false,
+      "career_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+      "allowed_hosts": [
+        "monsterscore.recruitee.com"
+      ],
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "feed_url": "https://monsterscore.recruitee.com/api/offers/",
+      "company_id": "monsterscore",
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "NL"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+    },
+    {
+      "id": "recruitee-ibexa",
+      "employer": "Ibexa",
+      "adapter": "recruitee",
+      "enabled": false,
+      "career_url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+      "allowed_hosts": [
+        "ibexa.recruitee.com"
+      ],
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "feed_url": "https://ibexa.recruitee.com/api/offers/",
+      "company_id": "ibexa",
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "BE"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+    },
+    {
+      "id": "recruitee-gerard-bertrand",
+      "employer": "Gérard Bertrand",
+      "adapter": "recruitee",
+      "enabled": false,
+      "career_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
+      "allowed_hosts": [
+        "gerardbertrand.recruitee.com"
+      ],
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "feed_url": "https://gerardbertrand.recruitee.com/api/offers/",
+      "company_id": "gerard-bertrand",
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "FR"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+    },
+    {
+      "id": "recruitee-skytree",
+      "employer": "SKYTREE",
+      "adapter": "recruitee",
+      "enabled": false,
+      "career_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+      "allowed_hosts": [
+        "skytree.recruitee.com"
+      ],
+      "max_requests": 12,
+      "collection_seconds": 45,
+      "feed_url": "https://skytree.recruitee.com/api/offers/",
+      "company_id": "skytree",
+      "application_check": "recruitee-linked",
+      "report_feed_scope": true,
+      "target_countries": [
+        "NL"
+      ],
+      "reviewed_on": "2026-11-16",
+      "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
+      "discovery_scope": "All published offers returned by the reviewed feed; actual posting geography and role determine inclusion"
+    }
+  ],
+  "reviewed_internships": [
+    {
+      "employer": "SAS LOOK UP SPACE",
+      "company_id": "sas-look-up-space",
+      "source_id": "recruitee-sas-look-up-space",
+      "title": "Stage -Juriste droit social RH (H/F)",
+      "url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf",
+      "application_url": "https://lookup.recruitee.com/o/stage-juriste-droit-social-rh-hf/c/new",
+      "posting_identifier": "2636945",
+      "countries": [
+        "FR"
+      ],
+      "city": "Toulouse",
+      "method": "official-recruitee-same-posting-visible-form",
+      "original_feed_checked_at": "2026-11-16T10:19:09.899844+00:00",
+      "final_code_replayed_without_renewing_evidence": true,
+      "workplace_languages": [],
+      "intake": null,
+      "already_in_catalog": false,
+      "published_in_production": false
+    },
+    {
+      "employer": "Monsterscore",
+      "company_id": "monsterscore",
+      "source_id": "recruitee-monsterscore",
+      "title": "Stageplek Human Resources Management",
+      "url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management",
+      "application_url": "https://monsterscore.recruitee.com/o/stageplek-human-resources-management/c/new",
+      "posting_identifier": "570048",
+      "countries": [
+        "NL"
+      ],
+      "city": "Amsterdam",
+      "method": "official-recruitee-same-posting-visible-form",
+      "original_feed_checked_at": "2026-11-16T10:19:10.587265+00:00",
+      "final_code_replayed_without_renewing_evidence": true,
+      "workplace_languages": [],
+      "intake": null,
+      "already_in_catalog": false,
+      "published_in_production": false
+    },
+    {
+      "employer": "Ibexa",
+      "company_id": "ibexa",
+      "source_id": "recruitee-ibexa",
+      "title": "Human Resources Internship",
+      "url": "https://ibexa.recruitee.com/o/human-resources-internship-2",
+      "application_url": "https://ibexa.recruitee.com/o/human-resources-internship-2/c/new",
+      "posting_identifier": "2802788",
+      "countries": [
+        "BE"
+      ],
+      "city": "Louvain-la-Neuve",
+      "method": "official-recruitee-same-posting-visible-form",
+      "original_feed_checked_at": "2026-11-16T10:19:11.347717+00:00",
+      "final_code_replayed_without_renewing_evidence": true,
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Fluent in French & English + other languages is a plus ."
+        },
+        {
+          "code": "fr",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Fluent in French & English + other languages is a plus ."
+        }
+      ],
+      "intake": null,
+      "already_in_catalog": false,
+      "published_in_production": false
+    },
+    {
+      "employer": "Gérard Bertrand",
+      "company_id": "gerard-bertrand",
+      "source_id": "recruitee-gerard-bertrand",
+      "title": "STAGE - Ressources Humaines – Déploiement SIRH (H/F)",
+      "url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf",
+      "application_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf/c/new",
+      "posting_identifier": "2564123",
+      "countries": [
+        "FR"
+      ],
+      "city": "NARBONNE",
+      "method": "official-recruitee-same-posting-visible-form",
+      "original_feed_checked_at": "2026-11-16T10:19:13.793553+00:00",
+      "final_code_replayed_without_renewing_evidence": true,
+      "workplace_languages": [],
+      "intake": null,
+      "already_in_catalog": false,
+      "published_in_production": false
+    },
+    {
+      "employer": "SKYTREE",
+      "company_id": "skytree",
+      "source_id": "recruitee-skytree",
+      "title": "HR & People Operations Intern",
+      "url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3",
+      "application_url": "https://skytree.recruitee.com/o/hr-people-operations-intern-3/c/new",
+      "posting_identifier": "2753098",
+      "countries": [
+        "NL"
+      ],
+      "city": "Amsterdam",
+      "method": "official-recruitee-same-posting-visible-form",
+      "original_feed_checked_at": "2026-11-16T10:19:15.916169+00:00",
+      "final_code_replayed_without_renewing_evidence": true,
+      "workplace_languages": [
+        {
+          "code": "en",
+          "confidence": "confirmed",
+          "requirement": "required-or-working",
+          "method": "explicit-language-pattern",
+          "evidence": "Strong communication skills in English."
+        },
+        {
+          "code": "nl",
+          "confidence": "confirmed",
+          "requirement": "preferred",
+          "method": "explicit-language-pattern",
+          "evidence": "Dutch is preferred!"
+        }
+      ],
+      "intake": null,
+      "already_in_catalog": false,
+      "published_in_production": false
+    }
+  ],
+  "summary": {
+    "proposals_reviewed": 29,
+    "admissible_sources": 5,
+    "live_same_posting_internships": 5,
+    "distinct_new_catalog_urls": 5,
+    "production_sources_enabled": 0,
+    "production_catalog_delta": 0
+  },
+  "costs": {
+    "requests": 165,
+    "source_seconds": 83.071,
+    "wall_seconds_separate_phases": 24.57,
+    "renderings": 0,
+    "web_search_queries": 16,
+    "web_open_find_commands": 7,
+    "monetary_cost": null
+  },
+  "remaining": [
+    {
+      "name": "Altares Dun & Bradstreet",
+      "action_id": "b7293bae7b07364fdc9f",
+      "inventory": "complete-feed-read",
+      "records": 4,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "threon NV",
+      "action_id": "ef5350fcad18f4126967",
+      "inventory": "complete-feed-read",
+      "records": 8,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "Energieversum",
+      "action_id": "a22052a2d1db53d7bf0a",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "HTTPError: HTTP Error 404: Not Found",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "SAS LOOK UP SPACE",
+      "action_id": "b6d0b2004828b0535da0",
+      "inventory": "complete-feed-read",
+      "records": 11,
+      "hr_student_roles": 1,
+      "ownership_confirmed": true,
+      "admissible": true,
+      "reasons": [],
+      "source_id": "recruitee-sas-look-up-space"
+    },
+    {
+      "name": "Monsterscore",
+      "action_id": "1edf4848c6a7bf782745",
+      "inventory": "complete-feed-read",
+      "records": 9,
+      "hr_student_roles": 1,
+      "ownership_confirmed": true,
+      "admissible": true,
+      "reasons": [],
+      "source_id": "recruitee-monsterscore"
+    },
+    {
+      "name": "Ibexa",
+      "action_id": "51beda42bae88be2f657",
+      "inventory": "complete-feed-read",
+      "records": 8,
+      "hr_student_roles": 1,
+      "ownership_confirmed": true,
+      "admissible": true,
+      "reasons": [],
+      "source_id": "recruitee-ibexa"
+    },
+    {
+      "name": "Kindernothilfe e.V.",
+      "action_id": "01971b916c2988174e05",
+      "inventory": "complete-feed-read",
+      "records": 3,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "Kickmaker",
+      "action_id": "4628c4fb659fbbd1308e",
+      "inventory": "complete-feed-read",
+      "records": 36,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "Zero Motorcycles Inc.",
+      "action_id": "202b0cf09349569b1a56",
+      "inventory": "complete-feed-read",
+      "records": 5,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "Toreon",
+      "action_id": "4ee71272d2fe9d14a94e",
+      "inventory": "complete-feed-read",
+      "records": 6,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "LHLK Agentur für Kommunikation",
+      "action_id": "745f073212c70dab36e8",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "HTTPError: HTTP Error 404: Not Found",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "Gérard Bertrand",
+      "action_id": "c90dc0562d12f2c4c890",
+      "inventory": "complete-feed-read",
+      "records": 22,
+      "hr_student_roles": 1,
+      "ownership_confirmed": true,
+      "admissible": true,
+      "reasons": [],
+      "source_id": "recruitee-gerard-bertrand"
+    },
+    {
+      "name": "Hotel TwentySeven",
+      "action_id": "67200fb2de73e35b076a",
+      "inventory": "complete-feed-read",
+      "records": 29,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "Hotel Beveren",
+      "action_id": "9b5ff4028ddfd69c4028",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "ValueError: Unapproved employer-page host",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "ISCC, Meo, 4C, GRAS, ClimatePal & TYC",
+      "action_id": "42746cfe270726d969d1",
+      "inventory": "complete-feed-read",
+      "records": 16,
+      "hr_student_roles": 2,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "SKYTREE",
+      "action_id": "7b59dccb40979da93da6",
+      "inventory": "complete-feed-read",
+      "records": 4,
+      "hr_student_roles": 1,
+      "ownership_confirmed": true,
+      "admissible": true,
+      "reasons": [],
+      "source_id": "recruitee-skytree"
+    },
+    {
+      "name": "Bundl",
+      "action_id": "f1868ef25a42226921ad",
+      "inventory": "complete-feed-read",
+      "records": 6,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "Studyflix GmbH",
+      "action_id": "8e1a5ab608d2beb5fb5b",
+      "inventory": "complete-feed-read",
+      "records": 19,
+      "hr_student_roles": 2,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "Youvia BV",
+      "action_id": "432cbe6783e8768e83af",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "HTTPError: HTTP Error 429: Too Many Requests",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "CHR HAUTE SENNE",
+      "action_id": "3e88f046de4d7b54d3b6",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "HTTPError: HTTP Error 429: Too Many Requests",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "Watson Farley & Williams LLP",
+      "action_id": "62a986e072fa415b7dcb",
+      "inventory": "complete-feed-read",
+      "records": 13,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "Droppie",
+      "action_id": "23fcb0035c0943323708",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "ValueError: robots.txt unavailable: 429",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "eXtra Shop",
+      "action_id": "ffc96f49550469b35881",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "ValueError: robots.txt unavailable: 429",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "Vamo",
+      "action_id": "277a66d26d10ed511244",
+      "inventory": "complete-feed-read",
+      "records": 19,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "The Social Hub",
+      "action_id": "c46cbc25f35a649019be",
+      "inventory": "complete-feed-read",
+      "records": 109,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "LIVE FAST DIE YOUNG",
+      "action_id": "214ec644c21f9e90b189",
+      "inventory": "not-established",
+      "records": null,
+      "hr_student_roles": 0,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "HTTPError: HTTP Error 404: Not Found",
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof",
+        "No HR student role classified from feed; indexed vacancy is not a substitute. HRIS may require classification review."
+      ]
+    },
+    {
+      "name": "Settels Savenije group of companies",
+      "action_id": "1f295184aaace722f4f8",
+      "inventory": "complete-feed-read",
+      "records": 24,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "IMAP GmbH",
+      "action_id": "d451b2181e218ed08e52",
+      "inventory": "complete-feed-read",
+      "records": 7,
+      "hr_student_roles": 2,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    },
+    {
+      "name": "Reformer Club GmbH",
+      "action_id": "00de243f3cdf20ab6f26",
+      "inventory": "complete-feed-read",
+      "records": 8,
+      "hr_student_roles": 1,
+      "ownership_confirmed": false,
+      "admissible": false,
+      "reasons": [
+        "Official employer→exact ATS relationship not established by this review",
+        "No strict visible same-posting application proof"
+      ]
+    }
+  ]
+}

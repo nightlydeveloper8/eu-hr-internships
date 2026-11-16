@@ -37,6 +37,12 @@ def recruitee_records(source,client):
         # not erase any locations by collapsing country-specific copies.
         location='; '.join(cities+countries) or j.get('location','')
         out.append(dict(inventory_evidence='current-employer-feed',source_id=source['id'],external_id=str(j['id']),employer=source['employer'],title=plain(j['title']),location=location,text=plain((j.get('description') or '')+' '+(j.get('requirements') or '')),url=url,apply_url=url,countries=countries,language=None,published_at=None,employment=j.get('employment_type_code',''),city='; '.join(cities) or j.get('city'),country=countries[0] if len(countries)==1 else None,work_mode='remote' if j.get('remote') else 'hybrid' if j.get('hybrid') else None))
+        if source.get('application_check')=='recruitee-linked':
+            # Preserve an actually published entry, never invent /c/new from a
+            # slug. Other registered Recruitee sources retain their behavior.
+            out[-1]['posting_identifier']=str(j['id'])
+            if j.get('careers_apply_url'):
+                out[-1]['observed_application_url']=approved(j['careers_apply_url'],source)
     if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate offers')
     if source.get('report_feed_scope'):
         from .universal import Inventory

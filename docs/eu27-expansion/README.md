@@ -1,6 +1,6 @@
 # People Placement — coda UE27 e lotto 01
 
-Coda generata offline con preflight live circoscritto separato; nessuna nuova fonte attiva, nessuna raccolta completa, nessuna nuova candidatura verificata.
+Questa coda documenta la prima selezione, senza attivazioni. Gli esiti successivi di feed, identità e candidature sono separati in [REVIEW.md](REVIEW.md).
 Le osservazioni web sono indizi e possono essere scadute. Paesi candidati, sedi delle vacancy e copertura operativa restano distinti.
 
 Base: `e99f263ccb8758f400fd04d61f228ecec6bf3450`; catalogo: 2026-11-16T09:06:18.796495+00:00; esiti raccolta: 2026-11-16T09:06:18.796495+00:00.

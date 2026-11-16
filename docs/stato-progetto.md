@@ -1,5 +1,59 @@
 # Stato di ripresa — People Placement
 
+## 16 novembre 2026 — verifica delle 29 proposte, cinque integrazioni ammissibili
+
+Richiesta esplicita: verificare datore→ATS, feed, inventario e candidature delle
+29 proposte, preparando l'integrazione senza merge o attivazioni. La PR #42 è
+ancora aperta allo head `7d5940b`; questo lavoro ne completa il contenuto.
+
+- **29 feed tentati, 21 inventari letti, 366 posizioni e 20 ruoli HR per studenti
+  classificati.** Quattro fonti hanno risposto 429, senza retry. Tre XML Personio
+  404; Hotel Beveren pubblica URL su un host diverso non approvato e rimane
+  escluso. Le otto letture non stabilite non sono inventari vuoti.
+- **Cinque stage distinti con prova live completa del pilota:** Monsterscore
+  (HRM, Amsterdam NL), SKYTREE (HR & People Operations, Amsterdam NL), Ibexa
+  (Human Resources, Louvain-la-Neuve BE), Gérard Bertrand (SIRH, Narbonne FR),
+  SAS LOOK UP SPACE (diritto sociale a supporto HR, Toulouse FR).
+  Per ognuno: collegamento ufficiale del datore al tenant esatto, feed letto,
+  ID/titolo/datore corrispondenti e candidatura con campi visibili abilitati.
+  Non equivalgono a cinque annunci già pubblicati sul sito.
+- Correzione riutilizzabile **opt-in** `application_check=recruitee-linked`:
+  conserva l'entry di candidatura realmente pubblicata nel feed, senza inventare
+  `/c/new`; verifica ID/titolo/datore sulle due pagine, percorso, host, redirect,
+  chiusure/scadenze e modulo visibile. Evita di prendere per prova il form nella
+  scheda nascosta della vacancy. Connettori Recruitee già registrati invariati.
+- Bundle fuori dal runtime: `docs/eu27-expansion/reviewed-integration-bundle.json`,
+  cinque aziende/fonti disabilitate, metadati e prove. **Non aggiungere da sole
+  aziende con fonti disabilitate:** `daily.provision` attiverebbe crawler generici.
+  L'eventuale attivazione richiede integrazione congiunta nel medesimo commit e
+  autorizzazione specifica. Nessun registry, catalogo o workflow modificato.
+- Verifica offline su risposte salvate con il codice finale: due cicli
+  **347 → 352 ID e 20 → 25 open/verified**, tutti gli ID precedenti conservati,
+  idempotenza confermata. È una simulazione, non un conteggio di produzione e
+  non rinnova le evidenze live. Il futuro collector dovrà rileggere tutto live;
+  nessuno snapshot di questo pilota viene importato nel catalogo.
+- Costo totale delle fasi: **165 richieste logiche**, 83,071 secondi-fonte,
+  24,570 secondi a muro cumulati dei processi, zero rendering; massimo osservato
+  10 richieste per datore su budget 12/45 secondi. Ulteriori 16 query web e
+  7 aperture/find per la ricerca di pagine ufficiali; costi monetari non misurati.
+- Restano **24 proposte non ammissibili**, con motivi nel report `REVIEW.md`:
+  accesso/feed, identità societaria/pubblicatore, applicazione o classificazione.
+  Altares e Toreon non mostrano nel feed lo stage HR indicizzato; non è una prova
+  generale di chiusura. threon HRIS richiede review del filtro. Dimensioni/gruppi
+  non qualificati come PMI; lingue e intake sconosciuti rimangono tali.
+
+Consegna nella [PR #42](https://github.com/nightlydeveloper8/eu-hr-internships/pull/42),
+con estensione opt-in e bundle disabilitato. **384 test Python 3.12, 26 Node,
+64 esempi di classificazione e build superati**; dieci nuove regressioni sul
+percorso Recruitee e due cicli con ID preservati. CI sul nuovo head da verificare.
+
+**Primo punto incompleto:** review della modifica e del bundle dei cinque datori,
+poi integrazione/attivazione solo con autorizzazione specifica. Dopo attivazione,
+misurare il primo ciclo ordinario reale (cinque prove pilota non garantiscono
+cinque nuove vacancy ancora aperte in quel ciclo). Avanzare in modo indipendente
+su fonti dei paesi successivi, senza ritentare qui i quattro 429 né avviare una
+raccolta completa manuale. Nessuna nuova automazione o schedulazione configurata.
+
 ## 16 novembre 2026 — coda UE27 e primo lotto di espansione preparati
 
 Ripresa del lavoro locale interrotto sul ramo `plan/eu27-expansion-20261115`,
