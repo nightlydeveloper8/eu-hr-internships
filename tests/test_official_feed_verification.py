@@ -4,7 +4,7 @@ from urllib.parse import urlsplit
 from collector.official_feed_verification import verify_candidate, verify_candidates, academic_term_title_variant
 
 
-TITLE = "HR Internship Recruitment"
+TITLE = "HR Internship in Talent Acquisition and Recruitment"
 APP = "https://jobs.example.test/jobs/hr-internship-recruitment"
 OWNER = "Example Sweden AB"
 
@@ -116,15 +116,15 @@ class VerifyLicensedFeedTests(TestCase):
 
     def test_sweden_term_marker_drifts_are_diagnostic_not_verified(self):
         self.assertTrue(academic_term_title_variant(
-            "HR Internship VT27 Recruitment", "HR Internship Recruitment"))
+            "HR Internship VT27 in Talent Acquisition and Recruitment", "HR Internship in Talent Acquisition and Recruitment"))
         self.assertFalse(academic_term_title_variant(
-            "HR Internship VT27 Recruitment", "HR Internship Payroll"))
+            "HR Internship VT27 in Talent Acquisition and Recruitment", "HR Internship Payroll"))
         self.assertFalse(academic_term_title_variant(
-            "HR Internship VT27 HT26 Recruitment", "HR Internship Recruitment"))
+            "HR Internship VT27 HT26 in Talent Acquisition and Recruitment", "HR Internship in Talent Acquisition and Recruitment"))
         self.assertFalse(academic_term_title_variant(
             "Sales VT27", "Sales"))
-        row=self.run_candidate(record=candidate(title="HR Internship VT27 Recruitment"),
-                               body=html(title="HR Internship Recruitment"))
+        row=self.run_candidate(record=candidate(title="HR Internship VT27 in Talent Acquisition and Recruitment"),
+                               body=html(title="HR Internship in Talent Acquisition and Recruitment"))
         self.assertEqual(row["state"],"seasonal-title-variant-form-observed-review-required")
         self.assertTrue(row["seasonal_title_variant"])
         self.assertFalse(row["vacancy_match"])
