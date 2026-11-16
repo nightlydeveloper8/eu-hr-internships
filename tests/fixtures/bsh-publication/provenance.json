@@ -1,0 +1,27 @@
+{
+  "observed_date": "2026-11-16",
+  "purpose": "Reduced real public HTML for offline regression; never establishes availability independently",
+  "reduction": "Index keeps publication tables and count; vacancy keeps visible text and observed CTA; application keeps title and selected form with attribute whitelist, removes hidden input values and public session tokens",
+  "original_responses": [
+    {
+      "url": "https://jobs.bsh-group.de/index/es",
+      "final_url": "https://jobs.bsh-group.de/index/es",
+      "sha256": "027c7c433b63ff7765b4cddc50d0bcb5c11dd7c8b75e93d6b640cb05ccc1f816"
+    },
+    {
+      "url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/de/job.html",
+      "final_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+      "sha256": "065a91e7917387148df6390da5236dca16abb769b425cf96e6b54b519bdd7f9f"
+    },
+    {
+      "url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new",
+      "final_url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new?persist_lang=es",
+      "sha256": "e1c3cbcd5d92b666e712786681fb76c83b711701f8516ace6735310d557aab60"
+    }
+  ],
+  "fixture_sha256": {
+    "index.html": "730e10338eae35c6d730d7d3341e3d2bc52ac6d5d28eb15ae8a2fd46a06e1081",
+    "application.html": "222720711bd2e00e192cb20b3acfe34cb086bd2ccdb3c4ba59957ae0b30b8a66",
+    "vacancy.html": "4a2ce008a9c61f642cb4c0b3b0ed0718b0325828c1f8bbc693522042f8b162e6"
+  }
+}

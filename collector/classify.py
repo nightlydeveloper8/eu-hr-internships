@@ -80,6 +80,9 @@ def classify_role(title, text='', employment=''):
         if not re.search(r'\bstag(?:e|iair|iaire|iairs|iaires)|\binternship|\bstudent|\bmeewerk|\bafstudeer|\binschrev',title+' '+text):return None
     # Internal, international and interview must never count as 'intern'.
     signal = re.search(INTERNSHIP,title+' '+employment)
+    # Spanish placement titles use 'Prácticas'. A phrase about good practices
+    # inside a permanent HR title/description is not a placement signal.
+    signal = signal or re.search(r'^practicas\b',title) or re.search(r'^practicas\b',employment)
     if not signal: return None
     kind = 'working-student' if re.search(r'werkstud(?:ent|ierende)|working.student|student assistant',title+' '+employment) else 'traineeship' if re.search(r'trainee',title+' '+employment) else 'internship'
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}

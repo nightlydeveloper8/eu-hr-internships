@@ -127,7 +127,9 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     for post in doc.jobposts():
         if fold(plain(post.get('title'))) == fold(record['title']) and expired(post.get('validThrough'), stamp):
             raise ApplicationClosed('Published application deadline has passed')
-    reviewed = verify_application(record, source, client)
+    reviewed = (verify_application(record,source,client,vacancy_document=(body,doc))
+                if source.get('application_check')=='publication-linked'
+                else verify_application(record,source,client))
     if reviewed:
         return dict(reviewed,valid_through=fresh_deadline, vacancy_match='title', inventory=record.get('inventory_evidence', 'not-established'))
     # An actual form on this same, identified vacancy is direct application evidence.

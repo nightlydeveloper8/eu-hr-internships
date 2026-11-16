@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "mode": "prepared-disabled-outside-runtime",
+  "runtime_reads_this_file": false,
+  "activation_authorized": false,
+  "warning": "Add company and enabled source together only after specific activation authorization; a company alone triggers generic provisioner fallback",
+  "companies": [
+    {
+      "id": "bsh-electrodomesticos-espana",
+      "name": "BSH Electrodomésticos España",
+      "website_url": "https://www.bsh-group.com",
+      "career_url": "https://jobs.bsh-group.de/index/es",
+      "evidence_url": "https://www.bsh-group.com/es/es/trabajar-en-bsh/bienvenido-a-bsh/",
+      "source_ids": [
+        "index-bsh-es"
+      ],
+      "target_countries": [
+        "ES"
+      ],
+      "workplaces": [],
+      "review_status": "publication-identity-reviewed",
+      "group_identity": "BSH; distinct from other Bosch employers; not counted as an SME",
+      "size": {
+        "qualification": "unknown"
+      },
+      "hr_internship_evidence": "bounded live public index, vacancy and visible enabled same-ID application form; not in production"
+    }
+  ],
+  "sources": [
+    {
+      "id": "index-bsh-es",
+      "company_id": "bsh-electrodomesticos-espana",
+      "employer": "BSH Electrodomésticos España",
+      "adapter": "employer-index",
+      "enabled": false,
+      "career_url": "https://jobs.bsh-group.de/index/es",
+      "index_urls": [
+        "https://jobs.bsh-group.de/index/es"
+      ],
+      "allowed_hosts": [
+        "jobs.bsh-group.de"
+      ],
+      "target_countries": [
+        "ES"
+      ],
+      "job_url_pattern": "^https://jobs\\.bsh-group\\.de/\\d+-[^/]+/[a-z]{2}/job\\.html(?:\\?|$)",
+      "job_id_pattern": "\\.de/(\\d+)-",
+      "index_link_scope_id": "publicationsList",
+      "index_titles_complete": true,
+      "index_job_count_pattern": "(\\d+) offene Stellen",
+      "max_index_pages": 1,
+      "max_job_urls": 100,
+      "report_index_scope": true,
+      "inventory_scope_complete": true,
+      "discovery_scope": "Spanish portal regular publications only; exact count required, unsolicited applications excluded; no claim of global BSH coverage",
+      "page_format": "reviewed-visible",
+      "reviewed_workplaces": [
+        {
+          "pattern": "\\bModo de trabajo: Presencial Zaragoza Tus funciones\\b",
+          "city": "Zaragoza",
+          "country": "ES"
+        }
+      ],
+      "reviewed_advertisement_language": "es",
+      "application_check": "publication-linked",
+      "max_requests": 10,
+      "collection_seconds": 75,
+      "permission_basis": "Official employer site links to this exact public portal; robots and 10-second crawl-delay enforced; observed GET application route only; no submit or authentication",
+      "reviewed_on": "2026-11-16"
+    }
+  ],
+  "reviewed_internships": [
+    {
+      "external_id": "46112",
+      "title": "Prácticas Recursos Humanos - Formación",
+      "country": "ES",
+      "city": "Zaragoza",
+      "advertisement_language": "es",
+      "documented_english": "B2",
+      "english_only": null,
+      "eligibility": "Student enrolled in a relevant Bachelor or Master; paid placement, 30–32h/week; additional eligibility not asserted",
+      "vacancy_url": "https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/es/job.html?persisted_lang=es",
+      "application_url": "https://jobs.bsh-group.de/jobs/46112-practicas-recursos-humanos-formacion/job_application/new?persist_lang=es"
+    }
+  ],
+  "evidence_report": "batch-02-review-2026-11-16.json",
+  "live_pilot": {
+    "logical_requests": 5,
+    "source_seconds": 60.682,
+    "bytes_read": 109503,
+    "checked_at": "2026-11-16T12:10:45.610519+00:00",
+    "budget_respected": true,
+    "new_distinct_verified": 1
+  }
+}

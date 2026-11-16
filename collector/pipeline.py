@@ -306,7 +306,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         if any(j['verification']['state']=='blocked' for j in staged):report['access_state']='blocked'
         if cache:report['cache_hits']=max(cache.hits,inventory_stats.get('cache_hits',0))
         if source['adapter'] in ('employer-sitemap','employer-index'):
-            report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode='read-all-inventoried-job-pages')
+            report.update(snapshot_kind='public-job-page-inventory',discovery_scope=source.get('discovery_scope'),page_discovery_mode=inventory_stats.get('page_discovery_mode','read-all-inventoried-job-pages'))
         if source.get('cegid_inventory_search'):
             report.update(snapshot_kind='public-job-search-inventory',page_discovery_mode='published-titles-and-locations-with-HR-detail-enrichment')
         if source.get('unigarant_inventory_search'):

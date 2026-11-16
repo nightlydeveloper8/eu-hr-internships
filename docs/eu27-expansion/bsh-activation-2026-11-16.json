@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "state": "activation-prepared-not-merged",
+  "authorization": "User explicitly requests specifically authorized activation of BSH and measurement of first ordinary cycle in current turn",
+  "base_commit": "2e68639182be2bda95cc2c9bf87b1d065c6ffc57",
+  "pr": 43,
+  "source_ids": [
+    "index-bsh-es"
+  ],
+  "company_ids": [
+    "bsh-electrodomesticos-espana"
+  ],
+  "source_enabled": true,
+  "allowed_hosts": [
+    "jobs.bsh-group.de"
+  ],
+  "max_requests": 10,
+  "collection_seconds": 75,
+  "robots_crawl_delay_seconds": 10,
+  "provision_idempotent": true,
+  "companies_before": 1892,
+  "companies_after": 1893,
+  "sources_before": 1936,
+  "sources_after": 1937,
+  "catalog_before": {
+    "records": 352,
+    "open_verified": 25,
+    "updated_at": "2026-11-16T11:41:24.691675+00:00",
+    "sha256": "44f3b1b89744a4f7cfcfb6d2c4881a6b55ec55b7907a840a24ef9d95647073d0"
+  },
+  "catalog_modified": false,
+  "scope": "Only reviewed BSH Spain regular publications and same-ID application template. Existing gates, workflow and other source hosts unchanged.",
+  "collection": "Existing push-to-main/scheduled workflow only, no manual full collection or dispatch",
+  "rollback": "Revert company and source additions together; disabling only the source would cause generic provisioner fallback",
+  "production_benefit_verified": false
+}

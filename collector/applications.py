@@ -44,6 +44,65 @@ class ApplicantForms(HTMLParser):
                 del self.scopes[index:];break
 
 
+class JobPortalTitle(HTMLParser):
+    """Reviewed publication form title, excluding its introductory small tag."""
+    def __init__(self,body):
+        super().__init__(convert_charrefs=True);self.stack=[];self.values=[];self.current=None
+        self.feed(body.decode('utf-8','replace'))
+    def handle_starttag(self,tag,attrs):
+        attrs=dict(attrs)
+        if tag=='h2' and 'vacancy-title' in attrs.get('class','').split():self.current=[]
+        if tag not in ('area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'):
+            self.stack.append(tag)
+    def handle_data(self,value):
+        if self.current is not None and 'small' not in self.stack:self.current.append(value)
+    def handle_endtag(self,tag):
+        if tag=='h2' and self.current is not None:
+            self.values.append(plain(' '.join(self.current)));self.current=None
+        for i in range(len(self.stack)-1,-1,-1):
+            if self.stack[i]==tag:del self.stack[i:];break
+
+
+def publication_application(record,source,client,body,doc):
+    """Observed publication -> same-ID application -> visible enabled form."""
+    from .verification import applicant_form,same_title
+    vacancy=urlsplit(doc.url)
+    match=re.fullmatch(r'/(\d+)-([^/]+)/[a-z]{2}/job\.html',vacancy.path)
+    if (source.get('adapter')!='employer-index' or not match
+        or not same_title(doc,record['title']) or str(record.get('external_id'))!=match.group(1)):
+        raise ValueError('Current publication title and posting ID required')
+    publication=match.group(1)+'-'+match.group(2)
+    path='/jobs/'+publication+'/job_application/new'
+    targets={canonical_url(urljoin(doc.url,href)) for href,_,_ in doc.links
+             if urlsplit(urljoin(doc.url,href)).hostname==vacancy.hostname
+             and urlsplit(urljoin(doc.url,href)).path==path}
+    if len(targets)!=1:raise ValueError('Observed same-publication application entry missing or ambiguous')
+    target=targets.pop()
+    if urlsplit(target).query and not re.fullmatch(r'persist_lang=[a-z]{2}',urlsplit(target).query):
+        raise ValueError('Unreviewed publication application query')
+    app_body,app=checked_document(target,source,client)
+    final=urlsplit(app.url)
+    # This portal adds its interface locale during an ordinary GET redirect.
+    # No session, authentication or different posting redirect is accepted.
+    if (final.hostname!=vacancy.hostname or final.path!=path
+        or (final.query and not re.fullmatch(r'persist_lang=[a-z]{2}',final.query))
+        or final.fragment or JobPortalTitle(app_body).values!=[record['title']]):
+        raise ValueError('Publication application identity or title differs')
+    forms=[f for f in ApplicantForms(app_body,strict=True).forms
+           if f['attrs'].get('id')=='new_job_application']
+    expected='/jobs/'+publication+'/job_application'
+    required_fields={'job_application[applicant_core][user][firstname]',
+                     'job_application[applicant_core][user][lastname]',
+                     'job_application[applicant_core][account][email]'}
+    if (len(forms)!=1 or urlsplit(urljoin(app.url,forms[0]['attrs'].get('action',''))).hostname!=vacancy.hostname
+        or urlsplit(urljoin(app.url,forms[0]['attrs'].get('action',''))).path!=expected
+        or not forms[0]['submit'] or not required_fields.issubset({f.get('name') for f in forms[0]['fields']})
+        or not any(f.get('type')=='file' and f.get('id')=='file-upload-curriculum_vitae' for f in forms[0]['fields'])
+        or not applicant_form(app_body,strict=True)):
+        raise ValueError('Visible enabled same-publication applicant form not established')
+    return dict(url=canonical_url(app.url),method='official-publication-same-posting-visible-form')
+
+
 
 def checked_document(url, source, client):
     from .universal import Document
@@ -84,10 +143,11 @@ def odoo_application(doc, source, client, title):
     return form_doc
 
 
-def verify_application(record, source, client):
+def verify_application(record, source, client, vacancy_document=None):
     kind = source.get('application_check')
     if not kind: return None
-    body, doc = checked_document(record['url'], source, client)
+    body, doc = vacancy_document if kind=='publication-linked' and vacancy_document else checked_document(record['url'], source, client)
+    if kind=='publication-linked':return publication_application(record,source,client,body,doc)
     if kind=='recruitee-linked':
         from .verification import same_title, structured_identifiers, applicant_form, expired
         from .ownership import employer_matches
