@@ -133,16 +133,69 @@ def eures_candidate(record):
         verification_state="unverified", verified_vacancies_added=0)
 
 
+
+def mpsv_cz_candidate(record):
+    """Map selected non-personal fields from the official Czech MPSV daily schema.
+
+    We never preserve telephone, email, individual contact names or addresses.
+    URL and matching title are hints, not a verified application form. Only
+    operator-supplied *bounded* input is processed; no MPSV network scraper.
+    Schema: data.mpsv.cz/od/soubory/volna-mista-prirustek/volna-mista-prirustek.schema.json
+    """
+    if not isinstance(record, dict):
+        return None
+    portal_id = record.get("portalId")
+    if not isinstance(portal_id, int) or isinstance(portal_id, bool) or portal_id <= 0:
+        return None
+    employer = record.get("zamestnavatel")
+    position = record.get("pozadovanaProfese")
+    if not isinstance(employer, dict) or not isinstance(position, dict):
+        return None
+    name = _text(employer.get("nazev"))
+    title = _text(position.get("cs"))
+    details = record.get("upresnujiciInformace") or {}
+    details = _text(details.get("cs")) if isinstance(details, dict) else ""
+    role = _title_and_kind(title, details)
+    if not name or role is None:
+        return None
+    url = https_url(record.get("urlAdresa"))
+    if not url:
+        return None
+    # A general company homepage or social-network link cannot identify the
+    # exact position; this condition is intentionally conservative.
+    from urllib.parse import parse_qs
+    path = urlsplit(url).path.lower()
+    query = parse_qs(urlsplit(url).query)
+    if not (re.search(r"/(?:jobs?|kariera|pracovni-mista|positions?|vacancies|offers)/[^/]+", path)
+            or any(k in query for k in ("jobid", "job_id", "vacancyid", "positionid"))):
+        return None
+    deadline = record.get("expirace")
+    if isinstance(deadline, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", deadline):
+        from datetime import date
+        try:
+            if date.fromisoformat(deadline) < date.today():
+                return None
+        except ValueError:
+            return None
+    return dict(provider="mpsv-cz", provider_id=str(portal_id),
+        employer=name, title=title, country="CZ",
+        workplace_country_evidence=True, city=None, url=url, apply_url=None,
+        categories=role["categories"], internship_type="internship",
+        published_at=record.get("datumVlozeni"),
+        review_status="employer-identity-and-application-unverified",
+        verification_state="unverified", verified_vacancies_added=0)
+
 def normalize(records, provider, limit=MAX_RESULTS, existing_urls=()):
     if not 1 <= limit <= MAX_RESULTS:
         raise ValueError("Candidate limit must be in 1..120")
-    if provider not in ("jobtech-se", "eures-authorized-input"):
+    if provider not in ("jobtech-se", "eures-authorized-input", "mpsv-cz"):
         raise ValueError("Unknown structured source")
     if not isinstance(records, list):
         raise ValueError("Feed records must be an array")
     if len(records) > limit:
         raise ValueError("Input exceeds explicitly bounded record count")
-    parser = jobtech_candidate if provider == "jobtech-se" else eures_candidate
+    parser = {"jobtech-se":jobtech_candidate, "eures-authorized-input":eures_candidate,
+              "mpsv-cz":mpsv_cz_candidate}[provider]
     previously = {canonical_url(u) for u in existing_urls if https_url(u)}
     seen_ids, seen_urls = set(), set()
     candidates = []
@@ -168,7 +221,8 @@ def normalize(records, provider, limit=MAX_RESULTS, existing_urls=()):
         employer_hosts_probed=0, applications_submitted=0,
         limits=["No claim of an open, verified HR internship",
                 "Original employer ownership and application form require separate live policy-v2 review",
-                "EURES data cannot be acquired by this module; use authorised upstream only"])
+                "EURES data cannot be acquired by this module; use authorised upstream only",
+                "MPSV input is bounded and excludes personally identifying contact fields"])
 
 
 def jobtech_search(client, queries=JOBTECH_QUERIES, per_query=20):
