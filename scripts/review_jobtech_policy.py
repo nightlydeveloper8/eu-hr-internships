@@ -2,7 +2,7 @@
 import argparse
 import json
 from pathlib import Path
-from collector.official_feed_policy_dossier import review
+from collector.official_feed_policy_dossier import review, catalog_overlap
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -25,6 +25,10 @@ def main(argv=None):
         p.error("Exactly one observed matching JobTech posting required")
     result=review(candidates[0],approved_host=a.approved_host,
                   approved_inventory_url=a.reviewed_inventory)
+    # Compare live staging evidence with the exact, current local snapshot;
+    # never append or alter any catalog record.
+    catalog=json.loads((ROOT/"data/catalog.json").read_text())
+    result["catalog_overlap"]=catalog_overlap(candidates[0],result,catalog["jobs"])
     a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+"\n")
     print("POLICY_V2_DOSSIER "+json.dumps(result,ensure_ascii=False,sort_keys=True))
