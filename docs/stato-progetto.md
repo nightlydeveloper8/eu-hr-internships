@@ -485,3 +485,14 @@ servito non attestati dal runtime, distinzione conservata rispetto a GitHub.
 Issue #18 e #23 restano aperte finché tutti i criteri di produzione non sono provati.
 Le vecchie modifiche locali WEBO sono già incluse: non creare una PR duplicata
 partendo dal checkout storico. Dettagli in docs/integration-2026-11-15.md.
+
+## 16 novembre 2026 — pilota Marquardt/SLB/TikTok e fix strutturali 429/filled (PR tecnica)
+
+La review ufficiale delle tre schede e CTA produce **0 nuove candidature verified**: Marquardt RO ha vacancy HR Sibiu e CTA Mingle ma modulo non stabilito; SLB RO mostra configurazione Eightfold `disableLoggedOutApply: true`/`recaptchaEnabled: true`, senza applicazione anonima dimostrata; TikTok IE A187616 ha CTA verso ID corrispondente, ma il redirect finale non è leggibile dal tool e il datore era già nella coda precedente. **robots, inventari completi e moduli validi non attestati**; nessuna fonte ammissibile, nessun nuovo contatore di produzione. Baseline documentata invariata: **28 stage verificati + 1 working student**, 361 record; nessuna attivazione o raccolta completa.
+
+Correzioni **proposte su ramo separato, non integrate**: `collector/runtime.py` applica uno stop nello stesso processo dopo primo HTTP 429 per host (no ulteriori chiamate di rete a quel host; altri host continuano). `collector/applications.py` riconosce “job ... has been filled” di Electrolux `JR81378` anche in presenza di JSON-LD obsoleto. Test offline per 429 multipli, client separati, redirect, robots, 503 non-bloccante, chiusura con JobPosting residuo. Esiti CI e merge da verificare, zero modifica registri/workflow, zero rollout.
+
+Costo produzione aggiuntivo **0**. Il pilota web non dispone di conteggio HTTP/tempo/byte del collector: non equipararlo al preflight documentato (27 richieste, 14,721 secondi-fonte). Con ipotetico massimo 8 richieste/45 secondi per ciascuna di tre fonti, tetto condizionale 24 richieste e 135 secondi-fonte **solo dopo ammissione**, non misurazione live. Dettagli, evidenze e prossimi blocchi: [BATCH-05-PILOT-AND-429-FIX.md](eu27-expansion/BATCH-05-PILOT-AND-429-FIX.md).
+
+**Primo punto incompleto:** controllare CI della PR tecnica; pilota client HTTPS/robots su Marquardt/SLB/TikTok e same-vacancy form anonimo, senza CAPTCHA/login. Non attivare i tre canali finché un percorso non supera policy v2; se nessuno passa, cercare fonti sostitutive.
+
