@@ -124,7 +124,8 @@ def disabled_submit_applicant_form(body):
                        for k in ('name','id','type','autocomplete','aria-label')).lower()
         is_applicant=bool(re.search(r'apply|applica|recruit|candidate',attributes)
                           or re.search(r'resume|\bcv\b',names))
-        if is_applicant and 'email' in names and re.search(r'name|resume|\bcv\b',names):
+        # A mere contact form with name and email is not a CV application.
+        if is_applicant and 'email' in names and 'name' in names and re.search(r'resume|\bcv\b',names):
             return True
     return False
 
