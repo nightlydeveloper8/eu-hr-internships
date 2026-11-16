@@ -5,7 +5,7 @@ workplace and employer identity are mandatory. JobTech and ATS IDs are kept
 separate. No source registration or catalog publication occurs here.
 """
 from datetime import datetime, timezone
-from urllib.parse import urlsplit, urlunsplit
+from urllib.parse import urlsplit, urlunsplit, urljoin
 import re
 import time
 from .classify import canonical_url, fold, plain, classify_role
@@ -101,8 +101,9 @@ def review(candidate, *, approved_host, approved_inventory_url=None,
                 raise ValueError("Employer inventory not read at reviewed URL")
             listings=Document(body,final)
             found=any(canonical_url(thing)==canonical_url(parent["job_page"])
-                      for thing,_,_ in listings.links
-                      if https_url(thing,{approved_host}))
+                      for href,_,_ in listings.links
+                      for thing in (https_url(urljoin(final,href),{approved_host}),)
+                      if thing)
             result["official_inventory_confirmed"]=found
             if not found:
                 raise ValueError("Employer's current inventory does not link to vacancy")
