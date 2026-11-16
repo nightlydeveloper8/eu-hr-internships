@@ -1,11 +1,7 @@
 name: HaileyHR one-off read-only dynamic preflight
 
+# High-cost Playwright one-off: never launch automatically on PR updates.
 on:
-  pull_request:
-    paths:
-      - 'scripts/diagnose_splendor_dynamic.py'
-      - 'tests/test_splendor_dynamic_diagnostic.py'
-      - '.github/workflows/dynamic-splendor-preflight.yml'
   workflow_dispatch:
 
 permissions:
