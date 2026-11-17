@@ -1,0 +1,57 @@
+name: HaileyHR one-off read-only dynamic preflight
+
+# High-cost Playwright one-off: never launch automatically on PR updates.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  one-ats-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline diagnostic safety checks
+        run: python -m unittest discover -s tests -p 'test_splendor_dynamic_diagnostic.py' -v
+      - name: Install existing browser reader (single candidate only)
+        run: |
+          pip install -r requirements-collector.txt
+          python -m playwright install --with-deps chromium
+      - name: Read licensed JobTech feed, three small searches
+        run: |
+          python -m scripts.official_feed_discovery --provider jobtech-se --live \
+            --per-query 10 --output .staging/preflight/jobtech-dynamic-input.json
+      - name: Inspect exact public HaileyHR candidate DOM read-only
+        run: |
+          python -m scripts.diagnose_splendor_dynamic \
+            --source-report .staging/preflight/jobtech-dynamic-input.json \
+            --provider-id 31613684 \
+            --approved-host splendorplant.careers.haileyhr.app \
+            --output .staging/preflight/splendor-dynamic-diagnostic.json
+      - name: Summarize findings without applicant details
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('.staging/preflight/splendor-dynamic-diagnostic.json').read_text())
+          print('SPLENDOR_STATE '+json.dumps(obj,ensure_ascii=False,sort_keys=True))
+          with open('dynamic-readonly-summary.md','w') as f:
+              f.write('## One-off same-host GET-only applicant page diagnostic\n\n')
+              f.write('- State: '+obj['state']+'\n')
+              f.write('- Renderings: '+str(obj['renderings'])+'\n')
+              f.write('- Browser requests: '+str(obj['browser_requests'])+'\n')
+              f.write('- Blocked requests: '+str(obj['blocked_requests'])+'\n')
+              f.write('- Verified vacancies added: 0\n')
+          PY
+          cat dynamic-readonly-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep sanitised diagnostic only
+        uses: actions/upload-artifact@v4
+        with:
+          name: splendor-dynamic-diagnostic
+          path: .staging/preflight/splendor-dynamic-diagnostic.json
+          retention-days: 5

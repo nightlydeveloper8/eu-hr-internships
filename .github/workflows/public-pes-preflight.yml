@@ -1,0 +1,56 @@
+name: EU public PES bounded source preflight
+
+# Live national feeds and ATS checks are opt-in; PR CI uses offline unit tests.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  open-pes-measurement:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test national open-data format parser and fail-closed budgets
+        run: python -m unittest discover -s tests -p 'test_public_pes_sampling.py' -v
+      - name: Czech MPSV — byte-capped daily delta, no whole file
+        run: |
+          python -m scripts.sample_public_pes \
+            --provider mpsv-cz --date "$(date -u -d yesterday +%F)" \
+            --max-bytes 700000 --max-rows 200 \
+            --output .staging/preflight/mpsv-cz-sample.json
+      - name: Latvia NVA — one page of CC0 public vacancy datastore
+        run: |
+          python -m scripts.sample_public_pes \
+            --provider nva-lv --max-rows 150 \
+            --output .staging/preflight/nva-lv-sample.json
+      - name: Show aggregate audited sample metrics, never personal contacts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          summary=['## EU open PES bounded sample — NOT production', '']
+          for name in ('mpsv-cz','nva-lv'):
+              record=json.loads(Path('.staging/preflight/'+name+'-sample.json').read_text())
+              brief={key:record.get(key) for key in (
+                  'state','records_scanned','input_complete','counts',
+                  'strict_distinct_candidates','requests','bytes_read',
+                  'elapsed_seconds','error','verified_vacancies_added')}
+              print(name, json.dumps(brief,sort_keys=True,ensure_ascii=False))
+              summary.extend(['- '+name+': '+json.dumps(brief,ensure_ascii=False,sort_keys=True)])
+          Path('public-pes-summary.md').write_text('\n'.join(summary)+'\n')
+          PY
+          cat public-pes-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Retain minimal report only
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-pes-bounded-sample
+          path: |
+            .staging/preflight/mpsv-cz-sample.json
+            .staging/preflight/nva-lv-sample.json
+          retention-days: 5
