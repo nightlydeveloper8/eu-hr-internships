@@ -7,11 +7,11 @@
 | PR | Intervento realmente eseguito | Stato / produzione |
 |---|---|---|
 | [#56](https://github.com/nightlydeveloper8/eu-hr-internships/pull/56) | JobTech SE→ATS policy v2, secondo ciclo, dedup; sorgente Jobandtalent `enabled=false`; nuovo audit giornaliero offline delle cause delle offerte non verificate | **Non merged, non attivato, 0 nuovi stage su main** |
-| [#41](https://github.com/nightlydeveloper8/eu-hr-internships/pull/41) | Riallineata al main `ab51981` preservando prova di robots 403 per Comune Emmen e documenti, backup `backup/pr41-before-baseline-sync-20261117` | CI verde, draft documentale, 0 nuovi stage |
-| [#46](https://github.com/nightlydeveloper8/eu-hr-internships/pull/46) | Riallineata al main `ab51981` preservando sei indizi UE27 senza form attestato; fix `filled` e host 429 già in main, non reimplementati. Backup `backup/pr46-before-baseline-sync-20261117` | CI verde, draft documentale, 0 nuovi stage |
-| [#57](https://github.com/nightlydeveloper8/eu-hr-internships/pull/57) | Reconciliata **solo** la qualifica DOC Kaas (≥200 dipendenti) sui dati del 17/11, preservati gli stati di raccolta correnti e correggendo Hoogeveen e NL size_unknown. Backup `backup/pr57-before-fresh-reconciliation-20261117` | CI verde; 40 datori Drenthe, 28 qualificati, 12 ignoti. **0 nuovi stage** |
+| [#41](https://github.com/nightlydeveloper8/eu-hr-internships/pull/41) | Riallineata al main `ab51981` preservando prova di robots 403 per Comune Emmen e documenti, backup `backup/pr41-before-baseline-sync-20261117` | CI verde, **pronta per revisione documentale**, non merged, 0 nuovi stage |
+| [#46](https://github.com/nightlydeveloper8/eu-hr-internships/pull/46) | Riallineata al main `ab51981` preservando sei indizi UE27 senza form attestato; fix `filled` e host 429 già in main, non reimplementati. Backup `backup/pr46-before-baseline-sync-20261117` | CI verde, **pronta per revisione documentale**, non merged, 0 nuovi stage |
+| [#57](https://github.com/nightlydeveloper8/eu-hr-internships/pull/57) | Reconciliata **solo** la qualifica DOC Kaas (≥200 dipendenti) sui dati del 17/11, preservati gli stati di raccolta correnti e correggendo Hoogeveen e NL size_unknown. Backup `backup/pr57-before-fresh-reconciliation-20261117` | CI verde, **pronta per revisione**, non merged; 40 datori Drenthe, 28 qualificati, 12 ignoti. **0 nuovi stage** |
 
-**Nessuna PR è stata integrata, chiusa o trasformata in rollout.** Le tre PR storiche sono state conservate e riportate allo stesso parent del main moderno con backup; controllo `mergeable=true` e CI riuscita. Il loro contenuto va comunque revisionato prima di decidere il merge: green CI non dimostra rendimento degli annunci.
+**Nessuna PR è stata integrata, chiusa o trasformata in rollout.** Le tre PR storiche sono state conservate e riportate allo stesso parent del main moderno con backup; controllo `mergeable=true`, CI riuscita, e ora **tutte e tre sono ready for review anziché draft**, senza merge. Il loro contenuto va comunque revisionato prima di decidere il merge: green CI non dimostra rendimento degli annunci.
 
 ## Issue ancora aperte
 
