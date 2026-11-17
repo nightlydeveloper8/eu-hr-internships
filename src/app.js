@@ -1,8 +1,9 @@
-import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams } from './logic.js';
+import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts } from './logic.js';
+import { drawMap, describeCountry } from './map.js';
 const $ = id => document.getElementById(id);
 const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 const filters = {...defaults};
-let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true;
+let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true, view = 'simple', mapView, counts = {};
 try { const stored = JSON.parse(localStorage.getItem('people-placement:saved') || '[]'); if (Array.isArray(stored)) saved = new Set(stored.filter(x => typeof x === 'string')); } catch {persistent = false;}
 const bindings = {'search':'q','country':'country','region':'region','category':'category','workplace-language':'workplace','english':'english','english-only':'englishOnly','ad-language':'ad','type':'type','work-mode':'workMode','include-unverified':'unverified','sort':'sort'};
 function el(tag, cls, text) { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; }
@@ -48,7 +49,38 @@ function card(job) {
   }
   details.append(dl);article.append(details);return article;
 }
-function urlState() { const params=shareableFilterParams(filters,defaults); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
+function setView(next) {
+  view = next === 'advanced' ? 'advanced' : 'simple';
+  document.body.classList.toggle('view-simple', view === 'simple');
+  document.body.classList.toggle('view-advanced', view === 'advanced');
+  $('view-toggle').textContent = view === 'advanced' ? 'Map view' : 'Advanced search';
+  $('view-toggle').setAttribute('aria-pressed', String(view === 'advanced'));
+  if (catalog) urlState();
+}
+function selectCountry(code, scroll = true) {
+  filters.country = filters.country === code && !scroll ? '' : code; filters.region = ''; limit = 20;
+  syncControls(); render();
+  if (scroll && code) $('opportunities').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+}
+function updatePanel() {
+  const panel = $('country-panel'); panel.replaceChildren();
+  const code = filters.country;
+  if (!code) { panel.append(el('p','panel-empty','Choose a country on the map, or start with one of these:')); $('top-countries').hidden = false; }
+  else {
+    const c = counts[code] || {verified:0, unverified:0};
+    $('top-countries').hidden = true;
+    panel.append(el('p','panel-label','Selected country'), el('h2','panel-country',catalog.countries[code] || code), el('p','panel-count',describeCountry(catalog.countries[code], c)));
+    const actions = el('div','panel-actions');
+    const show = el('button','primary-action', c.verified ? `Show ${c.verified} verified ${c.verified === 1 ? 'opportunity' : 'opportunities'} ↓` : c.unverified ? 'See leads to check ↓' : 'Show this country ↓');
+    show.type = 'button';
+    show.addEventListener('click', () => { if (!c.verified && c.unverified) filters.unverified = true; selectCountry(code); });
+    const clear = el('button','text-action','Clear selection'); clear.type = 'button';
+    clear.addEventListener('click', () => { filters.country = ''; filters.region = ''; syncControls(); render(); });
+    actions.append(show, clear); panel.append(actions);
+  }
+  $('simple-scope').textContent = code ? `Showing ${catalog.countries[code] || code}` : 'Showing all 27 EU countries';
+}
+function urlState() { const params=shareableFilterParams(filters,defaults); if (view === 'advanced') params.set('view','advanced'); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
 function render() {
   const selection=opportunityCounts(catalog.jobs.filter(j=>matches(j,{...filters,unverified:true},saved)));
   const jobs=rankJobs(catalog.jobs.filter(j=>matches(j,filters,saved)),filters);
@@ -90,6 +122,7 @@ function render() {
   $('result-pagination').textContent=`Showing ${Math.min(jobs.length,limit)} of ${jobs.length} matching opportunities.`;
   $('active-filters').replaceChildren();
   for(const [key,value] of Object.entries(filters)){if(value===defaults[key]||['mode','sort'].includes(key))continue;let label={q:`“${value}”`,country:catalog.countries[value],region:geography.units.find(u=>u.code===value)?.name,category:catalog.categories[value],workplace:value==='unknown'?'Language requirements unknown':`Work: ${catalog.languages[value]}`,ad:`Ad: ${catalog.languages[value]}`,english:'English evidence',englishOnly:'English alone documented',saved:'Saved only',unverified:'Including unverified',type:String(value).replaceAll('-',' '),workMode:displayMode(value)}[key]||String(value);const chip=el('button','chip',label+' ×');chip.type='button';chip.setAttribute('aria-label',`Remove ${label} filter`);chip.addEventListener('click',()=>{filters[key]=defaults[key];syncControls();render();});$('active-filters').append(chip);}
+  mapView?.select(filters.country); updatePanel();
   updateSaved();urlState();
 }
 function notice() {
@@ -117,7 +150,7 @@ async function init(){try {const responses=await Promise.all(['catalog','coverag
   for(const [code,name] of Object.entries(catalog.categories))option($('category'),code,name);
   for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}
   for(const job of catalog.jobs)job.search_terms=[...job.countries.map(c=>catalog.countries[c]),...job.categories.map(c=>catalog.categories[c])];
-  const params=new URLSearchParams(location.search);for(const [key,def]of Object.entries(defaults)){if(key==='unverified'||!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
+  const params=new URLSearchParams(location.search);setView(params.get('view'));for(const [key,def]of Object.entries(defaults)){if(key==='unverified'||!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
   // Legacy emergency ?unverified=true links are ignored and removed by render().
   // Unverified records require a conscious click and never persist across reloads.
   fillRegions();
@@ -128,6 +161,17 @@ async function init(){try {const responses=await Promise.all(['catalog','coverag
   $('filter-toggle').addEventListener('click',()=>{const open=$('filters').classList.toggle('is-open');$('filter-toggle').setAttribute('aria-expanded',open);if(open)$('filters').scrollIntoView({block:'start'});});
   $('filters-done').addEventListener('click',()=>{$('filters').classList.remove('is-open');$('filter-toggle').setAttribute('aria-expanded','false');document.querySelector('.results').scrollIntoView({block:'start'});});
   $('source-status').addEventListener('click',showCoverage);$('coverage-nav').addEventListener('click',showCoverage);$('coverage-inline').addEventListener('click',showCoverage);$('close-dialog').addEventListener('click',()=>$('coverage-dialog').close());$('coverage-dialog').addEventListener('click',e=>{if(e.target===$('coverage-dialog')){const rect=e.target.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)e.target.close();}});
+  counts = countryCounts(catalog.jobs);
+  const verifiedTotal = catalog.jobs.filter(j => matches(j, defaults)).length;
+  const leadTotal = catalog.jobs.filter(j => matches(j, {...defaults, unverified:true})).length - verifiedTotal;
+  const verifiedCountries = Object.values(counts).filter(c => c.verified).length;
+  $('map-stats').textContent = `${verifiedTotal} verified HR opportunities in ${verifiedCountries} ${verifiedCountries === 1 ? 'country' : 'countries'} · ${leadTotal} more leads to check`;
+  mapView = drawMap({svg: $('eu-map'), tooltip: $('map-tooltip'), wrap: $('map-wrap'), counts, names: catalog.countries, onSelect: code => selectCountry(code)});
+  const top = Object.entries(counts).filter(([code, c]) => c.verified && catalog.countries[code]).sort((a, b) => b[1].verified - a[1].verified || b[1].unverified - a[1].unverified).slice(0, 6);
+  for (const [code, c] of top) { const chip = el('button','country-chip'); chip.type = 'button'; chip.append(el('span','',catalog.countries[code]), el('b','',String(c.verified))); chip.setAttribute('aria-label', `${catalog.countries[code]}: ${describeCountry(catalog.countries[code], c)}`); chip.addEventListener('click', () => selectCountry(code)); $('top-countries').append(chip); }
+  $('browse-all').addEventListener('click', () => { filters.country = ''; filters.region = ''; syncControls(); render(); $('opportunities').scrollIntoView({block:'start'}); });
+  for (const id of ['open-advanced','simple-advanced']) $(id).addEventListener('click', () => { setView('advanced'); $('opportunities').scrollIntoView({block:'start'}); });
+  $('view-toggle').addEventListener('click', () => { setView(view === 'advanced' ? 'simple' : 'advanced'); window.scrollTo({top:0}); });
   $('updated-label').textContent=`Last collected ${date(catalog.updated_at)}`;notice();render();
 } catch(error){$('jobs').setAttribute('aria-busy','false');$('jobs').replaceChildren(el('div','empty-state','We couldn’t load the employer collection. Please refresh or download the dataset using the link below.'));$('updated-label').textContent='Data unavailable';console.error(error);}}
 init();

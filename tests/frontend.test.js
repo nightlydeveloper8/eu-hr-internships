@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams} from '../src/logic.js';
+import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
@@ -156,3 +156,13 @@ test('historical external publisher records stay in JSON but never display as of
  assert.equal(unverifiedFallback(staleCatalog,clock),false);
  assert.equal(unverifiedFallback({...staleCatalog,jobs:[mirrored,{...mirrored,id:'valid-lead',ownership_risk:undefined}]},clock),true);
 });
+
+test('map country counts separate verified and unverified, skip closed, count each listed country',()=>{
+ const clock=Date.now();
+ const jobs=[base,{...base,id:'2',countries:['NL','DE'],status:'unverified'},{...base,id:'3',status:'closed'},{...base,id:'4',countries:['FR'],ownership_risk:{state:'historical-unreviewed-external-host'}}];
+ const counts=countryCounts(jobs,clock);
+ assert.deepEqual(counts.NL,{verified:1,unverified:1});
+ assert.deepEqual(counts.DE,{verified:0,unverified:1});
+ assert.equal(counts.FR,undefined);
+});
+test('map colour buckets',()=>{assert.deepEqual([0,1,2,4,5,9,10,24,25,90].map(countBucket),[0,1,2,2,3,3,4,4,5,5]);});
