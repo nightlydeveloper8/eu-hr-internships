@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 17 novembre 2026 — PR #57 Drenthe DOC Kaas riallineata alla raccolta aggiornata
+
+La [PR #57](https://github.com/nightlydeveloper8/eu-hr-internships/pull/57) qualifica **DOC Kaas B.V.** in Hoogeveen come datore con almeno 200 dipendenti grazie a fonte ufficiale, mantenendo separati i dipendenti Wheyco/DMK/Arla. Registro aziende invariato a **1.896**, Drenthe **40 datori, 28 qualificati ≥50, 12 ignoti**. **Zero** nuovi stage HR verificati. Reconciliata la qualifica dei soli record DOC Kaas sui file correnti `data/companies.json`, `data/drenthe-employers.json`, `docs/drenthe-research-employers.json`; il report `data/drenthe-coverage.json` è stato aggiornato preservando le osservazioni del ciclo [#44042092898](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44042092898). Il file `data/company-coverage.json` mantiene i conteggi del 17 novembre (**68 collected**, **982 discovery-incomplete**) e corregge soltanto `NL.size_unknown` da 1006 a 1005. Non ripristinare il precedente snapshot del 16 novembre per sovrascrivere dati più recenti. La CI precedentemente fallita sulla vecchia baseline era dovuta ai fixture poi corretti da #54, già in main; nuova CI sulla branch riallineata da confermare. Nessun merge, nuova fonte, modifica al catalogo o attivazione.
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
