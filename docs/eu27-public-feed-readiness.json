@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "assessed_at": "2026-11-16",
+  "assessed_at": "2026-11-17",
   "project": "People Placement",
   "mode": "read-only-research-queue-not-production",
   "scope": "Availability of nationally reusable official vacancy feeds, not EURES country search facets and not employer crawler counts",
@@ -154,9 +154,13 @@
       "country": "LT",
       "service": "Užimtumo tarnyba official nationally published active job vacancies",
       "readiness": "licensed-national-feed-schema-reviewed-no-live-pilot",
-      "official_reference": "https://data.gov.lt/datasets/?category_id=96&selected_facets=creator_exact%3A3",
-      "access_evidence": "National vacancy/employer data; active-today vacancy flag plus added target groups incl. students April 24 2026; CSV/JSON/JSONL/API. Open portal distribution metadata changed May 6 2026; current data freshness and access rights must be verified; web access has returned HTTP 429, must respect rate limit and no bypass.",
-      "next_action": "Prioritize ONE public metadata/robots/license preflight when allowed; do not call API if rate-limited; avoid contact and natural-person data, inspect job-specific original application evidence"
+      "official_reference": "https://data.gov.lt/datasets/2894/?resource_version=211",
+      "access_evidence": "17 Nov 2026 official dataset page confirms public access, CC BY 4.0, daily frequency and JSON/JSONL/API distributions. Public metadata links for a resource and its distribution returned HTTP 429; sample and official API were NOT read. Robots rules for the endpoint remain unverified. Dataset includes potentially personal employer contact fields; never retain them.",
+      "next_action": "Do not retry the rate-limited portal today or work around restrictions. After robots/terms allow access, run one byte-capped, contact-free metadata preflight and count distinct HR internship leads with original employer application links.",
+      "license": "Creative Commons Attribution 4.0 (official metadata, not a blanket permission to process personal contacts)",
+      "distribution_last_updated_on_portal": "2026-10-26",
+      "current_pilot_state": "blocked-before-data-access-due-to-429-on-metadata-links",
+      "actual_data_rows_inspected": 0
     },
     {
       "country": "LU",
