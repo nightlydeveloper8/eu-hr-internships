@@ -20,4 +20,8 @@ Su questo branch, **derivato dalla HEAD PR #60**, predisposti e materialmente sc
 3. Merge separato della fonte configurata **disabled** solo previa autorizzazione specifica, senza attivazione
 4. Solo dopo autorizzazione distinta al rollout, rimuovere hold e `enabled=true`; verificare primo ciclo ordinario, catalogo dati e Cloudflare, stesso ID e assenza regressioni
 
-**Nessun merge né rollout eseguito qui.** L'azienda è preparata nel branch, non nel registro `main`; lo stage dimostrato solo in staging non aumenta i verified pubblici. Workflow temporaneo da eliminare prima della PR definitiva.
+**Nessun merge né rollout eseguito qui.** L'azienda è preparata nel branch, non nel registro `main`; lo stage dimostrato solo in staging non aumenta i verified pubblici. Workflow temporaneo rimosso dal branch dopo il test.
+
+## Correzione delle regressioni nella CI completa
+
+La CI completa della PR aveva individuato due incompatibilità con il nuovo concetto di azienda deliberatamente disabilitata: un test presupponeva una regione NUTS per ogni workplace NL, un altro un collector attivo per ogni azienda, senza eccezioni. Dati sistemati sul solo record Ampelmann con **NL36 Zuid-Holland e NL362 Delft en Westland** (codici presenti in `data/geography.json`); il secondo test ora richiede esattamente un collector attivo per tutti gli altri datori e zero per un'azienda in `collection_activation_hold`, con source disabilitata realmente associata. Nessuna promozione di stage o eliminazione di test. [Run di correzione #44175253219](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44175253219) success: 5 + 29 + 17 test mirati, `collector.daily provision` e `collector.pipeline --validate`; l'aggiornamento `data/companies.json` è rimasto nel branch. La CI completa della HEAD finale va letta separatamente, senza attribuire automaticamente il successo del preflight all'intera suite.
