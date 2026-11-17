@@ -1,12 +1,7 @@
 name: EU public PES bounded source preflight
 
+# Live national feeds and ATS checks are opt-in; PR CI uses offline unit tests.
 on:
-  pull_request:
-    paths:
-      - 'collector/public_pes_sampling.py'
-      - 'scripts/sample_public_pes.py'
-      - 'tests/test_public_pes_sampling.py'
-      - '.github/workflows/public-pes-preflight.yml'
   workflow_dispatch:
 
 permissions:
@@ -26,7 +21,7 @@ jobs:
       - name: Czech MPSV — byte-capped daily delta, no whole file
         run: |
           python -m scripts.sample_public_pes \
-            --provider mpsv-cz --date 2026-11-15 \
+            --provider mpsv-cz --date "$(date -u -d yesterday +%F)" \
             --max-bytes 700000 --max-rows 200 \
             --output .staging/preflight/mpsv-cz-sample.json
       - name: Latvia NVA — one page of CC0 public vacancy datastore
