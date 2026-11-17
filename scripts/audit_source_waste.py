@@ -22,7 +22,7 @@ PATTERNS = {
     'nonuniversal_incomplete': 'Incomplete specific-adapter source',
 }
 CONTROL = 'complete_no_hr_match'
-ACCESS = re.compile(r'robots\\.txt|disallow|\\b40[1369]\\b|\\b429\\b|captcha|challenge|access denied|rate.limit|timeout|timed out|ssl error|connection error|dns error', re.I)
+ACCESS = re.compile(r'robots\.txt|disallow|\b40[1369]\b|\b429\b|captcha|challenge|access denied|rate.limit|timeout|timed out|ssl error|connection error|dns error', re.I)
 INCOMPLETE = {'partial', 'discovery-incomplete', 'blocked', 'blocked-or-failed', 'failed', 'incomplete'}
 
 
@@ -85,7 +85,7 @@ def audit(coverage, target_date=None, topn=12):
     if not isinstance(sources, list):
         raise ValueError('coverage.sources must be a list')
     days = sorted({str(r.get('checked_at', ''))[:10] for r in sources
-                   if isinstance(r, dict) and re.fullmatch(r'\\d{4}-\\d{2}-\\d{2}', str(r.get('checked_at', ''))[:10])})
+                   if isinstance(r, dict) and re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(r.get('checked_at', ''))[:10])})
     selected_date = target_date or (days[-1] if days else '')
     if not selected_date:
         raise ValueError('No dated source observations')
@@ -160,7 +160,7 @@ def main():
     data = json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True)
     if a.output:
         a.output.parent.mkdir(parents=True, exist_ok=True)
-        a.output.write_text(data + '\\n')
+        a.output.write_text(data + '\n')
     print(data)
 
 
