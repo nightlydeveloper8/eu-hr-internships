@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "assessed_at": "2026-11-17",
+  "project": "People Placement",
+  "mode": "read-only-research-queue-not-production",
+  "scope": "Availability of nationally reusable official vacancy feeds, not EURES country search facets and not employer crawler counts",
+  "pan_european": {
+    "service": "EURES Find a job",
+    "readiness": "partner-conditional",
+    "official_reference": "https://europa.eu/eures/portal/jv-se/home?lang=en",
+    "note": "Terms restrict extraction for further processing/republication; API requires EURES member or recognised partner access; no EURES requests in this workflow"
+  },
+  "summary": {
+    "countries": 27,
+    "public_feed_live_pilot_countries": 1,
+    "other_live_national_open_data_samples_countries": 2,
+    "other_official_open_data_schema_identified": 1,
+    "formal_or_conditional_access_countries": 4,
+    "portal_automation_prohibited": 1,
+    "national_reusable_feed_not_confirmed": 2,
+    "additional_not_reviewed": 16,
+    "caution": "Counts by mutually distinct reviewed category, not number of live job opportunities; Lithuania's active flag and student targeting not yet tested"
+  },
+  "countries": [
+    {
+      "country": "AT",
+      "service": "AMS alle jobs search portal",
+      "readiness": "portal-automation-prohibited",
+      "official_reference": "https://www.ams.at/arbeitsuchende/arbeitslos-was-tun/jobsuche-online-und-mobil/ams-jobsuche-hilfe",
+      "access_evidence": "Official portal terms permit own manual job search only and prohibit automated extraction",
+      "next_action": "Do not automate this portal; find independent licensed government data or direct ATS"
+    },
+    {
+      "country": "BE",
+      "service": "VDAB Vacature API",
+      "readiness": "partner-api-new-requests-paused",
+      "official_reference": "https://werkgevers.vdab.be/data-uitwisseling",
+      "access_evidence": "Partnership/API credentials needed and new applications currently unavailable",
+      "next_action": "Do not claim an accessible public feed; use employer ATS links or independently licensed data"
+    },
+    {
+      "country": "BG",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "HR",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "CY",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "CZ",
+      "service": "MPSV/Úřad práce Czech daily vacancy open data",
+      "readiness": "official-open-data-needs-technical-and-privacy-review",
+      "official_reference": "https://data.gov.cz/dataset?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A9-sady%2F00551023%2F0f50afc15a6562a478c10fd777714dcd",
+      "access_evidence": "Official daily public open-data dataset; copyright/database protection not claimed in its catalog; includes personal data fields, avoid contacts; API schema and license/robots review needed",
+      "next_action": "Review official schema, limited metadata-only parser and safe bounded sample; inspect job-specific source URL"
+    },
+    {
+      "country": "DK",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "EE",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "FI",
+      "service": "KEHA Job Market Finland retrieval interface",
+      "readiness": "explicit-activation-required",
+      "official_reference": "https://tyomarkkinatori.fi/en/instructions-and-support/interfaces/interfaces-for-job-postings",
+      "access_evidence": "Legitimate third-party reuse documented but requires business-ID-bound access/activation and terms",
+      "next_action": "Determine eligibility for user organisation, obtain activation; no unauthorised API reads"
+    },
+    {
+      "country": "FR",
+      "service": "France Travail Offres d'emploi API",
+      "readiness": "api-distribution-suspended-or-restricted",
+      "official_reference": "https://www.data.gouv.fr/dataservices/api-offres-demploi",
+      "access_evidence": "Service distribution suspended pending review due to massive automated usage; licence/approved access required",
+      "next_action": "Use existing official employer ATS sources, revisit after provider restores API"
+    },
+    {
+      "country": "DE",
+      "service": "Bundesagentur für Arbeit Jobsuche",
+      "readiness": "public-reuse-feed-not-confirmed",
+      "official_reference": "https://www.arbeitsagentur.de/datenschutz",
+      "access_evidence": "Public jobs site exists but use of CAPTCHA for some protected contact data is documented; public reusable vacancy API not established",
+      "next_action": "Do not bypass CAPTCHA; prioritize employer ATS, investigate official access"
+    },
+    {
+      "country": "GR",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "HU",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "IE",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "IT",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "LV",
+      "service": "NVA public-sector vacancies (CC0 daily dataset)",
+      "readiness": "live-limited-sample-zero-internships",
+      "official_reference": "https://data.gov.lv/dati/eng/dataset/vakances/resource/7f68f6fc-a0f9-4c31-b43c-770e97a06fda",
+      "access_evidence": "CC0-1.0, daily public-sector-only; PR #56 first 150 CKAN datastore records contained 11 HR title cues and 0 internships; 2 requests, 87,073 bytes; schema lacks employer name and specific application URL.",
+      "next_action": "Do not promote; assess other official employer-linked feeds; consider wider bounded test only if useful after Lithuania"
+    },
+    {
+      "country": "LT",
+      "service": "Užimtumo tarnyba official nationally published active job vacancies",
+      "readiness": "licensed-national-feed-schema-reviewed-no-live-pilot",
+      "official_reference": "https://data.gov.lt/datasets/2894/?resource_version=211",
+      "access_evidence": "17 Nov 2026 official dataset page confirms public access, CC BY 4.0, daily frequency and JSON/JSONL/API distributions. Public metadata links for a resource and its distribution returned HTTP 429; sample and official API were NOT read. Robots rules for the endpoint remain unverified. Dataset includes potentially personal employer contact fields; never retain them.",
+      "next_action": "Do not retry the rate-limited portal today or work around restrictions. After robots/terms allow access, run one byte-capped, contact-free metadata preflight and count distinct HR internship leads with original employer application links.",
+      "license": "Creative Commons Attribution 4.0 (official metadata, not a blanket permission to process personal contacts)",
+      "distribution_last_updated_on_portal": "2026-10-26",
+      "current_pilot_state": "blocked-before-data-access-due-to-429-on-metadata-links",
+      "actual_data_rows_inspected": 0
+    },
+    {
+      "country": "LU",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "MT",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "NL",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "PL",
+      "service": "ePraca national government employment vacancy service for integrations",
+      "readiness": "formal-transfer-access-required",
+      "official_reference": "https://oferty.praca.gov.pl/portal/assets/for-integrators/warunki-udostepniania-ofert-pracy-z-systemu-ePraca.pdf",
+      "access_evidence": "Automatic external transfer explicitly contemplated; needs signed application, eligibility and Poland-specific formalities including KRAZ for some republishing services, plus business registration/IP requirements; not a public unrestricted API.",
+      "next_action": "Keep unactivated pending official access eligibility evidence; independent employer ATS remains alternative"
+    },
+    {
+      "country": "PT",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "RO",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "SK",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "SI",
+      "service": null,
+      "readiness": "not-reviewed",
+      "official_reference": null,
+      "access_evidence": "No current official public vacancy-feed access/reuse evidence reviewed in this work",
+      "next_action": "Review national PES official data license, robots/terms, query interface, employer links and incremental updates before proposing source integration"
+    },
+    {
+      "country": "ES",
+      "service": "SEPE Empléate nationwide vacancy portal",
+      "readiness": "no-reusable-national-feed-confirmed",
+      "official_reference": "https://datos.gob.es/en/data-request",
+      "access_evidence": "Official national machine-readable vacancy dataset requested, not confirmed currently available",
+      "next_action": "Assess separately licensed regional open-data vacancy feeds; retain ATS employer path"
+    },
+    {
+      "country": "SE",
+      "service": "Arbetsförmedlingen JobSearch",
+      "readiness": "public-feed-pilot-confirmed",
+      "official_reference": "https://data.arbetsformedlingen.se/dataservice/jobsearch/",
+      "access_evidence": "CC0, public no key; two real HR candidates in bounded pilot",
+      "next_action": "Complete direct employer ownership and vacancy/form proof; do not treat discovery candidates as verified"
+    }
+  ]
+}

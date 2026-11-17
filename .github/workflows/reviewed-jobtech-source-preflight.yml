@@ -1,0 +1,54 @@
+name: Reviewed JobTech employer source — bounded manual preview
+# Opt-in only. Disabled reviewed source, one JobTech posting and same-host ATS.
+# Never schedules daily jobs, changes the registry or writes to production.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  single-disabled-reviewed-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Source disabled, ownership, policy-v2 and dedup offline safety regressions
+        run: python -m unittest discover -s tests -p 'test_jobtech_daily_adapter.py' -v
+      - name: One bounded read-only JobTech feed to company ATS and temporary finalize
+        run: |
+          python -m scripts.preview_reviewed_feed_source \
+            --source-id staging-jobandtalent-se \
+            --output .staging/preflight/reviewed-jobtech-source.json
+      - name: Report measured staging outcome and costs
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('.staging/preflight/reviewed-jobtech-source.json')
+          report=json.loads(p.read_text()) if p.exists() else {'state':'preflight-incomplete'}
+          fields=('state','source_id','feed_rows_scanned','feed_hr_candidates',
+                  'requests','feed_requests','ats_requests','bytes_read',
+                  'feed_bytes_read','ats_bytes_read','elapsed_seconds',
+                  'verified_staging_new_distinct','baseline_catalog_ids_lost',
+                  'duplicate_catalog_ids','closure_eligible',
+                  'staging_verified_internships','production_verified_vacancies_added',
+                  'production_catalog_modified','source_enabled','reason')
+          summary='## Manual reviewed JobTech preflight — staging, NOT production\n\n'
+          summary+='\n'.join('- '+key+': '+str(report.get(key)) for key in fields)+'\n'
+          Path('reviewed-jobtech-source-summary.md').write_text(summary)
+          print(summary)
+          PY
+          cat reviewed-jobtech-source-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve sanitised minimal evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-jobtech-source-preflight
+          path: |
+            .staging/preflight/reviewed-jobtech-source.json
+            reviewed-jobtech-source-summary.md
+          retention-days: 7
+          if-no-files-found: warn

@@ -1,0 +1,146 @@
+name: JobTech CC0 licensed feed preflight
+
+# Live national feeds and ATS checks are opt-in; PR CI uses offline unit tests.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-se-hr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify offline parser and safety gates
+        run: python -m unittest discover -s tests -p 'test_official_feed*.py' -v
+      - name: Bounded publicly licensed Swedish JobTech discovery (not catalog)
+        run: |
+          python -m scripts.official_feed_discovery \
+            --provider jobtech-se --live --per-query 10 \
+            --output .staging/preflight/jobtech-se.json
+      - name: Report actual discovery metrics (no full texts)
+        if: success()
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          report=json.loads(Path('.staging/preflight/jobtech-se.json').read_text())
+          summary={
+              'requests':report['requests'], 'bytes':report['bytes_read'],
+              'elapsed_seconds':report['elapsed_seconds'],
+              'hits_examined':report['input_records'],
+              'hr_internship_candidates':report['candidate_count'],
+              'new_verified_internships':report['verified_vacancies_added'],
+              'employers':len({x['employer'] for x in report['candidates']}),
+              'countries':dict(Counter(x['country'] for x in report['candidates']))
+          }
+          lines=['## JobTech SE bounded discovery, NOT production', '']
+          lines.extend(['- '+key+': '+str(value) for key,value in summary.items()])
+          Path('jobtech-summary.md').write_text('\n'.join(lines)+'\n')
+          print(json.dumps(summary,sort_keys=True))
+          # CC0 source metadata, never full descriptions or contact details.
+          for candidate in report['candidates'][:10]:
+              print('DISCOVERY_CANDIDATE '+json.dumps({
+                  key:candidate.get(key) for key in
+                  ('provider_id','employer','title','country','url','apply_url')
+              },ensure_ascii=False,sort_keys=True))
+          PY
+          cat jobtech-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Read exact employer ATS vacancy and applicant form, opt-in reviewed hosts
+        # These two hostnames are limited preflight leads observed in JobTech,
+        # not blanket source-owner approvals or automatic onboarding.
+        run: |
+          python -m scripts.verify_official_feed_candidates \
+            --input .staging/preflight/jobtech-se.json \
+            --approved-host jobb.jobandtalent.com \
+            --approved-host splendorplant.careers.haileyhr.app \
+            --max-candidates 2 \
+            --output .staging/preflight/jobtech-application-checks.json
+      - name: Application preflight summary and evidence states
+        if: success()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('.staging/preflight/jobtech-application-checks.json').read_text())
+          lines=['## Read-only application preflight (not policy-v2 production)', '',
+                 '- ATS requests: '+str(data['requests']),
+                 '- ATS bytes: '+str(data['bytes_read']),
+                 '- State counts: '+str(data['states']),
+                 '- Verified internships added: 0', '']
+          for r in data['rows']:
+              lines.append('- '+str(r['provider_id'])+' '+str(r['employer'])+': '
+                  +str(r['state'])+'; '+str(r.get('reason') or ''))
+          text='\n'.join(lines)+'\n'
+          Path('application-summary.md').write_text(text)
+          print(text)
+          PY
+          cat application-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Jobandtalent policy v2 evidence — company sitemap, city, separate ATS ID
+        run: |
+          python -m scripts.review_jobtech_policy \
+            --input .staging/preflight/jobtech-se.json \
+            --provider-id 31558200 \
+            --approved-host jobb.jobandtalent.com \
+            --reviewed-inventory https://jobb.jobandtalent.com/sitemap \
+            --output .staging/preflight/jobandtalent-policy-dossier.json
+      - name: Replay fresh Jobandtalent proof through cumulative finalize (temporary output only)
+        run: |
+          python -m scripts.stage_jobtech_policy \
+            --discovery .staging/preflight/jobtech-se.json \
+            --dossier .staging/preflight/jobandtalent-policy-dossier.json \
+            --provider-id 31558200 \
+            --source-id staging-jobandtalent-se \
+            --approved-host jobb.jobandtalent.com \
+            --reviewed-inventory https://jobb.jobandtalent.com/sitemap \
+            --output .staging/preflight/jobandtalent-cumulative-staging.json
+      - name: Report verified count only inside isolated replay
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('.staging/preflight/jobandtalent-cumulative-staging.json').read_text())
+          keys=('stage_result','reviewed_ats_id','new_staged_distinct_verified_internships',
+                'baseline_ids_lost','production_verified_vacancies_added',
+                'production_catalog_modified','source_registry_modified','reason')
+          text='## Jobandtalent cumulative replay — TEMPORARY ONLY\n\n'+\
+              '\n'.join('- '+k+': '+str(x.get(k)) for k in keys)+'\n'
+          print(text)
+          with Path('jobandtalent-staging-summary.md').open('w') as f:
+              f.write(text)
+          PY
+          cat jobandtalent-staging-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Summarize staging-only policy-v2 proof
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('.staging/preflight/jobandtalent-policy-dossier.json')
+          report=json.loads(p.read_text())
+          fields=('status','public_id','ats_posting_id','employer_city_match',
+                  'job_identity_match','owner_evidence','official_inventory_confirmed',
+                  'requests','bytes_read','reason','verified_vacancies_added')
+          value={k:report.get(k) for k in fields}
+          print("POLICY_V2_EVIDENCE_SUMMARY "+json.dumps(value,ensure_ascii=False,sort_keys=True))
+          with Path('jobandtalent-policy-summary.md').open('w') as f:
+              f.write("## Jobandtalent staging only — NOT catalog publication\n\n")
+              f.write(json.dumps(value,ensure_ascii=False,indent=2)+"\n")
+          PY
+          cat jobandtalent-policy-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep pilot artifact (no changes to catalog)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobtech-se-licensed-preflight
+          path: |
+            .staging/preflight/jobtech-se.json
+            .staging/preflight/jobtech-application-checks.json
+            .staging/preflight/jobandtalent-policy-dossier.json
+            .staging/preflight/jobandtalent-cumulative-staging.json
+          retention-days: 7

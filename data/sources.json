@@ -48478,5 +48478,39 @@
     "reviewed_on": "2026-11-16",
     "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
     "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "staging-jobandtalent-se",
+    "employer": "Jobandtalent Sweden AB",
+    "adapter": "jobtech-policy-v2",
+    "feed_provider": "jobtech-se",
+    "provider_id": "31558200",
+    "expected_ats_id": "8503489",
+    "expected_city": "Malmö",
+    "enabled": false,
+    "staging_only": true,
+    "rollout_approved": false,
+    "allowed_hosts": [
+      "jobb.jobandtalent.com"
+    ],
+    "reviewed_inventory_url": "https://jobb.jobandtalent.com/sitemap",
+    "career_url": "https://jobb.jobandtalent.com/",
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "target_countries": [
+      "SE"
+    ],
+    "jobtech_queries": [
+      "hr praktik",
+      "personal praktik",
+      "rekrytering praktik"
+    ],
+    "results_per_query": 10,
+    "max_requests": 18,
+    "collection_seconds": 95,
+    "permission_basis": "JobTech SE licensed public CC0 discovery; employer-host ATS identity, current employer inventory and applicant form checked live under policy v2; per-host robots and 429 limits apply",
+    "reviewed_on": "2026-11-17",
+    "status": "approved-for-staging-only-not-enabled",
+    "activation_gate": "Separate explicit rollout authorization and second-date evidence required; no automatic activation"
   }
 ]

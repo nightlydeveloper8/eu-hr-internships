@@ -71,7 +71,7 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
                 if req.method not in ('GET','HEAD'):
                     metrics['blocked_requests']+=1
                     denied.append('non-read-method');return route.abort()
-                if req.resource_type in ('image','font','media') or re.search(r'google-analytics|googletagmanager|doubleclick|facebook|linkedin|^analytics\.',urlsplit(req.url).hostname or ''):
+                if req.resource_type in ('image','font','media') or re.search(r'google-analytics|googletagmanager|doubleclick|facebook|linkedin|(?:^|\.)posthog\.com$|^analytics\.',urlsplit(req.url).hostname or ''):
                     metrics['suppressed_resources']+=1
                     return route.abort()
                 try:
