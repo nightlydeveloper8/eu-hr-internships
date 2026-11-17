@@ -99,7 +99,7 @@ def run_backtest(day_rows):
                     source_streak[sid] = 0
                 # In a shadow skip, the next real check follows a gap; we
                 # intentionally do not use the skipped observation to qualify.
-                previous_observed[sid] = d
+                # No actual recheck occurs on a shadow-skipped day.
                 continue
             if no_hr_complete(r):
                 source_streak[sid] += 1
@@ -123,7 +123,7 @@ def analyze(start, end):
     result, by_day = run_backtest(day_rows)
     start_d, end_d = date.fromisoformat(start), date.fromisoformat(end)
     result['window_days'] = (end_d-start_d).days+1
-    result['missing_days'] = [str(start_d.fromordinal(i))
+    result['missing_days'] = [str(date.fromordinal(i))
                               for i in range(start_d.toordinal(),end_d.toordinal()+1)
                               if str(start_d.fromordinal(i)) not in day_rows]
     result['by_day'] = by_day
