@@ -5,6 +5,9 @@ import tempfile
 import unittest
 
 from collector.daily import shard_for
+from collector.universal import distinct_frontier, Crawler
+from collector.runtime import PageCache
+from unittest.mock import patch
 from scripts.audit_pending_frontiers import analyze_pending, combine, scan, source_cache_path
 
 
@@ -30,6 +33,58 @@ class PendingFrontierTests(unittest.TestCase):
         self.assertEqual(result['preserved_distinct_urls'], 3)
         # "privacy" is review-only; never automatically excluded.
         self.assertEqual(result['stored_entries'] - result['certain_shadow_removals'], 3)
+
+    def test_exact_url_merge_preserves_all_distinct_jobs_and_earliest_depth(self):
+        pending = [
+            ('https://careers.example.org/jobs/HR-1', False, 3),
+            ('https://careers.example.org/jobs/HR-2', True, 4),
+            ('https://careers.example.org/jobs/HR-1', True, 2),
+            ('https://careers.example.org/jobs/HR-1', False, 1),
+            ('https://careers.example.org/jobs/HR-3?region=NL', True, 3),
+            ('https://careers.example.org/jobs/HR-3?region=BE', True, 3),
+        ]
+        unique = distinct_frontier(pending)
+        self.assertEqual(len(unique), 4)
+        self.assertEqual(unique[0], ('https://careers.example.org/jobs/HR-1', True, 1))
+        self.assertEqual({u for u, _, _ in unique}, {u for u, _, _ in pending})
+        self.assertEqual(len([u for u, job, _ in unique if job]), 4)
+
+    def test_crawler_saves_one_entry_per_url_with_job_signal(self):
+        sid = 'auto-frontier-test-employer'
+        career = 'https://careers.example.org/careers'
+        vacancy = 'https://careers.example.org/jobs/hr-intern'
+        source = dict(id=sid, employer='Example', adapter='universal-employer',
+                      allowed_hosts=['careers.example.org'], start_urls=[career],
+                      max_pages=1, max_requests=20, max_navigation_depth=3,
+                      no_browser=True)
+        class StubClient:
+            requests = 0
+            max_requests = 20
+            robots = {}
+            def check(self): pass
+            def remaining(self): return 60
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = PageCache(sid, root=Path(tmp))
+            cache.save_state({'pending': [
+                {'url': vacancy, 'job': False, 'depth': 3},
+                {'url': vacancy, 'job': True, 'depth': 2},
+                {'url': 'https://js-www.smartrecruiters.com/static/libs.js',
+                 'job': False, 'depth': 2},
+            ]})
+            with patch('collector.universal.PageCache',
+                       side_effect=lambda sid, revision=1: PageCache(sid, root=Path(tmp), revision=revision)):
+                crawler = Crawler(source, StubClient())
+                crawler.feed = lambda url: False
+                def visit(url, is_job=False):
+                    crawler.pages += 1
+                    return dict(records=[], links=[], empty=False)
+                crawler.visit = visit
+                result = crawler.run()
+            saved = cache.state()['pending']
+            self.assertEqual(saved, [{'url': vacancy, 'job': True, 'depth': 2}])
+            self.assertFalse(result.stats['complete'])
+            self.assertEqual(result.stats['frontier_duplicates_pruned'], 1)
+            self.assertEqual(result.stats['frontier_static_skips'], 1)
 
     def test_actual_cache_snapshot_is_required_for_counts(self):
         sid = 'auto-audit-example'
