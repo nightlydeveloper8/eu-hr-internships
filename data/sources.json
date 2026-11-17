@@ -48478,5 +48478,28 @@
     "reviewed_on": "2026-11-16",
     "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
     "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "recruitee-ampelmann-nl",
+    "company_id": "ampelmann-operations-b-v",
+    "employer": "Ampelmann Operations B.V.",
+    "adapter": "recruitee",
+    "enabled": false,
+    "feed_format": "recruitee-public-xml",
+    "application_check": "recruitee-linked",
+    "feed_url": "https://careers.ampelmann.nl/api/feeds/offers.xml",
+    "career_url": "https://careers.ampelmann.nl/",
+    "allowed_hosts": [
+      "careers.ampelmann.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "permission_basis": "Reviewed employer-published XML and same-ID application; runtime robots gate",
+    "max_requests": 16,
+    "collection_seconds": 70,
+    "status": "pending-cross-day-and-rollout-approval"
   }
 ]
