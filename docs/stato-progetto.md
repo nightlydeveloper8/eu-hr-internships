@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 17 novembre 2026 — preflight live limitato 12 SmartRecruiters FR/BE, zero moduli same-ID
+
+[Run #44173173596](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44173173596) **success**: i 12 record unverified catalogo FR/BE controllati da `scripts/pilot_smartrecruiters_public.py` via BudgetClient, robots e redirect solo `jobs.smartrecruiters.com`: **13 GET / 1.427.729 byte / 0 rendering / 0 POST**. Tutti i 12 HTML ufficiali correnti riportano un titolo coerente, ma nessuno ha identificativo strutturato e CTA+modulo specifico e abilitato verificabili in HTML. **0 nuovi stage policy v2**, 12 restano `unverified`; non dichiarare chiusura o impossibilità di candidatura dinamica. Nessun accesso ad API SmartRecruiters vietate. Cinque regressioni offline, CI [#44173173172](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44173173172) success. Report [smartrecruiters-sameid-preflight-2026-11-17.md](smartrecruiters-sameid-preflight-2026-11-17.md). Workflow one-shot **rimosso**. **Nessun merge o attivazione**. Prossimo gate: solo percorso ufficiale pubblicato e consentito per form same-ID, niente URL inventati.
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
