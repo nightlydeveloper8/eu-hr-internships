@@ -4,6 +4,7 @@ on:
     branches: [prep/ampelmann-disabled-20261117]
     paths:
       - .github/workflows/temp-ampelmann-geography-20261117.yml
+      - tests/test_ampelmann_disabled_provision.py
 permissions:
   contents: write
 jobs:
