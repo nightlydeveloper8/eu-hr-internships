@@ -1,0 +1,137 @@
+name: Temporary bounded ATS and history diagnosis
+on:
+  push:
+    branches: [research/ats-and-cadence-20261117]
+    paths: ['.github/workflows/oneoff-ats-cadence-audit-20261117.yml']
+permissions:
+  contents: read
+jobs:
+  historical-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Summarize available days and source report shapes offline
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess,json
+          def git(*a):return subprocess.check_output(['git',*a],text=True)
+          rows=git('log','--since=2026-11-04T00:00:00Z','--until=2026-11-18T00:00:00Z','--format=%H|%ad','--date=short','--','data/employer-collection.json').splitlines()
+          days={}
+          for line in rows:
+              sha,day=line.split('|')
+              if day not in days:days[day]=sha
+          print('HISTORY_DATES '+json.dumps({k:v[:12] for k,v in days.items()},sort_keys=True))
+          for path in ('data/employer-collection.json','data/coverage.json','data/catalog.json'):
+              try:
+                  raw=git('show','HEAD:'+path)
+                  obj=json.loads(raw)
+                  summary={'path':path,'type':type(obj).__name__,'bytes':len(raw),
+                           'keys':list(obj)[:24] if isinstance(obj,dict) else None}
+                  if isinstance(obj,dict):
+                      for k,v in obj.items():
+                          if isinstance(v,list):
+                              summary['list_'+k]=len(v)
+                              if v and isinstance(v[0],dict):summary['first_'+k+'_keys']=list(v[0])[:35]
+                          if isinstance(v,dict):
+                              summary['dict_'+k+'_keys']=list(v)[:12]
+                  print('HISTORY_SCHEMA '+json.dumps(summary,sort_keys=True))
+              except Exception as exc:
+                  print('HISTORY_ERROR '+repr(exc)[:300])
+          PY
+  ats-readonly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect Ampelmann official public feed and application-link evidence
+        shell: bash
+        run: |
+          python - <<'PY'
+          from collector.runtime import BudgetClient
+          from collector.universal import Document
+          from collector.applications import ApplicantForms
+          from collector.verification import same_title,structured_identifiers,applicant_form
+          from urllib.parse import urljoin,urlsplit
+          from xml.etree import ElementTree
+          import json,time
+          url='https://careers.ampelmann.nl/o/internship-people-organisation-1'
+          feed='https://careers.ampelmann.nl/api/feeds/offers.xml'
+          origin='careers.ampelmann.nl'
+          client=BudgetClient(seconds=50,max_requests=6,delay=.7)
+          client.redirect_scope_allowed=lambda dest:urlsplit(dest).scheme=='https' and urlsplit(dest).hostname==origin
+          data={'source':'official-Ampelmann','method':'robots-aware-GET-only','form_post_sent':False,'target_posting_id':'2822573'}
+          t=time.monotonic()
+          try:
+              body,code,final=client.request(url,attempts=1,timeout=12)
+              doc=Document(body,final)
+              data['vacancy_get']=code
+              data['title_match']=same_title(doc,'Internship People & Organisation')
+              data['structured_ids']=sorted(structured_identifiers(doc,'Internship People & Organisation'))
+              data['static_form_strict']=applicant_form(body,strict=True)
+              data['static_form_relaxed']=applicant_form(body)
+              forms=ApplicantForms(body,strict=True).forms
+              data['form_count']=len(forms)
+              data['form_classes']=[{'attrs':sorted(f['attrs']),'fields':len(f['fields']),'submit':f['submit']} for f in forms][:4]
+              data['same_host_application_links']=[{'path':urlsplit(urljoin(final,href)).path,
+                                                  'label':label[:55]}
+                       for href,label,_ in doc.links if urlsplit(urljoin(final,href)).hostname==origin
+                       and ('apply' in label.lower() or '/c/new' in href)][:8]
+              # A documented public XML feed path on the employer's exact official host:
+              # if robots disallows, stop; never use a different or invented tenant.
+              try:
+                  xml,code,actual=client.request(feed,attempts=1,timeout=12,accept='application/xml')
+                  data['feed_status']=code
+                  data['feed_url_unchanged']=(actual==feed)
+                  root=ElementTree.fromstring(xml)
+                  matches=[]
+                  for e in root.iter():
+                      txt=' '.join(' '.join(e.itertext()).split())
+                      if 'Internship People & Organisation' in txt and len(txt)<5000:
+                          matches.append({'tag':e.tag.split('}')[-1],'attrs':list(e.attrib),'text_chars':len(txt)})
+                          if len(matches)>=2:break
+                  data['feed_matching_elements']=matches
+                  data['feed_root']=root.tag.split('}')[-1]
+              except Exception as exc:
+                  data['feed_result']=type(exc).__name__+': '+str(exc)[:150]
+          except Exception as exc:data['error']=type(exc).__name__+': '+str(exc)[:170]
+          finally:
+              data.update(requests=client.requests,bytes=client.bytes,seconds=round(time.monotonic()-t,3))
+              print('ATS_AMP_RESULT '+json.dumps(data,sort_keys=True))
+          PY
+      - name: Sample two official French SmartRecruiters job pages only if robots permits
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,time
+          from urllib.parse import urlsplit
+          from collector.runtime import BudgetClient
+          from collector.universal import Document
+          from collector.verification import same_title,structured_identifiers,applicant_form
+          records=[
+             ('Salomon','STAGE - Assistant(e) RH Généraliste (M/F/X)','https://jobs.smartrecruiters.com/Salomon/744000161490861-stage-assistant-e-rh-generaliste-m-f-x-'),
+             ('Sia','Final Year Internship Consultant - HR & Transformation','https://jobs.smartrecruiters.com/Sia/744000159655534-final-year-internship-consultant-hr-transformation')
+          ]
+          for employer,title,url in records:
+              t=time.monotonic();client=BudgetClient(seconds=28,max_requests=3,delay=.9)
+              client.redirect_scope_allowed=lambda x:urlsplit(x).scheme=='https' and urlsplit(x).hostname=='jobs.smartrecruiters.com'
+              row={'employer':employer,'url':url,'policy_verified':False}
+              try:
+                  body,status,final=client.request(url,attempts=1,timeout=12)
+                  d=Document(body,final)
+                  row.update(status=status,url_same=final==url,title_match=same_title(d,title),ids=sorted(structured_identifiers(d,title)),form_strict=applicant_form(body,strict=True))
+                  row['observation']='page-observed-no-inventory-no-application-check'
+              except Exception as exc:row['blocked_or_error']=type(exc).__name__+': '+str(exc)[:180]
+              finally:
+                  row.update(requests=client.requests,bytes=client.bytes,seconds=round(time.monotonic()-t,3))
+                  print('ATS_SR_RESULT '+json.dumps(row,sort_keys=True))
+          PY
