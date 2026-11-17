@@ -1,4 +1,4 @@
-name: Temporary bounded ATS and history diagnosis
+name: Temporary ATS XML and coverage-history diagnostics
 on:
   push:
     branches: [research/ats-and-cadence-20261117]
@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 jobs:
-  historical-schema:
+  history-report-fields:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -16,122 +16,84 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Summarize available days and source report shapes offline
+      - name: Inspect per-source reports and day availability offline
         shell: bash
         run: |
           python - <<'PY'
-          import subprocess,json
+          import json,subprocess,collections
           def git(*a):return subprocess.check_output(['git',*a],text=True)
-          rows=git('log','--since=2026-11-04T00:00:00Z','--until=2026-11-18T00:00:00Z','--format=%H|%ad','--date=short','--','data/employer-collection.json').splitlines()
-          days={}
-          for line in rows:
-              sha,day=line.split('|')
-              if day not in days:days[day]=sha
-          print('HISTORY_DATES '+json.dumps({k:v[:12] for k,v in days.items()},sort_keys=True))
-          for path in ('data/employer-collection.json','data/coverage.json','data/catalog.json'):
-              try:
-                  raw=git('show','HEAD:'+path)
-                  obj=json.loads(raw)
-                  summary={'path':path,'type':type(obj).__name__,'bytes':len(raw),
-                           'keys':list(obj)[:24] if isinstance(obj,dict) else None}
-                  if isinstance(obj,dict):
-                      for k,v in obj.items():
-                          if isinstance(v,list):
-                              summary['list_'+k]=len(v)
-                              if v and isinstance(v[0],dict):summary['first_'+k+'_keys']=list(v[0])[:35]
-                          if isinstance(v,dict):
-                              summary['dict_'+k+'_keys']=list(v)[:12]
-                  print('HISTORY_SCHEMA '+json.dumps(summary,sort_keys=True))
-              except Exception as exc:
-                  print('HISTORY_ERROR '+repr(exc)[:300])
+          for path in ('data/coverage.json','data/employer-collection.json'):
+              d=json.loads(git('show','HEAD:'+path))
+              key='sources' if 'sources' in d else 'employers'
+              rows=d[key]
+              print('HIST_SUM '+json.dumps({'path':path,'rows':len(rows),'first_keys':list(rows[0].keys()),
+                  'first_values':{k:str(v)[:110] for k,v in rows[0].items() if k not in ('errors','pending_urls')},
+                  'types':dict(collections.Counter(str(x.get('status',x.get('state'))) for x in rows))}))
+              for term in ('auto-salomon','auto-sia','auto-bosch','auto-tilburg-university','recruitee'):
+                  matches=[x for x in rows if term in str(x.get('id',x.get('name'))).lower()]
+                  if matches:print('HIST_SAMPLE '+json.dumps({'path':path,'term':term,'rows':[{k:v if isinstance(v,(str,int,float,bool,type(None))) else str(v)[:120] for k,v in x.items()} for x in matches[:1]]}))
+          dates={}
+          for row in git('log','--since=2026-11-04T00:00:00Z','--until=2026-11-18T00:00:00Z','--format=%H|%ad','--date=short','--','data/coverage.json').splitlines():
+              sha,date=row.split('|')
+              if date not in dates:dates[date]=sha
+          print('HIST_DAYS '+json.dumps({k:v[:12] for k,v in dates.items()},sort_keys=True))
           PY
-  ats-readonly:
+  public-recruitee-feed:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Inspect Ampelmann official public feed and application-link evidence
-        shell: bash
-        run: |
-          python - <<'PY'
-          from collector.runtime import BudgetClient
-          from collector.universal import Document
-          from collector.applications import ApplicantForms
-          from collector.verification import same_title,structured_identifiers,applicant_form
-          from urllib.parse import urljoin,urlsplit
-          from xml.etree import ElementTree
-          import json,time
-          url='https://careers.ampelmann.nl/o/internship-people-organisation-1'
-          feed='https://careers.ampelmann.nl/api/feeds/offers.xml'
-          origin='careers.ampelmann.nl'
-          client=BudgetClient(seconds=50,max_requests=6,delay=.7)
-          client.redirect_scope_allowed=lambda dest:urlsplit(dest).scheme=='https' and urlsplit(dest).hostname==origin
-          data={'source':'official-Ampelmann','method':'robots-aware-GET-only','form_post_sent':False,'target_posting_id':'2822573'}
-          t=time.monotonic()
-          try:
-              body,code,final=client.request(url,attempts=1,timeout=12)
-              doc=Document(body,final)
-              data['vacancy_get']=code
-              data['title_match']=same_title(doc,'Internship People & Organisation')
-              data['structured_ids']=sorted(structured_identifiers(doc,'Internship People & Organisation'))
-              data['static_form_strict']=applicant_form(body,strict=True)
-              data['static_form_relaxed']=applicant_form(body)
-              forms=ApplicantForms(body,strict=True).forms
-              data['form_count']=len(forms)
-              data['form_classes']=[{'attrs':sorted(f['attrs']),'fields':len(f['fields']),'submit':f['submit']} for f in forms][:4]
-              data['same_host_application_links']=[{'path':urlsplit(urljoin(final,href)).path,
-                                                  'label':label[:55]}
-                       for href,label,_ in doc.links if urlsplit(urljoin(final,href)).hostname==origin
-                       and ('apply' in label.lower() or '/c/new' in href)][:8]
-              # A documented public XML feed path on the employer's exact official host:
-              # if robots disallows, stop; never use a different or invented tenant.
-              try:
-                  xml,code,actual=client.request(feed,attempts=1,timeout=12,accept='application/xml')
-                  data['feed_status']=code
-                  data['feed_url_unchanged']=(actual==feed)
-                  root=ElementTree.fromstring(xml)
-                  matches=[]
-                  for e in root.iter():
-                      txt=' '.join(' '.join(e.itertext()).split())
-                      if 'Internship People & Organisation' in txt and len(txt)<5000:
-                          matches.append({'tag':e.tag.split('}')[-1],'attrs':list(e.attrib),'text_chars':len(txt)})
-                          if len(matches)>=2:break
-                  data['feed_matching_elements']=matches
-                  data['feed_root']=root.tag.split('}')[-1]
-              except Exception as exc:
-                  data['feed_result']=type(exc).__name__+': '+str(exc)[:150]
-          except Exception as exc:data['error']=type(exc).__name__+': '+str(exc)[:170]
-          finally:
-              data.update(requests=client.requests,bytes=client.bytes,seconds=round(time.monotonic()-t,3))
-              print('ATS_AMP_RESULT '+json.dumps(data,sort_keys=True))
-          PY
-      - name: Sample two official French SmartRecruiters job pages only if robots permits
+      - name: Verify published Ampelmann XML link evidence without authenticating
         shell: bash
         run: |
           python - <<'PY'
           import json,time
+          from xml.etree import ElementTree as ET
           from urllib.parse import urlsplit
           from collector.runtime import BudgetClient
           from collector.universal import Document
           from collector.verification import same_title,structured_identifiers,applicant_form
-          records=[
-             ('Salomon','STAGE - Assistant(e) RH Généraliste (M/F/X)','https://jobs.smartrecruiters.com/Salomon/744000161490861-stage-assistant-e-rh-generaliste-m-f-x-'),
-             ('Sia','Final Year Internship Consultant - HR & Transformation','https://jobs.smartrecruiters.com/Sia/744000159655534-final-year-internship-consultant-hr-transformation')
-          ]
-          for employer,title,url in records:
-              t=time.monotonic();client=BudgetClient(seconds=28,max_requests=3,delay=.9)
-              client.redirect_scope_allowed=lambda x:urlsplit(x).scheme=='https' and urlsplit(x).hostname=='jobs.smartrecruiters.com'
-              row={'employer':employer,'url':url,'policy_verified':False}
-              try:
-                  body,status,final=client.request(url,attempts=1,timeout=12)
-                  d=Document(body,final)
-                  row.update(status=status,url_same=final==url,title_match=same_title(d,title),ids=sorted(structured_identifiers(d,title)),form_strict=applicant_form(body,strict=True))
-                  row['observation']='page-observed-no-inventory-no-application-check'
-              except Exception as exc:row['blocked_or_error']=type(exc).__name__+': '+str(exc)[:180]
-              finally:
-                  row.update(requests=client.requests,bytes=client.bytes,seconds=round(time.monotonic()-t,3))
-                  print('ATS_SR_RESULT '+json.dumps(row,sort_keys=True))
+          origin='careers.ampelmann.nl'
+          feed='https://careers.ampelmann.nl/api/feeds/offers.xml'
+          out={'feed':feed,'no_post':True,'auth_used':False,'policy_verified':False}
+          c=BudgetClient(seconds=42,max_requests=5,delay=.8)
+          c.redirect_scope_allowed=lambda u:urlsplit(u).scheme=='https' and urlsplit(u).hostname==origin
+          start=time.monotonic()
+          try:
+              body,code,final=c.request(feed,attempts=1,timeout=11,accept='application/xml')
+              root=ET.fromstring(body)
+              out.update(feed_status=code,root=root.tag,children=len(root))
+              found=[]
+              for element in root:
+                  # Document only the exact job's own metadata, never the entire feed or descriptions.
+                  direct={child.tag.split('}')[-1]:(child.text or '').strip() for child in element if len(child)==0}
+                  title=next((x for k,x in direct.items() if k.lower()=='title'),None)
+                  if title=='Internship People & Organisation':
+                      found.append((element,direct))
+              out['match_count']=len(found)
+              if len(found)==1:
+                  elem,fields=found[0]
+                  out['offer_direct_tag_names']=sorted(fields)
+                  out['matching_offer_id']={k:v for k,v in fields.items() if k.lower() in ('id','offer_id','external_id')}
+                  links={k:v for k,v in fields.items() if 'url' in k.lower() or 'link' in k.lower()}
+                  out['published_links']=links
+                  all_links={k:v for k,v in links.items() if urlsplit(v).scheme=='https' and urlsplit(v).hostname==origin}
+                  apply_links=[v for k,v in all_links.items() if 'apply' in k.lower() or '/c/new' in urlsplit(v).path]
+                  if len(apply_links)==1:
+                      target=apply_links[0]
+                      html,st,finalurl=c.request(target,attempts=1,timeout=11)
+                      doc=Document(html,finalurl)
+                      out.update(application_get=st,application_same_url=finalurl==target,
+                                 application_same_title=same_title(doc,'Internship People & Organisation'),
+                                 application_ids=sorted(structured_identifiers(doc,'Internship People & Organisation')),
+                                 application_form_strict=applicant_form(html,strict=True))
+                  else:out['application_reason']='No unique employer-published same-host apply URL in XML'
+              else:out['application_reason']='Matching current official offer not uniquely identified'
+          except Exception as e:out['error']=type(e).__name__+': '+str(e)[:140]
+          finally:
+              out.update(requests=c.requests,bytes=c.bytes,seconds=round(time.monotonic()-start,3))
+              print('AMP_XML_DETAIL '+json.dumps(out,sort_keys=True))
           PY
