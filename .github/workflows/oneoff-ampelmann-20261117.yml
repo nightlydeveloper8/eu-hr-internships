@@ -1,0 +1,84 @@
+name: One-off Ampelmann robots-aware read-only evidence
+on:
+  push:
+    branches: [pilot/ampelmann-readonly-20261117]
+    paths: ['.github/workflows/oneoff-ampelmann-20261117.yml']
+permissions:
+  contents: read
+jobs:
+  bounded-official-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Two bounded GET-only Ampelmann observations
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, time
+          from datetime import datetime, timezone
+          from urllib.parse import urlsplit
+          from collector.runtime import BudgetClient
+          from collector.universal import Document
+          from collector.verification import _verify_vacancy, applicant_form, same_title, structured_identifiers
+          from collector.classify import canonical_url
+
+          base='https://careers.ampelmann.nl/'
+          job='https://careers.ampelmann.nl/o/internship-people-organisation-1'
+          host='careers.ampelmann.nl'
+          title='Internship People & Organisation'
+          source={'id':'oneoff-ampelmann-readonly-20261117','employer':'Ampelmann Operations B.V.',
+                  'adapter':'recruitee','allowed_hosts':[host],'target_countries':['NL']}
+          report={'kind':'read-only-robots-aware-2-cycle-official-page-preflight','scope':host,
+                  'job_url':job,'stage_only':True,'production_mutated':False,'post_requests':0,
+                  'renderings':0,'cycles':[]}
+          for n in (1,2):
+              start=time.monotonic()
+              client=BudgetClient(seconds=48,max_requests=6,delay=.7)
+              client.redirect_scope_allowed=lambda target: urlsplit(target).scheme=='https' and urlsplit(target).hostname==host
+              row={'cycle':n,'stamp':datetime.now(timezone.utc).isoformat(),'verified':False}
+              try:
+                  body,_,landing=client.request(base,attempts=1,timeout=10)
+                  if canonical_url(landing)!=canonical_url(base):raise ValueError('Inventory landing redirected')
+                  landing_doc=Document(body,landing)
+                  links=[canonical_url(__import__('urllib.parse',fromlist=['urljoin']).urljoin(landing,href))
+                         for href,_,_ in landing_doc.links]
+                  listed=canonical_url(job) in links
+                  row['listed_in_current_official_careers']=listed
+                  if not listed:raise ValueError('Exact vacancy not observed on current careers inventory')
+                  record={'source_id':source['id'],'employer':source['employer'],'title':title,'url':job,
+                          'apply_url':job,'external_id':job,'inventory_evidence':'current-official-careers-listing'}
+                  job_body,_,job_final=client.request(job,attempts=1,timeout=10)
+                  if canonical_url(job_final)!=canonical_url(job):raise ValueError('Job redirected or identity changed')
+                  doc=Document(job_body,job_final)
+                  row['title_match']=same_title(doc,title)
+                  row['same_page_strict_form']=applicant_form(job_body,strict=True)
+                  row['structured_ids']=sorted(structured_identifiers(doc,title))
+                  if not row['title_match']:raise ValueError('Title differs')
+                  if not row['same_page_strict_form']:
+                      row['state']='incomplete'
+                      row['reason']='Enabled visible form not established in initial HTML (no browser retries)'
+                  else:
+                      proof=_verify_vacancy(record,source,client,row['stamp'])
+                      row['proof_method']=proof.get('method')
+                      row['proof_url']=proof.get('url')
+                      row['verified']=bool(row['listed_in_current_official_careers'] and proof and row['same_page_strict_form'])
+                      row['state']='staging-evidence-passed' if row['verified'] else 'incomplete'
+              except Exception as exc:
+                  row['state']='blocked-or-incomplete'
+                  row['reason']=type(exc).__name__+': '+str(exc)[:220]
+              finally:
+                  row['requests']=client.requests
+                  row['bytes_read']=client.bytes
+                  row['seconds']=round(time.monotonic()-start,3)
+                  report['cycles'].append(row)
+              if not row['verified']:break
+          report['total_requests']=sum(c['requests'] for c in report['cycles'])
+          report['total_bytes']=sum(c['bytes_read'] for c in report['cycles'])
+          report['total_seconds']=round(sum(c['seconds'] for c in report['cycles']),3)
+          report['duplicate_stage_ids_if_imported']=0 if len(report['cycles'])==2 and all(c['verified'] for c in report['cycles']) else None
+          print('ONEOFF_AMP_RESULT '+json.dumps(report,sort_keys=True,ensure_ascii=False))
+          PY
