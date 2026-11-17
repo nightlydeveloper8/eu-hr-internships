@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-16T19:26:24.877833+00:00",
+  "generated_at": "2026-11-17T07:50:42.357837+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -10,10 +10,10 @@
   "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
   "summary": {
     "employers": 40,
-    "qualified_employers": 27,
+    "qualified_employers": 28,
     "distinct_groups": 40,
-    "qualified_groups": 27,
-    "size_unknown": 13,
+    "qualified_groups": 28,
+    "size_unknown": 12,
     "below_threshold": 0,
     "municipalities": 12,
     "municipalities_with_qualified_employers": 12,
@@ -27,7 +27,7 @@
     },
     "qualified_collection_states": {
       "partial": 14,
-      "discovery-incomplete": 8,
+      "discovery-incomplete": 9,
       "blocked-or-failed": 1,
       "collected": 4
     },
@@ -174,8 +174,8 @@
       "name": "Hoogeveen",
       "settlements": 11,
       "employers": 7,
-      "qualified_employers": 5,
-      "size_unknown": 2,
+      "qualified_employers": 6,
+      "size_unknown": 1,
       "below_threshold": 0,
       "collection_states": {
         "partial": 3,
@@ -1424,11 +1424,11 @@
       "group_name": "Arla Foods",
       "career_url": "https://dockaasbv.nl/werken-bij-ons/",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_min": 200,
+        "employees_text": "Official DOC Kaas about page states more than two hundred employees across its two Hoogeveen production sites. Employer total, not per-site count; excludes Wheyco and wider DMK/Arla workforce. No reference date published.",
         "scope": "employer",
-        "source_url": null,
+        "source_url": "https://dockaasbv.nl/over-ons/",
         "source_date": null
       },
       "employer_type": "private",
@@ -1442,7 +1442,7 @@
           "settlement_code": "WP1814",
           "location_confidence": "confirmed",
           "evidence_url": "https://dockaas.nl/",
-          "checked_on": "2026-11-06"
+          "checked_on": "2026-11-17"
         }
       ],
       "source_ids": [

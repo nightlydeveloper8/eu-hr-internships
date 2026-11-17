@@ -567,3 +567,9 @@ Costo produzione aggiuntivo **0**. Il pilota web non dispone di conteggio HTTP/t
 
 **Primo punto incompleto:** controllare CI della PR tecnica; pilota client HTTPS/robots su Marquardt/SLB/TikTok e same-vacancy form anonimo, senza CAPTCHA/login. Non attivare i tre canali finché un percorso non supera policy v2; se nessuno passa, cercare fonti sostitutive.
 
+
+## 17 novembre 2026 — Drenthe, DOC Kaas qualificata
+
+Ripresa da main `8aad7fa`, senza ripetere #20 già consolidata o il blocco della PR #41. [Rapporto](drenthe-2026-11-17.md), [audit](drenthe-2026-11-17-audit.json), [validazione](drenthe-2026-11-17-validation.json). DOC Kaas: oltre 200 dipendenti documentati ufficialmente, distinti da Wheyco e dal gruppo. Lotto 40 datori, 28 qualificati, 12 ignoti. Catalogo identico alla baseline, nessun nuovo stage HR verificato; nessuna raccolta completa, host o rollout aggiunto. Proseguire sulle dimensioni ignote e sui canali incompleti, senza promuovere BBL produttivi o candidature spontanee a stage HR. Nessun merge o produzione; consegna tramite PR separata con CI.
+
+Verifica del lotto DOC Kaas: 451 Python con due fallimenti riprodotti sul main intatto (quarantena ownership e conteggio review block). Altri controlli passati; non indebolite le regressioni. PR da mantenere draft e non attestare CI verde senza un nuovo esito.
