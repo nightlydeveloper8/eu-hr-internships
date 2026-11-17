@@ -59,8 +59,10 @@ def analyze(catalog, sources, coverage, *, limit=25):
     summary = Counter()
     countries_verified = Counter()
     country_leads = Counter()
-    buckets = defaultdict(lambda: dict(counts=Counter(), active_ids=set(), countries=set(),
-                                        examples=[], host_counts=Counter(), stale_reasons=0))
+    buckets = defaultdict(lambda: dict(counts=Counter(), internship_reasons=Counter(),
+                                        type_counts=Counter(), active_ids=set(), countries=set(),
+                                        internship_examples=[], other_examples=[],
+                                        host_counts=Counter(), stale_reasons=0))
     current_job_count = 0
 
     for job in catalog["jobs"]:
@@ -81,6 +83,7 @@ def analyze(catalog, sources, coverage, *, limit=25):
             summary["unexpected_nonverified_status"] += 1
             continue
         current_job_count += 1
+        summary["unverified_"+typ] += 1
         country = job.get("country")
         if country:
             country_leads[country] += 1
@@ -98,6 +101,9 @@ def analyze(catalog, sources, coverage, *, limit=25):
             continue
         bucket = buckets[sid]
         bucket["counts"][kind] += 1
+        bucket["type_counts"][typ] += 1
+        if typ == "internship":
+            bucket["internship_reasons"][kind] += 1
         bucket["active_ids"].add(job["id"])
         if country:
             bucket["countries"].add(country)
@@ -109,12 +115,15 @@ def analyze(catalog, sources, coverage, *, limit=25):
         if evidence is None or evidence < stamp - timedelta(hours=48) or (
             source_checked and evidence < source_checked - timedelta(minutes=10)):
             bucket["stale_reasons"] += 1
-        if len(bucket["examples"]) < 4:
-            bucket["examples"].append(dict(id=job["id"], country=country, kind=kind,
-                                           fresh_evidence=bool(evidence and
-                                               evidence >= stamp-timedelta(hours=48) and
-                                               (not source_checked or
-                                                evidence >= source_checked-timedelta(minutes=10)))))
+        examples = (bucket["internship_examples"] if typ == "internship"
+                    else bucket["other_examples"])
+        if len(examples) < 4:
+            examples.append(dict(id=job["id"], country=country, kind=kind,
+                                 opportunity_type=typ,
+                                 fresh_evidence=bool(evidence and
+                                     evidence >= stamp-timedelta(hours=48) and
+                                     (not source_checked or
+                                      evidence >= source_checked-timedelta(minutes=10)))))
 
     rows = []
     for sid, bucket in buckets.items():
@@ -122,14 +131,20 @@ def analyze(catalog, sources, coverage, *, limit=25):
         report = reports.get(sid, {})
         cost = report.get("requests")
         cost = cost if isinstance(cost, (int,float)) and cost >= 0 else None
-        actionable = counts.get("application-proof-gap",0)
-        # Relative triage score only, never probability or expected new jobs.
-        score = 10*actionable + 3*counts.get("vacancy-identity-mismatch",0)
-        score += counts.get("other-unverified",0)
+        internship_counts = bucket["internship_reasons"]
+        actionable = internship_counts.get("application-proof-gap", 0)
+        # Score only HR internships. Working-student and traineeship leads stay
+        # visible separately but must not outrank actionable internships.
+        score = 10*actionable + 3*internship_counts.get("vacancy-identity-mismatch",0)
+        score += internship_counts.get("other-unverified",0)
         if cost is not None:
             score = round(score/(1+cost/20), 3)
         rows.append(dict(source_id=sid, employer=selected[sid].get("employer"),
                          current_unverified_distinct_ids=len(bucket["active_ids"]),
+                         current_unverified_hr_internships=bucket["type_counts"].get("internship",0),
+                         current_unverified_working_students=bucket["type_counts"].get("working-student",0),
+                         current_unverified_traineeships=bucket["type_counts"].get("traineeship",0),
+                         internship_reasons=dict(internship_counts),
                          reasons=dict(counts),countries=sorted(bucket["countries"]),
                          observed_hosts=sorted(bucket["host_counts"]),
                          stored_reasons_not_fresh=bucket["stale_reasons"],
@@ -138,13 +153,14 @@ def analyze(catalog, sources, coverage, *, limit=25):
                          last_source_bytes=report.get("bytes_read"),
                          last_source_checked_at=report.get("checked_at"),
                          score_heuristic_not_success_probability=score,
-                         representative_ids=bucket["examples"],
+                         representative_ids=(bucket["internship_examples"] +
+                                             bucket["other_examples"])[:4],
                          recommended_next_step=(
                             "Review shared vacancy-to-application mapping on approved employer ATS; fresh same-ID/form proof required"
                             if actionable else
                             "Recheck exact vacancy identity/ownership before any promotion")))
     rows.sort(key=lambda r:(-r["score_heuristic_not_success_probability"],
-                             -r["current_unverified_distinct_ids"],r["source_id"]))
+                             -r["current_unverified_hr_internships"],r["source_id"]))
     verified_countries = sorted(countries_verified)
     return dict(schema_version=1,
         mode="offline-bounded-policy-v2-blocker-priority",
@@ -152,17 +168,22 @@ def analyze(catalog, sources, coverage, *, limit=25):
         sources_enabled=len(selected),
         total_catalog_records=len(catalog["jobs"]),
         unverified_records=current_job_count,
+        unverified_hr_internship_records=summary.get("unverified_internship",0),
+        unverified_working_student_records=summary.get("unverified_working-student",0),
+        unverified_traineeship_records=summary.get("unverified_traineeship",0),
         status_counts=dict(summary),
         fresh_verified_hr_internships=summary.get("policy_v2_verified_internship",0),
         countries_with_verified_hr_internships=verified_countries,
         countries_without_verified_hr_internships=sorted(set(catalog.get("countries",{}))-set(verified_countries)),
         countries_with_unverified_leads=dict(sorted(country_leads.items())),
         ranked_source_count=len(rows),
+        ranked_internship_source_count=sum(r["current_unverified_hr_internships"]>0 for r in rows),
         ranked_sources=rows[:limit],
         excluded_quarantined_or_blocked=summary["not_auto_actionable"],
         caveats=["Unverified IDs are not available internships; potential impact is NOT a forecast",
                  "Old errors may be retained without a new HTTP observation; fresh_evidence separates them",
                  "Robots/429/403 and unreviewed ownership are not retry recommendations",
+                 "Ranking only scores HR internship leads; working-student and traineeship records are separate", 
                  "Ranking is offline only and does not change sources, budgets or applicant policy v2",
                  "No full EU27 geographic coverage is inferred from a configured employer count"])
 
