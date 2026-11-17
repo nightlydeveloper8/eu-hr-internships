@@ -69,10 +69,10 @@ def classify_role(title, text='', employment=''):
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title)]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
     if not cats and re.search(r'people (?:&|and) events',title) and re.search(r'personalbetreuung|personalentwicklung|human resources|hr administration',text):cats=['hr-generalist']
-    # A People & Organisation internship is HR only with substantive HR evidence;
-    # the department label alone must not classify unrelated consulting roles.
-    if not cats and re.search(r'people (?:&|and) organi[sz]ation',title) and re.search(r'\b(?:human resources|recruitment|personnel|payroll|hr service(?:desk)?)\b',text):
-        cats=['hr-generalist']
+    # A People & Organisation internship is HR only when the description
+    # actually establishes an HR function, not from generic organisation work.
+    if re.search(r'people (?:&|and) organi[sz]ation',title) and not re.search(r'\b(?:human resources|recruitment|personnel|payroll|hr service(?:desk)?)\b',text):
+        return None
     if re.search(r'benefits|compensation|reward',title) and not re.search(r'hr|human resources|employee|payroll|compensation (?:&|and) benefits|total rewards|remuneration',title+' '+text):
         cats=[c for c in cats if c!='compensation-benefits']
     if re.search(r'talent (?:community|pool|network)|open application|general (?:internship|student) programme|internship opportunities|internships (?:at|within)',title):return None
