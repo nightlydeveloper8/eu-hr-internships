@@ -90,6 +90,32 @@ jobs:
             --approved-host jobb.jobandtalent.com \
             --reviewed-inventory https://jobb.jobandtalent.com/sitemap \
             --output .staging/preflight/jobandtalent-policy-dossier.json
+      - name: Replay fresh Jobandtalent proof through cumulative finalize (temporary output only)
+        run: |
+          python -m scripts.stage_jobtech_policy \
+            --discovery .staging/preflight/jobtech-se.json \
+            --dossier .staging/preflight/jobandtalent-policy-dossier.json \
+            --provider-id 31558200 \
+            --source-id staging-jobandtalent-se \
+            --approved-host jobb.jobandtalent.com \
+            --reviewed-inventory https://jobb.jobandtalent.com/sitemap \
+            --output .staging/preflight/jobandtalent-cumulative-staging.json
+      - name: Report verified count only inside isolated replay
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('.staging/preflight/jobandtalent-cumulative-staging.json').read_text())
+          keys=('stage_result','reviewed_ats_id','new_staged_distinct_verified_internships',
+                'baseline_ids_lost','production_verified_vacancies_added',
+                'production_catalog_modified','source_registry_modified','reason')
+          text='## Jobandtalent cumulative replay — TEMPORARY ONLY\n\n'+\
+              '\n'.join('- '+k+': '+str(x.get(k)) for k in keys)+'\n'
+          print(text)
+          with Path('jobandtalent-staging-summary.md').open('w') as f:
+              f.write(text)
+          PY
+          cat jobandtalent-staging-summary.md >> "$GITHUB_STEP_SUMMARY"
       - name: Summarize staging-only policy-v2 proof
         run: |
           python - <<'PY'
@@ -116,4 +142,5 @@ jobs:
             .staging/preflight/jobtech-se.json
             .staging/preflight/jobtech-application-checks.json
             .staging/preflight/jobandtalent-policy-dossier.json
+            .staging/preflight/jobandtalent-cumulative-staging.json
           retention-days: 7
