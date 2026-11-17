@@ -1,5 +1,46 @@
 # People Placement — benchmark dei portali stage HR (17 novembre 2026)
 
+## Verifica ufficiale reale: Ampelmann e valutazione PepsiCo (17 novembre, secondo intervento)
+
+### Ampelmann — outcome *incomplete*, non `verified`
+
+Eseguito **GitHub Actions GET-only** su branch isolato `pilot/ampelmann-readonly-20261117`, con `BudgetClient` reale, controllo robots, host ristretto al **solo** `careers.ampelmann.nl`, limite **6 richieste/48 secondi per ciclo**, senza POST, browser, login o dati di candidati. Workflow temporaneo **rimosso** dopo il test, nessun merge/rollout.
+
+- Primo [run #44143996768](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44143996768): 2 HTTP, **305.445 B**, **2,059 s**, interrotto da **errore del nostro script** (`canonical_url()` riservata a URL di vacancy usata per homepage); non indicava un blocco del sito. Corretto nel workflow isolato.
+- Secondo [run #44144200129](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44144200129): **3 HTTP, 603.229 B, 2,855 s**. La richiesta robots è stata superata, homepage ufficiale corrente **include esattamente** `/o/internship-people-organisation-1`; titolo `Internship People & Organisation` corrispondente e **ID strutturato 2822573**. Il controllo `applicant_form(body,strict=True)` non ha dimostrato il modulo abilitato nell'HTML iniziale. Nessuna visita dinamica autorizzata o seconda prova positiva: **policy v2 incomplete**, **0 stage importati**.
+- **Costo complessivo dei due tentativi**: **5 GET**, **908.674 byte**, **4,914 s-fonte cumulati**; 0 rendering/POST. Non presentare il risultato come "due cicli verificati": il primo è un errore tecnico del preflight, il secondo è un unico ciclo incompleto.
+- Il lettore web mostra input e pulsante `Send` nella pagina aziendale (scadenza dichiarata 24/11/2026), ma la resa del lettore **non sostituisce** HTML statico, controllo app URL same-ID né prove del collector. Non inventare `/c/new` o tenant API. La documentazione ufficiale [Recruitee Careers API](https://docs.recruitee.com/reference/authentication-1) conferma un gate di autenticazione via token per le chiamate API; l'XML feed segue regole separate. Non aggirare né usare API di terzi a pagamento.
+- **Passo tecnico incompleto:** determinare un URL di applicazione effettivamente **pubblicato dall'ATS/da una sua sorgente pubblica autorizzata**, oppure un modulo statico same-ID; altrimenti lasciare `unverified`. Un'eventuale prova dinamica richiede gate distinto per sorgente, non estensione implicita di `pilot-v1` ad Ampelmann.
+
+### PepsiCo — due ID ufficiali, ma accesso automatizzato non attestato
+
+- [480557, People & Culture Intern, Zaandam](https://www.pepsicojobs.com/main/jobs/480557?lang=en-us); [479166, Soda Stream HR Intern, Tilburg](https://www.pepsicojobs.com/main/jobs/479166?lang=en-us). Due **ID di posizione** e luoghi distinti, non due copie dello stesso annuncio.
+- Il motore web indicizza le due pagine aziendali, ma la lettura **`robots.txt` via web reader e l'apertura diretta delle pagine hanno dato HTTP 403**. Questa risposta non dimostra che gli annunci siano chiusi; impedisce di certificare le regole di accesso tramite questo ambiente. **0 GET BudgetClient PepsiCo, 0 form same-ID, 0 nuovi stage verified**; nessun tentativo di aggirare blocchi/alterare User-Agent o ricostruire API non autorizzate.
+- Individuata una terza pista aziendale [481204 — First Gen: HR Intern Benelux, Utrecht](https://www.pepsicojobs.com/main/jobs/481204?lang=en-US), **solo discovery**. Non inclusa nei 9 gap già quantificati e non aggiunta alla raccolta.
+- Prima di proporre un adapter PepsiCo è necessario un **preflight robots accessibile** da percorso ordinario autorizzato, seguito da inventario completo e same-ID application. Se l'accesso resta 403, stop.
+
+### Risorse gratuite e costi operativi
+
+[GitHub Actions Billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions) indica che i **runner standard** sono gratuiti per repository pubblici; la repo è documentata pubblica e il workflow di prova usa `ubuntu-latest`. [Cloudflare Pages Free](https://developers.cloudflare.com/pages/platform/limits/) prevede **500 build mensili**. **Nessuna fatturazione/account balance è stato letto**: si tratta di compatibilità con condizioni gratuite, non certificazione di fattura personale pari a 0 €. La vera criticità qui è la resa del monitoraggio, non una spesa dimostrata.
+
+### Francia, Belgio, Germania: baseline concreta, non previsione
+
+Su `data/catalog.json` main `ab51981`, selezionando solo `internship_type=internship` e paese principale:
+
+| Paese | Record stage HR | Open/verified | Unverified | Closed | Pattern già noti |
+|---|---:|---:|---:|---:|---|
+| **Francia** | 46 | 5 | 37 | 4 | 11 unverified SmartRecruiters; 2 Ashby |
+| **Belgio** | 4 | 3 | 1 | 0 | 1 SmartRecruiters da verificare |
+| **Germania** | 28 | 0 | 26 | 2 | 2 Personio senza form abilitato dimostrato |
+
+**64 record unverified** in FR/BE/DE sono un *backlog*, non 64 stage aperti né 64 nuovi stage potenziali necessariamente recuperabili. Alcuni sono su host vietati, scaduti o con identity mismatch. Priorità: **pattern SmartRecruiters FR/BE** con ownership/same-ID e regole accesso consentite; in DE indagare il gate Personio (non promuovere pulsanti disabled) e identificare feed ufficiali aggiuntivi. Non esiste base attendibile per dire che i connettori NL produrrebbero +X stage su questi paesi.
+
+### Frequenza e risparmio possibile
+
+Nel ciclo ordinario precedente le **1.832 fonti senza match HR** hanno consumato **34.192 richieste (94,52%)**, **3.765.755.480 byte (90,54%)** e **3.187 rendering (96,99%)**. Non modificata la cadenza: un solo giorno non prova assenza persistente. Proposta di misura **14 giorni**, e solo dopo una **simulazione offline** della politica: fonte con HR recente o verifica critica → giornaliera; fonti sistematicamente senza match → intervallo conservativo da sperimentare con canary, monitorando vacancy perse, latenza e costo. Non promettere **zero** perdite se si eseguono meno controlli; un nuovo stage può aprirsi e chiudersi tra due visite.
+
+**Esito netto di questo intervento:** 1 fonte ufficiale Ampelmann con inventory+identity confermati ma form statico non dimostrato, 2 PepsiCo con pagine indicizzate ma accesso corrente non accertabile, **0 nuovi HR verified**. Nessun catalogo, registry, crawler ordinario, workflow di produzione o modello di costi modificati.
+
 ## Decisione e limite
 **Aggiornamento della seconda tranche:** **12 lead** HR/affini da **due** portali, **9 vacancy ID assenti** nel catalogo baseline (di cui uno misto HR/amministrazione da classificare), **2 corrispondenze unverified/ambigue** e **1 vacancy Unilever già open/verified**. **11** pagine ufficiali lette nel web, **1** URL ufficiale storico JDE non riletto. Nessuna di queste 12 attività ha creato nuove vacancy verificate. La prima tranche di 7 lead resta documentata sotto, con i suoi conteggi autonomi.
 
