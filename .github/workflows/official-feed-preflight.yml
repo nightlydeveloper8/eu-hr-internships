@@ -1,19 +1,7 @@
 name: JobTech CC0 licensed feed preflight
 
+# Live national feeds and ATS checks are opt-in; PR CI uses offline unit tests.
 on:
-  pull_request:
-    paths:
-      - 'collector/official_feed_discovery.py'
-      - 'scripts/official_feed_discovery.py'
-      - 'tests/test_official_feed_discovery.py'
-      - 'collector/official_feed_verification.py'
-      - 'scripts/verify_official_feed_candidates.py'
-      - 'tests/test_official_feed_verification.py'
-      - 'collector/official_feed_policy_dossier.py'
-      - 'scripts/review_jobtech_policy.py'
-      - 'tests/test_official_feed_policy_dossier.py'
-      - 'collector/verification.py'
-      - '.github/workflows/official-feed-preflight.yml'
   workflow_dispatch:
 
 permissions:
