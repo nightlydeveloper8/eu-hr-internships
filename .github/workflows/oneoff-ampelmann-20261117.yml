@@ -42,10 +42,11 @@ jobs:
               row={'cycle':n,'stamp':datetime.now(timezone.utc).isoformat(),'verified':False}
               try:
                   body,_,landing=client.request(base,attempts=1,timeout=10)
-                  if canonical_url(landing)!=canonical_url(base):raise ValueError('Inventory landing redirected')
+                  if landing.rstrip('/')!=base.rstrip('/'):raise ValueError('Inventory landing redirected')
                   landing_doc=Document(body,landing)
                   links=[canonical_url(__import__('urllib.parse',fromlist=['urljoin']).urljoin(landing,href))
-                         for href,_,_ in landing_doc.links]
+                         for href,_,_ in landing_doc.links
+                         if __import__('urllib.parse',fromlist=['urljoin']).urlsplit(__import__('urllib.parse',fromlist=['urljoin']).urljoin(landing,href)).path.startswith('/o/')]
                   listed=canonical_url(job) in links
                   row['listed_in_current_official_careers']=listed
                   if not listed:raise ValueError('Exact vacancy not observed on current careers inventory')
