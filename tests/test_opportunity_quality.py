@@ -66,6 +66,26 @@ class OpportunityBacklogTests(unittest.TestCase):
         self.assertEqual(r["ranked_source_count"],0)
         self.assertEqual(r["status_counts"]["unapproved_source_host"],1)
 
+    def test_many_working_students_cannot_outrank_single_hr_internship(self):
+        reason="No available vacancy-specific application entry established"
+        students=[job("ws-"+str(i),reason,source_id="working-only",
+                      internship_type="working-student") for i in range(12)]
+        internship=job("hr-intern",reason,source_id="internship-one")
+        sources=[dict(id=sid,enabled=True,allowed_hosts=["careers.example"])
+                 for sid in ("working-only","internship-one")]
+        report=analyze(dict(updated_at=STAMP,jobs=students+[internship],
+                            countries={"SE":"Sweden"}),sources,{},limit=5)
+        self.assertEqual(report["unverified_records"],13)
+        self.assertEqual(report["unverified_hr_internship_records"],1)
+        self.assertEqual(report["unverified_working_student_records"],12)
+        self.assertEqual(report["ranked_internship_source_count"],1)
+        self.assertEqual(report["ranked_sources"][0]["source_id"],"internship-one")
+        self.assertEqual(report["ranked_sources"][0]["current_unverified_hr_internships"],1)
+        self.assertEqual(report["ranked_sources"][1]["current_unverified_hr_internships"],0)
+        self.assertEqual(report["ranked_sources"][1]["current_unverified_working_students"],12)
+        self.assertEqual(report["ranked_sources"][1]["score_heuristic_not_success_probability"],0)
+        self.assertEqual(report["ranked_sources"][0]["representative_ids"][0]["opportunity_type"],"internship")
+
     def test_invalid_catalog_timestamp_never_claims_success(self):
         with self.assertRaises(ValueError):
             analyze(dict(jobs=[]),[],{})
