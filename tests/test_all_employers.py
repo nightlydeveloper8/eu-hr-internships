@@ -22,7 +22,17 @@ class AllEmployerTests(unittest.TestCase):
  def test_all_real_employers_have_exactly_one_active_collector_and_assignment_is_idempotent(self):
   c,s=provision(read(ROOT/'data/companies.json',[]),read(ROOT/'data/sources.json',[]));self.assertGreaterEqual(len(c),842)
   enabled={x['id'] for x in s if x.get('enabled')}
-  self.assertTrue(all(len(enabled.intersection(x['source_ids']))==1 for x in c))
+  # An explicitly held, reviewed source is deliberately NOT collected:
+  # assert zero enabled sources only under the fail-closed activation hold.
+  for company in c:
+   active=enabled.intersection(company['source_ids'])
+   if company.get('collection_activation_hold'):
+    self.assertEqual(len(active),0,company['id'])
+    self.assertTrue(any(sid in {s['id'] for s in s_list}
+                         for sid in company['source_ids'] for s_list in
+                         [[s for s in s if not s.get('enabled')
+                           and s.get('company_id')==company['id']]]))
+   else:self.assertEqual(len(active),1,company['id'])
   self.assertEqual(provision(c,s),(c,s))
   assigned=[sid for i in range(8) for sid in enabled if shard_for(sid,8)==i]
   self.assertEqual(len(assigned),len(enabled));self.assertEqual(set(assigned),enabled)
