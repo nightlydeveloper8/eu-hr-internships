@@ -235,6 +235,22 @@ class AdapterIntegrationTests(unittest.TestCase):
         self.assertEqual(limited["closure_eligible"],[])
         self.assertLessEqual(limited["report"]["requests"],source()["max_requests"])
 
+    def test_manual_cli_preview_reuses_regular_pipeline_only_in_temporary_directory(self):
+        from scripts.preview_reviewed_feed_source import preview
+        input_source=source()
+        result=preview(input_source,{"jobs":[]},[input_source],
+                       discovery_client=Discovery(),ats_client_factory=ATS)
+        self.assertEqual(result["state"],"staging-policy-v2-verified",result)
+        self.assertEqual(result["verified_staging_new_distinct"],1)
+        self.assertEqual(result["staging_verified_internships"],1)
+        self.assertEqual(result["closure_eligible"],[])
+        self.assertEqual(result["requests"],result["feed_requests"]+result["ats_requests"])
+        self.assertEqual(result["baseline_catalog_ids_lost"],0)
+        self.assertFalse(result["production_catalog_modified"])
+        self.assertFalse(result["source_enabled"])
+        self.assertEqual(result["production_verified_vacancies_added"],0)
+        self.assertEqual(result["applications_submitted"],0)
+
     def test_production_requires_separate_rollout_authority_and_budgetclient(self):
         enabled=dict(source(), enabled=True, staging_only=False,
                      rollout_approved=True,rollout_authorization="approved-v2-reviewed-2026-11-17")
