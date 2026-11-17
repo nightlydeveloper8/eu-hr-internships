@@ -1,5 +1,6 @@
 """Offline regression tests for approved, same-posting Recruitee XML records."""
 import unittest
+from html import escape
 
 from collector.classify import classify_role
 from collector.public_feeds import recruitee_records
@@ -11,10 +12,10 @@ APPLY = VACANCY + '/c/new'
 
 
 def xml(*, apply=APPLY, identifier='2822573', title='Internship People & Organisation'):
-    return (f'<offers><offer><id>{identifier}</id><title>{title}</title>'
+    return (f'<offers><offer><id>{identifier}</id><title>{escape(title)}</title>'
             '<city>Delft</city><country_code>NL</country_code>'
             '<description>Support the Human Resources team and HR ServiceDesk.</description>'
-            f'<careers_url>{VACANCY}</careers_url><apply_url>{apply}</apply_url>'
+            f'<careers_url>{escape(VACANCY)}</careers_url><apply_url>{escape(apply)}</apply_url>'
             '</offer></offers>').encode()
 
 
