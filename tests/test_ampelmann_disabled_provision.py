@@ -1,9 +1,11 @@
 """Disabled-source regression and daily auto-provisioning guard; no employer calls."""
 import copy
+import json
 import unittest
 
 from collector.company_registry import validate_registry
 from collector.daily import provision
+from collector.pipeline import ROOT
 from scripts.prepare_ampelmann_disabled import prepare, COMPANY_ID, SOURCE_ID, EMPLOYER
 
 
@@ -18,7 +20,8 @@ class AmpelmannDisabledTests(unittest.TestCase):
         self.assertEqual(sources[0]['feed_format'], 'recruitee-public-xml')
         self.assertEqual(sources[0]['allowed_hosts'], ['careers.ampelmann.nl'])
         self.assertEqual(companies[0]['source_ids'], [SOURCE_ID])
-        self.assertTrue(validate_registry(companies, {'units': []}, sources))
+        geography=json.loads((ROOT/'data/geography.json').read_text())
+        self.assertTrue(validate_registry(companies, geography, sources))
 
     def test_daily_provision_does_not_enable_universal_crawler(self):
         companies, sources, _ = prepare([], [])
