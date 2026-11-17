@@ -24,6 +24,9 @@ def generate():
     write(ROOT/'data/company-coverage.json',report);write(ROOT/'docs/company-discovery-queue.json',discovery_queue(geography,report,plan))
     from collector.provinces import generate_all
     generate_all()
+    # Reuse the published catalog and source reports; NO extra network traffic.
+    from scripts.opportunity_quality import generate as generate_opportunity_quality
+    generate_opportunity_quality()
     print(report['company_count'],'companies;',report['monitored_companies'],'monitored;',len(report['regions']),'regional research areas')
     return report
 
