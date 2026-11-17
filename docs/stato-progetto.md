@@ -1,5 +1,13 @@
 # Stato di ripresa — People Placement
 
+## 17 novembre 2026 — ranking riparato per internship HR, non working student
+
+In [PR #56](https://github.com/nightlydeveloper8/eu-hr-internships/pull/56), la nuova coda automatica `scripts/opportunity_quality.py` è stata migliorata **prima dell'integrazione** per separare i tipi di opportunità. Sul catalogo `ab51981`, i 307 record `unverified` sono **266 internship, 31 working student e 10 traineeship**; 51 gruppi di fonte idonei a un audit offline, ma **solo 48** con almeno un internship HR non verificato. Lo score ordina ora **esclusivamente gli internship HR** per errore di domanda/identità e costo storico, non lascia che numerosi working student superino gli stage. Gli altri ruoli restano visibili separatamente per evitare confusione.
+
+La selezione motivata delle prime 8 fonti è documentata in [docs/opportunity-first-batch-2026-11-17.md](opportunity-first-batch-2026-11-17.md): **47 record internship ancora non verificati**, non 47 candidature. Randstad Italia 22, L'Oréal 11, Center Parcs 3, HB RTS 2, Kenonz 2, AXS logistiek 3, Salomon 3, BAS Group 1. Ogni eventuale intervento dovrà provare **un pattern ATS condiviso**, preservare ownership e scartare URL bloccati e moduli generici, poi misurare i nuovi record realmente verified e il costo. Danone non ripetuta dopo `HTTPError` nel pilota di oggi, Tyche non promossa per ID non provato, Achmea/Personio e casi di attribuzione del datore non promossi.
+
+Nuovi test negativi distinguono un gruppo con **12 working student** da uno con **1 internship HR**; prevale correttamente il secondo. Questa correzione comporta **0 GET, 0 browser, 0 candidature, 0 fonti abilitate e 0 stage nuovi in produzione**. Il report ordinario funzionerà solo dopo eventuale merge e ciclo `collect/publish` autorizzato. PR #41/#46/#57 sono state rese **ready for review** dopo rebase e CI verdi, senza merge; #56 rimane ready. Verificare l'ultimo SHA e la CI dopo questo checkpoint prima di qualsiasi altra decisione.
+
 ## 17 novembre 2026 — ripresa di tutti i filoni aperti e metrica opportunity-first
 
 **Baseline di verità:** `main ab51981fff5c2bb57a775490eab3464f43b4825a`, ultima raccolta ordinaria [#44042092898](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44042092898) 18/18 success, ma `update_status=partial`, **363 ID, 28 stage HR open/verified policy v2 e 1 working student**, nuovi stage realmente prodotti da questo intervento **0**. 1.896 aziende attempted, 68 collected, 32 verified-empty, 532 partial, 282 blocked/failed, 982 discovery-incomplete; monitor Issue #1 resta aperto. Non chiamare copertura UE27 completa.
