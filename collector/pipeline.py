@@ -202,7 +202,17 @@ def record_countries(record):
         return sorted({code for c in record['countries'] for code in country_codes('',c)})
     return country_codes(record['location'],record.get('country'))
 
-def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
+def process_source(source,client,stamp,prev_count=0,verify=True,cache=None, *,
+                   official_feed_preview=False,official_feed_prior_jobs=None,
+                   official_feed_ats_client_factory=None):
+    if source.get('adapter')=='jobtech-policy-v2':
+        from .official_feed_adapter import process_jobtech_source
+        baseline = (official_feed_prior_jobs if official_feed_prior_jobs is not None
+                    else read(ROOT/'data/catalog.json',{'jobs':[]}).get('jobs',[]))
+        args=dict(prior_jobs=baseline,verify=verify,preview=official_feed_preview)
+        if official_feed_ats_client_factory is not None:
+            args['ats_client_factory']=official_feed_ats_client_factory
+        return process_jobtech_source(source,client,stamp,**args)
     current=[];successful=set();closure_eligible=set();partial_sources=set()
     LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
     report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
@@ -386,6 +396,9 @@ def run(source_ids=None,verify=True,output=ROOT/'data'):
     counts={r['id']:r.get('collected',0) for r in prior_report.get('sources',[])}
     stamp=now();client=Client()
     parts=[process_source(reviewed_source(source,identity_reviews),client,stamp,counts.get(source['id'],0),verify) for source in selected]
+    # Fresh official ATS proofs may finish after the collection began.
+    # Their verification timestamp cannot be later than the finalize clock.
+    if any(s.get('adapter')=='jobtech-policy-v2' for s in selected):stamp=now()
     return finalize(registry,selected,prior,prior_report,parts,stamp,output)
 
 def main():
