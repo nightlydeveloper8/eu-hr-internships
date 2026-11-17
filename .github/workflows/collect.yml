@@ -107,6 +107,8 @@ jobs:
           pattern: employer-shard-*
           path: .staging/results
           merge-multiple: true
+      - name: Record per-country metric before this run
+        run: python scripts/country_metric.py --json .staging/metrics/country-metric-before.json > /dev/null
       - name: Require a result for every employer, merge and validate
         run: |
           python -m collector.daily merge --shards 16
@@ -114,6 +116,9 @@ jobs:
           python -m collector.pipeline --validate
           python scripts/evaluate.py
           python scripts/build.py
+      - name: Per-country metric (job summary and artifact)
+        if: always()
+        run: python scripts/country_metric.py --compare .staging/metrics/country-metric-before.json --json .staging/metrics/country-metric-after.json --summary
       - name: Retain catalog and per-employer outcomes
         if: always()
         uses: actions/upload-artifact@v4
@@ -128,6 +133,8 @@ jobs:
             docs/evaluation-report.json
             docs/country-research-progress.json
             docs/company-integration-queue.json
+            .staging/metrics/*.json
+          include-hidden-files: true
           retention-days: 14
       - name: Publish collected records and honest coverage
         run: |

@@ -27,6 +27,10 @@ Flevoland is the fifth shared provincial research view: six CBS municipalities, 
 
 Utrecht reuses the shared provincial model and daily collectors: 26 CBS municipalities, 104 settlements and 51 reviewed employers (20 with documented 50+ employees). After recovery onto main with PRs #11–#13, four HR internships have current policy v2 application evidence: Remia, Berenschot and two AS Watson positions. Trunkrs (past September 2026 intake) and Domino’s (September without a year) remain unverified pending intake confirmation. All 310 latest published main records and all 321 original Utrecht catalog IDs are preserved in the combined 322-record archive. The region uses NUTS 2024 `NL35`. See [the recovery report](docs/utrecht-recovery.md), [the original research](docs/utrecht-mappatura.md) and `utrecht.html`. Existing daily integration is prepared; no merge or production deployment was performed.
 
+## Public employment-service sources (Phase 1, 17 November 2026)
+
+Official national job banks are reviewed one by one for terms, data licence and robots.txt before integration ([access review](docs/fonti-pubbliche.md), [draft access requests](docs/richieste-accesso.md)). Sweden's JobTech JobSearch (Arbetsförmedlingen, CC0) is integrated as `public-se-jobtech`; Germany (BA), France (France Travail), EURES, Switzerland (Job-Room) and the UK (DWP) are not integrated until access is clarified. Public-service records link to the official advertisement, never carry contact details, merge into an employer's own listing only on an unambiguous match, and remain unverified until a public-API verification rule is adopted. `scripts/country_metric.py` reports the 29-country table (EU-27, Switzerland, United Kingdom) in each collection run's summary and artifacts.
+
 ## What is implemented
 
 - Python collectors for Greenhouse, Lever (global and EU), Ashby and SmartRecruiters; pagination and fixture tests for all four.

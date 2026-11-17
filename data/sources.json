@@ -48478,5 +48478,28 @@
     "reviewed_on": "2026-11-16",
     "permission_basis": "Official corporate page publishes exact tenant; public offers feed and observed application entry; robots enforced each request",
     "discovery_scope": "All published offers returned by reviewed feed; actual posting geography and role determine inclusion"
+  },
+  {
+    "id": "public-se-jobtech",
+    "employer": "Arbetsförmedlingen – Platsbanken (JobTech JobSearch)",
+    "adapter": "jobtech-search",
+    "enabled": true,
+    "source_kind": "public-employment-service",
+    "career_url": "https://arbetsformedlingen.se/platsbanken",
+    "allowed_hosts": [
+      "arbetsformedlingen.se",
+      "jobsearch.api.jobtechdev.se"
+    ],
+    "target_countries": [
+      "SE"
+    ],
+    "reviewed_on": "2026-11-17",
+    "licence": "CC0-1.0",
+    "permission_basis": "Arbetsförmedlingen open data (CC0) through the documented JobTech JobSearch API; no key or login; robots.txt checked each run (absent on review date)",
+    "documentation_url": "https://jobtechdev.se/en/components/jobsearch",
+    "access_review": "docs/fonti-pubbliche.md",
+    "discovery_scope": "Relevance-ranked keyword queries for placements (praktik, praktikant, internship, trainee) in HR/recruitment; only Swedish workplaces; final HR internship title and country rules decide inclusion. Absence from a query never closes an ad: only an explicit removal, a 404 on /ad/{id} or a passed deadline does.",
+    "collection_seconds": 300,
+    "max_requests": 160
   }
 ]
