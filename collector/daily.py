@@ -49,6 +49,14 @@ def provision(companies,sources):
     companies=copy.deepcopy(companies);sources=copy.deepcopy(sources)
     by_id={s['id']:s for s in sources}
     for company in companies:
+        # Explicit review hold: a disabled reviewed source must never cause an
+        # enabled auto-universal fallback on the next daily provisioning run.
+        # Activation requires removing the hold AND enabling the reviewed source
+        # in a separately authorized change.
+        if company.get('collection_activation_hold'):
+            if any(by_id[s].get('enabled') for s in company.get('source_ids',[]) if s in by_id):
+                raise ValueError('Held employer has an enabled source: '+company['id'])
+            continue
         active=[by_id[s] for s in company.get('source_ids',[]) if s in by_id and by_id[s].get('enabled')]
         if active:continue
         starts=list(dict.fromkeys(canonical_url(u) for u in [company.get('career_url'),company.get('website_url')] if u))
