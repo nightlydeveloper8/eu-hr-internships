@@ -28,10 +28,9 @@ class AllEmployerTests(unittest.TestCase):
    active=enabled.intersection(company['source_ids'])
    if company.get('collection_activation_hold'):
     self.assertEqual(len(active),0,company['id'])
-    self.assertTrue(any(sid in {s['id'] for s in s_list}
-                         for sid in company['source_ids'] for s_list in
-                         [[s for s in s if not s.get('enabled')
-                           and s.get('company_id')==company['id']]]))
+    held_disabled={src['id'] for src in s if not src.get('enabled')
+                   and src.get('company_id')==company['id']}
+    self.assertTrue(bool(held_disabled.intersection(company['source_ids'])),company['id'])
    else:self.assertEqual(len(active),1,company['id'])
   self.assertEqual(provision(c,s),(c,s))
   assigned=[sid for i in range(8) for sid in enabled if shard_for(sid,8)==i]
