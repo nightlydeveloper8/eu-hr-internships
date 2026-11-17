@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 17 novembre 2026 — pilota 16 shard della frontier universal: 28.193 voci superflue, nessun HTTP risparmiato attestato
+
+**Prova reale offline [#44172195252](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44172195252)**: 335 fonti universal con matching HR 0 e coda pendente, 335/335 cache ripristinate; 146.122 pendenti riportati, **138.330** voci nel checkpoint (troncatura 2.000/fonte), **28.044 URL duplicati esatti + 149 provider assets = 28.193 voci (20,38%)** sicuramente ridondanti; **110.137 URL distinti non tecnici** preservabili. Le altre 350 pagine di navigazione sospette non sono automaticamente escluse. Lo script `scripts/audit_pending_frontiers.py` conserva distinzione report vs snapshot. **Zero GET a datori** durante l'audit, zero risparmio richieste dimostrato; il vecchio crawler già evita secondi GET dello stesso URL con `urls_seen`.
+
+**Correzione su branch isolato, non integrata:** `collector/universal.py` ora deduplica per URL esatto con OR del flag job, profondità minima e filtraggio sole risorse provider statiche; contatori per misurare beneficio sul prossimo ciclo. Regressioni e CI [#44172812792](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44172812792) success; nessuna chiusura o promozione dei record, nessun cambio robots/host/budget. Report [frontier-shadow-audit-2026-11-17.md](frontier-shadow-audit-2026-11-17.md). Workflow one-shot **rimosso**. **Nessun merge, rollout o produzione**. Prossimo gate: review e (solo se autorizzato) confronto di due cicli ordinarî, richieste/byte, URL distinti ripresi, HR match e verified, verificando zero ID persi.
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
