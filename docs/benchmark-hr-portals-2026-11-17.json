@@ -81,7 +81,7 @@
       "discovery_url": "https://magnet.me/en/opportunity/1108405/internship-people---organisation",
       "official_vacancy_url": "https://careers.ampelmann.nl/o/internship-people-organisation-1",
       "official_application_url_observed": null,
-      "official_application_evidence": "form-fields-visible-in-public-html",
+      "official_application_evidence": "BudgetClient robots/official inventory/title/ID 2822573 verified; strict-enabled-form NOT established; policy v2 incomplete",
       "language_evidence": "English required; Dutch plus",
       "catalog_overlap_at_baseline": "not-found",
       "potential_catalog_ids": [],
@@ -223,7 +223,7 @@
       "discovery_url": "https://magnet.me/en/opportunity/1108832/first-gen--people---culture-intern",
       "official_vacancy_url": "https://www.pepsicojobs.com/main/jobs/480557?lang=en-us",
       "official_application_url_observed": null,
-      "official_application_evidence": "official-vacancy-no-verified-form",
+      "official_application_evidence": "official search result only; web-reader robots.txt and job page HTTP 403; no BudgetClient/ATS proof",
       "language_evidence": "not-assessed",
       "catalog_overlap_at_baseline": "not-found-by-official-posting-id",
       "potential_catalog_ids": [],
@@ -243,7 +243,7 @@
       "discovery_url": "https://www.jobteaser.com/nl/job-offers/ba610404-1da7-47d2-99be-f7cf32b1a7c4-pepsico-soda-stream-hr-intern",
       "official_vacancy_url": "https://www.pepsicojobs.com/main/jobs/479166?lang=en-US",
       "official_application_url_observed": null,
-      "official_application_evidence": "official-vacancy-no-verified-form",
+      "official_application_evidence": "official search result only; web-reader robots.txt and job page HTTP 403; no BudgetClient/ATS proof",
       "language_evidence": "not-assessed",
       "catalog_overlap_at_baseline": "not-found-by-official-posting-id",
       "potential_catalog_ids": [],
@@ -284,5 +284,108 @@
       "https://www.pepsicojobs.com/main/jobs/480557?lang=en-us",
       "https://www.pepsicojobs.com/main/jobs/479166?lang=en-US"
     ]
+  },
+  "offical_preflight_20261117": {
+    "scope": "GET-only, source-disabled, no production activation",
+    "ampelmann": {
+      "run_initial": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44143996768",
+      "run_corrected": "https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44144200129",
+      "first_run": {
+        "http_requests": 2,
+        "bytes_read": 305445,
+        "source_seconds": 2.059,
+        "outcome": "tooling-guard-bug",
+        "details": "Local script incorrectly applied job-only canonical_url to landing '/'; no vacancy was verified"
+      },
+      "corrected_run": {
+        "http_requests": 3,
+        "bytes_read": 603229,
+        "source_seconds": 2.855,
+        "robots_check": "passed-in-BudgetClient",
+        "official_careers_inventory_exact_vacancy": true,
+        "title_match": true,
+        "structured_posting_id": "2822573",
+        "same_page_strict_form": false,
+        "outcome": "incomplete",
+        "reason": "Enabled visible applicant form not established in static HTML; no browser fallback"
+      },
+      "combined": {
+        "http_requests": 5,
+        "bytes_read": 908674,
+        "seconds": 4.914,
+        "renderings": 0,
+        "post_requests": 0
+      },
+      "two_positive_cycles": false,
+      "verified_policy_v2": false,
+      "staging_imported": false,
+      "production_imported": false,
+      "oneoff_workflow_removed": true,
+      "caveats": [
+        "The web reader shows application fields but that is not sufficient BudgetClient same-vacancy proof.",
+        "A distinct-day two-cycle proof remains outstanding.",
+        "Do not infer /c/new or API tenant without an observed employer publication."
+      ]
+    },
+    "pepsico": {
+      "official_vacancy_ids": [
+        "480557",
+        "479166"
+      ],
+      "public_search_indicators": "Official PepsiCo search results index both requisitions; not a fresh candidate form",
+      "robots_fetch_via_web_reader": "HTTP 403 Forbidden",
+      "job_page_fetch_via_web_reader": "HTTP 403 Forbidden for both direct URLs",
+      "collector_budgetclient_requests": 0,
+      "verified_policy_v2": 0,
+      "outcome": "blocked-from-collector-preflight-pending-access-policy-clarification",
+      "note": "No bypass, cookies, alternate host scraping, or unauthorized fetch. Search snippets are not policy v2 evidence.",
+      "secondary_official_indexed_candidate": {
+        "id": "481204",
+        "title": "First Gen: HR Intern Benelux",
+        "city": "Utrecht",
+        "url": "https://www.pepsicojobs.com/main/jobs/481204?lang=en-US",
+        "status": "discovery-only-not-counted-among-the-9"
+      }
+    },
+    "existing_country_backlog_snapshot": {
+      "baseline_sha": "40f655ca915de1f921ec688b4e7f98ade46cbbc0",
+      "FR": {
+        "hr_internship_records": 46,
+        "open_verified": 5,
+        "unverified": 37,
+        "closed": 4,
+        "unverified_on_smartrecruiters": 11,
+        "unverified_on_ashby": 2
+      },
+      "BE": {
+        "hr_internship_records": 4,
+        "open_verified": 3,
+        "unverified": 1,
+        "closed": 0,
+        "unverified_on_smartrecruiters": 1
+      },
+      "DE": {
+        "hr_internship_records": 28,
+        "open_verified": 0,
+        "unverified": 26,
+        "closed": 2,
+        "unverified_on_personio": 2
+      },
+      "interpretation": "Unverified counts are candidate backlog, not future verified growth; no valid forecast of European opportunity supply."
+    },
+    "daily_cost_baseline": {
+      "date": "2026-11-16",
+      "total_requests": 36174,
+      "total_bytes": 4159256878,
+      "total_renderings": 3286,
+      "total_source_seconds": 43410.44,
+      "no_hr_match_sources": 1832,
+      "no_hr_match_requests": 34192,
+      "no_hr_match_bytes": 3765755480,
+      "no_hr_match_renderings": 3187,
+      "no_hr_match_request_percent": 94.52,
+      "no_hr_match_render_percent": 96.99,
+      "decision": "No throttling change from one day; compare multiple days first"
+    }
   }
 }
