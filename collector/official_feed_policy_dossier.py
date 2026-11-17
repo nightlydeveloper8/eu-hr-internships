@@ -198,6 +198,7 @@ def review(candidate, *, approved_host, approved_inventory_url=None,
                       for thing in (https_url(urljoin(final,href),{approved_host}),)
                       if thing)
             result["official_inventory_confirmed"]=found
+            result["reviewed_inventory_url"]=sitemap
             if not found:
                 raise ValueError("Employer's current inventory does not link to vacancy")
         else:
@@ -213,4 +214,5 @@ def review(candidate, *, approved_host, approved_inventory_url=None,
             result["requests"]+=client.requests
             result["bytes_read"]+=client.bytes
         result["elapsed_seconds"]=round(time.monotonic()-start,3)
+        result["checked_at"]=datetime.now(timezone.utc).isoformat()
     return result
