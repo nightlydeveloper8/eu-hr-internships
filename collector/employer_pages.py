@@ -130,7 +130,14 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
         employer=data.get('hiringOrganization',{}).get('name')
         if employer and not any(token in employer.lower() for token in source.get('employer_tokens',[source['employer'].lower()])):raise ValueError('Unexpected hiring organisation')
         if countries:result['countries']=sorted({code for country in countries for code in country_codes('',country)})
-        result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=data.get('datePosted'),employment=' '.join(data.get('employmentType',[])) if isinstance(data.get('employmentType'),list) else data.get('employmentType',''),work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
+        employment=data.get('employmentType')
+        if isinstance(employment,list):
+            # JobPosting employmentType can be a list with null members; do not turn
+            # missing entries into the literal word "None" or discard the vacancy.
+            employment=' '.join(value.strip() for value in employment
+                                if isinstance(value,str) and value.strip())
+        elif not isinstance(employment,str):employment=''
+        result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=data.get('datePosted'),employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
     else:raise ValueError('No supported JobPosting structured data; no page-text guessing')
     if not result['title'] or not result['text']:raise ValueError('Missing structured title/description')
     # Job page is the official application entry point. Never invent an apply URL.
