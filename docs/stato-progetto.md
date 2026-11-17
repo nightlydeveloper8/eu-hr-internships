@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 17 novembre 2026 — ripresa documentale della PR #41 Drenthe
+
+Il checkpoint del [ramo #41](https://github.com/nightlydeveloper8/eu-hr-internships/pull/41) è stato riallineato alla baseline aggiornata `ab51981ff` **senza merge**. La prova Emmen del 16 novembre ha ricevuto `robots.txt unavailable: 403`; organico ancora **ignoto** in quel checkpoint, programma generico non equivalso a vacancy HR. Prove originali conservate in `docs/drenthe-2026-11-16-evidence.json` e `docs/drenthe-2026-11-16.md`. La distinta PR #57 documenta una qualificazione di *DOC Kaas*, non una nuova candidatura. Nessuna fonte/annuncio/rollout aggiunto; solo continuità delle evidenze. Non ripetere automaticamente GET proibiti.
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
