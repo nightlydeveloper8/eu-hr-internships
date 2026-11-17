@@ -24,7 +24,7 @@ def _utc(value):
     return dt.astimezone(timezone.utc)
 
 
-def staging_part(candidate, dossier, source, stamp, prior_jobs=()):
+def staging_part(candidate, dossier, source, stamp, prior_jobs=(), *, production=False):
     """Create a normal finalize-compatible part; no file I/O and no network.
 
     A partial single-candidate inventory must NEVER authorize closure by absence.
@@ -33,11 +33,20 @@ def staging_part(candidate, dossier, source, stamp, prior_jobs=()):
     report = dict(id=sid, employer=source.get("employer", ""),
                   adapter="jobtech-policy-v2-staging", checked_at=stamp,
                   status="partial", complete=False, closure_complete=False,
-                  records_inspected=0, matching=0, source_enabled=False,
-                  policy_v2_staging=True, page_failures=0)
+                  records_inspected=0, matching=0, source_enabled=bool(source.get('enabled')),
+                  policy_v2_staging=not production, page_failures=0)
     result = dict(report=report, jobs=[], closure_eligible=[])
     try:
-        if not sid or source.get("enabled") is not False or source.get("staging_only") is not True:
+        if not sid:
+            raise ValueError("A stable source ID is required")
+        if production:
+            if (source.get("enabled") is not True or
+                    source.get("staging_only") is not False or
+                    source.get("rollout_approved") is not True or
+                    not isinstance(source.get("rollout_authorization"), str) or
+                    len(source["rollout_authorization"].strip()) < 10):
+                raise ValueError("Production policy-v2 promotion requires explicit rollout authority")
+        elif source.get("enabled") is not False or source.get("staging_only") is not True:
             raise ValueError("Only an explicitly disabled staging source is allowed")
         if source.get("ownership_scope") != "reviewed-hosts" or source.get("require_employer_identity") is not True:
             raise ValueError("Strict employer ownership scope is required")
@@ -105,7 +114,7 @@ def staging_part(candidate, dossier, source, stamp, prior_jobs=()):
         method = dossier["application_proof_method"]
         job = dict(
             id=job_id, external_id=parent["ats_id"], source_id=sid,
-            source_name=employer, source_type="jobtech-policy-v2-staging",
+            source_name=employer, source_type=("jobtech-policy-v2" if production else "jobtech-policy-v2-staging"),
             source_posting_id=parent["ats_id"], employer=employer, title=title,
             country="SE", countries=["SE"], city=city,
             url=parent["job_page"], apply_url=parent["application_url"],
