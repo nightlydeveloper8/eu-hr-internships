@@ -14,7 +14,7 @@
   "selection": "Purposeful first-screen HR-internship NL sample from one competitor, not random and not representative; external portals are discovery only.",
   "official_web_read_only": true,
   "robots_preflight_budgetclient_run": false,
-  "validation_rule": "Never promote: absence/overlap is catalog snapshot only; official page, CTA or HTML form alone is not a fresh policy-v2 BudgetClient/robots/source-gated same-vacancy validation.",
+  "validation_rule": "Never promote: absence/overlap is catalog snapshot only; official page, CTA or HTML form alone is not a fresh policy-v2 BudgetClient/robots/source-gated same-vacancy validation. JDE Peet's official job URL carried over from catalog; not independently live-read this session.",
   "leads": [
     {
       "lead_id": "stryker-r576472",
@@ -31,7 +31,8 @@
       "language_evidence": "not-assessed",
       "catalog_overlap_at_baseline": "not-found",
       "potential_catalog_ids": [],
-      "policy_v2_verified_in_this_benchmark": false
+      "policy_v2_verified_in_this_benchmark": false,
+      "official_web_observed_this_session": true
     },
     {
       "lead_id": "henkel-26101817",
@@ -48,7 +49,8 @@
       "language_evidence": "English required; Dutch preferred",
       "catalog_overlap_at_baseline": "not-found",
       "potential_catalog_ids": [],
-      "policy_v2_verified_in_this_benchmark": false
+      "policy_v2_verified_in_this_benchmark": false,
+      "official_web_observed_this_session": true
     },
     {
       "lead_id": "asml-j00355639",
@@ -65,7 +67,8 @@
       "language_evidence": "English excellent",
       "catalog_overlap_at_baseline": "not-found",
       "potential_catalog_ids": [],
-      "policy_v2_verified_in_this_benchmark": false
+      "policy_v2_verified_in_this_benchmark": false,
+      "official_web_observed_this_session": true
     },
     {
       "lead_id": "ampelmann-people-organisation-1",
@@ -82,7 +85,8 @@
       "language_evidence": "English required; Dutch plus",
       "catalog_overlap_at_baseline": "not-found",
       "potential_catalog_ids": [],
-      "policy_v2_verified_in_this_benchmark": false
+      "policy_v2_verified_in_this_benchmark": false,
+      "official_web_observed_this_session": true
     },
     {
       "lead_id": "hunkemoller-jr78931",
@@ -99,7 +103,8 @@
       "language_evidence": "Dutch fluent required",
       "catalog_overlap_at_baseline": "not-found",
       "potential_catalog_ids": [],
-      "policy_v2_verified_in_this_benchmark": false
+      "policy_v2_verified_in_this_benchmark": false,
+      "official_web_observed_this_session": true
     },
     {
       "lead_id": "philips-594564",
@@ -118,7 +123,8 @@
       "potential_catalog_ids": [
         "903efc58fb2fabb24b59"
       ],
-      "policy_v2_verified_in_this_benchmark": false
+      "policy_v2_verified_in_this_benchmark": false,
+      "official_web_observed_this_session": true
     },
     {
       "lead_id": "jde-talent-acquisition",
@@ -131,14 +137,15 @@
       "discovery_url": "https://magnet.me/en/opportunity/1103588/internship-talent-acquisition-human-resources",
       "official_vacancy_url": "https://careers-nl.jdepeets.com/job-posting-detail?id=744000158015131&return_url=%2Fjob-search%2F",
       "official_application_url_observed": null,
-      "official_application_evidence": "form-not-established",
+      "official_application_evidence": "existing-official-url-in-catalog-not-readable-this-session",
       "language_evidence": "not-assessed",
       "catalog_overlap_at_baseline": "catalog-possible-overlap",
       "potential_catalog_ids": [
         "8b5138f67090ed0cd3b4",
         "ba254a8016887ae59fee"
       ],
-      "policy_v2_verified_in_this_benchmark": false
+      "policy_v2_verified_in_this_benchmark": false,
+      "official_web_observed_this_session": false
     }
   ]
 }
