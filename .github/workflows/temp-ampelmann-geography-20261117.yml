@@ -1,0 +1,37 @@
+name: TEMP reviewed Delft geography and held-source CI fix (remove)
+on:
+  push:
+    branches: [prep/ampelmann-disabled-20261117]
+    paths:
+      - .github/workflows/temp-ampelmann-geography-20261117.yml
+permissions:
+  contents: write
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: true}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Add reviewed Delft geography only in disabled Ampelmann record
+        run: |
+          python -m scripts.prepare_ampelmann_disabled --apply
+          python -m collector.daily provision
+          python -m unittest discover -s tests -p test_ampelmann_disabled_provision.py -v
+          python -m unittest discover -s tests -p test_all_employers.py -v
+          python -m unittest discover -s tests -p test_employer_discovery.py -v
+          python -m collector.pipeline --validate
+      - name: Commit data change on isolated branch only
+        run: |
+          test "$GITHUB_REF_NAME" = "prep/ampelmann-disabled-20261117"
+          git diff --stat
+          git diff --name-only | grep -Ev '^(data/companies.json|data/sources.json)$' && exit 1 || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/companies.json data/sources.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix: review Delft NL36/NL362 on disabled Ampelmann company"
+            git push origin HEAD:prep/ampelmann-disabled-20261117
+          fi
