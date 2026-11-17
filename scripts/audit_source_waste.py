@@ -90,9 +90,11 @@ def audit(coverage, target_date=None, topn=12):
     if not selected_date:
         raise ValueError('No dated source observations')
     date.fromisoformat(selected_date)
-    totals = {k: 0 if k != 'source_seconds' else 0.0 for k in ('requests', 'bytes', 'renderings', 'source_seconds')}
-    zero = dict(totals, source_days=0)
-    classified = defaultdict(lambda: dict(totals, source_days=0, pending_urls=0, sources_with_rendering=0))
+    empty_cost = {k: 0 if k != 'source_seconds' else 0.0 for k in ('requests', 'bytes', 'renderings', 'source_seconds')}
+    totals = dict(empty_cost)
+    zero = dict(empty_cost, source_days=0)
+    # Never seed a new bucket from running totals: doing so double counts HTTP.
+    classified = defaultdict(lambda: dict(empty_cost, source_days=0, pending_urls=0, sources_with_rendering=0))
     statuses = Counter()
     top = []
     active_rows = 0
