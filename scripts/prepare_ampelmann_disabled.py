@@ -39,6 +39,7 @@ COMPANY_TEMPLATE = dict(
     id=COMPANY_ID, name=EMPLOYER, career_url=CAREER,
     evidence_url=VACANCY, target_countries=['NL'],
     workplaces=[{'city': 'Delft', 'country': 'NL',
+                 'region_code': 'NL36', 'subregion_code': 'NL362',
                  'location_confidence': 'confirmed', 'evidence_url': VACANCY}],
     source_ids=[SOURCE_ID],
     collection_activation_hold=True,
@@ -76,6 +77,14 @@ def prepare(companies, sources):
             company.setdefault('target_countries', []).append('NL')
         company.setdefault('career_url', CAREER)
         company.setdefault('evidence_url', VACANCY)
+        # Geography codes are from data/geography.json: Delft en Westland is
+        # NL362, within Zuid-Holland NL36. Update ONLY our reviewed Delft
+        # workplace, not any independent employer evidence.
+        for place in company.get('workplaces', []):
+            if (place.get('city') == 'Delft' and place.get('country') == 'NL'
+                    and place.get('evidence_url') == VACANCY):
+                place.setdefault('region_code', 'NL36')
+                place.setdefault('subregion_code', 'NL362')
     else:
         company = deepcopy(COMPANY_TEMPLATE)
         companies.append(company)
