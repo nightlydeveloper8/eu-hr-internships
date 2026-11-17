@@ -341,8 +341,9 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     current=apply_ownership_reviews(current,reviews)
     reviewed=reconcile(previous,current,closure_eligible,stamp)
     jobs=deduplicate(apply_listing_reviews(reviewed,read(ROOT/'data/listing-reviews.json',[])))
-    from .public_sources import PUBLIC_API_ADAPTERS, merge_public_duplicates
-    jobs,public_duplicates=merge_public_duplicates(jobs,[s['id'] for s in registry if s.get('adapter') in PUBLIC_API_ADAPTERS])
+    from .public_sources import PUBLIC_API_ADAPTERS, SECONDARY_PUBLIC_ADAPTERS, merge_public_duplicates
+    jobs,public_duplicates=merge_public_duplicates(jobs,[s['id'] for s in registry if s.get('adapter') in PUBLIC_API_ADAPTERS],
+        [s['id'] for s in registry if s.get('adapter') in SECONDARY_PUBLIC_ADAPTERS])
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     for job in jobs:
         if canonical_url(job['url']) in explicitly_closed:

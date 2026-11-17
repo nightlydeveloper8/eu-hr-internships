@@ -16,7 +16,10 @@ import re
 from urllib.parse import urlencode, urlsplit
 from .classify import canonical_url, fold, plain
 
-PUBLIC_API_ADAPTERS = ('jobtech-search',)
+PUBLIC_API_ADAPTERS = ('jobtech-search', 'eures-search')
+# Pan-European copies yield to the employer's own listing and to a national
+# public service listing of the same vacancy.
+SECONDARY_PUBLIC_ADAPTERS = ('eures-search',)
 PUBLIC_SOURCE_KIND = 'public-employment-service'
 INVENTORY_EVIDENCE = 'official-public-api-active-listing'
 
@@ -57,6 +60,22 @@ def https_or_none(url):
         return None
 
 
+def _fatal(exc):
+    """Errors that must fail the whole source instead of skipping one query."""
+    return (type(exc).__name__ == 'CollectionBudgetExceeded' or getattr(exc, 'code', None) in (401, 403, 404, 429, 451)
+            or 'robots' in str(exc))
+
+
+def _retry_once(call):
+    """Retry a dropped connection, 5xx or truncated JSON body once."""
+    for attempt in (1, 2):
+        try:
+            return call()
+        except Exception as exc:
+            if attempt == 2 or _fatal(exc):
+                raise
+
+
 class PublicInventory(list):
     """Records plus collection statistics (same contract as universal.Inventory)."""
     def __init__(self, records=(), stats=None):
@@ -95,11 +114,18 @@ def jobtech_record(source, hit):
 
 def jobtech_records(source, client):
     base = 'https://jobsearch.api.jobtechdev.se'
-    records, queries, partial = {}, 0, []
+    records, queries, partial, errors = {}, 0, [], []
     for query in source.get('queries', JOBTECH_QUERIES):
         offset = 0
         while offset <= JOBTECH_MAX_OFFSET:
-            data = client.json(base + '/search?' + urlencode({'q': query, 'limit': JOBTECH_PAGE, 'offset': offset}))
+            url = base + '/search?' + urlencode({'q': query, 'limit': JOBTECH_PAGE, 'offset': offset})
+            try:
+                data = _retry_once(lambda: client.json(url))
+            except Exception as exc:
+                if _fatal(exc):
+                    raise
+                errors.append(dict(query=query, offset=offset, error=str(exc)[:160]))
+                break
             queries += 1
             hits = data.get('hits')
             if not isinstance(hits, list):
@@ -134,16 +160,189 @@ def jobtech_records(source, client):
         record = jobtech_record(source, hit)
         if record:
             records[record['external_id']] = record
+    if errors and not records:
+        raise ValueError('JobTech search unavailable: ' + errors[0]['error'])
     return PublicInventory(records.values(), dict(
-        status='ok', complete=False, closure_complete=False, queries=queries,
+        status='partial' if errors else 'ok', search_errors=errors[:20], complete=False, closure_complete=False, queries=queries,
         truncated_queries=partial, published_records=len(records), verified_closed_urls=closed,
         snapshot_kind='public-api-query-inventory',
+        discovery_scope=source.get('discovery_scope')))
+
+
+EURES_API = 'https://europa.eu/eures/api/jv-searchengine/public'
+EURES_PAGE = 50  # the portal accepts 10, 25 or 50
+EURES_MAX_PAGES = 6
+EURES_OFFERING_MAX_PAGES = 30
+# Multilingual title queries. Each query is paged only while its last page
+# still produced classifier matches; the internship offering facet is read in
+# full. Recall aids only: classification and explicit country still decide.
+EURES_QUERIES = (
+    'HR intern', 'HR internship', 'human resources internship', 'recruitment intern', 'talent acquisition intern',
+    'HR trainee', 'stage RH', 'stagiaire RH', 'stage ressources humaines', 'Praktikum HR', 'Praktikum Personal',
+    'Praktikant Personal', 'Werkstudent HR', 'Werkstudent Personal', 'Praktikum Recruiting', 'stage HR',
+    'stagiair HR', 'afstudeerstage HR', 'tirocinio risorse umane', 'stage risorse umane', 'tirocinio HR',
+    'prácticas recursos humanos', 'becario recursos humanos', 'prácticas RRHH', 'estágio recursos humanos',
+    'estágio RH', 'staż HR', 'praktyki HR', 'stáž HR', 'gyakornok HR', 'praktikant HR', 'HR praktik',
+    'harjoittelija HR', 'HR-harjoittelija',
+)
+EURES_COUNTRY_ALIASES = {'EL': 'GR', 'UK': 'GB'}
+# Some services (e.g. the Dutch UWV) do not transmit the employer's name.
+EURES_UNDISCLOSED_EMPLOYER = 'Employer not disclosed (see EURES advertisement)'
+
+
+def eures_criteria(keywords=(), offering=(), page=1):
+    return {
+        'resultsPerPage': EURES_PAGE, 'page': page, 'sortSearch': 'BEST_MATCH',
+        'keywords': [{'keyword': k, 'specificSearchCode': 'TITLE'} for k in keywords],
+        'publicationPeriod': None, 'occupationUris': [], 'skillUris': [], 'requiredExperienceCodes': [],
+        'positionScheduleCodes': [], 'sectorCodes': [], 'educationAndQualificationLevelCodes': [],
+        'educationGroupCodes': [], 'positionOfferingCodes': list(offering), 'locationCodes': [],
+        'euresFlagCodes': [], 'otherBenefitsCodes': [], 'requiredLanguages': [], 'advSearchRequiredLanguages': [],
+        'minNumberPost': None, 'sessionId': 'people-placement'}
+
+
+_NUTS = None
+
+
+def nuts_name(code):
+    global _NUTS
+    if _NUTS is None:
+        import json
+        from pathlib import Path
+        path = Path(__file__).resolve().parents[1] / 'data' / 'geography.json'
+        units = json.loads(path.read_text()).get('units', []) if path.exists() else []
+        _NUTS = {u['code']: u.get('latin_name') or u.get('name') for u in units}
+    return _NUTS.get(code)
+
+
+def eures_page_url(identifier):
+    return canonical_url('https://europa.eu/eures/portal/jv-se/jv-details/' + identifier + '?lang=en')
+
+
+def eures_record(source, jv):
+    identifier = str(jv.get('id') or '')
+    if not identifier:
+        raise ValueError('Malformed EURES vacancy summary')
+    if not jv.get('title'):
+        return None
+    location_map = jv.get('locationMap') or {}
+    countries, places = set(), []
+    for code, regions in location_map.items():
+        country = EURES_COUNTRY_ALIASES.get(code.upper(), code.upper())
+        if re.fullmatch(r'[A-Z]{2}', country):
+            countries.add(country)
+        for region in regions or []:
+            name = nuts_name(region)
+            if name and name not in places:
+                places.append(name)
+    if not countries:
+        return None
+    from datetime import datetime, timezone
+    created = jv.get('creationDate')
+    published = datetime.fromtimestamp(created / 1000, timezone.utc).isoformat() if isinstance(created, (int, float)) else None
+    languages = jv.get('availableLanguages') or []
+    employer = plain((jv.get('employer') or {}).get('name') or '')
+    if not employer or re.fullmatch(r'(?i)non renseign\w*|siehe beschreibung|not specified|n/?a|-+', employer):
+        employer = EURES_UNDISCLOSED_EMPLOYER
+    page = eures_page_url(identifier)
+    return dict(
+        inventory_evidence=INVENTORY_EVIDENCE, source_id=source['id'], external_id=identifier,
+        posting_identifier=identifier, employer=employer, title=plain(jv['title']),
+        location='; '.join(places + sorted(countries)), text=scrub(jv.get('description')), url=page, apply_url=page,
+        countries=sorted(countries), language=languages[0] if len(languages) == 1 else None, published_at=published,
+        valid_through=None, employment=plain(jv.get('positionOfferingCode') or ''),
+        city='; '.join(places), country=sorted(countries)[0] if len(countries) == 1 else None, work_mode=None)
+
+
+def eures_detail_summary(detail, identifier):
+    """Reduce a vacancy detail to the search-summary shape; contacts are dropped."""
+    profiles = detail.get('jvProfiles') or {}
+    profile = profiles.get(detail.get('preferredLanguage')) or next(iter(profiles.values()), {})
+    if not profile.get('title'):
+        return {'id': identifier}
+    location_map = {}
+    for place in profile.get('locations') or []:
+        if place.get('countryCode'):
+            regions = location_map.setdefault(place['countryCode'].upper(), [])
+            if place.get('region'):
+                regions.append(place['region'].upper())
+    return dict(id=detail.get('id') or identifier, title=profile['title'], description=profile.get('description'),
+                locationMap=location_map, employer={'name': (profile.get('employer') or {}).get('name')},
+                positionOfferingCode=profile.get('positionOfferingCode'), creationDate=detail.get('creationDate'),
+                availableLanguages=[detail['preferredLanguage']] if detail.get('preferredLanguage') else [])
+
+
+def eures_records(source, client):
+    from .classify import classify_role
+    records, requests, truncated, errors = {}, 0, [], []
+
+    def read(criteria):
+        nonlocal requests
+        data = _retry_once(lambda: client.post_json(EURES_API + '/jv-search/search', criteria))
+        requests += 1
+        jvs = data.get('jvs')
+        if not isinstance(jvs, list):
+            raise ValueError('Malformed EURES search page')
+        matches = 0
+        for jv in jvs:
+            record = eures_record(source, jv)
+            if not record:
+                continue
+            if record['external_id'] not in records and classify_role(record['title'], record['text'], record['employment']):
+                matches += 1
+            records.setdefault(record['external_id'], record)
+        return jvs, matches
+
+    # 1. Everything the national services coded as an internship.
+    def scan(label, criteria_for, max_pages, stop_without_matches):
+        for page in range(1, max_pages + 1):
+            try:
+                jvs, matches = read(criteria_for(page))
+            except Exception as exc:
+                if _fatal(exc):
+                    raise
+                errors.append(dict(query=label, page=page, error=str(exc)[:160]))
+                return
+            if len(jvs) < EURES_PAGE or (stop_without_matches and not matches):
+                return
+        truncated.append(label)
+
+    scan('positionOffering=internship', lambda page: eures_criteria(offering=['internship'], page=page),
+         EURES_OFFERING_MAX_PAGES, False)
+    # 2. Title queries, paged while they keep producing new HR internships.
+    for query in source.get('queries', EURES_QUERIES):
+        scan(query, lambda page, q=query: eures_criteria(keywords=[q], page=page), EURES_MAX_PAGES, True)
+    # 3. Known vacancies outside today's result windows: explicit status only.
+    closed = []
+    for url in source.get('known_job_urls', [])[:source.get('max_known_checks', 40)]:
+        identifier = urlsplit(url).path.rstrip('/').split('/')[-1]
+        if identifier in records:
+            continue
+        try:
+            jv = client.json(EURES_API + '/jv/id/' + identifier + '?requestLang=en&preferredLang=en')
+        except Exception as exc:
+            if getattr(exc, 'code', None) == 404:
+                closed.append(url)
+                continue
+            raise
+        requests += 1
+        record = eures_record(source, eures_detail_summary(jv, identifier))
+        if record:
+            records[record['external_id']] = record
+    if errors and not records:
+        raise ValueError('EURES search unavailable: ' + errors[0]['error'])
+    return PublicInventory(records.values(), dict(
+        status='partial' if errors else 'ok', search_errors=errors[:20],
+        complete=False, closure_complete=False, queries=requests, truncated_queries=truncated,
+        published_records=len(records), verified_closed_urls=closed, snapshot_kind='public-api-query-inventory',
         discovery_scope=source.get('discovery_scope')))
 
 
 def collect_public(source, client):
     if source['adapter'] == 'jobtech-search':
         return jobtech_records(source, client)
+    if source['adapter'] == 'eures-search':
+        return eures_records(source, client)
     raise ValueError('Unsupported public adapter: ' + source['adapter'])
 
 
@@ -164,31 +363,24 @@ def title_key(title):
     return re.sub(r'[^a-z0-9]+', ' ', value).strip()
 
 
-def merge_public_duplicates(jobs, public_source_ids):
-    """Fold a public-service copy into the employer's own listing.
-
-    A public record is merged only when exactly one non-public, non-closed
-    catalog record matches by (a) the employer application URL published by
-    the public service, or (b) the same employer, title and country. Ambiguous
-    matches are left as separate records rather than guessed.
-    """
-    public_source_ids = set(public_source_ids)
-    own = [j for j in jobs if j['source_id'] not in public_source_ids and j.get('status') != 'closed']
+def _fold_into(jobs, copies_from, targets_from):
+    """Merge each record of ``copies_from`` into its unique match in ``targets_from``."""
+    targets = [j for j in jobs if j['source_id'] in targets_from and j.get('status') != 'closed']
     by_url, by_identity = {}, {}
-    for job in own:
-        for url in {job.get('url'), job.get('apply_url')}:
+    for job in targets:
+        for url in {job.get('url'), job.get('apply_url'), job.get('external_application_url')}:
             if url:
                 by_url.setdefault(canonical_url(url), []).append(job)
         for country in job.get('countries', []):
             by_identity.setdefault((employer_key(job['employer']), title_key(job['title']), country), []).append(job)
     result, merged = [], 0
     for job in jobs:
-        if job['source_id'] not in public_source_ids or job.get('status') == 'closed':
+        if job['source_id'] not in copies_from or job.get('status') == 'closed':
             result.append(job)
             continue
         matches = []
         if job.get('external_application_url'):
-            matches = by_url.get(job['external_application_url'], [])
+            matches = list({id(m): m for m in by_url.get(job['external_application_url'], [])}.values())
         if not matches:
             keys = {(employer_key(job['employer']), title_key(job['title']), c) for c in job.get('countries', [])}
             matches = list({id(m): m for k in keys for m in by_identity.get(k, [])}.values())
@@ -200,3 +392,21 @@ def merge_public_duplicates(jobs, public_source_ids):
         target['public_listing_urls'] = sorted(set(target.get('public_listing_urls', [])) | {job['url']})
         merged += 1
     return result, merged
+
+
+def merge_public_duplicates(jobs, public_source_ids, secondary_source_ids=()):
+    """Fold public-service copies into the most direct listing of a vacancy.
+
+    Order of preference: the employer's own listing, then a national public
+    service, then a pan-European copy (EURES). A copy is merged only when
+    exactly one non-closed record matches by (a) the employer application URL
+    published by the public service, or (b) the same normalised employer,
+    title and country. Ambiguous matches stay separate rather than guessed.
+    """
+    public = set(public_source_ids)
+    secondary = set(secondary_source_ids) & public
+    every = {j['source_id'] for j in jobs}
+    own = every - public
+    jobs, first = _fold_into(jobs, public - secondary, own)
+    jobs, second = _fold_into(jobs, secondary, every - secondary)
+    return jobs, first + second

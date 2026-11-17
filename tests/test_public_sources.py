@@ -162,3 +162,132 @@ class CountryMetricTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+EURES_PAGE = json.loads((Path(__file__).parent / 'fixtures' / 'eures' / 'search-page.json').read_text())
+
+
+class FakeEuresClient:
+    """One fixture page for every search; per-vacancy lookups from a dict or 404."""
+    def __init__(self, details=None):
+        self.posts, self.gets, self.details = [], [], details or {}
+
+    def post_json(self, url, payload):
+        self.posts.append(payload)
+        return EURES_PAGE if payload['page'] == 1 else dict(EURES_PAGE, jvs=[])
+
+    def json(self, url):
+        self.gets.append(url)
+        identifier = urlsplit(url).path.rsplit('/', 1)[-1]
+        if identifier in self.details:
+            return self.details[identifier]
+        raise HTTPError(url, 404, 'RESOURCE_UNAVAILABLE', None, None)
+
+
+def eures_source(**extra):
+    value = dict(id='public-eu-eures', employer='EURES – European Job Mobility Portal (ELA)', adapter='eures-search',
+                 enabled=True, source_kind='public-employment-service', allowed_hosts=['europa.eu'],
+                 target_countries=['BE', 'GR'], queries=['HR intern'])
+    value.update(extra)
+    return value
+
+
+class EuresAdapterTests(unittest.TestCase):
+    def test_summary_maps_to_official_portal_page_and_nuts_place(self):
+        from collector.public_sources import eures_record
+        record = eures_record(eures_source(), EURES_PAGE['jvs'][0])
+        self.assertEqual(record['url'], 'https://europa.eu/eures/portal/jv-se/jv-details/QkUtSFItMQ?lang=en')
+        self.assertEqual(record['countries'], ['BE'])
+        self.assertEqual(record['city'], 'Arr. Kortrijk')
+        self.assertEqual(record['language'], 'nl')
+        self.assertNotIn('jobs@example.be', record['text'])
+        self.assertNotIn('470 12 34 56', record['text'])
+        self.assertEqual(eures_record(eures_source(), EURES_PAGE['jvs'][2])['countries'], ['GR'])
+
+    def test_search_reads_internship_facet_then_titles_and_closes_only_on_404(self):
+        known = ['https://europa.eu/eures/portal/jv-se/jv-details/R09ORQ?lang=en']
+        client = FakeEuresClient()
+        rows = collect(eures_source(known_job_urls=known), client)
+        self.assertEqual(client.posts[0]['positionOfferingCodes'], ['internship'])
+        self.assertEqual(client.posts[1]['keywords'], [{'keyword': 'HR intern', 'specificSearchCode': 'TITLE'}])
+        self.assertTrue(all(p['resultsPerPage'] == 50 for p in client.posts))
+        self.assertEqual(len(rows), 4)
+        self.assertEqual(rows.stats['verified_closed_urls'], known)
+        self.assertFalse(rows.stats['closure_complete'])
+
+    def test_pipeline_keeps_eu_hr_internships_and_drops_non_hr_and_non_eu(self):
+        part = process_source(eures_source(), FakeEuresClient(), '2026-11-17T08:00:00+00:00')
+        titles = sorted((j['title'], tuple(j['countries'])) for j in part['jobs'])
+        self.assertEqual(titles, [('HR Intern', ('GR',)), ('Internship HR', ('BE',))])
+        self.assertTrue(all(j['link_status'] == 'public-api-listed' and j['status'] == 'unverified' for j in part['jobs']))
+
+    def test_eures_copy_yields_to_employer_and_national_listings(self):
+        own = dict(id='a', source_id='greenhouse-x', employer='Splendor Plant AB', title='HR Intern', countries=['SE'],
+                   status='open', url='https://x.example/1', apply_url='https://x.example/1')
+        national = dict(id='b', source_id='public-se-jobtech', employer='Exempel AB', title='HR-praktik', countries=['SE'],
+                        status='unverified', url='https://arbetsformedlingen.se/platsbanken/annonser/9', apply_url='https://arbetsformedlingen.se/platsbanken/annonser/9')
+        copy_own = dict(own, id='c', source_id='public-eu-eures', employer='Splendor Plant Aktiebolag', url='https://europa.eu/eures/portal/jv-se/jv-details/A')
+        copy_national = dict(national, id='d', source_id='public-eu-eures', url='https://europa.eu/eures/portal/jv-se/jv-details/B')
+        jobs, merged = merge_public_duplicates([own, national, copy_own, copy_national],
+                                               ['public-se-jobtech', 'public-eu-eures'], ['public-eu-eures'])
+        self.assertEqual((sorted(j['id'] for j in jobs), merged), (['a', 'b'], 2))
+        self.assertEqual(national['duplicate_source_ids'], ['public-eu-eures'])
+
+
+class EuresDetailTests(unittest.TestCase):
+    def test_detail_reduces_to_summary_without_contacts_and_undisclosed_employer(self):
+        from collector.public_sources import eures_detail_summary, eures_record
+        detail = {'id': 'X1', 'preferredLanguage': 'de', 'creationDate': 1794698333140, 'jvProfiles': {'de': {
+            'title': 'Werkstudent im Recruiting (m/w/d)', 'description': 'Recruiting. Mail n.m@example.de',
+            'positionOfferingCode': 'internship', 'locations': [{'countryCode': 'de', 'region': 'ded44', 'cityName': 'Plauen'}],
+            'employer': {'name': 'siehe Beschreibung'},
+            'personContacts': [{'givenName': 'Nicole', 'familyName': 'Muster', 'communications': {'emails': [{'uri': 'n.m@example.de'}]}}]}}}
+        summary = eures_detail_summary(detail, 'X1')
+        self.assertNotIn('personContacts', json.dumps(summary))
+        record = eures_record(eures_source(), summary)
+        self.assertEqual(record['countries'], ['DE'])
+        self.assertEqual(record['employer'], 'Employer not disclosed (see EURES advertisement)')
+        self.assertNotIn('Nicole', json.dumps(record))
+        self.assertNotIn('n.m@example.de', record['text'])
+        self.assertIsNone(eures_record(eures_source(), eures_detail_summary({'jvProfiles': {}}, 'X2')))
+
+
+class EuresResilienceTests(unittest.TestCase):
+    def test_dropped_connection_is_retried_then_query_skipped_as_partial(self):
+        from http.client import RemoteDisconnected
+
+        class Flaky(FakeEuresClient):
+            def post_json(self, url, payload):
+                self.posts.append(payload)
+                if payload['keywords']:
+                    raise RemoteDisconnected('Remote end closed connection without response')
+                return EURES_PAGE if payload['page'] == 1 else dict(EURES_PAGE, jvs=[])
+        client = Flaky()
+        rows = collect(eures_source(), client)
+        self.assertEqual(rows.stats['status'], 'partial')
+        self.assertEqual(rows.stats['search_errors'][0]['query'], 'HR intern')
+        self.assertEqual(sum(1 for p in client.posts if p['keywords']), 2)  # one retry
+        self.assertEqual(len(rows), 4)
+
+    def test_access_refusal_fails_the_source(self):
+        class Refused(FakeEuresClient):
+            def post_json(self, url, payload):
+                raise HTTPError(url, 403, 'Forbidden', None, None)
+        with self.assertRaises(HTTPError):
+            collect(eures_source(), Refused())
+
+
+class JobTechResilienceTests(unittest.TestCase):
+    def test_truncated_page_is_retried_once_then_skipped(self):
+        class Truncated(FakeClient):
+            def json(self, url):
+                if '/search' in url and 'intern' in url:
+                    self.calls.append(url)
+                    raise json.JSONDecodeError('Unterminated string', '', 0)
+                return super().json(url)
+        client = Truncated()
+        rows = collect(source(queries=['+internship', '+praktik +HR']), client)
+        self.assertEqual(rows.stats['status'], 'partial')
+        self.assertEqual(rows.stats['search_errors'][0]['query'], '+internship')
+        self.assertEqual(sum('internship' in c for c in client.calls), 2)
+        self.assertEqual(len(rows), 2)
