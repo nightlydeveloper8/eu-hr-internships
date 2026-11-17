@@ -8,7 +8,7 @@
 
 **Ampelmann:** [PR #60](https://github.com/nightlydeveloper8/eu-hr-internships/pull/60) ha dimostrato 1 nuovo stage HR verified **solo nello staging** con due cicli nello stesso giorno, 9 GET / 1.887.074 byte; CI HEAD success. Mancano prova in giorno distinto, provisioning azienda+source disabled, review e autorizzazioni separate per merge/attivazione. Nessun +1 in produzione.
 
-**Consegna:** branch `analysis/source-waste-audit-20261117` separato da PR #60 e altre sessioni. Script e tre test introdotti; prima esecuzione temporanea fallita per doppio conteggio dei bucket, corretta e seconda riuscita; workflow di diagnostica one-shot da rimuovere prima della consegna. Nessun merge, cambio cadenza, host, rollout, pubblicazione o incremento verificato generato da questo branch. Primo prossimo miglioramento: analisi delle 232 code universali e controprova before/after con mantenimento di tutti gli stage policy v2 e degli ID.
+**Consegna:** branch `analysis/source-waste-audit-20261117` separato da PR #60 e altre sessioni. Script e tre test introdotti; prima esecuzione temporanea fallita per doppio conteggio dei bucket, corretta e seconda riuscita; workflow di diagnostica one-shot rimosso dopo la prova; [PR #61](https://github.com/nightlydeveloper8/eu-hr-internships/pull/61) aperta in draft, senza merge. Nessun merge, cambio cadenza, host, rollout, pubblicazione o incremento verificato generato da questo branch. Primo prossimo miglioramento: analisi delle 232 code universali e controprova before/after con mantenimento di tutti gli stage policy v2 e degli ID.
 
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
