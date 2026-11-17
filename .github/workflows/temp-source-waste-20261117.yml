@@ -4,6 +4,7 @@ on:
     branches: [analysis/source-waste-audit-20261117]
     paths:
       - .github/workflows/temp-source-waste-20261117.yml
+      - scripts/audit_source_waste.py
 permissions:
   contents: read
 jobs:
