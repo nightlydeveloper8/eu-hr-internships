@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 17 novembre 2026 — riallineamento PR #46, review UE27 lotto 05
+
+Portato sul ramo dedicato dalla baseline corrente `ab51981ff` il report originario [PR #46](https://github.com/nightlydeveloper8/eu-hr-internships/pull/46), `docs/eu27-expansion/BATCH-05-REVIEW.md`, preservando le altre raccolte e le evidenze già integrate. I 6 indizi Marquardt/SLB/BAT/Amazon/TikTok/P&G restano **unverified**, con TikTok già censito; Electrolux JR81378 è **filled** nonostante HTTP 200 e JobPosting storico. Non inventare stage o form anonimi, né ritentare 429 Manifesto o aggirare accessi. La correzione strutturale `filled` e il circuito host-level 429 risultano **già presenti in main**: questa PR trasferisce soltanto documentazione, non deve riapplicare modifiche già consolidate. La baseline di 361 record citata dal report è storica; l'ultimo ciclo su main `ab51981` ne ha **363 e 28 stage verified**. Nessun nuovo stage policy v2, fonte, merge o rollout.
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
