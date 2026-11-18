@@ -98,6 +98,32 @@ export function countryCounts(jobs, clock = Date.now()) {
   }
   return counts;
 }
+// Official languages per country, used to tell local-language ads from English ones.
+export const NATIONAL_LANGUAGES = {AT:['de'],BE:['nl','fr','de'],BG:['bg'],HR:['hr'],CY:['el','tr'],CZ:['cs'],DK:['da'],EE:['et'],FI:['fi','sv'],FR:['fr'],DE:['de'],GR:['el'],HU:['hu'],IE:['en','ga'],IT:['it'],LV:['lv'],LT:['lt'],LU:['lb','fr','de'],MT:['mt','en'],NL:['nl'],PL:['pl'],PT:['pt'],RO:['ro'],SK:['sk'],SI:['sl'],ES:['es','ca','eu','gl'],SE:['sv'],CH:['de','fr','it','rm'],GB:['en']};
+
+// Verified listings per country and advertisement language: {NL:{nl:3,en:2,unknown:1}}.
+export function countryLanguageCounts(jobs, clock = Date.now()) {
+  const counts = {};
+  for (const job of jobs || []) {
+    if (job.status === 'closed' || unreviewedExternal(job) || !verifiedJob(job, clock)) continue;
+    const code = job.advertisement_language?.code || 'unknown';
+    for (const country of new Set(job.countries || [])) {
+      const entry = counts[country] || (counts[country] = {});
+      entry[code] = (entry[code] || 0) + 1;
+    }
+  }
+  return counts;
+}
+
+// English and local-language ads first, then any other language, then unknown.
+export function languageBreakdown(country, byLanguage = {}) {
+  const local = (NATIONAL_LANGUAGES[country] || []).filter(code => code !== 'en');
+  const rank = code => code === 'en' ? 0 : local.includes(code) ? 1 : code === 'unknown' ? 3 : 2;
+  return Object.entries(byLanguage).filter(([, n]) => n > 0)
+    .sort((a, b) => rank(a[0]) - rank(b[0]) || b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([code, count]) => ({code, count, kind: code === 'en' ? 'english' : local.includes(code) ? 'local' : code === 'unknown' ? 'unknown' : 'other'}));
+}
+
 // Colour bucket for a verified count: 0 none, 1, 2-4, 5-9, 10-24, 25+.
 export function countBucket(n) { return n <= 0 ? 0 : n === 1 ? 1 : n < 5 ? 2 : n < 10 ? 3 : n < 25 ? 4 : 5; }
 

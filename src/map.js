@@ -10,6 +10,11 @@ function node(tag, attrs = {}, parent) {
 }
 const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
+// "3 in English · 31 in Italian" for the verified ads of one country.
+export function describeLanguages(breakdown = [], languageNames = {}) {
+  return breakdown.map(({code, count}) => `${count} in ${code === 'unknown' ? 'an unidentified language' : languageNames[code] || code}`).join(' · ');
+}
+
 export function describeCountry(name, c = {verified:0, unverified:0}) {
   if (c.verified) return `${plural(c.verified, 'verified HR opportunity', 'verified HR opportunities')}${c.unverified ? ` · ${c.unverified} more to check` : ''}`;
   if (c.unverified) return `Nothing verified yet · ${plural(c.unverified, 'lead', 'leads')} to check`;
@@ -17,7 +22,7 @@ export function describeCountry(name, c = {verified:0, unverified:0}) {
 }
 
 // Draws the EU-27 map into `svg`. Returns {select(code)} to sync the highlighted country.
-export function drawMap({svg, tooltip, wrap, counts, names, onSelect}) {
+export function drawMap({svg, tooltip, wrap, counts, names, onSelect, languages = () => ''}) {
   svg.setAttribute('viewBox', MAP_VIEWBOX);
   svg.replaceChildren();
   const defs = node('defs', {}, svg);
@@ -43,7 +48,9 @@ export function drawMap({svg, tooltip, wrap, counts, names, onSelect}) {
     const title = document.createElement('strong'); title.textContent = names[code] || code;
     const line = document.createElement('span'); line.textContent = describeCountry(names[code], c);
     const hint = document.createElement('small'); hint.textContent = c.verified || c.unverified ? 'Click to see them' : 'Click to check this country';
-    tooltip.append(title, line, hint);
+    const spoken = languages(code);
+    if (spoken) { const lang = document.createElement('span'); lang.className = 'tip-languages'; lang.textContent = spoken; tooltip.append(title, line, lang, hint); }
+    else tooltip.append(title, line, hint);
     tooltip.hidden = false;
     const box = wrap.getBoundingClientRect();
     const w = tooltip.offsetWidth, h = tooltip.offsetHeight;
