@@ -60,6 +60,7 @@ export function verificationMessage(job, clock = Date.now()) {
   if (verifiedJob(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
   if (job.status === 'closed') return 'The employer has closed this listing.';
   if (job.link_status === 'review-required' && job.review_note) return job.review_note;
+  if (job.link_status === 'public-api-listed') return 'Published by an official public employment service at the last check; the employer’s own application page was not checked. Confirm the details on the official advertisement.';
   const reason = job.verification?.reason || '';
   if (job.verification?.state === 'blocked' || /robots|captcha|access (?:challenge|restricted|denied)|HTTP Error: (?:401|403|429)/i.test(reason)) return 'Access to the employer’s recruiting site was restricted, so we could not confirm current availability or the application route.';
   const stamp = Date.parse(job.last_verified_at || '');

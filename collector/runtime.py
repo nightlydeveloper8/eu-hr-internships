@@ -34,7 +34,7 @@ class BudgetClient(Client):
             raise HTTPError(url,429,'Redirect target rate-limited earlier in this collection process',None,None)
         return super().permitted(url)
 
-    def request(self,url,method='GET',robots=True,timeout=12,attempts=1,accept=None):
+    def request(self,url,method='GET',robots=True,timeout=12,attempts=1,accept=None,body=None,content_type=None):
         url=canonical_url(url);host=urlsplit(url).netloc;self.check();lock=host_lock(host)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')
         try:
@@ -49,7 +49,7 @@ class BudgetClient(Client):
             self.requests+=1
             try:
                 result=super().request(url,method=method,robots=robots,
-                    timeout=max(.05,min(timeout,self.remaining())),attempts=attempts,accept=accept)
+                    timeout=max(.05,min(timeout,self.remaining())),attempts=attempts,accept=accept,body=body,content_type=content_type)
             except HTTPError as exc:
                 if exc.code==429:
                     # Redirects may reach another approved host; quarantine the
