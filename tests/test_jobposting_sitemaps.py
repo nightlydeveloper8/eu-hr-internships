@@ -78,3 +78,24 @@ class ReviewedCountryTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class PhenomTemplateTests(unittest.TestCase):
+    """Phenom always server-renders its 'no longer available' block; phApp's job detail decides."""
+    TEMPLATE = (b'<div class="job-expire-view"><h2>We\xe2\x80\x99re sorry\xe2\x80\xa6 the job you are trying to apply for has been filled.</h2></div>'
+                b'<script>phApp.ddo = {"jobDetail":{"status":200,"hits":%d,"data":{"job":{}}}}</script>')
+
+    def test_live_job_detail_overrides_the_hidden_expired_template(self):
+        from collector.applications import phenom_state
+        self.assertEqual(phenom_state(self.TEMPLATE % 1), 'open')
+        self.assertEqual(phenom_state(self.TEMPLATE % 0), 'closed')
+        self.assertIsNone(phenom_state(b'<p>The vacancy has been filled.</p>'))
+
+    def test_checked_document_keeps_live_phenom_page_open(self):
+        from collector.applications import checked_document, ApplicationClosed
+        url = 'https://careers.example.com/global/en/job/R1/HR-Intern'
+        src = dict(allowed_hosts=['careers.example.com'])
+        body, doc = checked_document(url, src, Client({url: self.TEMPLATE % 1}))
+        self.assertTrue(body)
+        with self.assertRaises(ApplicationClosed):
+            checked_document(url, src, Client({url: self.TEMPLATE % 0}))

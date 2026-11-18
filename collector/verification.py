@@ -25,7 +25,8 @@ def blocked_error(exc):
 
 def expired(value, stamp):
     if not value: return False
-    date = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+    value = re.sub(r'^(\d{4})/(\d{2})/(\d{2})', r'\1-\2-\3', str(value).strip())  # some sites publish 2026/12/01
+    date = datetime.fromisoformat(value.replace('Z', '+00:00'))
     if date.tzinfo is None: date = date.replace(tzinfo=timezone.utc)
     # Date-only deadlines are inclusive through that UTC day.
     if len(str(value)) == 10: return date.date() < datetime.fromisoformat(stamp).date()
