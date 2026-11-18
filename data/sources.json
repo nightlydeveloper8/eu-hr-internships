@@ -9624,7 +9624,7 @@
     "company_id": "ge-aerospace",
     "employer": "GE Aerospace",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://careers.geaerospace.com/global/en/search-results",
       "https://invent.ge/garching"
@@ -9643,7 +9643,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "superseded",
+    "review_notes": "Replaced on 2026-11-18 by employer-ge-aerospace (sitemap + JobPosting, Phase 3); the automatic crawl found no job inventory."
   },
   {
     "id": "auto-ge-dist-s-r-l",
@@ -16955,7 +16956,7 @@
     "company_id": "roche",
     "employer": "Roche",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://careers.roche.com/global/en/why-join-us",
       "https://careers.roche.com/global/en"
@@ -16973,7 +16974,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "superseded",
+    "review_notes": "Replaced on 2026-11-18 by employer-roche (sitemap + JobPosting, Phase 3); the automatic crawl found no job inventory."
   },
   {
     "id": "auto-roeren",
@@ -19361,7 +19363,7 @@
     "company_id": "thermo-fisher-scientific",
     "employer": "Thermo Fisher Scientific",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://jobs.thermofisher.com/global/en",
       "https://www.thermofisher.com/nl/en/home/electron-microscopy.html"
@@ -19380,7 +19382,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "superseded",
+    "review_notes": "Replaced on 2026-11-18 by employer-thermo-fisher (sitemap + JobPosting, Phase 3); the automatic crawl found no job inventory."
   },
   {
     "id": "auto-thetis-s-p-a",
@@ -48706,5 +48709,535 @@
     "max_known_checks": 40,
     "active_listing_api": true,
     "active_listing_evidence": "The EURES portal search returns vacancies currently published by the national services; withdrawn or expired vacancies answer 404 on the vacancy lookup."
+  },
+  {
+    "id": "employer-procter-gamble",
+    "employer": "Procter & Gamble",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://www.pgcareers.com/eu/en",
+    "sitemaps": [
+      "https://www.pgcareers.com/eu/en/sitemap_index.xml"
+    ],
+    "job_url_pattern": "^https://www\\.pgcareers\\.com/eu/en/job/R\\d+/[^/?#]+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "www.pgcareers.com"
+    ],
+    "employer_tokens": [
+      "procter",
+      "p&g"
+    ],
+    "max_sitemaps": 30,
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "CZ",
+      "DE",
+      "ES",
+      "FR",
+      "GB",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SE",
+      "SK",
+      "CH"
+    ],
+    "collection_seconds": 600,
+    "max_requests": 260,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "employer-adecco-group",
+    "employer": "The Adecco Group",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.adeccogroup.com",
+    "sitemaps": [
+      "https://careers.adeccogroup.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.adeccogroup\\.com/[a-z-]+/job/[^/]+/[^/]+/\\d+/\\d+$",
+    "url_slug_prefilter": true,
+    "url_country_patterns": {
+      "/job/[^/]+/[^/]+/26094/": "FR"
+    },
+    "allowed_hosts": [
+      "careers.adeccogroup.com"
+    ],
+    "employer_tokens": [
+      "adecco",
+      "akkodis",
+      "lhh",
+      "modis",
+      "spring",
+      "pontoon"
+    ],
+    "target_countries": [
+      "FR",
+      "PT",
+      "PL",
+      "NL",
+      "BE",
+      "DE",
+      "IT",
+      "ES",
+      "CH",
+      "GB",
+      "IE"
+    ],
+    "collection_seconds": 900,
+    "max_requests": 420,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Radancy); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "employer-astrazeneca",
+    "employer": "AstraZeneca",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.astrazeneca.com",
+    "sitemaps": [
+      "https://careers.astrazeneca.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.astrazeneca\\.com/job/[^/]+/[^/]+/\\d+/\\d+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "careers.astrazeneca.com"
+    ],
+    "employer_tokens": [
+      "astrazeneca",
+      "alexion"
+    ],
+    "target_countries": [
+      "IE",
+      "RO",
+      "PL",
+      "CZ",
+      "HU",
+      "ES",
+      "PT",
+      "SE",
+      "GB",
+      "DE",
+      "FR",
+      "IT",
+      "NL",
+      "BE",
+      "DK",
+      "FI",
+      "GR",
+      "BG",
+      "SK",
+      "SI",
+      "HR",
+      "LT",
+      "LV",
+      "EE"
+    ],
+    "collection_seconds": 420,
+    "max_requests": 200,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Radancy); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "employer-roche",
+    "employer": "Roche",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.roche.com/global/en",
+    "sitemaps": [
+      "https://careers.roche.com/global/en/sitemap_index.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.roche\\.com/global/en/job/[^/]+/[^/?#]+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "careers.roche.com"
+    ],
+    "employer_tokens": [
+      "roche",
+      "genentech",
+      "chugai"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "collection_seconds": 420,
+    "max_requests": 200,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting.",
+    "company_id": "roche"
+  },
+  {
+    "id": "employer-bat",
+    "employer": "BAT (British American Tobacco)",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.bat.com",
+    "sitemaps": [
+      "https://careers.bat.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.bat\\.com/[a-z-]+/job/[^/]+/[^/]+/\\d+/\\d+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "careers.bat.com"
+    ],
+    "employer_tokens": [
+      "bat",
+      "british american tobacco"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "collection_seconds": 420,
+    "max_requests": 200,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Radancy); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "employer-sanofi",
+    "employer": "Sanofi",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://jobs.sanofi.com",
+    "sitemaps": [
+      "https://jobs.sanofi.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://jobs\\.sanofi\\.com/[a-z-]+/job/[^/]+/[^/]+/\\d+/\\d+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "jobs.sanofi.com"
+    ],
+    "employer_tokens": [
+      "sanofi",
+      "opella"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "collection_seconds": 420,
+    "max_requests": 200,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Radancy); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "employer-thermo-fisher",
+    "employer": "Thermo Fisher Scientific",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://jobs.thermofisher.com/global/en",
+    "sitemaps": [
+      "https://jobs.thermofisher.com/global/en/sitemap_index.xml"
+    ],
+    "job_url_pattern": "^https://jobs\\.thermofisher\\.com/global/en/job/[^/]+/[^/?#]+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "jobs.thermofisher.com"
+    ],
+    "employer_tokens": [
+      "thermo",
+      "fisher",
+      "patheon",
+      "ppd"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "collection_seconds": 420,
+    "max_requests": 200,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting.",
+    "company_id": "thermo-fisher-scientific"
+  },
+  {
+    "id": "employer-ge-aerospace",
+    "employer": "GE Aerospace",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.geaerospace.com/global/en",
+    "sitemaps": [
+      "https://careers.geaerospace.com/global/en/sitemap_index.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.geaerospace\\.com/global/en/job/[^/]+/[^/?#]+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "careers.geaerospace.com"
+    ],
+    "employer_tokens": [
+      "ge aerospace",
+      "general electric",
+      "avio",
+      "unison"
+    ],
+    "target_countries": [
+      "PL",
+      "CZ",
+      "RO",
+      "HU",
+      "IT",
+      "DE",
+      "FR",
+      "NL",
+      "GB",
+      "IE"
+    ],
+    "collection_seconds": 420,
+    "max_requests": 200,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting.",
+    "company_id": "ge-aerospace"
+  },
+  {
+    "id": "employer-mars",
+    "employer": "Mars",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.mars.com/global/en",
+    "sitemaps": [
+      "https://careers.mars.com/global/en/sitemap_index.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.mars\\.com/global/en/job/[^/]+/[^/?#]+$",
+    "url_slug_prefilter": true,
+    "allowed_hosts": [
+      "careers.mars.com"
+    ],
+    "employer_tokens": [
+      "mars",
+      "royal canin",
+      "wrigley"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "collection_seconds": 420,
+    "max_requests": 200,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "employer-marriott",
+    "employer": "Marriott International",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "career_url": "https://careers.marriott.com",
+    "sitemaps": [
+      "https://careers.marriott.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers\\.marriott\\.com/[^/]+/job/P1-\\d+-\\d+$",
+    "url_slug_prefilter": true,
+    "max_sitemaps": 40,
+    "max_job_urls": 60000,
+    "allowed_hosts": [
+      "careers.marriott.com"
+    ],
+    "employer_tokens": [
+      "marriott",
+      "ritz",
+      "westin",
+      "sheraton",
+      "st. regis",
+      "w hotels",
+      "le meridien",
+      "courtyard",
+      "autograph",
+      "luxury collection",
+      "renaissance",
+      "aloft",
+      "moxy",
+      "bulgari",
+      "edition"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "collection_seconds": 900,
+    "max_requests": 260,
+    "reviewed_on": "2026-11-18",
+    "permission_basis": "Official employer career site (custom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
   }
 ]
