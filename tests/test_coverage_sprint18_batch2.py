@@ -77,7 +77,8 @@ class RealBatchTests(unittest.TestCase):
     def test_exact_before_after_and_two_finalizations(self):
         report=replay()
         self.assertEqual((report['candidate_count'],report['verified_before'],report['verified_after']),(8,0,0))
-        self.assertEqual(report['global_before'],dict(open=24,unverified=296,closed=4))
+        # 19 listings whose official page answered 404/410 twice were closed by review on 2026-11-18.
+        self.assertEqual(report['global_before'],dict(open=24,unverified=277,closed=23))
         self.assertEqual(report['global_before'],report['global_after'])
         self.assertTrue(report['two_finalizations_idempotent'])
         achmea=next(r for r in report['rows'] if r['company_id']=='centraal-beheer-achmea')

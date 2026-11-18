@@ -229,6 +229,20 @@ EURES_LANGUAGES = ('en', 'de', 'fr', 'it', 'es', 'nl', 'pt', 'pl', 'sv', 'da', '
 EURES_EMPTY_PAGES = 2  # stop after this many consecutive pages without new HR internships
 
 
+def eures_pair_queries():
+    """One placement term + one HR term per query (measured 18/11/2026: ~18% more
+    HR internships than one combined query per language)."""
+    from .classify import fold
+    pairs = []
+    for language in EURES_LANGUAGES:
+        placements, hr_terms = vocabulary_search_terms(language)
+        pairs += [p + ' ' + h for p in placements for h in hr_terms]
+    unique = {}
+    for query in pairs:
+        unique.setdefault(fold(query), query)
+    return tuple(unique.values())
+
+
 def eures_queries():
     queries = []
     for language in EURES_LANGUAGES:
@@ -238,6 +252,8 @@ def eures_queries():
     return tuple(queries)
 
 
+EURES_PAIR_QUERIES = eures_pair_queries()
+EURES_PAIR_PAGES = 3
 EURES_QUERIES = eures_queries()
 EURES_COUNTRY_ALIASES = {'EL': 'GR', 'UK': 'GB'}
 # Some services (e.g. the Dutch UWV) do not transmit the employer's name.
@@ -363,14 +379,33 @@ def eures_records(source, client):
                 return
         truncated.append(label)
 
-    scan('positionOffering=internship', lambda page: eures_criteria(offering=['internship'], page=page),
-         EURES_OFFERING_MAX_PAGES, False)
-    # 2. Title queries, paged while they keep producing new HR internships.
-    for query in source.get('queries', EURES_QUERIES):
-        scan(query, lambda page, q=query: eures_criteria(keywords=[q], page=page), EURES_MAX_PAGES, True)
+    budget_stop = []
+
+    def guarded(label, criteria_for, max_pages, stop_without_matches):
+        # The daily time/request budget ends the run gracefully: what was read
+        # is kept (status partial) instead of failing the whole source.
+        if budget_stop:
+            truncated.append(label)
+            return
+        try:
+            scan(label, criteria_for, max_pages, stop_without_matches)
+        except Exception as exc:
+            if type(exc).__name__ != 'CollectionBudgetExceeded':
+                raise
+            budget_stop.append(label)
+            truncated.append(label)
+
+    guarded('positionOffering=internship', lambda page: eures_criteria(offering=['internship'], page=page),
+            EURES_OFFERING_MAX_PAGES, False)
+    # 2. Pair queries (placement term + HR term), highest-volume languages first.
+    for query in source.get('queries', EURES_PAIR_QUERIES):
+        guarded(query, lambda page, q=query: eures_criteria(keywords=[q], page=page), EURES_PAIR_PAGES, True)
+    # 3. Combined per-language queries add a few extra matches when time remains.
+    for query in source.get('combined_queries', EURES_QUERIES):
+        guarded(query, lambda page, q=query: eures_criteria(keywords=[q], page=page), EURES_MAX_PAGES, True)
     # 3. Known vacancies outside today's result windows: explicit status only.
     closed = []
-    for url in source.get('known_job_urls', [])[:source.get('max_known_checks', 40)]:
+    for url in ([] if budget_stop else source.get('known_job_urls', [])[:source.get('max_known_checks', 40)]):
         identifier = urlsplit(url).path.rstrip('/').split('/')[-1]
         if identifier in records:
             continue
@@ -388,7 +423,8 @@ def eures_records(source, client):
     if errors and not records:
         raise ValueError('EURES search unavailable: ' + errors[0]['error'])
     return PublicInventory(records.values(), dict(
-        status='partial' if errors else 'ok', search_errors=errors[:20],
+        status='partial' if errors or budget_stop else 'ok', search_errors=errors[:20],
+        budget_stopped_at=budget_stop[0] if budget_stop else None,
         complete=False, closure_complete=False, queries=requests, truncated_queries=truncated,
         published_records=len(records), verified_closed_urls=closed, snapshot_kind='public-api-query-inventory',
         discovery_scope=source.get('discovery_scope')))

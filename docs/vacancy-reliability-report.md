@@ -68,3 +68,7 @@ python3 scripts/audit_vacancy_evidence.py --sources lever-emma-sleep lever-veepe
 # Opzionale: Playwright già previsto in requirements-collector.txt
 python3 scripts/check_evidence_ui.py
 ```
+
+### Chiusure da revisione (18/11/2026)
+
+`data/listing-reviews.json` accetta anche la decisione `closed`. Serve per gli annunci la cui pagina ufficiale ha risposto 404 o 410 a due controlli successivi. L'annuncio resta nell'archivio come chiuso, con il motivo, invece di essere eliminato. Se in una raccolta successiva l'annuncio viene di nuovo verificato come aperto, la verifica nuova prevale. Il 18/11 sono stati chiusi così 19 annunci di Danone, Amazon, Randstad, Rijkswaterstaat, IKEA e altri.

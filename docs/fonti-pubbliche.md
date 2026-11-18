@@ -26,7 +26,14 @@ Fonti mai considerate, per vincolo del progetto: LinkedIn, Indeed e qualsiasi ac
 
 ## EURES (`eures-search`)
 
-- **Raccolta**: prima tutte le offerte che i servizi nazionali hanno codificato come *internship* (~870 il 17/11/2026), poi una ricerca per lingua (22 lingue) generata da `data/hr-vocabulary.json`. Ogni ricerca contiene i termini di stage e i termini HR della lingua; il portale ordina per pertinenza, quindi in cima arrivano i titoli che contengono più termini. Una ricerca va avanti di pagina finché produce nuovi stage HR e si ferma dopo 2 pagine consecutive senza risultati utili (massimo 8). Le pagine sono da 50 risultati; tra una richiesta e l'altra c'è la pausa di 10 secondi imposta dal robots.txt. **Da validare dal vivo**: che la ricerca combinata trovi gli stessi annunci delle ricerche a coppie (termine di stage + termine HR). Il 18/11 EURES rispondeva 500 a ogni richiesta.
+- **Raccolta**:
+  1. Tutte le offerte che i servizi nazionali hanno codificato come *internship* (~870).
+  2. 164 ricerche a coppie (termine di stage + termine HR) generate da `data/hr-vocabulary.json` in 22 lingue, a partire dalle lingue con più annunci. Ogni coppia va avanti di pagina, fino a 3 pagine, solo se la pagina precedente ha portato nuovi stage HR.
+  3. Se resta tempo, le 22 ricerche combinate per lingua.
+
+  Le pagine sono da 50 risultati, con la pausa di 10 secondi imposta dal robots.txt: circa 35-40 minuti al giorno, su un budget di 45. A budget esaurito la fonte si ferma e conserva quanto raccolto (stato "parziale").
+
+  **Validazione dal vivo del 18/11/2026**: la ricerca combinata trovava 82 stage HR in italiano e 91 in tedesco; le coppie ne trovano 96 e 108. La combinata ne perdeva il 17-18%, mentre ne aggiungeva solo 2-3 che alle coppie sfuggivano: per questo si eseguono entrambe, coppie prima.
 - **Classificazione**: la stessa usata per le altre fonti. Se il servizio nazionale ha codificato l'offerta come *internship*, quel codice vale come segnale di stage, ma il titolo deve comunque essere HR.
 - **Paesi**: quelli indicati da EURES (`EL` → GR). Il luogo è il nome NUTS da `data/geography.json`. Gli annunci in Svizzera vengono raccolti ma restano fuori dal catalogo fino alla Fase 4; Norvegia, Islanda e Liechtenstein sono fuori ambito.
 - **Chiusura**: l'assenza dai risultati non chiude mai un annuncio. Fino a 40 annunci noti per esecuzione vengono ricontrollati singolarmente; un 404 li chiude.
