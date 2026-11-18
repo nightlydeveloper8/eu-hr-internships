@@ -1,4 +1,4 @@
-// Regenerates src/eu-map.js (EU-27 map paths) from Natural Earth 1:50m via world-atlas (public domain).
+// Regenerates src/eu-map.js (EU-27 + Switzerland + United Kingdom map paths) from Natural Earth 1:50m via world-atlas (public domain).
 // Dev-only, not needed for the daily build:
 //   npm install --no-save world-atlas@2 topojson-client d3-geo && node scripts/generate_eu_map.mjs src/eu-map.js
 import {readFileSync, writeFileSync} from 'node:fs';
@@ -9,7 +9,7 @@ const out = process.argv[2];
 const topo = JSON.parse(readFileSync(new URL('../node_modules/world-atlas/countries-50m.json', import.meta.url)));
 const all = feature(topo, topo.objects.countries).features;
 
-const EU = {AT:'040',BE:'056',BG:'100',HR:'191',CY:'196',CZ:'203',DK:'208',EE:'233',FI:'246',FR:'250',DE:'276',GR:'300',HU:'348',IE:'372',IT:'380',LV:'428',LT:'440',LU:'442',MT:'470',NL:'528',PL:'616',PT:'620',RO:'642',SK:'703',SI:'705',ES:'724',SE:'752'};
+const EU = {AT:'040',BE:'056',BG:'100',HR:'191',CY:'196',CZ:'203',DK:'208',EE:'233',FI:'246',FR:'250',DE:'276',GR:'300',HU:'348',IE:'372',IT:'380',LV:'428',LT:'440',LU:'442',MT:'470',NL:'528',PL:'616',PT:'620',RO:'642',SK:'703',SI:'705',ES:'724',SE:'752',CH:'756',GB:'826'};
 const byNum = Object.fromEntries(Object.entries(EU).map(([a, n]) => [n, a]));
 
 // Keep only the European parts of each country (drops overseas territories, Canaries, Azores, Madeira).

@@ -5,6 +5,10 @@ import unicodedata
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode, quote
 
 COUNTRIES = dict(AT='Austria', BE='Belgium', BG='Bulgaria', HR='Croatia', CY='Cyprus', CZ='Czechia', DK='Denmark', EE='Estonia', FI='Finland', FR='France', DE='Germany', GR='Greece', HU='Hungary', IE='Ireland', IT='Italy', LV='Latvia', LT='Lithuania', LU='Luxembourg', MT='Malta', NL='Netherlands', PL='Poland', PT='Portugal', RO='Romania', SK='Slovakia', SI='Slovenia', ES='Spain', SE='Sweden')
+EU27 = dict(COUNTRIES)
+# Non-EU countries in scope (Phase 4): internships there need a permit or visa for most students.
+NON_EU = dict(CH='Switzerland', GB='United Kingdom')
+COUNTRIES.update(NON_EU)
 LANGUAGES = dict(en='English', nl='Dutch', fr='French', de='German', es='Spanish', it='Italian', pt='Portuguese', pl='Polish', sv='Swedish', da='Danish', fi='Finnish', el='Greek', cs='Czech', ro='Romanian', hu='Hungarian', bg='Bulgarian', hr='Croatian', sk='Slovak', sl='Slovenian', et='Estonian', lv='Latvian', lt='Lithuanian', mt='Maltese', ga='Irish', uk='Ukrainian')
 CATEGORIES = {
  'talent-acquisition': ('Talent acquisition & recruitment', r'talent acquisition|recruit(?:ment|ing|er)?|recrutement|recrutamento|reclutamiento|reclutamento|werving|rekrut|rekryter|personalgewinnung|(?:talent|candidate) sourc(?:ing|er)'),
@@ -29,7 +33,8 @@ CITY_COUNTRIES = {
  'NL': 'amsterdam|rotterdam|utrecht|eindhoven|hoofddorp|oegstgeest|amersfoort|wageningen|haarlem|zaandam|leiden|den haag|hilversum|breda|delft|nijmegen|groningen|tilburg|enschede|apeldoorn|arnhem|den bosch',
  'DE':'berlin|munich|munchen|hamburg|frankfurt|cologne|koln|dusseldorf|stuttgart|leipzig|karlsruhe|walldorf|heidelberg', 'FR':'paris|rueil.malmaison|neuilly|nanterre|saint.ouen|saint.denis|lyon|marseille|bordeaux|lille|toulouse|nantes|boulogne|issy|clichy',
  'BE':'brussels|bruxelles|brussel|antwerp|antwerpen|ghent|gent|leuven|vorst', 'PT':'lisbon|lisboa|porto|braga', 'ES':'madrid|barcelona|valencia|malaga|sevilla', 'IT':'milan|milano|roma|rome|torino|turin|bologna',
- 'PL':'warsaw|warszawa|krakow|kraków|wroclaw|wrocław|poznan|poznán|gdansk|gdańsk', 'AT':'vienna|wien|salzburg|graz|linz', 'IE':'dublin|cork|galway', 'SE':'stockholm|gothenburg|goteborg|malmo', 'DK':'copenhagen|kobenhavn|aarhus', 'FI':'helsinki|espoo|tampere', 'GR':'athens|thessaloniki', 'HU':'budapest', 'CZ':'prague|praha|brno', 'RO':'bucharest|bucuresti|cluj', 'BG':'sofia|varna', 'HR':'zagreb|split', 'CY':'limassol|nicosia', 'EE':'tallinn|tartu', 'LV':'riga', 'LT':'vilnius|kaunas', 'LU':'luxembourg', 'MT':'valletta|sliema|st julian', 'SK':'bratislava|kosice', 'SI':'ljubljana|maribor'
+ 'PL':'warsaw|warszawa|krakow|kraków|wroclaw|wrocław|poznan|poznán|gdansk|gdańsk', 'AT':'vienna|wien|salzburg|graz|linz', 'IE':'dublin|cork|galway', 'SE':'stockholm|gothenburg|goteborg|malmo', 'DK':'copenhagen|kobenhavn|aarhus', 'FI':'helsinki|espoo|tampere', 'GR':'athens|thessaloniki', 'HU':'budapest', 'CZ':'prague|praha|brno', 'RO':'bucharest|bucuresti|cluj', 'BG':'sofia|varna', 'HR':'zagreb|split', 'CY':'limassol|nicosia', 'EE':'tallinn|tartu', 'LV':'riga', 'LT':'vilnius|kaunas', 'LU':'luxembourg', 'MT':'valletta|sliema|st julian', 'SK':'bratislava|kosice', 'SI':'ljubljana|maribor',
+ 'CH':'zurich|zürich|geneva|geneve|genève|genf|basel|lausanne|bern|lugano|zug|winterthur|st. gallen', 'GB':'london|manchester|edinburgh|birmingham|glasgow|bristol|leeds|cardiff|belfast'
 }
 
 def plain(value):
@@ -50,9 +55,9 @@ def canonical_url(url):
     return urlunsplit(('https',p.netloc.lower(),quote(p.path.rstrip('/'),safe="/%:@!$&'()*+,;=-._~"),urlencode(query),''))
 
 def country_codes(location, explicit=None):
-    iso3 = dict(zip('AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE'.split(),COUNTRIES))
+    iso3 = dict(zip('AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE CHE GBR'.split(),COUNTRIES))
     if explicit:
-        explicit={'nederland':'NL','deutschland':'DE','osterreich':'AT'}.get(fold(explicit),explicit)
+        explicit={'nederland':'NL','deutschland':'DE','osterreich':'AT','schweiz':'CH','suisse':'CH','svizzera':'CH','uk':'GB','great britain':'GB','england':'GB','scotland':'GB','wales':'GB'}.get(fold(explicit),explicit)
         explicit = iso3.get(explicit.upper(),next((c for c,n in COUNTRIES.items() if fold(n)==fold(explicit)),explicit))
     if explicit and explicit.upper() in COUNTRIES:
         return [explicit.upper()]
@@ -63,8 +68,10 @@ def country_codes(location, explicit=None):
     if codes: return codes
     if re.search(r'\bdeutschland(?:weit)?\b',value):return ['DE']
     if re.search(r'\bnederland\b',value):return ['NL']
-    # Reject known non-EU locations before city matching (e.g. Paris, Texas).
-    if re.search(r'united (?:states|kingdom)|\busa\b|\buk\b|switzerland|canada|india|australia|singapore|brazil|london|zurich|toronto|san francisco|new york|\btexas\b',value): return []
+    if re.search(r'\b(?:schweiz|suisse|svizzera)\b',value):return ['CH']
+    if re.search(r'\b(?:uk|england|scotland|wales|northern ireland|great britain)\b',value):return ['GB']
+    # Reject known out-of-scope locations before city matching (e.g. Paris, Texas; London, Ontario).
+    if re.search(r'united states|\busa\b|canada|ontario|india|australia|singapore|brazil|toronto|san francisco|new york|\btexas\b',value): return []
     return [c for c, cities in CITY_COUNTRIES.items() if re.search(r'\b(?:'+fold(cities)+r')\b',value)]
 
 def _vocabulary():

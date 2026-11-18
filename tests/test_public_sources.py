@@ -218,10 +218,11 @@ class EuresAdapterTests(unittest.TestCase):
         self.assertEqual(rows.stats['verified_closed_urls'], known)
         self.assertFalse(rows.stats['closure_complete'])
 
-    def test_pipeline_keeps_eu_hr_internships_and_drops_non_hr_and_non_eu(self):
+    def test_pipeline_keeps_hr_internships_in_scope_and_drops_non_hr(self):
         part = process_source(eures_source(), FakeEuresClient(), '2026-11-17T08:00:00+00:00')
         titles = sorted((j['title'], tuple(j['countries'])) for j in part['jobs'])
-        self.assertEqual(titles, [('HR Intern', ('GR',)), ('Internship HR', ('BE',))])
+        self.assertEqual(titles, [('HR Intern', ('GR',)), ('HR Praktikum', ('CH',)), ('Internship HR', ('BE',))])
+        self.assertEqual(next(j for j in part['jobs'] if j['countries'] == ['CH'])['city'], 'Zürich')
         self.assertTrue(all(j['link_status'] == 'public-api-listed' and j['status'] == 'unverified' for j in part['jobs']))
 
     def test_eures_copy_yields_to_employer_and_national_listings(self):

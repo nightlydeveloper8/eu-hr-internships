@@ -98,6 +98,12 @@ export function countryCounts(jobs, clock = Date.now()) {
   }
   return counts;
 }
+// Countries outside the EU: most students need a notification, permit or visa.
+export const PERMIT_NOTES = {
+  CH: {text: 'Switzerland is not in the EU. For EU/EFTA citizens the employer must notify an internship of up to 3 months per calendar year online; a longer internship needs a short-term L EU/EFTA permit before it starts. Students from other countries need a work permit.', url: 'https://www.sem.admin.ch/sem/en/home/themen/fza_schweiz-eu-efta/meldeverfahren.html', source: 'State Secretariat for Migration (SEM)'},
+  GB: {text: 'The United Kingdom is not in the EU. Since 2021 EU students need a visa for an internship, usually the Government Authorised Exchange (Temporary Work) visa through an approved sponsor; a visitor visa does not allow internships.', url: 'https://www.gov.uk/government-authorised-exchange', source: 'GOV.UK'},
+};
+
 // Official languages per country, used to tell local-language ads from English ones.
 export const NATIONAL_LANGUAGES = {AT:['de'],BE:['nl','fr','de'],BG:['bg'],HR:['hr'],CY:['el','tr'],CZ:['cs'],DK:['da'],EE:['et'],FI:['fi','sv'],FR:['fr'],DE:['de'],GR:['el'],HU:['hu'],IE:['en','ga'],IT:['it'],LV:['lv'],LT:['lt'],LU:['lb','fr','de'],MT:['mt','en'],NL:['nl'],PL:['pl'],PT:['pt'],RO:['ro'],SK:['sk'],SI:['sl'],ES:['es','ca','eu','gl'],SE:['sv'],CH:['de','fr','it','rm'],GB:['en']};
 

@@ -55,7 +55,9 @@ class ClassificationTests(unittest.TestCase):
         self.assertEqual(advertisement_language('the and your with will our are have')['code'],'en')
 
     def test_country_precision(self):
-        self.assertEqual(len(COUNTRIES),27)
+        self.assertEqual(len(COUNTRIES),29)
+        for location,country in [('Zürich','CH'),('Lugano, Svizzera','CH'),('London, UK','GB'),('Manchester','GB')]: self.assertEqual(country_codes(location),[country])
+        self.assertEqual(country_codes('London, Ontario, Canada'),[])
         for location,country in [('Amsterdam','NL'),('Lisbon','PT'),('Berlin','DE'),('Riga','LV')]: self.assertEqual(country_codes(location),[country])
         self.assertEqual(country_codes('Paris, Texas, United States'),[])
         self.assertEqual(country_codes('Remote'),[])

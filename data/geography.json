@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "classification": "NUTS 2024",
-  "imported_at": "2026-11-05T13:23:56.761712+00:00",
+  "imported_at": "2026-11-18T18:39:41.723855+00:00",
   "source_url": "https://gisco-services.ec.europa.eu/distribution/v2/nuts/csv/NUTS_AT_2024.csv",
-  "attribution": "Source: European Commission, Eurostat/GISCO, NUTS 2024 attribute table. Names and codes only; no boundary geometries.",
+  "attribution": "Source: European Commission, Eurostat/GISCO, NUTS 2024 attribute table (EU-27 and Switzerland); United Kingdom: ONS International Territorial Levels (ITL 2021), level 1. Names and codes only; no boundary geometries.",
   "licence_reference": "https://ec.europa.eu/eurostat/web/main/help/copyright-notice",
   "administrative_note": "NUTS statistical levels do not have identical administrative meanings in every country. Dutch provinces are level 2; level 3 is a smaller statistical area.",
   "units": [
@@ -1301,6 +1301,321 @@
       "parent": "BG42",
       "name": "Кърджали",
       "latin_name": "Kardzhali",
+      "extra_region": false
+    },
+    {
+      "code": "CH",
+      "country": "CH",
+      "level": 0,
+      "parent": null,
+      "name": "Schweiz/Suisse/Svizzera",
+      "latin_name": "Schweiz/Suisse/Svizzera",
+      "extra_region": false
+    },
+    {
+      "code": "CH0",
+      "country": "CH",
+      "level": 1,
+      "parent": "CH",
+      "name": "Schweiz/Suisse/Svizzera",
+      "latin_name": "Schweiz/Suisse/Svizzera",
+      "extra_region": false
+    },
+    {
+      "code": "CH01",
+      "country": "CH",
+      "level": 2,
+      "parent": "CH0",
+      "name": "Région lémanique",
+      "latin_name": "Région lémanique",
+      "extra_region": false
+    },
+    {
+      "code": "CH011",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH01",
+      "name": "Vaud",
+      "latin_name": "Vaud",
+      "extra_region": false
+    },
+    {
+      "code": "CH012",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH01",
+      "name": "Valais / Wallis",
+      "latin_name": "Valais / Wallis",
+      "extra_region": false
+    },
+    {
+      "code": "CH013",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH01",
+      "name": "Genève",
+      "latin_name": "Genève",
+      "extra_region": false
+    },
+    {
+      "code": "CH02",
+      "country": "CH",
+      "level": 2,
+      "parent": "CH0",
+      "name": "Espace Mittelland",
+      "latin_name": "Espace Mittelland",
+      "extra_region": false
+    },
+    {
+      "code": "CH021",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH02",
+      "name": "Bern / Berne",
+      "latin_name": "Bern / Berne",
+      "extra_region": false
+    },
+    {
+      "code": "CH022",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH02",
+      "name": "Fribourg / Freiburg",
+      "latin_name": "Fribourg / Freiburg",
+      "extra_region": false
+    },
+    {
+      "code": "CH023",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH02",
+      "name": "Solothurn",
+      "latin_name": "Solothurn",
+      "extra_region": false
+    },
+    {
+      "code": "CH024",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH02",
+      "name": "Neuchâtel",
+      "latin_name": "Neuchâtel",
+      "extra_region": false
+    },
+    {
+      "code": "CH025",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH02",
+      "name": "Jura",
+      "latin_name": "Jura",
+      "extra_region": false
+    },
+    {
+      "code": "CH03",
+      "country": "CH",
+      "level": 2,
+      "parent": "CH0",
+      "name": "Nordwestschweiz",
+      "latin_name": "Nordwestschweiz",
+      "extra_region": false
+    },
+    {
+      "code": "CH031",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH03",
+      "name": "Basel-Stadt",
+      "latin_name": "Basel-Stadt",
+      "extra_region": false
+    },
+    {
+      "code": "CH032",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH03",
+      "name": "Basel-Landschaft",
+      "latin_name": "Basel-Landschaft",
+      "extra_region": false
+    },
+    {
+      "code": "CH033",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH03",
+      "name": "Aargau",
+      "latin_name": "Aargau",
+      "extra_region": false
+    },
+    {
+      "code": "CH04",
+      "country": "CH",
+      "level": 2,
+      "parent": "CH0",
+      "name": "Zürich",
+      "latin_name": "Zürich",
+      "extra_region": false
+    },
+    {
+      "code": "CH040",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH04",
+      "name": "Zürich",
+      "latin_name": "Zürich",
+      "extra_region": false
+    },
+    {
+      "code": "CH05",
+      "country": "CH",
+      "level": 2,
+      "parent": "CH0",
+      "name": "Ostschweiz",
+      "latin_name": "Ostschweiz",
+      "extra_region": false
+    },
+    {
+      "code": "CH051",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH05",
+      "name": "Glarus",
+      "latin_name": "Glarus",
+      "extra_region": false
+    },
+    {
+      "code": "CH052",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH05",
+      "name": "Schaffhausen",
+      "latin_name": "Schaffhausen",
+      "extra_region": false
+    },
+    {
+      "code": "CH053",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH05",
+      "name": "Appenzell Ausserrhoden",
+      "latin_name": "Appenzell Ausserrhoden",
+      "extra_region": false
+    },
+    {
+      "code": "CH054",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH05",
+      "name": "Appenzell Innerrhoden",
+      "latin_name": "Appenzell Innerrhoden",
+      "extra_region": false
+    },
+    {
+      "code": "CH055",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH05",
+      "name": "St. Gallen",
+      "latin_name": "St. Gallen",
+      "extra_region": false
+    },
+    {
+      "code": "CH056",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH05",
+      "name": "Graubünden / Grigioni / Grischun",
+      "latin_name": "Graubünden / Grigioni / Grischun",
+      "extra_region": false
+    },
+    {
+      "code": "CH057",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH05",
+      "name": "Thurgau",
+      "latin_name": "Thurgau",
+      "extra_region": false
+    },
+    {
+      "code": "CH06",
+      "country": "CH",
+      "level": 2,
+      "parent": "CH0",
+      "name": "Zentralschweiz",
+      "latin_name": "Zentralschweiz",
+      "extra_region": false
+    },
+    {
+      "code": "CH061",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH06",
+      "name": "Luzern",
+      "latin_name": "Luzern",
+      "extra_region": false
+    },
+    {
+      "code": "CH062",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH06",
+      "name": "Uri",
+      "latin_name": "Uri",
+      "extra_region": false
+    },
+    {
+      "code": "CH063",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH06",
+      "name": "Schwyz",
+      "latin_name": "Schwyz",
+      "extra_region": false
+    },
+    {
+      "code": "CH064",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH06",
+      "name": "Obwalden",
+      "latin_name": "Obwalden",
+      "extra_region": false
+    },
+    {
+      "code": "CH065",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH06",
+      "name": "Nidwalden",
+      "latin_name": "Nidwalden",
+      "extra_region": false
+    },
+    {
+      "code": "CH066",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH06",
+      "name": "Zug",
+      "latin_name": "Zug",
+      "extra_region": false
+    },
+    {
+      "code": "CH07",
+      "country": "CH",
+      "level": 2,
+      "parent": "CH0",
+      "name": "Ticino",
+      "latin_name": "Ticino",
+      "extra_region": false
+    },
+    {
+      "code": "CH070",
+      "country": "CH",
+      "level": 3,
+      "parent": "CH07",
+      "name": "Ticino",
+      "latin_name": "Ticino",
       "extra_region": false
     },
     {
@@ -8819,6 +9134,15 @@
       "extra_region": false
     },
     {
+      "code": "GB",
+      "country": "GB",
+      "level": 0,
+      "parent": null,
+      "name": "United Kingdom",
+      "latin_name": "United Kingdom",
+      "extra_region": false
+    },
+    {
       "code": "HR",
       "country": "HR",
       "level": 0,
@@ -13757,6 +14081,114 @@
       "parent": "SK04",
       "name": "Košický kraj",
       "latin_name": "Košický kraj",
+      "extra_region": false
+    },
+    {
+      "code": "TLC",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "North East (England)",
+      "latin_name": "North East (England)",
+      "extra_region": false
+    },
+    {
+      "code": "TLD",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "North West (England)",
+      "latin_name": "North West (England)",
+      "extra_region": false
+    },
+    {
+      "code": "TLE",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "Yorkshire and The Humber",
+      "latin_name": "Yorkshire and The Humber",
+      "extra_region": false
+    },
+    {
+      "code": "TLF",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "East Midlands (England)",
+      "latin_name": "East Midlands (England)",
+      "extra_region": false
+    },
+    {
+      "code": "TLG",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "West Midlands (England)",
+      "latin_name": "West Midlands (England)",
+      "extra_region": false
+    },
+    {
+      "code": "TLH",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "East of England",
+      "latin_name": "East of England",
+      "extra_region": false
+    },
+    {
+      "code": "TLI",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "London",
+      "latin_name": "London",
+      "extra_region": false
+    },
+    {
+      "code": "TLJ",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "South East (England)",
+      "latin_name": "South East (England)",
+      "extra_region": false
+    },
+    {
+      "code": "TLK",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "South West (England)",
+      "latin_name": "South West (England)",
+      "extra_region": false
+    },
+    {
+      "code": "TLL",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "Wales",
+      "latin_name": "Wales",
+      "extra_region": false
+    },
+    {
+      "code": "TLM",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "Scotland",
+      "latin_name": "Scotland",
+      "extra_region": false
+    },
+    {
+      "code": "TLN",
+      "country": "GB",
+      "level": 1,
+      "parent": "GB",
+      "name": "Northern Ireland",
+      "latin_name": "Northern Ireland",
       "extra_region": false
     }
   ]

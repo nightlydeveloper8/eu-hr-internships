@@ -18,7 +18,8 @@ def generate():
     runs=read(ROOT/'data/coverage.json',{}).get('sources',[])
     progress=country_research_progress(companies,sources,plan,runs,report['generated_at'])
     for country in report['countries']:
-        country.update(next(p for p in progress if p['code']==country['code']))
+        # The EU-27 research plan has no rows for CH/GB (Phase 4); they keep the coverage counts only.
+        country.update(next((p for p in progress if p['code']==country['code']),{}))
     write(ROOT/'docs/company-integration-queue.json',integration_queue(companies,sources,runs))
     write(ROOT/'docs/country-research-progress.json',dict(counting_basis=plan['counting_basis'],countries=progress))
     write(ROOT/'data/company-coverage.json',report);write(ROOT/'docs/company-discovery-queue.json',discovery_queue(geography,report,plan))

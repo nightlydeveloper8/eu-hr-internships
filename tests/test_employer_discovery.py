@@ -75,7 +75,7 @@ class RegistryTests(unittest.TestCase):
         self.g=json.loads((root/'data/geography.json').read_text());self.c=json.loads((root/'data/companies.json').read_text());self.s=json.loads((root/'data/sources.json').read_text())
 
     def test_actual_geography_is_complete_and_hierarchical(self):
-        self.assertEqual(len({u['country'] for u in self.g['units']}),27)
+        self.assertEqual(len({u['country'] for u in self.g['units']}),29)  # EU-27 + CH (NUTS) + GB (ITL1)
         self.assertEqual(sum(u['level']==2 and u['country']=='NL' for u in self.g['units']),12)
         codes={u['code'] for u in self.g['units']}
         self.assertTrue(all(not u['parent'] or u['parent'] in codes for u in self.g['units']))
@@ -99,7 +99,7 @@ class RegistryTests(unittest.TestCase):
 
     def test_queue_covers_eu_without_fixed_netherlands_priority(self):
         report=coverage_report(self.c,self.g,self.s,[],'2026-11-05');queue=discovery_queue(self.g,report)
-        self.assertEqual(len({x['country'] for x in queue}),27)
+        self.assertEqual(len({x['country'] for x in queue}),28)  # GB has only ITL level 1, no level-2 regions
         self.assertEqual(sum(x['target_companies'] or 0 for x in queue if x['country']=='NL'),100)
         self.assertTrue(all(x['status']=='research-required' for x in queue))
 

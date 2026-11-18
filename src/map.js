@@ -21,7 +21,7 @@ export function describeCountry(name, c = {verified:0, unverified:0}) {
   return 'No opportunities collected yet';
 }
 
-// Draws the EU-27 map into `svg`. Returns {select(code)} to sync the highlighted country.
+// Draws the EU-27 + CH + GB map into `svg`. Returns {select(code)} to sync the highlighted country.
 export function drawMap({svg, tooltip, wrap, counts, names, onSelect, languages = () => ''}) {
   svg.setAttribute('viewBox', MAP_VIEWBOX);
   svg.replaceChildren();

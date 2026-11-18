@@ -535,13 +535,17 @@ def _fold_into(jobs, copies_from, targets_from):
             job['duplicate_source_ids'] = sorted(set(target.get('duplicate_source_ids', [])) | {target['source_id']})
             job['related_listing_urls'] = sorted(set(target.get('related_listing_urls', [])) | {target['url']})
             job['public_listing_urls'] = sorted(set(target.get('public_listing_urls', [])))
+            # The copy keeps its own position and the target is dropped, so a
+            # second finalisation of the published catalog is a no-op.
             replaced[id(matches[0])] = job
+            result.append(job)
             merged += 1
             continue
         target['duplicate_source_ids'] = sorted(set(target.get('duplicate_source_ids', [])) | {job['source_id']})
         target['public_listing_urls'] = sorted(set(target.get('public_listing_urls', [])) | {job['url']})
         merged += 1
-    return [replaced.get(id(j), j) for j in result], merged
+    dropped = set(replaced)
+    return [j for j in result if id(j) not in dropped], merged
 
 
 def merge_public_duplicates(jobs, public_source_ids, secondary_source_ids=()):
