@@ -17,11 +17,13 @@ CATEGORIES = {
  'employee-experience': ('Employee experience & engagement', r'(?:employee|people) (?:experience|engagement)|mitarbeiterbindung'),
  'organizational-development': ('Organizational development', r'organi[sz]ational development|organi[sz]ation development|organisationsentwicklung'),
  'hr-administration': ('HR administration', r'hr admin|personnel admin|administration du personnel|personaladministration|personeelsadministratie|amministrazione del personale'),
+ 'diversity-inclusion': ('Diversity, equity & inclusion', r'diversity,? equity (?:and|&) inclusion|diversity (?:and|&) inclusion|\bd&i\b'),
  'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
-INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|praktikant(?:en|er|s)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
+INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a|plads|plats)?\b|praktikant(?:en|er|s|as|ai|e)?\b|praktikum\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante|anti|i)\b|\bestagi(?:o|os|ari[oa]s?)\b|\bstagi(?:u|ar|ara|ari)\b|\bstazist(?:a|ka|i|ky)\b|\bodborna praxe\b|\bstrucna praksa\b|\bstudentska praksa\b|\ben practicas\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 # Placement nouns are distinct from Polish 'staz pracy' (work experience).
 POLISH_PLACEMENT = r'\bstaz(?:ysta|ystka|ysci|ystki)\b|(?:^|[|:–—-]\s*)(?:(?:p[łl]atny|letni|wakacyjny|studencki)\s+)?staz\b(?!\s+pracy\b)'
+
 CITY_COUNTRIES = {
  'NL': 'amsterdam|rotterdam|utrecht|eindhoven|hoofddorp|oegstgeest|amersfoort|wageningen|haarlem|zaandam|leiden|den haag|hilversum|breda|delft|nijmegen|groningen|tilburg|enschede|apeldoorn|arnhem|den bosch',
  'DE':'berlin|munich|munchen|hamburg|frankfurt|cologne|koln|dusseldorf|stuttgart|leipzig|karlsruhe|walldorf|heidelberg', 'FR':'paris|rueil.malmaison|neuilly|nanterre|saint.ouen|saint.denis|lyon|marseille|bordeaux|lille|toulouse|nantes|boulogne|issy|clichy',
@@ -64,9 +66,73 @@ def country_codes(location, explicit=None):
     if re.search(r'united (?:states|kingdom)|\busa\b|\buk\b|switzerland|canada|india|australia|singapore|brazil|london|zurich|toronto|san francisco|new york|\btexas\b',value): return []
     return [c for c, cities in CITY_COUNTRIES.items() if re.search(r'\b(?:'+fold(cities)+r')\b',value)]
 
+def _vocabulary():
+    import json
+    from pathlib import Path
+    path = Path(__file__).resolve().parents[1] / 'data' / 'hr-vocabulary.json'
+    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'categories': {}}
+
+
+def vocabulary_pattern(terms):
+    """Compile natural-language terms into one folded, whole-word regex."""
+    parts = []
+    for term in terms:
+        value = fold(str(term).strip())
+        if not value:
+            continue
+        prefix = value.endswith('*')
+        value = value.rstrip('*')
+        # '&' is required where written ("d&i" must never match "di"); other
+        # separators (space, hyphen, slash) are interchangeable.
+        segments = [[re.escape(w) for w in re.split(r'[\s\-/]+', seg) if w] for seg in value.split('&')]
+        if not all(segments):
+            continue
+        joined = r'\s*&\s*'.join(r'[\s\-/]+'.join(words) for words in segments)
+        parts.append(r'(?<!\w)' + joined + (r'' if prefix else r'(?!\w)'))
+    return re.compile('|'.join(parts)) if parts else None
+
+
+def _compile_vocabulary(data):
+    by_language = lambda block: [t for terms in (block or {}).values() if isinstance(terms, list) for t in terms]
+    strong, contextual = {}, {}
+    for key, entry in data.get('categories', {}).items():
+        strong[key] = vocabulary_pattern(by_language(entry.get('strong')))
+        contextual[key] = vocabulary_pattern(by_language(entry.get('contextual')))
+    generalist = by_language(data.get('categories', {}).get('hr-generalist', {}).get('strong'))
+    context = vocabulary_pattern(generalist + by_language({k: v for k, v in data.get('hr_context', {}).items() if k != 'note'}))
+    veto = vocabulary_pattern(data.get('non_hr_domain', {}).get('terms', []))
+    return strong, contextual, context, veto
+
+
+VOCABULARY = _vocabulary()
+VOCAB_STRONG, VOCAB_CONTEXTUAL, HR_CONTEXT, NON_HR_DOMAIN = _compile_vocabulary(VOCABULARY)
+APPLICATION_SENTENCE = r'\b(?:cv|curriculum|resume|candidat\w*|apply|application|bewerb\w*|postul\w*|sollicit\w*|inviare|send|envoy\w*|enviar|stuur)\b'
+
+
+def vocabulary_categories(title, text):
+    """Categories from data/hr-vocabulary.json. Inputs are already folded."""
+    cats = [k for k, pattern in VOCAB_STRONG.items() if pattern and pattern.search(title)]
+    if NON_HR_DOMAIN and NON_HR_DOMAIN.search(title):
+        return cats
+    sentences = None
+    for key, pattern in VOCAB_CONTEXTUAL.items():
+        if key in cats or not pattern or not pattern.search(title) or not HR_CONTEXT:
+            continue
+        if HR_CONTEXT.search(pattern.sub(' ', title)):
+            cats.append(key)
+            continue
+        if sentences is None:
+            sentences = [s for s in re.split(r'(?<=[.!?;:])\s+|\n', text) if not re.search(APPLICATION_SENTENCE, s)]
+        if any(pattern.search(s) and HR_CONTEXT.search(s) for s in sentences):
+            cats.append(key)
+    return cats
+
+
+
 def classify_role(title, text='', employment=''):
     title, text, employment = map(fold,(plain(title),plain(text),plain(employment)))
-    cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title)]
+    extra = vocabulary_categories(title, text)
+    cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title) or k in extra]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
     if not cats and re.search(r'people (?:&|and) events',title) and re.search(r'personalbetreuung|personalentwicklung|human resources|hr administration',text):cats=['hr-generalist']
     if re.search(r'benefits|compensation|reward',title) and not re.search(r'hr|human resources|employee|payroll|compensation (?:&|and) benefits|total rewards|remuneration',title+' '+text):

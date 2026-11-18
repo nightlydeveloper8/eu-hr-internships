@@ -25,11 +25,21 @@ INVENTORY_EVIDENCE = 'official-public-api-active-listing'
 
 # Queries are recall aids only. Every result still has to pass the normal
 # internship + HR title classification and an explicit country.
-JOBTECH_QUERIES = (
-    '+praktik +HR', '+praktik +rekrytering', '+praktik +personal', '+praktikant',
-    '+HR-praktik', '+HR-praktikant', '+internship', '+intern +HR', '+trainee +HR',
-    '+trainee +rekrytering',
-)
+def vocabulary_search_terms(language):
+    """(placement terms, HR terms) for one language from data/hr-vocabulary.json."""
+    from .classify import VOCABULARY
+    search = VOCABULARY.get('search', {})
+    return search.get('placement_terms', {}).get(language, []), search.get('hr_terms', {}).get(language, [])
+
+
+def jobtech_queries():
+    placements, hr_terms = vocabulary_search_terms('sv')
+    generated = ['+' + p + ' +' + h for p in placements for h in hr_terms]
+    # Swedish compounds and English-language ads in Platsbanken.
+    return tuple(generated + ['+praktikant', '+HR-praktik', '+HR-praktikant', '+internship', '+intern +HR', '+trainee +HR'])
+
+
+JOBTECH_QUERIES = jobtech_queries()
 JOBTECH_PAGE = 100
 JOBTECH_MAX_OFFSET = 300  # results are relevance-ranked; deeper pages are off-topic
 JOBTECH_SWEDEN = {'199', 'sverige', 'sweden'}
@@ -207,20 +217,28 @@ def jobtech_records(source, client):
 
 EURES_API = 'https://europa.eu/eures/api/jv-searchengine/public'
 EURES_PAGE = 50  # the portal accepts 10, 25 or 50
-EURES_MAX_PAGES = 6
+EURES_MAX_PAGES = 8
 EURES_OFFERING_MAX_PAGES = 30
-# Multilingual title queries. Each query is paged only while its last page
-# still produced classifier matches; the internship offering facet is read in
-# full. Recall aids only: classification and explicit country still decide.
-EURES_QUERIES = (
-    'HR intern', 'HR internship', 'human resources internship', 'recruitment intern', 'talent acquisition intern',
-    'HR trainee', 'stage RH', 'stagiaire RH', 'stage ressources humaines', 'Praktikum HR', 'Praktikum Personal',
-    'Praktikant Personal', 'Werkstudent HR', 'Werkstudent Personal', 'Praktikum Recruiting', 'stage HR',
-    'stagiair HR', 'afstudeerstage HR', 'tirocinio risorse umane', 'stage risorse umane', 'tirocinio HR',
-    'prácticas recursos humanos', 'becario recursos humanos', 'prácticas RRHH', 'estágio recursos humanos',
-    'estágio RH', 'staż HR', 'praktyki HR', 'stáž HR', 'gyakornok HR', 'praktikant HR', 'HR praktik',
-    'harjoittelija HR', 'HR-harjoittelija',
-)
+# Title queries are generated from data/hr-vocabulary.json: per language, one
+# relevance-ranked query combining the placement terms and the HR terms (the
+# portal ranks vacancies matching more terms first). A query is paged while it
+# keeps producing new HR internships. Recall aids only: classification and an
+# explicit country still decide inclusion.
+EURES_LANGUAGES = ('en', 'de', 'fr', 'it', 'es', 'nl', 'pt', 'pl', 'sv', 'da', 'fi', 'cs', 'sk', 'sl', 'hr',
+                   'hu', 'ro', 'bg', 'el', 'et', 'lv', 'lt')
+EURES_EMPTY_PAGES = 2  # stop after this many consecutive pages without new HR internships
+
+
+def eures_queries():
+    queries = []
+    for language in EURES_LANGUAGES:
+        placements, hr_terms = vocabulary_search_terms(language)
+        if placements and hr_terms:
+            queries.append(' '.join(dict.fromkeys(placements + hr_terms)))
+    return tuple(queries)
+
+
+EURES_QUERIES = eures_queries()
 EURES_COUNTRY_ALIASES = {'EL': 'GR', 'UK': 'GB'}
 # Some services (e.g. the Dutch UWV) do not transmit the employer's name.
 EURES_UNDISCLOSED_EMPLOYER = 'Employer not disclosed (see EURES advertisement)'
@@ -331,6 +349,7 @@ def eures_records(source, client):
 
     # 1. Everything the national services coded as an internship.
     def scan(label, criteria_for, max_pages, stop_without_matches):
+        empty = 0
         for page in range(1, max_pages + 1):
             try:
                 jvs, matches = read(criteria_for(page))
@@ -339,7 +358,8 @@ def eures_records(source, client):
                     raise
                 errors.append(dict(query=label, page=page, error=str(exc)[:160]))
                 return
-            if len(jvs) < EURES_PAGE or (stop_without_matches and not matches):
+            empty = 0 if matches else empty + 1
+            if len(jvs) < EURES_PAGE or (stop_without_matches and empty >= EURES_EMPTY_PAGES):
                 return
         truncated.append(label)
 
