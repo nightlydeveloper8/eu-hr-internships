@@ -20,6 +20,7 @@ CATEGORIES = {
  'diversity-inclusion': ('Diversity, equity & inclusion', r'diversity,? equity (?:and|&) inclusion|diversity (?:and|&) inclusion|\bd&i\b'),
  'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
+STUDENT_JOB = r'werkstud(?:ent|ierende)\w*|working.students?|student(?:ische)? (?:assistant|hilfskraft|aushilfe|job)|studentenjob|studentermedhjaelper'
 INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a|plads|plats)?\b|praktikant(?:en|er|s|as|ai|e)?\b|praktikum\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante|anti|i)\b|\bestagi(?:o|os|ari[oa]s?)\b|\bstagi(?:u|ar|ara|ari)\b|\bstazist(?:a|ka|i|ky)\b|\bodborna praxe\b|\bstrucna praksa\b|\bstudentska praksa\b|\ben practicas\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 # Placement nouns are distinct from Polish 'staz pracy' (work experience).
 POLISH_PLACEMENT = r'\bstaz(?:ysta|ystka|ysci|ystki)\b|(?:^|[|:–—-]\s*)(?:(?:p[łl]atny|letni|wakacyjny|studencki)\s+)?staz\b(?!\s+pracy\b)'
@@ -147,13 +148,16 @@ def classify_role(title, text='', employment=''):
     if re.search(r'\bintern\b',title) and re.search(r'\b(?:jij|jouw|werkervaring|salarisverwerking|medewerkers)\b',text):
         if not re.search(r'\bstag(?:e|iair|iaire|iairs|iaires)|\binternship|\bstudent|\bmeewerk|\bafstudeer|\binschrev',title+' '+text):return None
     # Internal, international and interview must never count as 'intern'.
-    signal = re.search(INTERNSHIP,title+' '+employment)
+    # Part-time student jobs (Werkstudent, working student) are not placements:
+    # they count only when the title also names an internship.
+    if re.search(STUDENT_JOB,title) and not re.search(INTERNSHIP,re.sub(STUDENT_JOB,' ',title)):return None
+    signal = re.search(INTERNSHIP,re.sub(STUDENT_JOB,' ',title+' '+employment))
     # Spanish placement titles use 'Prácticas'. A phrase about good practices
     # inside a permanent HR title/description is not a placement signal.
     signal = signal or re.search(r'^practicas\b',title) or re.search(r'^practicas\b',employment)
     signal = signal or re.search(POLISH_PLACEMENT,title) or re.search(POLISH_PLACEMENT,employment)
     if not signal: return None
-    kind = 'working-student' if re.search(r'werkstud(?:ent|ierende)|working.student|student assistant',title+' '+employment) else 'traineeship' if re.search(r'trainee',title+' '+employment) else 'internship'
+    kind = 'traineeship' if re.search(r'trainee',title+' '+employment) and not re.search(r'\bintern|\bstag|praktik|placement',title) else 'internship'
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
 LANG_ALIASES = {
