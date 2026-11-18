@@ -291,3 +291,52 @@ class JobTechResilienceTests(unittest.TestCase):
         self.assertEqual(rows.stats['search_errors'][0]['query'], '+internship')
         self.assertEqual(sum('internship' in c for c in client.calls), 2)
         self.assertEqual(len(rows), 2)
+
+
+class PublicApiVerificationRuleTests(unittest.TestCase):
+    STAMP = '2026-11-17T08:00:00+00:00'
+
+    def rule(self, flagged=True, **record):
+        from collector.public_sources import public_api_verification, INVENTORY_EVIDENCE
+        value = dict(inventory_evidence=INVENTORY_EVIDENCE, published_at='2026-11-02T09:00:00', valid_through=None)
+        value.update(record)
+        return public_api_verification(source(active_listing_api=flagged), value, self.STAMP)
+
+    def test_reviewed_active_listing_api_verifies_current_ads(self):
+        verified, status, reason = self.rule()
+        self.assertEqual((verified, status), (self.STAMP, 'public-api-active-listing'))
+        self.assertIn('employer application page was not checked', reason)
+        self.assertEqual(self.rule(published_at='2025-01-01', valid_through='2026-12-31')[0], self.STAMP)
+
+    def test_rule_does_not_apply_without_review_flag_or_with_weak_evidence(self):
+        self.assertEqual(self.rule(flagged=False)[:2], (None, 'public-api-listed'))
+        self.assertIsNone(self.rule(valid_through='2026-11-16')[0])               # deadline passed
+        self.assertIsNone(self.rule(published_at='2026-03-01T00:00:00')[0])       # >180 days, no deadline
+        self.assertIsNone(self.rule(published_at=None)[0])                        # undated, no deadline
+        self.assertIsNone(self.rule(published_at='2027-03-01')[0])                # future publication
+        self.assertIsNone(self.rule(published_at='not a date')[0])
+        self.assertIsNone(self.rule(inventory_evidence='employer-board')[0])
+
+    def test_pipeline_opens_verified_public_listing_and_catalog_validates(self):
+        part = process_source(source(active_listing_api=True), FakeClient(), self.STAMP)
+        job = part['jobs'][0]
+        self.assertEqual((job['status'], job['link_status'], job['last_verified_at']), ('open', 'public-api-active-listing', self.STAMP))
+        self.assertEqual(job['verification']['state'], 'verified')
+        self.assertEqual(job['verification']['policy'], 'public-api-active-listing')
+        catalog = dict(schema_version=1, countries=COUNTRIES, languages=LANGUAGES,
+                       categories={k: v[0] for k, v in CATEGORIES.items()}, jobs=part['jobs'])
+        self.assertTrue(validate_catalog(catalog))
+
+    def test_verified_public_copy_replaces_unverified_employer_duplicate(self):
+        own = dict(id='a', source_id='greenhouse-x', employer='Exempel AB', title='HR praktik', countries=['SE'],
+                   status='unverified', url='https://x.example/1', apply_url='https://x.example/1')
+        public = dict(own, id='b', source_id='public-se-jobtech', status='open', employer='Exempel Aktiebolag',
+                      url='https://arbetsformedlingen.se/platsbanken/annonser/5', apply_url='https://arbetsformedlingen.se/platsbanken/annonser/5')
+        eures = dict(public, id='c', source_id='public-eu-eures', url='https://europa.eu/eures/portal/jv-se/jv-details/Z')
+        jobs, merged = merge_public_duplicates([own, public, eures], ['public-se-jobtech', 'public-eu-eures'], ['public-eu-eures'])
+        self.assertEqual(([j['id'] for j in jobs], merged), (['b'], 2))
+        self.assertEqual(jobs[0]['duplicate_source_ids'], ['greenhouse-x', 'public-eu-eures'])
+        self.assertEqual(jobs[0]['related_listing_urls'], ['https://x.example/1'])
+        # An open employer listing is never replaced.
+        jobs, _ = merge_public_duplicates([dict(own, status='open'), dict(public)], ['public-se-jobtech'])
+        self.assertEqual([j['id'] for j in jobs], ['a'])
