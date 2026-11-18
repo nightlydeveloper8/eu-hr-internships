@@ -1,4 +1,4 @@
-import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, languageBreakdown } from './logic.js';
+import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, languageBreakdown, PERMIT_NOTES } from './logic.js';
 import { drawMap, describeCountry, describeLanguages } from './map.js';
 const $ = id => document.getElementById(id);
 const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
@@ -33,6 +33,7 @@ function card(job) {
   if (!verifiedJob(job)) tags.append(el('span','tag unverified',job.verification?.state==='blocked' ? 'Source blocked' : 'Verification incomplete'));
   article.append(tags);
   if (!verifiedJob(job)) article.append(el('p','verification-explanation',verificationMessage(job)));
+  for (const code of new Set(job.countries||[])) if (PERMIT_NOTES[code]) article.append(permitNote(code));
   const bottom = el('div','card-bottom'); bottom.append(el('p','',job.published_at ? `Posted ${date(job.published_at)}` : `Found ${date(job.first_discovered_at)} · Posting date unknown`));
   const apply = el('a','apply-link');apply.append(el('span','', 'View at employer'),el('span','', '↗'));apply.href=safeUrl(job.apply_url)||safeUrl(job.url)||'#';apply.target='_blank';apply.rel='noopener noreferrer';apply.setAttribute('aria-label',`View ${job.title} at ${job.employer}`);bottom.append(apply);article.append(bottom);
   const details=el('details','job-details');details.append(el('summary','','Language evidence & practical details'));
@@ -56,6 +57,10 @@ function setView(next) {
   $('view-toggle').textContent = view === 'advanced' ? 'Map view' : 'Advanced search';
   $('view-toggle').setAttribute('aria-pressed', String(view === 'advanced'));
   if (catalog) urlState();
+}
+function permitNote(code) {
+  const note = PERMIT_NOTES[code], p = el('p','permit-note',note.text+' ');
+  const a = el('a','',`Source: ${note.source} ↗`); a.href = note.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; p.append(a); return p;
 }
 function selectCountry(code, scroll = true) {
   filters.country = filters.country === code && !scroll ? '' : code; filters.region = ''; limit = 20;
@@ -83,6 +88,7 @@ function updatePanel() {
       }
       panel.append(langs);
     }
+    if (PERMIT_NOTES[code]) panel.append(permitNote(code));
     const actions = el('div','panel-actions');
     const show = el('button','primary-action', c.verified ? `Show ${c.verified} verified ${c.verified === 1 ? 'opportunity' : 'opportunities'} ↓` : c.unverified ? 'See leads to check ↓' : 'Show this country ↓');
     show.type = 'button';
@@ -91,7 +97,7 @@ function updatePanel() {
     clear.addEventListener('click', () => { filters.country = ''; filters.region = ''; syncControls(); render(); });
     actions.append(show, clear); panel.append(actions);
   }
-  $('simple-scope').textContent = code ? `Showing ${catalog.countries[code] || code}` : 'Showing all 27 EU countries';
+  $('simple-scope').textContent = code ? `Showing ${catalog.countries[code] || code}` : 'Showing the EU, Switzerland and the UK';
 }
 function urlState() { const params=shareableFilterParams(filters,defaults); if (view === 'advanced') params.set('view','advanced'); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
 function render() {
@@ -108,7 +114,7 @@ function render() {
   const archive=opportunityCounts(catalog.jobs);
   $('catalog-counts').textContent=`${catalog.jobs.length} archived records across all countries and types; ${archive.closed} closed listing${archive.closed===1?'':'s'} excluded. An archived record is not a confirmed opening.`;
   $('result-count').textContent=jobs.length;$('result-label').textContent=filters.saved ? (jobs.length===1 ? 'saved opportunity' : 'saved opportunities') : jobs.length===1 ? 'opportunity' : 'opportunities';
-  $('scope-label').textContent=filters.country ? catalog.countries[filters.country] : filters.mode==='nl' ? 'The Netherlands first, then the rest of the EU' : 'Across all 27 European Union countries';
+  $('scope-label').textContent=filters.country ? catalog.countries[filters.country] : filters.mode==='nl' ? 'The Netherlands first, then the rest of the EU' : 'Across the EU, Switzerland and the UK';
   const host=$('jobs');host.replaceChildren();host.setAttribute('aria-busy','false');
   if (!jobs.length) {
     const unverifiedLeadsAvailable = !filters.saved && !filters.unverified && selection.verified === 0 && selection.unverified > 0;

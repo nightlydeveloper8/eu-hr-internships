@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated_at": "2026-11-18T18:59:31.993280+00:00",
   "last_attempt_at": "2026-11-18T18:59:31.993280+00:00",
-  "update_status": "partial",
+  "update_status": "failed",
   "countries": {
     "AT": "Austria",
     "BE": "Belgium",
@@ -30,7 +30,9 @@
     "SK": "Slovakia",
     "SI": "Slovenia",
     "ES": "Spain",
-    "SE": "Sweden"
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "GB": "United Kingdom"
   },
   "languages": {
     "en": "English",
@@ -17070,72 +17072,6 @@
         "observed_host": "www.nationalevacaturebank.nl"
       },
       "review_note": "Historical external job-board link; original employer ownership and direct application require individual evidence"
-    },
-    {
-      "id": "1209bf908551c0222fcd",
-      "external_id": "NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy",
-      "source_id": "public-eu-eures",
-      "source_name": "EURES – European Job Mobility Portal (European Labour Authority)",
-      "source_type": "eures-search",
-      "source_posting_id": "NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy",
-      "employer": "Greenpeace International",
-      "title": "People and Culture Insights Intern",
-      "country": "NL",
-      "countries": [
-        "NL"
-      ],
-      "city": "Groot-Amsterdam",
-      "url": "https://europa.eu/eures/portal/jv-se/jv-details/NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy?lang=en",
-      "apply_url": "https://europa.eu/eures/portal/jv-se/jv-details/NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy?lang=en",
-      "categories": [
-        "people-operations"
-      ],
-      "category": "people-operations",
-      "internship_type": "internship",
-      "internship_confidence": "confirmed",
-      "advertisement_language": {
-        "code": "en",
-        "confidence": "uncertain",
-        "method": "deterministic stopword heuristic"
-      },
-      "workplace_languages": [],
-      "language_requirements": {
-        "requirements_status": "unknown",
-        "required_languages": [],
-        "alternative_languages": [],
-        "english_support": "unknown",
-        "english_sufficiency": "unknown",
-        "english_sufficiency_evidence": null
-      },
-      "language_confidence": "unspecified",
-      "duration": "6 months",
-      "enrollment": null,
-      "work_mode": "hybrid",
-      "published_at": "2026-11-04T03:13:04.937000+00:00",
-      "valid_through": null,
-      "first_discovered_at": "2026-11-18T10:18:06.378443+00:00",
-      "last_seen_at": "2026-11-18T18:44:10.683937+00:00",
-      "last_verified_at": "2026-11-18T18:44:10.683937+00:00",
-      "link_status": "public-api-active-listing",
-      "verification": {
-        "state": "verified",
-        "checked_at": "2026-11-18T18:44:10.683937+00:00",
-        "policy_version": 2,
-        "reason": "Returned on this run by an official public employment-service search that lists only currently published advertisements; the employer application page was not checked",
-        "policy": "public-api-active-listing"
-      },
-      "status": "open",
-      "inventory_evidence": "official-public-api-active-listing",
-      "public_api_listed_at": "2026-11-18T18:44:10.683937+00:00",
-      "missing_count": 0,
-      "duplicate_source_ids": [
-        "auto-tilburg-university"
-      ],
-      "related_listing_urls": [
-        "https://www.nationalevacaturebank.nl/vacature/776d7dd4-0570-41a8-9e88-c9dfc6453d59/people-and-culture-insights-intern"
-      ],
-      "public_listing_urls": [],
-      "region_codes": []
     },
     {
       "id": "9a2af96720e51f0e67b7",
@@ -41246,6 +41182,72 @@
         "https://prowurk.nl/vacatures/vacatures/stagiair-recruitment-en-commercie-surhuisterveen~V-00064842"
       ],
       "missing_count": 0,
+      "region_codes": []
+    },
+    {
+      "id": "1209bf908551c0222fcd",
+      "external_id": "NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy",
+      "source_id": "public-eu-eures",
+      "source_name": "EURES – European Job Mobility Portal (European Labour Authority)",
+      "source_type": "eures-search",
+      "source_posting_id": "NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy",
+      "employer": "Greenpeace International",
+      "title": "People and Culture Insights Intern",
+      "country": "NL",
+      "countries": [
+        "NL"
+      ],
+      "city": "Groot-Amsterdam",
+      "url": "https://europa.eu/eures/portal/jv-se/jv-details/NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy?lang=en",
+      "apply_url": "https://europa.eu/eures/portal/jv-se/jv-details/NWY2YzcwZTMtMTMxMi1jMzkyLWUwNjMtNjg5M2IyMGFjMDM0IDQy?lang=en",
+      "categories": [
+        "people-operations"
+      ],
+      "category": "people-operations",
+      "internship_type": "internship",
+      "internship_confidence": "confirmed",
+      "advertisement_language": {
+        "code": "en",
+        "confidence": "uncertain",
+        "method": "deterministic stopword heuristic"
+      },
+      "workplace_languages": [],
+      "language_requirements": {
+        "requirements_status": "unknown",
+        "required_languages": [],
+        "alternative_languages": [],
+        "english_support": "unknown",
+        "english_sufficiency": "unknown",
+        "english_sufficiency_evidence": null
+      },
+      "language_confidence": "unspecified",
+      "duration": "6 months",
+      "enrollment": null,
+      "work_mode": "hybrid",
+      "published_at": "2026-11-04T03:13:04.937000+00:00",
+      "valid_through": null,
+      "first_discovered_at": "2026-11-18T10:18:06.378443+00:00",
+      "last_seen_at": "2026-11-18T18:44:10.683937+00:00",
+      "last_verified_at": "2026-11-18T18:44:10.683937+00:00",
+      "link_status": "public-api-active-listing",
+      "verification": {
+        "state": "verified",
+        "checked_at": "2026-11-18T18:44:10.683937+00:00",
+        "policy_version": 2,
+        "reason": "Returned on this run by an official public employment-service search that lists only currently published advertisements; the employer application page was not checked",
+        "policy": "public-api-active-listing"
+      },
+      "status": "open",
+      "inventory_evidence": "official-public-api-active-listing",
+      "public_api_listed_at": "2026-11-18T18:44:10.683937+00:00",
+      "missing_count": 0,
+      "duplicate_source_ids": [
+        "auto-tilburg-university"
+      ],
+      "related_listing_urls": [
+        "https://www.nationalevacaturebank.nl/vacature/776d7dd4-0570-41a8-9e88-c9dfc6453d59/people-and-culture-insights-intern"
+      ],
+      "public_listing_urls": [],
       "region_codes": []
     },
     {
