@@ -48500,7 +48500,9 @@
     "access_review": "docs/fonti-pubbliche.md",
     "discovery_scope": "Relevance-ranked keyword queries for placements (praktik, praktikant, internship, trainee) in HR/recruitment; only Swedish workplaces; final HR internship title and country rules decide inclusion. Absence from a query never closes an ad: only an explicit removal, a 404 on /ad/{id} or a passed deadline does.",
     "collection_seconds": 300,
-    "max_requests": 160
+    "max_requests": 160,
+    "active_listing_api": true,
+    "active_listing_evidence": "JobTech JobSearch searches the ads currently published in Platsbanken; removed ads are absent from search and flagged removed on /ad/{id}."
   },
   {
     "id": "public-eu-eures",
@@ -48550,6 +48552,8 @@
     "discovery_scope": "All vacancies coded as internships by national services, plus multilingual HR placement title searches paged while they keep yielding HR internships; final HR internship title and explicit EU country rules decide inclusion. Absence never closes a vacancy: only a 404 on the vacancy lookup does.",
     "collection_seconds": 1800,
     "max_requests": 200,
-    "max_known_checks": 40
+    "max_known_checks": 40,
+    "active_listing_api": true,
+    "active_listing_evidence": "The EURES portal search returns vacancies currently published by the national services; withdrawn or expired vacancies answer 404 on the vacancy lookup."
   }
 ]

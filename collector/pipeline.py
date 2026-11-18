@@ -267,11 +267,13 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             from .public_sources import PUBLIC_API_ADAPTERS
             public_api=source['adapter'] in PUBLIC_API_ADAPTERS
             if public_api:
-                # The official API lists only published advertisements. Until a
-                # reviewed public-API verification rule exists, that listing is
-                # recorded as evidence but does not mark the record verified.
-                link_status='public-api-listed'
-                verification.update(reason='Listed by an official public employment-service API on this run; employer application form not checked')
+                # Public-API verification rule (docs/fonti-pubbliche.md): an
+                # official search that lists only currently published
+                # advertisements is itself evidence of an active vacancy.
+                from .public_sources import public_api_verification
+                verified,link_status,reason=public_api_verification(source,record,stamp)
+                verification.update(state='verified' if verified else 'incomplete',reason=reason)
+                if verified:verification['policy']='public-api-active-listing'
             elif verify:
                 from .verification import verify_vacancy, blocked_error
                 from .applications import ApplicationClosed

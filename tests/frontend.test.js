@@ -53,6 +53,7 @@ test('verification explanations are useful without exposing parser errors',()=>{
  assert.equal(verificationMessage({...base,status:'unverified',link_status:'review-required',review_note:'Published September intake needs confirmation.'}),'Published September intake needs confirmation.');
  assert.match(verificationMessage({...base,status:'unverified',verification:{state:'blocked'}}),/restricted/);
  assert.match(verificationMessage({...base,status:'unverified',link_status:'public-api-listed',verification:{state:'incomplete'}}),/official public employment service/);
+ assert.match(verificationMessage({...base,status:'open',link_status:'public-api-active-listing',verification:{state:'verified',policy_version:2},last_verified_at:new Date(Date.now()-3600e3).toISOString()}),/Listed as open by an official public employment service/);
  assert.match(verificationMessage({...base,status:'unverified',verification:{reason:'Request budget exhausted'}}),/could not finish/);
  assert.match(verificationMessage({...base,status:'unverified',verification:{reason:'Invalid application deadline'}}),/closing date/);
  const text=verificationMessage({...base,status:'unverified',verification:{reason:'TypeError: sequence item expected str instance, NoneType found'}});

@@ -57,6 +57,7 @@ export function stale(updatedAt, clock = Date.now()) { return !updatedAt || cloc
 export function safeUrl(value) { try {const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : null;} catch {return null;} }
 
 export function verificationMessage(job, clock = Date.now()) {
+  if (verifiedJob(job, clock) && job.link_status === 'public-api-active-listing') return 'Listed as open by an official public employment service within the last 48 hours. The employer’s own application page was not checked: apply through the official advertisement.';
   if (verifiedJob(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
   if (job.status === 'closed') return 'The employer has closed this listing.';
   if (job.link_status === 'review-required' && job.review_note) return job.review_note;

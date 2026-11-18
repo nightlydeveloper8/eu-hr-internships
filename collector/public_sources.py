@@ -76,6 +76,42 @@ def _retry_once(call):
                 raise
 
 
+# Public-API verification rule (Phase 5). Applies only to sources whose
+# registry entry declares ``active_listing_api: true`` after review: their
+# search returns currently published advertisements only.
+MAX_LISTING_AGE_DAYS = 180
+LISTED_ONLY = 'public-api-listed'
+ACTIVE_LISTING = 'public-api-active-listing'
+
+
+def _instant(value):
+    from datetime import datetime, timezone
+    parsed = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+    return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+
+
+def public_api_verification(source, record, stamp):
+    """Return (verified_at or None, link_status, reason) for a public-API record."""
+    from .verification import expired
+    if not source.get('active_listing_api'):
+        return None, LISTED_ONLY, 'Listed by an official public employment-service API on this run; this source is not reviewed as an active-listings-only API'
+    if record.get('inventory_evidence') != INVENTORY_EVIDENCE:
+        return None, LISTED_ONLY, 'Record did not come from the active-listing search on this run'
+    deadline = record.get('valid_through')
+    try:
+        if deadline and expired(deadline, stamp):
+            return None, LISTED_ONLY, 'Published application deadline has passed'
+        published = record.get('published_at')
+        age = (_instant(stamp) - _instant(published)).days if published else None
+    except (ValueError, TypeError):
+        return None, LISTED_ONLY, 'Invalid publication date or deadline in the public API record'
+    if not deadline and (age is None or age > MAX_LISTING_AGE_DAYS):
+        return None, LISTED_ONLY, f'Listed by the public API but published more than {MAX_LISTING_AGE_DAYS} days ago (or undated) without an application deadline'
+    if age is not None and age < -1:
+        return None, LISTED_ONLY, 'Publication date lies in the future'
+    return stamp, ACTIVE_LISTING, ('Returned on this run by an official public employment-service search that lists only currently '
+                                  'published advertisements; the employer application page was not checked')
+
 class PublicInventory(list):
     """Records plus collection statistics (same contract as universal.Inventory)."""
     def __init__(self, records=(), stats=None):
@@ -373,7 +409,7 @@ def _fold_into(jobs, copies_from, targets_from):
                 by_url.setdefault(canonical_url(url), []).append(job)
         for country in job.get('countries', []):
             by_identity.setdefault((employer_key(job['employer']), title_key(job['title']), country), []).append(job)
-    result, merged = [], 0
+    result, merged, replaced = [], 0, {}
     for job in jobs:
         if job['source_id'] not in copies_from or job.get('status') == 'closed':
             result.append(job)
@@ -387,11 +423,20 @@ def _fold_into(jobs, copies_from, targets_from):
         if len(matches) != 1:
             result.append(job)
             continue
-        target = matches[0]
+        target = replaced.get(id(matches[0]), matches[0])
+        if job.get('status') == 'open' and target.get('status') != 'open':
+            # Keep the listing that carries current evidence. The unverified
+            # record is folded into the verified public copy, never the reverse.
+            job['duplicate_source_ids'] = sorted(set(target.get('duplicate_source_ids', [])) | {target['source_id']})
+            job['related_listing_urls'] = sorted(set(target.get('related_listing_urls', [])) | {target['url']})
+            job['public_listing_urls'] = sorted(set(target.get('public_listing_urls', [])))
+            replaced[id(matches[0])] = job
+            merged += 1
+            continue
         target['duplicate_source_ids'] = sorted(set(target.get('duplicate_source_ids', [])) | {job['source_id']})
         target['public_listing_urls'] = sorted(set(target.get('public_listing_urls', [])) | {job['url']})
         merged += 1
-    return result, merged
+    return [replaced.get(id(j), j) for j in result], merged
 
 
 def merge_public_duplicates(jobs, public_source_ids, secondary_source_ids=()):

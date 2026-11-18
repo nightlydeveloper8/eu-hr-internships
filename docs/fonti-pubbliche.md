@@ -44,10 +44,30 @@ Scansione di prova del 17/11/2026: 2.924 annunci esaminati, 362 stage HR (NL 150
 - **Link**: `url` e `apply_url` puntano alla pagina ufficiale Platsbanken. Il link di candidatura dell'azienda, se pubblicato, serve solo alla deduplica (`external_application_url`).
 - **Dati personali**: nomi dei contatti, email e numeri di telefono non vengono copiati. Il testo viene ripulito prima della classificazione e non entra mai nell'export pubblico.
 - **Deduplica**: una copia del servizio pubblico viene unita all'annuncio dell'azienda già presente solo se c'è **una sola** corrispondenza, per link di candidatura oppure per datore di lavoro + titolo + paese normalizzati. Nei casi ambigui gli annunci restano separati. La fonte pubblica compare in `duplicate_source_ids` e `public_listing_urls`.
-- **Verifica**: per ora gli annunci restano "da verificare" (`link_status: public-api-listed`). La regola che considera verificata la presenza in un'API ufficiale di soli annunci attivi è materia della Fase 5 e va documentata a parte.
+- **Verifica**: regola per le API pubbliche (sezione seguente).
 - **Segreti**: nessuno.
 
 Misura dal vivo del 17/11/2026: 889 annunci letti, 4 stage HR in Svezia (Höganäs, Malmö, Stoccolma, Tranås), 0 doppioni con il catalogo esistente.
+
+## Regola di verifica per le API pubbliche (Fase 5)
+
+Le fonti aziendali restano verificate solo con la prova del modulo di candidatura (policy v2, invariata). Per le API ufficiali dei servizi pubblici per l'impiego vale una regola distinta: **se l'API elenca soltanto annunci attualmente pubblicati, l'essere restituito da quell'API è la prova che l'annuncio è attivo.**
+
+Un annuncio viene considerato verificato (`status: open`, `link_status: public-api-active-listing`, `verification.policy: public-api-active-listing`) solo se valgono **tutte** queste condizioni:
+
+1. La fonte è stata esaminata e dichiarata `active_listing_api: true` nel registro, con il motivo scritto in `active_listing_evidence`. Oggi lo sono JobTech (la ricerca restituisce solo gli annunci pubblicati in Platsbanken; quelli rimossi risultano `removed`) ed EURES (la ricerca del portale restituisce solo le offerte in pubblicazione; quelle ritirate danno 404).
+2. L'annuncio è stato restituito dall'API **in questa esecuzione**: la prova non si eredita da una raccolta precedente.
+3. La scadenza pubblicata, se c'è, non è passata.
+4. Se non c'è una scadenza, la data di pubblicazione deve essere valida e risalire a **non più di 180 giorni** prima. Gli annunci senza data e senza scadenza restano da verificare.
+5. La data di pubblicazione non è nel futuro.
+
+Le regole comuni a tutte le fonti continuano a valere:
+- una verifica più vecchia di 48 ore riporta l'annuncio a "da verificare". Un annuncio che non compare più nelle ricerche perde quindi la verifica entro due giorni, anche se non viene chiuso;
+- una scadenza passata o un 404 esplicito chiudono l'annuncio.
+
+Nell'interfaccia il messaggio è diverso da quello delle fonti aziendali: indica che l'annuncio risulta aperto presso il servizio pubblico e che la pagina di candidatura dell'azienda non è stata controllata.
+
+**Deduplica**: se la copia pubblica è verificata e l'annuncio aziendale corrispondente (unico) non lo è, resta visibile la copia pubblica. L'annuncio aziendale finisce in `duplicate_source_ids` / `related_listing_urls`. Un annuncio aziendale verificato non viene mai sostituito. Questo non abbassa la soglia per le fonti aziendali: la loro verifica resta quella del modulo.
 
 ## Segreti di GitHub Actions
 
