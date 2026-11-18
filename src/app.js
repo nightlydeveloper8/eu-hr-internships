@@ -1,9 +1,9 @@
-import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts } from './logic.js';
-import { drawMap, describeCountry } from './map.js';
+import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, languageBreakdown } from './logic.js';
+import { drawMap, describeCountry, describeLanguages } from './map.js';
 const $ = id => document.getElementById(id);
 const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 const filters = {...defaults};
-let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true, view = 'simple', mapView, counts = {};
+let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true, view = 'simple', mapView, counts = {}, languageCounts = {};
 try { const stored = JSON.parse(localStorage.getItem('people-placement:saved') || '[]'); if (Array.isArray(stored)) saved = new Set(stored.filter(x => typeof x === 'string')); } catch {persistent = false;}
 const bindings = {'search':'q','country':'country','region':'region','category':'category','workplace-language':'workplace','english':'english','english-only':'englishOnly','ad-language':'ad','type':'type','work-mode':'workMode','include-unverified':'unverified','sort':'sort'};
 function el(tag, cls, text) { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; }
@@ -70,6 +70,19 @@ function updatePanel() {
     const c = counts[code] || {verified:0, unverified:0};
     $('top-countries').hidden = true;
     panel.append(el('p','panel-label','Selected country'), el('h2','panel-country',catalog.countries[code] || code), el('p','panel-count',describeCountry(catalog.countries[code], c)));
+    const breakdown = languageBreakdown(code, languageCounts[code]);
+    if (breakdown.length) {
+      const langs = el('div','panel-languages'); langs.append(el('p','panel-label','Verified ads by advertisement language'));
+      for (const {code: lang, count, kind} of breakdown) {
+        if (lang === 'unknown') { langs.append(el('small','',`${count} in an unidentified language`)); continue; }
+        const b = el('button',`language-chip ${kind}`); b.type = 'button';
+        b.append(el('span','',catalog.languages[lang] || lang), el('b','',String(count)));
+        b.setAttribute('aria-label', `Show ${count} verified ${catalog.languages[lang] || lang}-language ads in ${catalog.countries[code] || code}`);
+        b.addEventListener('click', () => { filters.ad = lang; filters.unverified = false; selectCountry(code); });
+        langs.append(b);
+      }
+      panel.append(langs);
+    }
     const actions = el('div','panel-actions');
     const show = el('button','primary-action', c.verified ? `Show ${c.verified} verified ${c.verified === 1 ? 'opportunity' : 'opportunities'} ↓` : c.unverified ? 'See leads to check ↓' : 'Show this country ↓');
     show.type = 'button';
@@ -162,11 +175,21 @@ async function init(){try {const responses=await Promise.all(['catalog','coverag
   $('filters-done').addEventListener('click',()=>{$('filters').classList.remove('is-open');$('filter-toggle').setAttribute('aria-expanded','false');document.querySelector('.results').scrollIntoView({block:'start'});});
   $('source-status').addEventListener('click',showCoverage);$('coverage-nav').addEventListener('click',showCoverage);$('coverage-inline').addEventListener('click',showCoverage);$('close-dialog').addEventListener('click',()=>$('coverage-dialog').close());$('coverage-dialog').addEventListener('click',e=>{if(e.target===$('coverage-dialog')){const rect=e.target.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)e.target.close();}});
   counts = countryCounts(catalog.jobs);
+  languageCounts = countryLanguageCounts(catalog.jobs);
+  const totals = {};
+  for (const byLang of Object.values(languageCounts)) for (const [lang, n] of Object.entries(byLang)) if (lang !== 'unknown') totals[lang] = (totals[lang] || 0) + n;
+  for (const [lang, n] of Object.entries(totals).sort((a, b) => (a[0] === 'en' ? -1 : b[0] === 'en' ? 1 : b[1] - a[1]))) {
+    const chip = el('button','language-chip'); chip.type = 'button';
+    chip.append(el('span','',catalog.languages[lang] || lang), el('b','',String(n)));
+    chip.setAttribute('aria-label', `Show ${n} verified ads written in ${catalog.languages[lang] || lang}, in every country`);
+    chip.addEventListener('click', () => { filters.ad = lang; filters.country = ''; filters.region = ''; filters.unverified = false; limit = 20; syncControls(); render(); $('opportunities').scrollIntoView({block:'start'}); });
+    $('language-totals').append(chip);
+  }
   const verifiedTotal = catalog.jobs.filter(j => matches(j, defaults)).length;
   const leadTotal = catalog.jobs.filter(j => matches(j, {...defaults, unverified:true})).length - verifiedTotal;
   const verifiedCountries = Object.values(counts).filter(c => c.verified).length;
   $('map-stats').textContent = `${verifiedTotal} verified HR opportunities in ${verifiedCountries} ${verifiedCountries === 1 ? 'country' : 'countries'} · ${leadTotal} more leads to check`;
-  mapView = drawMap({svg: $('eu-map'), tooltip: $('map-tooltip'), wrap: $('map-wrap'), counts, names: catalog.countries, onSelect: code => selectCountry(code)});
+  mapView = drawMap({svg: $('eu-map'), tooltip: $('map-tooltip'), wrap: $('map-wrap'), counts, names: catalog.countries, onSelect: code => selectCountry(code), languages: code => describeLanguages(languageBreakdown(code, languageCounts[code]), catalog.languages)});
   const top = Object.entries(counts).filter(([code, c]) => c.verified && catalog.countries[code]).sort((a, b) => b[1].verified - a[1].verified || b[1].unverified - a[1].unverified).slice(0, 6);
   for (const [code, c] of top) { const chip = el('button','country-chip'); chip.type = 'button'; chip.append(el('span','',catalog.countries[code]), el('b','',String(c.verified))); chip.setAttribute('aria-label', `${catalog.countries[code]}: ${describeCountry(catalog.countries[code], c)}`); chip.addEventListener('click', () => selectCountry(code)); $('top-countries').append(chip); }
   $('browse-all').addEventListener('click', () => { filters.country = ''; filters.region = ''; syncControls(); render(); $('opportunities').scrollIntoView({block:'start'}); });

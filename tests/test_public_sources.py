@@ -139,25 +139,28 @@ class PublicDuplicateTests(unittest.TestCase):
 class CountryMetricTests(unittest.TestCase):
     def test_metric_has_29_rows_and_compares_before_after(self):
         catalog = dict(updated_at='2026-11-17', jobs=[
-            dict(countries=['SE'], status='open'), dict(countries=['SE', 'DK'], status='unverified'),
+            dict(countries=['SE'], status='open', internship_type='internship', advertisement_language={'code': 'sv'}),
+            dict(countries=['SE'], status='open', internship_type='working-student', advertisement_language={'code': 'en'}),
+            dict(countries=['SE', 'DK'], status='unverified'),
             dict(countries=['NL'], status='closed')])
         coverage = dict(sources=[dict(id='s1', status='ok'), dict(id='s2', status='partial', records_inspected=0)])
         sources = [dict(id='s1', enabled=True, target_countries=['SE']), dict(id='s2', enabled=True, target_countries=['SE'])]
         result = country_metric.metric(catalog, coverage, sources)
         self.assertEqual(len(result['rows']), 29)
         se = next(r for r in result['rows'] if r['code'] == 'SE')
-        self.assertEqual((se['verified_open'], se['to_verify'], se['sources_functioning'], se['sources_enabled']), (1, 1, 1, 2))
+        self.assertEqual((se['verified_open'], se['to_verify'], se['sources_functioning'], se['sources_enabled']), (2, 1, 1, 2))
+        self.assertEqual((se['verified_internships'], se['verified_english'], se['verified_local']), (1, 1, 1))
         self.assertEqual(result['summary']['countries_with_verified'], 1)
         before = country_metric.metric(dict(jobs=[]), {}, sources)
         text = country_metric.markdown(result, before)
-        self.assertIn('| SE Sweden | 0 → 1 | 0 → 1 |', text)
+        self.assertIn('| SE Sweden | 0 → 2 | 1 | 1 | 1 | 0 → 1 |', text)
         with tempfile.TemporaryDirectory() as tmp:
             data = Path(tmp)
             for name, value in (('catalog.json', catalog), ('coverage.json', coverage), ('sources.json', sources)):
                 (data / name).write_text(json.dumps(value))
             with contextlib.redirect_stdout(io.StringIO()):
                 country_metric.main(['--data', tmp, '--json', str(data / 'out.json')])
-            self.assertEqual(json.loads((data / 'out.json').read_text())['summary']['verified_open'], 1)
+            self.assertEqual(json.loads((data / 'out.json').read_text())['summary']['verified_open'], 2)
 
 
 if __name__ == '__main__':
@@ -365,3 +368,43 @@ class EuresBudgetTests(unittest.TestCase):
         self.assertIn('tirocinio paghe', EURES_PAIR_QUERIES)
         self.assertIn('praktikum personalentwicklung', EURES_PAIR_QUERIES)
         self.assertEqual(len({fold(q) for q in EURES_PAIR_QUERIES}), len(EURES_PAIR_QUERIES))
+
+
+class EuresCrawledAdTests(unittest.TestCase):
+    """UWV republishes crawled employer ads: no employer field, a Dutch label on
+    English text, and the same ad under a new id."""
+    HEADER = ('Northwind Events logo  Northwind Events Homepage  English en Northwind Events logo  '
+              'Stage HR & Recruitment - Op locatie - Amsterdam - People & Culture ')
+    BODY_EN = ('Would you like to help us find the right people? You will join our team and support '
+               'the recruitment of our crew. We are looking for a student with an interest in HR.')
+
+    def jv(self, identifier, header, created, title='Stage HR & Recruitment', body=None):
+        return dict(id=identifier, title=title, description=header + (body or self.BODY_EN),
+                    locationMap={'NL': ['NL329']}, employer={}, positionOfferingCode='temporary',
+                    creationDate=created, availableLanguages=['nl'])
+
+    def test_employer_read_from_repeated_logo_header_only(self):
+        from collector.public_sources import eures_employer_from_text, eures_record
+        self.assertEqual(eures_record(eures_source(), self.jv('A', self.HEADER, 1))['employer'], 'Northwind Events')
+        self.assertIsNone(eures_employer_from_text('Indeed logo Indeed logo HR stage'))
+        self.assertIsNone(eures_employer_from_text('Acme logo. HR stage at a company'))
+        self.assertIsNone(eures_employer_from_text('Functiegebied HRM Regio Noord-Holland'))
+
+    def test_clear_text_language_overrides_the_service_default_label(self):
+        from collector.public_sources import eures_record
+        self.assertIsNone(eures_record(eures_source(), self.jv('A', self.HEADER, 1))['language'])
+        dutch = 'Wil jij ons team helpen? Je gaat aan de slag bij een van de leukste werkgevers en wij zijn op zoek naar jou voor een stage.'
+        self.assertEqual(eures_record(eures_source(), self.jv('B', self.HEADER, 1, body=dutch))['language'], 'nl')
+
+    def test_republished_vacancy_is_kept_once_with_the_newest_id(self):
+        other_header = self.HEADER.replace('English en', 'Nederlands nl')
+        page = dict(numberRecords=3, jvs=[self.jv('OLD', self.HEADER, 1000), self.jv('NEW', other_header, 2000),
+                                          self.jv('ELSE', self.HEADER, 3000, title='HR Intern')])
+
+        class Client(FakeEuresClient):
+            def post_json(self, url, payload):
+                self.posts.append(payload)
+                return page if payload['page'] == 1 else dict(page, jvs=[])
+        rows = collect(eures_source(), Client())
+        self.assertEqual(sorted(r['external_id'] for r in rows), ['ELSE', 'NEW'])
+        self.assertEqual(rows.stats['republished_duplicates_folded'], 1)
