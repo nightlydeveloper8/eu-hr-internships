@@ -61,3 +61,19 @@ I test nuovi includono due esecuzioni identiche di discovery, URL non HTTPS o co
 ## Passaggio successivo (non incluso)
 
 Collegare, in una PR separata dopo revisione, la produzione periodica di osservazioni ufficiali ai checkpoint del crawler esistente. Abilitare nuove fonti solo dopo verifica live di host/robots, proprieta' del tenant, feed completo, paese effettivo, costi di richieste e idempotenza del catalogo. Non toccare il gate Dynamic ATS `pilot-v1` della Issue #23. Nessun merge o rollout autorizzato qui.
+
+## Esito verifica d'accesso ATS (18/11/2026)
+
+Censimento dal rapporto di copertura: le fonti generiche hanno incontrato SuccessFactors in 55 casi, Workday in 38, SmartRecruiters in 25, Personio in 24, Recruitee in 20, Teamtailor in 15 e Greenhouse in 13.
+
+| Piattaforma | Esito | Prova |
+|---|---|---|
+| Workday (`*.myworkdayjobs.com`) | **Non integrabile** | Il robots.txt consente l'API delle bacheche (blocca solo `/refreshFacet/`). Però Cloudflare risponde **429 al client del progetto** (urllib) anche sul robots.txt, mentre accetta curl con lo stesso User-Agent dichiarato. Il filtro è sull'impronta del client, non sulla frequenza: cambiare client per passare sarebbe aggirare un blocco. Bacheche viste: Accenture, Airbus, Dow, GE Aerospace, Hitachi, LEGO, Medtronic, Michelin, Miele, Philips, Roche, Thales, Thermo Fisher, ESET, Infobip e altre. |
+| SuccessFactors (portali `career*.successfactors.*`) | **Escluso** | robots.txt: `User-agent: *` / `Disallow: /`. I siti aziendali "Career Site Builder" su domini propri restano gestiti dallo scraper generico solo se il loro robots.txt lo consente. |
+| SmartRecruiters | Escluso (già noto) | Il robots.txt esclude i bot generici. |
+| Greenhouse / Lever (Doctolib, Delivery Hero, Qonto, Mollie, Picnic, sennder, Personio, Back Market, Team Lewis) | **Bacheche dismesse** | Le API ufficiali, sia USA (`boards-api.greenhouse.io`, `api.lever.co`) sia UE (`api.eu.lever.co`), rispondono 404 per tutti i codici. Le fonti `greenhouse-*` e `lever-*` restano disattivate: le aziende hanno cambiato ATS e i link visti dallo scraper sono vecchi. |
+
+Conseguenza per la Fase 2: le due piattaforme più diffuse tra le multinazionali non si possono usare entro i vincoli del progetto (rispetto di robots.txt e nessun aggiramento di blocchi). Le strade rimaste sono:
+1. Recruitee, Personio e Teamtailor sui siti delle singole aziende, con i raccoglitori esistenti o un nuovo raccoglitore Teamtailor.
+2. I siti carriere delle multinazionali su domini propri che pubblicano dati `JobPosting` (Fase 3).
+3. EURES, che porta gli annunci dei servizi pubblici di tutti i paesi.
