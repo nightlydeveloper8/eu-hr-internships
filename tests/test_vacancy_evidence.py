@@ -70,7 +70,7 @@ class HRAndLanguageEdges(unittest.TestCase):
     def test_specialisations_and_student_types(self):
         for title in ['Recruitment Intern','Talent Acquisition Intern','Learning & Development Intern','People Operations Intern','HR Analytics Intern','Compensation & Benefits Intern','Employee Relations Intern','Organizational Development Intern','Employer Branding Intern']:
             with self.subTest(title=title):self.assertIsNotNone(classify_role(title))
-        self.assertEqual(classify_role('Working Student Talent Acquisition')['internship_type'],'working-student')
+        self.assertIsNone(classify_role('Working Student Talent Acquisition'))
         for title in ['HR Manager','Graduate Programme HR','Management Trainee HR','HR internship opportunities','HR Talent Community','Benefits Marketing Intern']:
             with self.subTest(title=title):self.assertIsNone(classify_role(title))
     def test_explicit_english_is_not_english_alone(self):
