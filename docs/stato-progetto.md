@@ -601,3 +601,7 @@ Costo produzione aggiuntivo **0**. Il pilota web non dispone di conteggio HTTP/t
 
 **Primo punto incompleto:** controllare CI della PR tecnica; pilota client HTTPS/robots su Marquardt/SLB/TikTok e same-vacancy form anonimo, senza CAPTCHA/login. Non attivare i tre canali finché un percorso non supera policy v2; se nessuno passa, cercare fonti sostitutive.
 
+
+## 18 novembre 2026 — PR #57, conservato il lavoro concorrente
+
+Ripresa dal nuovo head remoto `bd419d0` della PR #57, non dall'head locale superato. Incorporato soltanto nel branch PR il main `4040b0a`, inclusa la nuova UI #62, senza conflitti o variazioni intenzionali al prodotto. [Rapporto](drenthe-2026-11-18.md) e [validazione corrente](drenthe-2026-11-18-validation.json). Catalogo byte per byte identico al main; qualifica DOC Kaas conservata (40 datori, 28 qualificati, 12 ignoti). Nessuna nuova verifica live o candidatura, nessuna raccolta completa. La vecchia CI rossa è superata dal fix #54 e dalle nuove verifiche; nuovo SHA/esito CI nella PR. Nessun merge in main, deploy o cambio rollout. Restano revisione del contenuto e lacune documentate; non reintegrare snapshot storici.

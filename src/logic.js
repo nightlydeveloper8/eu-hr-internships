@@ -82,6 +82,23 @@ export function opportunityCounts(jobs, clock = Date.now()) {
     traineeships:active.filter(job => job.internship_type==='traineeship').length};
 }
 
+// Per-country counts for the map: verified and not-yet-verified active listings.
+// Closed listings and unreviewed external hosts are never counted. Multi-country listings count in each country.
+export function countryCounts(jobs, clock = Date.now()) {
+  const counts = {};
+  for (const job of jobs || []) {
+    if (job.status === 'closed' || unreviewedExternal(job)) continue;
+    const verified = verifiedJob(job, clock);
+    for (const code of new Set(job.countries || [])) {
+      const entry = counts[code] || (counts[code] = {verified:0, unverified:0});
+      if (verified) entry.verified++; else entry.unverified++;
+    }
+  }
+  return counts;
+}
+// Colour bucket for a verified count: 0 none, 1, 2-4, 5-9, 10-24, 25+.
+export function countBucket(n) { return n <= 0 ? 0 : n === 1 ? 1 : n < 5 ? 2 : n < 10 ? 3 : n < 25 ? 4 : 5; }
+
 export function provincialJobs(jobs, report, filters = {}) {
   const verifiedIds = new Set(report.verified_hr_internship_ids);
   return jobs.filter(job => (job.region_codes || []).includes(report.region_code)
