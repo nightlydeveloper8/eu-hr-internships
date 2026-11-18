@@ -3042,20 +3042,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "blackwave-gmbh",
-    "name": "Blackwave GmbH",
-    "candidate_countries": [
-      "DE"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://blackwave.com/career",
-    "source_ids": [
-      "auto-blackwave-gmbh"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "bloezem",
     "name": "Bloezem",
     "candidate_countries": [
@@ -5384,20 +5370,6 @@
     "career_url": "https://www.donat-it.de/karriere/",
     "source_ids": [
       "auto-donat-it-gmbh"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "dop-advocaten",
-    "name": "DOP advocaten",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://dopadvocaten.nl/werken-bij/",
-    "source_ids": [
-      "auto-dop-advocaten"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -8641,20 +8613,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "ge-aerospace",
-    "name": "GE Aerospace",
-    "candidate_countries": [
-      "DE"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://careers.geaerospace.com/global/en/search-results",
-    "source_ids": [
-      "auto-ge-aerospace"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "ggd-fryslan",
     "name": "GGD Fryslân",
     "candidate_countries": [
@@ -9238,6 +9196,20 @@
     "career_url": "https://www.nieuwegein.nl/gemeente-bestuur-en-organisatie/organisatie/werken-bij-de-gemeente",
     "source_ids": [
       "auto-gemeente-nieuwegein"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "gemeente-noardeast-fryslan",
+    "name": "Gemeente Noardeast-Fryslân",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://www.noardeast-fryslan.nl/werken-bij",
+    "source_ids": [
+      "auto-gemeente-noardeast-fryslan"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -18304,9 +18276,12 @@
     "state": "collection-review-required",
     "career_url": "https://careers.roche.com/global/en/why-join-us",
     "source_ids": [
-      "auto-roche"
+      "auto-roche",
+      "employer-roche"
     ],
-    "access_blocks": [],
+    "access_blocks": [
+      "Replaced on 2026-11-18 by employer-roche (sitemap + JobPosting, Phase 3); the automatic crawl found no job inventory."
+    ],
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
@@ -20058,20 +20033,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "sport-fryslan",
-    "name": "Sport Fryslân",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://sportfryslan.nl/werken-bij/",
-    "source_ids": [
-      "auto-sport-fryslan"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "sprecher-automation-deutschland-gmbh",
     "name": "Sprecher Automation Deutschland GmbH",
     "candidate_countries": [
@@ -21292,20 +21253,6 @@
     "career_url": null,
     "source_ids": [
       "auto-themetanews"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "thermo-fisher-scientific",
-    "name": "Thermo Fisher Scientific",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://jobs.thermofisher.com/global/en",
-    "source_ids": [
-      "auto-thermo-fisher-scientific"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -24816,6 +24763,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "zva-maatwerk",
+    "name": "ZvA-maatwerk",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://zvamaatwerk.nl/vacature/",
+    "source_ids": [
+      "auto-zva-maatwerk"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "zwembad-mounewetter",
     "name": "Zwembad Mounewetter",
     "candidate_countries": [
@@ -25462,6 +25423,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "blackwave-gmbh",
+    "name": "Blackwave GmbH",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://blackwave.com/career",
+    "source_ids": [
+      "auto-blackwave-gmbh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "bundl",
     "name": "Bundl",
     "candidate_countries": [
@@ -25550,6 +25525,20 @@
     "career_url": "https://job-boards.greenhouse.io/dim",
     "source_ids": [
       "greenhouse-dim"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "dop-advocaten",
+    "name": "DOP advocaten",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://dopadvocaten.nl/werken-bij/",
+    "source_ids": [
+      "auto-dop-advocaten"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25783,6 +25772,23 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "ge-aerospace",
+    "name": "GE Aerospace",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://careers.geaerospace.com/global/en/search-results",
+    "source_ids": [
+      "auto-ge-aerospace",
+      "employer-ge-aerospace"
+    ],
+    "access_blocks": [
+      "Replaced on 2026-11-18 by employer-ge-aerospace (sitemap + JobPosting, Phase 3); the automatic crawl found no job inventory."
+    ],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "gain-automation-technology-bv",
     "name": "Gain Automation Technology BV",
     "candidate_countries": [
@@ -25834,20 +25840,6 @@
     "career_url": "https://werkenbijgemeentebaarn.nl/over-baarn",
     "source_ids": [
       "auto-gemeente-baarn"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "gemeente-noardeast-fryslan",
-    "name": "Gemeente Noardeast-Fryslân",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://www.noardeast-fryslan.nl/werken-bij",
-    "source_ids": [
-      "auto-gemeente-noardeast-fryslan"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26535,6 +26527,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "sport-fryslan",
+    "name": "Sport Fryslân",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://sportfryslan.nl/werken-bij/",
+    "source_ids": [
+      "auto-sport-fryslan"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "springbok",
     "name": "Springbok",
     "candidate_countries": [
@@ -26546,6 +26552,23 @@
       "auto-springbok"
     ],
     "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "thermo-fisher-scientific",
+    "name": "Thermo Fisher Scientific",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://jobs.thermofisher.com/global/en",
+    "source_ids": [
+      "auto-thermo-fisher-scientific",
+      "employer-thermo-fisher"
+    ],
+    "access_blocks": [
+      "Replaced on 2026-11-18 by employer-thermo-fisher (sitemap + JobPosting, Phase 3); the automatic crawl found no job inventory."
+    ],
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
@@ -26701,20 +26724,6 @@
     "career_url": "https://www.werkenbijziengs.nl/",
     "source_ids": [
       "auto-ziengs-schoenen"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "zva-maatwerk",
-    "name": "ZvA-maatwerk",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://zvamaatwerk.nl/vacature/",
-    "source_ids": [
-      "auto-zva-maatwerk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
