@@ -24,6 +24,8 @@ CATEGORIES = {
  'diversity-inclusion': ('Diversity, equity & inclusion', r'diversity,? equity (?:and|&) inclusion|diversity (?:and|&) inclusion|\bd&i\b'),
  'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
+PLACEMENT_TITLE = r'\bintern\b|\binternship|\bstag(?:e|es|iair|iaire|ista|io)\b|praktik|placement|tirocin|estagi|practicas|stagiu|meewerkstage|afstudeer'
+STUDENT_PLACEMENT = r'curricular|currently (?:enrolled|pursuing|studying)|enrolled (?:in|at|as)|still (?:a )?student|during your stud|as part of your (?:studies|degree|programme|program)|ingeschreven|studerende|nel corso degli studi|iscritt[oaie] (?:a|al|ad|presso)|convention de stage|pflichtpraktikum|learning agreement|stageovereenkomst|internship agreement|university placement|placement year|sandwich year|in het kader van je (?:studie|opleiding)|im rahmen (?:deines|ihres) studiums'
 STUDENT_JOB = r'werkstud(?:ent|ierende)\w*|working.students?|student(?:ische)? (?:assistant|hilfskraft|aushilfe|job)|studentenjob|studentermedhjaelper'
 INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a|plads|plats)?\b|praktikant(?:en|er|s|as|ai|e)?\b|praktikum\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante|anti|i)\b|\bestagi(?:o|os|ari[oa]s?)\b|\bstagi(?:u|ar|ara|ari)\b|\bstazist(?:a|ka|i|ky)\b|\bodborna praxe\b|\bstrucna praksa\b|\bstudentska praksa\b|\ben practicas\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 # Placement nouns are distinct from Polish 'staz pracy' (work experience).
@@ -164,7 +166,10 @@ def classify_role(title, text='', employment=''):
     signal = signal or re.search(r'^practicas\b',title) or re.search(r'^practicas\b',employment)
     signal = signal or re.search(POLISH_PLACEMENT,title) or re.search(POLISH_PLACEMENT,employment)
     if not signal: return None
-    kind = 'traineeship' if re.search(r'trainee',title+' '+employment) and not re.search(r'\bintern|\bstag|praktik|placement',title) else 'internship'
+    # Traineeships are usually graduate jobs, out of scope (owner decision 18/11/2026).
+    # A trainee title counts only when the text documents a student placement.
+    if re.search(r'trainee',title) and not re.search(PLACEMENT_TITLE,title) and not re.search(STUDENT_PLACEMENT,fold(plain(text))):return None
+    kind = 'internship'
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
 LANG_ALIASES = {
