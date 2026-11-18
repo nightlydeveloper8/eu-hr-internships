@@ -113,6 +113,18 @@ def publication_application(record,source,client,body,doc):
 
 
 
+def phenom_state(body):
+    """Phenom career pages always server-render their "job no longer available"
+    template; the browser hides it for live jobs. The embedded job detail
+    (phApp.ddo) says whether the vacancy is live."""
+    if b'job-expire' not in body or b'phApp' not in body:
+        return None
+    match = re.search(rb'"jobDetail":\{"status":(\d+),"hits":(\d+)', body)
+    if not match:
+        return None
+    return 'open' if match.group(1) == b'200' and int(match.group(2)) > 0 else 'closed'
+
+
 def checked_document(url, source, client):
     from .universal import Document
     if urlsplit(url).hostname not in source['allowed_hosts']:
@@ -121,7 +133,15 @@ def checked_document(url, source, client):
     if urlsplit(final).hostname not in source['allowed_hosts']:
         raise ValueError('Unreviewed application redirect')
     doc = Document(body, final)
-    try:ensure_open_document(doc)
+    state = phenom_state(body)
+    try:
+        if state == 'closed':
+            raise ApplicationClosed('Phenom job detail reports no live vacancy')
+        if state == 'open':
+            from .universal import CHALLENGE
+            if CHALLENGE.search(doc.text[:3000]): raise ValueError('Application access challenge')
+        else:
+            ensure_open_document(doc)
     except ApplicationClosed as exc:
         # The verifier still needs to identify this document and capture changed
         # metadata before propagating the same closure decision.
