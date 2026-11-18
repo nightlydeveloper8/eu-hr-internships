@@ -6947,7 +6947,8 @@
     ],
     "career_url": "https://www.3ds.com/de/careers",
     "allowed_hosts": [
-      "www.3ds.com"
+      "www.3ds.com",
+      "talentacquisition.3ds.com"
     ],
     "target_countries": [
       "DE"
@@ -6958,7 +6959,16 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "automatic-collection-pending",
+    "host_reviews": [
+      {
+        "hosts": [
+          "talentacquisition.3ds.com"
+        ],
+        "reviewed_on": "2026-11-18",
+        "basis": "Employer-owned application domain linked from the employer vacancy; robots.txt allows (checked 2026-11-18)"
+      }
+    ]
   },
   {
     "id": "auto-dataciders-gmbh",
@@ -12338,7 +12348,8 @@
     ],
     "career_url": "https://www.krones.com/de/karriere/",
     "allowed_hosts": [
-      "www.krones.com"
+      "www.krones.com",
+      "jobs.krones.group"
     ],
     "target_countries": [
       "DE"
@@ -12349,7 +12360,16 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "automatic-collection-pending",
+    "host_reviews": [
+      {
+        "hosts": [
+          "jobs.krones.group"
+        ],
+        "reviewed_on": "2026-11-18",
+        "basis": "Employer-owned application domain linked from the employer vacancy; robots.txt allows (checked 2026-11-18)"
+      }
+    ]
   },
   {
     "id": "auto-krystal-srl",
@@ -48680,8 +48700,8 @@
     "documentation_url": "https://eures.europa.eu/eures-legal-notice_en",
     "access_review": "docs/fonti-pubbliche.md",
     "discovery_scope": "All vacancies coded as internships by national services, plus multilingual HR placement title searches paged while they keep yielding HR internships; final HR internship title and explicit EU country rules decide inclusion. Absence never closes a vacancy: only a 404 on the vacancy lookup does.",
-    "collection_seconds": 1800,
-    "max_requests": 200,
+    "collection_seconds": 2700,
+    "max_requests": 330,
     "max_known_checks": 40,
     "active_listing_api": true,
     "active_listing_evidence": "The EURES portal search returns vacancies currently published by the national services; withdrawn or expired vacancies answer 404 on the vacancy lookup."

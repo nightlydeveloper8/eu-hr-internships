@@ -79,10 +79,17 @@ def posting_url_identity(job):
 def apply_listing_reviews(jobs,reviews):
     excluded={canonical_url(r['url']) for r in reviews if r.get('decision')=='excluded'}
     pending={canonical_url(r['url']):r for r in reviews if r.get('decision')=='needs-verification'}
+    gone={canonical_url(r['url']):r for r in reviews if r.get('decision')=='closed'}
     result=[]
     for job in jobs:
         url=canonical_url(job['url'])
         if url in excluded:continue
+        # A reviewed closure (e.g. the official vacancy page answered 404/410 on
+        # repeated checks) keeps history. A fresh verification on this run wins.
+        if url in gone and job.get('status')!='open':
+            review=gone[url]
+            job=dict(job,status='closed',closure_reason=review['reason'],link_status='closed',
+                     verification=dict(state='closed',checked_at=review['reviewed_on']+'T00:00:00+00:00',policy_version=2,reason=review['reason']))
         if url in pending:
             job=dict(job,status='unverified',link_status='review-required',review_note=pending[url]['reason'])
         result.append(job)

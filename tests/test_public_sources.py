@@ -187,7 +187,7 @@ class FakeEuresClient:
 def eures_source(**extra):
     value = dict(id='public-eu-eures', employer='EURES – European Job Mobility Portal (ELA)', adapter='eures-search',
                  enabled=True, source_kind='public-employment-service', allowed_hosts=['europa.eu'],
-                 target_countries=['BE', 'GR'], queries=['HR intern'])
+                 target_countries=['BE', 'GR'], queries=['HR intern'], combined_queries=[])
     value.update(extra)
     return value
 
@@ -340,3 +340,28 @@ class PublicApiVerificationRuleTests(unittest.TestCase):
         # An open employer listing is never replaced.
         jobs, _ = merge_public_duplicates([dict(own, status='open'), dict(public)], ['public-se-jobtech'])
         self.assertEqual([j['id'] for j in jobs], ['a'])
+
+
+class EuresBudgetTests(unittest.TestCase):
+    def test_budget_exhaustion_keeps_collected_records_as_partial(self):
+        from collector.runtime import CollectionBudgetExceeded
+
+        class Budgeted(FakeEuresClient):
+            def post_json(self, url, payload):
+                if payload['keywords'] and payload['keywords'][0]['keyword'] == 'second':
+                    raise CollectionBudgetExceeded('Collection time budget exhausted')
+                return super().post_json(url, payload)
+        client = Budgeted()
+        rows = collect(eures_source(queries=['HR intern', 'second', 'third'], known_job_urls=['https://europa.eu/eures/portal/jv-se/jv-details/X?lang=en']), client)
+        self.assertEqual(rows.stats['status'], 'partial')
+        self.assertEqual(rows.stats['budget_stopped_at'], 'second')
+        self.assertIn('third', rows.stats['truncated_queries'])
+        self.assertEqual(len(rows), 4)
+        self.assertEqual(client.gets, [])  # no per-vacancy checks after the budget ran out
+
+    def test_pair_queries_are_generated_and_deduplicated(self):
+        from collector.public_sources import EURES_PAIR_QUERIES
+        from collector.classify import fold
+        self.assertIn('tirocinio paghe', EURES_PAIR_QUERIES)
+        self.assertIn('praktikum personalentwicklung', EURES_PAIR_QUERIES)
+        self.assertEqual(len({fold(q) for q in EURES_PAIR_QUERIES}), len(EURES_PAIR_QUERIES))

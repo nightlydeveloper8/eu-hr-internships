@@ -1,5 +1,6 @@
 """Offline regressions through the real adapter, verification and daily finalize."""
 from copy import deepcopy
+from collector.classify import canonical_url
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -170,7 +171,13 @@ class IntakeTests(unittest.TestCase):
         with TemporaryDirectory() as directory:
             result, _ = finalize([], [], deepcopy(prior), {}, [], stamp, Path(directory))
         self.assertEqual([j['id'] for j in result['jobs']], [j['id'] for j in prior['jobs']])
+        # Reviewed closures (listing-reviews decision 'closed') are intended changes.
+        reviewed_closed = {canonical_url(r['url']) for r in read(ROOT/'data/listing-reviews.json', [])
+                           if r.get('decision') == 'closed'}
         for old, current in zip(prior['jobs'], result['jobs']):
+            if canonical_url(old['url']) in reviewed_closed and old.get('status') != 'open':
+                self.assertEqual(current['status'], 'closed', old['id'])
+                continue
             for field in ('status', 'source_id', 'employer', 'first_discovered_at', 'intake',
                           'ownership', 'region_codes', 'review_note'):
                 self.assertEqual(current.get(field), old.get(field), (old['id'], field))
