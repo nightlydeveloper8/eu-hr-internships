@@ -185,7 +185,7 @@ def align_observations(previous,current):
 
 def validate_catalog(data):
     assert data['schema_version']==1
-    assert len(data['countries'])==27
+    assert set(data['countries'])==set(COUNTRIES)
     ids=set()
     for j in data['jobs']:
         assert j['id'] not in ids; ids.add(j['id'])

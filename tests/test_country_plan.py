@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 import unittest
 from collector.company_registry import country_research_progress,discovery_queue
-from collector.classify import COUNTRIES
+from collector.classify import EU27 as COUNTRIES
 
 ROOT=Path(__file__).resolve().parents[1]
 class CountryPlanTests(unittest.TestCase):
