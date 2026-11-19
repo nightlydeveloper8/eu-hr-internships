@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
 from .intake import extract_intake
-from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata
+from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata, fold, plain
 
 ROOT=Path(__file__).resolve().parents[1]
 LOG=logging.getLogger(__name__)
@@ -29,7 +29,7 @@ def allowed_url(url,source):
     return cleaned
 
 def reconcile(previous,current,successful,stamp):
-    previous,current=align_observations(previous,current)
+    previous,current=align_observations(previous,current,stamp)
     merged={j['id']:dict(j) for j in previous}
     for job in current:
         old=merged.get(job['id'],{})
@@ -152,7 +152,49 @@ def consolidate_group(members):
 def deduplicate(jobs):
     return [consolidate_group(members) for members in duplicate_groups(jobs)]
 
-def align_observations(previous,current):
+def _keep_exact_jobtech_application(old, fresh, stamp):
+    """A public availability update cannot replace an exact, still-fresh employer proof."""
+    copies=[j for j in fresh if j.get('source_id')=='public-se-jobtech'
+            and j.get('source_type')=='jobtech-search'
+            and j.get('verification',{}).get('policy')=='public-api-active-listing']
+    if not stamp or not copies:
+        return fresh
+    own=[j for j in fresh if j not in copies]
+    applicants=own or [j for j in old if j.get('source_id')!='public-se-jobtech']
+    if len(applicants)!=1:
+        return fresh
+    job=applicants[0]
+    provenance=job.get('official_feed_provenance') or {}
+    form=job.get('application_verification') or {}
+    verification=job.get('verification') or {}
+    if (job.get('source_type') not in ('jobtech-policy-v2','jobtech-policy-v2-staging')
+            or job.get('country')!='SE' or job.get('countries')!=['SE']
+            or job.get('status')!='open' or verification.get('state')!='verified'
+            or verification.get('policy_version')!=2 or job.get('ownership_risk')
+            or provenance.get('provider')!='jobtech-se' or not provenance.get('public_id')
+            or not provenance.get('ats_id') or provenance['ats_id']!=job.get('source_posting_id')
+            or not form.get('method') or form.get('checked_at')!=job.get('last_verified_at')):
+        return fresh
+    try:
+        age=(datetime.fromisoformat(stamp)-datetime.fromisoformat(form['checked_at'])).total_seconds()
+        if not 0<=age<=48*3600 or canonical_url(form['url'])!=canonical_url(job['apply_url']):
+            return fresh
+        for copy in copies:
+            if (copy.get('status')!='open' or copy.get('ownership_risk')
+                    or copy.get('verification',{}).get('policy_version')!=2
+                    or copy.get('external_id')!=provenance['public_id']
+                    or copy.get('source_posting_id')!=provenance['public_id']
+                    or copy.get('url') not in job.get('public_listing_urls',[])
+                    or copy.get('country')!='SE' or copy.get('countries')!=['SE']
+                    or any(fold(plain(copy.get(k)))!=fold(plain(job.get(k))) for k in ('employer','title','city'))
+                    or canonical_url(copy['external_application_url'])!=canonical_url(job['apply_url'])):
+                return fresh
+    except (KeyError, ValueError, TypeError):
+        return fresh
+    return own
+
+
+def align_observations(previous,current,stamp=None):
     """Resolve vacancy aliases before absence accounting, retaining history's ID.
 
     Consolidate each side separately: a synthetic historical missing check can
@@ -166,6 +208,7 @@ def align_observations(previous,current):
         old=[job for job in members if id(job) in historical]
         fresh=[job for job in members if id(job) not in historical]
         canonical=(old or members)[0]
+        fresh=_keep_exact_jobtech_application(old,fresh,stamp)
         for rows,aligned in ((old,aligned_previous),(fresh,aligned_current)):
             if rows:
                 # rows can be disconnected without the other side's bridge.

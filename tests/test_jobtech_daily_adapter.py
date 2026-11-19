@@ -11,7 +11,7 @@ import unittest
 
 from collector.daily import provision
 from collector.official_feed_adapter import source_gate, ADAPTER, AtsBudgetFactory
-from collector.official_feed_discovery import JOBTECH_QUERIES
+from collector.official_feed_discovery import JOBTECH_HOST, JOBTECH_QUERIES
 from collector.pipeline import ROOT, finalize, process_source, read
 from collector.runtime import BudgetClient
 
@@ -56,7 +56,9 @@ class Discovery:
         if self.redirect_scope_allowed and not self.redirect_scope_allowed(url):
             raise ValueError("Unexpected national feed endpoint")
         self.requests+=1
-        data={"hits":self.rows}
+        if url != f"https://{JOBTECH_HOST}/ad/31558200":
+            raise ValueError("Expected the documented exact-ID endpoint")
+        data=self.rows[0] if len(self.rows)==1 else {}
         self.bytes+=len(json.dumps(data).encode())
         return data
 
@@ -69,7 +71,9 @@ class ProductionDiscovery(BudgetClient):
         if self.redirect_scope_allowed and not self.redirect_scope_allowed(url):
             raise ValueError("Unexpected national feed host")
         self.requests+=1
-        data={"hits":self.rows}
+        if url != f"https://{JOBTECH_HOST}/ad/31558200":
+            raise ValueError("Expected the documented exact-ID endpoint")
+        data=self.rows[0] if len(self.rows)==1 else {}
         self.bytes+=len(json.dumps(data).encode())
         return data
 
@@ -168,7 +172,8 @@ class AdapterIntegrationTests(unittest.TestCase):
         p=self.run_source(preview=True)
         self.assertEqual(p["report"]["matching"],1,p["report"])
         self.assertEqual(p["report"]["status"],"partial")
-        self.assertEqual(p["report"]["feed_rows_scanned"],3)
+        self.assertEqual(p["report"]["feed_rows_scanned"],1)
+        self.assertEqual(p["report"]["feed_requests"],1)
         self.assertEqual(p["report"]["feed_hr_candidates"],1)
         self.assertLessEqual(p["report"]["requests"],source_config["max_requests"])
         self.assertEqual(p["report"]["requests"],
