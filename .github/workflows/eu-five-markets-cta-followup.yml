@@ -1,0 +1,180 @@
+name: Same-ID application link review for four European candidates
+on:
+  push:
+    branches: ['pilot/eu-five-markets-20261119']
+    paths: ['.github/workflows/eu-five-markets-cta-followup.yml']
+permissions:
+  contents: read
+jobs:
+  probe:
+    if: github.event.head_commit.message == 'Follow four employer-published same-ID application links'
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        market: [CH, PL, GB]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify published employer links on exact reviewed hosts
+        env:
+          MARKET: ${{ matrix.market }}
+        run: |
+          python - "$MARKET" <<'PY'
+          import json
+          import re
+          import sys
+          import time
+          from urllib.parse import unquote, urljoin, urlsplit
+          
+          from collector.applications import checked_document
+          from collector.classify import canonical_url, fold
+          from collector.pipeline import now
+          from collector.runtime import BudgetClient
+          from collector.verification import applicant_form, expired, same_requisition, same_title, structured_identifiers
+          
+          cohorts=json.loads("{\"CH\":[[\"Psychiatrie St.Gallen\",\"St. Gallen\",\"65899175-cde2-4b93-98d7-680977fd7f91\",\"Praktikantin / Praktikant HR\",\"https://jobs.psychiatrie-sg.ch/karriere/offene-stellen/praktikantin-praktikant-hr/65899175-cde2-4b93-98d7-680977fd7f91\",\"turn758400405search0\",\"ohws.prospective.ch\"]],\"PL\":[[\"Danone\",\"Warszawa\",\"29170\",\"Internship Program DanOne in Talent Acquisition Team\",\"https://careers.danone.com/en-global/jobs/internship-program-danone-in-talent-acquisition-team-29170-en-us.html\",\"turn783221125search0\",\"enapply-danone.icims.com\"]],\"GB\":[[\"L’Oréal\",\"London\",\"46997800064\",\"Human Resources Summer Intern\",\"https://careers.loreal.com/en/job/london/human-resources-summer-intern-london/3456/46997800064\",\"turn991967207search1\",\"careers-apply.loreal.com\"],[\"L’Oréal\",\"London\",\"46795487872\",\"Rewards Industrial Placement 2027\",\"https://careers.loreal.com/en/job/london/rewards-industrial-placement-2027-human-resources-6-months/3456/46795487872\",\"turn991967207search2\",\"careers-apply.loreal.com\"]]}")
+          market=sys.argv[1]
+          rows=[]
+          budget=BudgetClient(seconds=105,max_requests=8,delay=.8)
+          started=time.monotonic()
+          CTA=re.compile(r'\bapply\b|candidat|postul|ansok|sok jobbet|bewerb|aplikuj|invia',re.I)
+          RESTRICTED=re.compile(r'robots\.txt|HTTP Error (?:401|403|429|451)|captcha|access challenge',re.I)
+          LOCS={
+              'IT':r'\b(?:italia|italy|milano|milan|lodi|reggio emilia|lombardia)\b',
+              'CH':r'\b(?:suisse|switzerland|schweiz|geneve|geneva|st.? gallen|muri|aargau|zollikofen)\b',
+              'SE':r'\b(?:sverige|sweden|stockholm|karlstad|tranas|malmo|garphyttan)\b',
+              'PL':r'\b(?:poland|polska|warsaw|warszawa|wroclaw|krakow|masovian)\b',
+              'GB':r'\b(?:london|united kingdom|england|uk)\b',
+          }
+          
+          def words(s):
+              return ' '.join(re.findall(r'\w+',fold(s)))
+          
+          def safe(url,hosts):
+              target=urlsplit(url)
+              return (target.scheme=='https' and target.hostname in hosts and not target.username
+                      and not target.password and target.port in (None,443))
+          
+          class Scope:
+              def __init__(self, hosts):
+                  self.hosts=hosts
+              def request(self,url,method='GET',**kwargs):
+                  if method != 'GET' or not safe(url,self.hosts):
+                      raise ValueError('Outside reviewed GET scope')
+                  budget.redirect_scope_allowed=lambda dest:safe(dest,self.hosts)
+                  return budget.request(url,method=method,**kwargs)
+          
+          def id_in(url, ident):
+              return bool(re.search(r'(?<![A-Za-z0-9])'+re.escape(ident)+r'(?![A-Za-z0-9])',unquote(url),re.I))
+          
+          def deadline(doc,stamp):
+              return any(expired(post['validThrough'],stamp) for post in doc.jobposts() if post.get('validThrough'))
+          
+          def probe(raw,row):
+              employer,city,ident,expected,url,*_=raw
+              host=urlsplit(url).hostname
+              ats=raw[6] if len(raw)>6 else None
+              allowed={host}
+              stamp=now()
+              body,doc=checked_document(url,{'allowed_hosts':[host]},Scope(allowed))
+              if canonical_url(doc.url)!=canonical_url(url) and not (id_in(url,ident) and id_in(doc.url,ident)):
+                  raise ValueError('Redirect does not retain the selected vacancy')
+              titles=doc.h1+[post.get('title') or '' for post in doc.jobposts()]
+              matching=[t for t in titles if words(expected) in words(t)]
+              if not matching:
+                  raise ValueError('Current employer page does not establish the selected vacancy title')
+              row['official_posting']=True
+              row['stage']='official-id-page'
+              row['location_evidence']=bool(re.search(LOCS[market],fold(doc.text)))
+              if deadline(doc,stamp):
+                  row['stage']='deadline-passed'
+                  return
+              if not row['location_evidence']:
+                  row['stage']='location-unconfirmed'
+                  return
+              if ident=='1760':
+                  row['stage']='hr-role-review-required'
+                  return
+              if applicant_form(body,strict=True):
+                  row.update(stage='application-confirmed',proof='strict same-vacancy applicant form',form_url=doc.url)
+                  return
+              identities={ident}|structured_identifiers(doc,matching[0])
+              targets={}
+              unmatched=set()
+              for href,label,_ in doc.links:
+                  target=urljoin(doc.url,href)
+                  if canonical_url_safe(target)==canonical_url(doc.url):
+                      continue
+                  dest=urlsplit(target)
+                  if dest.scheme!='https' or not (CTA.search(fold(label)) or dest.path.endswith(('/applications/new','/apply'))):
+                      continue
+                  if not (any(id_in(target,i) for i in identities) or same_requisition(doc.url,target)):
+                      continue
+                  if dest.hostname not in (host,ats):
+                      unmatched.add(dest.hostname)
+                      continue
+                  targets[canonical_url(target)]=target
+              if unmatched:
+                  row['same_id_external_hosts']=sorted(unmatched)
+              if len(targets)!=1:
+                  row['stage']='same-id-link-ambiguous' if targets else 'application-entry-unresolved'
+                  return
+              application=next(iter(targets.values()))
+              destination=urlsplit(application).hostname
+              form,landing=checked_document(application,{'allowed_hosts':[destination]},Scope({destination}))
+              if canonical_url(landing.url)!=canonical_url(application) or deadline(landing,stamp):
+                  row['stage']='application-landing-not-current'
+                  return
+              seen_ids=structured_identifiers(landing,matching[0])
+              if seen_ids and not seen_ids.issubset(identities):
+                  row['stage']='application-id-conflict'
+                  return
+              if not same_title(landing,matching[0]) and not same_requisition(doc.url,landing.url) and not any(id_in(landing.url,i) for i in identities):
+                  row['stage']='application-identity-unresolved'
+                  return
+              if applicant_form(form,strict=True):
+                  row.update(stage='application-confirmed',proof='strict applicant form on an observed same-ID entry',form_url=landing.url)
+              else:
+                  row['stage']='same-id-link-form-unconfirmed'
+          
+          def canonical_url_safe(url):
+              try:
+                  return canonical_url(url)
+              except ValueError:
+                  return None
+          
+          blocked=set()
+          for raw in cohorts[market]:
+              employer,city,ident,title,url,ref,*_=raw
+              row=dict(employer=employer,city=city,posting_id=ident,title=title,url=url,ref=ref,stage='employer-link-missing')
+              rows.append(row)
+              if not url:
+                  continue
+              if ident=='8503489':
+                  row.update(stage='prior-live-proof-reconciliation-needed',official_posting=True)
+                  continue
+              host=urlsplit(url).hostname
+              if host in blocked or budget.remaining()<.5 or budget.requests>=8:
+                  row['stage']='host-blocked-earlier' if host in blocked else 'budget-exhausted'
+                  continue
+              old=budget.requests
+              row['stage']='page-unconfirmed'
+              try:
+                  probe(raw,row)
+              except Exception as error:
+                  reason=str(error)[:190]
+                  row.update(error=type(error).__name__,reason=reason)
+                  if RESTRICTED.search(reason):
+                      row['stage']='access-restricted'
+                      blocked.add(host)
+              row['requests']=budget.requests-old
+          print('EU30_CTA '+json.dumps(dict(country=market,requests=budget.requests,bytes=budget.bytes,
+              seconds=round(time.monotonic()-started,3),rows=rows),ensure_ascii=False),flush=True)
+          PY
