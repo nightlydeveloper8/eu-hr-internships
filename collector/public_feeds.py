@@ -19,7 +19,64 @@ def personio_records(source,client):
     if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate positions')
     return out
 
+def recruitee_public_xml_records(source,client):
+    """Opt-in read-only Recruitee public XML feed, not authenticated Careers Site API.
+
+    Only employer-published exact apply_url is accepted: never infer /c/new.
+    Inventory evidence is bounded and deliberately never permits closure by
+    absence. The caller still verifies the actual vacancy and form via v2.
+    """
+    from .classify import canonical_url
+    from urllib.parse import urlsplit
+
+    if source.get('feed_format') != 'recruitee-public-xml' or source.get('application_check') != 'recruitee-linked':
+        raise ValueError('Reviewed Recruitee XML and application gate required')
+    url=approved(source['feed_url'],source)
+    if urlsplit(url).path!='/api/feeds/offers.xml':
+        raise ValueError('Only reviewed public Recruitee XML path is supported')
+    body,_,final=client.request(url)
+    if final!=url or b'<!DOCTYPE' in body.upper() or b'<!ENTITY' in body.upper():
+        raise ValueError('Public offers XML redirected or contains DTD')
+    root=ET.fromstring(body)
+    if root.tag!='offers' or len(root)>1000 or any(o.tag!='offer' for o in root):
+        raise ValueError('Unexpected Recruitee XML inventory')
+    records=[];seen=set()
+    for item in root:
+        values={child.tag:(child.text or '').strip() for child in item if len(child)==0}
+        identifier=values.get('id','')
+        title=plain(values.get('title',''))
+        city=plain(values.get('city',''))
+        country=values.get('country_code','')
+        if not identifier.isdigit() or identifier in seen or not title or not country:
+            raise ValueError('Malformed or duplicate Recruitee public offer')
+        seen.add(identifier)
+        vacancy=approved(values.get('careers_url',''),source)
+        apply=approved(values.get('apply_url',''),source)
+        vp=urlsplit(vacancy);ap=urlsplit(apply)
+        if (vp.hostname!=ap.hostname or ap.query or ap.fragment
+            or ap.path.rstrip('/')!=vp.path.rstrip('/')+'/c/new'):
+            raise ValueError('Public XML did not publish matching vacancy application entry')
+        records.append(dict(
+            inventory_evidence='current-employer-feed',source_id=source['id'],
+            external_id=identifier,posting_identifier=identifier,
+            employer=source['employer'],title=title,location=city+', '+country,
+            text=plain(values.get('description','')+' '+values.get('requirements','')),
+            url=vacancy,apply_url=vacancy,observed_application_url=apply,
+            countries=[country],city=city,country=country,
+            language=None,published_at=values.get('published_at') or None,
+            employment=values.get('employment_type_code',''),
+            work_mode='remote' if values.get('remote')=='true'
+                      else 'hybrid' if values.get('hybrid')=='true' else None))
+    from .universal import Inventory
+    return Inventory(records,dict(
+        status='ok',complete=False,closure_complete=False,pages_read=1,
+        feed_records=len(root),published_records=len(records),
+        discovery_scope='reviewed-public-xml-no-absence-closure'))
+
+
 def recruitee_records(source,client):
+    if source.get('feed_format') == 'recruitee-public-xml':
+        return recruitee_public_xml_records(source,client)
     body,_,final=client.request(approved(source['feed_url'],source));approved(final,source)
     import json
     data=json.loads(body)
