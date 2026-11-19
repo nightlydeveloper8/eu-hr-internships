@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 19 novembre 2026 — primo lotto di 30 candidati per la crescita europea
+
+- **Italia, Svizzera, Svezia, Polonia, Regno Unito**: sei candidati per mercato, 27 tentati live, 17 pagine datoriali/ATS della vacancy riconfermate. Zero nuove candidature confermate. [Lotto #44602944560](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44602944560).
+- **Quattro collegamenti same-ID rivisti:** Danone iCIMS fermato da robots sul login, Psychiatrie St.Gallen/Prospective da redirect fuori scope, L’Oréal da 403, con il secondo annuncio sullo stesso host saltato. [Follow-up #44603288396](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44603288396).
+- Totale **67 GET e 3.521.275 byte**, zero invii. Link, righe, costi e casi incompleti nel [rapporto del pilota](pilota-europeo-30-candidati-2026-11-19.md). Workflow temporanei rimossi. Solo lavoro su ramo isolato. Nessun merge, attivazione, cambio del catalogo o ciclo ordinario lanciato.
+- **Prima attività residua:** riconciliare la prova già positiva Jobandtalent con il record pubblico presente. Per gli altri mercati selezionare il prossimo lotto partire da portali con percorso ufficiale leggibile e rimisurare il tasso di conversione. La crescita a 100 rimane un obiettivo.
+
 ## 19 novembre 2026 — esecuzione del primo lotto della strategia 45/60
 
 - **Jobandtalent Malmö**: la ricerca limitata non ha restituito un candidato univoco. La lettura ufficiale per ID `31558200` ha confermato su seconda data il modulo ATS `8503489`, 8 GET e 7,019 s. Il blocco residuo è la copia JobTech `c8bdac2ae98420d4b1e7` già sul catalogo corrente. La deduplica a valle accorpa la prova sintetica univoca preservando il link pubblico; integrazione di questa riconciliazione a monte ancora da fare.
