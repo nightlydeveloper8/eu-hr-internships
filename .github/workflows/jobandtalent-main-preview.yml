@@ -1,0 +1,105 @@
+name: Jobandtalent current main preview
+on:
+  push:
+    branches: ['pilot/jobandtalent-main-preview-20261119']
+    paths: ['.github/workflows/jobandtalent-main-preview.yml']
+permissions:
+  contents: read
+jobs:
+  proof:
+    if: github.event.head_commit.message == 'Port disabled Jobandtalent pilot to current collection'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate disabled source and evidence transfer in tests
+        run: |
+          python -m unittest discover -s tests -p 'test_jobtech_daily_adapter.py' -v
+          python -m unittest discover -s tests -p 'test_official_feed_staging.py' -v
+      - name: Verify one real posting in a temporary directory
+        run: |
+          python - <<'PY'
+          from copy import deepcopy
+          from datetime import datetime, timedelta
+          import hashlib
+          import json
+          from pathlib import Path
+          from tempfile import TemporaryDirectory
+          
+          from collector.daily import provision
+          from collector.pipeline import finalize, now, process_source, read
+          from collector.runtime import BudgetClient
+          from collector.verification import verified_job
+          
+          catalog_path = Path("data/catalog.json")
+          catalog_digest = hashlib.sha256(catalog_path.read_bytes()).hexdigest()
+          baseline = read(catalog_path,{})
+          coverage = read(Path("data/coverage.json"),{})
+          registry = read(Path("data/sources.json"),[])
+          companies = read(Path("data/companies.json"),[])
+          source = next(r for r in registry if r["id"]=="staging-jobandtalent-se")
+          public = next(r for r in registry if r["id"]=="public-se-jobtech")
+          assert source["enabled"] is False and source["staging_only"] is True
+          assert source["rollout_approved"] is False
+          assert all(r["id"]!=source["id"] for r in provision(companies,registry))
+          client = BudgetClient(seconds=45,max_requests=10,delay=1.0)
+          denied = process_source(source,client,now(),official_feed_prior_jobs=baseline["jobs"])
+          assert client.requests==0 and not denied["jobs"] and not denied["closure_eligible"]
+          part = process_source(source,client,now(),official_feed_preview=True,
+                                official_feed_prior_jobs=baseline["jobs"])
+          report = part["report"]
+          print("LIVE_AUDIT "+json.dumps({k:report.get(k) for k in (
+                "requests","ats_requests","feed_requests","bytes_read","duration_seconds",
+                "dossier_state","dossier_ats_id","dossier_inventory_confirmed","reason","source_enabled")}),flush=True)
+          assert not part["closure_eligible"] and 0<report["requests"]<=10
+          assert report["dossier_ats_id"]=="8503489" and len(part["jobs"])==1, report.get("reason")
+          assert report["dossier_inventory_confirmed"]
+          stamp=now()
+          identity="c8bdac2ae98420d4b1e7"
+          prior=next(r for r in baseline["jobs"] if r["id"]==identity)
+          ids={r["id"] for r in baseline["jobs"]}
+          def confirmations(catalog):
+              return sum(r.get("internship_type")=="internship"
+                         and bool(r.get("application_verification")) and verified_job(r,stamp)
+                         for r in catalog["jobs"])
+          def same_row(catalog):
+              assert {r["id"] for r in catalog["jobs"]}==ids
+              assert len(catalog["jobs"])==len(ids)
+              return next(r for r in catalog["jobs"] if r["id"]==identity)
+          with TemporaryDirectory() as directory:
+              out_dir=Path(directory)
+              output, next_coverage=finalize(registry,[source],deepcopy(baseline),deepcopy(coverage),
+                                             [deepcopy(part)],stamp,out_dir)
+              again,_=finalize(registry,[source],deepcopy(output),deepcopy(next_coverage),
+                               [deepcopy(part)],stamp,out_dir)
+              later=(datetime.fromisoformat(stamp)+timedelta(seconds=1)).isoformat()
+              listing=deepcopy(prior)
+              listing.update(last_seen_at=later,last_verified_at=later)
+              listing["verification"]["checked_at"]=later
+              refresh=dict(report=dict(id=public["id"],status="partial",records_inspected=1),
+                           jobs=[listing],closure_eligible=[])
+              concurrent,_=finalize(registry,[source,public],deepcopy(baseline),deepcopy(coverage),
+                                    [deepcopy(part),deepcopy(refresh)],later,out_dir)
+              next_cycle,_=finalize(registry,[public],deepcopy(output),deepcopy(next_coverage),
+                                   [refresh],later,out_dir)
+              row=same_row(output)
+              assert row["first_discovered_at"]==prior["first_discovered_at"]
+              assert prior["url"] in row["public_listing_urls"]
+              assert set(prior.get("duplicate_source_ids",[])) <= set(row["duplicate_source_ids"])
+              assert set(prior.get("public_listing_urls",[])) <= set(row["public_listing_urls"])
+              form=row["application_verification"]
+              assert form["checked_at"]==row["last_verified_at"]
+              for catalog in (again,concurrent,next_cycle):
+                  assert same_row(catalog)["application_verification"]==form
+              assert confirmations(output)==confirmations(baseline)+1
+          assert hashlib.sha256(catalog_path.read_bytes()).hexdigest()==catalog_digest
+          print("FINALIZE_AUDIT "+json.dumps(dict(id=identity,ids_before=len(ids),
+                ids_after=len(output["jobs"]),verified_before=confirmations(baseline),
+                verified_after=confirmations(output),idempotent=True,public_link_retained=True,
+                same_cycle_refresh=True,next_cycle_refresh=True,disabled_mode_requests=0,
+                catalog_unchanged=True,production_writes=0)),flush=True)
+          PY
