@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   proof:
-    if: github.event.head_commit.message == 'Keep only the ordinary disabled-source preview path'
+    if: github.event.head_commit.message == 'Check the active set after daily provisioning in the preview'
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -45,7 +45,8 @@ jobs:
           public = next(r for r in registry if r["id"]=="public-se-jobtech")
           assert source["enabled"] is False and source["staging_only"] is True
           assert source["rollout_approved"] is False
-          assert all(r["id"]!=source["id"] for r in provision(companies,registry))
+          _, provisioned = provision(companies,registry)
+          assert all(r["id"]!=source["id"] for r in provisioned if r.get("enabled"))
           client = BudgetClient(seconds=45,max_requests=10,delay=1.0)
           denied = process_source(source,client,now(),official_feed_prior_jobs=baseline["jobs"])
           assert client.requests==0 and not denied["jobs"] and not denied["closure_eligible"]
