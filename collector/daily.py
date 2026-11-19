@@ -100,7 +100,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
                     known_job_titles=known_titles.get(source['id'],{}))
         started=time.monotonic();client=BudgetClient(seconds=seconds or source.get('collection_seconds',180 if source['adapter'] in ('employer-sitemap','employer-index') else 120),max_requests=source.get('max_requests',180))
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
-        if part['report']['status']=='failed' and source['adapter']!='universal-employer' and client.remaining()>15:
+        if part['report']['status']=='failed' and source['adapter']!='universal-employer' and source.get('source_kind')!='public-employment-service' and client.remaining()>15:
             c=company_for.get(source['id'],{});starts=list(dict.fromkeys(u for u in [source.get('career_url'),c.get('website_url')] if u))
             if starts:
                 fallback=dict(source,adapter='universal-employer',start_urls=starts,max_pages=60,max_navigation_depth=3,max_render_pages=4,allowed_hosts=sorted(set(source['allowed_hosts'])|{urlsplit(u).hostname for u in starts}))

@@ -25,7 +25,8 @@ def blocked_error(exc):
 
 def expired(value, stamp):
     if not value: return False
-    date = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+    value = re.sub(r'^(\d{4})/(\d{2})/(\d{2})', r'\1-\2-\3', str(value).strip())  # some sites publish 2026/12/01
+    date = datetime.fromisoformat(value.replace('Z', '+00:00'))
     if date.tzinfo is None: date = date.replace(tzinfo=timezone.utc)
     # Date-only deadlines are inclusive through that UTC day.
     if len(str(value)) == 10: return date.date() < datetime.fromisoformat(stamp).date()
@@ -183,9 +184,14 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     identity_record = record
     if not record.get('posting_identifier') and len(identifiers)==1:
         identity_record = dict(record, posting_identifier=next(iter(identifiers)))
-    if not same_requisition(doc.url,targets[0]) and not shares_identifier(identity_record,targets[0]):raise ValueError('Application link lacks a matching vacancy identifier')
-    app_body, application = checked_document(targets[0], source, client)
-    if canonical_url(application.url)!=targets[0]:raise ValueError('Application redirected to a different URL; identity requires review')
+    # Several observed calls to action can coexist (a generic "how to apply"
+    # page and the requisition's own application). Follow the first one that
+    # carries this vacancy's identity; the identity rule itself is unchanged.
+    matching=[target for target in dict.fromkeys(targets) if same_requisition(doc.url,target) or shares_identifier(identity_record,target)]
+    if not matching:raise ValueError('Application link lacks a matching vacancy identifier')
+    target=matching[0]
+    app_body, application = checked_document(target, source, client)
+    if canonical_url(application.url)!=target:raise ValueError('Application redirected to a different URL; identity requires review')
     for post in application.jobposts():
         if fold(plain(post.get('title')))==fold(record['title']) and expired(post.get('validThrough'),stamp):raise ApplicationClosed('Application deadline has passed')
     application_ids=structured_identifiers(application,record['title'])

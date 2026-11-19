@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams} from '../src/logic.js';
+import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
@@ -52,6 +52,8 @@ test('opportunity counts separate archived, verified and opportunity types',()=>
 test('verification explanations are useful without exposing parser errors',()=>{
  assert.equal(verificationMessage({...base,status:'unverified',link_status:'review-required',review_note:'Published September intake needs confirmation.'}),'Published September intake needs confirmation.');
  assert.match(verificationMessage({...base,status:'unverified',verification:{state:'blocked'}}),/restricted/);
+ assert.match(verificationMessage({...base,status:'unverified',link_status:'public-api-listed',verification:{state:'incomplete'}}),/official public employment service/);
+ assert.match(verificationMessage({...base,status:'open',link_status:'public-api-active-listing',verification:{state:'verified',policy_version:2},last_verified_at:new Date(Date.now()-3600e3).toISOString()}),/Listed as open by an official public employment service/);
  assert.match(verificationMessage({...base,status:'unverified',verification:{reason:'Request budget exhausted'}}),/could not finish/);
  assert.match(verificationMessage({...base,status:'unverified',verification:{reason:'Invalid application deadline'}}),/closing date/);
  const text=verificationMessage({...base,status:'unverified',verification:{reason:'TypeError: sequence item expected str instance, NoneType found'}});
@@ -155,4 +157,25 @@ test('historical external publisher records stay in JSON but never display as of
  const staleCatalog={updated_at:'2026-11-12T00:00:00Z',jobs:[mirrored]};
  assert.equal(unverifiedFallback(staleCatalog,clock),false);
  assert.equal(unverifiedFallback({...staleCatalog,jobs:[mirrored,{...mirrored,id:'valid-lead',ownership_risk:undefined}]},clock),true);
+});
+
+test('map country counts separate verified and unverified, skip closed, count each listed country',()=>{
+ const clock=Date.now();
+ const jobs=[base,{...base,id:'2',countries:['NL','DE'],status:'unverified'},{...base,id:'3',status:'closed'},{...base,id:'4',countries:['FR'],ownership_risk:{state:'historical-unreviewed-external-host'}}];
+ const counts=countryCounts(jobs,clock);
+ assert.deepEqual(counts.NL,{verified:1,unverified:1});
+ assert.deepEqual(counts.DE,{verified:0,unverified:1});
+ assert.equal(counts.FR,undefined);
+});
+test('map colour buckets',()=>{assert.deepEqual([0,1,2,4,5,9,10,24,25,90].map(countBucket),[0,1,2,2,3,3,4,4,5,5]);});
+test('country language counts: verified ads only, English and local languages first',()=>{
+ const clock=Date.now();
+ const jobs=[{...base,id:'a',countries:['IT'],advertisement_language:{code:'it'}},{...base,id:'b',countries:['IT'],advertisement_language:{code:'it'}},
+  {...base,id:'c',countries:['IT'],advertisement_language:{code:'en'}},{...base,id:'d',countries:['IT'],advertisement_language:{code:'de'}},
+  {...base,id:'e',countries:['IT'],advertisement_language:{code:null}},{...base,id:'f',countries:['IT'],status:'unverified',advertisement_language:{code:'it'}}];
+ const byLang=countryLanguageCounts(jobs,clock);
+ assert.deepEqual(byLang.IT,{it:2,en:1,de:1,unknown:1});
+ assert.deepEqual(languageBreakdown('IT',byLang.IT).map(x=>[x.code,x.kind]),[['en','english'],['it','local'],['de','other'],['unknown','unknown']]);
+ assert.equal(languageBreakdown('IE',{en:2})[0].kind,'english');
+ assert.equal(NATIONAL_LANGUAGES.CH.includes('it'),true);
 });

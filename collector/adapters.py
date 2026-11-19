@@ -36,18 +36,19 @@ class Client:
 
     def pause(self,seconds):time.sleep(seconds)
 
-    def request(self, url, method='GET', robots=True, timeout=35, attempts=3, accept=None):
+    def request(self, url, method='GET', robots=True, timeout=35, attempts=3, accept=None, body=None, content_type=None):
         host = urlsplit(url).netloc
         # Some career CMSs return an API fragment whenever JSON appears in
         # Accept, even at a lower weight. Document requests must prefer HTML;
         # explicit JSON readers below retain their API representation.
         headers={'User-Agent':AGENT,'Accept':accept or 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8'}
+        if body is not None: headers['Content-Type']=content_type or 'application/json'
         if robots and not self.permitted(url): raise ValueError('robots.txt disallows '+url)
         for attempt in range(attempts):
             self.pause(max(0,self.host_delays.get(host,self.delay)-(time.monotonic()-self.last.get(host,0))))
             self.last[host]=time.monotonic()
             try:
-                with build_opener(CheckedRedirect(self,robots)).open(Request(url,headers=headers,method=method),timeout=timeout) as response:
+                with build_opener(CheckedRedirect(self,robots)).open(Request(url,data=body,headers=headers,method=method),timeout=timeout) as response:
                     if urlsplit(response.url).scheme != 'https': raise ValueError('Unsafe redirect')
                     return response.read(20_000_000), response.status, response.url
             except HTTPError as exc:
@@ -58,6 +59,7 @@ class Client:
                 self.pause(pause)
             except (URLError,TimeoutError) as exc:
                 if any(error in str(exc) for error in ('TLSV1_ALERT_PROTOCOL_VERSION','TLSV1_ALERT_INTERNAL_ERROR')):
+                    if body is not None: raise
                     from .tls_transport import request as modern_tls_request
                     return modern_tls_request(url,method,headers,timeout,client=self,robots=robots)
                 if attempt==attempts-1: raise
@@ -91,6 +93,11 @@ class Client:
         body,_,_=self.request(url,accept='application/json')
         return json.loads(body)
 
+    def post_json(self,url,payload):
+        # Read-only search endpoints that take their query as a JSON body.
+        body,_,_=self.request(url,method='POST',accept='application/json',body=json.dumps(payload).encode(),content_type='application/json')
+        return json.loads(body)
+
 def _record(source, job_id,title,location,text,url,apply=None,**extra):
     if not job_id or not title or not url: raise ValueError('Malformed source record')
     return dict(source_id=source['id'],external_id=str(job_id),employer=source['employer'],title=plain(title),location=plain(location),text=plain(text),url=url,apply_url=apply or url,inventory_evidence='current-employer-feed',**extra)
@@ -107,6 +114,10 @@ def collect(source,client):
     if kind=='universal-employer':
         from .universal import collect_universal
         return collect_universal(source,client)
+    from .public_sources import PUBLIC_API_ADAPTERS
+    if kind in PUBLIC_API_ADAPTERS:
+        from .public_sources import collect_public
+        return collect_public(source,client)
     if kind in ('personio-xml','recruitee'):
         from .public_feeds import personio_records,recruitee_records
         reader=personio_records if kind=='personio-xml' else recruitee_records

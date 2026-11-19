@@ -35,7 +35,7 @@ Non è stato verificato nuovamente l'intero catalogo. La diminuzione dei flag ve
 
 ## Comportamento introdotto
 
-`verification.state` distingue `verified`, `incomplete`, `blocked`, `closed`, con motivo, timestamp e versione della policy. Gli inventari pubblici correnti sono registrati quando disponibili; le cache non vengono spacciate per inventari correnti. Titolo, identificativi strutturati, percorso della requisition, form/campi e controlli abilitati devono corrispondere. I template già revisionati sono riutilizzati. Redirect ambigui, form non dimostrabili, account/JavaScript non supportati e budget esauriti rimangono incompleti. Nessuna candidatura viene inviata.
+`verification.state` distingue `verified`, `incomplete`, `blocked`, `closed`, con motivo, timestamp e versione della policy. Gli inventari pubblici correnti sono registrati quando disponibili; le cache non vengono spacciate per inventari correnti. Titolo, identificativi strutturati, percorso della requisition, form/campi e controlli abilitati devono corrispondere. I template già revisionati sono riutilizzati. Redirect ambigui, form non dimostrabili, account/JavaScript non supportati e budget esauriti rimangono incompleti. Nessuna candidatura viene inviata. Per le API ufficiali dei servizi pubblici per l'impiego che elencano solo annunci attivi vale una regola distinta e documentata in [fonti-pubbliche.md](fonti-pubbliche.md#regola-di-verifica-per-le-api-pubbliche-fase-5); non si applica alle fonti aziendali.
 
 Chiusure esplicite e scadenze pubblicate sono trattate separatamente dalle assenze: queste ultime richiedono ancora tre inventari completi in almeno 48 ore. Un record chiuso non riapre per assenza. La deduplicazione conserva lo stato dell'osservazione più recente, la prima scoperta e il precedente timestamp positivo come storico; un link generico non identifica una vacancy.
 
@@ -68,3 +68,7 @@ python3 scripts/audit_vacancy_evidence.py --sources lever-emma-sleep lever-veepe
 # Opzionale: Playwright già previsto in requirements-collector.txt
 python3 scripts/check_evidence_ui.py
 ```
+
+### Chiusure da revisione (18/11/2026)
+
+`data/listing-reviews.json` accetta anche la decisione `closed`. Serve per gli annunci la cui pagina ufficiale ha risposto 404 o 410 a due controlli successivi. L'annuncio resta nell'archivio come chiuso, con il motivo, invece di essere eliminato. Se in una raccolta successiva l'annuncio viene di nuovo verificato come aperto, la verifica nuova prevale. Il 18/11 sono stati chiusi così 19 annunci di Danone, Amazon, Randstad, Rijkswaterstaat, IKEA e altri.

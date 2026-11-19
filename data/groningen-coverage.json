@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-17T08:07:56.813966+00:00",
+  "generated_at": "2026-11-18T20:58:16.197336+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -20,16 +20,16 @@
     "configured": 31,
     "attempted_recently": 31,
     "collection_states": {
-      "discovery-incomplete": 13,
+      "discovery-incomplete": 14,
       "blocked-or-failed": 2,
-      "partial": 14,
-      "collected": 2
+      "collected": 3,
+      "partial": 12
     },
     "qualified_collection_states": {
-      "discovery-incomplete": 11,
+      "discovery-incomplete": 12,
       "blocked-or-failed": 2,
-      "partial": 12,
-      "collected": 2
+      "collected": 3,
+      "partial": 10
     },
     "verified_hr_internships": 2,
     "verified_hr_internships_qualified_employers": 2
@@ -71,8 +71,9 @@
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 3,
-        "partial": 8
+        "discovery-incomplete": 4,
+        "collected": 1,
+        "partial": 6
       },
       "company_ids": [
         "belsimpel-gomibo-group",
@@ -283,7 +284,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:34.997242+00:00",
+      "last_attempt_at": "2026-11-18T20:43:54.306653+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -325,7 +326,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:31.641349+00:00",
+      "last_attempt_at": "2026-11-18T20:38:28.207732+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -367,13 +368,13 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:50.225788+00:00",
+      "last_attempt_at": "2026-11-18T20:47:47.932049+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-koninklijke-oosterhof-holman",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "Public source access blocked; no inventory established; no bypass attempted"
         }
       ]
     },
@@ -409,15 +410,15 @@
       "source_ids": [
         "auto-rijksuniversiteit-groningen-campus-fryslan"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:50.685882+00:00",
-      "public_job_records": 35,
+      "last_attempt_at": "2026-11-18T20:48:50.789641+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-rijksuniversiteit-groningen-campus-fryslan",
-          "message": "[{'url': 'https://www.rug.nl/fse/meet-the-faculty/vacatures/vacatures/structuurrapporten/!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.rug.nl/fse/meet-the-faculty/vacatures/vacatures/!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.rug.nl/fse/meet-the-faculty/vacatures/vacatures/careerpaths/!sso', 'error': 'Remote end closed connection without response'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -451,19 +452,14 @@
       "source_ids": [
         "auto-hanos"
       ],
-      "state": "partial",
+      "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:32.930007+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-18T20:38:49.302202+00:00",
+      "public_job_records": 3,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
       ],
-      "errors": [
-        {
-          "source_id": "auto-hanos",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "ikea-ingka-group",
@@ -497,8 +493,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:49.938678+00:00",
-      "public_job_records": 6,
+      "last_attempt_at": "2026-11-18T20:38:28.221126+00:00",
+      "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -539,7 +535,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:32.409235+00:00",
+      "last_attempt_at": "2026-11-18T20:38:43.739250+00:00",
       "public_job_records": 23,
       "verified_hr_internship_ids": [
         "0aa70507b5a3cbedd17b"
@@ -547,7 +543,7 @@
       "errors": [
         {
           "source_id": "auto-fotofabriek",
-          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/process-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/grafisch-vormgever-272', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
+          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/allround-marketeer-321', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/process-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
         }
       ]
     },
@@ -594,7 +590,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:30.657298+00:00",
+      "last_attempt_at": "2026-11-18T20:38:32.096150+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -638,7 +634,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:55:00.818897+00:00",
+      "last_attempt_at": "2026-11-18T20:38:29.962543+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -675,13 +671,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:55:04.640445+00:00",
-      "public_job_records": 10,
+      "last_attempt_at": "2026-11-18T20:38:38.454968+00:00",
+      "public_job_records": 36,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-belsimpel-gomibo-group",
-          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbijbelsimpel.nl/ons_verhaal.html', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -718,10 +714,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:55:04.640445+00:00",
-      "public_job_records": 10,
+      "last_attempt_at": "2026-11-18T20:38:38.454968+00:00",
+      "public_job_records": 12,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-veiligheidsregio-groningen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-groningen",
@@ -755,8 +756,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:50.225788+00:00",
-      "public_job_records": 30,
+      "last_attempt_at": "2026-11-18T20:47:47.932049+00:00",
+      "public_job_records": 31,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -797,7 +798,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:42.924801+00:00",
+      "last_attempt_at": "2026-11-18T20:43:35.783750+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -834,7 +835,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:31.641349+00:00",
+      "last_attempt_at": "2026-11-18T20:38:28.207732+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -876,7 +877,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:55:00.818897+00:00",
+      "last_attempt_at": "2026-11-18T20:38:29.962543+00:00",
       "public_job_records": 12,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -935,7 +936,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:55:00.818897+00:00",
+      "last_attempt_at": "2026-11-18T20:38:29.962543+00:00",
       "public_job_records": 12,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -983,8 +984,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:49.938678+00:00",
-      "public_job_records": 10,
+      "last_attempt_at": "2026-11-18T20:38:28.221126+00:00",
+      "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -1020,13 +1021,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:49.938678+00:00",
-      "public_job_records": 10,
+      "last_attempt_at": "2026-11-18T20:38:28.221126+00:00",
+      "public_job_records": 8,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-heiploeg",
-          "message": "[{'url': 'https://heiploeg.com/nl-nl/vacatures/assistant-peeling-coordinator', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://heiploeg.com/nl-nl/vacatures/internationaal-chauffeur', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://heiploeg.com/nl-nl/vacatures/monteur-technische-dienst', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -1062,10 +1063,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:50.225788+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-18T20:47:47.932049+00:00",
+      "public_job_records": 12,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-de-zijlen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "stichting-vredewold",
@@ -1099,7 +1105,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:45.307344+00:00",
+      "last_attempt_at": "2026-11-18T20:38:29.431214+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1141,10 +1147,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:31.641349+00:00",
+      "last_attempt_at": "2026-11-18T20:38:28.207732+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-royal-bodewes",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "royal-avebe",
@@ -1200,7 +1211,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:49.938678+00:00",
+      "last_attempt_at": "2026-11-18T20:38:28.221126+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1242,7 +1253,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:49.938678+00:00",
+      "last_attempt_at": "2026-11-18T20:38:28.221126+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1317,7 +1328,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:30.657298+00:00",
+      "last_attempt_at": "2026-11-18T20:38:32.096150+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1370,13 +1381,13 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:50.685882+00:00",
+      "last_attempt_at": "2026-11-18T20:48:50.789641+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-solidus",
-          "message": "[{'url': 'https://solidus.com/en/careers', 'error': 'HTTP Error 500: Internal Server Error'}]"
+          "message": "[{'url': 'https://solidus.com/careers?job_locations=group', 'error': 'HTTP Error 500: Internal Server Error'}]"
         }
       ]
     },
@@ -1412,13 +1423,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:45.307344+00:00",
-      "public_job_records": 50,
+      "last_attempt_at": "2026-11-18T20:38:29.431214+00:00",
+      "public_job_records": 59,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-treant",
-          "message": "[{'url': 'https://www.treant.nl/werken-leren/vacatures/kom-op-speeddate-bij-treant-thuis', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -1476,7 +1487,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:58.571757+00:00",
+      "last_attempt_at": "2026-11-18T20:46:12.835763+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1518,7 +1529,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:30.657298+00:00",
+      "last_attempt_at": "2026-11-18T20:38:32.096150+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1560,7 +1571,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:55:00.818897+00:00",
+      "last_attempt_at": "2026-11-18T20:38:29.962543+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1597,7 +1608,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:55:04.640445+00:00",
+      "last_attempt_at": "2026-11-18T20:38:38.454968+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1639,7 +1650,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-17T07:54:42.924801+00:00",
+      "last_attempt_at": "2026-11-18T20:43:35.783750+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [

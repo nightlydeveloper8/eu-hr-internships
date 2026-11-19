@@ -1,9 +1,5 @@
 # Stato di ripresa — People Placement
 
-## 17 novembre 2026 — ripresa documentale della PR #41 Drenthe
-
-Il checkpoint del [ramo #41](https://github.com/nightlydeveloper8/eu-hr-internships/pull/41) è stato riallineato alla baseline aggiornata `ab51981ff` **senza merge**. La prova Emmen del 16 novembre ha ricevuto `robots.txt unavailable: 403`; organico ancora **ignoto** in quel checkpoint, programma generico non equivalso a vacancy HR. Prove originali conservate in `docs/drenthe-2026-11-16-evidence.json` e `docs/drenthe-2026-11-16.md`. La distinta PR #57 documenta una qualificazione di *DOC Kaas*, non una nuova candidatura. Nessuna fonte/annuncio/rollout aggiunto; solo continuità delle evidenze. Non ripetere automaticamente GET proibiti.
-
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
@@ -600,4 +596,13 @@ Correzioni **proposte su ramo separato, non integrate**: `collector/runtime.py` 
 Costo produzione aggiuntivo **0**. Il pilota web non dispone di conteggio HTTP/tempo/byte del collector: non equipararlo al preflight documentato (27 richieste, 14,721 secondi-fonte). Con ipotetico massimo 8 richieste/45 secondi per ciascuna di tre fonti, tetto condizionale 24 richieste e 135 secondi-fonte **solo dopo ammissione**, non misurazione live. Dettagli, evidenze e prossimi blocchi: [BATCH-05-PILOT-AND-429-FIX.md](eu27-expansion/BATCH-05-PILOT-AND-429-FIX.md).
 
 **Primo punto incompleto:** controllare CI della PR tecnica; pilota client HTTPS/robots su Marquardt/SLB/TikTok e same-vacancy form anonimo, senza CAPTCHA/login. Non attivare i tre canali finché un percorso non supera policy v2; se nessuno passa, cercare fonti sostitutive.
+
+
+## 19 novembre 2026 — Drenthe, prova ASTRON storica
+
+La PR documentale #41 conserva la pista Emmen bloccata ed è estesa con [ASTRON](drenthe-2026-11-19.md) e [prova strutturata](drenthe-2026-11-19-evidence.json). PDF ufficialmente ospitato acquisito: 180 dipendenti nel profilo di reclutamento 2023, non prova dell'organico 2026. Homepage attuale senza conferma numerica: dimensione resta ignota. Dati/catalogo/fonti invariati dal main `17aea99`, nessuna nuova vacancy verificata, raccolta completa, attivazione o merge. Non ripetere il PDF o il blocco Emmen; cercare fonte istituzionale recente e proseguire sugli altri canali. PR #57 separata, lavoro concorrente preservato.
+
+## 17 novembre 2026 — ripresa documentale della PR #41 Drenthe
+
+Il checkpoint del [ramo #41](https://github.com/nightlydeveloper8/eu-hr-internships/pull/41) è stato riallineato alla baseline aggiornata `ab51981ff` **senza merge**. La prova Emmen del 16 novembre ha ricevuto `robots.txt unavailable: 403`; organico ancora **ignoto** in quel checkpoint, programma generico non equivalso a vacancy HR. Prove originali conservate in `docs/drenthe-2026-11-16-evidence.json` e `docs/drenthe-2026-11-16.md`. La distinta PR #57 documenta una qualificazione di *DOC Kaas*, non una nuova candidatura. Nessuna fonte/annuncio/rollout aggiunto; solo continuità delle evidenze. Non ripetere automaticamente GET proibiti.
 

@@ -57,9 +57,11 @@ export function stale(updatedAt, clock = Date.now()) { return !updatedAt || cloc
 export function safeUrl(value) { try {const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : null;} catch {return null;} }
 
 export function verificationMessage(job, clock = Date.now()) {
+  if (verifiedJob(job, clock) && job.link_status === 'public-api-active-listing') return 'Listed as open by an official public employment service within the last 48 hours. The employer’s own application page was not checked: apply through the official advertisement.';
   if (verifiedJob(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
   if (job.status === 'closed') return 'The employer has closed this listing.';
   if (job.link_status === 'review-required' && job.review_note) return job.review_note;
+  if (job.link_status === 'public-api-listed') return 'Published by an official public employment service at the last check; the employer’s own application page was not checked. Confirm the details on the official advertisement.';
   const reason = job.verification?.reason || '';
   if (job.verification?.state === 'blocked' || /robots|captcha|access (?:challenge|restricted|denied)|HTTP Error: (?:401|403|429)/i.test(reason)) return 'Access to the employer’s recruiting site was restricted, so we could not confirm current availability or the application route.';
   const stamp = Date.parse(job.last_verified_at || '');
@@ -81,6 +83,55 @@ export function opportunityCounts(jobs, clock = Date.now()) {
     workingStudents:active.filter(job => job.internship_type==='working-student').length,
     traineeships:active.filter(job => job.internship_type==='traineeship').length};
 }
+
+// Per-country counts for the map: verified and not-yet-verified active listings.
+// Closed listings and unreviewed external hosts are never counted. Multi-country listings count in each country.
+export function countryCounts(jobs, clock = Date.now()) {
+  const counts = {};
+  for (const job of jobs || []) {
+    if (job.status === 'closed' || unreviewedExternal(job)) continue;
+    const verified = verifiedJob(job, clock);
+    for (const code of new Set(job.countries || [])) {
+      const entry = counts[code] || (counts[code] = {verified:0, unverified:0});
+      if (verified) entry.verified++; else entry.unverified++;
+    }
+  }
+  return counts;
+}
+// Countries outside the EU: most students need a notification, permit or visa.
+export const PERMIT_NOTES = {
+  CH: {text: 'Switzerland is not in the EU. For EU/EFTA citizens the employer must notify an internship of up to 3 months per calendar year online; a longer internship needs a short-term L EU/EFTA permit before it starts. Students from other countries need a work permit.', url: 'https://www.sem.admin.ch/sem/en/home/themen/fza_schweiz-eu-efta/meldeverfahren.html', source: 'State Secretariat for Migration (SEM)'},
+  GB: {text: 'The United Kingdom is not in the EU. Since 2021 EU students need a visa for an internship, usually the Government Authorised Exchange (Temporary Work) visa through an approved sponsor; a visitor visa does not allow internships.', url: 'https://www.gov.uk/government-authorised-exchange', source: 'GOV.UK'},
+};
+
+// Official languages per country, used to tell local-language ads from English ones.
+export const NATIONAL_LANGUAGES = {AT:['de'],BE:['nl','fr','de'],BG:['bg'],HR:['hr'],CY:['el','tr'],CZ:['cs'],DK:['da'],EE:['et'],FI:['fi','sv'],FR:['fr'],DE:['de'],GR:['el'],HU:['hu'],IE:['en','ga'],IT:['it'],LV:['lv'],LT:['lt'],LU:['lb','fr','de'],MT:['mt','en'],NL:['nl'],PL:['pl'],PT:['pt'],RO:['ro'],SK:['sk'],SI:['sl'],ES:['es','ca','eu','gl'],SE:['sv'],CH:['de','fr','it','rm'],GB:['en']};
+
+// Verified listings per country and advertisement language: {NL:{nl:3,en:2,unknown:1}}.
+export function countryLanguageCounts(jobs, clock = Date.now()) {
+  const counts = {};
+  for (const job of jobs || []) {
+    if (job.status === 'closed' || unreviewedExternal(job) || !verifiedJob(job, clock)) continue;
+    const code = job.advertisement_language?.code || 'unknown';
+    for (const country of new Set(job.countries || [])) {
+      const entry = counts[country] || (counts[country] = {});
+      entry[code] = (entry[code] || 0) + 1;
+    }
+  }
+  return counts;
+}
+
+// English and local-language ads first, then any other language, then unknown.
+export function languageBreakdown(country, byLanguage = {}) {
+  const local = (NATIONAL_LANGUAGES[country] || []).filter(code => code !== 'en');
+  const rank = code => code === 'en' ? 0 : local.includes(code) ? 1 : code === 'unknown' ? 3 : 2;
+  return Object.entries(byLanguage).filter(([, n]) => n > 0)
+    .sort((a, b) => rank(a[0]) - rank(b[0]) || b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([code, count]) => ({code, count, kind: code === 'en' ? 'english' : local.includes(code) ? 'local' : code === 'unknown' ? 'unknown' : 'other'}));
+}
+
+// Colour bucket for a verified count: 0 none, 1, 2-4, 5-9, 10-24, 25+.
+export function countBucket(n) { return n <= 0 ? 0 : n === 1 ? 1 : n < 5 ? 2 : n < 10 ? 3 : n < 25 ? 4 : 5; }
 
 export function provincialJobs(jobs, report, filters = {}) {
   const verifiedIds = new Set(report.verified_hr_internship_ids);

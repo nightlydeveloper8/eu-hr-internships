@@ -1,8 +1,9 @@
-import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams } from './logic.js';
+import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, languageBreakdown, PERMIT_NOTES } from './logic.js';
+import { drawMap, describeCountry, describeLanguages } from './map.js';
 const $ = id => document.getElementById(id);
 const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 const filters = {...defaults};
-let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true;
+let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true, view = 'simple', mapView, counts = {}, languageCounts = {};
 try { const stored = JSON.parse(localStorage.getItem('people-placement:saved') || '[]'); if (Array.isArray(stored)) saved = new Set(stored.filter(x => typeof x === 'string')); } catch {persistent = false;}
 const bindings = {'search':'q','country':'country','region':'region','category':'category','workplace-language':'workplace','english':'english','english-only':'englishOnly','ad-language':'ad','type':'type','work-mode':'workMode','include-unverified':'unverified','sort':'sort'};
 function el(tag, cls, text) { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; }
@@ -32,6 +33,7 @@ function card(job) {
   if (!verifiedJob(job)) tags.append(el('span','tag unverified',job.verification?.state==='blocked' ? 'Source blocked' : 'Verification incomplete'));
   article.append(tags);
   if (!verifiedJob(job)) article.append(el('p','verification-explanation',verificationMessage(job)));
+  for (const code of new Set(job.countries||[])) if (PERMIT_NOTES[code]) article.append(permitNote(code));
   const bottom = el('div','card-bottom'); bottom.append(el('p','',job.published_at ? `Posted ${date(job.published_at)}` : `Found ${date(job.first_discovered_at)} · Posting date unknown`));
   const apply = el('a','apply-link');apply.append(el('span','', 'View at employer'),el('span','', '↗'));apply.href=safeUrl(job.apply_url)||safeUrl(job.url)||'#';apply.target='_blank';apply.rel='noopener noreferrer';apply.setAttribute('aria-label',`View ${job.title} at ${job.employer}`);bottom.append(apply);article.append(bottom);
   const details=el('details','job-details');details.append(el('summary','','Language evidence & practical details'));
@@ -48,7 +50,56 @@ function card(job) {
   }
   details.append(dl);article.append(details);return article;
 }
-function urlState() { const params=shareableFilterParams(filters,defaults); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
+function setView(next) {
+  view = next === 'advanced' ? 'advanced' : 'simple';
+  document.body.classList.toggle('view-simple', view === 'simple');
+  document.body.classList.toggle('view-advanced', view === 'advanced');
+  $('view-toggle').textContent = view === 'advanced' ? 'Map view' : 'Advanced search';
+  $('view-toggle').setAttribute('aria-pressed', String(view === 'advanced'));
+  if (catalog) urlState();
+}
+function permitNote(code) {
+  const note = PERMIT_NOTES[code], p = el('p','permit-note',note.text+' ');
+  const a = el('a','',`Source: ${note.source} ↗`); a.href = note.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; p.append(a); return p;
+}
+function selectCountry(code, scroll = true) {
+  filters.country = filters.country === code && !scroll ? '' : code; filters.region = ''; limit = 20;
+  syncControls(); render();
+  if (scroll && code) $('opportunities').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+}
+function updatePanel() {
+  const panel = $('country-panel'); panel.replaceChildren();
+  const code = filters.country;
+  if (!code) { panel.append(el('p','panel-empty','Choose a country on the map, or start with one of these:')); $('top-countries').hidden = false; }
+  else {
+    const c = counts[code] || {verified:0, unverified:0};
+    $('top-countries').hidden = true;
+    panel.append(el('p','panel-label','Selected country'), el('h2','panel-country',catalog.countries[code] || code), el('p','panel-count',describeCountry(catalog.countries[code], c)));
+    const breakdown = languageBreakdown(code, languageCounts[code]);
+    if (breakdown.length) {
+      const langs = el('div','panel-languages'); langs.append(el('p','panel-label','Verified ads by advertisement language'));
+      for (const {code: lang, count, kind} of breakdown) {
+        if (lang === 'unknown') { langs.append(el('small','',`${count} in an unidentified language`)); continue; }
+        const b = el('button',`language-chip ${kind}`); b.type = 'button';
+        b.append(el('span','',catalog.languages[lang] || lang), el('b','',String(count)));
+        b.setAttribute('aria-label', `Show ${count} verified ${catalog.languages[lang] || lang}-language ads in ${catalog.countries[code] || code}`);
+        b.addEventListener('click', () => { filters.ad = lang; filters.unverified = false; selectCountry(code); });
+        langs.append(b);
+      }
+      panel.append(langs);
+    }
+    if (PERMIT_NOTES[code]) panel.append(permitNote(code));
+    const actions = el('div','panel-actions');
+    const show = el('button','primary-action', c.verified ? `Show ${c.verified} verified ${c.verified === 1 ? 'opportunity' : 'opportunities'} ↓` : c.unverified ? 'See leads to check ↓' : 'Show this country ↓');
+    show.type = 'button';
+    show.addEventListener('click', () => { if (!c.verified && c.unverified) filters.unverified = true; selectCountry(code); });
+    const clear = el('button','text-action','Clear selection'); clear.type = 'button';
+    clear.addEventListener('click', () => { filters.country = ''; filters.region = ''; syncControls(); render(); });
+    actions.append(show, clear); panel.append(actions);
+  }
+  $('simple-scope').textContent = code ? `Showing ${catalog.countries[code] || code}` : 'Showing the EU, Switzerland and the UK';
+}
+function urlState() { const params=shareableFilterParams(filters,defaults); if (view === 'advanced') params.set('view','advanced'); try {history.replaceState(null,'',`${location.pathname}${params.size?'?'+params:''}${location.hash}`);}catch{} }
 function render() {
   const selection=opportunityCounts(catalog.jobs.filter(j=>matches(j,{...filters,unverified:true},saved)));
   const jobs=rankJobs(catalog.jobs.filter(j=>matches(j,filters,saved)),filters);
@@ -59,11 +110,11 @@ function render() {
   $('verified-view-count').textContent=`(${selection.verified})`;
   $('unverified-view-count').textContent=`(${selection.total})`;
   $('unverified-notice').hidden=!filters.unverified;
-  $('verification-counts').textContent=`In this selection: ${selection.verified} verified (${selection.verifiedInternships} internships, ${selection.verifiedWorkingStudents} working-student roles, ${selection.verifiedTraineeships} traineeships) · ${selection.unverified} unverified. Matching types: ${shown.internships} internship${shown.internships===1?'':'s'}, ${shown.workingStudents} working-student role${shown.workingStudents===1?'':'s'} and ${shown.traineeships} traineeship${shown.traineeships===1?'':'s'}.`;
+  $('verification-counts').textContent=`In this selection: ${selection.verified} verified · ${selection.unverified} unverified.`;
   const archive=opportunityCounts(catalog.jobs);
   $('catalog-counts').textContent=`${catalog.jobs.length} archived records across all countries and types; ${archive.closed} closed listing${archive.closed===1?'':'s'} excluded. An archived record is not a confirmed opening.`;
   $('result-count').textContent=jobs.length;$('result-label').textContent=filters.saved ? (jobs.length===1 ? 'saved opportunity' : 'saved opportunities') : jobs.length===1 ? 'opportunity' : 'opportunities';
-  $('scope-label').textContent=filters.country ? catalog.countries[filters.country] : filters.mode==='nl' ? 'The Netherlands first, then the rest of the EU' : 'Across all 27 European Union countries';
+  $('scope-label').textContent=filters.country ? catalog.countries[filters.country] : filters.mode==='nl' ? 'The Netherlands first, then the rest of the EU' : 'Across the EU, Switzerland and the UK';
   const host=$('jobs');host.replaceChildren();host.setAttribute('aria-busy','false');
   if (!jobs.length) {
     const unverifiedLeadsAvailable = !filters.saved && !filters.unverified && selection.verified === 0 && selection.unverified > 0;
@@ -90,6 +141,7 @@ function render() {
   $('result-pagination').textContent=`Showing ${Math.min(jobs.length,limit)} of ${jobs.length} matching opportunities.`;
   $('active-filters').replaceChildren();
   for(const [key,value] of Object.entries(filters)){if(value===defaults[key]||['mode','sort'].includes(key))continue;let label={q:`“${value}”`,country:catalog.countries[value],region:geography.units.find(u=>u.code===value)?.name,category:catalog.categories[value],workplace:value==='unknown'?'Language requirements unknown':`Work: ${catalog.languages[value]}`,ad:`Ad: ${catalog.languages[value]}`,english:'English evidence',englishOnly:'English alone documented',saved:'Saved only',unverified:'Including unverified',type:String(value).replaceAll('-',' '),workMode:displayMode(value)}[key]||String(value);const chip=el('button','chip',label+' ×');chip.type='button';chip.setAttribute('aria-label',`Remove ${label} filter`);chip.addEventListener('click',()=>{filters[key]=defaults[key];syncControls();render();});$('active-filters').append(chip);}
+  mapView?.select(filters.country); updatePanel();
   updateSaved();urlState();
 }
 function notice() {
@@ -110,14 +162,14 @@ function notice() {
     $('collection-status-detail').textContent=`Last published ${date(catalog.updated_at)}. Source checks: ${completed} completed, ${partial} partial, ${failed} failed or blocked. Some recruiting sites restrict automated access or could not be read completely. Previously collected listings are kept. Use “Include unverified opportunities” to explore listings whose current availability or application route could not be confirmed.`;
   }
 }
-function showCoverage() {if(!$('coverage-table').children.length){for(const c of coverage.countries){const tr=el('tr');tr.append(el('td','',c.name),el('td','',catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='internship'&&j.countries.includes(c.code)).length),el('td','',c.sources_with_observed_jobs));$('coverage-table').append(tr);}for(const text of [`${catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='internship').length} verified HR internships`,`${catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='working-student').length} working-student roles`,`${catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='traineeship').length} traineeships`,`${catalog.jobs.filter(j=>verifiedJob(j)&&languageInfo(j).english_support==='documented').length} verified roles with English evidence`])$('quality-summary').append(el('span','',text));const reports=new Map(coverage.sources.map(s=>[s.id,s]));for(const source of registry){const report=reports.get(source.id);const p=el('p','',`${source.employer} · ${source.adapter} · ${source.enabled ? report?.access_state||report?.status||'not checked' : source.status||'discovery only'}`);p.append(el('small','',report?.error||source.review_notes||`${report?.records_inspected??report?.collected??0} public job records read; ${catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='internship'&&(j.source_id===source.id||j.duplicate_source_ids?.includes(source.id))).length} verified HR internships in the catalog`));const a=el('a','','Employer board ↗');a.href=safeUrl(source.career_url)||'#';a.target='_blank';a.rel='noopener noreferrer';p.append(a);$('source-health').append(p);}}$('coverage-dialog').showModal(); }
+function showCoverage() {if(!$('coverage-table').children.length){for(const c of coverage.countries){const tr=el('tr');tr.append(el('td','',c.name),el('td','',catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='internship'&&j.countries.includes(c.code)).length),el('td','',c.sources_with_observed_jobs));$('coverage-table').append(tr);}for(const text of [`${catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='internship').length} verified HR internships`,`${catalog.jobs.filter(j=>verifiedJob(j)&&languageInfo(j).english_support==='documented').length} verified roles with English evidence`])$('quality-summary').append(el('span','',text));const reports=new Map(coverage.sources.map(s=>[s.id,s]));for(const source of registry){const report=reports.get(source.id);const p=el('p','',`${source.employer} · ${source.adapter} · ${source.enabled ? report?.access_state||report?.status||'not checked' : source.status||'discovery only'}`);p.append(el('small','',report?.error||source.review_notes||`${report?.records_inspected??report?.collected??0} public job records read; ${catalog.jobs.filter(j=>verifiedJob(j)&&j.internship_type==='internship'&&(j.source_id===source.id||j.duplicate_source_ids?.includes(source.id))).length} verified HR internships in the catalog`));const a=el('a','','Employer board ↗');a.href=safeUrl(source.career_url)||'#';a.target='_blank';a.rel='noopener noreferrer';p.append(a);$('source-health').append(p);}}$('coverage-dialog').showModal(); }
 async function init(){try {const responses=await Promise.all(['catalog','coverage','sources','geography'].map(name=>fetch(`./data/${name}.json`,{cache:'no-cache'})));if(responses.some(r=>!r.ok))throw new Error('Data could not be loaded');[catalog,coverage,registry,geography]=await Promise.all(responses.map(r=>r.json()));
   if(catalog.schema_version!==1||!Array.isArray(catalog.jobs))throw new Error('Unsupported dataset');
   for(const [code,name] of Object.entries(catalog.countries).sort((a,b)=>a[1].localeCompare(b[1])))option($('country'),code,name);
   for(const [code,name] of Object.entries(catalog.categories))option($('category'),code,name);
   for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}
   for(const job of catalog.jobs)job.search_terms=[...job.countries.map(c=>catalog.countries[c]),...job.categories.map(c=>catalog.categories[c])];
-  const params=new URLSearchParams(location.search);for(const [key,def]of Object.entries(defaults)){if(key==='unverified'||!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
+  const params=new URLSearchParams(location.search);setView(params.get('view'));for(const [key,def]of Object.entries(defaults)){if(key==='unverified'||!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
   // Legacy emergency ?unverified=true links are ignored and removed by render().
   // Unverified records require a conscious click and never persist across reloads.
   fillRegions();
@@ -128,6 +180,27 @@ async function init(){try {const responses=await Promise.all(['catalog','coverag
   $('filter-toggle').addEventListener('click',()=>{const open=$('filters').classList.toggle('is-open');$('filter-toggle').setAttribute('aria-expanded',open);if(open)$('filters').scrollIntoView({block:'start'});});
   $('filters-done').addEventListener('click',()=>{$('filters').classList.remove('is-open');$('filter-toggle').setAttribute('aria-expanded','false');document.querySelector('.results').scrollIntoView({block:'start'});});
   $('source-status').addEventListener('click',showCoverage);$('coverage-nav').addEventListener('click',showCoverage);$('coverage-inline').addEventListener('click',showCoverage);$('close-dialog').addEventListener('click',()=>$('coverage-dialog').close());$('coverage-dialog').addEventListener('click',e=>{if(e.target===$('coverage-dialog')){const rect=e.target.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)e.target.close();}});
+  counts = countryCounts(catalog.jobs);
+  languageCounts = countryLanguageCounts(catalog.jobs);
+  const totals = {};
+  for (const byLang of Object.values(languageCounts)) for (const [lang, n] of Object.entries(byLang)) if (lang !== 'unknown') totals[lang] = (totals[lang] || 0) + n;
+  for (const [lang, n] of Object.entries(totals).sort((a, b) => (a[0] === 'en' ? -1 : b[0] === 'en' ? 1 : b[1] - a[1]))) {
+    const chip = el('button','language-chip'); chip.type = 'button';
+    chip.append(el('span','',catalog.languages[lang] || lang), el('b','',String(n)));
+    chip.setAttribute('aria-label', `Show ${n} verified ads written in ${catalog.languages[lang] || lang}, in every country`);
+    chip.addEventListener('click', () => { filters.ad = lang; filters.country = ''; filters.region = ''; filters.unverified = false; limit = 20; syncControls(); render(); $('opportunities').scrollIntoView({block:'start'}); });
+    $('language-totals').append(chip);
+  }
+  const verifiedTotal = catalog.jobs.filter(j => matches(j, defaults)).length;
+  const leadTotal = catalog.jobs.filter(j => matches(j, {...defaults, unverified:true})).length - verifiedTotal;
+  const verifiedCountries = Object.values(counts).filter(c => c.verified).length;
+  $('map-stats').textContent = `${verifiedTotal} verified HR opportunities in ${verifiedCountries} ${verifiedCountries === 1 ? 'country' : 'countries'} · ${leadTotal} more leads to check`;
+  mapView = drawMap({svg: $('eu-map'), tooltip: $('map-tooltip'), wrap: $('map-wrap'), counts, names: catalog.countries, onSelect: code => selectCountry(code), languages: code => describeLanguages(languageBreakdown(code, languageCounts[code]), catalog.languages)});
+  const top = Object.entries(counts).filter(([code, c]) => c.verified && catalog.countries[code]).sort((a, b) => b[1].verified - a[1].verified || b[1].unverified - a[1].unverified).slice(0, 6);
+  for (const [code, c] of top) { const chip = el('button','country-chip'); chip.type = 'button'; chip.append(el('span','',catalog.countries[code]), el('b','',String(c.verified))); chip.setAttribute('aria-label', `${catalog.countries[code]}: ${describeCountry(catalog.countries[code], c)}`); chip.addEventListener('click', () => selectCountry(code)); $('top-countries').append(chip); }
+  $('browse-all').addEventListener('click', () => { filters.country = ''; filters.region = ''; syncControls(); render(); $('opportunities').scrollIntoView({block:'start'}); });
+  for (const id of ['open-advanced','simple-advanced']) $(id).addEventListener('click', () => { setView('advanced'); $('opportunities').scrollIntoView({block:'start'}); });
+  $('view-toggle').addEventListener('click', () => { setView(view === 'advanced' ? 'simple' : 'advanced'); window.scrollTo({top:0}); });
   $('updated-label').textContent=`Last collected ${date(catalog.updated_at)}`;notice();render();
 } catch(error){$('jobs').setAttribute('aria-busy','false');$('jobs').replaceChildren(el('div','empty-state','We couldn’t load the employer collection. Please refresh or download the dataset using the link below.'));$('updated-label').textContent='Data unavailable';console.error(error);}}
 init();

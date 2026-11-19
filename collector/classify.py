@@ -5,9 +5,13 @@ import unicodedata
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode, quote
 
 COUNTRIES = dict(AT='Austria', BE='Belgium', BG='Bulgaria', HR='Croatia', CY='Cyprus', CZ='Czechia', DK='Denmark', EE='Estonia', FI='Finland', FR='France', DE='Germany', GR='Greece', HU='Hungary', IE='Ireland', IT='Italy', LV='Latvia', LT='Lithuania', LU='Luxembourg', MT='Malta', NL='Netherlands', PL='Poland', PT='Portugal', RO='Romania', SK='Slovakia', SI='Slovenia', ES='Spain', SE='Sweden')
+EU27 = dict(COUNTRIES)
+# Non-EU countries in scope (Phase 4): internships there need a permit or visa for most students.
+NON_EU = dict(CH='Switzerland', GB='United Kingdom')
+COUNTRIES.update(NON_EU)
 LANGUAGES = dict(en='English', nl='Dutch', fr='French', de='German', es='Spanish', it='Italian', pt='Portuguese', pl='Polish', sv='Swedish', da='Danish', fi='Finnish', el='Greek', cs='Czech', ro='Romanian', hu='Hungarian', bg='Bulgarian', hr='Croatian', sk='Slovak', sl='Slovenian', et='Estonian', lv='Latvian', lt='Lithuanian', mt='Maltese', ga='Irish', uk='Ukrainian')
 CATEGORIES = {
- 'talent-acquisition': ('Talent acquisition & recruitment', r'talent acquisition|recruit(?:ment|ing|er)?|recrutement|recrutamento|reclutamiento|reclutamento|werving|rekrut|personalgewinnung|(?:talent|candidate) sourc(?:ing|er)'),
+ 'talent-acquisition': ('Talent acquisition & recruitment', r'talent acquisition|recruit(?:ment|ing|er)?|recrutement|recrutamento|reclutamiento|reclutamento|werving|rekrut|rekryter|personalgewinnung|(?:talent|candidate) sourc(?:ing|er)'),
  'people-operations': ('People operations & culture', r'people (?:operations|ops|and culture|& culture|& organisation|& organization|process)|personalkultur'),
  'learning-development': ('Learning & development', r'learning (?:and|&) development|learning and organisational development|apprentissage et developpement|formation et developpement|\bl&d\b|people development|talent development|personalentwicklung|formation rh|formazione del personale'),
  'employer-branding': ('Employer branding', r'employer brand|marque employeur|arbeidsmarktcommunicatie'),
@@ -17,16 +21,22 @@ CATEGORIES = {
  'employee-experience': ('Employee experience & engagement', r'(?:employee|people) (?:experience|engagement)|mitarbeiterbindung'),
  'organizational-development': ('Organizational development', r'organi[sz]ational development|organi[sz]ation development|organisationsentwicklung'),
  'hr-administration': ('HR administration', r'hr admin|personnel admin|administration du personnel|personaladministration|personeelsadministratie|amministrazione del personale'),
+ 'diversity-inclusion': ('Diversity, equity & inclusion', r'diversity,? equity (?:and|&) inclusion|diversity (?:and|&) inclusion|\bd&i\b'),
  'hr-generalist': ('Human resources & generalist', r'\bhr(?:bp|m)?\b|human resources|ressources humaines|risorse umane|recursos humanos|personalwesen|human resource|personalsach|personeelszaken|menselijke hulpbronnen|\brh\b|people (?:&|and) talent|people partner(?:ing)?|people intern|insan kaynak|ανθρωπιν|ανθρώπιν|resurse umane|zasobow ludzkich|zasoby ludzkie|ljudsk|lidsk|emberi eroforras|personalo|personali')
 }
-INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a)?\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante)\b|\bestagio\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
+PLACEMENT_TITLE = r'\bintern\b|\binternship|\bstag(?:e|es|iair|iaire|ista|io)\b|praktik|placement|tirocin|estagi|practicas|stagiu|meewerkstage|afstudeer'
+STUDENT_PLACEMENT = r'curricular|currently (?:enrolled|pursuing|studying)|enrolled (?:in|at|as)|still (?:a )?student|during your stud|as part of your (?:studies|degree|programme|program)|ingeschreven|studerende|nel corso degli studi|iscritt[oaie] (?:a|al|ad|presso)|convention de stage|pflichtpraktikum|learning agreement|stageovereenkomst|internship agreement|university placement|placement year|sandwich year|in het kader van je (?:studie|opleiding)|im rahmen (?:deines|ihres) studiums'
+STUDENT_JOB = r'werkstud(?:ent|ierende)\w*|working.students?|student(?:ische)? (?:assistant|hilfskraft|aushilfe|job)|studentenjob|studentermedhjaelper'
+INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a|plads|plats)?\b|praktikant(?:en|er|s|as|ai|e)?\b|praktikum\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante|anti|i)\b|\bestagi(?:o|os|ari[oa]s?)\b|\bstagi(?:u|ar|ara|ari)\b|\bstazist(?:a|ka|i|ky)\b|\bodborna praxe\b|\bstrucna praksa\b|\bstudentska praksa\b|\ben practicas\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 # Placement nouns are distinct from Polish 'staz pracy' (work experience).
 POLISH_PLACEMENT = r'\bstaz(?:ysta|ystka|ysci|ystki)\b|(?:^|[|:–—-]\s*)(?:(?:p[łl]atny|letni|wakacyjny|studencki)\s+)?staz\b(?!\s+pracy\b)'
+
 CITY_COUNTRIES = {
  'NL': 'amsterdam|rotterdam|utrecht|eindhoven|hoofddorp|oegstgeest|amersfoort|wageningen|haarlem|zaandam|leiden|den haag|hilversum|breda|delft|nijmegen|groningen|tilburg|enschede|apeldoorn|arnhem|den bosch',
  'DE':'berlin|munich|munchen|hamburg|frankfurt|cologne|koln|dusseldorf|stuttgart|leipzig|karlsruhe|walldorf|heidelberg', 'FR':'paris|rueil.malmaison|neuilly|nanterre|saint.ouen|saint.denis|lyon|marseille|bordeaux|lille|toulouse|nantes|boulogne|issy|clichy',
  'BE':'brussels|bruxelles|brussel|antwerp|antwerpen|ghent|gent|leuven|vorst', 'PT':'lisbon|lisboa|porto|braga', 'ES':'madrid|barcelona|valencia|malaga|sevilla', 'IT':'milan|milano|roma|rome|torino|turin|bologna',
- 'PL':'warsaw|warszawa|krakow|kraków|wroclaw|wrocław|poznan|poznán|gdansk|gdańsk', 'AT':'vienna|wien|salzburg|graz|linz', 'IE':'dublin|cork|galway', 'SE':'stockholm|gothenburg|goteborg|malmo', 'DK':'copenhagen|kobenhavn|aarhus', 'FI':'helsinki|espoo|tampere', 'GR':'athens|thessaloniki', 'HU':'budapest', 'CZ':'prague|praha|brno', 'RO':'bucharest|bucuresti|cluj', 'BG':'sofia|varna', 'HR':'zagreb|split', 'CY':'limassol|nicosia', 'EE':'tallinn|tartu', 'LV':'riga', 'LT':'vilnius|kaunas', 'LU':'luxembourg', 'MT':'valletta|sliema|st julian', 'SK':'bratislava|kosice', 'SI':'ljubljana|maribor'
+ 'PL':'warsaw|warszawa|krakow|kraków|wroclaw|wrocław|poznan|poznán|gdansk|gdańsk', 'AT':'vienna|wien|salzburg|graz|linz', 'IE':'dublin|cork|galway', 'SE':'stockholm|gothenburg|goteborg|malmo', 'DK':'copenhagen|kobenhavn|aarhus', 'FI':'helsinki|espoo|tampere', 'GR':'athens|thessaloniki', 'HU':'budapest', 'CZ':'prague|praha|brno', 'RO':'bucharest|bucuresti|cluj', 'BG':'sofia|varna', 'HR':'zagreb|split', 'CY':'limassol|nicosia', 'EE':'tallinn|tartu', 'LV':'riga', 'LT':'vilnius|kaunas', 'LU':'luxembourg', 'MT':'valletta|sliema|st julian', 'SK':'bratislava|kosice', 'SI':'ljubljana|maribor',
+ 'CH':'zurich|zürich|geneva|geneve|genève|genf|basel|lausanne|bern|lugano|zug|winterthur|st. gallen', 'GB':'london|manchester|edinburgh|birmingham|glasgow|bristol|leeds|cardiff|belfast'
 }
 
 def plain(value):
@@ -47,9 +57,9 @@ def canonical_url(url):
     return urlunsplit(('https',p.netloc.lower(),quote(p.path.rstrip('/'),safe="/%:@!$&'()*+,;=-._~"),urlencode(query),''))
 
 def country_codes(location, explicit=None):
-    iso3 = dict(zip('AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE'.split(),COUNTRIES))
+    iso3 = dict(zip('AUT BEL BGR HRV CYP CZE DNK EST FIN FRA DEU GRC HUN IRL ITA LVA LTU LUX MLT NLD POL PRT ROU SVK SVN ESP SWE CHE GBR'.split(),COUNTRIES))
     if explicit:
-        explicit={'nederland':'NL','deutschland':'DE','osterreich':'AT'}.get(fold(explicit),explicit)
+        explicit={'nederland':'NL','deutschland':'DE','osterreich':'AT','schweiz':'CH','suisse':'CH','svizzera':'CH','uk':'GB','great britain':'GB','england':'GB','scotland':'GB','wales':'GB'}.get(fold(explicit),explicit)
         explicit = iso3.get(explicit.upper(),next((c for c,n in COUNTRIES.items() if fold(n)==fold(explicit)),explicit))
     if explicit and explicit.upper() in COUNTRIES:
         return [explicit.upper()]
@@ -60,13 +70,79 @@ def country_codes(location, explicit=None):
     if codes: return codes
     if re.search(r'\bdeutschland(?:weit)?\b',value):return ['DE']
     if re.search(r'\bnederland\b',value):return ['NL']
-    # Reject known non-EU locations before city matching (e.g. Paris, Texas).
-    if re.search(r'united (?:states|kingdom)|\busa\b|\buk\b|switzerland|canada|india|australia|singapore|brazil|london|zurich|toronto|san francisco|new york|\btexas\b',value): return []
+    if re.search(r'\b(?:schweiz|suisse|svizzera)\b',value):return ['CH']
+    if re.search(r'\b(?:uk|england|scotland|wales|northern ireland|great britain)\b',value):return ['GB']
+    # Reject known out-of-scope locations before city matching (e.g. Paris, Texas; London, Ontario).
+    if re.search(r'united states|\busa\b|canada|ontario|india|australia|singapore|brazil|toronto|san francisco|new york|\btexas\b',value): return []
     return [c for c, cities in CITY_COUNTRIES.items() if re.search(r'\b(?:'+fold(cities)+r')\b',value)]
+
+def _vocabulary():
+    import json
+    from pathlib import Path
+    path = Path(__file__).resolve().parents[1] / 'data' / 'hr-vocabulary.json'
+    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'categories': {}}
+
+
+def vocabulary_pattern(terms):
+    """Compile natural-language terms into one folded, whole-word regex."""
+    parts = []
+    for term in terms:
+        value = fold(str(term).strip())
+        if not value:
+            continue
+        prefix = value.endswith('*')
+        value = value.rstrip('*')
+        # '&' is required where written ("d&i" must never match "di"); other
+        # separators (space, hyphen, slash) are interchangeable.
+        segments = [[re.escape(w) for w in re.split(r'[\s\-/]+', seg) if w] for seg in value.split('&')]
+        if not all(segments):
+            continue
+        joined = r'\s*&\s*'.join(r'[\s\-/]+'.join(words) for words in segments)
+        parts.append(r'(?<!\w)' + joined + (r'' if prefix else r'(?!\w)'))
+    return re.compile('|'.join(parts)) if parts else None
+
+
+def _compile_vocabulary(data):
+    by_language = lambda block: [t for terms in (block or {}).values() if isinstance(terms, list) for t in terms]
+    strong, contextual = {}, {}
+    for key, entry in data.get('categories', {}).items():
+        strong[key] = vocabulary_pattern(by_language(entry.get('strong')))
+        contextual[key] = vocabulary_pattern(by_language(entry.get('contextual')))
+    generalist = by_language(data.get('categories', {}).get('hr-generalist', {}).get('strong'))
+    context = vocabulary_pattern(generalist + by_language({k: v for k, v in data.get('hr_context', {}).items() if k != 'note'}))
+    veto = vocabulary_pattern(data.get('non_hr_domain', {}).get('terms', []))
+    return strong, contextual, context, veto
+
+
+VOCABULARY = _vocabulary()
+VOCAB_STRONG, VOCAB_CONTEXTUAL, HR_CONTEXT, NON_HR_DOMAIN = _compile_vocabulary(VOCABULARY)
+APPLICATION_SENTENCE = r'\b(?:cv|curriculum|resume|candidat\w*|apply|application|bewerb\w*|postul\w*|sollicit\w*|inviare|send|envoy\w*|enviar|stuur)\b'
+
+
+def vocabulary_categories(title, text):
+    """Categories from data/hr-vocabulary.json. Inputs are already folded."""
+    cats = [k for k, pattern in VOCAB_STRONG.items() if pattern and pattern.search(title)]
+    if NON_HR_DOMAIN and NON_HR_DOMAIN.search(title):
+        return cats
+    sentences = None
+    for key, pattern in VOCAB_CONTEXTUAL.items():
+        if key in cats or not pattern or not pattern.search(title) or not HR_CONTEXT:
+            continue
+        if HR_CONTEXT.search(pattern.sub(' ', title)):
+            cats.append(key)
+            continue
+        if sentences is None:
+            sentences = [s for s in re.split(r'(?<=[.!?;:])\s+|\n', text) if not re.search(APPLICATION_SENTENCE, s)]
+        if any(pattern.search(s) and HR_CONTEXT.search(s) for s in sentences):
+            cats.append(key)
+    return cats
+
+
 
 def classify_role(title, text='', employment=''):
     title, text, employment = map(fold,(plain(title),plain(text),plain(employment)))
-    cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title)]
+    extra = vocabulary_categories(title, text)
+    cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title) or k in extra]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
     if not cats and re.search(r'people (?:&|and) events',title) and re.search(r'personalbetreuung|personalentwicklung|human resources|hr administration',text):cats=['hr-generalist']
     if re.search(r'benefits|compensation|reward',title) and not re.search(r'hr|human resources|employee|payroll|compensation (?:&|and) benefits|total rewards|remuneration',title+' '+text):
@@ -81,13 +157,19 @@ def classify_role(title, text='', employment=''):
     if re.search(r'\bintern\b',title) and re.search(r'\b(?:jij|jouw|werkervaring|salarisverwerking|medewerkers)\b',text):
         if not re.search(r'\bstag(?:e|iair|iaire|iairs|iaires)|\binternship|\bstudent|\bmeewerk|\bafstudeer|\binschrev',title+' '+text):return None
     # Internal, international and interview must never count as 'intern'.
-    signal = re.search(INTERNSHIP,title+' '+employment)
+    # Part-time student jobs (Werkstudent, working student) are not placements:
+    # they count only when the title also names an internship.
+    if re.search(STUDENT_JOB,title) and not re.search(INTERNSHIP,re.sub(STUDENT_JOB,' ',title)):return None
+    signal = re.search(INTERNSHIP,re.sub(STUDENT_JOB,' ',title+' '+employment))
     # Spanish placement titles use 'Prácticas'. A phrase about good practices
     # inside a permanent HR title/description is not a placement signal.
     signal = signal or re.search(r'^practicas\b',title) or re.search(r'^practicas\b',employment)
     signal = signal or re.search(POLISH_PLACEMENT,title) or re.search(POLISH_PLACEMENT,employment)
     if not signal: return None
-    kind = 'working-student' if re.search(r'werkstud(?:ent|ierende)|working.student|student assistant',title+' '+employment) else 'traineeship' if re.search(r'trainee',title+' '+employment) else 'internship'
+    # Traineeships are usually graduate jobs, out of scope (owner decision 18/11/2026).
+    # A trainee title counts only when the text documents a student placement.
+    if re.search(r'trainee',title) and not re.search(PLACEMENT_TITLE,title) and not re.search(STUDENT_PLACEMENT,fold(plain(text))):return None
+    kind = 'internship'
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
 LANG_ALIASES = {
