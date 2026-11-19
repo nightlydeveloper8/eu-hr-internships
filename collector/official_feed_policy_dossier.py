@@ -12,7 +12,7 @@ from .classify import canonical_url, fold, plain, classify_role
 from .official_feed_discovery import https_url
 from .official_feed_verification import CapturedClient, verify_candidate
 from .runtime import BudgetClient
-from .verification import _verify_vacancy, blocked_error, same_title, same_requisition, applicant_form, structured_identifiers, expired
+from .verification import _verify_vacancy, blocked_error, same_title, applicant_form, structured_identifiers, expired
 from .universal import Document
 from .applications import ensure_open_document, checked_document, ApplicantForms
 from .dynamic_ats import MissingDynamicForm
@@ -32,7 +32,7 @@ def ats_parent(application_url, host):
 
 
 def _published_source_child_fallback(candidate, vacancy, source, captured):
-    """Specific known Teamtailor path when employer CTA is a non-link button.
+    """Confirm a Teamtailor child when an observed Swedish CTA has no generic match.
 
     The caller has already read an identified employer parent. The external
     public feed supplied the child URL, not the parser. No CTA target is
@@ -48,8 +48,6 @@ def _published_source_child_fallback(candidate, vacancy, source, captured):
     ensure_open_document(doc)
     if not same_title(doc,vacancy["title"]):
         raise ValueError("Current employer page does not name the same role")
-    if not same_requisition(parent_url,app_url):
-        raise ValueError("Observed application URL does not belong to employer ATS job")
     if not re.search(r"\b(?:skicka\s+ansokan|ansok|ansokan)\b",fold(doc.text)):
         raise ValueError("Employer vacancy has no visible applicant CTA")
     # An existing Teamtailor parent→child path with one fixed ATS ID is

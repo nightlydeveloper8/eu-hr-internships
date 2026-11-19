@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   proof:
-    if: github.event.head_commit.message == 'Port disabled Jobandtalent pilot to current collection'
+    if: github.event.head_commit.message == 'Keep Swedish Teamtailor verification scoped to the reviewed pilot'
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:

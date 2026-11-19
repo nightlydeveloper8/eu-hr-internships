@@ -155,6 +155,8 @@ def process_jobtech_source(source, client, stamp, *, prior_jobs=(),
         report.update(dossier_state=dossier["status"],
                       dossier_ats_id=dossier.get("ats_posting_id"),
                       dossier_inventory_confirmed=dossier.get("official_inventory_confirmed",False))
+        if dossier["status"] != "policy-v2-evidence-passed-staging-only":
+            raise ValueError(dossier.get("reason") or "Policy-v2 review incomplete")
         # Never pass the pre-verification collection timestamp as new evidence.
         evidence_stamp = datetime.now(timezone.utc).isoformat()
         observation = staging_part(
