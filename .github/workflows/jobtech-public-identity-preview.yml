@@ -1,4 +1,4 @@
-name: Verify fresh Jobandtalent proof against later public refresh
+name: Jobandtalent normal entry, exact ID and current finalizer
 on:
   push:
     branches: ['pilot/jobtech-preserve-public-id-20261119']
@@ -7,14 +7,14 @@ permissions:
   contents: read
 jobs:
   proof:
-    if: github.event.head_commit.message == 'Protect exact fresh application evidence from public-only refreshes'
+    if: github.event.head_commit.message == 'Use JobTech exact ID through the normal disabled-source preview'
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
         with:
           path: reviewed
-          fetch-depth: 2
+          fetch-depth: 5
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
@@ -24,61 +24,90 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check the patched adapter and evidence ordering offline
+      - name: Verify positive and fail-closed staging cases offline
         working-directory: reviewed
         run: |
           python -m unittest discover -s tests -p 'test_official_feed_staging.py' -v
           python -m unittest discover -s tests -p 'test_jobtech_daily_adapter.py' -v
-          git diff HEAD^ HEAD -- collector/pipeline.py | git -C ../current apply -
-      - name: Replay the exact public identity, later refresh and expiry on current main
+          git diff fb523c6157261b5870e749d67b24858d2858d0e9 HEAD -- collector/pipeline.py | git -C ../current apply -
+      - name: Re-read a single exact JobTech ID and employer form
+        working-directory: reviewed
+        run: |
+          python - <<'PY'
+          import json
+          import time
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          from collector.official_feed_adapter import source_gate
+          from collector.pipeline import ROOT, now, process_source, read
+          from collector.runtime import BudgetClient
+
+          start = time.monotonic()
+          registry = read(ROOT / 'data/sources.json',[])
+          source = next(s for s in registry if s['id']=='staging-jobandtalent-se')
+          source_gate(source,preview=True)
+          assert source['enabled'] is False
+          rows=read(Path('../current/data/catalog.json'),{})['jobs']
+          client=BudgetClient(seconds=source['collection_seconds'],max_requests=source['max_requests'],delay=1)
+          part=process_source(source,client,now(),verify=True,official_feed_preview=True,
+                              official_feed_prior_jobs=rows)
+          stamp=now()
+          s=part['report']
+          print('NORMAL_LIVE '+json.dumps(dict(proof=s.get('dossier_state'),reason=s.get('reason'),stage_rows=len(part['jobs']),
+              feed_requests=s['feed_requests'],ats_requests=s['ats_requests'],bytes=s['bytes_read'],
+              seconds=round(time.monotonic()-start,3))),flush=True)
+          assert len(part['jobs'])==1, s.get('reason')
+          assert part['jobs'][0]['id']=='c8bdac2ae98420d4b1e7'
+          Path('../staged.json').write_text(json.dumps(dict(source=source,part=part,stamp=stamp)))
+          PY
+      - name: Use latest main finalizer in a temporary directory
         working-directory: current
         run: |
           python - <<'PY'
           from copy import deepcopy
-          from datetime import datetime,timedelta
+          from datetime import datetime, timedelta
           from tempfile import TemporaryDirectory
-          from pathlib import Path
           import json
-          from collector.pipeline import finalize,read
+          import hashlib
+          from pathlib import Path
+          from collector.pipeline import finalize, read
 
-          source='staging-jobandtalent-se'
-          cat=read(Path('data/catalog.json'),{})
-          cov=read(Path('data/coverage.json'),{})
-          st=cat['updated_at']
-          previous=next(j for j in cat['jobs'] if j['id']=='c8bdac2ae98420d4b1e7')
-          ats_url=previous['external_application_url']
-          employer=dict(previous,source_id=source,source_type='jobtech-policy-v2-staging',
-              external_id='8503489',source_posting_id='8503489',url=ats_url.split('/applications/new',1)[0],
-              apply_url=ats_url,status='open',last_seen_at=st,last_verified_at=st,
-              public_listing_urls=sorted({previous['url'],*previous.get('public_listing_urls',[])}),
-              verification=dict(policy_version=2,state='verified',checked_at=st),
-              application_verification=dict(url=ats_url,method='synthetic-regression-proof',checked_at=st),
-              official_feed_provenance=dict(provider='jobtech-se',public_id='31558200',ats_id='8503489'))
-          later=(datetime.fromisoformat(st)+timedelta(hours=1)).isoformat()
-          expired=(datetime.fromisoformat(st)+timedelta(hours=49)).isoformat()
-          registry=read(Path('data/sources.json'),[])+[dict(id=source,adapter='jobtech-policy-v2',enabled=False)]
-          def part(job):
-              return dict(jobs=[job],report=dict(id=job['source_id'],status='partial',records_inspected=1),closure_eligible=[])
-          def public(t,**other):
-              return dict(previous,last_seen_at=t,last_verified_at=t,verification=dict(previous['verification'],checked_at=t),**other)
-          def finish(prior,observed,t,tmp):
-              return finalize(registry,[{} for j in observed],deepcopy(prior),deepcopy(cov),
-                              [part(deepcopy(j)) for j in observed],t,Path(tmp))[0]
-          def get(doc):
-              return next(j for j in doc['jobs'] if j['id']==previous['id'])
-          with TemporaryDirectory() as tmp:
-              first=finish(cat,[employer,public(later)],later,tmp)
-              second=finish(first,[public(later)],later,tmp)
-              fallback=finish(second,[public(expired)],expired,tmp)
-              changed=finish(first,[public(later,external_application_url=None)],later,tmp)
-          for doc in (first,second):
-              j=get(doc)
-              assert j['application_verification']==employer['application_verification']
-              assert j['last_verified_at']==st and previous['url'] in j['public_listing_urls']
-          assert {j['id'] for j in first['jobs']}=={j['id'] for j in cat['jobs']}
-          assert not get(fallback).get('application_verification')
-          assert get(fallback)['verification']['policy']=='public-api-active-listing'
-          assert not get(changed).get('application_verification')
-          print('ORDERING '+json.dumps(dict(same_cycle=True,next_public_refresh=True,
-                expired_downgrades=True,changed_link_downgrades=True,id_preserved=True,network_requests=0)),flush=True)
+          staged=json.loads(Path('../staged.json').read_text())
+          source,part,stamp=(staged[k] for k in ('source','part','stamp'))
+          catalog=Path('data/catalog.json')
+          original=hashlib.sha256(catalog.read_bytes()).hexdigest()
+          before=read(catalog,{})
+          coverage=read(Path('data/coverage.json'),{})
+          registry=read(Path('data/sources.json'),[])+[source]
+          identity='c8bdac2ae98420d4b1e7'
+          previous=next(j for j in before['jobs'] if j['id']==identity)
+          def confirmation_count(data):
+              return sum(j.get('status')=='open' and bool(j.get('application_verification')) for j in data['jobs'])
+          with TemporaryDirectory() as path:
+              out,report=finalize(registry,[source],deepcopy(before),deepcopy(coverage),[deepcopy(part)],stamp,Path(path))
+              out2,_=finalize(registry,[source],deepcopy(out),deepcopy(report),[deepcopy(part)],stamp,Path(path))
+              public=next(s for s in registry if s['id']=='public-se-jobtech')
+              later=(datetime.fromisoformat(stamp)+timedelta(seconds=1)).isoformat()
+              listing=deepcopy(previous)
+              listing.update(last_seen_at=later,last_verified_at=later)
+              listing['verification']['checked_at']=later
+              public_part=dict(report=dict(id=public['id'],status='partial',records_inspected=1),jobs=[listing],closure_eligible=[])
+              shared,_=finalize(registry,[source,public],deepcopy(before),deepcopy(coverage),[deepcopy(part),public_part],later,Path(path))
+          original_ids={j['id'] for j in before['jobs']}
+          row=next(j for j in out['jobs'] if j['id']==identity)
+          repeated=next(j for j in out2['jobs'] if j['id']==identity)
+          concurrent=next(j for j in shared['jobs'] if j['id']==identity)
+          assert {j['id'] for j in out['jobs']}==original_ids=={j['id'] for j in out2['jobs']}
+          assert {j['id'] for j in shared['jobs']}==original_ids
+          assert row['first_discovered_at']==previous['first_discovered_at'] and previous['url'] in row['public_listing_urls']
+          assert row['application_verification']==repeated['application_verification']
+          assert row['public_listing_urls']==repeated['public_listing_urls']
+          assert hashlib.sha256(catalog.read_bytes()).hexdigest()==original
+          assert confirmation_count(out)==confirmation_count(before)+1
+          assert concurrent['application_verification']==row['application_verification']
+          assert concurrent['last_verified_at']==row['last_verified_at']
+          print('FINALIZE '+json.dumps(dict(id=identity,ids_before=len(original_ids),ids_after=len(out['jobs']),
+              confirmed_before=confirmation_count(before),confirmed_after=confirmation_count(out),
+              public_link_preserved=True,idempotent=True,ordinary_public_refresh_still_has_application=bool(concurrent.get('application_verification')),
+              activation=source['enabled'],closure_eligible=part['closure_eligible'])),flush=True)
           PY

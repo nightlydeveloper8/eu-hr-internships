@@ -13,7 +13,7 @@ from urllib.parse import urlsplit
 import time
 
 from .classify import fold, plain
-from .official_feed_discovery import JOBTECH_HOST, JOBTECH_QUERIES, discovery_report, https_url
+from .official_feed_discovery import JOBTECH_HOST, JOBTECH_QUERIES, jobtech_candidate, https_url
 from .official_feed_policy_dossier import ats_parent, review
 from .official_feed_staging import staging_part
 from .runtime import BudgetClient
@@ -126,21 +126,13 @@ def process_jobtech_source(source, client, stamp, *, prior_jobs=(),
             https_url(target, {JOBTECH_HOST})
             and urlsplit(target).hostname == JOBTECH_HOST
         )
-        discovered = discovery_report(
-            client, catalog_urls=(j.get("url") for j in prior_jobs if isinstance(j, dict)),
-            queries=tuple(source["jobtech_queries"]),
-            per_query=source["results_per_query"],
-        )
-        report.update(feed_rows_scanned=discovered["input_records"],
-                      feed_hr_candidates=discovered["candidate_count"],
-                      feed_requests=discovered["requests"],
-                      feed_bytes_read=discovered["bytes_read"],
-                      collected=discovered["input_records"])
-        candidates = [row for row in discovered["candidates"]
-                      if row.get("provider_id") == source["provider_id"]]
-        if len(candidates) != 1:
-            raise ValueError("Exact public JobTech posting absent or duplicated in limited search")
-        candidate = candidates[0]
+        payload = client.json(f"https://{JOBTECH_HOST}/ad/{source['provider_id']}")
+        candidate = jobtech_candidate(payload)
+        report.update(feed_rows_scanned=1 if payload else 0,
+                      feed_hr_candidates=int(candidate is not None),
+                      collected=1 if payload else 0)
+        if not candidate or candidate.get("provider_id") != source["provider_id"]:
+            raise ValueError("Exact public JobTech posting absent or identity does not match")
         if (fold(plain(candidate.get("employer"))) != fold(source["employer"])
                 or fold(plain(candidate.get("city"))) != fold(source["expected_city"])
                 or candidate.get("country") != "SE"):
@@ -185,6 +177,8 @@ def process_jobtech_source(source, client, stamp, *, prior_jobs=(),
                       reason=str(exc)[:210])
     finally:
         report.update(checked_at=datetime.now(timezone.utc).isoformat(),
+                      feed_requests=getattr(client,"requests",0),
+                      feed_bytes_read=getattr(client,"bytes",0),
                       requests=getattr(client,"requests",0) + (ats.requests if ats else 0),
                       bytes_read=getattr(client,"bytes",0) + (ats.bytes if ats else 0),
                       ats_requests=ats.requests if ats else 0,
