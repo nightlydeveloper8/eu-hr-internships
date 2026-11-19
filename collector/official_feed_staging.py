@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from urllib.parse import urlsplit
 
 from .classify import (
-    advertisement_language, classify_role, extract_metadata, fold,
+    advertisement_language, canonical_url, classify_role, extract_metadata, fold,
     language_summary, plain, stable_id, workplace_languages,
 )
 from .official_feed_discovery import https_url
@@ -22,6 +22,61 @@ def _utc(value):
     if dt.tzinfo is None:
         raise ValueError("Dossier timestamp lacks timezone")
     return dt.astimezone(timezone.utc)
+
+
+def _reviewed_public_identity(candidate, parent, source, prior_jobs, stable_job_id, overlap, production):
+    """Adopt one exact JobTech identity in a disabled staging preview only."""
+    public_id = candidate["provider_id"]
+    public_url = https_url(candidate["url"], {"arbetsformedlingen.se"})
+    jobtech_source = "public-se-jobtech"
+    matches = overlap["exact_matches"] + overlap["possible_mirrors"]
+    matched_ids = {entry.get("id") for entry in matches}
+    public_rows = [job for job in prior_jobs if job.get("source_id") == jobtech_source
+                   and public_id in (job.get("source_posting_id"), job.get("external_id"))]
+    if not public_rows and not overlap["possible_mirror_count"] and matched_ids <= {stable_job_id}:
+        return None
+    if production or not public_url or len(matches) != (
+        overlap["exact_url_or_path_count"] + overlap["possible_mirror_count"]
+    ):
+        raise ValueError("Unresolved catalog mirror or different official identity")
+    matched_ids.update(job.get("id") for job in public_rows)
+    rows = [job for job in prior_jobs if job.get("id") in matched_ids]
+    if len(rows) != 1:
+        raise ValueError("Unresolved catalog mirror or different official identity")
+    old = rows[0]
+    if (not old.get("id") or not old.get("first_discovered_at") or old.get("status") != "open"
+        or old.get("ownership_risk") or old.get("country") != "SE" or old.get("countries") != ["SE"]
+        or any(fold(plain(old.get(key))) != fold(plain(candidate[key])) for key in ("employer", "title", "city"))):
+        raise ValueError("Unresolved catalog mirror or different official identity")
+    if old.get("source_id") == jobtech_source:
+        proof = old.get("verification") or {}
+        matching_copy = (
+            old.get("source_type") == "jobtech-search"
+            and old.get("external_id") == old.get("source_posting_id") == public_id
+            and proof.get("policy") == "public-api-active-listing" and proof.get("policy_version") == 2
+            and canonical_url(old["url"]) == canonical_url(public_url)
+            and https_url(old.get("external_application_url"), {urlsplit(parent["application_url"]).hostname})
+            and canonical_url(old["external_application_url"]) == canonical_url(parent["application_url"])
+        )
+    else:
+        # Allow replay of the very same adopted identity without resorting to
+        # employer/title matching or discarding the stored public listing.
+        provenance = old.get("official_feed_provenance") or {}
+        matching_copy = (
+            old.get("source_id") == source["id"] and old.get("source_posting_id") == parent["ats_id"]
+            and provenance.get("provider") == "jobtech-se" and provenance.get("public_id") == public_id
+            and provenance.get("ats_id") == parent["ats_id"]
+            and public_url in old.get("public_listing_urls", [])
+            and canonical_url(old["url"]) == canonical_url(parent["job_page"])
+            and canonical_url(old["apply_url"]) == canonical_url(parent["application_url"])
+        )
+    if not matching_copy:
+        raise ValueError("Unresolved catalog mirror or different official identity")
+    return dict(
+        id=old["id"], first_discovered_at=old["first_discovered_at"],
+        public_listing_urls=sorted({public_url, *old.get("public_listing_urls", [])}),
+        duplicate_source_ids=sorted({jobtech_source, *old.get("duplicate_source_ids", [])}),
+    )
 
 
 def staging_part(candidate, dossier, source, stamp, prior_jobs=(), *, production=False):
@@ -105,11 +160,10 @@ def staging_part(candidate, dossier, source, stamp, prior_jobs=(), *, production
         if age < 0 or age > 1800:
             raise ValueError("Dossier must be fresh and from this bounded staging cycle")
         job_id = stable_id(sid, parent["ats_id"])
-        overlap = catalog_overlap(candidate, dossier, list(prior_jobs))
-        if overlap["possible_mirror_count"] or any(
-            match.get("id") != job_id for match in overlap["exact_matches"]
-        ):
-            raise ValueError("Unresolved catalog mirror or different official identity")
+        prior_jobs = list(prior_jobs)
+        overlap = catalog_overlap(candidate, dossier, prior_jobs)
+        public_identity = _reviewed_public_identity(candidate, parent, source, prior_jobs, job_id,
+                                                    overlap, production)
         langs = workplace_languages(title)
         method = dossier["application_proof_method"]
         job = dict(
@@ -135,6 +189,8 @@ def staging_part(candidate, dossier, source, stamp, prior_jobs=(), *, production
                                           ats_id=parent["ats_id"]),
             status="open",
         )
+        if public_identity:
+            job.update(public_identity)
         report.update(records_inspected=1, matching=1, verification_states={"verified": 1},
                       candidate_filter_reasons={}, page_failures=0,
                       reviewed_ats_id=parent["ats_id"],
