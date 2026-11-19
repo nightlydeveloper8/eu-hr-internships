@@ -1,0 +1,161 @@
+name: Growth candidature proof sample
+on:
+  push:
+    branches: ['pilot/verification-growth-20261119']
+    paths: ['.github/workflows/growth-live-20261119.yml']
+permissions:
+  contents: read
+jobs:
+  pilot:
+    if: github.event.head_commit.message == 'Run bounded Adecco and NL candidature pilots'
+    strategy:
+      fail-fast: false
+      matrix:
+        lane: [adecco, nl]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run bounded GET-only sample
+        env:
+          SAMPLE_LANE: ${{ matrix.lane }}
+        run: |
+          python - "$SAMPLE_LANE" <<'PY'
+          """One-off read-only pilot over six UK/European employer-site candidates per lane."""
+          import argparse
+          import json
+          import re
+          import time
+          from urllib.parse import parse_qs, urljoin, urlsplit
+          
+          from collector.applications import checked_document
+          from collector.classify import canonical_url, fold
+          from collector.pipeline import ROOT, now, read
+          from collector.runtime import BudgetClient
+          from collector.verification import applicant_form, expired, same_title, structured_identifiers, verify_vacancy
+          
+          catalog = read(ROOT / 'data/catalog.json', {})
+          registry = {s['id']: s for s in read(ROOT / 'data/sources.json', []) if s.get('enabled')}
+          LANES = {
+              'adecco': ('employer-adecco-group',),
+              'nl': ('employer-stryker', 'auto-center-parcs', 'auto-hb-rts'),
+          }
+          TALENTSOFT = 'theadeccogroup-career.talent-soft.com'
+          ADECCO = 'careers.adeccogroup.com'
+          RESTRICTED = re.compile(r'robots\.txt|HTTP Error (?:401|403|429|451)|captcha|access challenge', re.I)
+          CTA = re.compile(r'\bapply\b|postuler|candidater', re.I)
+          
+          def reviewed_url(url, hosts):
+              parsed = urlsplit(url)
+              return (parsed.scheme == 'https' and parsed.hostname in hosts and not parsed.username
+                      and not parsed.password and parsed.port in (None, 443))
+          
+          class ScopedClient:
+              def __init__(self, budget, allowed):
+                  self.budget = budget
+                  self.allowed = allowed
+                  self.visits = {}
+              def request(self, url, method='GET', **kwargs):
+                  if method != 'GET' or not reviewed_url(url, self.allowed):
+                      raise ValueError('Outside reviewed GET scope')
+                  self.budget.redirect_scope_allowed = lambda dest: reviewed_url(dest, self.allowed)
+                  response = self.budget.request(url, method=method, **kwargs)
+                  self.visits[url] = response
+                  return response
+          
+          def parts(url):
+              parsed = urlsplit(url)
+              return set(parsed.path.split('/')) | {v for vals in parse_qs(parsed.query).values() for v in vals}
+          
+          def page_ids(doc, title):
+              ids = structured_identifiers(doc, title)
+              path_id = urlsplit(doc.url).path.rstrip('/').rsplit('/', 1)[-1]
+              return ids | ({path_id} if path_id.isdigit() else set())
+          
+          def probe_adecco(job, budget, stamp):
+              client = ScopedClient(budget, {ADECCO})
+              body, doc = checked_document(job['url'], {'allowed_hosts': [ADECCO]}, client)
+              if canonical_url(doc.url) != canonical_url(job['url']) or not same_title(doc, job['title']):
+                  raise ValueError('Employer page does not identify the current posting')
+              if any(expired(p.get('validThrough'), stamp) for p in doc.jobposts() if p.get('validThrough')):
+                  raise ValueError('Employer page indicates the deadline has passed')
+              ids = page_ids(doc, job['title'])
+              targets = set()
+              for href, label, _ in doc.links:
+                  if not CTA.search(fold(label)):
+                      continue
+                  target = urljoin(doc.url, href)
+                  if reviewed_url(target, {TALENTSOFT}) and ids.intersection(parts(target)):
+                      targets.add(target)
+              if len(targets) != 1:
+                  raise ValueError('No unique observed same-ID link to the scoped tenant')
+              target = targets.pop()
+              landing = ScopedClient(budget, {TALENTSOFT})
+              raw, application = checked_document(target, {'allowed_hosts': [TALENTSOFT]}, landing)
+              same_url = canonical_url(target) == canonical_url(application.url)
+              same_id = bool(ids.intersection(parts(application.url)))
+              title = same_title(application, job['title'])
+              strict_form = applicant_form(raw, strict=True)
+              conflicting = structured_identifiers(application, job['title']) - ids
+              past_due = any(expired(p.get('validThrough'), stamp) for p in application.jobposts() if p.get('validThrough'))
+              return dict(proven=same_url and same_id and title and strict_form and not conflicting and not past_due,
+                          employer_title=True, observed_target_host=TALENTSOFT, landing_id_matches=same_id,
+                          landing_title_matches=title, enabled_applicant_form=strict_form, landing_url_unchanged=same_url,
+                          landing_id_conflict=bool(conflicting), landing_deadline_passed=past_due)
+          
+          def probe_nl(job, source, budget, stamp):
+              if not reviewed_url(job['url'], source['allowed_hosts']):
+                  raise ValueError('Job host is not in the configured scope')
+              client = ScopedClient(budget, set(source['allowed_hosts']))
+              proof = verify_vacancy(dict(job, inventory_evidence='current-employer-feed'), source, client, stamp)
+              return dict(proven=True, method=proof['method'], evidence_host=urlsplit(proof['url']).hostname)
+          
+          def chooses(lane):
+              candidates = []
+              for sid in LANES[lane]:
+                  eligible = [j for j in catalog['jobs'] if j['source_id'] == sid and j['status'] == 'unverified'
+                              and not j.get('ownership_risk') and reviewed_url(j['url'], registry[sid]['allowed_hosts'])
+                              and (lane == 'adecco' or j['country'] == 'NL')
+                              and not RESTRICTED.search(j['verification'].get('reason', ''))]
+                  eligible.sort(key=lambda j:(j.get('published_at') or j.get('first_discovered_at') or '', j['id']),reverse=True)
+                  if lane == 'adecco':
+                      preferred = ('falaise', 'argentan', 'bordeaux', 'calais', 'maubeuge', 'toulouse')
+                      candidates.extend(next(j for j in eligible if fold(j['city']) == city) for city in preferred)
+                  else:
+                      candidates.extend(eligible[:2])
+              return candidates
+          
+          parser=argparse.ArgumentParser()
+          parser.add_argument('lane', choices=LANES)
+          lane=parser.parse_args().lane
+          budget=BudgetClient(seconds=95, max_requests=20, delay=.8)
+          start=time.monotonic()
+          rows=[]
+          restricted=set()
+          for job in chooses(lane):
+              sid=job['source_id']
+              if sid in restricted:
+                  rows.append(dict(id=job['id'], city=job['city'], source=sid, skipped='previous host restriction'))
+                  continue
+              before=budget.requests
+              stamp=now()
+              output=dict(id=job['id'],city=job['city'],source=sid,title=job['title'])
+              try:
+                  result=probe_adecco(job,budget,stamp) if lane=='adecco' else probe_nl(job,registry[sid],budget,stamp)
+                  output.update(result)
+              except Exception as exc:
+                  reason=str(exc)[:220]
+                  output.update(proven=False, error=type(exc).__name__, reason=reason)
+                  if RESTRICTED.search(reason):
+                      restricted.add(sid)
+              rows.append(dict(output, requests=budget.requests-before))
+              if budget.requests>=20 or budget.remaining()<=.1:
+                  break
+          print('GROWTH_LIVE '+json.dumps(dict(lane=lane,requests=budget.requests,bytes=budget.bytes,
+                seconds=round(time.monotonic()-start,3),proven=sum(bool(r.get('proven')) for r in rows),rows=rows),ensure_ascii=False),flush=True)
+          PY
