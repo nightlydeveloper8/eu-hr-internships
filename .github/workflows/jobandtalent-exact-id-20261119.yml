@@ -1,0 +1,77 @@
+name: Exact JobTech posting and employer proof
+on:
+  push:
+    branches: ['pilot/verification-growth-20261119']
+    paths: ['.github/workflows/jobandtalent-exact-id-20261119.yml']
+permissions:
+  contents: read
+jobs:
+  preview:
+    if: github.event.head_commit.message == 'Resolve the known JobTech posting by its official exact ID'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: '3f20f511092d7cd5cb12aa3428bf8b4edc0ca3e6'
+          path: current
+          sparse-checkout: data/catalog.json
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 'fb523c6157261b5870e749d67b24858d2858d0e9'
+          path: reviewed
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Resolve one known posting by ID, then check the published employer link
+        working-directory: reviewed
+        run: |
+          python - <<'PY'
+          import json
+          import time
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          from collector.official_feed_adapter import AtsBudgetFactory, source_gate
+          from collector.official_feed_discovery import JOBTECH_HOST, jobtech_candidate
+          from collector.official_feed_policy_dossier import ats_parent, review
+          from collector.official_feed_staging import staging_part
+          from collector.pipeline import ROOT, now, read
+          from collector.runtime import BudgetClient
+          from collector.classify import fold
+
+          start = time.monotonic()
+          registry = read(ROOT / 'data/sources.json',[])
+          source = next(s for s in registry if s['id']=='staging-jobandtalent-se')
+          source_gate(source,preview=True)
+          rows=read(Path('../current/data/catalog.json'),{})['jobs']
+          client=BudgetClient(seconds=25,max_requests=3,delay=1)
+          client.redirect_scope_allowed=lambda url: urlsplit(url).scheme=='https' and urlsplit(url).hostname==JOBTECH_HOST
+          factory=None
+          out={'provider_id':source['provider_id'],'source_enabled':source['enabled']}
+          try:
+              payload=client.json('https://'+JOBTECH_HOST+'/ad/'+source['provider_id'])
+              assert str(payload['id'])==source['provider_id']
+              candidate=jobtech_candidate(payload)
+              if not isinstance(candidate, dict):
+                  candidate=candidate[0]
+              assert candidate and candidate['provider_id']==source['provider_id']
+              assert fold(candidate['employer'])==fold(source['employer']) and fold(candidate['city'])==fold(source['expected_city'])
+              assert candidate['country']=='SE'
+              target=ats_parent(candidate['apply_url'],source['allowed_hosts'][0])
+              assert target and target['ats_id']==source['expected_ats_id']
+              out['exact_public_posting']=True
+              factory=AtsBudgetFactory(client,10,45)
+              dossier=review(candidate,approved_host=source['allowed_hosts'][0],approved_inventory_url=source['reviewed_inventory_url'],client_factory=factory)
+              part=staging_part(candidate,dossier,source,now(),prior_jobs=rows,production=False)
+              out.update(dossier_state=dossier['status'],ats_id=dossier.get('ats_posting_id'),inventory=dossier.get('official_inventory_confirmed'),
+                         staging_rows=len(part['jobs']),staging_reason=part['report'].get('reason'),closure_eligible=part['closure_eligible'])
+          except (ValueError, KeyError, IndexError, TypeError, AssertionError, RuntimeError, OSError) as error:
+              out['error']=type(error).__name__
+              out['reason']=str(error)[:150]
+          out.update(feed_requests=client.requests,ats_requests=factory.requests if factory else 0,
+                     bytes=client.bytes+(factory.bytes if factory else 0),seconds=round(time.monotonic()-start,3))
+          print('JOBTECH_EXACT '+json.dumps(out),flush=True)
+          PY
