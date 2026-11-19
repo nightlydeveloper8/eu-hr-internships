@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 19 novembre 2026 — esecuzione del primo lotto della strategia 45/60
+
+- **Jobandtalent Malmö**: la ricerca limitata non ha restituito un candidato univoco. La lettura ufficiale per ID `31558200` ha confermato su seconda data il modulo ATS `8503489`, 8 GET e 7,019 s. Il blocco residuo è la copia JobTech `c8bdac2ae98420d4b1e7` già sul catalogo corrente. La deduplica a valle accorpa la prova sintetica univoca preservando il link pubblico; integrazione di questa riconciliazione a monte ancora da fare.
+- **Adecco e primo lotto NL**: 0/6 moduli Adecco abilitati in HTML malgrado 6/6 pagine same-ID; 0/6 percorsi verificati fra Stryker, Center Parcs e HB RTS. Nessun aumento in produzione attribuibile ai piloti.
+- **#63**: replay di due cicli con 254 fonti comuni e 16 shard. 9.274 richieste simulate sia prima sia dopo, 49.375 voci dei checkpoint risparmiate, zero record HR osservati da cache persi. Il costo HTTP live rimane da misurare.
+- **Stato**: solo prove isolate e documentazione. Nessun merge, rollout o cambio di frequenza. Prima mossa successiva: riconciliare Jobandtalent con la copia pubblica prima di valutare il passaggio dalla prova all'integrazione. [Prove e costi](verifica-strategia-crescita-2026-11-19.md).
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
