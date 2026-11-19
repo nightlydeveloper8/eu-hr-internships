@@ -50405,5 +50405,28 @@
     "reviewed_on": "2026-11-18",
     "permission_basis": "Official employer career site (Eightfold); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
     "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "recruitee-ampelmann-nl",
+    "company_id": "ampelmann-operations-b-v",
+    "employer": "Ampelmann Operations B.V.",
+    "adapter": "recruitee",
+    "enabled": false,
+    "feed_format": "recruitee-public-xml",
+    "application_check": "recruitee-linked",
+    "feed_url": "https://careers.ampelmann.nl/api/feeds/offers.xml",
+    "career_url": "https://careers.ampelmann.nl/",
+    "allowed_hosts": [
+      "careers.ampelmann.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "permission_basis": "Reviewed employer-published XML and same-ID application; runtime robots gate",
+    "max_requests": 16,
+    "collection_seconds": 70,
+    "status": "pending-integration-and-rollout-approval"
   }
 ]

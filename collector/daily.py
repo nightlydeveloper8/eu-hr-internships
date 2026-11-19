@@ -48,7 +48,18 @@ def provision(companies,sources):
     """Idempotently attach an actual crawler to every unserved employer."""
     companies=copy.deepcopy(companies);sources=copy.deepcopy(sources)
     by_id={s['id']:s for s in sources}
+    enabled_company_ids = {source.get('company_id') for source in sources if source.get('enabled')}
     for company in companies:
+        # Explicit review hold: a disabled reviewed source must never cause an
+        # enabled auto-universal fallback on the next daily provisioning run.
+        # Activation requires removing the hold AND enabling the reviewed source
+        # in a separately authorized change.
+        if company.get('collection_activation_hold'):
+            if company['id'] in enabled_company_ids or any(
+                by_id[s].get('enabled') for s in company.get('source_ids', []) if s in by_id
+            ):
+                raise ValueError('Held employer has an enabled source: '+company['id'])
+            continue
         active=[by_id[s] for s in company.get('source_ids',[]) if s in by_id and by_id[s].get('enabled')]
         if active:continue
         starts=list(dict.fromkeys(canonical_url(u) for u in [company.get('career_url'),company.get('website_url')] if u))
