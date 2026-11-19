@@ -12,7 +12,7 @@ from .classify import (
     language_summary, plain, stable_id, workplace_languages,
 )
 from .official_feed_discovery import https_url
-from .official_feed_policy_dossier import ats_parent, catalog_overlap, review
+from .official_feed_policy_dossier import ats_parent, catalog_overlap
 
 
 def _utc(value):
@@ -200,15 +200,3 @@ def staging_part(candidate, dossier, source, stamp, prior_jobs=(), *, production
         report.update(status="partial", verification_states={"incomplete": 1},
                       reason=str(exc)[:200], page_failures=1)
     return result
-
-
-def stage_live_candidate(candidate, source, prior_jobs=(), client_factory=None):
-    """Run a *new* bounded ATS review first; then stage only that live proof."""
-    kwargs = dict(approved_host=source["allowed_hosts"][0],
-                  approved_inventory_url=source["reviewed_inventory_url"])
-    if client_factory is not None:
-        kwargs["client_factory"] = client_factory
-    dossier = review(candidate, **kwargs)
-    # The collection timestamp must not precede the final live ATS proof.
-    stamp = datetime.now(timezone.utc).isoformat()
-    return staging_part(candidate, dossier, source, stamp, prior_jobs), dossier

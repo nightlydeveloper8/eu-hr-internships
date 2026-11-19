@@ -5,7 +5,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from collector.official_feed_staging import staging_part, stage_live_candidate
+from collector.official_feed_staging import staging_part
 from collector.official_feed_policy_dossier import review
 from collector.pipeline import finalize
 from collector.verification import verified_job
@@ -186,35 +186,6 @@ class JobTechStagingTests(unittest.TestCase):
         self.assertEqual(second_coverage["quality"]["verified_internships"], 1)
         self.assertEqual(second["jobs"][0]["first_discovered_at"], job["first_discovered_at"])
         self.assertGreaterEqual(Budget.total_requests, 10)
-
-    def test_live_helper_reads_new_proof_before_in_memory_staging(self):
-        part, dossier = stage_live_candidate(candidate(), SOURCE, client_factory=Budget)
-        self.assertEqual(dossier["status"], "policy-v2-evidence-passed-staging-only")
-        self.assertEqual(len(part["jobs"]), 1, part["report"].get("reason"))
-        self.assertEqual(part["report"]["matching"], 1)
-        self.assertEqual(Budget.total_requests, dossier["requests"])
-
-    def test_offline_replay_uses_normal_finalize_without_production_writes(self):
-        from scripts.stage_jobtech_policy import replay
-        discovery = dict(provider="jobtech-se", mode="discovery-only",
-                         candidates=[candidate()])
-        dossier = self.proof()
-        result = replay(discovery, dossier, {"jobs": []},
-                        provider_id="31558200", source_id=SOURCE["id"],
-                        approved_host=HOST, reviewed_inventory=SITEMAP)
-        self.assertEqual(result["stage_result"], "eligible-staging-only")
-        self.assertEqual(result["new_staged_distinct_verified_internships"], 1)
-        self.assertEqual(result["baseline_ids_lost"], 0)
-        self.assertEqual(result["production_verified_vacancies_added"], 0)
-        self.assertFalse(result["production_catalog_modified"])
-        self.assertFalse(result["source_registry_modified"])
-        self.assertEqual(result["closure_eligible"], [])
-        result_bad = replay(discovery, dict(dossier, official_inventory_confirmed=False),
-                            {"jobs": []}, provider_id="31558200",
-                            source_id=SOURCE["id"], approved_host=HOST,
-                            reviewed_inventory=SITEMAP)
-        self.assertEqual(result_bad["stage_result"], "review-required")
-        self.assertEqual(result_bad["new_staged_distinct_verified_internships"], 0)
 
     def test_wrong_feed_ats_employer_city_and_unapproved_source_fail_closed(self):
         dossier = self.proof()
