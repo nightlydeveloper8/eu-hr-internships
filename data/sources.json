@@ -50405,5 +50405,39 @@
     "reviewed_on": "2026-11-18",
     "permission_basis": "Official employer career site (Eightfold); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
     "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "staging-jobandtalent-se",
+    "employer": "Jobandtalent Sweden AB",
+    "adapter": "jobtech-policy-v2",
+    "feed_provider": "jobtech-se",
+    "provider_id": "31558200",
+    "expected_ats_id": "8503489",
+    "expected_city": "Malmö",
+    "enabled": false,
+    "staging_only": true,
+    "rollout_approved": false,
+    "allowed_hosts": [
+      "jobb.jobandtalent.com"
+    ],
+    "reviewed_inventory_url": "https://jobb.jobandtalent.com/sitemap",
+    "career_url": "https://jobb.jobandtalent.com/",
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "target_countries": [
+      "SE"
+    ],
+    "jobtech_queries": [
+      "hr praktik",
+      "personal praktik",
+      "rekrytering praktik"
+    ],
+    "results_per_query": 10,
+    "max_requests": 18,
+    "collection_seconds": 95,
+    "permission_basis": "JobTech SE licensed public CC0 discovery; employer-host ATS identity, current employer inventory and applicant form checked live under policy v2; per-host robots and 429 limits apply",
+    "reviewed_on": "2026-11-17",
+    "status": "approved-for-staging-only-not-enabled",
+    "activation_gate": "Separate explicit rollout authorization and second-date evidence required; no automatic activation"
   }
 ]
