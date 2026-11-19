@@ -134,6 +134,30 @@ class JobTechStagingTests(unittest.TestCase):
         self.assertFalse(part["jobs"])
         self.assertFalse(part["closure_eligible"])
 
+    def test_public_refresh_keeps_exact_fresh_proof_then_falls_back_after_expiry(self):
+        from collector.pipeline import reconcile
+        prior = self.existing_jobtech_copy()
+        part, dossier = self.stage(previous=[prior])
+        job = part["jobs"][0]
+        stamp = dossier["checked_at"]
+        pub_time = (datetime.fromisoformat(stamp)+timedelta(hours=1)).isoformat()
+        raw = dict(prior, apply_url=prior["url"], last_seen_at=pub_time, last_verified_at=pub_time,
+                   verification=dict(prior["verification"], checked_at=pub_time))
+        both = reconcile([prior], [job, raw], set(), pub_time)
+        self.assertEqual(len(both), 1)
+        self.assertEqual(both[0]["application_verification"], job["application_verification"])
+        refreshed = reconcile(both, [raw], set(), pub_time)
+        self.assertEqual(refreshed[0]["last_verified_at"], stamp)
+        self.assertEqual(refreshed[0]["application_verification"], job["application_verification"])
+        after = (datetime.fromisoformat(stamp)+timedelta(hours=49)).isoformat()
+        fallback = reconcile(refreshed, [raw], set(), after)
+        self.assertEqual(fallback[0]["id"], prior["id"])
+        self.assertNotIn("application_verification", fallback[0])
+        self.assertEqual(fallback[0]["verification"]["policy"], "public-api-active-listing")
+        conflict = reconcile(both,[dict(raw,external_application_url=APP.replace("8503489","8503490"))],
+                             set(),pub_time)
+        self.assertNotIn("application_verification", conflict[0])
+
     def test_real_policy_review_stages_one_record_through_finalize_twice(self):
         part, dossier = self.stage()
         self.assertEqual(dossier["status"], "policy-v2-evidence-passed-staging-only")
