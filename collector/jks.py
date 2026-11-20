@@ -12,7 +12,11 @@ from .universal import Document
 HOST = "www.jks.dk"
 ATS = "candidate.hr-manager.net"
 INDEXES = tuple("https://www.jks.dk/" + path for path in (
-    "om-jks/job-i-jks", "for-vikarer/esbjerg", "for-vikarer/odense"))
+    "om-jks/job-i-jks", "for-vikarer/esbjerg", "for-vikarer/odense",
+    "for-vikarer/ledige-stillinger"))
+# Four official indexes, at most six verified details with separate live forms,
+# all inside the existing per-source 24-request BudgetClient limit.
+MAX_PROJECTS = 6
 DETAIL = re.compile(r"/jobs/[a-z0-9-]+-([0-9]+)$")
 CITIES = ("Esbjerg", "Odense", "Vejle", "Fredericia", "Slagelse", "Randers", "Hobro", "Frederikshavn")
 FORM = "/ApplicationForm/SinglePageApplicationForm.aspx"
@@ -89,6 +93,7 @@ def source_gate(source):
 def inventory(source, client):
     source_gate(source)
     postings = {}
+    unresolved = set()
     for index in INDEXES:
         with scope(client, lambda url: url == index):
             raw, _, final = client.request(index)
@@ -99,11 +104,21 @@ def inventory(source, client):
             p = urlsplit(url)
             if p.scheme != "https" or p.netloc != HOST or not DETAIL.fullmatch(p.path) or p.query:
                 continue
+            # A nationwide general call has no single workplace city; recording
+            # it as unresolved avoids spending a detail GET on an unpublishable ID.
             if "praktikant" in p.path and re.search(r"-(hr|rekruttering\w*)-", p.path):
-                postings[DETAIL.fullmatch(p.path)[1]] = url
+                project = DETAIL.fullmatch(p.path)[1]
+                if "hele-danmark" in p.path:
+                    unresolved.add(project)
+                    continue
+                # Preserve index encounter order, prioritising the two already
+                # reviewed employer/branch indexes before the larger job board.
+                postings.setdefault(project, url)
 
-    rows, unknown = [], []
-    for project, url in sorted(postings.items(), reverse=True)[:5]:
+    selected = list(postings.items())[:MAX_PROJECTS]
+    deferred = list(postings)[MAX_PROJECTS:]
+    rows, unknown = [], sorted(unresolved)
+    for project, url in selected:
         with scope(client, lambda target: target == url):
             _, detail = checked_document(url, source, client)
         titles = {t for t in detail.h1 if "praktikant" in t.lower()}
@@ -119,7 +134,9 @@ def inventory(source, client):
         row["inventory_evidence"] = "current-employer-index"
         rows.append(row)
     return PublicInventory(rows, dict(complete=False, closure_complete=False, status="partial",
-                                      listed_projects=len(postings), unresolved_projects=unknown))
+                                      pages_read=len(INDEXES), listed_projects=len(postings),
+                                      inspected_projects=len(selected), deferred_projects=deferred,
+                                      unresolved_projects=unknown))
 
 
 def application(record, source, client, doc):
