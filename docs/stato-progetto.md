@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — correzione proposta per l'adozione in produzione dell'ID JobTech svedese
+
+- Revisione dipendente dalla [PR #89](https://github.com/nightlydeveloper8/eu-hr-internships/pull/89): la funzione di adozione degli ID pubblici rifiutava incondizionatamente `production=True`, nonostante un annuncio JobTech già presente nel catalogo. In caso di successiva attivazione autorizzata ciò avrebbe ostacolato la conversione di Jobandtalent senza creare duplicati.
+- La proposta conserva l'ID pubblico, `first_discovered_at`, gli alias e i collegamenti EURES solo quando titolo, datore, paese, sede, ATS ID, application URL e ownership coincidono esattamente con l'unico annuncio pubblico preesistente. Restano bloccati mirror multipli, dati discordanti, fonti non autorizzate e verifiche scadute. Il gate separato `enabled + rollout_approved + rollout_authorization` non cambia.
+- Nuovi test offline per conversione in produzione, identità persistente in due cicli, mirror ambigui, identità discordanti e mancata autorizzazione. Prove live aggiuntive in questa correzione: **0 richieste BudgetClient, 0 byte, 0 rendering, 0 nuove candidature**. Da verificare la CI del ramo e, dopo autorizzazione distinta, un ciclo reale; **nessun merge, attivazione o pubblicazione** inclusi. La #88 EURES resta disattivata, la #90 JKS resta in staging.
+
 ## 20 novembre 2026 — JobTech Malmö sul catalogo corrente
 
 [Bozza #89](https://github.com/nightlydeveloper8/eu-hr-internships/pull/89). [Prova live](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44770453908) con 8 GET, 416.375 byte e 7,598 s. JobTech `31558200` e Teamtailor `8503489` sullo stesso ID storico. In staging 887 → 887 ID e 39 → 40 candidature dirette. Verificati idempotenza e aggiornamento pubblico successivo. Fonte disabilitata, zero GET nel percorso ordinario. Per pubblicare serve autorizzazione specifica al rollout di questa fonte. La #83 conserva la prova precedente.

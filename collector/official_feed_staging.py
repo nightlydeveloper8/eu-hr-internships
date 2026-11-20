@@ -25,7 +25,11 @@ def _utc(value):
 
 
 def _reviewed_public_identity(candidate, parent, source, prior_jobs, stable_job_id, overlap, production):
-    """Adopt one exact JobTech identity in a disabled staging preview only."""
+    """Retain a single reviewed JobTech catalog ID in staging or approved production.
+
+    Production must pass the separate source rollout gate first. The identity
+    review here never upgrades an ambiguous mirror or an unmatched public ID.
+    """
     public_id = candidate["provider_id"]
     public_url = https_url(candidate["url"], {"arbetsformedlingen.se"})
     jobtech_source = "public-se-jobtech"
@@ -35,7 +39,7 @@ def _reviewed_public_identity(candidate, parent, source, prior_jobs, stable_job_
                    and public_id in (job.get("source_posting_id"), job.get("external_id"))]
     if not public_rows and not overlap["possible_mirror_count"] and matched_ids <= {stable_job_id}:
         return None
-    if production or not public_url or len(matches) != (
+    if not public_url or len(matches) != (
         overlap["exact_url_or_path_count"] + overlap["possible_mirror_count"]
     ):
         raise ValueError("Unresolved catalog mirror or different official identity")

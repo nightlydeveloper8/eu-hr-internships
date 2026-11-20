@@ -125,14 +125,60 @@ class JobTechStagingTests(unittest.TestCase):
                 self.assertEqual(part["jobs"], [])
                 self.assertEqual(part["closure_eligible"], [])
 
-    def test_public_copy_adoption_does_not_apply_to_production(self):
+    def test_exact_public_copy_keeps_its_id_and_links_in_approved_production(self):
         dossier = self.proof()
-        production_source = dict(SOURCE, enabled=True, staging_only=False, rollout_approved=True,
+        production_source = dict(SOURCE, adapter="jobtech-policy-v2", enabled=True,
+                                 staging_only=False, rollout_approved=True,
                                  rollout_authorization="synthetic permission for regression test")
+        prior = self.existing_jobtech_copy()
         part = staging_part(candidate(), dossier, production_source, dossier["checked_at"],
-                            [self.existing_jobtech_copy()], production=True)
-        self.assertFalse(part["jobs"])
+                            [prior], production=True)
+        self.assertEqual(len(part["jobs"]), 1, part["report"].get("reason"))
+        job = part["jobs"][0]
+        self.assertEqual(job["id"], prior["id"])
+        self.assertEqual(job["first_discovered_at"], prior["first_discovered_at"])
+        self.assertEqual(job["source_type"], "jobtech-policy-v2")
+        self.assertEqual(job["last_verified_at"], dossier["checked_at"])
+        self.assertEqual(set(job["public_listing_urls"]), {prior["url"], *prior["public_listing_urls"]})
+        self.assertIn("public-se-jobtech", job["duplicate_source_ids"])
+        self.assertIn("public-eu-eures", job["duplicate_source_ids"])
         self.assertFalse(part["closure_eligible"])
+        repeat = staging_part(candidate(), dossier, production_source, dossier["checked_at"],
+                              [job], production=True)
+        self.assertEqual(repeat["jobs"], [job], repeat["report"].get("reason"))
+        self.assertFalse(repeat["closure_eligible"])
+
+    def test_production_does_not_adopt_conflicting_or_ambiguous_public_ids(self):
+        dossier = self.proof()
+        production_source = dict(SOURCE, adapter="jobtech-policy-v2", enabled=True,
+                                 staging_only=False, rollout_approved=True,
+                                 rollout_authorization="synthetic permission for regression test")
+        prior = self.existing_jobtech_copy()
+        for rows in ([dict(prior, city="Stockholm")],
+                     [dict(prior, external_application_url=APP.replace("8503489", "8503490"))],
+                     [dict(prior, ownership_risk="historical")],
+                     [dict(prior, source_posting_id="31558201")],
+                     [dict(prior, status="closed")],
+                     [prior, dict(prior, id="unresolved-second-mirror")]):
+            with self.subTest(rows=rows):
+                part = staging_part(candidate(), dossier, production_source,
+                                    dossier["checked_at"], rows, production=True)
+                self.assertFalse(part["jobs"])
+                self.assertFalse(part["closure_eligible"])
+                self.assertTrue(part["report"].get("reason"))
+
+    def test_production_identity_alone_never_bypasses_rollout_gate(self):
+        dossier = self.proof()
+        prior = self.existing_jobtech_copy()
+        for change in ({}, {"enabled": True},
+                       {"enabled": True, "staging_only": False},
+                       {"enabled": True, "staging_only": False, "rollout_approved": True}):
+            with self.subTest(change=change):
+                source = dict(SOURCE, **change)
+                part = staging_part(candidate(), dossier, source, dossier["checked_at"],
+                                    [prior], production=True)
+                self.assertFalse(part["jobs"])
+                self.assertFalse(part["closure_eligible"])
 
     def test_public_refresh_keeps_exact_fresh_proof_then_falls_back_after_expiry(self):
         from collector.pipeline import reconcile
