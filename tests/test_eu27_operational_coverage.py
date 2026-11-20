@@ -83,6 +83,24 @@ class EU27AuditTests(unittest.TestCase):
         self.assertEqual(report["summary"]["verified_new"], 0)
         self.assertTrue(all(not r["verified"] and not r["enabled"] for r in report["rows"]))
 
+    def test_country_outcomes_distinguish_application_evidence_from_public_listing(self):
+        direct = dict(job("direct", country="PL"), application_verification={"url": "https://example.org/apply"})
+        listing = dict(job("active", country="LT", link_status="public-api-active-listing"), source_id="public")
+        listing["verification"]["policy"] = "public-api-active-listing"
+        stale = dict(listing, id="stale", country="LV", last_verified_at="2026-11-01T12:00:00+00:00")
+        spoof = dict(listing, id="spoof", country="EE", source_id="unreviewed")
+        unlabeled = job("legacy", country="IE")
+        sources = [dict(id="public", adapter="eures-search", enabled=True, active_listing_api=True)]
+        result = audit(catalog([direct, listing, stale, spoof, unlabeled]), [], sources)
+        rows = {r["country"]: r for r in result["countries"]}
+        self.assertEqual(rows["LT"]["public_only_hr_internships"], 1)
+        self.assertEqual(rows["LT"]["direct_hr_internships"], 0)
+        self.assertEqual(rows["PL"]["direct_hr_internships"], 1)
+        self.assertEqual(result["direct_hr_internships"], 1)
+        self.assertEqual(result["public_only_hr_internships"], 1)
+        self.assertEqual(result["countries_without_direct_hr_internships"], 26)
+        self.assertEqual(result["countries_without_observed_open_hr_internships"], 25)
+
     def test_original_inputs_not_mutated(self):
         inputs = (catalog([job("1")]), [dict(id="c", target_countries=["LT"], source_ids=["source-1"])],
                   [dict(id="source-1", enabled=True)])

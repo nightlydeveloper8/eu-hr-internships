@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 
+from collector.public_sources import PUBLIC_API_ADAPTERS
 from scripts.build_eu27_expansion_queue import EU27, ROOT
 
 
@@ -24,17 +25,21 @@ def parse_time(value):
         return None
 
 
-def eligible(job, catalog_time):
-    """No legacy/stale/open-by-label-only promotion."""
+def active_evidence(job, catalog_time):
+    """Require current, policy-v2 evidence at the catalog snapshot."""
     proof = job.get("verification") or {}
     if not isinstance(proof, dict):
         return False
-    if (job.get("status") != "open" or job.get("link_status") != "verified"
-            or proof.get("state") != "verified" or proof.get("policy_version") != 2):
+    if job.get("status") != "open" or proof.get("state") != "verified" or proof.get("policy_version") != 2:
         return False
     checked = parse_time(job.get("last_verified_at") or proof.get("checked_at"))
     reference = parse_time(catalog_time)
     return bool(checked and reference and 0 <= (reference - checked).total_seconds() <= 48 * 3600)
+
+
+def eligible(job, catalog_time):
+    """No legacy/stale/open-by-label-only promotion."""
+    return job.get("link_status") == "verified" and active_evidence(job, catalog_time)
 
 
 def posting_country(job):
@@ -51,10 +56,15 @@ def audit(catalog, companies, sources):
     if not isinstance(jobs, list):
         raise ValueError("Catalog jobs must be a list")
     enabled = {s["id"] for s in sources if s.get("enabled") and isinstance(s.get("id"), str)}
+    public_sources = {s["id"] for s in sources if s.get("id") in enabled
+                      and s.get("active_listing_api") is True
+                      and s.get("adapter") in PUBLIC_API_ADAPTERS}
+    catalog_time = catalog.get("updated_at")
     rows = {country: dict(country=country, research_targets=0, enabled_research_target_sources=0,
                           seen_job_records=0, unverified_job_records=0, closed_job_records=0,
                           verified_hr_internships=0, verified_hr_working_students=0,
                           verified_hr_traineeships=0, verified_source_ids=set(),
+                          direct_hr_internships=0, public_only_hr_internships=0,
                           national_mapping_complete=False,
                           completion_evidence="not-established")
             for country in EU27}
@@ -85,7 +95,16 @@ def audit(catalog, companies, sources):
         row["seen_job_records"] += 1
         if job.get("status") == "closed":
             row["closed_job_records"] += 1
-        if not eligible(job, catalog.get("updated_at")):
+        if job.get("internship_type") == "internship":
+            application = job.get("application_verification")
+            if eligible(job, catalog_time) and isinstance(application, dict) and application.get("url"):
+                row["direct_hr_internships"] += 1
+            elif (job.get("source_id") in public_sources
+                  and job.get("link_status") == "public-api-active-listing"
+                  and active_evidence(job, catalog_time)
+                  and job["verification"].get("policy") == "public-api-active-listing"):
+                row["public_only_hr_internships"] += 1
+        if not eligible(job, catalog_time):
             row["unverified_job_records"] += int(job.get("status") != "closed")
             continue
         kind = job.get("internship_type")
@@ -110,11 +129,17 @@ def audit(catalog, companies, sources):
                 countries_with_verified_hr_internships=sum(x["has_verified_hr_internship"] for x in countries),
                 verified_hr_internships=sum(x["verified_hr_internships"] for x in countries),
                 verified_hr_working_students=sum(x["verified_hr_working_students"] for x in countries),
+                direct_hr_internships=sum(x["direct_hr_internships"] for x in countries),
+                public_only_hr_internships=sum(x["public_only_hr_internships"] for x in countries),
+                countries_without_direct_hr_internships=sum(not x["direct_hr_internships"] for x in countries),
+                countries_without_observed_open_hr_internships=sum(
+                    not (x["direct_hr_internships"] or x["public_only_hr_internships"]) for x in countries),
                 nationally_complete_countries=0, countries=countries,
                 limits=["Research targets are not confirmed workplaces or national mapping",
                         "An enabled source does not prove an exhaustive inventory",
                         "No source is created or activated; no network requests",
-                        "Only a fresh, policy-v2 verified country-specific posting counts",
+                        "Only fresh policy-v2 evidence counts toward the direct and public-only internship totals",
+                        "The legacy unverified_job_records field includes active public-only listings",
                         "National completion needs an externally documented acceptance review"])
 
 
