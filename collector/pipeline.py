@@ -223,7 +223,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             partial_sources.add(source['id']);report['bulk_disappearance_quarantined']=True
             report['error']='Large inventory reduction; new valid matches accepted, absence-based closure disabled pending review'
         report['collected']=len(records)
-        staged=[];page_errors=[];inspected=[];filter_reasons=Counter();verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
+        staged=[];page_errors=[];inspected=[];filter_reasons=Counter();route_hints=Counter();verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
         if cache:
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
@@ -294,7 +294,9 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     state='closed' if closed else 'blocked' if blocked_error(exc) else 'incomplete'
                     verification.update(state=state,reason=str(exc)[:200])
                     link_status=state
-                    if not closed:page_errors.append(dict(url=apply,error='Vacancy verification: '+str(exc)[:150]))
+                    if not closed:
+                        page_errors.append(dict(url=apply,error='Vacancy verification: '+str(exc)[:150]))
+                        route_hints.update(observation.get('application_route_hints', []))
                     LOG.warning('Vacancy %s %s: %s',url,state,str(exc)[:150])
             from .dynamic_ats import PILOTS
             if source.get('id') in PILOTS and observation.get('dynamic_ats'):
@@ -317,6 +319,11 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         report.update(status='partial' if source['id'] in partial_sources else 'ok',candidate_filter_reasons=dict(filter_reasons),matching=len(staged),verification_states=dict(Counter(j['verification']['state'] for j in staged)),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
         report['verified_closed_urls']=sorted(verified_closed_urls)
+        if route_hints:
+            report['application_route_hints']=[
+                dict(host=host, matching_identifier=identified, in_source_scope=allowed, observations=count)
+                for (host,identified,allowed),count in route_hints.most_common(20)
+            ]
         if bulk_disappearance:report['status']='partial'
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
         # Inventory discovery can succeed while a detail/application read fails.

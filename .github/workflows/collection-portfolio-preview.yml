@@ -1,4 +1,4 @@
-name: Review shared application blockers
+name: Evaluate collection portfolio offline
 on:
   push:
     branches: ['analysis/collection-portfolio-20261120']
@@ -6,8 +6,8 @@ on:
 permissions:
   contents: read
 jobs:
-  preview:
-    if: github.event.head_commit.message == 'Measure shared application blockers on reviewed hosts'
+  evaluate:
+    if: github.event.head_commit.message == 'Rank portfolio work and collect application route evidence without extra requests'
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -15,93 +15,37 @@ jobs:
         with: {persist-credentials: false}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Observe up to 13 previously catalogued candidate pages
+      - name: Validate against the unchanged catalog snapshot
         run: |
+          python -m unittest discover -s tests -p 'test_collection_portfolio.py' -v
+          SECONDS=0
+          python -m scripts.collection_portfolio > /tmp/collection-portfolio-a.json
+          python -m scripts.collection_portfolio > /tmp/collection-portfolio-b.json
+          cmp /tmp/collection-portfolio-a.json /tmp/collection-portfolio-b.json
           python - <<'PY'
           import json
-          import re
-          import time
-          from urllib.parse import urljoin
-          
-          from collector.applications import ApplicationClosed, checked_document
-          from collector.ats_channel_discovery import safe_url
-          from collector.classify import canonical_url, fold
-          from collector.pipeline import ROOT, read, now
-          from collector.runtime import BudgetClient
-          from collector.universal import Document
-          from collector.verification import (_verify_vacancy, applicant_form, blocked_error,
-                                              same_title, shares_identifier, structured_identifiers)
-          
-          jobs = read(ROOT / "data/catalog.json", {})["jobs"]
-          sources = {s["id"]: s for s in read(ROOT / "data/sources.json", []) if s.get("enabled")}
-          sample = {"employer-adecco-group": 3, "employer-danone": 2, "employer-marriott": 2,
-                    "employer-ing": 2, "auto-randstad-italia-spa": 2, "auto-l-oreal": 2}
-          cta = re.compile(r"\b(?:apply|postuler|bewerben|candid[a-z]+|solliciter[a-z]*|ansok)\b", re.I)
-          started = time.monotonic()
-          
-          class ReadOnlyProbe(BudgetClient):
-              def request(self, url, method="GET", **kwargs):
-                  if method != "GET" or not self.redirect_scope_allowed(url):
-                      raise ValueError("Probe URL is outside the reviewed source hosts")
-                  result = super().request(url, method=method, **kwargs)
-                  self.pages[canonical_url(result[2])] = result[0]
-                  return result
-          
-          client = ReadOnlyProbe(seconds=100, max_requests=28, delay=1)
-          client.pages = {}
-          for source_id, limit in sample.items():
-              source = sources[source_id]
-              allowed = set(source["allowed_hosts"])
-              client.redirect_scope_allowed = lambda url: bool(safe_url(url) and safe_url(url).hostname in allowed)
-              candidates = sorted((j for j in jobs if j["source_id"] == source_id
-                  and j["status"] == "unverified" and j.get("internship_type") == "internship"
-                  and not j.get("ownership_risk") and client.redirect_scope_allowed(j["url"])),
-                  key=lambda j: (j.get("last_seen_at") or "", j["id"]), reverse=True)
-              seen_countries = set()
-              diverse, rest = [], []
-              for job in candidates:
-                  country = job["country"]
-                  (rest if country in seen_countries else diverse).append(job)
-                  seen_countries.add(country)
-              for job in (diverse + rest)[:limit]:
-                  client.pages.clear()
-                  start_count = client.requests
-                  url = job["url"]
-                  record = dict(url=url, apply_url=job["apply_url"], title=job["title"], employer=job["employer"],
-                                posting_identifier=job.get("source_posting_id"), external_id=job.get("external_id"))
-                  audit = dict(source=source_id, id=job["id"], country=job["country"])
-                  try:
-                      proof = _verify_vacancy(record, source, client, now())
-                      body = client.pages.get(canonical_url(proof["url"]), b"")
-                      audit.update(state="same-vacancy-enabled-form" if proof.get("vacancy_match")=="title"
-                                   and applicant_form(body, strict=True) else "additional-proof-required",
-                                   proof_method=proof["method"])
-                  except Exception as exc:
-                      code = getattr(exc, "code", None)
-                      state = ("closed" if isinstance(exc, ApplicationClosed) else "blocked" if blocked_error(exc)
-                               else "http-error" if code else "incomplete")
-                      audit.update(state=state, reason=str(exc)[:160], http_code=code)
-                  body = client.pages.get(canonical_url(url))
-                  if body:
-                      doc = Document(body, url)
-                      candidates = []
-                      for href,label,_ in doc.links:
-                          if not cta.search(fold(label)):
-                              continue
-                          raw = urljoin(url, href)
-                          destination = safe_url(raw)
-                          if destination:
-                              candidates.append((destination.hostname, shares_identifier(record, raw)))
-                      audit.update(page_same_title=same_title(doc, job["title"]),
-                                   page_requisition_count=len(structured_identifiers(doc, job["title"])),
-                                   applicant_form=applicant_form(body, strict=True),
-                                   cta_button_labels=sorted({x for x in doc.buttons if cta.search(fold(x))})[:5],
-                                   cta_hosts=sorted({h for h,_ in candidates}),
-                                   cta_same_record_id=any(v for _,v in candidates))
-                  audit["requests"] = client.requests - start_count
-                  print("PORTFOLIO_PROBE " + json.dumps(audit, ensure_ascii=False), flush=True)
-          
-          print("PORTFOLIO_COST " + json.dumps(dict(requests=client.requests, bytes=client.bytes,
-                seconds=round(time.monotonic()-started,3), rate_limited_skips=client.rate_limited_skips,
-                browser_renderings=0, catalog_writes=0)), flush=True)
+          from pathlib import Path
+          report=json.loads(Path('/tmp/collection-portfolio-a.json').read_text())
+          adapters=report['adapters']
+          countries=report['countries']
+          assert sum(d['direct'] for d in countries.values())==33
+          assert sum(d['public_listings'] for d in countries.values())==365
+          assert sum(d['public_leads_with_external_url'] for d in countries.values())==5
+          assert report['application_review'][0]['source_id']=='employer-adecco-group'
+          assert report['application_review'][0]['candidates']==84
+          assert next(x for x in report['public_employer_clusters'] if x['country']=='IT')['listings']==34
+          detail=dict(snapshot=report['snapshot_at'], sources=report['recent_coverage'],
+                      totals={k:sum(r.get(k,0) for r in adapters.values()) for k in (
+                          'reported_request_attempts','requests_with_explicit_zero_matches',
+                          'requests_unknown_sources','complete_inventories')},
+                      universal=adapters['universal-employer'],
+                      public={k:sum(d[k] for d in countries.values()) for k in next(iter(countries.values()))},
+                      providers=sorted(report['provider_signals'].items(),
+                                       key=lambda item: -item[1]['sources_with_recent_measurements'])[:8],
+                      queue=report['application_review'][:10],
+                      active_countries=sum(d['direct']>0 for d in countries.values()),
+                      public_countries=sum(d['public_listings']>0 for d in countries.values()))
+          print('PORTFOLIO_OFFLINE '+json.dumps(detail,ensure_ascii=False),flush=True)
           PY
+          printf 'PORTFOLIO_OFFLINE_SECONDS %s\n' "$SECONDS"
+          git diff --exit-code -- data
