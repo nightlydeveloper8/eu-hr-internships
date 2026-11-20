@@ -163,12 +163,30 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     if applicant_form(body):
         return dict(url=canonical_url(doc.url), method='same-vacancy-applicant-form',valid_through=fresh_deadline, vacancy_match='title',
                     inventory=record.get('inventory_evidence', 'not-established'))
+    # Use a fresh structured ID when the inventory gives a URL as its identity.
+    identity_record = record
+    if not record.get('posting_identifier') and len(identifiers)==1:
+        identity_record = dict(record, posting_identifier=next(iter(identifiers)))
     # Follow only observed calls to action on approved employer/provider hosts.
     targets = []
+    route_hints = set()
     for href, label, _ in doc.links:
         if not re.search(r'\bapply\b|solliciteer|solliciteren|bewerben|postuler|candidati|candidarsi|candidatar', fold(label)): continue
-        target = canonical_url(urljoin(doc.url, href))
-        if urlsplit(target).hostname in source['allowed_hosts'] and target != canonical_url(doc.url): targets.append(target)
+        raw_target = urljoin(doc.url, href)
+        target = canonical_url(raw_target)
+        host = urlsplit(target).hostname
+        if target == canonical_url(doc.url):
+            continue
+        allowed = host in source['allowed_hosts']
+        if allowed:
+            targets.append(target)
+        if observation is not None:
+            from .ats_channel_discovery import safe_url
+            if safe_url(raw_target):
+                identified = same_requisition(doc.url, target) or shares_identifier(identity_record, target)
+                route_hints.add((host, identified, allowed))
+    if observation is not None and route_hints:
+        observation['application_route_hints'] = sorted(route_hints)[:20]
     if not targets:
         # Preserve the existing dynamic-ATS fallback for non-Personio hosts.
         # Personio already exposes candidate fields, so rendering a disabled
@@ -178,12 +196,6 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
         from .dynamic_ats import MissingDynamicForm
         raise MissingDynamicForm('No available vacancy-specific application entry established',doc.url,body)
     # Do not treat a redirect to a careers/search page or another requisition as success.
-    # A structured identifier on this freshly identified vacancy can bridge a
-    # human-readable URL to the ATS ID in its observed application CTA. Never
-    # replace a conflicting collected ID, or infer an ID from the CTA itself.
-    identity_record = record
-    if not record.get('posting_identifier') and len(identifiers)==1:
-        identity_record = dict(record, posting_identifier=next(iter(identifiers)))
     # Several observed calls to action can coexist (a generic "how to apply"
     # page and the requisition's own application). Follow the first one that
     # carries this vacancy's identity; the identity rule itself is unchanged.

@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — priorità per famiglie ATS e opportunità, misurata sul catalogo reale
+
+- Bozza da `3f20f51` con `scripts/collection_portfolio.py`, mappa delle capacità osservate, coda di gruppi verificabili e misura delle fonti costose. Durante la normale verifica, gli hostname delle CTA e i segnali di ID si possono registrare dalle pagine già lette. Nessuna nuova richiesta, render o invio per questa osservazione.
+- Sullo snapshot del 19 novembre, 31.163 dei 32.591 tentativi registrati sono nel crawler generico. 33 stage con candidatura diretta, 365 schede dei servizi pubblici, 5 con link esterno nel catalogo. Coda principale da 84 schede Adecco da verificare. Il [test offline #44690735644](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44690735644) ha riprodotto i conteggi e la graduatoria in due replay identici.
+- [Pilota #44690039887](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44690039887) su 13 pagine già censite. 22 tentativi GET, 4.844.129 byte, 23,772 s, 0 nuovi moduli confermati. I passaggi osservati per Adecco, Danone, Marriott e ING richiedono prova separata degli host esterni e dell'ID; il 403 di L'Oréal chiude quella prova.
+- Prossimo lotto con più rendimento potenziale: Adecco/Talentsoft per verifiche su un gruppo già censito, Gi Group per l'Italia e scoperta per opportunità su ATS riutilizzabili, con Paesi Bassi prioritari. Il [piano per famiglie e paesi](strategia-copertura.md#priorità-operativa-del-20-novembre-2026) registra gli ID e i gate. Nessun merge, attivazione o nuovo stage in produzione. I piloti già misurati rimangono nelle [PR #80](https://github.com/nightlydeveloper8/eu-hr-internships/pull/80), [#81](https://github.com/nightlydeveloper8/eu-hr-internships/pull/81) e [#83](https://github.com/nightlydeveloper8/eu-hr-internships/pull/83).
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
