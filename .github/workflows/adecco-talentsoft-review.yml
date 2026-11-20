@@ -1,4 +1,4 @@
-name: Adecco Talentsoft and public website review
+name: Validate published application entry points
 on:
   push:
     branches: ['pilot/adecco-talentsoft-20261120']
@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   review:
-    if: github.event.head_commit.message == 'Test two Adecco handoffs and check the public site'
+    if: github.event.head_commit.message == 'Review published application entry points and diagnose site access'
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -17,143 +17,138 @@ jobs:
         with: {python-version: '3.12'}
       - run: |
           python - <<'PY'
-          from hashlib import sha256
           import json
           import re
           import time
           from urllib.error import HTTPError
-          from urllib.parse import urljoin
+          from urllib.parse import parse_qs, urljoin, urlsplit
           from urllib.request import urlopen
           
           from collector.applications import checked_document
           from collector.ats_channel_discovery import safe_url
-          from collector.classify import canonical_url, fold
-          from collector.pipeline import ROOT, now, read
+          from collector.classify import canonical_url, classify_role, fold
+          from collector.pipeline import ROOT, read
           from collector.runtime import BudgetClient
-          from collector.verification import _verify_vacancy, applicant_form, expired, same_title, structured_identifiers
+          from collector.verification import applicant_form, same_title
           
-          def log(kind, **fields):
-              print(kind + " " + json.dumps(fields, ensure_ascii=False), flush=True)
+          def report(label, **values):
+              print(label + " " + json.dumps(values, ensure_ascii=False), flush=True)
           
-          def site_check():
-              base = "https://people-placement-eu.pages.dev/"
-              for path in ("", "data/catalog.json"):
-                  try:
-                      with urlopen(base + path, timeout=14) as result:
-                          url, status, content = result.geturl(), result.status, result.read()
-                      if not path:
-                          log("SITE", status=status, final_url=url, expected_app=b"People Placement" in content)
-                      else:
-                          live = json.loads(content)
-                          local = (ROOT / path).read_bytes()
-                          log("SITE_DATA", status=status, final_url=url, last_attempt_at=live.get("last_attempt_at"),
-                              identical_to_main=sha256(content).digest() == sha256(local).digest(), rows=len(live["jobs"]))
-                  except Exception as exc:
-                      log("SITE_ERROR", path=path, error=str(exc)[:150])
+          for kind, url in (
+              ("production", "https://people-placement-eu.pages.dev/"),
+              ("immutable", "https://2207ee5b.people-placement-eu.pages.dev/"),
+              ("historical", "https://people-placement-eu.mysticbramble.chatgpt.site/"),
+          ):
+              try:
+                  with urlopen(url, timeout=9) as response:
+                      body = response.read(200000)
+                      report("SITE_ORIGIN", kind=kind, status=response.status, server=response.headers.get("Server"),
+                             final_url=response.geturl(), expected_app=b"People Placement" in body)
+              except HTTPError as exc:
+                  body = exc.read(4000).decode("utf-8", "replace")
+                  title = re.search(r"<title[^>]*>(.*?)</title>", body, re.I|re.S)
+                  report("SITE_ORIGIN", kind=kind, status=exc.code, server=exc.headers.get("Server"),
+                         cf_ray=exc.headers.get("CF-Ray"), via=exc.headers.get("Via"),
+                         title=title[1].strip()[:120] if title else None,
+                         text=re.sub(r"\s+", " ", re.sub(r"<[^>]*>", " ", body)).strip()[:220])
+              except Exception as exc:
+                  report("SITE_ORIGIN", kind=kind, error=str(exc)[:140])
           
-          site_check()
-          catalog = read(ROOT / "data/catalog.json", {})["jobs"]
-          registry = {s["id"]: s for s in read(ROOT / "data/sources.json", []) if s.get("enabled")}
-          wanted = ("fd30839bb766e2c567a6", "fe8122bf9c6d7d0de11c")
-          samples = [j for j in catalog if j["id"] in wanted and j.get("source_id") == "employer-adecco-group"]
-          assert len(samples) == len(wanted) and not any(j.get("ownership_risk") for j in samples)
-          publisher = "careers.adeccogroup.com"
-          target_host = "theadeccogroup-career.talent-soft.com"
-          known = registry["employer-adecco-group"]
-          
-          class ExactReads(BudgetClient):
-              def request(self, url, method="GET", **kwargs):
-                  if method != "GET" or not self.redirect_scope_allowed(url):
-                      raise ValueError("Read outside exact pilot URL scope")
+          class Scoped(BudgetClient):
+              def request(self,url,method="GET",**kwargs):
+                  if method!="GET" or not self.redirect_scope_allowed(url):
+                      raise ValueError("URL outside the evidence set")
                   return super().request(url, method=method, **kwargs)
           
-          started = time.monotonic()
-          reader = ExactReads(seconds=90, max_requests=16, delay=1.0)
-          targets = {}
-          for candidate in samples:
-              row = dict(id=candidate["id"], city=candidate["city"])
-              url = candidate["url"]
-              assert safe_url(url).hostname == publisher and publisher in known["allowed_hosts"]
-              reader.redirect_scope_allowed = lambda target: canonical_url(target) in {
-                  canonical_url(url), f"https://{publisher}/robots.txt"}
-              try:
-                  _, doc = checked_document(url, known, reader)
-                  ids = structured_identifiers(doc, candidate["title"])
-                  assert same_title(doc, candidate["title"]) and ids == {str(candidate["source_posting_id"])}
-                  assert not any(expired(p.get("validThrough"), now()) for p in doc.jobposts())
-                  ctas = set()
-                  for href, label, _ in doc.links:
-                      if not re.search(r"\b(?:apply|postuler|candidater)\b", fold(label)):
-                          continue
-                      target = urljoin(doc.url, href)
-                      parsed = safe_url(target)
-                      if parsed and parsed.hostname == target_host:
-                          ctas.add(canonical_url(target))
-                  row.update(state="publisher-verified", cta_count=len(ctas), source_identifier=candidate["source_posting_id"])
-                  if len(ctas) == 1:
-                      target = ctas.pop()
-                      targets[candidate["id"]] = target
-                      from urllib.parse import parse_qsl
-                      parsed = safe_url(target)
-                      row.update(cta_path=parsed.path, cta_query_keys=sorted({k for k,v in parse_qsl(parsed.query)}))
-              except Exception as exc:
-                  row.update(state="publisher-review-incomplete", error=str(exc)[:150])
-              log("ADECCO_PUBLISHER", **row)
+          client=Scoped(seconds=75,max_requests=14,delay=1)
+          allowed=set()
+          client.redirect_scope_allowed=lambda url: bool(safe_url(url) and canonical_url(url) in allowed)
           
-          checked = 0
-          positive = 0
-          if len(targets) == len(wanted) and len(set(targets.values())) == len(wanted):
-              for candidate in samples:
-                  row = dict(id=candidate["id"], city=candidate["city"])
-                  url = targets[candidate["id"]]
-                  reader.redirect_scope_allowed = lambda target: canonical_url(target) in {
-                      url, f"https://{target_host}/robots.txt"}
-                  before = reader.requests
-                  try:
-                      if not reader.permitted(url):
-                          raise ValueError("robots.txt disallows observed Talentsoft application")
-                      body, doc = checked_document(url, dict(allowed_hosts=[target_host]), reader)
-                      checked += 1
-                      title = same_title(doc, candidate["title"])
-                      ids = structured_identifiers(doc, candidate["title"])
-                      form = applicant_form(body, strict=True)
-                      right_page = canonical_url(doc.url) == url
-                      id_match = ids == {str(candidate["source_posting_id"])}
-                      fresh = not any(expired(p.get("validThrough"), now()) for p in doc.jobposts())
-                      result = title and id_match and form and right_page and fresh
-                      positive += result
-                      row.update(state="fully-confirmed" if result else "insufficient-evidence",
-                                 same_title=title, id_match=id_match, identifiers_count=len(ids),
-                                 strict_form=form, exact_url=right_page, deadline_not_expired=fresh)
-                  except Exception as exc:
-                      row.update(state="blocked-or-incomplete", reason=str(getattr(exc, "reason", exc))[:150])
-                  log("ADECCO_ATS", requests=reader.requests-before, **row)
-          else:
-              log("ADECCO_ATS", state="no-distinct-exact-cta-pair", observed=len(targets),
-                  distinct_targets=len(set(targets.values())))
+          def doc(url):
+              p=safe_url(url)
+              assert p
+              allowed.add(canonical_url(url))
+              allowed.add(f"https://{p.hostname}/robots.txt")
+              return checked_document(url, dict(allowed_hosts=[p.hostname]), client)
           
-          if positive < len(wanted):
-              url = "https://jobs.ikea.com/en/job/zwolle/hr-stage/24107/100616030528"
-              source = registry["auto-ikea-ingka-group"]
-              permitted = set(source["allowed_hosts"])
-              assert permitted == {"jobs.ikea.com", "ikea.avature.net"}
-              reader.redirect_scope_allowed = lambda target: bool(safe_url(target) and safe_url(target).hostname in permitted)
-              before = reader.requests
-              row = dict(known_in_catalog=any(canonical_url(j["url"]) == url for j in catalog))
-              try:
-                  _, doc = checked_document(url, source, reader)
-                  posts = doc.jobposts()
-                  assert len(posts) == 1
-                  title = posts[0]["title"]
-                  ids = structured_identifiers(doc, title)
-                  record = dict(url=url, apply_url=url, title=title, posting_identifier=next(iter(ids)) if len(ids)==1 else None)
-                  row.update(title=title, publication_id_count=len(ids), page_confirms_title=same_title(doc,title))
-                  proof = _verify_vacancy(record, source, reader, now())
-                  row.update(state="ordinary-verifier-positive", method=proof["method"])
-              except Exception as exc:
-                  row.update(state="blocked-or-incomplete", reason=str(getattr(exc, "reason", exc))[:180])
-              log("IKEA_ZWOLLE", requests=reader.requests-before, **row)
+          start=time.monotonic()
+          job=next(j for j in read(ROOT/"data/catalog.json",{})["jobs"] if j["id"]=="fd30839bb766e2c567a6")
+          before=client.requests
+          try:
+              _, page=doc(job["url"])
+              assert same_title(page,job["title"])
+              talentsoft="theadeccogroup-career.talent-soft.com"
+              cta=[urljoin(page.url,h) for h,l,_ in page.links if re.search(r"\b(?:apply|postuler|candidater)\b",fold(l))
+                   and safe_url(urljoin(page.url,h)) and safe_url(urljoin(page.url,h)).hostname==talentsoft]
+              assert len(set(cta))==1
+              detail=cta[0]
+              meta=parse_qs(urlsplit(detail).query)
+              observed_ref=meta.get("offerReference",[])
+              vacancy_number=meta.get("idOffre",[])
+              exact_reference=observed_ref==[str(job["source_posting_id"])]
+              _, page=doc(detail)
+              assert same_title(page,job["title"])
+              actions=[]
+              linked=set()
+              for href,label,_ in page.links:
+                  if not re.search(r"\b(?:postuler|candidater|apply|candidature)\b",fold(label)):
+                      continue
+                  target=urljoin(page.url,href)
+                  p=safe_url(target)
+                  if not p:
+                      continue
+                  keys=parse_qs(p.query)
+                  matching_number=bool(vacancy_number and any(v==vacancy_number for k,v in keys.items()
+                                       if k.lower() in {"idoffre","offerid","jobid"}))
+                  actions.append(dict(host=p.hostname,path=p.path,id_matches=matching_number))
+                  if p.hostname==talentsoft and matching_number and canonical_url(target)!=canonical_url(detail):
+                      linked.add(canonical_url(target))
+              row=dict(reference_matches=exact_reference, numeric_id_present=len(vacancy_number)==1 and vacancy_number[0].isdigit(),
+                       application_links=actions[:6],
+                       application_buttons=sorted(set(b for b in page.buttons if re.search("postul|candid|apply",fold(b))))[:5])
+              if exact_reference and len(linked)==1:
+                  target=next(iter(linked))
+                  html,app=doc(target)
+                  row.update(next_title=same_title(app,job["title"]), next_strict_form=applicant_form(html,strict=True),
+                             final_url_exact=canonical_url(app.url)==target)
+              report("ADECCO_NEXT",requests=client.requests-before,**row)
+          except Exception as exc:
+              report("ADECCO_NEXT",requests=client.requests-before,error=str(getattr(exc,"reason",exc))[:150])
           
-          log("PILOT_COST", requests=reader.requests, bytes=reader.bytes, seconds=round(time.monotonic()-started,3),
-              adequate_target_pages=checked, adequate_positive=positive, catalog_writes=0)
+          allowed.clear()
+          official="https://www.tacting.com/karriar/"
+          board_host="tacting.teamtailor.com"
+          before=client.requests
+          try:
+              _, page=doc(official)
+              posting_pattern=r"/jobs/8621469(?:-[^/]+)?/?"
+              posts={canonical_url(urljoin(page.url,h)) for h,_,_ in page.links
+                     if safe_url(urljoin(page.url,h)) and safe_url(urljoin(page.url,h)).hostname==board_host
+                     and re.fullmatch(posting_pattern,safe_url(urljoin(page.url,h)).path)}
+              assert len(posts)==1, "Employer's current career page does not identify one exact posting"
+              posting=posts.pop()
+              html, job=doc(posting)
+              titles=[t for t in job.h1 if classify_role(t) and classify_role(t)["internship_type"]=="internship"]
+              assert len(set(titles))==1 and canonical_url(job.url)==posting
+              role=titles[0]
+              apply=form=applicant_form(html,strict=True)
+              match=same_title(job,role)
+              child=None
+              if not form:
+                  prefix=safe_url(posting).path.rstrip("/")
+                  children={canonical_url(urljoin(job.url,h)) for h,_,_ in job.links
+                            if safe_url(urljoin(job.url,h)) and safe_url(urljoin(job.url,h)).hostname==board_host
+                            and safe_url(urljoin(job.url,h)).path.rstrip("/")==prefix+"/applications/new"}
+                  if len(children)==1:
+                      child=children.pop()
+                      html,form_doc=doc(child)
+                      form=applicant_form(html,strict=True)
+                      match=same_title(form_doc,role) and canonical_url(form_doc.url)==child
+              report("TACTING",requests=client.requests-before,publisher_inventory_match=True,title=role,
+                     form=form,same_title=match,route="same-page" if apply else "published-child" if child else "no-observed-form")
+          except Exception as exc:
+              report("TACTING",requests=client.requests-before,error=str(getattr(exc,"reason",exc))[:150])
+          
+          report("FOLLOWUP_COST",requests=client.requests,bytes=client.bytes,seconds=round(time.monotonic()-start,3),
+                 catalog_writes=0)
           PY
