@@ -1,6 +1,7 @@
 """Scoped JKS inventory and project-specific Talentech application checks."""
 import re
-from datetime import datetime, timezone
+from datetime import datetime, time, timezone
+from zoneinfo import ZoneInfo
 from contextlib import contextmanager
 from urllib.parse import parse_qs, urljoin, urlsplit
 
@@ -36,6 +37,42 @@ def advertised_deadline(document):
     if len(dates) != 1:
         raise ValueError("JKS vacancy lacks a unique visible expiry date")
     return datetime.strptime(next(iter(dates)), "%d.%m.%y").date().isoformat()
+
+
+DK_TIMEZONE = ZoneInfo("Europe/Copenhagen")
+
+
+def inclusive_deadline(day):
+    """A Danish date-only deadline runs through that *local* calendar day.
+
+    Avoid interpreting JSON-LD midnight of the same date as the cutoff time.
+    Use an absolute UTC instant so the ordinary catalog expiry gate agrees.
+    """
+    date = datetime.strptime(day, "%Y-%m-%d").date()
+    return datetime.combine(date, time.max, tzinfo=DK_TIMEZONE).astimezone(timezone.utc).isoformat()
+
+
+def reviewed_deadline(day_end_utc, structured):
+    """Reconcile employer-visible date with optional structured metadata.
+
+    If a real non-midnight structured time is earlier, preserve that stricter
+    deadline. A midnight date stamp is likely a date-only serialization.
+    Reject conflicting dates rather than silently extending a vacancy.
+    """
+    if not structured:
+        return day_end_utc
+    try:
+        parsed = datetime.fromisoformat(str(structured).strip().replace("Z", "+00:00"))
+        local = parsed.astimezone(DK_TIMEZONE) if parsed.tzinfo else parsed.replace(tzinfo=DK_TIMEZONE)
+    except (ValueError, TypeError) as exc:
+        raise ValueError("Invalid structured JKS deadline") from exc
+    end = datetime.fromisoformat(day_end_utc)
+    if local.date() != end.astimezone(DK_TIMEZONE).date():
+        raise ValueError("Conflicting visible and structured JKS deadlines")
+    if local.timetz().replace(tzinfo=None) == time(0, 0):
+        return day_end_utc
+    precise = local.astimezone(timezone.utc)
+    return min(precise, end).isoformat()
 
 
 def norm(text):
@@ -131,7 +168,7 @@ def inventory(source, client):
             continue
         row = _record(source, project, title, cities[0] + ", Denmark", detail.text, url,
                       posting_identifier=project, country="DK", city=cities[0], language="da",
-                      valid_through=advertised_deadline(detail))
+                      valid_through=inclusive_deadline(advertised_deadline(detail)))
         row["inventory_evidence"] = "current-employer-index"
         rows.append(row)
     return PublicInventory(rows, dict(complete=False, closure_complete=False, status="partial",
@@ -148,7 +185,7 @@ def application(record, source, client, doc):
             or source.get("adapter") != SOURCE["adapter"] or record.get("inventory_evidence") != "current-employer-index"
             or not match or match[1] != project or norm(record["title"]) not in {norm(t) for t in doc.h1}):
         raise ValueError("JKS vacancy identity mismatch")
-    published_deadline = advertised_deadline(doc)
+    published_deadline = inclusive_deadline(advertised_deadline(doc))
     if published_deadline != record.get("valid_through"):
         raise ValueError("JKS expiry date changed since current inventory")
     from .verification import expired

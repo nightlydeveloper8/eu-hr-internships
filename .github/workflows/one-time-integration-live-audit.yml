@@ -1,4 +1,5 @@
 name: One-time PL DK integrated pre-release verification
+# Re-run after correcting Danish date-only midnight serialization to inclusive local-day cutoff.
 
 on:
   pull_request:
