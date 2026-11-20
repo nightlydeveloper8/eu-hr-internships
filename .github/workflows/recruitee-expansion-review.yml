@@ -1,4 +1,4 @@
-name: Resolve exact ATS aliases and employer forms
+name: Check Recruitee rollout offline
 on:
   push:
     branches: ['stage/recruitee-expansion-20261120']
@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   review:
-    if: github.event.head_commit.message == 'Resolve exact publisher host aliases and check two employer forms'
+    if: github.event.head_commit.message == 'Validate exact four-source activation offline'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -16,125 +16,50 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: |
+          python -m unittest discover -s tests -p 'test_recruitee*.py' -q
+          python -m unittest discover -s tests -p 'test_ampelmann_disabled_provision.py' -q
           python - <<'PY'
-          from concurrent.futures import ThreadPoolExecutor
-          from hashlib import sha256
-          import json
+          from copy import deepcopy
           from pathlib import Path
-          import re
-          from tempfile import TemporaryDirectory
-          from time import monotonic
-          from urllib.parse import urljoin
+          import json
           
-          from collector.ats_channel_discovery import safe_url
-          from collector.classify import canonical_url
+          from collector.company_registry import validate_registry
           from collector.daily import provision
-          from collector.pipeline import ROOT, finalize, now, process_source, read
-          from collector.runtime import BudgetClient
-          from collector.universal import Document
-          from collector.verification import verified_job
+          from collector.pipeline import ROOT,read
           
-          candidates=[
-              ("life-outdoor-living","Life Outdoor Living International B.V.","NL","lifeoutdoorliving.recruitee.com","https://www.werkenbijlifeoutdoorliving.com/vacature/"),
-              ("deerns","Deerns Groep BV","NL","jobsdeerns.recruitee.com","https://www.deerns.com/nl/carriere/"),
-              ("vigo-groep","VIGO groep","NL","werkenbijvigogroep.recruitee.com","https://www.vigogroep.nl/"),
-              ("chr-haute-senne","CHR HAUTE SENNE","BE","chrhautesenne.recruitee.com","https://www.chrhautesenne.be/fr/emplois-et-stages"),
-              ("abrio","ABRIO GmbH","DE","abriogmbh.recruitee.com","https://www.abrio.de/pages/alle-jobs"),
-          ]
-          registry=read(ROOT/"data/sources.json",[])
+          names={"recruitee-ampelmann-nl","recruitee-batch-vigo-groep","recruitee-batch-chr-haute-senne","recruitee-batch-abrio"}
           companies=read(ROOT/"data/companies.json",[])
-          _, provisioned=provision(companies,registry)
-          assert {s['id'] for s in provisioned if s.get('enabled')}=={s['id'] for s in registry if s.get('enabled')}
-          amp=next(s for s in registry if s['id']=='recruitee-ampelmann-nl')
-          assert not amp["enabled"] and amp["allowed_hosts"]==["careers.ampelmann.nl"]
-          stamp=now()
-          prior=read(ROOT/"data/catalog.json",{})
-          prior_report=read(ROOT/"data/coverage.json",{})
-          baseline={j['id'] for j in prior['jobs']}
-          original=sha256((ROOT/"data/catalog.json").read_bytes()).hexdigest()
-          
-          class Scoped(BudgetClient):
-              def request(self,url,method="GET",**kwargs):
-                  if method!="GET" or not self.redirect_scope_allowed(url):
-                      raise ValueError("Outside read-only pilot scope")
-                  return super().request(url,method=method,**kwargs)
-          
-          def check(item):
-              key,name,cc,host,origin=item
-              client=Scoped(seconds=55,max_requests=14,delay=0.8)
-              started=monotonic()
-              def allowed(url):
-                  p=safe_url(url)
-                  if not p:
-                      return False
-                  if origin and p.hostname==safe_url(origin).hostname:
-                      return canonical_url(url)==canonical_url(origin) or (p.path=="/robots.txt" and not p.query)
-                  if p.hostname!=host and not (key=="life-outdoor-living" and p.hostname=="werkenbijlifeoutdoorliving.com"):
-                      return False
-                  return p.path in {"/api/offers/","/api/offers","/api/feeds/offers.xml","/robots.txt"} or bool(
-                      re.fullmatch(r"/(?:l/[a-z]{2}(?:-[a-z]+)?/)?o/[a-zA-Z0-9%_-]+(?:/c/new)?/?",p.path))
-              client.redirect_scope_allowed=allowed
-              source=dict(id="recruitee-batch-"+key,company_id="recruitee-batch-"+key,employer=name,
-                  adapter="recruitee",enabled=False,allowed_hosts=([host,"werkenbijlifeoutdoorliving.com"] if key=="life-outdoor-living" else [host]),target_countries=[cc],
-                  feed_url=f"https://{host}/api/offers/",application_check="recruitee-linked",
-                  career_url=origin,permission_basis="Employer-published and reviewed public recruiting link",
-                  ownership_scope="reviewed-hosts",require_employer_identity=True,max_requests=14,collection_seconds=55)
-              row=dict(key=key,company=name,country=cc,host=host,origin=origin)
-              part=None
-              try:
-                  if key=="ampelmann":
-                      source=amp
-                  elif origin:
-                      body,_,final=client.request(origin)
-                      page=Document(body,final)
-                      assert any(safe_url(urljoin(final,h)) and safe_url(urljoin(final,h)).hostname==host
-                                 for h,_,_ in page.links), "Official page did not expose exact tenant"
-                  part=process_source(source,client,stamp)
-                  assert not source["enabled"]
-                  report=part["report"]
-                  verified=[{k:j.get(k) for k in ("id","external_id","title","city","country","url","apply_url")}
-                            for j in part["jobs"]
-                            if j.get("country")==cc and j.get("internship_type")=="internship"
-                            and verified_job(j,stamp) and j.get("application_verification")]
-                  row.update(status=report.get("status"),matching=report.get("matching"),records=report.get("collected"),
-                             verified=verified,error=report.get("error"),page_errors=report.get("page_errors",[])[:3])
-              except Exception as exc:
-                  row.update(status="incomplete",error=str(getattr(exc,"reason",exc))[:180],verified=[])
-              row.update(requests=client.requests,bytes=client.bytes,seconds=round(monotonic()-started,3))
-              return source,part,row
-          
-          
-          from collector.applications import checked_document
-          from collector.verification import _verify_vacancy, applicant_form, structured_identifiers
-          
-          def direct(key,url,title,application=None):
-              host=safe_url(url).hostname
-              client=Scoped(seconds=35,max_requests=6,delay=0.8)
-              exact={canonical_url(u) for u in (url,application,"https://"+host+"/robots.txt") if u}
-              client.redirect_scope_allowed=lambda u:canonical_url(u) in exact
-              source=dict(id=key,employer=key,adapter="employer-index",allowed_hosts=[host])
-              outcome=dict(key=key,url=url)
-              try:
-                  body,page=checked_document(url,source,client)
-                  ids=structured_identifiers(page,title)
-                  record=dict(url=url,apply_url=url,title=title,posting_identifier=next(iter(ids)) if len(ids)==1 else None)
-                  proof=_verify_vacancy(record,source,client,stamp)
-                  app=proof["url"]
-                  form_body=body if canonical_url(app)==canonical_url(url) else checked_document(app,source,client)[0]
-                  outcome.update(status="live-specific-form" if applicant_form(form_body,strict=True) else "review-required",
-                      id_count=len(ids),application=app,method=proof["method"])
-              except Exception as exc:
-                  outcome["reason"]=str(getattr(exc,"reason",exc))[:160]
-              return dict(outcome,requests=client.requests,bytes=client.bytes)
-          
-          with ThreadPoolExecutor(max_workers=3) as pool:
-              tasks=[pool.submit(check,("deerns","Deerns Groep BV","NL","jobsdeerns.recruitee.com",None)),
-                     pool.submit(check,candidates[0]),
-                     pool.submit(direct,"de-nieuwe-zaak","https://www.denieuwezaak.nl/vacatures/hr-meewerkstage","HR Meewerkstage"),
-                     pool.submit(direct,"gooddays","https://www.gooddays.nl/vacatures/stage-hr-recruitment-personeelsplanning",
-                                 "Stage HR, Recruitment & Personeelsplanning","https://www.gooddays.nl/solliciteer?jobID=469158")]
-              results=[t.result() for t in tasks]
-          for result in results:
-              print("RESOLVED "+json.dumps(result[2] if isinstance(result,tuple) else result,ensure_ascii=False),flush=True)
-          assert original==sha256((ROOT/"data/catalog.json").read_bytes()).hexdigest()
+          sources=read(ROOT/"data/sources.json",[])
+          geo=read(ROOT/"data/geography.json",{})
+          active=lambda rows:{r["id"] for r in rows if r.get("enabled")}
+          proposed=[s for s in sources if s["id"] in names]
+          cids={s["company_id"] for s in proposed}
+          held=[c for c in companies if c["id"] in cids]
+          assert len(proposed)==len(held)==4
+          assert all(s.get("enabled") is False and len(s["allowed_hosts"])==1
+                     and s.get("application_check")=="recruitee-linked"
+                     and (s.get("report_feed_scope") is True or s.get("feed_format")=="recruitee-public-xml")
+                     for s in proposed)
+          assert all(c.get("collection_activation_hold") is True for c in held)
+          assert validate_registry(companies,geo,sources)
+          base=active(sources)
+          pc,ps=provision(companies,sources)
+          assert active(ps)==base and len(ps)==len(sources) and len(pc)==len(companies)
+          assert provision(pc,ps)==(pc,ps)
+          sim_c,sim_s=deepcopy(companies),deepcopy(sources)
+          for source in sim_s:
+              if source["id"] in names:
+                  source["enabled"]=True
+          for company in sim_c:
+              if company["id"] in cids:
+                  company.pop("collection_activation_hold")
+          sc,ss=provision(sim_c,sim_s)
+          assert active(ss)-base==names and not base-active(ss)
+          assert len(ss)==len(sources) and len(sc)==len(companies)
+          assert provision(sc,ss)==(sc,ss)
+          assert validate_registry(sc,geo,ss)
+          print("ACTIVATION_SIMULATION "+json.dumps(dict(configured=len(sources),current=len(base),
+              simulated=len(active(ss)),new=sorted(active(ss)-base),provisioned_automatically=0,
+              registry_writes=0,catalog_writes=0)),flush=True)
           PY
+          git diff --exit-code
