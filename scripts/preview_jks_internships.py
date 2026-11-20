@@ -2,11 +2,11 @@
 import json
 import re
 from datetime import datetime, timezone
-from html.parser import HTMLParser
 from urllib.parse import parse_qs, urljoin, urlsplit
 
 from collector.classify import canonical_url
 from collector.runtime import BudgetClient
+from collector.verification import applicant_form, expired
 from collector.universal import Document
 
 INDEX = "https://www.jks.dk/om-jks/job-i-jks"
@@ -19,25 +19,6 @@ FORM = "/ApplicationForm/SinglePageApplicationForm.aspx"
 
 def normalized(text):
     return " ".join(text.casefold().split()).strip(" -")
-
-
-class ApplicantFields(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.names = set()
-        self.in_form = False
-
-    def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        if tag == "form":
-            self.in_form = True
-        if self.in_form and tag == "input" and "disabled" not in attrs:
-            if (attrs.get("type") or "text").lower() in {"text", "email", "file"}:
-                self.names.add((attrs.get("name") or "").lower())
-
-    def handle_endtag(self, tag):
-        if tag == "form":
-            self.in_form = False
 
 
 def project_url(url, project):
@@ -95,11 +76,18 @@ def preview():
         if len(cities) != 1 or not re.search(r"\bhr\b|rekruttering", title):
             continue
         # Only consider dated internship intakes in the vacancy copy before related job cards.
-        copy = normalized(" ".join(detail.body)).split("søg stillingen", 1)[-1].split("andre ledige", 1)[0]
+        sections = normalized(" ".join(detail.body)).split("søg stillingen")
+        copy = sections[1] if len(sections) >= 3 else sections[0]
+        stamp = datetime.now(timezone.utc).isoformat()
+        if any(expired(post.get("validThrough"), stamp) for post in detail.jobposts()
+               if normalized(post.get("title") or "") == title):
+            unresolved[project]["stage"] = "expired deadline"
+            continue
         intake = re.findall(r"(?:opstart|forår(?:et)?|januar|februar)[^.!?]{0,38}?\b(20\d{2})\b", copy)
         unresolved[project]["stage"] = "current intake"
         unresolved[project]["intake_years"] = sorted(set(intake))
-        if not any(int(y) == datetime.now(timezone.utc).year + 1 for y in intake):
+        rolling = "løbende opstart" in copy
+        if not rolling and not any(int(y) >= datetime.now(timezone.utc).year for y in intake):
             continue
         links = {urljoin(url, h) for h, label, _ in detail.links if normalized(label) == "søg stillingen"}
         unresolved[project]["stage"] = "unique employer apply link"
@@ -113,16 +101,15 @@ def preview():
         unresolved[project]["stage"] = "form destination"
         if urlsplit(form.url).path != FORM:
             continue
-        fields = ApplicantFields()
-        fields.feed(raw.decode("utf-8", "replace"))
+        form_valid = applicant_form(raw, strict=True)
         words = normalized(" ".join(form.body))
         unresolved[project].update(stage="title and candidate fields", same_title=title in words,
                                    candidate_labels=all(t in words for t in ("fornavn","efternavn","e-mail")),
-                                   input_count=len(fields.names))
+                                   strict_applicant_form=form_valid)
         if (title in words and "fornavn" in words and "efternavn" in words and "e-mail" in words
-                and len(fields.names) >= 4):
+                and form_valid):
             unresolved.pop(project)
-            proofs.append(dict(country="DK", city=cities[0], title=title, project=project,
+            proofs.append(dict(country="DK", city=cities[0], title=title, project=project, intake="rolling" if rolling else sorted(set(intake)),
                                url=url, apply_url=form.url, checked_at=datetime.now(timezone.utc).isoformat()))
     return dict(inventories=inventories, detected=len(postings), checked=min(len(postings), 5), proofs=proofs,
                 unresolved=unresolved, requests=client.requests, bytes=client.bytes, closure_eligible=False)
