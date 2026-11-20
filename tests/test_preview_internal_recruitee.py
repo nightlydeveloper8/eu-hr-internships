@@ -5,7 +5,9 @@ from scripts.preview_internal_recruitee import (
     LEGAL_URL, reviewed_source, ReadOnlyClient
 )
 from collector.classify import classify_role
-from collector.recruitee_alias import reconcile, same_path_redirect
+from collector.recruitee_alias import reconcile, same_path_redirect, source_gate, scope
+from collector.daily import provision
+from collector.pipeline import ROOT, read
 
 
 class AliasResolutionTests(unittest.TestCase):
@@ -49,6 +51,38 @@ class AliasResolutionTests(unittest.TestCase):
         self.assertEqual(no_get.calls, [])
 
 class InternalRecruiteeTests(unittest.TestCase):
+    def test_source_registered_disabled_and_provision_does_not_enable(self):
+        rows = read(ROOT / "data/sources.json", [])
+        registered = [row for row in rows if row.get("id") == SOURCE["id"]]
+        self.assertEqual(len(registered), 1)
+        self.assertEqual(source_gate(registered[0]), "staging")
+        self.assertFalse(registered[0]["enabled"])
+        self.assertFalse(registered[0]["rollout_approved"])
+        self.assertTrue(registered[0]["staging_only"])
+        _, provisioned = provision(read(ROOT / "data/companies.json", []), rows)
+        self.assertFalse(next(row for row in provisioned if row["id"]==SOURCE["id"])["enabled"])
+        self.assertEqual(sum(row.get("enabled",False) for row in rows),
+                         sum(row.get("enabled",False) for row in provisioned))
+
+    def test_rollout_gate_and_scoped_redirect_restoration(self):
+        for change in ({"enabled": True}, {"enabled": True, "staging_only": False},
+                       {"enabled": True, "staging_only": False, "rollout_approved": True},
+                       {"allowed_hosts": [HOST, REVIEWED_CAREERS_HOST, "other.example"]}):
+            with self.subTest(change=change):
+                with self.assertRaises(ValueError):
+                    source_gate(dict(SOURCE, **change))
+        production = dict(SOURCE, enabled=True, staging_only=False, rollout_approved=True,
+                          rollout_authorization="synthetic-review-only")
+        self.assertEqual(source_gate(production), "production")
+        from types import SimpleNamespace
+        parent = lambda url: url != "https://smartways.recruitee.com/api/offers/"
+        client = SimpleNamespace(redirect_scope_allowed=parent)
+        with scope(client):
+            self.assertFalse(client.redirect_scope_allowed("https://smartways.recruitee.com/api/offers/"))
+            self.assertTrue(client.redirect_scope_allowed("https://careers.smartways.io/o/role"))
+            self.assertFalse(client.redirect_scope_allowed("https://jobs.smartways.io/o/role"))
+        self.assertIs(client.redirect_scope_allowed, parent)
+
     def test_new_internal_board_is_not_the_previous_client_vacancy_board(self):
         self.assertEqual(SOURCE["allowed_hosts"], ["smartways.recruitee.com", "careers.smartways.io"])
         self.assertNotIn("jobs.smartways.io", SOURCE["allowed_hosts"])
