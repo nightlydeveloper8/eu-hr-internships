@@ -383,7 +383,7 @@ def eures_detail_summary(detail, identifier):
                 availableLanguages=[detail['preferredLanguage']] if detail.get('preferredLanguage') else [])
 
 
-def eures_records(source, client):
+def eures_records(source, client, *, first_pages=()):
     from .classify import classify_role
     records, requests, truncated, errors = {}, 0, [], []
 
@@ -435,6 +435,11 @@ def eures_records(source, client):
                 raise
             budget_stop.append(label)
             truncated.append(label)
+
+    # A preview can spend its first pages by market. All reads share the same
+    # client, time limit, deduplication and partial-inventory semantics.
+    for country, criteria in first_pages:
+        guarded(f'first-page:{country}', lambda page, payload=criteria: payload, 1, False)
 
     guarded('positionOffering=internship', lambda page: eures_criteria(offering=['internship'], page=page),
             EURES_OFFERING_MAX_PAGES, False)

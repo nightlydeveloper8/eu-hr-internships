@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from collector.classify import classify_role
-from collector.public_sources import EURES_API, eures_criteria, eures_fingerprint, eures_record
+from collector.public_sources import EURES_API, eures_criteria, eures_fingerprint, eures_record, eures_records
 from collector.runtime import BudgetClient
 
 TERMS = {
@@ -27,6 +27,13 @@ def first_round(source):
         payload = eures_criteria(keywords=[TERMS[country]])
         payload["locationCodes"] = ["el" if country == "GR" else country.lower()]
         yield country, payload
+
+
+def preview_inventory(source, client):
+    """Exercise the ordinary sequence in staging, sharing its original 330-request cap."""
+    if source["id"] != "public-eu-eures" or client.max_requests > source["max_requests"]:
+        raise ValueError("Expected the reviewed EURES source and its ordinary request limit")
+    return eures_records(source, client, first_pages=first_round(source))
 
 
 def compare():
