@@ -158,7 +158,7 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
                 if source.get('application_check') in ('publication-linked','official-email','recruitee-linked','jks-talentech')
                 else verify_application(record,source,client))
     if reviewed:
-        return dict(reviewed,valid_through=fresh_deadline, vacancy_match='title', inventory=record.get('inventory_evidence', 'not-established'))
+        return dict(reviewed,valid_through=fresh_deadline or reviewed.get('valid_through'), vacancy_match='title', inventory=record.get('inventory_evidence', 'not-established'))
     # An actual form on this same, identified vacancy is direct application evidence.
     if applicant_form(body):
         return dict(url=canonical_url(doc.url), method='same-vacancy-applicant-form',valid_through=fresh_deadline, vacancy_match='title',

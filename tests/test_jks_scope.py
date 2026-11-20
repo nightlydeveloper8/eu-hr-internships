@@ -1,7 +1,9 @@
 import unittest
 from types import SimpleNamespace
 
-from collector.jks import SOURCE, inventory, project_url, scope, source_gate
+from collector.jks import SOURCE, inventory, project_url, scope, source_gate, advertised_deadline
+from collector.universal import Document
+from collector.verification import expired
 from collector.daily import provision
 from collector.pipeline import ROOT, read
 
@@ -41,6 +43,25 @@ class JksScopeTests(unittest.TestCase):
         approved = dict(SOURCE, enabled=True, staging_only=False, rollout_approved=True,
                         rollout_authorization="synthetic-only-test-approval")
         self.assertEqual(source_gate(approved), "production")
+
+    def test_current_jks_expiry_is_inclusive_and_not_confused_with_slug_year(self):
+        url = "https://www.jks.dk/jobs/praktikant-efteraar-2025-slagelse-156880"
+        body = (b"<div>Udl\xc3\xb8ber:</div><div>25.11.26</div>"
+                b"<main><h1>HR Praktikant</h1></main>"
+                b"<aside>Udl\xc3\xb8ber: 25.11.26</aside>")
+        deadline = advertised_deadline(Document(body, url))
+        self.assertEqual(deadline, "2026-11-25")
+        self.assertFalse(expired(deadline, "2026-11-25T18:00:00+00:00"))
+        self.assertTrue(expired(deadline, "2026-11-26T00:00:00+00:00"))
+        for html in (
+            b"<main><h1>HR Praktikant</h1></main>",
+            b"<p>Udlober: 25.11.26</p>",
+            b"<p>Udl\xc3\xb8ber: 25.11.26</p><p>Udl\xc3\xb8ber: 26.11.26</p>",
+            b"<p>Udl\xc3\xb8ber: 31.02.27</p>",
+        ):
+            with self.subTest(html=html):
+                with self.assertRaises(ValueError):
+                    advertised_deadline(Document(html, url))
 
     def test_talentech_requires_the_employer_and_exact_project(self):
         url = "https://candidate.hr-manager.net/ApplicationInit.aspx?cid=1601&ProjectId=160886"

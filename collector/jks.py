@@ -1,5 +1,6 @@
 """Scoped JKS inventory and project-specific Talentech application checks."""
 import re
+from datetime import datetime, timezone
 from contextlib import contextmanager
 from urllib.parse import parse_qs, urljoin, urlsplit
 
@@ -21,6 +22,20 @@ SOURCE = dict(id="jks-dk-internships", employer="JKS", adapter="jks-index",
               rollout_approved=False, ownership_scope="reviewed-hosts",
               require_employer_identity=True, allowed_hosts=[HOST, ATS],
               career_url=INDEXES[0], target_countries=["DK"], max_requests=24, collection_seconds=120)
+
+
+def advertised_deadline(document):
+    """Unique visible employer deadline, not an invented form expiry.
+
+    JKS advertises 'Udløber: DD.MM.YY' outside the job content in some
+    templates. Read the complete rendered HTML text, not only <main>.
+    Multiple different deadlines or an unparseable date fail closed.
+    """
+    text = " ".join(document.body)
+    dates = set(re.findall(r"\bUdløber:\s*(\d{2}\.\d{2}\.\d{2})\b", text, re.I))
+    if len(dates) != 1:
+        raise ValueError("JKS vacancy lacks a unique visible expiry date")
+    return datetime.strptime(next(iter(dates)), "%d.%m.%y").date().isoformat()
 
 
 def norm(text):
@@ -115,7 +130,8 @@ def inventory(source, client):
             unknown.append(project)
             continue
         row = _record(source, project, title, cities[0] + ", Denmark", detail.text, url,
-                      posting_identifier=project, country="DK", city=cities[0], language="da")
+                      posting_identifier=project, country="DK", city=cities[0], language="da",
+                      valid_through=advertised_deadline(detail))
         row["inventory_evidence"] = "current-employer-index"
         rows.append(row)
     return PublicInventory(rows, dict(complete=False, closure_complete=False, status="partial",
@@ -132,6 +148,13 @@ def application(record, source, client, doc):
             or source.get("adapter") != SOURCE["adapter"] or record.get("inventory_evidence") != "current-employer-index"
             or not match or match[1] != project or norm(record["title"]) not in {norm(t) for t in doc.h1}):
         raise ValueError("JKS vacancy identity mismatch")
+    published_deadline = advertised_deadline(doc)
+    if published_deadline != record.get("valid_through"):
+        raise ValueError("JKS expiry date changed since current inventory")
+    from .verification import expired
+    from .applications import ApplicationClosed
+    if expired(published_deadline, datetime.now(timezone.utc).isoformat()):
+        raise ApplicationClosed("Official JKS vacancy deadline has passed")
     links = {urljoin(doc.url, href) for href, label, _ in doc.links if norm(label) == "søg stillingen"}
     if len(links) != 1:
         raise ValueError("Expected one JKS application destination")
@@ -145,4 +168,5 @@ def application(record, source, client, doc):
             or norm(record["title"]) not in words or not applicant_form(raw, strict=True)
             or not all(label in words for label in ("fornavn", "efternavn", "e-mail"))):
         raise ValueError("Missing current, matching JKS application form")
-    return dict(url=canonical_url(form.url), method="jks-talentech-same-project-form")
+    return dict(url=canonical_url(form.url), method="jks-talentech-same-project-form",
+                valid_through=published_deadline)

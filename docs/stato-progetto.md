@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — JKS: scadenza esplicita e nessuna candidatura oltre termine
+
+- Dalle pagine ufficiali JKS (viste il 20 novembre) emergono scadenze già pubblicate: **Slagelse 25/11/2026, Vejle 28/11/2026, Esbjerg 21/12/2026, Odense 01/01/2027**. Il campo `Udløber` viene letto senza GET aggiuntive dal dettaglio HTML e salvato come `valid_through`; scadenze assenti, multiple o non valide rendono il candidato incompleto, e quelle trascorse bloccheranno il modulo prima della richiesta. Non confondere un vecchio anno nello slug con il termine corrente visibile sulla pagina.
+- Il dispatcher JKS conserva il termine verificato nel record e la normale `finalize()` ne applica la scadenza inclusiva; test offline sulle date, date discordanti e metadati visibili fuori da `main`. **Questa variante non ha ancora un nuovo run live**; non è un nuovo stage né un'attivazione. Il beneficio atteso è evitare la permanenza di candidature ormai scadute anche qualora il form ATS resti accessibile.
+
 ## 20 novembre 2026 — integrazione pre-release a tre paesi, senza attivazioni
 
 - Integra in una sola bozza i rami review **#89+#91** (JobTech/Jobandtalent SE), **#90+#92** (JKS DK) e **#95+#96** (SmartWays PL), risolvendo il conflitto sul dispatcher `collector/verification.py`. Le tre fonti sono registrate ma **disabled**: registro **1.977→1.980**, fonti enabled **1.923→1.923**. Nessun merge, cron, rollout o variazione del catalogo di produzione. Non include #93 (indice JKS aggiuntivo senza resa incrementale nel run).

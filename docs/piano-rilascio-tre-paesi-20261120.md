@@ -21,6 +21,10 @@ Sono tutte prove del **20 novembre 2026**, quindi **non sono** prove a distanza 
 - `collector/pipeline.py` mantiene il ramo JobTech esistente e la pipeline originale per tutti gli altri adapter; `collector/adapters.py` aggiunge JKS; `collector/public_feeds.py` il resolver SmartWays.
 - Nuovo test integrato `tests/test_three_country_release_candidate.py`: identità univoche, no auto-provisioning, gate separati e blocco network prima di autorizzazione, ID storico JobTech preservato. Il test non attribuisce successi live ai soli esiti CI.
 
+## Freschezza delle candidature JKS e date dichiarate
+
+Il controllo ufficiale del 20 novembre ha evidenziato quattro scadenze *Udløber* pubblicate dal datore, non dedotte da un vecchio slug URL: **Slagelse 25 novembre 2026**, **Vejle 28 novembre 2026**, **Esbjerg 21 dicembre 2026**, **Odense 1 gennaio 2027**. Il collector integrato legge la data direttamente dall'HTML già scaricato, richiede un valore unico, la riconcilia con una nuova lettura della stessa pagina e registra `valid_through`. Se la scadenza è passata, blocca la verifica del modulo ed evita GET aggiuntive. `finalize()` applica già la regola della data inclusiva e chiude il record senza interpretare l'assenza dall'inventario. Si tratta di una modifica di sicurezza **non ancora riconfermata live dopo il cambiamento**, che va inclusa nella seconda verifica su data distinta. La necessità del danese indicata da alcuni annunci resta requisito linguistico da mostrare agli utenti; non considerare questi annunci automaticamente accessibili a chi parla solo inglese.
+
 ## Stop obbligatori prima della produzione
 
 1. Conferma **in data diversa dal 20 novembre**, in sola lettura, dei tre moduli e dei relativi ID. Jobandtalent impone preview manuale esplicita: non introdurre trigger automatici PR/cron per aggirare il requisito.
