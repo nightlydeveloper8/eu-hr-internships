@@ -21,9 +21,9 @@ from collector.universal import Document
 from collector.verification import verified_job
 
 HOST = "smartways.recruitee.com"
+BASE = "https://" + HOST
 LEGAL_URL = BASE + "/privacy-policy"
 LEGAL_TAX_ID = "6793137813"
-BASE = "https://" + HOST
 SOURCE = dict(
     id="pilot-smartways-internal-pl",
     employer="SmartWays", adapter="recruitee", enabled=False,
