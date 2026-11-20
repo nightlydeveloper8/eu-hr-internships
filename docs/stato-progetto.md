@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — Danimarca, quattro candidature JKS in staging
+
+[Bozza #90](https://github.com/nightlydeveloper8/eu-hr-internships/pull/90) e [prova del processo ordinario in memoria](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44772550960). Tre indici aziendali hanno prodotto 5 ID pertinenti. Quattro hanno città, titolo e modulo Talentech attivo con lo stesso ProjectId del dettaglio e tenant 1601. Esbjerg `160886`, Odense `160782`, Vejle `157063`, Slagelse `156880`. Il quinto è nazionale senza sede precisa. La verifica condivisa policy v2 e il finalizzatore portano il catalogo temporaneo da 887 a 891 ID, da 39 a 43 candidature dirette. Ripetere la finalizzazione mantiene gli stessi ID. Costo del pilota finale 18 richieste, 2.401.014 byte. Fonte assente dal registro ordinario, nessuna chiusura per assenza. Prossimo passo: revisione dell’adattatore e autorizzazione prima dell’eventuale registrazione e attivazione.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.
