@@ -166,3 +166,23 @@ export function completeRecentInventory(company,sources,reports,clock=Date.now()
   });
 
 }
+
+// Evidence level shown on cards and in counts. Never upgrades a record: 'direct' requires applicationConfirmed().
+// 'direct' = verified application route · 'public' = current on a public employment service · 'current' = current listing,
+// application route not confirmed · 'lead' = not currently verified.
+export function evidenceLevel(job, clock = Date.now()) {
+  if (applicationConfirmed(job, clock)) return 'direct';
+  if (!verifiedJob(job, clock)) return 'lead';
+  return publicEmploymentListing(job) ? 'public' : 'current';
+}
+
+// Display-only map zoom: a viewBox of `factor`× magnification centred on (cx, cy), clamped inside the base viewBox.
+// The geographic dataset is never changed.
+export function zoomViewBox(base, cx, cy, factor = 1) {
+  const [bx, by, bw, bh] = String(base).trim().split(/[\s,]+/).map(Number);
+  const f = Math.min(Math.max(Number(factor) || 1, 1), 6);
+  const w = bw / f, h = bh / f;
+  const x = Math.min(Math.max(cx - w / 2, bx), bx + bw - w);
+  const y = Math.min(Math.max(cy - h / 2, by), by + bh - h);
+  return [x, y, w, h].map(n => Math.round(n * 10) / 10);
+}

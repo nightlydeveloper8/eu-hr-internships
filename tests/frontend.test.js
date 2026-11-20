@@ -202,3 +202,21 @@ test('application filter and counts distinguish current public listings from app
   assert.doesNotMatch(verificationMessage(invalidUrl),/route were confirmed/);
   assert.equal(shareableFilterParams({...f,applicationConfirmed:true},f).get('applicationConfirmed'),'true');
 });
+
+test('evidence level never upgrades public listings or leads to direct applications',async()=>{
+  const {evidenceLevel}=await import('../src/logic.js');
+  const direct={...base,application_verification:{method:'same-vacancy-applicant-form',url:'https://jobs.example.com/1/apply'}};
+  assert.equal(evidenceLevel(direct),'direct');
+  assert.equal(evidenceLevel({...direct,link_status:'public-api-active-listing'}),'public');
+  assert.equal(evidenceLevel(base),'current');
+  assert.equal(evidenceLevel({...direct,status:'unverified'}),'lead');
+  assert.equal(evidenceLevel({...direct,last_verified_at:'2020-01-01T00:00:00Z'}),'lead');
+});
+test('map zoom is display-only and stays inside the base viewBox',async()=>{
+  const {zoomViewBox}=await import('../src/logic.js');
+  assert.deepEqual(zoomViewBox('0 0 1000 860',500,430,1),[0,0,1000,860]);
+  assert.deepEqual(zoomViewBox('0 0 1000 860',500,430,2),[250,215,500,430]);
+  assert.deepEqual(zoomViewBox('0 0 1000 860',10,10,2),[0,0,500,430]);
+  assert.deepEqual(zoomViewBox('0 0 1000 860',990,850,2),[500,430,500,430]);
+  assert.deepEqual(zoomViewBox('0 0 1000 860',500,430,0.2),[0,0,1000,860]);
+});
