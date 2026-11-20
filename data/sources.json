@@ -50411,7 +50411,7 @@
     "company_id": "ampelmann-operations-b-v",
     "employer": "Ampelmann Operations B.V.",
     "adapter": "recruitee",
-    "enabled": false,
+    "enabled": true,
     "feed_format": "recruitee-public-xml",
     "application_check": "recruitee-linked",
     "feed_url": "https://careers.ampelmann.nl/api/feeds/offers.xml",
@@ -50426,15 +50426,14 @@
     "require_employer_identity": true,
     "permission_basis": "Reviewed employer-published XML and same-ID application; runtime robots gate",
     "max_requests": 16,
-    "collection_seconds": 70,
-    "status": "pending-integration-and-rollout-approval"
+    "collection_seconds": 70
   },
   {
     "id": "recruitee-batch-vigo-groep",
     "company_id": "recruitee-batch-vigo-groep",
     "employer": "VIGO groep",
     "adapter": "recruitee",
-    "enabled": false,
+    "enabled": true,
     "application_check": "recruitee-linked",
     "feed_url": "https://werkenbijvigogroep.recruitee.com/api/offers/",
     "career_url": "https://werkenbijvigogroep.recruitee.com/",
@@ -50450,15 +50449,14 @@
     "discovery_scope": "Published employer Careers Site inventory. No closures inferred from absence.",
     "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
     "max_requests": 14,
-    "collection_seconds": 55,
-    "status": "pending-integration-and-rollout-approval"
+    "collection_seconds": 55
   },
   {
     "id": "recruitee-batch-chr-haute-senne",
     "company_id": "recruitee-batch-chr-haute-senne",
     "employer": "CHR HAUTE SENNE",
     "adapter": "recruitee",
-    "enabled": false,
+    "enabled": true,
     "application_check": "recruitee-linked",
     "feed_url": "https://chrhautesenne.recruitee.com/api/offers/",
     "career_url": "https://chrhautesenne.recruitee.com/",
@@ -50474,15 +50472,14 @@
     "discovery_scope": "Published employer Careers Site inventory. No closures inferred from absence.",
     "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
     "max_requests": 14,
-    "collection_seconds": 55,
-    "status": "pending-integration-and-rollout-approval"
+    "collection_seconds": 55
   },
   {
     "id": "recruitee-batch-abrio",
     "company_id": "recruitee-batch-abrio",
     "employer": "ABRIO GmbH",
     "adapter": "recruitee",
-    "enabled": false,
+    "enabled": true,
     "application_check": "recruitee-linked",
     "feed_url": "https://abriogmbh.recruitee.com/api/offers/",
     "career_url": "https://abriogmbh.recruitee.com/",
@@ -50498,7 +50495,6 @@
     "discovery_scope": "Published employer Careers Site inventory. No closures inferred from absence.",
     "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
     "max_requests": 14,
-    "collection_seconds": 55,
-    "status": "pending-integration-and-rollout-approval"
+    "collection_seconds": 55
   }
 ]
