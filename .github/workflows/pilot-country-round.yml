@@ -1,0 +1,17 @@
+name: Bounded country comparison
+on:
+  pull_request:
+    types: [opened]
+    paths: ['scripts/pilot_eures_country_round.py']
+permissions:
+  contents: read
+jobs:
+  compare:
+    if: github.head_ref == 'research/market-conversions-first-pass'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python3 -u -m scripts.pilot_eures_country_round
