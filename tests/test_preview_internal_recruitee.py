@@ -1,7 +1,7 @@
 """Offline regressions for the second, employer-internal SmartWays tenant."""
 import unittest
 from scripts.preview_internal_recruitee import (
-    BASE, HOST, SOURCE, allowed, employer_board, employer_legal_identity,
+    BASE, HOST, REVIEWED_CAREERS_HOST, SOURCE, allowed, employer_board, employer_legal_identity,
     LEGAL_URL, reviewed_source, ReadOnlyClient
 )
 from collector.classify import classify_role
@@ -9,7 +9,7 @@ from collector.classify import classify_role
 
 class InternalRecruiteeTests(unittest.TestCase):
     def test_new_internal_board_is_not_the_previous_client_vacancy_board(self):
-        self.assertEqual(SOURCE["allowed_hosts"], ["smartways.recruitee.com"])
+        self.assertEqual(SOURCE["allowed_hosts"], ["smartways.recruitee.com", "careers.smartways.io"])
         self.assertNotIn("jobs.smartways.io", SOURCE["allowed_hosts"])
         self.assertFalse(SOURCE["enabled"])
         self.assertTrue(reviewed_source(dict(SOURCE)))
@@ -28,6 +28,11 @@ class InternalRecruiteeTests(unittest.TestCase):
         self.assertTrue(allowed(BASE + "/o/recruitment-internship-programme-paid"))
         self.assertTrue(allowed(BASE + "/o/recruitment-internship-programme-paid/c/new"))
         self.assertTrue(allowed(BASE + "/robots.txt"))
+        self.assertTrue(allowed("https://" + REVIEWED_CAREERS_HOST
+                                + "/o/recruitment-internship-programme-paid"))
+        self.assertTrue(allowed("https://" + REVIEWED_CAREERS_HOST
+                                + "/o/recruitment-internship-programme-paid/c/new"))
+        self.assertFalse(allowed("https://" + REVIEWED_CAREERS_HOST + "/api/offers/"))
         self.assertTrue(allowed(LEGAL_URL))
         for target in (
             "https://jobs.smartways.io/api/offers/",

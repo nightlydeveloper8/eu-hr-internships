@@ -22,6 +22,7 @@ from collector.universal import Document
 from collector.verification import verified_job
 
 HOST = "smartways.recruitee.com"
+REVIEWED_CAREERS_HOST = "careers.smartways.io"
 BASE = "https://" + HOST
 LEGAL_URL = BASE + "/privacy-policy"
 LEGAL_TAX_ID = "6793137813"
@@ -30,7 +31,7 @@ SOURCE = dict(
     employer="SmartWays", adapter="recruitee", enabled=False,
     application_check="recruitee-linked",
     feed_url=BASE + "/api/offers/", career_url=BASE + "/",
-    allowed_hosts=[HOST], target_countries=["PL"],
+    allowed_hosts=[HOST, REVIEWED_CAREERS_HOST], target_countries=["PL"],
     ownership_scope="reviewed-hosts", require_employer_identity=True,
     report_feed_scope=True,
     max_requests=14, collection_seconds=75,
@@ -46,7 +47,7 @@ def reviewed_source(source):
     if (not isinstance(source, dict) or
             any(source.get(k) != SOURCE[k] for k in required) or
             source.get("enabled") is not False or
-            source.get("allowed_hosts") != [HOST] or
+            source.get("allowed_hosts") != [HOST, REVIEWED_CAREERS_HOST] or
             type(source.get("max_requests")) is not int or
             not 8 <= source["max_requests"] <= SOURCE["max_requests"] or
             type(source.get("collection_seconds")) is not int or
@@ -60,10 +61,17 @@ def allowed(url):
         parsed = urlsplit(canonical_url(url))
     except (ValueError, TypeError):
         return False
-    if parsed.hostname != HOST or parsed.query:
+    if parsed.query:
         return False
-    return (parsed.path in ("", "/", "/robots.txt", "/privacy-policy", "/api/offers")
-            or bool(re.fullmatch(r"/o/[a-zA-Z0-9%_-]+(?:/c/new)?", parsed.path)))
+    if parsed.hostname == HOST:
+        return (parsed.path in ("", "/", "/robots.txt", "/privacy-policy", "/api/offers")
+                or bool(re.fullmatch(r"/o/[a-zA-Z0-9%_-]+(?:/c/new)?", parsed.path)))
+    if parsed.hostname == REVIEWED_CAREERS_HOST:
+        # Distinct published alias on the *same* employer-internal feed.
+        # Never accept jobs.smartways.io (third-party client vacancies).
+        return parsed.path == "/robots.txt" or bool(
+            re.fullmatch(r"/o/[a-zA-Z0-9%_-]+(?:/c/new)?", parsed.path))
+    return False
 
 
 class ReadOnlyClient(BudgetClient):

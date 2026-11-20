@@ -8,6 +8,8 @@
 
 - Prima prova live [#44793789634](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44793789634): **2 GET, 209.263 byte, 0 stage verificati**, stop fail-closed nel controllo del link al sito aziendale sulla homepage; nessuna verifica del modulo. Revisione: il tenant espone l'informativa `/privacy-policy`, che dichiara SmartWays e NIP **6793137813**, corrispondente al sito aziendale ufficiale. Controllo aggiornato con una GET della informativa e confronto legale stretto prima di procedere all'inventario; stessi host, limite 14 GET, 75 s e nessuna attivazione.
 
+- Diagnostica live successiva [#44794496376](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44794496376): **4 offerte attive nel feed interno**, tra cui `Recruitment Internship Programme (paid)`, **ID Recruitee 31252**, città Kraków, paese PL. Il feed Recruitee pubblica come URL ufficiale lo specifico alias `careers.smartways.io`, diverso dal tenant `smartways.recruitee.com` e dal portale clienti `jobs.smartways.io`. Il blocco host ha impedito correttamente la promozione: **5 GET, 416.873 byte, 0 candidature verificate**. Il pilota è stato limitatamente esteso al solo alias **già visto nel feed**, esclusi altri host e `jobs.smartways.io`; policy same-ID/ownership/form invariata. Verificare un nuovo run prima di dichiarare candidature.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.
