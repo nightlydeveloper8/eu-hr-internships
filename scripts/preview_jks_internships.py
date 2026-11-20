@@ -75,19 +75,12 @@ def preview():
         unresolved[project] = dict(detail=url, stage="title/city", headings=detail.h1[:2])
         if len(cities) != 1 or not re.search(r"\bhr\b|rekruttering", title):
             continue
-        # Only consider dated internship intakes in the vacancy copy before related job cards.
-        sections = normalized(" ".join(detail.body)).split("søg stillingen")
-        copy = sections[1] if len(sections) >= 3 else sections[0]
+        # A missing intake date is allowed. Only a matching posting's own
+        # structured deadline can establish expiry, never dates from related cards.
         stamp = datetime.now(timezone.utc).isoformat()
         if any(expired(post.get("validThrough"), stamp) for post in detail.jobposts()
                if normalized(post.get("title") or "") == title):
             unresolved[project]["stage"] = "expired deadline"
-            continue
-        intake = re.findall(r"(?:opstart|forår(?:et)?|januar|februar)[^.!?]{0,38}?\b(20\d{2})\b", copy)
-        unresolved[project]["stage"] = "current intake"
-        unresolved[project]["intake_years"] = sorted(set(intake))
-        rolling = "løbende opstart" in copy
-        if not rolling and not any(int(y) >= datetime.now(timezone.utc).year for y in intake):
             continue
         links = {urljoin(url, h) for h, label, _ in detail.links if normalized(label) == "søg stillingen"}
         unresolved[project]["stage"] = "unique employer apply link"
@@ -109,7 +102,7 @@ def preview():
         if (title in words and "fornavn" in words and "efternavn" in words and "e-mail" in words
                 and form_valid):
             unresolved.pop(project)
-            proofs.append(dict(country="DK", city=cities[0], title=title, project=project, intake="rolling" if rolling else sorted(set(intake)),
+            proofs.append(dict(country="DK", city=cities[0], title=title, project=project,
                                url=url, apply_url=form.url, checked_at=datetime.now(timezone.utc).isoformat()))
     return dict(inventories=inventories, detected=len(postings), checked=min(len(postings), 5), proofs=proofs,
                 unresolved=unresolved, requests=client.requests, bytes=client.bytes, closure_eligible=False)
