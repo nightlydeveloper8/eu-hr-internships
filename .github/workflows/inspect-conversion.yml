@@ -1,0 +1,130 @@
+name: Inspect conversion evidence
+on:
+  pull_request:
+    types: [synchronize]
+    paths: ['.github/workflows/inspect-conversion.yml']
+permissions:
+  contents: read
+jobs:
+  evidence:
+    if: github.head_ref == 'research/market-conversions-first-pass'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        probe: [employer, public-detail]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - if: matrix.probe == 'employer'
+        run: |
+          python -u - <<'PY'
+          from concurrent.futures import ThreadPoolExecutor
+          from hashlib import sha256
+          import json
+          from pathlib import Path
+          import re
+          from tempfile import TemporaryDirectory
+          from time import monotonic
+          from urllib.parse import urljoin
+          
+          from collector.ats_channel_discovery import safe_url
+          from collector.classify import canonical_url
+          from collector.daily import provision
+          from collector.pipeline import ROOT, finalize, now, process_source, read
+          from collector.runtime import BudgetClient
+          from collector.universal import Document
+          from collector.verification import verified_job
+          
+          candidates = [
+              ("smartways", "SmartWays", "PL", "jobs.smartways.io", "https://jobs.smartways.io/"),
+              ("cm-com", "CM.com", "NL", "jobs.cm.com", "https://jobs.cm.com/all-jobs"),
+              ("vdk", "VDK Groep B.V.", "NL", "vdkgroep.recruitee.com", "https://werkenbijvdkgroep.com/interne-vacatures"),
+          ]
+          stamp = now()
+          class Scoped(BudgetClient):
+              def request(self,url,method="GET",**kwargs):
+                  if method!="GET" or not self.redirect_scope_allowed(url):
+                      raise ValueError("Outside read-only pilot scope")
+                  return super().request(url,method=method,**kwargs)
+          
+          def check(item):
+              key,name,cc,host,origin=item
+              client=Scoped(seconds=55,max_requests=14,delay=0.8)
+              started=monotonic()
+              def allowed(url):
+                  p=safe_url(url)
+                  if not p:
+                      return False
+                  if origin and canonical_url(url)==canonical_url(origin):
+                      return True
+                  if origin and p.hostname!=host and p.hostname==safe_url(origin).hostname:
+                      return canonical_url(url)==canonical_url(origin) or (p.path=="/robots.txt" and not p.query)
+                  if p.hostname!=host:
+                      return False
+                  return p.path in {"/api/offers/","/api/offers","/api/feeds/offers.xml","/robots.txt"} or bool(
+                      re.fullmatch(r"/(?:l/[a-z]{2}(?:-[a-z]+)?/)?o/[a-zA-Z0-9%_-]+(?:/c/new)?/?",p.path))
+              client.redirect_scope_allowed=allowed
+              source=dict(id="recruitee-batch-"+key,company_id="recruitee-batch-"+key,employer=name,
+                  adapter="recruitee",enabled=False,allowed_hosts=[host],target_countries=[cc],
+                  feed_url=f"https://{host}/api/offers/",application_check="recruitee-linked",
+                  career_url=origin,permission_basis="Employer-published and reviewed public recruiting link",
+                  ownership_scope="reviewed-hosts",require_employer_identity=True,max_requests=14,collection_seconds=55)
+              row=dict(key=key,company=name,country=cc,host=host,origin=origin)
+              part=None
+              try:
+                  body,_,final=client.request(origin)
+                  page=Document(body,final)
+                  if safe_url(origin).hostname != host:
+                      assert any(safe_url(urljoin(final,h)) and safe_url(urljoin(final,h)).hostname==host
+                                 for h,_,_ in page.links), "Official page did not expose exact tenant"
+                  part=process_source(source,client,stamp)
+                  assert not source["enabled"]
+                  report=part["report"]
+                  verified=[{k:j.get(k) for k in ("id","external_id","title","city","country","url","apply_url")}
+                            for j in part["jobs"]
+                            if j.get("country")==cc and j.get("internship_type")=="internship"
+                            and verified_job(j,stamp) and j.get("application_verification")]
+                  row.update(status=report.get("status"),matching=report.get("matching"),records=report.get("collected"),
+                             verified=verified,error=report.get("error"),page_errors=report.get("page_errors",[])[:3])
+              except Exception as exc:
+                  row.update(status="incomplete",error=str(getattr(exc,"reason",exc))[:180],verified=[])
+              row.update(requests=client.requests,bytes=client.bytes,seconds=round(monotonic()-started,3))
+              return source,part,row
+          
+          for item in candidates:
+              _, _, row = check(item)
+              print("BATCH", json.dumps(row, ensure_ascii=False), flush=True)
+          PY
+      - if: matrix.probe == 'public-detail'
+        run: |
+          python -u - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          from collector.public_sources import EURES_API
+          from collector.runtime import BudgetClient
+          
+          catalog = json.loads(Path("data/catalog.json").read_text())
+          client = BudgetClient(seconds=110, max_requests=9, delay=10)
+          client.redirect_scope_allowed = lambda u: urlsplit(u).scheme == "https" and urlsplit(u).hostname == "europa.eu"
+          rows = [j for j in catalog["jobs"] if j.get("source_id")=="public-eu-eures" and j["status"]=="open"
+                  and j["internship_type"]=="internship" and (j["country"]=="IT" and j.get("city") in {"Padova", "Torino"} or
+                  j["country"]=="CH" and j["employer"] in {"Les hôpitaux universitaires de Genève","Teoxane SA"})]
+          seen=set()
+          for j in rows:
+              key=(j["country"], j["city"],j["employer"])
+              if key in seen and j["city"]!="Padova":
+                  continue
+              seen.add(key)
+              detail=client.json(EURES_API+"/jv/id/"+j["external_id"]+"?requestLang=en&preferredLang=en")
+              p=detail.get("jvProfiles",{})
+              p=p.get(detail.get("preferredLanguage")) or next(iter(p.values()),{})
+              links=set(re.findall(r'https?://[^\s<>"\\]+', json.dumps(p,ensure_ascii=False)))
+              safe=[u.split("?")[0][:240] for u in links if urlsplit(u).hostname in {"www.gigroup.it","jobs.smartrecruiters.com","www.teoxane.com","careers.teoxane.com","it.mygigroup.com"}]
+              print("DETAIL",j["id"],key, sorted(p.keys()),safe,flush=True)
+          print("DETAIL_COST",client.requests,client.bytes)
+          PY
