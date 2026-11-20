@@ -65,6 +65,11 @@ class InternalRecruiteeTests(unittest.TestCase):
                          sum(row.get("enabled",False) for row in provisioned))
 
     def test_rollout_gate_and_scoped_redirect_restoration(self):
+        # process_source() sorts the observed host allowlist after inventory.
+        # This is a permitted reordering, never an authorization to add hosts.
+        from collector.recruitee_alias import source_gate
+        sorted_row = dict(SOURCE, allowed_hosts=sorted(SOURCE["allowed_hosts"]))
+        self.assertEqual(source_gate(sorted_row), "staging")
         for change in ({"enabled": True}, {"enabled": True, "staging_only": False},
                        {"enabled": True, "staging_only": False, "rollout_approved": True},
                        {"allowed_hosts": [HOST, REVIEWED_CAREERS_HOST, "other.example"]}):

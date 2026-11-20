@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — blocco pre-rollout SmartWays individuato e risolto con prova live
+
+- Nuovo test della fonte **registrata e disabilitata** sulla [PR di audit #98](https://github.com/nightlydeveloper8/eu-hr-internships/pull/98): prima [run #44798192824](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44798192824) ha letto correttamente 4 offerte e 1 stage HR, ma ha lasciato la candidatura `incomplete` perché `process_source()` ordina alfabeticamente `allowed_hosts`; il gate confrontava erroneamente la lista con un ordine fisso. Risultato prima della correzione: **7 GET / 774.202 byte, 887 → 888 schede in staging ma 39 → 39 candidature**. La CI ordinaria precedente non aveva rilevato il problema.
+- Correzione fail-closed: richiedere ancora **esattamente due host distinti** e la medesima coppia autorizzata, indipendentemente dall'ordine; regole redirect/robots, policy v2, form same-ID, budget e attivazione restano invariati. Aggiunto test offline che simula l'ordinamento della pipeline, oltre ai test sugli host extra non autorizzati.
+- **[Secondo run live #44798505750](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44798505750): successo.** Stage SmartWays `31252`, Kraków, una candidatura verificata, **887 → 888 ID** (tutti i precedenti conservati), **39 → 40 candidature dirette staging**, **9 GET / 1.160.973 byte / 14,472 secondi**, 0 rendering, 0 invii. La fonte resta disabilitata; nessun merge/rollout. Prova della stessa data (20 novembre): NON è una riconferma in un giorno diverso.
+- Evidenze trasferite nel ramo #96; il workflow monouso di audit va eliminato/tenuto chiuso prima di qualsiasi integrazione. La fonte resta disabilitata e non configurata per la pubblicazione.
+
 ## 20 novembre 2026 — SmartWays preparata per la raccolta autonoma, fonte ancora disabilitata
 
 - PR successiva al [pilota #95](https://github.com/nightlydeveloper8/eu-hr-internships/pull/95): `pilot-smartways-internal-pl` è inserita una sola volta in `data/sources.json` con `enabled: false`, `staging_only: true`, `rollout_approved: false`; `max_requests: 14`, `collection_seconds: 75`, due soli host esatti del tenant interno. Registro **1.977 → 1.978**, **1.923 fonti attive invariate** (valori sulla base `main` dopo #86, non comprendono le altre PR aperte). Il numero di fonti registrate non equivale a nuove opportunità.
