@@ -81,32 +81,41 @@ def preview():
                 postings[match[1]] = url
 
     proofs = []
+    unresolved = {}
     for project, url in sorted(postings.items())[:5]:
         allowed.add(url)
         active_project = project
         detail, _ = page(url)
         title = next((normalized(t) for t in detail.h1 if "praktikant" in t.lower()), "")
         cities = [c for c in CITIES if re.search(r"\b" + c + r"\b", title)]
+        unresolved[project] = dict(detail=url, stage="title/city", headings=detail.h1[:2])
         if len(cities) != 1 or not re.search(r"\bhr\b|rekruttering", title):
             continue
         links = {urljoin(url, h) for h, label, _ in detail.links if normalized(label) == "søg stillingen"}
+        unresolved[project]["stage"] = "unique employer apply link"
         if len(links) != 1:
             continue
         apply = links.pop()
+        unresolved[project]["stage"] = "employer tenant and project"
         if not project_url(apply, project):
             continue
         form, raw = page(apply)
+        unresolved[project]["stage"] = "form destination"
         if urlsplit(form.url).path != FORM:
             continue
         fields = ApplicantFields()
         fields.feed(raw.decode("utf-8", "replace"))
         words = normalized(" ".join(form.body))
+        unresolved[project].update(stage="title and candidate fields", same_title=title in words,
+                                   candidate_labels=all(t in words for t in ("fornavn","efternavn","e-mail")),
+                                   input_count=len(fields.names))
         if (title in words and "fornavn" in words and "efternavn" in words and "e-mail" in words
                 and len(fields.names) >= 4):
+            unresolved.pop(project)
             proofs.append(dict(country="DK", city=cities[0], title=title, project=project,
                                url=url, apply_url=form.url, checked_at=datetime.now(timezone.utc).isoformat()))
     return dict(inventory=INDEX, detected=len(postings), checked=min(len(postings), 5), proofs=proofs,
-                requests=client.requests, bytes=client.bytes, closure_eligible=False)
+                unresolved=unresolved, requests=client.requests, bytes=client.bytes, closure_eligible=False)
 
 
 if __name__ == "__main__":

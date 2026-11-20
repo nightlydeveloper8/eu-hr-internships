@@ -1,7 +1,7 @@
 name: JKS scoped inventory and form proof
 on:
   pull_request:
-    types: [opened]
+    types: [synchronize]
     paths: ['scripts/preview_jks_internships.py']
 permissions:
   contents: read
