@@ -42,6 +42,54 @@ class JksScopeTests(unittest.TestCase):
                         rollout_authorization="synthetic-only-test-approval")
         self.assertEqual(source_gate(approved), "production")
 
+    def test_broader_current_index_recovers_other_cities_without_dropping_originals(self):
+        # The large country board is read once, but matching projects are
+        # capped. The first three previously reviewed indexes retain priority.
+        original = [
+            ("157063", "praktikant-til-hr-og-rekruttering-hos-jks-vejle", "Vejle"),
+            ("156880", "praktikant-til-hr-og-rekruttering-hos-jks-slagelse", "Slagelse"),
+            ("160886", "praktikant-til-hr-og-rekruttering-hos-jks-esbjerg", "Esbjerg"),
+            ("160782", "praktikant-til-hr-og-rekruttering-hos-jks-odense", "Odense"),
+        ]
+        new = [
+            ("160605", "praktikant-til-hr-og-rekruttering-hos-jks-randers", "Randers"),
+            ("160539", "praktikant-til-hr-og-rekruttering-hos-jks-frederikshavn", "Frederikshavn"),
+            ("160534", "praktikant-til-hr-og-rekruttering-hos-jks-hobro", "Hobro"),
+        ]
+        pages = {}
+        def link(item):
+            project, slug, _ = item
+            url = f"https://www.jks.dk/jobs/{slug}-{project}"
+            pages[url] = (f"<main><h1>Praktikant til HR og rekruttering hos JKS {item[2]}</h1>"
+                          f"<p>HR rekruttering - {item[2]}</p></main>").encode()
+            return f"<a href='{url}'>Se jobopslag</a>"
+        from collector.jks import INDEXES, MAX_PROJECTS
+        nationwide = '<a href="/jobs/praktikanter-til-hr-og-rekrutteringsopgaver-jks-i-hele-danmark-159170">National</a>'
+        for index, rows in zip(INDEXES, [original[:2], original[2:3], original[3:4], new]):
+            pages[index] = ("<html>" + "".join(link(row) for row in rows)
+                            + (nationwide if index == INDEXES[0] else "") + "</html>").encode()
+        class FakeClient:
+            def __init__(self):
+                self.requests = 0
+                self.redirect_scope_allowed = None
+            def request(self, url, **kwargs):
+                if self.redirect_scope_allowed and not self.redirect_scope_allowed(url):
+                    raise AssertionError("A page outside the reviewed scope was requested")
+                self.requests += 1
+                if url not in pages:
+                    raise AssertionError("Unexpected GET " + url)
+                return pages[url], 200, url
+        client = FakeClient()
+        entries = inventory(dict(SOURCE), client)
+        ids = [row["external_id"] for row in entries]
+        self.assertEqual(ids, [p[0] for p in (original + new[:2])])
+        self.assertEqual(len(ids), MAX_PROJECTS)
+        self.assertIn("160534", entries.stats["deferred_projects"])
+        self.assertIn("159170", entries.stats["unresolved_projects"])
+        self.assertFalse(entries.stats["closure_complete"])
+        self.assertEqual(client.requests, len(INDEXES) + MAX_PROJECTS)
+        self.assertLessEqual(client.requests + 2 * MAX_PROJECTS + 2, SOURCE["max_requests"])
+
     def test_talentech_requires_the_employer_and_exact_project(self):
         url = "https://candidate.hr-manager.net/ApplicationInit.aspx?cid=1601&ProjectId=160886"
         self.assertTrue(project_url(url, "160886"))

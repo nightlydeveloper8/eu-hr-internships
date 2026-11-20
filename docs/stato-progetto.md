@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — JKS: recupero strutturale di più sedi nel budget invariato
+
+- Proposta dipendente dalla [#92](https://github.com/nightlydeveloper8/eu-hr-internships/pull/92) e dalla [#90](https://github.com/nightlydeveloper8/eu-hr-internships/pull/90): al trio di indici JKS aggiunta la pagina ufficiale nazionale delle offerte. La fonte resta **disabilitata**. Gli indici già revisionati hanno precedenza e la scoperta resta entro **6 dettagli**; il limite della fonte resta **24 GET / 120 secondi** e resta obbligatorio un modulo Talentech same-project per ogni nuova candidatura.
+- Le pagine aziendali pubbliche mostrano ulteriori piste HR con sede Randers, Frederikshavn e Hobro; non sono state promosse a verified in questa attività. I progetti nazionali senza città vengono segnalati ma non interrogati; gli eventuali ID oltre il tetto sono registrati come `deferred_projects`. Inventario non esaustivo: nessuna chiusura da assenza.
+- Test offline riproduce quattro ID precedenti, due nuove sedi, una pista differita e l'annuncio nazionale senza città, simulando il massimo delle letture in modo conservativo (4 indici + 6 dettagli + 6 nuove letture di dettaglio + 6 formulari + 2 robots = 24). Risultato reale da misurare solo dopo una nuova preview bounded, distinta dal successo della CI; in questa modifica **0 GET live, 0 byte, 0 nuove candidature verificate**, nessun merge/rollout.
+
 ## 20 novembre 2026 — registrazione disabilitata JKS pronta per revisione, nessun rollout
 
 - Proposta dipendente dalla [PR #90](https://github.com/nightlydeveloper8/eu-hr-internships/pull/90): `jks-dk-internships` viene aggiunta una sola volta al registro delle fonti, con `enabled: false`, `staging_only: true`, `rollout_approved: false`; 1.977 → 1.978 fonti registrate, **1.923 fonti attive invariate**. Il numero delle fonti non è il numero di stage candidabili.
