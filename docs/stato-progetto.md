@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — conversioni per paese e confronto EURES
+
+[Analisi, inventari e prove per paese](ricerca/conversioni-paesi-20261120.md). [Bozza #88](https://github.com/nightlydeveloper8/eu-hr-internships/pull/88). 65 schede IT/CH/SE in 47 gruppi. Una conversione svedese riprodotta: [#89](https://github.com/nightlydeveloper8/eu-hr-internships/pull/89). Quattro moduli danesi riprodotti con la pipeline ordinaria presso JKS: [#90](https://github.com/nightlydeveloper8/eu-hr-internships/pull/90). EURES mirato 116 schede del paese contro 74, zero nuovi stage nei quattro mercati, conservati i 34 del singolo controllo NL. Sui sei mercati produttivi complessivi, le geografiche conservano 58/71 stage osservati dalle globali, con due nuove piste francesi per braccio. Il confronto a parità di pagine non giustifica un cambio in produzione. Nessuna attivazione. Priorità alla verifica delle fonti aziendali e alla revisione separata dei canali con esito positivo.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.
