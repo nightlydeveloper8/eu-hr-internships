@@ -1,0 +1,26 @@
+name: Pilot internal Recruitee SmartWays (bounded staging)
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/preview_internal_recruitee.py'
+      - 'tests/test_preview_internal_recruitee.py'
+      - '.github/workflows/pilot-smartways-internal.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: ${{ github.event.pull_request.head.repo.full_name == 'nightlydeveloper8/eu-hr-internships' && github.event.pull_request.head.ref == 'pilot/recruitee-smartways-internal-pl' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Python offline scope tests
+        run: python -m unittest tests.test_preview_internal_recruitee -v
+      - name: Scoped live employer board and applicant proof in temporary catalog
+        run: python -m scripts.preview_internal_recruitee

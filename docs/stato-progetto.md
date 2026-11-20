@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — SmartWays Polonia: distinto il portale di candidature esterne da quello degli stage interni
+
+- Il [pilota Recruitee #44769455657](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44769455657) ha letto **14 schede, 0 stage HR classificati** da `jobs.smartways.io`; costo 3 GET, 418.529 byte. Non è prova che SmartWays non abbia stage HR. Il portale aziendale interno `smartways.recruitee.com` pubblica invece **Recruitment Internship Programme (paid)** a Kraków, con modulo sul dettaglio. Non confondere i due tenant né il sito di offerte per clienti con le assunzioni interne.
+- Nuovo pilota read-only `scripts/preview_internal_recruitee.py`: controlla homepage e link al sito ufficiale, inventario Recruitee corrente sul solo host interno, classificazione ordinaria, form `/c/new` same posting con ID e identità aziendale, policy v2 e finalizzazione in directory temporanea ripetibile. Isolamento su una sola fonte disabilitata, 14 GET massimo, 75 s, nessun POST o rendering, nessuna closure per assenza, `main` e registry invariati.
+- La pagina pubblica `https://smartways.recruitee.com/o/recruitment-internship-programme-paid` e il relativo modulo sono una **pista**, non stage verified finché la [CI pilota](https://github.com/nightlydeveloper8/eu-hr-internships/actions) non fornisce prove dell'ID e form attuali con BudgetClient. Nuove candidature in produzione **0**; prima del run il beneficio di staging e il costo di questa modifica non sono ancora misurati. Nessun merge o attivazione richiesti.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.
