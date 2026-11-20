@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
+import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,applicationConfirmed,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
 test('all independent filters compose',()=>{assert.ok(matches(base,{...f,q:'talent Amsterdam',country:'NL',category:'talent-acquisition',workplace:'nl',english:true,ad:'en',type:'internship',workMode:'hybrid'}));assert.equal(matches(base,{...f,country:'MT'}),false);assert.equal(matches(base,{...f,q:'payroll'}),false);});
@@ -44,7 +44,7 @@ test('legacy, future and stale verification never appears as verified',()=>{
 
 test('opportunity counts separate archived, verified and opportunity types',()=>{
  const clock=Date.now();const jobs=[base,{...base,id:'2',status:'unverified'}, {...base,id:'3',status:'closed'}, {...base,id:'4',status:'unverified',internship_type:'working-student'}, {...base,id:'5',internship_type:'traineeship'}];
- assert.deepEqual(opportunityCounts(jobs,clock),{total:4,verified:2,unverified:2,verifiedInternships:1,verifiedWorkingStudents:0,verifiedTraineeships:1,closed:1,internships:2,workingStudents:1,traineeships:1});
+ assert.deepEqual(opportunityCounts(jobs,clock),{total:4,verified:2,applicationConfirmed:0,publicListings:0,unverified:2,verifiedInternships:1,verifiedWorkingStudents:0,verifiedTraineeships:1,closed:1,internships:2,workingStudents:1,traineeships:1});
  const selected=jobs.filter(j=>matches(j,{...f,unverified:true,country:'NL',type:'internship'}));
  assert.deepEqual(selected.map(j=>j.id),['1','2']);
  assert.equal(opportunityCounts(jobs,clock+49*60*60*1000).verified,0);
@@ -59,7 +59,7 @@ test('verification explanations are useful without exposing parser errors',()=>{
  const text=verificationMessage({...base,status:'unverified',verification:{reason:'TypeError: sequence item expected str instance, NoneType found'}});
  assert.match(text,/may still be open/);assert.doesNotMatch(text,/TypeError|NoneType|sequence/);
  assert.match(verificationMessage({...base,last_verified_at:'2020-01-01T00:00:00Z'}),/more than 48 hours/);
- assert.match(verificationMessage(base),/confirmed within/);
+ assert.match(verificationMessage(base),/listing is current/);
 });
 
 test('province jobs require workplace region and separate unverified internships',()=>{
@@ -163,8 +163,8 @@ test('map country counts separate verified and unverified, skip closed, count ea
  const clock=Date.now();
  const jobs=[base,{...base,id:'2',countries:['NL','DE'],status:'unverified'},{...base,id:'3',status:'closed'},{...base,id:'4',countries:['FR'],ownership_risk:{state:'historical-unreviewed-external-host'}}];
  const counts=countryCounts(jobs,clock);
- assert.deepEqual(counts.NL,{verified:1,unverified:1});
- assert.deepEqual(counts.DE,{verified:0,unverified:1});
+ assert.deepEqual(counts.NL,{verified:1,unverified:1,applicationConfirmed:0});
+ assert.deepEqual(counts.DE,{verified:0,unverified:1,applicationConfirmed:0});
  assert.equal(counts.FR,undefined);
 });
 test('map colour buckets',()=>{assert.deepEqual([0,1,2,4,5,9,10,24,25,90].map(countBucket),[0,1,2,2,3,3,4,4,5,5]);});
@@ -178,4 +178,27 @@ test('country language counts: verified ads only, English and local languages fi
  assert.deepEqual(languageBreakdown('IT',byLang.IT).map(x=>[x.code,x.kind]),[['en','english'],['it','local'],['de','other'],['unknown','unknown']]);
  assert.equal(languageBreakdown('IE',{en:2})[0].kind,'english');
  assert.equal(NATIONAL_LANGUAGES.CH.includes('it'),true);
+});
+
+test('application filter and counts distinguish current public listings from application evidence',()=>{
+  const confirmed={...base,application_verification:{method:'same-vacancy-applicant-form',url:'https://jobs.example.com/jobs/1/apply'}};
+  const publicListing={...base,id:'public',link_status:'public-api-active-listing'};
+  const publicWithConflictingEvidence={...confirmed,id:'conflict',verification:{...base.verification,policy:'public-api-active-listing'}};
+  const lead={...confirmed,id:'lead',status:'unverified'};
+  const invalidUrl={...confirmed,id:'invalid',application_verification:{...confirmed.application_verification,url:'javascript:alert(1)'}};
+  const quarantined={...confirmed,id:'quarantined',ownership_risk:{state:'historical-unreviewed-external-host'}};
+  const records=[confirmed,publicListing,publicWithConflictingEvidence,lead,invalidUrl,quarantined];
+  const filter={...f,applicationConfirmed:true};
+  assert.deepEqual(records.filter(j=>matches(j,filter)).map(j=>j.id),['1']);
+  assert.equal(matches(publicListing,f),true);
+  assert.equal(matches(lead,{...f,unverified:true}),true);
+  assert.equal(matches(lead,{...filter,unverified:true}),false);
+  assert.equal(applicationConfirmed({...confirmed,last_verified_at:'2020-01-01T00:00:00Z'}),false);
+  assert.equal(opportunityCounts(records).applicationConfirmed,1);
+  assert.equal(opportunityCounts(records).publicListings,2);
+  assert.equal(countryCounts(records).NL.applicationConfirmed,1);
+  assert.match(verificationMessage(confirmed),/application route were confirmed/);
+  assert.match(verificationMessage(publicWithConflictingEvidence),/official public employment service/);
+  assert.doesNotMatch(verificationMessage(invalidUrl),/route were confirmed/);
+  assert.equal(shareableFilterParams({...f,applicationConfirmed:true},f).get('applicationConfirmed'),'true');
 });

@@ -15,9 +15,9 @@ export function describeLanguages(breakdown = [], languageNames = {}) {
   return breakdown.map(({code, count}) => `${count} in ${code === 'unknown' ? 'an unidentified language' : languageNames[code] || code}`).join(' · ');
 }
 
-export function describeCountry(name, c = {verified:0, unverified:0}) {
-  if (c.verified) return `${plural(c.verified, 'verified HR opportunity', 'verified HR opportunities')}${c.unverified ? ` · ${c.unverified} more to check` : ''}`;
-  if (c.unverified) return `Nothing verified yet · ${plural(c.unverified, 'lead', 'leads')} to check`;
+export function describeCountry(name, c = {verified:0, unverified:0, applicationConfirmed:0}) {
+  if (c.verified) return `${plural(c.verified, 'current HR opening', 'current HR openings')} · ${c.applicationConfirmed ?? 0} with confirmed application routes${c.unverified ? ` · ${c.unverified} more to check` : ''}`;
+  if (c.unverified) return `No current openings confirmed · ${plural(c.unverified, 'lead', 'leads')} to check`;
   return 'No opportunities collected yet';
 }
 
