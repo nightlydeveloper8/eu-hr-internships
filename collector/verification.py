@@ -155,7 +155,7 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
         if fold(plain(post.get('title'))) == fold(record['title']) and expired(post.get('validThrough'), stamp):
             raise ApplicationClosed('Published application deadline has passed')
     reviewed = (verify_application(record,source,client,vacancy_document=(body,doc))
-                if source.get('application_check') in ('publication-linked','official-email','recruitee-linked')
+                if source.get('application_check') in ('publication-linked','official-email','recruitee-linked','jks-talentech')
                 else verify_application(record,source,client))
     if reviewed:
         return dict(reviewed,valid_through=fresh_deadline, vacancy_match='title', inventory=record.get('inventory_evidence', 'not-established'))
@@ -209,5 +209,19 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
 
 
 def verify_vacancy(record, source, client, stamp, observation=None):
+    if source.get("adapter") == "jks-index":
+        from .jks import job_url, project_url, scope, source_gate
+        source_gate(source)
+        url = canonical_url(record["url"])
+        match = job_url(url)
+        if not match or match[1] != str(record.get("posting_identifier") or ""):
+            raise ValueError("JKS detail outside the reviewed project")
+        with scope(client, lambda target: target == url or project_url(target, match[1])):
+            return _verify_vacancy(record, source, client, stamp, observation)
+    if source.get("reviewed_recruitee_alias"):
+        from .recruitee_alias import source_gate, scope
+        source_gate(source)
+        with scope(client):
+            return _verify_vacancy(record, source, client, stamp, observation)
     from .dynamic_ats import verify_with_fallback
     return verify_with_fallback(_verify_vacancy,record,source,client,stamp,observation)

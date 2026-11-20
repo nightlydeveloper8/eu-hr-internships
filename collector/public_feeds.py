@@ -77,6 +77,15 @@ def recruitee_public_xml_records(source,client):
 
 
 def recruitee_records(source,client):
+    if source.get('reviewed_recruitee_alias'):
+        from .recruitee_alias import source_gate, scope
+        source_gate(source)  # Fail before the first network request.
+        with scope(client):
+            return _recruitee_records(source,client)
+    return _recruitee_records(source,client)
+
+
+def _recruitee_records(source,client):
     if source.get('feed_format') == 'recruitee-public-xml':
         return recruitee_public_xml_records(source,client)
     body,_,final=client.request(approved(source['feed_url'],source));approved(final,source)
@@ -103,6 +112,9 @@ def recruitee_records(source,client):
             if j.get('careers_apply_url'):
                 out[-1]['observed_application_url']=approved(j['careers_apply_url'],source)
     if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate offers')
+    if source.get('reviewed_recruitee_alias'):
+        from .recruitee_alias import reconcile
+        out = reconcile(source, client, out)
     if source.get('report_feed_scope'):
         from .universal import Inventory
         return Inventory(out,dict(status='ok',complete=True,closure_complete=False,pages_read=1,

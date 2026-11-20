@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — integrazione pre-release a tre paesi, senza attivazioni
+
+- Integra in una sola bozza i rami review **#89+#91** (JobTech/Jobandtalent SE), **#90+#92** (JKS DK) e **#95+#96** (SmartWays PL), risolvendo il conflitto sul dispatcher `collector/verification.py`. Le tre fonti sono registrate ma **disabled**: registro **1.977→1.980**, fonti enabled **1.923→1.923**. Nessun merge, cron, rollout o variazione del catalogo di produzione. Non include #93 (indice JKS aggiuntivo senza resa incrementale nel run).
+- Prove live indipendenti del 20 novembre: **[PL #44798505750](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44798505750)** (1 modulo SmartWays 31252, 9 GET / 1.160.973 B), **[DK #44797837098](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44797837098)** (4 moduli JKS, 18 GET / 2.397.607 B) e **[SE #44770453908](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44770453908)** (1 Jobandtalent, 8 GET / 416.375 B; fix preservazione ID in #91 testato offline). Non esistono oggi prove in data differente, né misure di produzioni combinate.
+- **[Piano di rilascio e criteri](piano-rilascio-tre-paesi-20261120.md)**: prove, stop, costi, catene originali e percorsi manual-only. Delta teorico *solo previa riconferma e attivazione*: 887→892 ID, 39→45 candidature; non presentarlo come risultato pubblicato. Test integrati su host, gate, provisioning e ID. Prossimo passo: CI del ramo, seconda giornata di prove live, richiesta esplicita di autorizzazione distinta per merge e rollout, poi primo ciclo quotidiano verificato.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.
