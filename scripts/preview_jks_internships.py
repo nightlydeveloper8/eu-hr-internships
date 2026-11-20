@@ -12,7 +12,8 @@ from collector.universal import Document
 INDEX = "https://www.jks.dk/om-jks/job-i-jks"
 ATS = "candidate.hr-manager.net"
 DETAIL = re.compile(r"/jobs/[a-z0-9-]+-([0-9]+)$")
-CITIES = ("esbjerg", "odense", "vejle", "fredericia")
+OFFICES = ("esbjerg", "odense")
+CITIES = ("esbjerg", "odense", "vejle", "fredericia", "slagelse", "randers", "hobro", "frederikshavn")
 FORM = "/ApplicationForm/SinglePageApplicationForm.aspx"
 
 
@@ -50,7 +51,8 @@ def project_url(url, project):
 
 def preview():
     client = BudgetClient(seconds=100, max_requests=18, delay=1)
-    allowed = {INDEX}
+    inventories = [INDEX, *("https://www.jks.dk/for-vikarer/" + city for city in OFFICES)]
+    allowed = set(inventories)
     active_project = None
 
     def scoped(url):
@@ -70,19 +72,20 @@ def preview():
         return Document(raw, final), raw
 
     client.redirect_scope_allowed = scoped
-    index, _ = page(INDEX)
     postings = {}
-    for href, label, _ in index.links:
-        url = urljoin(INDEX, href)
-        parsed = urlsplit(url)
-        match = DETAIL.fullmatch(parsed.path)
-        if parsed.scheme == "https" and parsed.netloc == "www.jks.dk" and match and not parsed.query:
-            if "praktikant" in parsed.path and re.search(r"-(hr|rekruttering\w*)-", parsed.path):
-                postings[match[1]] = url
+    for inventory in inventories:
+        index, _ = page(inventory)
+        for href, label, _ in index.links:
+            url = urljoin(inventory, href)
+            parsed = urlsplit(url)
+            match = DETAIL.fullmatch(parsed.path)
+            if parsed.scheme == "https" and parsed.netloc == "www.jks.dk" and match and not parsed.query:
+                if "praktikant" in parsed.path and re.search(r"-(hr|rekruttering\w*)-", parsed.path):
+                    postings[match[1]] = url
 
     proofs = []
     unresolved = {}
-    for project, url in sorted(postings.items())[:5]:
+    for project, url in sorted(postings.items(), reverse=True)[:5]:
         allowed.add(url)
         active_project = project
         detail, _ = page(url)
@@ -90,6 +93,13 @@ def preview():
         cities = [c for c in CITIES if re.search(r"\b" + c + r"\b", title)]
         unresolved[project] = dict(detail=url, stage="title/city", headings=detail.h1[:2])
         if len(cities) != 1 or not re.search(r"\bhr\b|rekruttering", title):
+            continue
+        # Only consider dated internship intakes in the vacancy copy before related job cards.
+        copy = normalized(" ".join(detail.body)).split("søg stillingen", 1)[-1].split("andre ledige", 1)[0]
+        intake = re.findall(r"(?:opstart|forår(?:et)?|januar|februar)[^.!?]{0,38}?\b(20\d{2})\b", copy)
+        unresolved[project]["stage"] = "current intake"
+        unresolved[project]["intake_years"] = sorted(set(intake))
+        if not any(int(y) == datetime.now(timezone.utc).year + 1 for y in intake):
             continue
         links = {urljoin(url, h) for h, label, _ in detail.links if normalized(label) == "søg stillingen"}
         unresolved[project]["stage"] = "unique employer apply link"
@@ -114,7 +124,7 @@ def preview():
             unresolved.pop(project)
             proofs.append(dict(country="DK", city=cities[0], title=title, project=project,
                                url=url, apply_url=form.url, checked_at=datetime.now(timezone.utc).isoformat()))
-    return dict(inventory=INDEX, detected=len(postings), checked=min(len(postings), 5), proofs=proofs,
+    return dict(inventories=inventories, detected=len(postings), checked=min(len(postings), 5), proofs=proofs,
                 unresolved=unresolved, requests=client.requests, bytes=client.bytes, closure_eligible=False)
 
 
