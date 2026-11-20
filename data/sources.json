@@ -50405,5 +50405,96 @@
     "reviewed_on": "2026-11-18",
     "permission_basis": "Official employer career site (Eightfold); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
     "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+  },
+  {
+    "id": "recruitee-ampelmann-nl",
+    "company_id": "ampelmann-operations-b-v",
+    "employer": "Ampelmann Operations B.V.",
+    "adapter": "recruitee",
+    "enabled": true,
+    "feed_format": "recruitee-public-xml",
+    "application_check": "recruitee-linked",
+    "feed_url": "https://careers.ampelmann.nl/api/feeds/offers.xml",
+    "career_url": "https://careers.ampelmann.nl/",
+    "allowed_hosts": [
+      "careers.ampelmann.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "permission_basis": "Reviewed employer-published XML and same-ID application; runtime robots gate",
+    "max_requests": 16,
+    "collection_seconds": 70
+  },
+  {
+    "id": "recruitee-batch-vigo-groep",
+    "company_id": "recruitee-batch-vigo-groep",
+    "employer": "VIGO groep",
+    "adapter": "recruitee",
+    "enabled": true,
+    "application_check": "recruitee-linked",
+    "feed_url": "https://werkenbijvigogroep.recruitee.com/api/offers/",
+    "career_url": "https://werkenbijvigogroep.recruitee.com/",
+    "allowed_hosts": [
+      "werkenbijvigogroep.recruitee.com"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "report_feed_scope": true,
+    "discovery_scope": "Published employer Careers Site inventory. No closures inferred from absence.",
+    "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
+    "max_requests": 14,
+    "collection_seconds": 55
+  },
+  {
+    "id": "recruitee-batch-chr-haute-senne",
+    "company_id": "recruitee-batch-chr-haute-senne",
+    "employer": "CHR HAUTE SENNE",
+    "adapter": "recruitee",
+    "enabled": true,
+    "application_check": "recruitee-linked",
+    "feed_url": "https://chrhautesenne.recruitee.com/api/offers/",
+    "career_url": "https://chrhautesenne.recruitee.com/",
+    "allowed_hosts": [
+      "chrhautesenne.recruitee.com"
+    ],
+    "target_countries": [
+      "BE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "report_feed_scope": true,
+    "discovery_scope": "Published employer Careers Site inventory. No closures inferred from absence.",
+    "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
+    "max_requests": 14,
+    "collection_seconds": 55
+  },
+  {
+    "id": "recruitee-batch-abrio",
+    "company_id": "recruitee-batch-abrio",
+    "employer": "ABRIO GmbH",
+    "adapter": "recruitee",
+    "enabled": true,
+    "application_check": "recruitee-linked",
+    "feed_url": "https://abriogmbh.recruitee.com/api/offers/",
+    "career_url": "https://abriogmbh.recruitee.com/",
+    "allowed_hosts": [
+      "abriogmbh.recruitee.com"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "report_feed_scope": true,
+    "discovery_scope": "Published employer Careers Site inventory. No closures inferred from absence.",
+    "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
+    "max_requests": 14,
+    "collection_seconds": 55
   }
 ]
