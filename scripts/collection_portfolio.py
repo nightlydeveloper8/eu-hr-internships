@@ -9,9 +9,9 @@ from pathlib import Path
 
 from collector.ats_channel_discovery import safe_url
 from collector.classify import COUNTRIES, NON_EU, fold, plain
-from collector.public_sources import PUBLIC_API_ADAPTERS
+from collector.public_sources import ACTIVE_LISTING, PUBLIC_API_ADAPTERS
 from collector.universal import PROVIDERS
-from collector.verification import verified_job
+from collector.verification import POLICY_VERSION, verified_job
 
 
 def recent(value, clock):
@@ -94,17 +94,18 @@ def portfolio(catalog, coverage, registry):
         proof = job.get("verification", {})
         source_id = job.get("source_id")
         is_public = proof.get("policy") == "public-api-active-listing"
-        if verified_job(job, stamp):
-            if job.get("application_verification") and not is_public:
-                country_counts["direct"] += 1
-                adapters[job["source_type"]]["direct_catalog_internships"] += 1
-            elif is_public:
-                country_counts["public_listings"] += 1
-                country_counts["public_leads_with_external_url"] += int(
-                    bool(safe_url(job.get("external_application_url"))))
-                employer = fold(plain(job.get("employer")))
-                if employer:
-                    public_by_employer[country, employer].append(job)
+        if not is_public and job.get("application_verification") and verified_job(job, stamp):
+            country_counts["direct"] += 1
+            adapters[job["source_type"]]["direct_catalog_internships"] += 1
+        if (is_public and job.get("status") == "open" and job.get("link_status") == ACTIVE_LISTING
+                and proof.get("state") == "verified" and proof.get("policy_version") == POLICY_VERSION
+                and recent(job.get("last_verified_at"), clock)):
+            country_counts["public_listings"] += 1
+            country_counts["public_leads_with_external_url"] += int(
+                bool(safe_url(job.get("external_application_url"))))
+            employer = fold(plain(job.get("employer")))
+            if employer:
+                public_by_employer[country, employer].append(job)
         if (proof.get("state") not in ("incomplete", "blocked") or job.get("status") != "unverified"
                 or not recent(job.get("last_seen_at"), clock) or source_id not in attempts
                 or is_public or not recent(proof.get("checked_at"), clock)):

@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   evaluate:
-    if: github.event.head_commit.message == 'Rank portfolio work and collect application route evidence without extra requests'
+    if: github.event.head_commit.message == 'Count public open status with its own evidence marker'
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:

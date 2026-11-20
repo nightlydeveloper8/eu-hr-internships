@@ -43,7 +43,8 @@ class CollectionPortfolioTests(unittest.TestCase):
                         verification=dict(state="verified", policy_version=2))
         records = [
             job("direct", **positive, application_verification={"method": "form"}),
-            job("public", employer="Company AB", **(positive | {"verification": positive["verification"] | {
+            job("public", employer="Company AB", **(positive | {"link_status": "public-api-active-listing",
+                "verification": positive["verification"] | {
                 "policy": "public-api-active-listing"}}), external_application_url="https://employer.eu/apply"),
             job("stale", **(positive | {"last_verified_at": "2026-11-01T08:00:00Z"}),
                 application_verification={"method": "form"}),
