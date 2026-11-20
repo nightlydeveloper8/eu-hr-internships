@@ -1,0 +1,17 @@
+name: JKS scoped inventory and form proof
+on:
+  pull_request:
+    types: [opened]
+    paths: ['scripts/preview_jks_internships.py']
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.head_ref == 'pilot/jks-dk-inventory-forms'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python -m scripts.preview_jks_internships
