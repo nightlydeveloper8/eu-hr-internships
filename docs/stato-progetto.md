@@ -1,5 +1,21 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — lotto Recruitee con sei candidature confermate in staging
+
+- Base `49f9b5f`, catalogo pubblicato con 877 ID e 33 stage con candidatura diretta. Sei nuovi ID verificati in staging portano il totale temporaneo a 883 ID e 39 stage diretti. Paesi Bassi 18 → 22, Belgio 3 → 4, Germania 3 → 4. Nessun ID precedente perso, nessun duplicato di ID e file di catalogo versionato invariato. [Prova live del lotto](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44738908240)
+- Il lotto riunisce Ampelmann, VIGO, CHR Haute Senne e ABRIO. Il collector richiede feed corrente, coincidenza di titolo e ID, host rivisto e modulo pubblico per la stessa vacancy. Recruitee riusa la pagina fresca già letta per la verifica. Ampelmann ha impiegato quattro GET in questo ciclo. I candidati del lotto sono:
+
+| Datore e sede | ID Recruitee e candidature |
+| --- | --- |
+| Ampelmann, Delft | [2822573 · People & Organisation](https://careers.ampelmann.nl/o/internship-people-organisation-1/c/new) |
+| VIGO, Venray | [2834709 · Recruitment](https://werkenbijvigogroep.recruitee.com/o/meewerkstage-recruitment-venray-en-zetten/c/new), [2795750 · HR Leren & Ontwikkelen](https://werkenbijvigogroep.recruitee.com/o/stagiaire-hr-leren-ontwikkelen-32-uur-vigo-2027/c/new), [2532996 · HR Advies](https://werkenbijvigogroep.recruitee.com/o/afstudeerstage-hr-advies-venray/c/new) |
+| CHR Haute Senne, Soignies | [2157482 · Développement RH](https://chrhautesenne.recruitee.com/o/stagiaire-en-ressources-humaines-developpement-des-ressources-humaines-soft-rh/c/new) |
+| ABRIO, Francoforte | [2758064 · Recruiting & Employer Branding](https://abriogmbh.recruitee.com/o/praktikum-hr-recruiting-employer-branding-mwd-3/c/new) |
+
+- Life Outdoor Living espone un host aziendale diverso dal tenant e un redirect esterno al perimetro verificato. Deerns pubblica URL di host estranei all'allowlist controllata. Gli indici correnti GoodDays e De Nieuwe Zaak non hanno restituito i link attesi al collector. Il controllo puntuale si è fermato rispettivamente alla prova di associazione con l'ID e alla validazione del percorso del modulo. Questi candidati restano in ricerca. [Inventario e hold](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44739418958) · [Verifica dei percorsi](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44739624176)
+- Misura dei piloti live: 52 tentativi GET e 18.591.880 byte per il lotto e i controlli indipendenti. Il primo lotto ha impiegato 32 GET e 16.315.466 byte, dei quali 12.691.834 attribuiti al feed e alle pagine di VIGO. I quattro profili preparati sono disabilitati e sotto hold. I rispettivi inventari sono esclusi dalle chiusure per assenza.
+- Simulazione in memoria: attivazione delle sole quattro fonti, da 1.919 a 1.923 attive, zero fonti universali aggiunte, provisioning idempotente e 25 test mirati superati. La bozza consolida il codice delle [PR #80](https://github.com/nightlydeveloper8/eu-hr-internships/pull/80) e [#81](https://github.com/nightlydeveloper8/eu-hr-internships/pull/81) sulla base corrente. Serve autorizzazione esplicita per attivare le quattro fonti, fare merge e seguire il ciclo automatico fino al sito pubblico. [Verifica di rilascio](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44739820014)
+
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 
 **Incidente accertato:** la [run giornaliera #44038748025](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44038748025), avviata il 17 novembre 07:26 UTC dal cron (commit main `8aad7fa`), si è conclusa **failure** nel job `test` prima di `collect` e `publish` (entrambi **skipped**). Risultato: 451 test Python eseguiti, **2 falliti**, nessuna nuova raccolta né pubblicazione attribuibile a quella run. L'avviso Node.js 20 deprecato non è la causa del fallimento.
