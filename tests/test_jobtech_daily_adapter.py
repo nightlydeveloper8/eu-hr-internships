@@ -247,6 +247,8 @@ class AdapterIntegrationTests(unittest.TestCase):
                        discovery_client=Discovery(),ats_client_factory=ATS)
         self.assertEqual(result["state"],"staging-policy-v2-verified",result)
         self.assertEqual(result["verified_staging_new_distinct"],1)
+        self.assertEqual(result["staging_direct_internships_gained"],1)
+        self.assertEqual(result["converted_existing_ids"],[])
         self.assertEqual(result["staging_verified_internships"],1)
         self.assertEqual(result["closure_eligible"],[])
         self.assertEqual(result["requests"],result["feed_requests"]+result["ats_requests"])

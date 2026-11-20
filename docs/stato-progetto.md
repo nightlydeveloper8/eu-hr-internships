@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — JobTech Malmö sul catalogo corrente
+
+[Bozza #89](https://github.com/nightlydeveloper8/eu-hr-internships/pull/89). [Prova live](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44770453908) con 8 GET, 416.375 byte e 7,598 s. JobTech `31558200` e Teamtailor `8503489` sullo stesso ID storico. In staging 887 → 887 ID e 39 → 40 candidature dirette. Verificati idempotenza e aggiornamento pubblico successivo. Fonte disabilitata, zero GET nel percorso ordinario. Per pubblicare serve autorizzazione specifica al rollout di questa fonte. La #83 conserva la prova precedente.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.

@@ -12,6 +12,7 @@ from tempfile import TemporaryDirectory
 import time
 
 from collector.pipeline import ROOT, process_source, finalize, read
+from collector.verification import verified_job
 from collector.runtime import BudgetClient
 from collector.official_feed_adapter import ADAPTER, source_gate
 
@@ -40,6 +41,11 @@ def preview(source, baseline, registry, *, discovery_client=None,
     verified=[r for r in added if r["status"]=="open"
               and r["internship_type"]=="internship"
               and r["verification"]["state"]=="verified"]
+    def direct_ids(jobs):
+        return {job["id"] for job in jobs if job.get("internship_type") == "internship"
+                and verified_job(job, stamp) and (job.get("application_verification") or {}).get("url")}
+
+    gained = direct_ids(staged["jobs"]) - direct_ids(baseline["jobs"])
     r=part["report"]
     return dict(
         mode="manual-disabled-source-preflight-only",
@@ -55,6 +61,8 @@ def preview(source, baseline, registry, *, discovery_client=None,
         requests=r.get("requests",0),bytes_read=r.get("bytes_read",0),
         elapsed_seconds=round(time.monotonic()-start,3),
         verified_staging_new_distinct=len(verified),
+        staging_direct_internships_gained=len(gained),
+        converted_existing_ids=sorted(gained & baseline_ids),
         baseline_catalog_ids=len(baseline_ids),staged_catalog_ids=len(staged_ids),
         baseline_catalog_ids_lost=len(baseline_ids-staged_ids),
         duplicate_catalog_ids=len(staged["jobs"])-len(staged_ids),
