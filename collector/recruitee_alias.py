@@ -23,7 +23,9 @@ def source_gate(source):
             or source.get("employer") != "SmartWays"
             or source.get("adapter") != "recruitee"
             or source.get("reviewed_recruitee_alias") != "smartways-internal"
-            or source.get("allowed_hosts") != [TENANT, ALIAS]
+            or not isinstance(source.get("allowed_hosts"), list)
+            or len(source["allowed_hosts"]) != 2
+            or set(source["allowed_hosts"]) != {TENANT, ALIAS}
             or source.get("application_check") != "recruitee-linked"
             or source.get("feed_url") != f"https://{TENANT}/api/offers/"
             or source.get("target_countries") != ["PL"]
