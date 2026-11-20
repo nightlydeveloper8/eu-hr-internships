@@ -1,0 +1,47 @@
+name: Verify live Recruitee rollout
+on:
+  push:
+    branches: ['verify/recruitee-production-20261120']
+    paths: ['.github/workflows/verify-recruitee-production.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event.head_commit.message == 'Check the published Recruitee catalog from the public URL'
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import time
+          import urllib.request
+          
+          base = "https://people-placement-eu.pages.dev/"
+          headers = {"User-Agent": "PeoplePlacement-DeploymentCheck/1.0 (+https://github.com/nightlydeveloper8/eu-hr-internships)"}
+          def get(path):
+              with urllib.request.urlopen(urllib.request.Request(base + path, headers=headers), timeout=15) as reply:
+                  if reply.geturl() != base + path or reply.status != 200:
+                      raise RuntimeError("Unexpected public response")
+                  return reply.read()
+          
+          local = pathlib.Path("data/catalog.json").read_bytes()
+          for i in range(5):
+              payload = get("data/catalog.json")
+              if payload == local:
+                  break
+              if i < 4:
+                  time.sleep(8)
+          assert payload == local, "The public catalog differs from the published GitHub commit"
+          page = get("").decode("utf-8")
+          assert "<html" in page.lower() and "People Placement" in page
+          catalog = json.loads(payload)
+          ids = {"recruitee-ampelmann-nl", "recruitee-batch-vigo-groep", "recruitee-batch-chr-haute-senne", "recruitee-batch-abrio"}
+          direct = [j for j in catalog["jobs"] if j.get("status") == "open" and j.get("internship_type") == "internship" and j.get("application_verification")]
+          cohort = [j for j in direct if j.get("source_id") in ids]
+          print("PUBLIC_SITE_PROOF " + json.dumps({"http": 200, "catalog_sha256": hashlib.sha256(payload).hexdigest(), "rows": len(catalog["jobs"]), "direct": len(direct), "cohort": [{"source": j["source_id"], "id": j["id"], "title": j["title"]} for j in cohort], "updated_at": catalog["updated_at"]}))
+          PY
