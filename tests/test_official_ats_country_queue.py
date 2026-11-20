@@ -4,11 +4,13 @@ from scripts.official_ats_country_queue import ats_hint, build_report, safe_http
 
 
 def job(id, country, status="unverified", **more):
-    return dict(id=id, country=country, countries=[country], status=status,
-                internship_type="internship", title="HR Intern",
-                employer="Employer", source_id="employer-one",
-                source_type="employer-index",
-                url="https://careers.example.com/jobs/" + id, **more)
+    row = dict(id=id, country=country, countries=[country], status=status,
+               internship_type="internship", title="HR Intern",
+               employer="Employer", source_id="employer-one",
+               source_type="employer-index",
+               url="https://careers.example.com/jobs/" + id)
+    row.update(more)
+    return row
 
 
 class CountryQueueTests(unittest.TestCase):
