@@ -17,7 +17,9 @@ DETAIL = re.compile(r"/jobs/[a-z0-9-]+-([0-9]+)$")
 CITIES = ("Esbjerg", "Odense", "Vejle", "Fredericia", "Slagelse", "Randers", "Hobro", "Frederikshavn")
 FORM = "/ApplicationForm/SinglePageApplicationForm.aspx"
 SOURCE = dict(id="jks-dk-internships", employer="JKS", adapter="jks-index",
-              application_check="jks-talentech", enabled=False, allowed_hosts=[HOST, ATS],
+              application_check="jks-talentech", enabled=False, staging_only=True,
+              rollout_approved=False, ownership_scope="reviewed-hosts",
+              require_employer_identity=True, allowed_hosts=[HOST, ATS],
               career_url=INDEXES[0], target_countries=["DK"], max_requests=24, collection_seconds=120)
 
 
@@ -61,10 +63,31 @@ def scope(client, allowed):
             client.redirect_scope_allowed = previous
 
 
+def source_gate(source):
+    """Fail closed until a separate, explicit JKS production rollout is approved."""
+    if (not isinstance(source, dict)
+            or any(source.get(key) != SOURCE[key] for key in (
+                "id", "employer", "adapter", "application_check", "career_url",
+                "target_countries", "ownership_scope", "require_employer_identity"))
+            or set(source.get("allowed_hosts", [])) != set(SOURCE["allowed_hosts"])
+            or type(source.get("max_requests")) is not int
+            or not 8 <= source["max_requests"] <= SOURCE["max_requests"]
+            or type(source.get("collection_seconds")) is not int
+            or not 40 <= source["collection_seconds"] <= SOURCE["collection_seconds"]):
+        raise ValueError("JKS source is not in the reviewed identity, host or budget scope")
+    if (source.get("enabled") is False and source.get("staging_only") is True
+            and source.get("rollout_approved") is False):
+        return "staging"
+    if (source.get("enabled") is True and source.get("staging_only") is False
+            and source.get("rollout_approved") is True
+            and isinstance(source.get("rollout_authorization"), str)
+            and len(source["rollout_authorization"].strip()) >= 10):
+        return "production"
+    raise ValueError("JKS activation requires separate explicit rollout approval")
+
+
 def inventory(source, client):
-    if (source["id"] != SOURCE["id"] or set(source["allowed_hosts"]) != set(SOURCE["allowed_hosts"])
-            or source.get("application_check") != SOURCE["application_check"]):
-        raise ValueError("Expected the reviewed JKS source")
+    source_gate(source)
     postings = {}
     for index in INDEXES:
         with scope(client, lambda url: url == index):
@@ -100,6 +123,7 @@ def inventory(source, client):
 
 
 def application(record, source, client, doc):
+    source_gate(source)
     from .verification import applicant_form
 
     project = str(record.get("posting_identifier") or "")

@@ -50496,5 +50496,30 @@
     "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
     "max_requests": 14,
     "collection_seconds": 55
+  },
+  {
+    "id": "jks-dk-internships",
+    "employer": "JKS",
+    "adapter": "jks-index",
+    "application_check": "jks-talentech",
+    "enabled": false,
+    "staging_only": true,
+    "rollout_approved": false,
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "allowed_hosts": [
+      "www.jks.dk",
+      "candidate.hr-manager.net"
+    ],
+    "career_url": "https://www.jks.dk/om-jks/job-i-jks",
+    "target_countries": [
+      "DK"
+    ],
+    "max_requests": 24,
+    "collection_seconds": 120,
+    "discovery_scope": "Three observed JKS indexes and current matching vacancy pages; partial sample, no absence-based closures",
+    "permission_basis": "JKS employer inventory and same-project Talentech application; employer host, exact tenant/project, robots and enabled form reviewed in live staging pilot; separate rollout approval required",
+    "status": "staging-only-disabled",
+    "activation_gate": "Separate explicit review and rollout authorization; no automatic activation"
   }
 ]

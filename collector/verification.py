@@ -210,7 +210,8 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
 
 def verify_vacancy(record, source, client, stamp, observation=None):
     if source.get("adapter") == "jks-index":
-        from .jks import job_url, project_url, scope
+        from .jks import job_url, project_url, scope, source_gate
+        source_gate(source)
         url = canonical_url(record["url"])
         match = job_url(url)
         if not match or match[1] != str(record.get("posting_identifier") or ""):
