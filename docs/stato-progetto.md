@@ -1,5 +1,13 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — lotto Recruitee verificato in produzione
+
+- Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.
+- Il [run automatico](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44744205480) ha completato test, 16 shard e pubblicazione. Il commit catalogo `7c5ce80` contiene 887 ID distinti rispetto ai 877 precedenti, tutti conservati. Le candidature HR dirette aperte passano da 33 a 39, con Paesi Bassi 18 → 22, Belgio 3 → 4 e Germania 3 → 4.
+- Le sei candidature del lotto sono aperte e verificate con policy v2 e modulo ufficiale della stessa vacancy. La [verifica pubblica](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44748297519) ha ricevuto HTTP 200 per homepage e catalogo e ha confrontato byte per byte il catalogo online con `7c5ce80`. SHA-256 `ed0bbca0364b4d9cad668263bd852401416e6cac08358ff171cb5783204fdd73`.
+- Le quattro fonti hanno raccolto 144 schede e verificato sei candidature con 20 richieste, 15.524.027 byte e 26,61 s complessivi di lavoro per fonte. Hanno concluso senza errori. VIGO rappresenta 12.626.582 byte del lotto. Il catalogo globale resta parziale per lo stato di altre fonti.
+- Prossimo passo: misurare la tenuta delle sei candidature e il costo VIGO dal prossimo ciclo ordinario già configurato.
+
 ## 20 novembre 2026 — lotto Recruitee con sei candidature confermate in staging
 
 - Base `49f9b5f`, catalogo pubblicato con 877 ID e 33 stage con candidatura diretta. Sei nuovi ID verificati in staging portano il totale temporaneo a 883 ID e 39 stage diretti. Paesi Bassi 18 → 22, Belgio 3 → 4, Germania 3 → 4. Nessun ID precedente perso, nessun duplicato di ID e file di catalogo versionato invariato. [Prova live del lotto](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44738908240)
