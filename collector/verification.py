@@ -209,5 +209,13 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
 
 
 def verify_vacancy(record, source, client, stamp, observation=None):
+    if source.get("adapter") == "jks-index":
+        from .jks import job_url, project_url, scope
+        url = canonical_url(record["url"])
+        match = job_url(url)
+        if not match or match[1] != str(record.get("posting_identifier") or ""):
+            raise ValueError("JKS detail outside the reviewed project")
+        with scope(client, lambda target: target == url or project_url(target, match[1])):
+            return _verify_vacancy(record, source, client, stamp, observation)
     from .dynamic_ats import verify_with_fallback
     return verify_with_fallback(_verify_vacancy,record,source,client,stamp,observation)

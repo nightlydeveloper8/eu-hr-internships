@@ -32,7 +32,11 @@ def preview():
                    url=j["url"], application=j["application_verification"]["url"]) for j in staged["jobs"]
               if j["source_id"] == source["id"] and j.get("country") == "DK" and j["internship_type"] == "internship"
               and verified_job(j, stamp) and (j.get("application_verification") or {}).get("method") == "jks-talentech-same-project-form"]
-    return dict(proofs=proofs, ids_before=len(before), ids_after=len(after), report=part["report"],
+    def direct(jobs):
+        return sum(verified_job(j, stamp) and j.get("internship_type") == "internship"
+                   and bool((j.get("application_verification") or {}).get("url")) for j in jobs)
+
+    return dict(proofs=proofs, direct_before=direct(catalog["jobs"]), direct_after=direct(staged["jobs"]), ids_before=len(before), ids_after=len(after), report=part["report"],
                 requests=client.requests, bytes=client.bytes, stamp=stamp)
 
 

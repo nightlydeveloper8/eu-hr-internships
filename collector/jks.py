@@ -62,7 +62,7 @@ def scope(client, allowed):
 
 
 def inventory(source, client):
-    if (source["id"] != SOURCE["id"] or source["allowed_hosts"] != SOURCE["allowed_hosts"]
+    if (source["id"] != SOURCE["id"] or set(source["allowed_hosts"]) != set(SOURCE["allowed_hosts"])
             or source.get("application_check") != SOURCE["application_check"]):
         raise ValueError("Expected the reviewed JKS source")
     postings = {}
@@ -104,7 +104,7 @@ def application(record, source, client, doc):
 
     project = str(record.get("posting_identifier") or "")
     match = job_url(doc.url)
-    if (source.get("id") != SOURCE["id"] or source.get("allowed_hosts") != SOURCE["allowed_hosts"]
+    if (source.get("id") != SOURCE["id"] or set(source.get("allowed_hosts", [])) != set(SOURCE["allowed_hosts"])
             or source.get("adapter") != SOURCE["adapter"] or record.get("inventory_evidence") != "current-employer-index"
             or not match or match[1] != project or norm(record["title"]) not in {norm(t) for t in doc.h1}):
         raise ValueError("JKS vacancy identity mismatch")
