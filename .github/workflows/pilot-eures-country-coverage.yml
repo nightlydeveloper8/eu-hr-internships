@@ -1,0 +1,80 @@
+name: Compare EURES country searches
+on:
+  push:
+    branches: ['pilot/eures-country-coverage-20261120']
+    paths: ['.github/workflows/pilot-eures-country-coverage.yml']
+permissions:
+  contents: read
+jobs:
+  compare:
+    if: github.event.head_commit.message == 'Compare country filters on the existing EURES search'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - run: |
+          python3 -u - <<'PY'
+          import json
+          import time
+          from collections import Counter
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          
+          from collector.classify import classify_role
+          from collector.public_sources import EURES_API, eures_criteria, eures_fingerprint, eures_record
+          from collector.runtime import BudgetClient
+          
+          source = next(s for s in json.loads(Path("data/sources.json").read_text()) if s["id"] == "public-eu-eures")
+          host = urlsplit(EURES_API).hostname
+          assert source["enabled"] and host == "europa.eu" and host in source["allowed_hosts"]
+          client = BudgetClient(seconds=270, max_requests=16, delay=10)
+          client.redirect_scope_allowed = lambda url: urlsplit(url).scheme == "https" and urlsplit(url).hostname == host
+          catalog = json.loads(Path("data/catalog.json").read_text())
+          known = {j.get("source_posting_id") for j in catalog["jobs"] if j["source_id"] == source["id"]}
+          known |= {j["url"].rstrip("/").split("/")[-1] for j in catalog["jobs"] if j["source_id"] == source["id"]}
+          start = time.monotonic()
+          
+          def run(country, code, term, mode):
+              payload = eures_criteria(keywords=[term] if term else [], offering=["internship"] if not term else [])
+              if mode != "global":
+                  payload["locationCodes"] = [code]
+              before = client.bytes
+              try:
+                  jvs = client.post_json(EURES_API + "/jv-search/search", payload).get("jvs")
+                  if not isinstance(jvs, list):
+                      raise ValueError("unexpected search result")
+                  declared = Counter()
+                  hits = {}
+                  matching = []
+                  for jv in jvs:
+                      record = eures_record(source, jv)
+                      countries = record["countries"] if record else []
+                      declared["target" if country in countries else "other" if countries else "unknown"] += 1
+                      if country not in countries:
+                          continue
+                      role = classify_role(record["title"], record["text"], record["employment"])
+                      if not role or role.get("internship_type") != "internship":
+                          continue
+                      hits.setdefault(eures_fingerprint(record), record)
+                  for record in hits.values():
+                      matching.append(dict(id=record["external_id"], title=record["title"][:120],
+                                           url=record["url"], present=record["external_id"] in known))
+                  print("GEO_AUDIT " + json.dumps(dict(country=country, mode=mode, term=term,
+                        rows=len(jvs), geography=dict(declared), candidates=matching, bytes=client.bytes-before), ensure_ascii=False))
+              except Exception as exc:
+                  print("GEO_AUDIT " + json.dumps(dict(country=country, mode=mode, error=type(exc).__name__,
+                        status=getattr(exc, "code", None)), ensure_ascii=False))
+                  return False
+              return True
+          
+          for country, code, term in [("NL","nl","stage hr"),("PL","pl","staż hr"),("IE","ie","HR internship"),("CZ","cz","stáž hr"),("DK","dk","praktik hr")]:
+              if not run(country, code, term, "country"):
+                  break
+              if country == "NL":
+                  continue
+              if not run(country, code, term, "global") or not run(country, code, None, "country-internship"):
+                  break
+          print("GEO_COST " + json.dumps(dict(requests=client.requests, bytes=client.bytes, seconds=round(time.monotonic()-start,2))))
+          PY
+          git diff --exit-code
