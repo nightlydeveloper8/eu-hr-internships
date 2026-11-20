@@ -1,7 +1,8 @@
 import unittest
 from types import SimpleNamespace
 
-from collector.jks import SOURCE, inventory, project_url, scope, source_gate, advertised_deadline
+from collector.jks import (SOURCE, inventory, project_url, scope, source_gate,
+                           advertised_deadline, inclusive_deadline, reviewed_deadline)
 from collector.universal import Document
 from collector.verification import expired
 from collector.daily import provision
@@ -51,8 +52,19 @@ class JksScopeTests(unittest.TestCase):
                 b"<aside>Udl\xc3\xb8ber: 25.11.26</aside>")
         deadline = advertised_deadline(Document(body, url))
         self.assertEqual(deadline, "2026-11-25")
-        self.assertFalse(expired(deadline, "2026-11-25T18:00:00+00:00"))
-        self.assertTrue(expired(deadline, "2026-11-26T00:00:00+00:00"))
+        inclusive = inclusive_deadline(deadline)
+        self.assertEqual(inclusive, "2026-11-25T22:59:59.999999+00:00")
+        self.assertFalse(expired(inclusive, "2026-11-25T18:00:00+00:00"))
+        self.assertTrue(expired(inclusive, "2026-11-25T23:00:00+00:00"))
+        self.assertEqual(reviewed_deadline(inclusive, "2026-11-25T00:00:00"), inclusive)
+        self.assertEqual(reviewed_deadline(inclusive, "2026-11-24T23:00:00Z"), inclusive)
+        self.assertEqual(reviewed_deadline(inclusive, "2026-11-25T12:00:00+01:00"),
+                         "2026-11-25T11:00:00+00:00")
+        self.assertEqual(inclusive_deadline("2026-07-25"),
+                         "2026-07-25T21:59:59.999999+00:00")
+        for contradictory in ("2026-11-26", "2026-11-24T00:00:00", "invalid"):
+            with self.subTest(contradictory=contradictory), self.assertRaises(ValueError):
+                reviewed_deadline(inclusive, contradictory)
         for html in (
             b"<main><h1>HR Praktikant</h1></main>",
             b"<p>Udlober: 25.11.26</p>",

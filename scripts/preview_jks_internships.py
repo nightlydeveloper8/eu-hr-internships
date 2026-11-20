@@ -32,7 +32,8 @@ def preview():
     if not before <= after or len(after) != len(staged["jobs"]) or sorted(after) != sorted(j["id"] for j in again["jobs"]):
         raise ValueError("Catalog identity regression")
     proofs = [dict(id=j["id"], project=j["source_posting_id"], title=j["title"], city=j["city"],
-                   url=j["url"], application=j["application_verification"]["url"]) for j in staged["jobs"]
+                   url=j["url"], application=j["application_verification"]["url"],
+                   valid_through=j.get("valid_through")) for j in staged["jobs"]
               if j["source_id"] == source["id"] and j.get("country") == "DK" and j["internship_type"] == "internship"
               and verified_job(j, stamp) and (j.get("application_verification") or {}).get("method") == "jks-talentech-same-project-form"]
     def direct(jobs):
