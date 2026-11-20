@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — SmartWays PL: conferma ripetuta e ottimizzazione del pilota
+
+- [Run live #44795621997](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44795621997): prova policy v2 riconfermata per SmartWays `31252` a Kraków, [modulo](https://smartways.recruitee.com/o/recruitment-internship-programme-paid/c/new), stesso ID temporaneo `64b82d4c77412022c5a9`, 887 → 888 ID, 39 → 40 candidature **solo staging**, zero closure. Dopo eliminazione della diagnostica ridondante, costo **9 GET, 1.160.973 byte, 17,204 s e 0 rendering**; confronto primo successo [#44795241639](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44795241639): 10 GET, 1.190.500 byte, 20,34 s. Guadagno misurato: **1 GET e 29.527 byte** nel campione, senza variazione delle verifiche; differenza dei secondi non attribuibile con certezza al codice.
+- Il workflow temporaneo del pilota è stato eliminato dal ramo, per evitare GET ripetuti a ogni aggiornamento della PR. La fonte non è ancora registrata né attiva in `main`; nessun merge, variazione del catalogo in produzione o candidatura inviata. Prossimo passo: PR dipendente che la registri **disabled** per futura attivazione esplicitamente autorizzata, con gate e test su provisioning; poi misurazione del primo ciclo quotidiano soltanto dopo approvazione.
+
 ## 20 novembre 2026 — SmartWays, prima candidatura diretta polacca policy v2 in staging
 
 - **[Prova live #44795241639](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44795241639) riuscita:** inventario del tenant interno SmartWays, link GET `careers.smartways.io` confermato sul feed, redirect GET verificato verso `smartways.recruitee.com` con stesso percorso; modulo `/c/new` pubblicato dal feed, con stesso Recruitee ID **31252**, titolo e datore esatti e campi attivi. Annuncio `Recruitment Internship Programme (paid)`, **Kraków, PL**, ID catalogo temporaneo `64b82d4c77412022c5a9`, [domanda](https://smartways.recruitee.com/o/recruitment-internship-programme-paid/c/new).
