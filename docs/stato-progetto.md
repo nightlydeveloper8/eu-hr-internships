@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — JKS ampliata: seconda prova live senza resa aggiuntiva
+
+- [Audit JKS #44797837098](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44797837098) sul codice #93, alle 18:59 UTC: **4 candidature JKS Talentech** riconfermate su ID `157063` Vejle, `156880` Slagelse, `160886` Esbjerg, `160782` Odense. Simulazione catalogo 887 → 891 ID, 39 → 43 candidature **solo staging**, ID originali conservati, nessuna chiusura da inventario parziale. **18 GET / 2.397.607 byte**, 4 indici, 4 progetti osservati/visitati, zero candidati nuovi dall'indice nazionale; il progetto generico `159170` resta irrisolto senza città.
+- **Valutazione costo/beneficio della #93: 0 candidature addizionali dimostrate.** Non è consigliato portare l'indice aggiuntivo nella prima ondata di produzione senza ulteriore evidenza. Preferire il percorso dipendente **#90 → #92**, che aveva già 4 prove, mantenendo #93 come opzione separata di discovery, senza ampliamento del tetto né rollout. Audit della stessa data, **non** equivale a verifica a distanza di un giorno. Nessun merge o attivazione.
+
 ## 20 novembre 2026 — JKS: recupero strutturale di più sedi nel budget invariato
 
 - Proposta dipendente dalla [#92](https://github.com/nightlydeveloper8/eu-hr-internships/pull/92) e dalla [#90](https://github.com/nightlydeveloper8/eu-hr-internships/pull/90): al trio di indici JKS aggiunta la pagina ufficiale nazionale delle offerte. La fonte resta **disabilitata**. Gli indici già revisionati hanno precedenza e la scoperta resta entro **6 dettagli**; il limite della fonte resta **24 GET / 120 secondi** e resta obbligatorio un modulo Talentech same-project per ogni nuova candidatura.
