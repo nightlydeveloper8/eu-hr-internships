@@ -1,4 +1,4 @@
-name: Validate published application entry points
+name: Check public site and Teamtailor inventory
 on:
   push:
     branches: ['pilot/adecco-talentsoft-20261120']
@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   review:
-    if: github.event.head_commit.message == 'Review published application entry points and diagnose site access'
+    if: github.event.head_commit.message == 'Check Cloudflare with a descriptive client and review Tacting inventory'
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -17,138 +17,88 @@ jobs:
         with: {python-version: '3.12'}
       - run: |
           python - <<'PY'
+          from hashlib import sha256
           import json
           import re
           import time
-          from urllib.error import HTTPError
-          from urllib.parse import parse_qs, urljoin, urlsplit
-          from urllib.request import urlopen
+          from urllib.parse import urljoin
+          from urllib.request import Request, urlopen
           
           from collector.applications import checked_document
           from collector.ats_channel_discovery import safe_url
-          from collector.classify import canonical_url, classify_role, fold
-          from collector.pipeline import ROOT, read
+          from collector.classify import canonical_url, classify_role
+          from collector.pipeline import ROOT
           from collector.runtime import BudgetClient
           from collector.verification import applicant_form, same_title
           
           def report(label, **values):
-              print(label + " " + json.dumps(values, ensure_ascii=False), flush=True)
+              print(label+" "+json.dumps(values,ensure_ascii=False),flush=True)
           
-          for kind, url in (
-              ("production", "https://people-placement-eu.pages.dev/"),
-              ("immutable", "https://2207ee5b.people-placement-eu.pages.dev/"),
-              ("historical", "https://people-placement-eu.mysticbramble.chatgpt.site/"),
-          ):
+          base="https://people-placement-eu.pages.dev/"
+          headers={"User-Agent":"PeoplePlacement-DeploymentCheck/1.0 (+https://github.com/nightlydeveloper8/eu-hr-internships)"}
+          for path in ("","data/catalog.json"):
               try:
-                  with urlopen(url, timeout=9) as response:
-                      body = response.read(200000)
-                      report("SITE_ORIGIN", kind=kind, status=response.status, server=response.headers.get("Server"),
-                             final_url=response.geturl(), expected_app=b"People Placement" in body)
-              except HTTPError as exc:
-                  body = exc.read(4000).decode("utf-8", "replace")
-                  title = re.search(r"<title[^>]*>(.*?)</title>", body, re.I|re.S)
-                  report("SITE_ORIGIN", kind=kind, status=exc.code, server=exc.headers.get("Server"),
-                         cf_ray=exc.headers.get("CF-Ray"), via=exc.headers.get("Via"),
-                         title=title[1].strip()[:120] if title else None,
-                         text=re.sub(r"\s+", " ", re.sub(r"<[^>]*>", " ", body)).strip()[:220])
+                  with urlopen(Request(base+path,headers=headers),timeout=12) as r:
+                      url,status,body=r.geturl(),r.status,r.read()
+                  result=dict(status=status,url=url)
+                  if path:
+                      data=json.loads(body)
+                      result.update(rows=len(data["jobs"]),timestamp=data["last_attempt_at"],
+                                    matches_main=sha256(body).digest()==sha256((ROOT/path).read_bytes()).digest())
+                  else:
+                      result.update(page_matches=b"People Placement" in body)
+                  report("VERIFIED_SITE",**result)
               except Exception as exc:
-                  report("SITE_ORIGIN", kind=kind, error=str(exc)[:140])
+                  report("VERIFIED_SITE",path=path,error=str(exc)[:160])
           
-          class Scoped(BudgetClient):
+          started=time.monotonic()
+          host="tacting.teamtailor.com"
+          board=f"https://{host}/jobs"
+          allowed={board,f"https://{host}/robots.txt"}
+          
+          class BoardReads(BudgetClient):
               def request(self,url,method="GET",**kwargs):
                   if method!="GET" or not self.redirect_scope_allowed(url):
-                      raise ValueError("URL outside the evidence set")
-                  return super().request(url, method=method, **kwargs)
+                      raise ValueError("Outside exact URL list")
+                  return super().request(url,method=method,**kwargs)
           
-          client=Scoped(seconds=75,max_requests=14,delay=1)
-          allowed=set()
-          client.redirect_scope_allowed=lambda url: bool(safe_url(url) and canonical_url(url) in allowed)
-          
-          def doc(url):
-              p=safe_url(url)
-              assert p
-              allowed.add(canonical_url(url))
-              allowed.add(f"https://{p.hostname}/robots.txt")
-              return checked_document(url, dict(allowed_hosts=[p.hostname]), client)
-          
-          start=time.monotonic()
-          job=next(j for j in read(ROOT/"data/catalog.json",{})["jobs"] if j["id"]=="fd30839bb766e2c567a6")
-          before=client.requests
+          client=BoardReads(seconds=35,max_requests=7,delay=1)
+          client.redirect_scope_allowed=lambda url:bool(safe_url(url) and canonical_url(url) in allowed)
+          source=dict(allowed_hosts=[host])
           try:
-              _, page=doc(job["url"])
-              assert same_title(page,job["title"])
-              talentsoft="theadeccogroup-career.talent-soft.com"
-              cta=[urljoin(page.url,h) for h,l,_ in page.links if re.search(r"\b(?:apply|postuler|candidater)\b",fold(l))
-                   and safe_url(urljoin(page.url,h)) and safe_url(urljoin(page.url,h)).hostname==talentsoft]
-              assert len(set(cta))==1
-              detail=cta[0]
-              meta=parse_qs(urlsplit(detail).query)
-              observed_ref=meta.get("offerReference",[])
-              vacancy_number=meta.get("idOffre",[])
-              exact_reference=observed_ref==[str(job["source_posting_id"])]
-              _, page=doc(detail)
-              assert same_title(page,job["title"])
-              actions=[]
-              linked=set()
-              for href,label,_ in page.links:
-                  if not re.search(r"\b(?:postuler|candidater|apply|candidature)\b",fold(label)):
-                      continue
-                  target=urljoin(page.url,href)
-                  p=safe_url(target)
-                  if not p:
-                      continue
-                  keys=parse_qs(p.query)
-                  matching_number=bool(vacancy_number and any(v==vacancy_number for k,v in keys.items()
-                                       if k.lower() in {"idoffre","offerid","jobid"}))
-                  actions.append(dict(host=p.hostname,path=p.path,id_matches=matching_number))
-                  if p.hostname==talentsoft and matching_number and canonical_url(target)!=canonical_url(detail):
-                      linked.add(canonical_url(target))
-              row=dict(reference_matches=exact_reference, numeric_id_present=len(vacancy_number)==1 and vacancy_number[0].isdigit(),
-                       application_links=actions[:6],
-                       application_buttons=sorted(set(b for b in page.buttons if re.search("postul|candid|apply",fold(b))))[:5])
-              if exact_reference and len(linked)==1:
-                  target=next(iter(linked))
-                  html,app=doc(target)
-                  row.update(next_title=same_title(app,job["title"]), next_strict_form=applicant_form(html,strict=True),
-                             final_url_exact=canonical_url(app.url)==target)
-              report("ADECCO_NEXT",requests=client.requests-before,**row)
-          except Exception as exc:
-              report("ADECCO_NEXT",requests=client.requests-before,error=str(getattr(exc,"reason",exc))[:150])
-          
-          allowed.clear()
-          official="https://www.tacting.com/karriar/"
-          board_host="tacting.teamtailor.com"
-          before=client.requests
-          try:
-              _, page=doc(official)
-              posting_pattern=r"/jobs/8621469(?:-[^/]+)?/?"
-              posts={canonical_url(urljoin(page.url,h)) for h,_,_ in page.links
-                     if safe_url(urljoin(page.url,h)) and safe_url(urljoin(page.url,h)).hostname==board_host
-                     and re.fullmatch(posting_pattern,safe_url(urljoin(page.url,h)).path)}
-              assert len(posts)==1, "Employer's current career page does not identify one exact posting"
-              posting=posts.pop()
-              html, job=doc(posting)
-              titles=[t for t in job.h1 if classify_role(t) and classify_role(t)["internship_type"]=="internship"]
-              assert len(set(titles))==1 and canonical_url(job.url)==posting
-              role=titles[0]
-              apply=form=applicant_form(html,strict=True)
-              match=same_title(job,role)
-              child=None
+              _, inventory=checked_document(board,source,client)
+              def from_links(document,pattern):
+                  found=set()
+                  for href,_,_ in document.links:
+                      target=urljoin(document.url,href)
+                      parsed=safe_url(target)
+                      if parsed and parsed.hostname==host and re.fullmatch(pattern,parsed.path.rstrip("/")):
+                          found.add(canonical_url(target))
+                  return found
+              posts=from_links(inventory,r"/jobs/8621469(?:-[^/]+)?")
+              if len(posts)!=1:
+                  raise ValueError("The current official board did not list posting 8621469 once")
+              url=posts.pop()
+              allowed.add(url)
+              body,page=checked_document(url,source,client)
+              titles=[t for t in page.h1 if classify_role(t) and classify_role(t)["internship_type"]=="internship"]
+              assert len(set(titles))==1 and canonical_url(page.url)==url
+              title=titles[0]
+              form=applicant_form(body,strict=True)
+              matched=same_title(page,title)
+              route="same-page" if form else "missing"
               if not form:
-                  prefix=safe_url(posting).path.rstrip("/")
-                  children={canonical_url(urljoin(job.url,h)) for h,_,_ in job.links
-                            if safe_url(urljoin(job.url,h)) and safe_url(urljoin(job.url,h)).hostname==board_host
-                            and safe_url(urljoin(job.url,h)).path.rstrip("/")==prefix+"/applications/new"}
+                  children=from_links(page,re.escape(safe_url(url).path.rstrip("/"))+r"/applications/new")
                   if len(children)==1:
                       child=children.pop()
-                      html,form_doc=doc(child)
-                      form=applicant_form(html,strict=True)
-                      match=same_title(form_doc,role) and canonical_url(form_doc.url)==child
-              report("TACTING",requests=client.requests-before,publisher_inventory_match=True,title=role,
-                     form=form,same_title=match,route="same-page" if apply else "published-child" if child else "no-observed-form")
+                      allowed.add(child)
+                      body,application=checked_document(child,source,client)
+                      form=applicant_form(body,strict=True)
+                      matched=same_title(application,title) and canonical_url(application.url)==child
+                      route="published-child"
+              report("BOARD_RESULT",listing=8621469,title=title,posting=url,published_route=route,
+                     rigorous_form=form,exact_title=matched)
           except Exception as exc:
-              report("TACTING",requests=client.requests-before,error=str(getattr(exc,"reason",exc))[:150])
-          
-          report("FOLLOWUP_COST",requests=client.requests,bytes=client.bytes,seconds=round(time.monotonic()-start,3),
-                 catalog_writes=0)
+              report("BOARD_RESULT",state="review-required",reason=str(getattr(exc,"reason",exc))[:200])
+          report("BOARD_COST",requests=client.requests,bytes=client.bytes,seconds=round(time.monotonic()-started,3))
           PY
