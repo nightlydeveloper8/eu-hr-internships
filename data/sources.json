@@ -50496,5 +50496,92 @@
     "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
     "max_requests": 14,
     "collection_seconds": 55
+  },
+  {
+    "id": "staging-jobandtalent-se",
+    "employer": "Jobandtalent Sweden AB",
+    "adapter": "jobtech-policy-v2",
+    "feed_provider": "jobtech-se",
+    "provider_id": "31558200",
+    "expected_ats_id": "8503489",
+    "expected_city": "Malmö",
+    "enabled": false,
+    "staging_only": true,
+    "rollout_approved": false,
+    "allowed_hosts": [
+      "jobb.jobandtalent.com"
+    ],
+    "reviewed_inventory_url": "https://jobb.jobandtalent.com/sitemap",
+    "career_url": "https://jobb.jobandtalent.com/",
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "target_countries": [
+      "SE"
+    ],
+    "jobtech_queries": [
+      "hr praktik",
+      "personal praktik",
+      "rekrytering praktik"
+    ],
+    "results_per_query": 10,
+    "max_requests": 18,
+    "collection_seconds": 95,
+    "permission_basis": "JobTech SE licensed public CC0 discovery; employer-host ATS identity, current employer inventory and applicant form checked live under policy v2; per-host robots and 429 limits apply",
+    "reviewed_on": "2026-11-17",
+    "status": "approved-for-staging-only-not-enabled",
+    "activation_gate": "Separate explicit rollout authorization and second-date evidence required; no automatic activation"
+  },
+  {
+    "id": "jks-dk-internships",
+    "employer": "JKS",
+    "adapter": "jks-index",
+    "application_check": "jks-talentech",
+    "enabled": false,
+    "staging_only": true,
+    "rollout_approved": false,
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "allowed_hosts": [
+      "www.jks.dk",
+      "candidate.hr-manager.net"
+    ],
+    "career_url": "https://www.jks.dk/om-jks/job-i-jks",
+    "target_countries": [
+      "DK"
+    ],
+    "max_requests": 24,
+    "collection_seconds": 120,
+    "discovery_scope": "Three observed JKS indexes and current matching vacancy pages; partial sample, no absence-based closures",
+    "permission_basis": "JKS employer inventory and same-project Talentech application; employer host, exact tenant/project, robots and enabled form reviewed in live staging pilot; separate rollout approval required",
+    "status": "staging-only-disabled",
+    "activation_gate": "Separate explicit review and rollout authorization; no automatic activation"
+  },
+  {
+    "id": "pilot-smartways-internal-pl",
+    "employer": "SmartWays",
+    "adapter": "recruitee",
+    "enabled": false,
+    "staging_only": true,
+    "rollout_approved": false,
+    "reviewed_recruitee_alias": "smartways-internal",
+    "application_check": "recruitee-linked",
+    "feed_url": "https://smartways.recruitee.com/api/offers/",
+    "career_url": "https://smartways.recruitee.com/",
+    "allowed_hosts": [
+      "smartways.recruitee.com",
+      "careers.smartways.io"
+    ],
+    "target_countries": [
+      "PL"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "report_feed_scope": true,
+    "max_requests": 14,
+    "collection_seconds": 75,
+    "discovery_scope": "One employer-internal Recruitee board; no absence closure",
+    "permission_basis": "SmartWays exact legal owner/NIP on current tenant, reviewed host alias observed in current feed, same posting and enabled Recruitee application form, robots per host",
+    "status": "disabled-after-live-staging",
+    "activation_gate": "A separate explicit rollout authorization is required; enabled=false by default"
   }
 ]
