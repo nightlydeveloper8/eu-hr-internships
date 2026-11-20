@@ -32,9 +32,10 @@ def preview(source, baseline, registry, *, discovery_client=None,
     if ats_client_factory is not None:
         kwargs["official_feed_ats_client_factory"] = ats_client_factory
     part=process_source(source,client,stamp,**kwargs)
+    compared_at = datetime.now(timezone.utc).isoformat()
     with TemporaryDirectory(prefix="people-placement-feed-preview-") as directory:
         staged,coverage=finalize(registry,[source],baseline,{},[part],
-                                 datetime.now(timezone.utc).isoformat(),Path(directory))
+                                 compared_at,Path(directory))
     baseline_ids={r["id"] for r in baseline["jobs"]}
     staged_ids={r["id"] for r in staged["jobs"]}
     added=[r for r in staged["jobs"] if r["id"] not in baseline_ids]
@@ -43,7 +44,7 @@ def preview(source, baseline, registry, *, discovery_client=None,
               and r["verification"]["state"]=="verified"]
     def direct_ids(jobs):
         return {job["id"] for job in jobs if job.get("internship_type") == "internship"
-                and verified_job(job, stamp) and (job.get("application_verification") or {}).get("url")}
+                and verified_job(job, compared_at) and (job.get("application_verification") or {}).get("url")}
 
     gained = direct_ids(staged["jobs"]) - direct_ids(baseline["jobs"])
     r=part["report"]
