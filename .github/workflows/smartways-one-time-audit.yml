@@ -1,0 +1,24 @@
+name: One-time SmartWays registered-disabled ATS review
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/smartways-one-time-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    if: ${{ github.event.pull_request.head.repo.full_name == 'nightlydeveloper8/eu-hr-internships' && github.event.pull_request.head.ref == 'audit/smartways-disabled-preflight' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline source-gate and identity tests
+        run: python -m unittest tests.test_preview_internal_recruitee -v
+      - name: Registered disabled SmartWays preflight
+        run: python -m scripts.preview_internal_recruitee
