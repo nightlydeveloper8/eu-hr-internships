@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from collector.jks import SOURCE
+from collector.jks import SOURCE, source_gate
 from collector.pipeline import ROOT, finalize, now, process_source, read
 from collector.runtime import BudgetClient
 from collector.verification import verified_job
@@ -12,10 +12,13 @@ from collector.verification import verified_job
 
 def preview():
     registry = read(ROOT / "data/sources.json", [])
-    if any(s["id"] == SOURCE["id"] for s in registry) or SOURCE["enabled"]:
-        raise ValueError("Expected unregistered staging source")
+    matching = [s for s in registry if s.get("id") == SOURCE["id"]]
+    if len(matching) != 1 or matching[0].get("enabled") is not False:
+        raise ValueError("Expected exactly one registered, disabled JKS source")
+    source = deepcopy(matching[0])
+    if source_gate(source) != "staging":
+        raise ValueError("JKS preview requires a staging-only source")
     catalog = read(ROOT / "data/catalog.json", {})
-    source = deepcopy(SOURCE)
     client = BudgetClient(seconds=source["collection_seconds"], max_requests=source["max_requests"], delay=1)
     stamp = now()
     part = process_source(source, client, stamp)
@@ -23,8 +26,8 @@ def preview():
         raise ValueError("Partial inventory cannot close postings")
     before = {j["id"] for j in catalog["jobs"]}
     with TemporaryDirectory() as directory:
-        staged, _ = finalize([*registry, source], [source], catalog, {}, [part], stamp, Path(directory))
-        again, _ = finalize([*registry, source], [source], deepcopy(staged), {}, [part], stamp, Path(directory))
+        staged, _ = finalize(registry, [source], catalog, {}, [part], stamp, Path(directory))
+        again, _ = finalize(registry, [source], deepcopy(staged), {}, [part], stamp, Path(directory))
     after = {j["id"] for j in staged["jobs"]}
     if not before <= after or len(after) != len(staged["jobs"]) or sorted(after) != sorted(j["id"] for j in again["jobs"]):
         raise ValueError("Catalog identity regression")

@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — registrazione disabilitata JKS pronta per revisione, nessun rollout
+
+- Proposta dipendente dalla [PR #90](https://github.com/nightlydeveloper8/eu-hr-internships/pull/90): `jks-dk-internships` viene aggiunta una sola volta al registro delle fonti, con `enabled: false`, `staging_only: true`, `rollout_approved: false`; 1.977 → 1.978 fonti registrate, **1.923 fonti attive invariate**. Il numero delle fonti non è il numero di stage candidabili.
+- Il percorso di anteprima legge la voce disabilitata esistente anziché richiedere una fonte non registrata. `source_gate()` limita identità JKS, host, paese, budget e abilita il processo ordinario soltanto dopo separata autorizzazione esplicita; il gate è applicato prima di inventario e verifica della domanda. Test offline per registro, provisioning e mancati tentativi GET nei casi di attivazione incompleta.
+- Baseline di staging ereditata dalla #90: quattro prove danesi con 18 GET / 2.401.014 byte e finalizzazione 39 → 43 in catalogo temporaneo. **Questa modifica non ha eseguito nuove richieste live**, né un ciclo giornaliero, e non dichiara quattro posizioni in produzione. Nessuna chiusura automatica su inventario parziale. Prossimo passo: CI della proposta, review del gate e nuova prova in data distinta prima di valutare qualsiasi attivazione; nessun merge o rollout autorizzato qui.
+
 ## 20 novembre 2026 — Danimarca, quattro candidature JKS in staging
 
 [Bozza #90](https://github.com/nightlydeveloper8/eu-hr-internships/pull/90) e [prova del processo ordinario in memoria](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44772550960). Tre indici aziendali hanno prodotto 5 ID pertinenti. Quattro hanno città, titolo e modulo Talentech attivo con lo stesso ProjectId del dettaglio e tenant 1601. Esbjerg `160886`, Odense `160782`, Vejle `157063`, Slagelse `156880`. Il quinto è nazionale senza sede precisa. La verifica condivisa policy v2 e il finalizzatore portano il catalogo temporaneo da 887 a 891 ID, da 39 a 43 candidature dirette. Ripetere la finalizzazione mantiene gli stessi ID. Costo del pilota finale 18 richieste, 2.401.014 byte. Fonte assente dal registro ordinario, nessuna chiusura per assenza. Prossimo passo: revisione dell’adattatore e autorizzazione prima dell’eventuale registrazione e attivazione.
