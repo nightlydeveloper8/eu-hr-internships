@@ -8,6 +8,17 @@ export function verifiedJob(job, clock = Date.now()) {
   const stamp=Date.parse(job.last_verified_at || '');
   return job.status === 'open' && job.verification?.state === 'verified' && job.verification?.policy_version === 2 && Number.isFinite(stamp) && stamp <= clock && clock-stamp <= 48*60*60*1000;
 }
+export function publicEmploymentListing(job) {
+  return ['public-api-active-listing', 'public-api-listed'].includes(job.link_status)
+    || job.verification?.policy === 'public-api-active-listing';
+}
+
+export function applicationConfirmed(job, clock = Date.now()) {
+  const evidence = job.application_verification;
+  return !unreviewedExternal(job) && verifiedJob(job, clock) && !publicEmploymentListing(job)
+    && Boolean(evidence?.method && safeUrl(evidence.url));
+}
+
 // Emergency degraded view: expose archived records only as unverified when daily checks are stale.
 // This must never change verifiedJob(), policy v2, or the 48-hour freshness threshold.
 export function unverifiedFallback(catalog, clock = Date.now()) {
@@ -27,6 +38,7 @@ export function shareableFilterParams(filters, defaults) {
 
 export function matches(job, filters, saved = new Set()) {
   if (unreviewedExternal(job) || job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
+  if (filters.applicationConfirmed && !applicationConfirmed(job)) return false;
   if (filters.saved && !saved.has(job.id)) return false;
   if (filters.country && !job.countries.includes(filters.country)) return false;
   if (filters.region && !(job.region_codes || []).includes(filters.region)) return false;
@@ -57,8 +69,9 @@ export function stale(updatedAt, clock = Date.now()) { return !updatedAt || cloc
 export function safeUrl(value) { try {const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : null;} catch {return null;} }
 
 export function verificationMessage(job, clock = Date.now()) {
-  if (verifiedJob(job, clock) && job.link_status === 'public-api-active-listing') return 'Listed as open by an official public employment service within the last 48 hours. The employer’s own application page was not checked: apply through the official advertisement.';
-  if (verifiedJob(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
+  if (verifiedJob(job, clock) && publicEmploymentListing(job)) return 'Listed as open by an official public employment service within the last 48 hours. Check the official posting for application instructions.';
+  if (applicationConfirmed(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
+  if (verifiedJob(job, clock)) return 'The listing is current. Check the original posting for application instructions.';
   if (job.status === 'closed') return 'The employer has closed this listing.';
   if (job.link_status === 'review-required' && job.review_note) return job.review_note;
   if (job.link_status === 'public-api-listed') return 'Published by an official public employment service at the last check; the employer’s own application page was not checked. Confirm the details on the official advertisement.';
@@ -74,6 +87,8 @@ export function verificationMessage(job, clock = Date.now()) {
 export function opportunityCounts(jobs, clock = Date.now()) {
   const active = jobs.filter(job => job.status !== 'closed' && !unreviewedExternal(job));
   return {total:active.length,verified:active.filter(job => verifiedJob(job,clock)).length,
+    applicationConfirmed:active.filter(job => applicationConfirmed(job, clock)).length,
+    publicListings:active.filter(job => verifiedJob(job, clock) && publicEmploymentListing(job)).length,
     unverified:active.filter(job => !verifiedJob(job,clock)).length,
     verifiedInternships:active.filter(job => verifiedJob(job,clock) && job.internship_type==='internship').length,
     verifiedWorkingStudents:active.filter(job => verifiedJob(job,clock) && job.internship_type==='working-student').length,
@@ -91,9 +106,11 @@ export function countryCounts(jobs, clock = Date.now()) {
   for (const job of jobs || []) {
     if (job.status === 'closed' || unreviewedExternal(job)) continue;
     const verified = verifiedJob(job, clock);
+    const confirmed = applicationConfirmed(job, clock);
     for (const code of new Set(job.countries || [])) {
-      const entry = counts[code] || (counts[code] = {verified:0, unverified:0});
+      const entry = counts[code] || (counts[code] = {verified:0, unverified:0, applicationConfirmed:0});
       if (verified) entry.verified++; else entry.unverified++;
+      if (confirmed) entry.applicationConfirmed++;
     }
   }
   return counts;
@@ -148,4 +165,24 @@ export function completeRecentInventory(company,sources,reports,clock=Date.now()
     return report?.status==='ok' && report.complete!==false && Number.isFinite(checked) && checked<=clock && clock-checked<=48*60*60*1000;
   });
 
+}
+
+// Evidence level shown on cards and in counts. Never upgrades a record: 'direct' requires applicationConfirmed().
+// 'direct' = verified application route · 'public' = current on a public employment service · 'current' = current listing,
+// application route not confirmed · 'lead' = not currently verified.
+export function evidenceLevel(job, clock = Date.now()) {
+  if (applicationConfirmed(job, clock)) return 'direct';
+  if (!verifiedJob(job, clock)) return 'lead';
+  return publicEmploymentListing(job) ? 'public' : 'current';
+}
+
+// Display-only map zoom: a viewBox of `factor`× magnification centred on (cx, cy), clamped inside the base viewBox.
+// The geographic dataset is never changed.
+export function zoomViewBox(base, cx, cy, factor = 1) {
+  const [bx, by, bw, bh] = String(base).trim().split(/[\s,]+/).map(Number);
+  const f = Math.min(Math.max(Number(factor) || 1, 1), 6);
+  const w = bw / f, h = bh / f;
+  const x = Math.min(Math.max(cx - w / 2, bx), bx + bw - w);
+  const y = Math.min(Math.max(cy - h / 2, by), by + bh - h);
+  return [x, y, w, h].map(n => Math.round(n * 10) / 10);
 }
