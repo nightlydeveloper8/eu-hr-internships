@@ -6,6 +6,7 @@ internship is advertised on smartways.recruitee.com. Never combine tenants.
 This preview uses the ordinary collector and policy-v2 verifier, never writes
 to the repository's production catalog, and never submits an application.
 """
+from collections import Counter
 from copy import deepcopy
 import json
 import re
@@ -14,7 +15,7 @@ from tempfile import TemporaryDirectory
 from time import monotonic
 from urllib.parse import urljoin, urlsplit
 
-from collector.classify import canonical_url
+from collector.classify import canonical_url, classify_role
 from collector.pipeline import ROOT, finalize, now, process_source, read
 from collector.runtime import BudgetClient
 from collector.universal import Document
@@ -104,6 +105,33 @@ def employer_legal_identity(html, final):
     return True
 
 
+def feed_summary(source, client):
+    """Inspect current public feed host ownership before accepting job URLs."""
+    data = client.json(source["feed_url"])
+    offers = data.get("offers") if isinstance(data, dict) else None
+    if not isinstance(offers, list):
+        raise ValueError("No current public Recruitee offers list")
+    counts = Counter()
+    hr = []
+    for offer in offers:
+        if not isinstance(offer, dict) or offer.get("status") != "published":
+            continue
+        url = offer.get("careers_url", "")
+        host = urlsplit(url).hostname or "invalid"
+        counts[host] += 1
+        title = offer.get("title", "")
+        if classify_role(title, offer.get("description") or "", offer.get("employment_type_code") or ""):
+            hr.append(dict(id=str(offer.get("id")), title=title,
+                           url_host=host, url_path=urlsplit(url).path,
+                           application_host=urlsplit(offer.get("careers_apply_url") or "").hostname,
+                           country=offer.get("country_code"),
+                           cities=[p.get("city") for p in (offer.get("locations") or [])
+                                   if isinstance(p, dict)]))
+    return dict(total_offers=len(offers),
+                published_host_counts=dict(counts),
+                hr_student_candidates=hr[:10])
+
+
 def direct(rows, stamp):
     return sum(
         verified_job(job, stamp) and job.get("internship_type") == "internship"
@@ -131,6 +159,7 @@ def preview():
         employer_board(homepage, final)
         legal, _, legal_final = client.request(LEGAL_URL)
         employer_legal_identity(legal, legal_final)
+        result["feed_diagnostic"] = feed_summary(source, client)
         part = process_source(source, client, stamp)
         if part["closure_eligible"]:
             raise ValueError("Partial Recruitee sample cannot close records")
