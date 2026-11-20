@@ -1,4 +1,4 @@
-name: Check remaining independent official routes
+name: Resolve exact ATS aliases and employer forms
 on:
   push:
     branches: ['stage/recruitee-expansion-20261120']
@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   review:
-    if: github.event.head_commit.message == 'Verify alternate official routes and the disabled registry'
+    if: github.event.head_commit.message == 'Resolve exact publisher host aliases and check two employer forms'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -69,13 +69,13 @@ jobs:
                       return False
                   if origin and p.hostname==safe_url(origin).hostname:
                       return canonical_url(url)==canonical_url(origin) or (p.path=="/robots.txt" and not p.query)
-                  if p.hostname!=host:
+                  if p.hostname!=host and not (key=="life-outdoor-living" and p.hostname=="werkenbijlifeoutdoorliving.com"):
                       return False
                   return p.path in {"/api/offers/","/api/offers","/api/feeds/offers.xml","/robots.txt"} or bool(
                       re.fullmatch(r"/(?:l/[a-z]{2}(?:-[a-z]+)?/)?o/[a-zA-Z0-9%_-]+(?:/c/new)?/?",p.path))
               client.redirect_scope_allowed=allowed
               source=dict(id="recruitee-batch-"+key,company_id="recruitee-batch-"+key,employer=name,
-                  adapter="recruitee",enabled=False,allowed_hosts=[host],target_countries=[cc],
+                  adapter="recruitee",enabled=False,allowed_hosts=([host,"werkenbijlifeoutdoorliving.com"] if key=="life-outdoor-living" else [host]),target_countries=[cc],
                   feed_url=f"https://{host}/api/offers/",application_check="recruitee-linked",
                   career_url=origin,permission_basis="Employer-published and reviewed public recruiting link",
                   ownership_scope="reviewed-hosts",require_employer_identity=True,max_requests=14,collection_seconds=55)
@@ -84,7 +84,7 @@ jobs:
               try:
                   if key=="ampelmann":
                       source=amp
-                  else:
+                  elif origin:
                       body,_,final=client.request(origin)
                       page=Document(body,final)
                       assert any(safe_url(urljoin(final,h)) and safe_url(urljoin(final,h)).hostname==host
@@ -104,63 +104,37 @@ jobs:
               return source,part,row
           
           
-          # Deerns' documented employer-page link establishes the exact tenant.
-          # The corporate origin returned 403 in the first runner, so it is not requested again.
-          def deerns():
-              return check(("deerns","Deerns Groep BV","NL","jobsdeerns.recruitee.com",None))
+          from collector.applications import checked_document
+          from collector.verification import _verify_vacancy, applicant_form, structured_identifiers
           
-          def life_hosts():
-              client=Scoped(seconds=25,max_requests=3,delay=0.8)
-              host="lifeoutdoorliving.recruitee.com"
-              client.redirect_scope_allowed=lambda url:bool(safe_url(url) and safe_url(url).hostname==host
-                  and safe_url(url).path in {"/api/offers/","/api/offers","/robots.txt"})
-              result={}
+          def direct(key,url,title,application=None):
+              host=safe_url(url).hostname
+              client=Scoped(seconds=35,max_requests=6,delay=0.8)
+              exact={canonical_url(u) for u in (url,application,"https://"+host+"/robots.txt") if u}
+              client.redirect_scope_allowed=lambda u:canonical_url(u) in exact
+              source=dict(id=key,employer=key,adapter="employer-index",allowed_hosts=[host])
+              outcome=dict(key=key,url=url)
               try:
-                  data=client.json(f"https://{host}/api/offers/")
-                  published=[record for record in data.get("offers",[]) if record.get("status")=="published"]
-                  result.update(rows=len(published),vacancy_hosts=sorted({safe_url(j.get("careers_url")).hostname
-                      for j in published if safe_url(j.get("careers_url"))}),
-                      candidate_hosts=sorted({safe_url(j.get("careers_url")).hostname
-                      for j in published if safe_url(j.get("careers_url")) and
-                      "/hr-stagiaire-2027" in safe_url(j.get("careers_url")).path}))
+                  body,page=checked_document(url,source,client)
+                  ids=structured_identifiers(page,title)
+                  record=dict(url=url,apply_url=url,title=title,posting_identifier=next(iter(ids)) if len(ids)==1 else None)
+                  proof=_verify_vacancy(record,source,client,stamp)
+                  app=proof["url"]
+                  form_body=body if canonical_url(app)==canonical_url(url) else checked_document(app,source,client)[0]
+                  outcome.update(status="live-specific-form" if applicant_form(form_body,strict=True) else "review-required",
+                      id_count=len(ids),application=app,method=proof["method"])
               except Exception as exc:
-                  result["error"]=str(getattr(exc,"reason",exc))[:160]
-              return dict(result,requests=client.requests,bytes=client.bytes)
-          
-          def direct_check(key,name,index,posting,entry=None):
-              host=safe_url(index).hostname
-              client=Scoped(seconds=40,max_requests=8,delay=0.8)
-              urls={canonical_url(u) for u in (index,posting,f"https://{host}/robots.txt",entry) if u}
-              client.redirect_scope_allowed=lambda url:bool(safe_url(url) and canonical_url(url) in urls)
-              source=dict(id="employer-review-"+key,company_id="employer-review-"+key,employer=name,
-                  adapter="employer-index",enabled=False,allowed_hosts=[host],target_countries=["NL"],
-                  start_urls=[index],index_urls=[index],career_url=index,job_url_pattern="^"+re.escape(posting)+"$",
-                  permission_basis="Official employer index and same-posting application",
-                  ownership_scope="reviewed-hosts",require_employer_identity=True,
-                  report_index_scope=True,inventory_scope_complete=False,max_requests=8,collection_seconds=40)
-              result=dict(key=key,source=source)
-              try:
-                  p=process_source(source,client,stamp)
-                  result.update(report={k:p["report"].get(k) for k in ("status","collected","matching","error","page_errors")},
-                      verified=[{k:j.get(k) for k in ("id","title","city","country","url","apply_url")}
-                          for j in p["jobs"] if verified_job(j,stamp) and j.get("application_verification")
-                          and j.get("internship_type")=="internship" and j.get("country")=="NL"])
-              except Exception as exc:
-                  result["error"]=str(getattr(exc,"reason",exc))[:160]
-              return dict(result,requests=client.requests,bytes=client.bytes)
+                  outcome["reason"]=str(getattr(exc,"reason",exc))[:160]
+              return dict(outcome,requests=client.requests,bytes=client.bytes)
           
           with ThreadPoolExecutor(max_workers=3) as pool:
-              ds=pool.submit(deerns)
-              lf=pool.submit(life_hosts)
-              dnz=pool.submit(direct_check,"de-nieuwe-zaak","De Nieuwe Zaak","https://www.denieuwezaak.nl/vacatures",
-                  "https://www.denieuwezaak.nl/vacatures/hr-meewerkstage")
-              good=pool.submit(direct_check,"gooddays","GoodDays","https://www.gooddays.nl/vacatures",
-                  "https://www.gooddays.nl/vacatures/stage-hr-recruitment-personeelsplanning","https://www.gooddays.nl/solliciteer?jobID=469158")
-              results={"deerns":ds.result()[2],"life":lf.result(),"de-nieuwe-zaak":dnz.result(),"gooddays":good.result()}
-          for key,row in results.items():
-              print("FOLLOWUP "+json.dumps(dict(name=key,**row),ensure_ascii=False),flush=True)
-          assert sha256((ROOT/"data/catalog.json").read_bytes()).hexdigest()==original
-          print("REGISTRY_HOLD "+json.dumps(dict(enabled=sum(bool(s.get("enabled")) for s in registry),
-              held=[s["id"] for s in registry if s["id"].startswith("recruitee-batch-") or s["id"]=="recruitee-ampelmann-nl"],
-              catalog_unchanged=True)),flush=True)
+              tasks=[pool.submit(check,("deerns","Deerns Groep BV","NL","jobsdeerns.recruitee.com",None)),
+                     pool.submit(check,candidates[0]),
+                     pool.submit(direct,"de-nieuwe-zaak","https://www.denieuwezaak.nl/vacatures/hr-meewerkstage","HR Meewerkstage"),
+                     pool.submit(direct,"gooddays","https://www.gooddays.nl/vacatures/stage-hr-recruitment-personeelsplanning",
+                                 "Stage HR, Recruitment & Personeelsplanning","https://www.gooddays.nl/solliciteer?jobID=469158")]
+              results=[t.result() for t in tasks]
+          for result in results:
+              print("RESOLVED "+json.dumps(result[2] if isinstance(result,tuple) else result,ensure_ascii=False),flush=True)
+          assert original==sha256((ROOT/"data/catalog.json").read_bytes()).hexdigest()
           PY
