@@ -28,6 +28,7 @@ LEGAL_TAX_ID = "6793137813"
 SOURCE = dict(
     id="pilot-smartways-internal-pl",
     employer="SmartWays", adapter="recruitee", enabled=False,
+    staging_only=True, rollout_approved=False,
     application_check="recruitee-linked",
     reviewed_recruitee_alias="smartways-internal",
     feed_url=BASE + "/api/offers/", career_url=BASE + "/",
@@ -44,7 +45,7 @@ def reviewed_source(source):
     required = ("id", "employer", "adapter", "application_check", "feed_url",
                 "career_url", "target_countries", "ownership_scope",
                 "require_employer_identity", "report_feed_scope",
-                "reviewed_recruitee_alias")
+                "reviewed_recruitee_alias", "staging_only", "rollout_approved")
     if (not isinstance(source, dict) or
             any(source.get(k) != SOURCE[k] for k in required) or
             source.get("enabled") is not False or
@@ -123,11 +124,14 @@ def direct(rows, stamp):
 
 
 def preview():
-    source = deepcopy(SOURCE)
-    reviewed_source(source)
     registry = read(ROOT / "data/sources.json", [])
-    if any(entry.get("id") == source["id"] for entry in registry):
-        raise ValueError("Staging source is unexpectedly registered")
+    candidates = [entry for entry in registry if entry.get("id") == SOURCE["id"]]
+    if len(candidates) != 1:
+        raise ValueError("Expected exactly one disabled, reviewed SmartWays source")
+    source = deepcopy(candidates[0])
+    reviewed_source(source)
+    if source.get("enabled") is not False:
+        raise ValueError("SmartWays preview may only read a disabled source")
     catalog = read(ROOT / "data/catalog.json", {})
     stamp = now()
     client = ReadOnlyClient(source)

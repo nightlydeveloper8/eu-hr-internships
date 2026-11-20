@@ -77,6 +77,15 @@ def recruitee_public_xml_records(source,client):
 
 
 def recruitee_records(source,client):
+    if source.get('reviewed_recruitee_alias'):
+        from .recruitee_alias import source_gate, scope
+        source_gate(source)  # Fail before the first network request.
+        with scope(client):
+            return _recruitee_records(source,client)
+    return _recruitee_records(source,client)
+
+
+def _recruitee_records(source,client):
     if source.get('feed_format') == 'recruitee-public-xml':
         return recruitee_public_xml_records(source,client)
     body,_,final=client.request(approved(source['feed_url'],source));approved(final,source)

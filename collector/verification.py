@@ -209,5 +209,10 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
 
 
 def verify_vacancy(record, source, client, stamp, observation=None):
+    if source.get("reviewed_recruitee_alias"):
+        from .recruitee_alias import source_gate, scope
+        source_gate(source)
+        with scope(client):
+            return _verify_vacancy(record,source,client,stamp,observation)
     from .dynamic_ats import verify_with_fallback
     return verify_with_fallback(_verify_vacancy,record,source,client,stamp,observation)
