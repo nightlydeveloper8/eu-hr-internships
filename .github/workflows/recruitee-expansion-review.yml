@@ -1,0 +1,134 @@
+name: Review Recruitee expansion in staging
+on:
+  push:
+    branches: ['stage/recruitee-expansion-20261120']
+    paths: ['.github/workflows/recruitee-expansion-review.yml']
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.event.head_commit.message == 'Validate a reviewed Recruitee expansion against the latest catalogue'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: |
+          python - <<'PY'
+          from concurrent.futures import ThreadPoolExecutor
+          from hashlib import sha256
+          import json
+          from pathlib import Path
+          import re
+          from tempfile import TemporaryDirectory
+          from time import monotonic
+          from urllib.parse import urljoin
+          
+          from collector.ats_channel_discovery import safe_url
+          from collector.classify import canonical_url
+          from collector.daily import provision
+          from collector.pipeline import ROOT, finalize, now, process_source, read
+          from collector.runtime import BudgetClient
+          from collector.universal import Document
+          from collector.verification import verified_job
+          
+          candidates=[
+              ("life-outdoor-living","Life Outdoor Living International B.V.","NL","lifeoutdoorliving.recruitee.com","https://www.werkenbijlifeoutdoorliving.com/vacature/"),
+              ("deerns","Deerns Groep BV","NL","jobsdeerns.recruitee.com","https://www.deerns.com/nl/carriere/"),
+              ("vigo-groep","VIGO groep","NL","werkenbijvigogroep.recruitee.com","https://www.vigogroep.nl/"),
+              ("chr-haute-senne","CHR HAUTE SENNE","BE","chrhautesenne.recruitee.com","https://www.chrhautesenne.be/fr/emplois-et-stages"),
+              ("abrio","ABRIO GmbH","DE","abriogmbh.recruitee.com","https://www.abrio.de/pages/alle-jobs"),
+          ]
+          registry=read(ROOT/"data/sources.json",[])
+          companies=read(ROOT/"data/companies.json",[])
+          _, provisioned=provision(companies,registry)
+          assert {s['id'] for s in provisioned if s.get('enabled')}=={s['id'] for s in registry if s.get('enabled')}
+          amp=next(s for s in registry if s['id']=='recruitee-ampelmann-nl')
+          assert not amp["enabled"] and amp["allowed_hosts"]==["careers.ampelmann.nl"]
+          stamp=now()
+          prior=read(ROOT/"data/catalog.json",{})
+          prior_report=read(ROOT/"data/coverage.json",{})
+          baseline={j['id'] for j in prior['jobs']}
+          original=sha256((ROOT/"data/catalog.json").read_bytes()).hexdigest()
+          
+          class Scoped(BudgetClient):
+              def request(self,url,method="GET",**kwargs):
+                  if method!="GET" or not self.redirect_scope_allowed(url):
+                      raise ValueError("Outside read-only pilot scope")
+                  return super().request(url,method=method,**kwargs)
+          
+          def check(item):
+              key,name,cc,host,origin=item
+              client=Scoped(seconds=55,max_requests=14,delay=0.8)
+              started=monotonic()
+              def allowed(url):
+                  p=safe_url(url)
+                  if not p:
+                      return False
+                  if origin and p.hostname==safe_url(origin).hostname:
+                      return canonical_url(url)==canonical_url(origin) or (p.path=="/robots.txt" and not p.query)
+                  if p.hostname!=host:
+                      return False
+                  return p.path in {"/api/offers/","/api/offers","/api/feeds/offers.xml","/robots.txt"} or bool(
+                      re.fullmatch(r"/(?:l/[a-z]{2}(?:-[a-z]+)?/)?o/[a-zA-Z0-9%_-]+(?:/c/new)?/?",p.path))
+              client.redirect_scope_allowed=allowed
+              source=dict(id="recruitee-batch-"+key,company_id="recruitee-batch-"+key,employer=name,
+                  adapter="recruitee",enabled=False,allowed_hosts=[host],target_countries=[cc],
+                  feed_url=f"https://{host}/api/offers/",application_check="recruitee-linked",
+                  career_url=origin,permission_basis="Employer-published and reviewed public recruiting link",
+                  ownership_scope="reviewed-hosts",require_employer_identity=True,max_requests=14,collection_seconds=55)
+              row=dict(key=key,company=name,country=cc,host=host,origin=origin)
+              part=None
+              try:
+                  if key=="ampelmann":
+                      source=amp
+                  else:
+                      body,_,final=client.request(origin)
+                      page=Document(body,final)
+                      assert any(safe_url(urljoin(final,h)) and safe_url(urljoin(final,h)).hostname==host
+                                 for h,_,_ in page.links), "Official page did not expose exact tenant"
+                  part=process_source(source,client,stamp)
+                  assert not source["enabled"]
+                  report=part["report"]
+                  verified=[{k:j.get(k) for k in ("id","external_id","title","city","country","url","apply_url")}
+                            for j in part["jobs"]
+                            if j.get("country")==cc and j.get("internship_type")=="internship"
+                            and verified_job(j,stamp) and j.get("application_verification")]
+                  row.update(status=report.get("status"),matching=report.get("matching"),records=report.get("collected"),
+                             verified=verified,error=report.get("error"),page_errors=report.get("page_errors",[])[:3])
+              except Exception as exc:
+                  row.update(status="incomplete",error=str(getattr(exc,"reason",exc))[:180],verified=[])
+              row.update(requests=client.requests,bytes=client.bytes,seconds=round(monotonic()-started,3))
+              return source,part,row
+          
+          batch=[("ampelmann",amp["employer"],"NL","careers.ampelmann.nl",None)]+candidates
+          with ThreadPoolExecutor(max_workers=3) as pool:
+              outcomes=list(pool.map(check,batch))
+          for _,_,row in outcomes:
+              print("RECRUITEE_REVIEW "+json.dumps(row,ensure_ascii=False),flush=True)
+          staged=[(s,p,r) for s,p,r in outcomes if p and r["verified"]]
+          selected=[s for s,_,_ in staged]
+          parts=[dict(p,jobs=[j for j in p["jobs"] if any(v["id"]==j["id"] for v in r["verified"])],
+                      closure_eligible=[]) for _,p,r in staged]
+          rids={s["id"] for s in registry}
+          with TemporaryDirectory() as out:
+              dest=Path(out)
+              finalize(registry+[s for s in selected if s["id"] not in rids],selected,prior,prior_report,parts,stamp,dest)
+              jobs=read(dest/"catalog.json",{})["jobs"]
+              assert baseline.issubset({j['id'] for j in jobs})
+              assert len(jobs)==len({j["id"] for j in jobs})
+              new=[j for j in jobs if j["id"] not in baseline and verified_job(j,stamp)
+                   and j.get("application_verification") and j.get("internship_type")=="internship"]
+              unchanged=sha256((ROOT/"data/catalog.json").read_bytes()).hexdigest()==original
+              def direct(jobs):
+                  return sum(j.get("status")=="open" and j.get("internship_type")=="internship"
+                             and bool(j.get("application_verification")) for j in jobs)
+              print("RECRUITEE_TOTAL "+json.dumps(dict(before=len(baseline),after=len(jobs),new_verified=len(new),
+                  countries=sorted({j.get("country") for j in new}),new_ids=[j["id"] for j in new],
+                  direct_before=direct(prior["jobs"]),direct_after=direct(jobs),
+                  requests=sum(r["requests"] for _,_,r in outcomes),bytes=sum(r["bytes"] for _,_,r in outcomes),
+                  catalog_unchanged=unchanged),ensure_ascii=False),flush=True)
+          assert unchanged
+          PY
