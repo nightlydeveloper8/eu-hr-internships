@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-20T07:44:15.021470+00:00",
+  "generated_at": "2026-11-20T13:52:19.301285+00:00",
   "exhaustive": false,
-  "company_count": 1896,
-  "career_pages_recorded": 1367,
+  "company_count": 1900,
+  "career_pages_recorded": 1371,
   "career_pages_verified_this_mapping": 471,
-  "monitored_companies": 1896,
+  "monitored_companies": 1900,
   "regions": [
     {
       "code": "AT11",
@@ -911,12 +911,14 @@
       "name": "Prov. Hainaut",
       "country": "BE",
       "level": 2,
-      "companies_located": 0,
-      "companies_monitored": 0,
-      "open_listings": 0,
+      "companies_located": 1,
+      "companies_monitored": 1,
+      "open_listings": 1,
       "listing_mapping": "confirmed employer/city match",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "recruitee-batch-chr-haute-senne"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "BE323",
@@ -4418,12 +4420,14 @@
       "name": "Darmstadt",
       "country": "DE",
       "level": 2,
-      "companies_located": 0,
-      "companies_monitored": 0,
-      "open_listings": 0,
+      "companies_located": 1,
+      "companies_monitored": 1,
+      "open_listings": 1,
       "listing_mapping": "confirmed employer/city match",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "recruitee-batch-abrio"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "DE711",
@@ -4442,12 +4446,14 @@
       "name": "Frankfurt am Main, Kreisfreie Stadt",
       "country": "DE",
       "level": 3,
-      "companies_located": 0,
-      "companies_monitored": 0,
+      "companies_located": 1,
+      "companies_monitored": 1,
       "open_listings": null,
       "listing_mapping": "region only; subregion not inferred",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "recruitee-batch-abrio"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "DE713",
@@ -15436,14 +15442,15 @@
       "name": "Zuid-Holland",
       "country": "NL",
       "level": 2,
-      "companies_located": 3,
-      "companies_monitored": 3,
-      "open_listings": 2,
+      "companies_located": 4,
+      "companies_monitored": 4,
+      "open_listings": 3,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
         "alliander",
         "hunter-douglas-talent-programs",
-        "unilever"
+        "unilever",
+        "ampelmann-operations-b-v"
       ],
       "status": "monitoring"
     },
@@ -15464,12 +15471,14 @@
       "name": "Delft en Westland",
       "country": "NL",
       "level": 3,
-      "companies_located": 0,
-      "companies_monitored": 0,
+      "companies_located": 1,
+      "companies_monitored": 1,
       "open_listings": null,
       "listing_mapping": "region only; subregion not inferred",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "ampelmann-operations-b-v"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "NL363",
@@ -15587,12 +15596,13 @@
       "name": "Limburg (NL)",
       "country": "NL",
       "level": 2,
-      "companies_located": 1,
-      "companies_monitored": 1,
-      "open_listings": 0,
+      "companies_located": 2,
+      "companies_monitored": 2,
+      "open_listings": 3,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
-        "dsm-firmenich"
+        "dsm-firmenich",
+        "recruitee-batch-vigo-groep"
       ],
       "status": "monitoring"
     },
@@ -15601,12 +15611,14 @@
       "name": "Noord-Limburg",
       "country": "NL",
       "level": 3,
-      "companies_located": 0,
-      "companies_monitored": 0,
+      "companies_located": 1,
+      "companies_monitored": 1,
       "open_listings": null,
       "listing_mapping": "region only; subregion not inferred",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "recruitee-batch-vigo-groep"
+      ],
+      "status": "monitoring"
     },
     {
       "code": "NL422",
@@ -18413,17 +18425,17 @@
     {
       "code": "BE",
       "name": "Belgium",
-      "companies_identified": 14,
-      "regions_with_employers": 0,
+      "companies_identified": 15,
+      "regions_with_employers": 1,
       "baseline_target": 100,
       "expansion_target": 800,
-      "companies_located": 0,
-      "companies_with_located_career_channel": 0,
-      "located_employers_with_monitoring_configured": 0,
-      "companies_monitored_in_country": 6,
-      "baseline_gap": 94,
-      "expansion_gap": 794,
-      "size_unknown": 14,
+      "companies_located": 1,
+      "companies_with_located_career_channel": 1,
+      "located_employers_with_monitoring_configured": 1,
+      "companies_monitored_in_country": 7,
+      "baseline_gap": 93,
+      "expansion_gap": 793,
+      "size_unknown": 15,
       "status": "integration-required"
     },
     {
@@ -18557,17 +18569,17 @@
     {
       "code": "DE",
       "name": "Germany",
-      "companies_identified": 260,
-      "regions_with_employers": 1,
+      "companies_identified": 261,
+      "regions_with_employers": 2,
       "baseline_target": 100,
       "expansion_target": 1500,
-      "companies_located": 2,
-      "companies_with_located_career_channel": 2,
-      "located_employers_with_monitoring_configured": 2,
+      "companies_located": 3,
+      "companies_with_located_career_channel": 3,
+      "located_employers_with_monitoring_configured": 3,
       "companies_monitored_in_country": 24,
       "baseline_gap": 76,
       "expansion_gap": 1476,
-      "size_unknown": 259,
+      "size_unknown": 260,
       "status": "integration-required"
     },
     {
@@ -18701,17 +18713,17 @@
     {
       "code": "NL",
       "name": "Netherlands",
-      "companies_identified": 1222,
+      "companies_identified": 1224,
       "regions_with_employers": 12,
       "baseline_target": 100,
       "expansion_target": 800,
-      "companies_located": 1043,
-      "companies_with_located_career_channel": 1043,
-      "located_employers_with_monitoring_configured": 1043,
-      "companies_monitored_in_country": 46,
-      "baseline_gap": 54,
-      "expansion_gap": 754,
-      "size_unknown": 1006,
+      "companies_located": 1045,
+      "companies_with_located_career_channel": 1045,
+      "located_employers_with_monitoring_configured": 1045,
+      "companies_monitored_in_country": 47,
+      "baseline_gap": 53,
+      "expansion_gap": 753,
+      "size_unknown": 1008,
       "status": "integration-required"
     },
     {
@@ -18846,14 +18858,14 @@
   ],
   "collection_outcomes": {
     "verified-empty": 31,
-    "blocked-or-failed": 282,
-    "partial": 523,
-    "discovery-incomplete": 987,
-    "collected": 73,
-    "companies": 1896,
-    "configured": 1896,
-    "attempted": 1896
+    "blocked-or-failed": 270,
+    "partial": 530,
+    "discovery-incomplete": 993,
+    "collected": 76,
+    "companies": 1900,
+    "configured": 1900,
+    "attempted": 1900
   },
-  "collection_checked_at": "2026-11-20T07:43:54.984018+00:00",
+  "collection_checked_at": "2026-11-20T13:51:57.472221+00:00",
   "monitored_companies_definition": "Automatic collectors configured; extraction success is reported separately in collection_outcomes"
 }
