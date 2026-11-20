@@ -5,7 +5,48 @@ from scripts.preview_internal_recruitee import (
     LEGAL_URL, reviewed_source, ReadOnlyClient
 )
 from collector.classify import classify_role
+from collector.recruitee_alias import reconcile, same_path_redirect
 
+
+class AliasResolutionTests(unittest.TestCase):
+    def test_only_live_same_path_aliases_with_published_application_survive(self):
+        class Client:
+            def __init__(self, adversarial=None):
+                self.calls = []
+                self.adversarial = adversarial
+            def request(self, url):
+                self.calls.append(url)
+                if self.adversarial and url.endswith(self.adversarial[0]):
+                    return b"", 200, self.adversarial[1]
+                return b"<html>SmartWays</html>", 200, url.replace(
+                    "careers.smartways.io", "smartways.recruitee.com")
+        source = dict(SOURCE)
+        row = dict(title="Recruitment Internship Programme (paid)",
+                   text="Our recruitment team", employment="",
+                   countries=["PL"], url="https://careers.smartways.io/o/recruitment-internship-programme-paid",
+                   apply_url="https://careers.smartways.io/o/recruitment-internship-programme-paid",
+                   observed_application_url="https://careers.smartways.io/o/recruitment-internship-programme-paid/c/new")
+        fake = Client()
+        resolved = reconcile(source, fake, [row])
+        self.assertEqual(len(fake.calls), 2)
+        self.assertEqual(resolved[0]["url"], "https://smartways.recruitee.com/o/recruitment-internship-programme-paid")
+        self.assertEqual(resolved[0]["observed_application_url"],
+                         resolved[0]["url"] + "/c/new")
+        for bad in ("https://jobs.smartways.io/o/recruitment-internship-programme-paid",
+                    "https://careers.smartways.io/o/another-job",
+                    "https://malicious.example/o/recruitment-internship-programme-paid"):
+            # A different host or vacancy cannot be accepted as the redirect result.
+            client = Client(("/o/recruitment-internship-programme-paid",
+                             bad))
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                same_path_redirect(client, row["url"])
+        no_app = dict(row, observed_application_url=None)
+        with self.assertRaises(ValueError):
+            reconcile(source, Client(), [no_app])
+        skip = dict(row,title="Marketing & Sales Internship Programme (paid)")
+        no_get = Client()
+        self.assertEqual(reconcile(source, no_get, [skip])[0]["url"], skip["url"])
+        self.assertEqual(no_get.calls, [])
 
 class InternalRecruiteeTests(unittest.TestCase):
     def test_new_internal_board_is_not_the_previous_client_vacancy_board(self):
@@ -17,6 +58,7 @@ class InternalRecruiteeTests(unittest.TestCase):
             {"enabled": True}, {"allowed_hosts": [HOST, "jobs.smartways.io"]},
             {"feed_url": "https://jobs.smartways.io/api/offers/"},
             {"max_requests": 200}, {"collection_seconds": 1000},
+            {"reviewed_recruitee_alias": "unreviewed-tenant"},
             {"target_countries": ["NL"]}, {"application_check": None}
         ):
             with self.subTest(change=change):

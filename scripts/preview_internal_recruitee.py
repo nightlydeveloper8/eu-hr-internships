@@ -30,6 +30,7 @@ SOURCE = dict(
     id="pilot-smartways-internal-pl",
     employer="SmartWays", adapter="recruitee", enabled=False,
     application_check="recruitee-linked",
+    reviewed_recruitee_alias="smartways-internal",
     feed_url=BASE + "/api/offers/", career_url=BASE + "/",
     allowed_hosts=[HOST, REVIEWED_CAREERS_HOST], target_countries=["PL"],
     ownership_scope="reviewed-hosts", require_employer_identity=True,
@@ -43,7 +44,8 @@ SOURCE = dict(
 def reviewed_source(source):
     required = ("id", "employer", "adapter", "application_check", "feed_url",
                 "career_url", "target_countries", "ownership_scope",
-                "require_employer_identity", "report_feed_scope")
+                "require_employer_identity", "report_feed_scope",
+                "reviewed_recruitee_alias")
     if (not isinstance(source, dict) or
             any(source.get(k) != SOURCE[k] for k in required) or
             source.get("enabled") is not False or

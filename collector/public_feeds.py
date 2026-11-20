@@ -103,6 +103,9 @@ def recruitee_records(source,client):
             if j.get('careers_apply_url'):
                 out[-1]['observed_application_url']=approved(j['careers_apply_url'],source)
     if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate offers')
+    if source.get('reviewed_recruitee_alias'):
+        from .recruitee_alias import reconcile
+        out = reconcile(source, client, out)
     if source.get('report_feed_scope'):
         from .universal import Inventory
         return Inventory(out,dict(status='ok',complete=True,closure_complete=False,pages_read=1,
