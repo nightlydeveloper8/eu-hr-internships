@@ -21,7 +21,8 @@ from collector.universal import Document
 from collector.verification import verified_job
 
 HOST = "smartways.recruitee.com"
-CORPORATE = {"smartways.io", "www.smartways.io"}
+LEGAL_URL = BASE + "/privacy-policy"
+LEGAL_TAX_ID = "6793137813"
 BASE = "https://" + HOST
 SOURCE = dict(
     id="pilot-smartways-internal-pl",
@@ -60,7 +61,7 @@ def allowed(url):
         return False
     if parsed.hostname != HOST or parsed.query:
         return False
-    return (parsed.path in ("", "/", "/robots.txt", "/api/offers")
+    return (parsed.path in ("", "/", "/robots.txt", "/privacy-policy", "/api/offers")
             or bool(re.fullmatch(r"/o/[a-zA-Z0-9%_-]+(?:/c/new)?", parsed.path)))
 
 
@@ -78,22 +79,28 @@ class ReadOnlyClient(BudgetClient):
 
 
 def employer_board(homepage, final):
-    """The tenant itself links to the exact employer, not another job board."""
+    """Current internal tenant must identify the employer before further reads."""
     if canonical_url(final) != canonical_url(BASE):
         raise ValueError("Internal Recruitee homepage redirected")
     document = Document(homepage, final)
     if "smartways" not in document.text.casefold():
         raise ValueError("Current tenant does not name SmartWays")
-    company_links = []
-    for href, _, _ in document.links:
-        try:
-            target = urlsplit(canonical_url(urljoin(final, href)))
-        except ValueError:
-            continue
-        if target.hostname in CORPORATE:
-            company_links.append(target.hostname)
-    if not company_links:
-        raise ValueError("Employer-to-Recruitee ownership not evidenced on current tenant")
+    return True
+
+
+def employer_legal_identity(html, final):
+    """Independent same-host legal page, with NIP from the corporate site.
+
+    The previous employer-website link test failed on the live careers HTML.
+    A verified legal name plus the company's publicly stated tax identifier
+    is stronger ownership evidence; do not infer it from a job title.
+    """
+    if canonical_url(final) != canonical_url(LEGAL_URL):
+        raise ValueError("SmartWays legal notice redirected")
+    value = Document(html, final).text.casefold()
+    if not ("smartways" in value and LEGAL_TAX_ID in value and
+            ("spółka" in value or "spolka" in value or "sp. z o.o" in value)):
+        raise ValueError("Legal notice does not establish the reviewed SmartWays identity")
     return True
 
 
@@ -122,6 +129,8 @@ def preview():
     try:
         homepage, _, final = client.request(BASE + "/")
         employer_board(homepage, final)
+        legal, _, legal_final = client.request(LEGAL_URL)
+        employer_legal_identity(legal, legal_final)
         part = process_source(source, client, stamp)
         if part["closure_eligible"]:
             raise ValueError("Partial Recruitee sample cannot close records")

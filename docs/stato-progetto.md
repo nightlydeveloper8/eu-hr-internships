@@ -6,6 +6,8 @@
 - Nuovo pilota read-only `scripts/preview_internal_recruitee.py`: controlla homepage e link al sito ufficiale, inventario Recruitee corrente sul solo host interno, classificazione ordinaria, form `/c/new` same posting con ID e identità aziendale, policy v2 e finalizzazione in directory temporanea ripetibile. Isolamento su una sola fonte disabilitata, 14 GET massimo, 75 s, nessun POST o rendering, nessuna closure per assenza, `main` e registry invariati.
 - La pagina pubblica `https://smartways.recruitee.com/o/recruitment-internship-programme-paid` e il relativo modulo sono una **pista**, non stage verified finché la [CI pilota](https://github.com/nightlydeveloper8/eu-hr-internships/actions) non fornisce prove dell'ID e form attuali con BudgetClient. Nuove candidature in produzione **0**; prima del run il beneficio di staging e il costo di questa modifica non sono ancora misurati. Nessun merge o attivazione richiesti.
 
+- Prima prova live [#44793789634](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44793789634): **2 GET, 209.263 byte, 0 stage verificati**, stop fail-closed nel controllo del link al sito aziendale sulla homepage; nessuna verifica del modulo. Revisione: il tenant espone l'informativa `/privacy-policy`, che dichiara SmartWays e NIP **6793137813**, corrispondente al sito aziendale ufficiale. Controllo aggiornato con una GET della informativa e confronto legale stretto prima di procedere all'inventario; stessi host, limite 14 GET, 75 s e nessuna attivazione.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.

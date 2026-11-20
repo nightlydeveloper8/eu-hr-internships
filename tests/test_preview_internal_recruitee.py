@@ -1,7 +1,8 @@
 """Offline regressions for the second, employer-internal SmartWays tenant."""
 import unittest
 from scripts.preview_internal_recruitee import (
-    BASE, HOST, SOURCE, allowed, employer_board, reviewed_source, ReadOnlyClient
+    BASE, HOST, SOURCE, allowed, employer_board, employer_legal_identity,
+    LEGAL_URL, reviewed_source, ReadOnlyClient
 )
 from collector.classify import classify_role
 
@@ -27,6 +28,7 @@ class InternalRecruiteeTests(unittest.TestCase):
         self.assertTrue(allowed(BASE + "/o/recruitment-internship-programme-paid"))
         self.assertTrue(allowed(BASE + "/o/recruitment-internship-programme-paid/c/new"))
         self.assertTrue(allowed(BASE + "/robots.txt"))
+        self.assertTrue(allowed(LEGAL_URL))
         for target in (
             "https://jobs.smartways.io/api/offers/",
             BASE + "/api/offers/?next=https://other.example",
@@ -41,13 +43,24 @@ class InternalRecruiteeTests(unittest.TestCase):
             client.request(BASE + "/o/test/c/new", method="POST")
         self.assertEqual(client.requests, before)
 
-    def test_live_tenant_must_name_company_and_link_corporate_site(self):
-        html = b'<h1>SmartWays</h1><a href="https://www.smartways.io/">Company website</a>'
+    def test_tenant_and_independent_legal_ownership_must_match(self):
+        html = b'<h1>SmartWays</h1>'
         self.assertTrue(employer_board(html, BASE + "/"))
         with self.assertRaises(ValueError):
-            employer_board(b'<h1>SmartWays</h1>', BASE + "/")
+            employer_board(b'<h1>Other company</h1>', BASE + "/")
         with self.assertRaises(ValueError):
             employer_board(html, "https://jobs.smartways.io/")
+        legal = ("SmartWays spółka z ograniczoną odpowiedzialnością "
+                 "NIP 6793137813").encode()
+        self.assertTrue(employer_legal_identity(legal, LEGAL_URL))
+        for body, url in (
+            (b"Other company NIP 6793137813", LEGAL_URL),
+            (b"SmartWays sp. z o.o. NIP 1234567890", LEGAL_URL),
+            (legal, "https://jobs.smartways.io/privacy-policy"),
+        ):
+            with self.subTest(body=body, url=url):
+                with self.assertRaises(ValueError):
+                    employer_legal_identity(body, url)
 
     def test_recruiting_programme_qualifies_but_sales_programme_does_not(self):
         role = classify_role("Recruitment Internship Programme (paid)")
