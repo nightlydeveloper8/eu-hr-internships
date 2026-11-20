@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 20 novembre 2026 — diagnosi per paese e prova EURES geografica
+
+- Snapshot `7c5ce80`: 39 candidature dirette in 6 paesi UE. Su 21 paesi a zero, 5 hanno schede pubbliche attive e 16 sono a zero anche su quelle. Il [piano per paese](eu27-expansion/piano-paesi-2026-11-20.md) indica canali nazionali, vincoli e azione prioritaria per UE27, Svizzera e Regno Unito. Resta la priorità alle province e ai comuni NL.
+- [Pilota live](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44766676817) su NL come controllo e PL, IE, CZ, DK. Le query geografiche nei quattro paesi a zero hanno restituito 109 schede locali contro due delle query globali a parità di termine. Zero stage HR riconosciuti nei quattro paesi, 14 richieste, 2.452.665 byte e 131,09 s. Il campione non comporta una modifica del budget ordinario.
+- L'audit UE27 separa ora candidature dirette e schede pubbliche attive nella bozza. Prossima azione: convertire le schede in IT, CH e SE e cercare canali nazionali o aziendali utili nei paesi senza schede. Mettere a confronto un primo giro di query EURES per paese con la ricerca globale nel budget attuale. Catalogo e fonti di produzione restano invariati.
+
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
 - Squash merge della [PR #86](https://github.com/nightlydeveloper8/eu-hr-internships/pull/86) in `12a4832`. Ampelmann, VIGO, CHR Haute Senne e ABRIO sono attivi nella raccolta ordinaria.
