@@ -10,6 +10,7 @@ function node(tag, attrs = {}, parent) {
 }
 const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 const reducedMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const BENELUX = ['NL', 'BE', 'LU'];
 
 // "3 in English · 31 in Italian" for the current ads of one country.
 export function describeLanguages(breakdown = [], languageNames = {}) {
@@ -33,7 +34,7 @@ export function countryFacts(c = {verified:0, unverified:0, applicationConfirmed
 }
 
 // Draws the EU-27 + CH + GB map into `svg`. Returns {select(code), zoom(step), reset()} for the app to keep in sync.
-export function drawMap({svg, tooltip, wrap, counts, names, onSelect, languages = () => ''}) {
+export function drawMap({svg, tooltip, wrap, benelux, counts, names, onSelect, languages = () => ''}) {
   svg.setAttribute('viewBox', MAP_VIEWBOX);
   svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   svg.replaceChildren();
@@ -59,6 +60,25 @@ export function drawMap({svg, tooltip, wrap, counts, names, onSelect, languages 
   const order = Object.keys(EU_SHAPES).sort((a, b) => (names[a] || a).localeCompare(names[b] || b));
   let hovered = '', selected = '', hideTimer;
   const badgeData = [];
+  const beneluxButtons = new Map();
+  for (const code of BENELUX) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'country-chip';
+    const count = document.createElement('b');
+    count.textContent = String(counts[code]?.verified || 0);
+    button.append(names[code] || code, count);
+    if (counts[code]?.applicationConfirmed) {
+      const dot = document.createElement('i');
+      dot.className = 'key-dot'; dot.setAttribute('aria-hidden', 'true');
+      button.append(dot);
+    }
+    button.setAttribute('aria-label', `${names[code] || code}: ${describeCountry(names[code], counts[code])}`);
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => onSelect(code));
+    benelux.append(button);
+    beneluxButtons.set(code, button);
+  }
 
   function showTip(code, x, y) {
     clearTimeout(hideTimer);
@@ -141,11 +161,21 @@ export function drawMap({svg, tooltip, wrap, counts, names, onSelect, languages 
   function drawBadges() {
     const px = svg.clientWidth || svg.getBoundingClientRect().width;
     if (!px) return;
-    const ratio = Math.max(current[2] / px, current[3] / (svg.clientHeight || px));
-    const u = ratio * (px < 520 ? 0.9 : 1);
+    const unitsPerPixel = box => Math.max(box[2] / px, box[3] / (svg.clientHeight || px));
+    const scale = px < 520 ? 0.9 : 1;
+    const u = unitsPerPixel(current) * scale;
+    const baseUnit = unitsPerPixel(base) * scale;
+    const badgeWidth = d => 14 + d.label.length * 7.2;
+    const nearby = badgeData.filter(d => beneluxButtons.has(d.code));
+    // Base the callout on the unzoomed layout so zooming keeps the same focus targets.
+    const separate = nearby.some((a, i) => nearby.slice(i + 1).some(b =>
+      Math.abs(a.cx - b.cx) < ((badgeWidth(a) + badgeWidth(b)) / 2 + 4) * baseUnit
+      && Math.abs(a.cy - b.cy) < 24 * baseUnit));
+    benelux.hidden = !separate;
     badges.replaceChildren();
     for (const d of badgeData) {
-      const width = (14 + d.label.length * 7.2) * u, height = 20 * u;
+      if (separate && beneluxButtons.has(d.code)) continue;
+      const width = badgeWidth(d) * u, height = 20 * u;
       const b = node('g', {class:`badge${d.direct ? ' has-direct' : ''}${d.code === selected ? ' is-selected' : ''}`, 'data-code':d.code}, badges);
       node('rect', {x:d.cx - width / 2, y:d.cy - height / 2, width, height, rx:height / 2}, b);
       const t = node('text', {x:d.cx, y:d.cy, dy:'0.36em', 'text-anchor':'middle', 'font-size':(11.5 * u).toFixed(2)}, b);
@@ -220,6 +250,7 @@ export function drawMap({svg, tooltip, wrap, counts, names, onSelect, languages 
         g.setAttribute('aria-pressed', String(on));
       }
       for (const b of badges.children) b.classList.toggle('is-selected', b.dataset.code === selected);
+      for (const [k, b] of beneluxButtons) b.setAttribute('aria-pressed', String(k === selected));
       selectedOutline.setAttribute('d', selected ? outline(selected) : '');
       selectedOutline.classList.toggle('is-visible', Boolean(selected));
       if (factor > 1 && selected) zoomTo(factor);

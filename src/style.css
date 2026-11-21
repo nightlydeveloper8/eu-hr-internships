@@ -185,6 +185,14 @@ main { max-width: 1520px; margin: 0 auto; padding: 0 var(--gutter); }
 .badge text { font-family: var(--font); font-weight: 650; fill: #eaf4fd; font-variant-numeric: tabular-nums; }
 .badge.is-selected rect { fill: #10202f; stroke: var(--ice); }
 .direct-dot { fill: var(--direct); stroke: #080c12; }
+.map-benelux {
+  position: absolute; z-index: 1; left: 16px; top: 144px;
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; margin-right: 20px;
+  background: var(--bg-2); border: 1px solid var(--line-3); border-radius: 13px;
+}
+.map-benelux[hidden], .panel-section[hidden] { display: none; }
+.map-benelux .country-chip { min-height: 34px; padding-inline: 8px 4px; gap: 5px; font-size: 12px; }
+.map-benelux .country-chip[aria-pressed="true"] { border-color: var(--ice); background: var(--raised); color: var(--text); }
 
 .map-tooltip {
   position: absolute; z-index: 5; min-width: 200px; max-width: 270px; padding: 12px 14px;
@@ -241,6 +249,21 @@ main { max-width: 1520px; margin: 0 auto; padding: 0 var(--gutter); }
 .panel-facts .fact-direct b { color: var(--direct-text); }
 .panel-facts .fact-lead b { color: var(--warn-text); }
 .panel-languages { margin: 4px 0 12px; }
+.ad-language-summary { padding: 12px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--surface); }
+.ad-language-title { color: var(--text); font-size: 14px; font-weight: 650; margin: 0 0 8px; }
+.ad-language-bar { display: flex; height: 8px; overflow: hidden; border-radius: 5px; }
+.ad-language-bar span { min-width: 0; flex-basis: 0; background: var(--language-color); }
+.ad-language-summary .english { --language-color: var(--accent-2); }
+.ad-language-summary .local { --language-color: #a49aee; }
+.ad-language-summary .other { --language-color: var(--warn); }
+.ad-language-summary .unknown { --language-color: var(--text-3); }
+.ad-language-legend { list-style: none; margin: 8px 0 0; padding: 0; color: var(--text-2); font-size: 12px; }
+.ad-language-legend li { display: flex; gap: 7px; align-items: baseline; }
+.ad-language-legend li::before { content: ""; flex: 0 0 6px; height: 6px; border-radius: 50%; background: var(--language-color); align-self: center; }
+.ad-language-legend strong { margin-left: auto; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ad-language-note { margin: 6px 0 0; color: var(--text-3); font-size: 12px; }
+.panel-languages .chip-row, .language-filters .chip-row { margin-top: 8px; }
+.language-filters summary { padding-block: 6px; cursor: pointer; color: var(--text-2); font-size: 13px; }
 .panel-actions, .explorer-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .explorer-actions { margin-top: 0; }
 .panel-section { display: grid; }
@@ -330,6 +353,8 @@ main { max-width: 1520px; margin: 0 auto; padding: 0 var(--gutter); }
 .company-monogram { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(140deg, var(--raised), #111924); border: 1px solid var(--line-2); color: var(--ice); font-weight: 650; font-size: 16px; }
 .card-org { min-width: 0; }
 .company-line { color: var(--text); font-size: 13.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.company-line.with-employer-note { display: flex; flex-wrap: wrap; column-gap: 8px; white-space: normal; }
+.job-employer-note { color: var(--text-3); font-size: 12px; font-weight: 500; }
 .job-location { color: var(--text-3); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .save-button { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line); color: var(--text-3); transition: color .18s, border-color .18s, background-color .18s, transform .2s var(--ease); }
 .save-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; transition: fill .18s; }
@@ -486,6 +511,7 @@ tbody th { color: var(--text); font-weight: 500; }
   .map-stage { height: auto; aspect-ratio: auto; display: flex; flex-direction: column; }
   .eu-map { height: min(84vw, 70vh); min-height: 320px; }
   .map-legend { position: static; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 0 12px 12px; max-width: none; }
+  .map-benelux { position: relative; inset: auto; align-self: start; margin: 0 12px 8px; }
   .explorer-panel { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
   .country-panel { grid-row: span 2; }
   .explorer-actions { grid-column: 1 / -1; }
@@ -512,6 +538,7 @@ tbody th { color: var(--text); font-weight: 500; }
   .map-stage { margin: 0 calc(var(--gutter) * -1); border-radius: 0; border-left: 0; border-right: 0; }
   .eu-map { height: min(112vw, 480px); }
   .map-legend { margin: 0 var(--gutter) 12px; gap: 6px 12px; padding: 8px 10px; font-size: 11px; }
+  .map-benelux { margin-inline: var(--gutter); }
   .scale-bar { width: 72px; }
   .map-controls { right: 10px; top: 10px; }
   .map-controls button { width: 44px; height: 44px; }

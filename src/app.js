@@ -1,4 +1,4 @@
-import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, languageBreakdown, PERMIT_NOTES } from './logic.js';
+import { matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
 import { drawMap, describeCountry, describeLanguages, countryFacts } from './map.js';
 
 const $ = id => document.getElementById(id);
@@ -42,15 +42,25 @@ const EVIDENCE = {
   current: {label:'Current listing', cta:'View at employer'},
   lead: {label:'Lead to check', cta:'Check at employer'},
 };
+const PUBLIC_EXPLANATION = 'Via an official public employment service, active in the last 48 h · employer’s own form not checked.';
 function card(job) {
   const level = evidenceLevel(job);
   const isPublic = publicEmploymentListing(job);
   const confirmed = applicationConfirmed(job);
+  const undisclosedOnEures = /^Employer not disclosed(?: \(see EURES advertisement\))?$/i.test(job.employer?.trim())
+    && (job.employer.toLowerCase().includes('eures') || /^EURES\b/i.test(job.source_name || ''));
+  const publisher = undisclosedOnEures ? 'EURES' : job.employer;
   const article = el('article','job-card'); article.dataset.evidence = level;
   const heading = el('div','card-heading');
-  heading.append(el('div','company-monogram',(job.employer || '?').trim()[0]?.toUpperCase() || '?'));
+  const monogram = el('div','company-monogram',(publisher || '?').trim()[0]?.toUpperCase() || '?');
+  monogram.setAttribute('aria-hidden', 'true'); heading.append(monogram);
   const org = el('div','card-org');
-  org.append(el('p','company-line',job.employer));
+  const company = el('p','company-line',publisher);
+  if (undisclosedOnEures) {
+    company.classList.add('with-employer-note');
+    company.append(el('span','job-employer-note','Employer not disclosed'));
+  }
+  org.append(company);
   const where = [job.city, ...(job.countries || []).map(c => catalog.countries[c] || c)].filter(Boolean);
   org.append(el('p','job-location',[...new Set(where)].join(' · ')));
   heading.append(org);
@@ -80,7 +90,9 @@ function card(job) {
   if (info.requirements_status === 'unknown' && !languageTags.length) tags.append(el('span','tag muted','Language not specified'));
   article.append(tags);
 
-  if (level === 'public') article.append(el('p','verification-explanation','Via an official public employment service, active in the last 48 h · employer’s own form not checked.'));
+  if (level === 'public') {
+    if (!undisclosedOnEures) article.append(el('p','verification-explanation',PUBLIC_EXPLANATION));
+  }
   else if (!confirmed) article.append(el('p',`verification-explanation${level === 'lead' ? ' warn' : ''}`,verificationMessage(job)));
   for (const code of new Set(job.countries||[])) if (PERMIT_NOTES[code]) article.append(permitNote(code));
 
@@ -90,7 +102,7 @@ function card(job) {
   const destination = isPublic ? job.url : confirmed ? job.application_verification.url : job.apply_url;
   const apply = el('a',`apply-link ${level}`); apply.append(el('span','',EVIDENCE[level].cta),el('span','arrow','↗'));
   apply.href = safeUrl(destination) || safeUrl(job.url) || '#'; apply.target = '_blank'; apply.rel = 'noopener noreferrer';
-  apply.setAttribute('aria-label',`${EVIDENCE[level].cta}: ${job.title}, ${job.employer}`);
+  apply.setAttribute('aria-label',`${EVIDENCE[level].cta}: ${job.title}, ${undisclosedOnEures ? 'via EURES' : job.employer}`);
   bottom.append(apply); article.append(bottom);
 
   const details = el('details','job-details'); details.append(el('summary','','Details & language evidence'));
@@ -107,7 +119,7 @@ function card(job) {
   row('Last seen on board',date(job.last_seen_at));
   row('Last verification attempt',date(job.verification?.checked_at));
   row('Vacancy last verified',verifiedJob(job) ? date(job.last_verified_at) : 'No current verification');
-  row('Availability evidence',verificationMessage(job));
+  row('Availability evidence',level === 'public' && undisclosedOnEures ? PUBLIC_EXPLANATION : verificationMessage(job));
   if (job.intake) {
     row('Published start',job.intake.published_start || 'Not specified; confirm with the employer.');
     const provenance={live:'Official vacancy',feed:'Official feed',cache:'Historical cached evidence'}[job.intake.provenance];
@@ -131,10 +143,36 @@ function factList(c) {
   for (const fact of countryFacts(c)) { const li = el('li',`fact-${fact.kind}`); li.append(el('b','',String(fact.value)), el('span','',fact.label)); list.append(li); }
   return list;
 }
+const adShare = new Intl.NumberFormat('en', {style:'percent', maximumFractionDigits:1});
+function languageSummary(mix, heading = 'h3') {
+  const labels = {english:'English', local:'Local (excluding English)', other:'Other languages', unknown:'Unidentified'};
+  const total = Object.values(mix).reduce((sum, count) => sum + count, 0);
+  const summary = el('div','ad-language-summary');
+  summary.append(el(heading,'ad-language-title','Language of current ads'));
+  const bar = el('div','ad-language-bar'); bar.setAttribute('aria-hidden','true');
+  const legend = el('ul','ad-language-legend');
+  for (const [kind, label] of Object.entries(labels)) {
+    const count = mix[kind] || 0;
+    if (count) {
+      const segment = el('span',kind);
+      segment.style.flexGrow = String(count);
+      bar.append(segment);
+    }
+    if (count || kind === 'english' || kind === 'local') {
+      const row = el('li',kind);
+      row.append(el('span','',label), el('strong','',`${count} · ${adShare.format(count / total)}`));
+      legend.append(row);
+    }
+  }
+  summary.append(bar, legend, el('p','ad-language-note','Ad language and workplace requirements are separate.'));
+  return summary;
+}
 function updatePanel() {
   const panel = $('country-panel'); panel.replaceChildren();
   const code = filters.country;
-  $('top-section').hidden = Boolean(code); $('language-section').hidden = Boolean(code) || !$('language-totals').children.length;
+  $('top-section').hidden = Boolean(code);
+  const languageSection = $('language-section');
+  languageSection.hidden = Boolean(code) || !languageSection.querySelector('.ad-language-summary');
   if (!code) {
     panel.classList.remove('has-country');
     panel.append(el('p','panel-label','Start exploring'), el('p','panel-empty','Hover a country to preview it. Select it to see its internships — or start with a leader below.'));
@@ -152,17 +190,20 @@ function updatePanel() {
   else panel.append(el('p','panel-empty','No openings observed yet. Our collection is still growing here — this does not mean there are no internships.'));
   const breakdown = languageBreakdown(code, languageCounts[code]);
   if (breakdown.length) {
-    const langs = el('div','panel-languages'); langs.append(el('p','panel-label','Ads written in'));
+    const mix = {};
+    for (const {count, kind} of breakdown) mix[kind] = (mix[kind] || 0) + count;
+    const langs = el('div','panel-languages'); langs.append(languageSummary(mix));
     const row = el('div','chip-row');
     for (const {code: lang, count, kind} of breakdown) {
-      if (lang === 'unknown') { row.append(el('small','',`${count} unidentified`)); continue; }
+      if (lang === 'unknown') continue;
       const b = el('button',`language-chip ${kind}`); b.type = 'button';
       b.append(el('span','',catalog.languages[lang] || lang), el('b','',String(count)));
       b.setAttribute('aria-label', `Show ${count} current ${catalog.languages[lang] || lang}-language ads in ${catalog.countries[code] || code}`);
       b.addEventListener('click', () => { filters.ad = lang; filters.unverified = false; filters.applicationConfirmed = false; selectCountry(code); });
       row.append(b);
     }
-    langs.append(row); panel.append(langs);
+    if (row.children.length) langs.append(row);
+    panel.append(langs);
   }
   if (PERMIT_NOTES[code]) panel.append(permitNote(code));
   const actions = el('div','panel-actions');
@@ -340,21 +381,27 @@ async function init(){try {
   $('close-dialog').addEventListener('click',()=>$('coverage-dialog').close());
   $('coverage-dialog').addEventListener('click',e=>{if(e.target===$('coverage-dialog')){const rect=e.target.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)e.target.close();}});
 
-  counts = countryCounts(catalog.jobs);
-  languageCounts = countryLanguageCounts(catalog.jobs);
-  const totals = {};
-  for (const byLang of Object.values(languageCounts)) for (const [lang, n] of Object.entries(byLang)) if (lang !== 'unknown') totals[lang] = (totals[lang] || 0) + n;
-  for (const [lang, n] of Object.entries(totals).sort((a, b) => (a[0] === 'en' ? -1 : b[0] === 'en' ? 1 : b[1] - a[1]))) {
+  const clock = Date.now();
+  counts = countryCounts(catalog.jobs, clock);
+  languageCounts = countryLanguageCounts(catalog.jobs, clock);
+  const {mix, byLanguage} = catalogueAdLanguages(catalog.jobs, clock);
+  const languageSection = $('language-section');
+  if (Object.keys(byLanguage).length) {
+    languageSection.prepend(languageSummary(mix, 'h2'));
+    languageSection.hidden = false;
+  }
+  for (const [lang, n] of Object.entries(byLanguage).filter(([lang]) => lang !== 'unknown').sort((a, b) => (a[0] === 'en' ? -1 : b[0] === 'en' ? 1 : b[1] - a[1]))) {
     const chip = el('button',`language-chip${lang==='en'?' english':''}`); chip.type = 'button';
     chip.append(el('span','',catalog.languages[lang] || lang), el('b','',String(n)));
     chip.setAttribute('aria-label', `Show ${n} current ads written in ${catalog.languages[lang] || lang}, in every country`);
     chip.addEventListener('click', () => { filters.ad = lang; filters.country = ''; filters.region = ''; filters.unverified = false; filters.applicationConfirmed = false; limit = 20; syncControls(); render(); scrollToResults(); });
     $('language-totals').append(chip);
   }
+  $('language-filters').hidden = !$('language-totals').children.length;
   const evidence = opportunityCounts(catalog.jobs);
   heroStats(evidence, Object.values(counts).filter(c => c.verified).length);
   $('freshness').textContent = `Live map · ${ago(catalog.updated_at)}`;
-  mapView = drawMap({svg: $('eu-map'), tooltip: $('map-tooltip'), wrap: $('map-wrap'), counts, names: catalog.countries, onSelect: code => selectCountry(code === filters.country ? '' : code, false), languages: code => describeLanguages(languageBreakdown(code, languageCounts[code]), catalog.languages)});
+  mapView = drawMap({svg: $('eu-map'), tooltip: $('map-tooltip'), wrap: $('map-wrap'), benelux: $('map-benelux'), counts, names: catalog.countries, onSelect: code => selectCountry(code === filters.country ? '' : code, false), languages: code => describeLanguages(languageBreakdown(code, languageCounts[code]), catalog.languages)});
   const zoomed = f => { $('map-zoom-reset').hidden = f <= 1; };
   $('map-zoom-in').addEventListener('click', () => zoomed(mapView.zoom(1)));
   $('map-zoom-out').addEventListener('click', () => zoomed(mapView.zoom(-1)));

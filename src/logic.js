@@ -54,13 +54,17 @@ export function matches(job, filters, saved = new Set()) {
   const haystack = fold([job.title, job.employer, job.city, ...job.countries, ...(job.search_terms || [])].join(' '));
   return fold(filters.q).split(/\s+/).filter(Boolean).every(word => haystack.includes(word));
 }
-export function rankJobs(jobs, filters) {
+export function rankJobs(jobs, filters, clock = Date.now()) {
   const terms = fold(filters.q).split(/\s+/).filter(Boolean);
   const score = job => terms.reduce((sum, t) => sum + (fold(job.title).includes(t) ? 4 : 0) + (fold(job.employer).includes(t) ? 2 : 0), 0);
   const date = (job, field) => { const parsed = Date.parse(job[field] || ''); return Number.isFinite(parsed) ? parsed : 0; };
+  const direct = filters.sort === 'relevance' ? new Set(jobs.filter(job => applicationConfirmed(job, clock))) : null;
   return [...jobs].sort((a,b) => {
     if (filters.mode === 'nl') { const nl = Number(b.countries.includes('NL')) - Number(a.countries.includes('NL')); if (nl) return nl; }
-    if (filters.sort === 'relevance') { const delta = score(b) - score(a); if (delta) return delta; }
+    if (direct) {
+      const delta = score(b) - score(a) || Number(direct.has(b)) - Number(direct.has(a));
+      if (delta) return delta;
+    }
     const field = filters.sort === 'discovered' ? 'first_discovered_at' : 'published_at';
     return date(b, field) - date(a, field) || a.employer.localeCompare(b.employer) || a.id.localeCompare(b.id);
   });
@@ -124,12 +128,36 @@ export const PERMIT_NOTES = {
 // Official languages per country, used to tell local-language ads from English ones.
 export const NATIONAL_LANGUAGES = {AT:['de'],BE:['nl','fr','de'],BG:['bg'],HR:['hr'],CY:['el','tr'],CZ:['cs'],DK:['da'],EE:['et'],FI:['fi','sv'],FR:['fr'],DE:['de'],GR:['el'],HU:['hu'],IE:['en','ga'],IT:['it'],LV:['lv'],LT:['lt'],LU:['lb','fr','de'],MT:['mt','en'],NL:['nl'],PL:['pl'],PT:['pt'],RO:['ro'],SK:['sk'],SI:['sl'],ES:['es','ca','eu','gl'],SE:['sv'],CH:['de','fr','it','rm'],GB:['en']};
 
+function adLanguageKind(code, countries) {
+  if (code === 'en') return 'english';
+  if (code === 'unknown') return 'unknown';
+  return countries.some(country => NATIONAL_LANGUAGES[country]?.includes(code)) ? 'local' : 'other';
+}
+
+function currentAdLanguage(job, clock) {
+  if (unreviewedExternal(job) || !verifiedJob(job, clock)) return null;
+  return job.advertisement_language?.code || 'unknown';
+}
+
+// Each current ad counts once in the Europe-wide mix, even when it covers several countries.
+export function catalogueAdLanguages(jobs, clock = Date.now()) {
+  const mix = {english:0, local:0, other:0, unknown:0};
+  const byLanguage = {};
+  for (const job of jobs) {
+    const code = currentAdLanguage(job, clock);
+    if (!code) continue;
+    mix[adLanguageKind(code, job.countries || [])]++;
+    byLanguage[code] = (byLanguage[code] || 0) + 1;
+  }
+  return {mix, byLanguage};
+}
+
 // Verified listings per country and advertisement language: {NL:{nl:3,en:2,unknown:1}}.
 export function countryLanguageCounts(jobs, clock = Date.now()) {
   const counts = {};
   for (const job of jobs || []) {
-    if (job.status === 'closed' || unreviewedExternal(job) || !verifiedJob(job, clock)) continue;
-    const code = job.advertisement_language?.code || 'unknown';
+    const code = currentAdLanguage(job, clock);
+    if (!code) continue;
     for (const country of new Set(job.countries || [])) {
       const entry = counts[country] || (counts[country] = {});
       entry[code] = (entry[code] || 0) + 1;
@@ -140,11 +168,10 @@ export function countryLanguageCounts(jobs, clock = Date.now()) {
 
 // English and local-language ads first, then any other language, then unknown.
 export function languageBreakdown(country, byLanguage = {}) {
-  const local = (NATIONAL_LANGUAGES[country] || []).filter(code => code !== 'en');
-  const rank = code => code === 'en' ? 0 : local.includes(code) ? 1 : code === 'unknown' ? 3 : 2;
+  const order = {english:0, local:1, other:2, unknown:3};
   return Object.entries(byLanguage).filter(([, n]) => n > 0)
-    .sort((a, b) => rank(a[0]) - rank(b[0]) || b[1] - a[1] || a[0].localeCompare(b[0]))
-    .map(([code, count]) => ({code, count, kind: code === 'en' ? 'english' : local.includes(code) ? 'local' : code === 'unknown' ? 'unknown' : 'other'}));
+    .map(([code, count]) => ({code, count, kind: adLanguageKind(code, [country])}))
+    .sort((a, b) => order[a.kind] - order[b.kind] || b.count - a.count || a.code.localeCompare(b.code));
 }
 
 // Colour bucket for a verified count: 0 none, 1, 2-4, 5-9, 10-24, 25+.

@@ -34,6 +34,7 @@
           <button type="button" id="map-zoom-out" aria-label="Zoom out">−</button>
           <button type="button" id="map-zoom-reset" aria-label="Show all of Europe" hidden>⤢</button>
         </div>
+        <div class="map-benelux" id="map-benelux" role="group" aria-label="Benelux map counts" hidden></div>
         <figcaption class="map-legend">
           <span class="legend-scale"><span class="legend-label">Current openings</span><span class="scale-bar" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i></span><span class="scale-ends"><span>1</span><span>25+</span></span></span>
           <span><i class="key-dot" aria-hidden="true"></i>Direct application verified</span>
@@ -48,13 +49,15 @@
           <button type="button" class="btn btn-primary" id="browse-all">Browse all internships <span aria-hidden="true">↓</span></button>
           <button type="button" class="btn btn-outline" id="direct-only"><i class="key-dot" aria-hidden="true"></i>Direct applications</button>
         </div>
+        <div class="panel-section language-totals" id="language-section" hidden>
+          <details class="language-filters" id="language-filters">
+            <summary>Filter by ad language</summary>
+            <div class="chip-row" id="language-totals"></div>
+          </details>
+        </div>
         <div class="panel-section" id="top-section">
           <p class="panel-label">Most openings</p>
           <div class="top-countries" id="top-countries" aria-label="Countries with the most current openings"></div>
-        </div>
-        <div class="panel-section language-totals" id="language-section" aria-label="Current ads by advertisement language">
-          <p class="panel-label">Ads written in</p>
-          <div class="chip-row" id="language-totals"></div>
         </div>
       </aside>
     </section>
