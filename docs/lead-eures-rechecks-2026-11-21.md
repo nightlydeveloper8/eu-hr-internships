@@ -14,7 +14,7 @@ I report contano insieme le ricerche in POST di sola lettura e i GET; le 330 ric
 
 ## Modifica e prova in staging
 
-La raccolta ordinaria prova prima **fino a cinque** URL EURES già verificati, non chiusi e non osservati nelle ultime 24 ore, in ordine di ultima osservazione. Usa lo stesso endpoint di dettaglio e lo stesso budget. Un ID esplicitamente diverso nella risposta viene scartato. Se la ricerca dello stesso ciclo restituisce l'ID, prevale la scheda della ricerca, anche in presenza di un 404 precedente. I dettagli passano ancora per la classificazione HR e per le verifiche del servizio pubblico. La coda storica resta entro il suo limite includendo le verifiche anticipate.
+La raccolta ordinaria prova prima **fino a cinque** URL EURES già verificati, non chiusi e non osservati nelle ultime 24 ore, in ordine di ultima osservazione. Usa lo stesso endpoint di dettaglio e lo stesso budget. Un ID esplicitamente diverso nella risposta viene scartato sia nei ricontrolli prioritari sia in quelli ordinari. Il report registra l’URL e l’errore in `detail_errors`. Il ciclo prosegue, conserva le schede già raccolte e non usa la risposta discordante come prova di chiusura. Se la ricerca dello stesso ciclo restituisce l'ID, prevale la scheda della ricerca, anche in presenza di un 404 precedente. I dettagli passano ancora per la classificazione HR e per le verifiche del servizio pubblico. La coda storica resta entro il suo limite includendo le verifiche anticipate.
 
 Confronto live in `.staging/`, stessa fonte, tetto di **8 richieste**, 155 s, robots.txt e attesa di almeno 10 s sullo stesso host. Il budget ridotto riproduce l'arresto prima della coda senza rifare un'intera raccolta.
 

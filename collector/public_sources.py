@@ -442,7 +442,7 @@ def eures_records(source, client):
 
     # Check a small oldest-first slice before query pagination can consume
     # the request budget. Prefer search summaries when a posting appears in both.
-    closed, rechecked = [], {}
+    closed, rechecked, detail_errors = [], {}, []
     known_urls = source.get('known_job_urls', [])
     max_known = source.get('max_known_checks', 40)
     priority_urls = list(dict.fromkeys(source.get('priority_recheck_urls', [])))
@@ -460,7 +460,8 @@ def eures_records(source, client):
             return None
         requests += 1
         if jv.get('id') and str(jv['id']) != identifier:
-            raise ValueError('EURES detail returned a different vacancy identifier')
+            detail_errors.append(dict(url=url, error='EURES detail returned a different vacancy identifier'))
+            return None
         return eures_record(source, eures_detail_summary(jv, identifier))
 
     for url in priority_urls:
@@ -508,7 +509,8 @@ def eures_records(source, client):
     records = {r['external_id']: r for r in newest.values()}
     return PublicInventory(records.values(), dict(
         republished_duplicates_folded=folded,
-        status='partial' if errors or budget_stop else 'ok', search_errors=errors[:20],
+        status='partial' if errors or budget_stop or detail_errors else 'ok', search_errors=errors[:20],
+        **({'detail_errors': detail_errors[:20]} if detail_errors else {}),
         budget_stopped_at=budget_stop[0] if budget_stop else None,
         complete=False, closure_complete=False, queries=requests, truncated_queries=truncated,
         published_records=len(records), verified_closed_urls=closed, snapshot_kind='public-api-query-inventory',

@@ -4,6 +4,16 @@
 
 [Diagnosi e confronto in staging](lead-eures-rechecks-2026-11-21.md) sul catalogo `a71b260`: cinque cicli al tetto di 330 richieste. La proposta anticipa al massimo cinque verifiche. Nel campione, 4 schede attive come Public employment service e 1 risposta 404. Se la PR verrà integrata, verificare recuperi e recall nel primo ciclo automatico.
 
+Revisione del maintainer. [#107](https://github.com/nightlydeveloper8/eu-hr-internships/pull/107) integrata in `517f3a4`, [#109](https://github.com/nightlydeveloper8/eu-hr-internships/pull/109) in `b16dc7a`. Nella [#108](https://github.com/nightlydeveloper8/eu-hr-internships/pull/108), un ID discordante ora viene scartato e segnalato anche durante i ricontrolli ordinari. Il test riproduce il fallimento sul vecchio codice e conferma che la raccolta prosegue. Passati 521 test Python, 35 Node, valutazione, copertura, build, validazione catalogo e provisioning idempotente. Zero nuove letture live e zero ID persi. Verificare l’esito del primo ciclo automatico dopo il merge della #108.
+
+## 21 novembre 2026 — fase 3, candidatura Adecco/Radancy
+
+[Cinque posting FR in staging](lead-adecco-entry-2026-11-21.md): la CTA porta a una scheda Talentsoft con ID, i percorsi successivi osservati sono CV generico o account. 0 moduli specifici nel campione, 0 recuperi stimati. Proposta di causale circoscritta ai casi documentati, da rivedere se compare un percorso specifico.
+
+## 21 novembre 2026 — fase 1, identificativi candidatura
+
+[Audit dei 38 record](lead-application-id-2026-11-21.md) sul catalogo `a71b260`: 0 equivalenze dimostrate, 1 CTA storica con ID diverso, 37 casi con dati insufficienti. Test Workday esteso alla variante con suffisso; 0 recuperi stimati e 0 GET. Per valutare una regola serve la coppia vacancy/CTA con identità documentata.
+
 ## 21 novembre 2026 — diagnosi misurata dei 367 lead, senza promozioni
 
 - **Branch dedicata:** `analysis/lead-conversion-audit-20261121`, a partire da `main@f0cfe6`. Prima del lavoro letti `AGENTS.md`, questo stato e **29 PR aperte**; in particolare evitata la sovrascrittura della diagnosi ATS in [#84](https://github.com/nightlydeveloper8/eu-hr-internships/pull/84) e degli interventi connessi.

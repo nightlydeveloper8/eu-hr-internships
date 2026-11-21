@@ -12,6 +12,7 @@ class WorkdayIdentifierTests(unittest.TestCase):
         self.assertTrue(shares_identifier(record, self.application))
         for target in [self.application.replace('JR123', 'JR1234'),
                        self.application.replace('JR123', 'JR0123'),
+                       self.application.replace('JR123', 'JR123-1'),
                        self.application.replace('/apply', '/search'),
                        self.application.replace('tenant.myworkdayjobs.com', 'tenant.myworkdayjobs.com.evil.org')]:
             with self.subTest(target=target):

@@ -389,6 +389,28 @@ class EuresBudgetTests(unittest.TestCase):
         self.assertEqual(job['verification']['policy'], 'public-api-active-listing')
         self.assertIsNone(job.get('application_verification'))
 
+    def test_normal_rechecks_skip_mismatched_id_and_continue(self):
+        def details(identifier):
+            return {'id': identifier, 'preferredLanguage': 'nl', 'creationDate': 1794698333140,
+                    'jvProfiles': {'nl': {'title': 'Stage HR', 'locations': [{'countryCode': 'BE'}]}}}
+
+        known = ['https://europa.eu/eures/portal/jv-se/jv-details/' + key + '?lang=en'
+                 for key in ('MISMATCH', 'VALID')]
+        client = FakeEuresClient({'MISMATCH': details('OTHER'), 'VALID': details('VALID')})
+        source = eures_source(known_job_urls=known, active_listing_api=True)
+        part = process_source(source, client, '2026-11-21T09:00:00+00:00')
+        report = part['report']
+        self.assertEqual(len(client.gets), 2)
+        self.assertEqual(report['status'], 'partial')
+        self.assertEqual(report['detail_errors'], [
+            {'url': known[0], 'error': 'EURES detail returned a different vacancy identifier'}])
+        self.assertEqual(report['verified_closed_urls'], [])
+        jobs = {job['external_id']: job for job in part['jobs']}
+        self.assertIn('QkUtSFItMQ', jobs)  # Keep previously collected search results.
+        self.assertEqual(jobs['VALID']['verification']['policy'], 'public-api-active-listing')
+        self.assertNotIn('MISMATCH', jobs)
+        self.assertNotIn('OTHER', jobs)
+
     def test_same_cycle_search_result_overrides_priority_detail_404(self):
         client = FakeEuresClient()
         url = 'https://europa.eu/eures/portal/jv-se/jv-details/QkUtSFItMQ?lang=en'
