@@ -8,6 +8,14 @@ Python 3.12: 531 test; Node: 35; classificazione, build, validazione e provision
 
 **Prossimo passo:** rivedere l'identità Focus/PulluP e il conflitto fra hold aziendale e crawler universale già attivo, salvaguardando provisioning e ID; ricercare altre fonti e tenere Personio incompleto finché il modulo non è dimostrato. Esclusione dalle PR aperte verificata su descrizioni e modifiche ai registri, non su ogni file; completare prima di preparare fonti ulteriori.
 
+## 21 novembre 2026 — revisione annunci Personio
+
+[Risultati, requisiti e costi](personio-hr-internships-2026-11-21.md). Venti annunci ricontrollati; cinque moduli same-ID con submit inizialmente e ancora disabilitato in Playwright. Il robots del CDN impedisce la prova di idratazione completa. Nessuna fonte preparata o modifica a policy v2. Prossimo passo: decisione sulla prova accettabile per distinguere validazione client e blocco del modulo.
+
+## 21 novembre 2026 — revisione annunci Personio
+
+[Risultati, requisiti e costi](personio-hr-internships-2026-11-21.md). Venti annunci ricontrollati; cinque moduli same-ID con submit inizialmente e ancora disabilitato in Playwright. Il robots del CDN impedisce la prova di idratazione completa. Nessuna fonte preparata o modifica a policy v2. Prossimo passo: decisione sulla prova accettabile per distinguere validazione client e blocco del modulo.
+
 ## 21 novembre 2026 — sette fonti ATS, staging senza attivazione
 
 [Verifica e costi](sette-fonti-ats-2026-11-21.md): Climeworks CH, Peripass BE e Fanatics GB ciascuna con una candidatura diretta policy v2 nello staging, studenti iscritti ammessi. Fonti disabilitate e hold sui tre datori. 12 GET / 4.830.640 byte / 7,391 secondi-fonte nel ciclo misurato. Finalizzazione temporanea 907 → 910 ID, zero persi. Nessuna variazione al catalogo di produzione. Sungrow e Entrix non superano il controllo del modulo; Social Hub ha host e date da riconciliare; Workable espone due HR ma il modulo non è dimostrato. Robots e limiti dei termini nel rapporto e review_notes. Il lettore Workable pubblico è proposto con test, senza fonte registrata. Verifica locale: 531 test Python 3.12, 35 Node, valutazione, copertura, build e validazione catalogo riusciti.
