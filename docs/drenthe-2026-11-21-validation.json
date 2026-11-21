@@ -1,0 +1,107 @@
+{
+  "checked_at": "2026-11-21T14:28:49.061299+00:00",
+  "runtime": "Python 3.12; existing project requirements; pypdf used only for temporary annual-report extraction",
+  "python_tests": 516,
+  "frontend_tests": 31,
+  "role_examples": 64,
+  "catalog_equals_latest_main": true,
+  "registry_valid": true,
+  "import_idempotent": true,
+  "build": true,
+  "checks": [
+    {
+      "name": "python",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "sha256": "9163ed3959f9c74f82cb01cdf1587ce4971f4fe3430f81c0d7dd315143bc5f9a",
+      "output_tail": "s/hr-intern closed: Official application page says the posting is closed\nVacancy https://example.org/jobs/1 incomplete: Applicant form not available\ngreenhouse-adyen failed; previous data retained: network unavailable\nVacancy https://example.org/jobs/1 blocked: robots.txt disallows application\nVacancy https://example.org/jobs/1 incomplete: Current page does not identify the same vacancy\nVacancy https://example.org/jobs/123 blocked: robots.txt disallows job\nVacancy https://example.org/jobs/123 incomplete: No available vacancy-specific application entry established\nVacancy https://example.org/jobs/123 closed: Official application page says the posting is closed\n----------------------------------------------------------------------\nRan 516 tests in 64.241s\n\nOK\n{\"analyzed_companies\": 8, \"verified_before\": 0, \"verified_after\": 1, \"newly_discovered_hr\": 0, \"live_requests\": 26}\n{\"analyzed_companies\": 8, \"verified_before\": 0, \"verified_after\": 1, \"newly_discovered_hr\": 0, \"live_requests\": 26}\n"
+    },
+    {
+      "name": "frontend",
+      "command": [
+        "/Users/dennis/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "tests/frontend.test.js"
+      ],
+      "exit_code": 0,
+      "sha256": "11612f2b05388d8bf2d62015a9b1fbff34dc1ba23b1f5e5c4ab9c0195a5ede32",
+      "output_tail": ")\n✔ stale catalog shows archived leads as unverified without relaxing the 48-hour rule (0.043083ms)\n✔ verified-only is default, even when an expired catalog has unverified leads (0.066583ms)\n✔ monitor counts verified HR internships only with current policy v2 and 48h evidence (0.050708ms)\n✔ historical external publisher records stay in JSON but never display as official leads (0.038292ms)\n✔ map country counts separate verified and unverified, skip closed, count each listed country (0.051583ms)\n✔ map colour buckets (0.027417ms)\n✔ country language counts: verified ads only, English and local languages first (0.123041ms)\n✔ application filter and counts distinguish current public listings from application evidence (0.115834ms)\n✔ evidence level never upgrades public listings or leads to direct applications (0.074917ms)\n✔ map zoom is display-only and stays inside the base viewBox (0.092625ms)\nℹ tests 31\nℹ suites 0\nℹ pass 31\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 42.523542\n"
+    },
+    {
+      "name": "evaluation",
+      "command": [
+        ".venv/bin/python",
+        "scripts/evaluate.py"
+      ],
+      "exit_code": 0,
+      "sha256": "9e46801b1ab790d434b76f2248897dfff323250eacc4a03334b1a78909b05841",
+      "output_tail": "{\n  \"examples\": 103,\n  \"true_positives\": 62,\n  \"true_negatives\": 41,\n  \"false_positives\": 0,\n  \"false_negatives\": 0,\n  \"errors\": [],\n  \"limitation\": \"Small manually labelled regression set; these scores are not estimates of accuracy on all European jobs.\"\n}\n"
+    },
+    {
+      "name": "catalog",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "collector.pipeline",
+        "--validate"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    },
+    {
+      "name": "build",
+      "command": [
+        ".venv/bin/python",
+        "scripts/build.py"
+      ],
+      "exit_code": 0,
+      "sha256": "c0bdb257b50fcac6e22a39dc09fceb7ea696907b6ad7aa7494ab488cf58ecbf2",
+      "output_tail": "Built dist/ — static files, no runtime services required\n"
+    },
+    {
+      "name": "checkpoint-recompute",
+      "command": [
+        ".venv/bin/python",
+        "scripts/provincial_factory.py",
+        "checkpoint",
+        "drenthe"
+      ],
+      "exit_code": 0,
+      "sha256": "377037e9fb08c6c3135e965f465294a6aaf49b35eb97f293f5a1075d44b71983",
+      "output_tail": "Workflow checkpoint created; created_at=2026-11-21T14:28:48.774578+00:00; evaluated_at=2026-11-21T14:28:48.774578+00:00\nFile: .staging/factory/drenthe/checkpoint.json\nNext: python3 scripts/provincial_factory.py summary drenthe\nCrawler mid-run resume: unsupported by this command\n"
+    },
+    {
+      "name": "checkpoint",
+      "command": [
+        ".venv/bin/python",
+        "scripts/provincial_factory.py",
+        "checkpoint",
+        "drenthe",
+        "--resume"
+      ],
+      "exit_code": 0,
+      "sha256": "e1ca7d5e8e4bd0e81e20598687b0c6eeaf783b6c1f8db67e19bc22827a7c377f",
+      "output_tail": "Workflow checkpoint reused; created_at=2026-11-21T14:28:48.774578+00:00; evaluated_at=2026-11-21T14:28:48.882893+00:00\nFile: .staging/factory/drenthe/checkpoint.json\nNext: python3 scripts/provincial_factory.py summary drenthe\nCrawler mid-run resume: unsupported by this command\n"
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    }
+  ]
+}
