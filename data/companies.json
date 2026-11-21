@@ -68819,7 +68819,7 @@
         "settlement_code": "WP2391",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.wza.nl/",
-        "checked_on": "2026-11-06"
+        "checked_on": "2026-11-21"
       }
     ],
     "source_ids": [
@@ -68830,18 +68830,28 @@
     "review_status": "research-required",
     "aliases": [],
     "drenthe_research": {
-      "checked_on": "2026-11-06",
+      "checked_on": "2026-11-21",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_min": 1500,
+        "employees_text": "Official hospital careers page states more than 1,500 people working at WZA, excluding medical specialists. Employer-wide workforce figure, not headcount of each establishment. Contract/volunteer composition and reference date not specified.",
         "scope": "employer",
-        "source_url": null,
+        "source_url": "https://www.wza.nl/werken-en-leren/kom-bij-ons-werken/",
         "source_date": null
       },
       "employer_type": "healthcare",
       "group_name": null,
-      "notes": []
+      "notes": [
+        "21 November: exact official careers page read successfully with robots; workforce excludes medical specialists. General employment information is not a specific HR internship or application proof."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 1500,
+      "employees_text": "Official hospital careers page states more than 1,500 people working at WZA, excluding medical specialists. Employer-wide workforce figure, not headcount of each establishment. Contract/volunteer composition and reference date not specified.",
+      "scope": "employer",
+      "source_url": "https://www.wza.nl/werken-en-leren/kom-bij-ons-werken/",
+      "source_date": null
     }
   },
   {
@@ -73409,5 +73419,95 @@
       "qualification": "unknown"
     },
     "hr_internship_evidence": "bounded live current feed and same-posting visible enabled form; type and intake retained"
+  },
+  {
+    "id": "ampelmann-operations-b-v",
+    "name": "Ampelmann Operations B.V.",
+    "career_url": "https://careers.ampelmann.nl/",
+    "evidence_url": "https://careers.ampelmann.nl/o/internship-people-organisation-1",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "city": "Delft",
+        "country": "NL",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://careers.ampelmann.nl/o/internship-people-organisation-1",
+        "region_code": "NL36",
+        "subregion_code": "NL362"
+      }
+    ],
+    "source_ids": [
+      "recruitee-ampelmann-nl"
+    ]
+  },
+  {
+    "id": "recruitee-batch-vigo-groep",
+    "name": "VIGO groep",
+    "website_url": "https://www.vigogroep.nl/",
+    "career_url": "https://werkenbijvigogroep.recruitee.com/",
+    "evidence_url": "https://www.vigogroep.nl/",
+    "target_countries": [
+      "NL"
+    ],
+    "workplaces": [
+      {
+        "city": "Venray",
+        "country": "NL",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://werkenbijvigogroep.recruitee.com/o/meewerkstage-recruitment-venray-en-zetten",
+        "region_code": "NL42",
+        "subregion_code": "NL421"
+      }
+    ],
+    "source_ids": [
+      "recruitee-batch-vigo-groep"
+    ]
+  },
+  {
+    "id": "recruitee-batch-chr-haute-senne",
+    "name": "CHR HAUTE SENNE",
+    "website_url": "https://www.chrhautesenne.be/fr/emplois-et-stages",
+    "career_url": "https://chrhautesenne.recruitee.com/",
+    "evidence_url": "https://www.chrhautesenne.be/fr/emplois-et-stages",
+    "target_countries": [
+      "BE"
+    ],
+    "workplaces": [
+      {
+        "city": "Soignies",
+        "country": "BE",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://chrhautesenne.recruitee.com/o/stagiaire-en-ressources-humaines-developpement-des-ressources-humaines-soft-rh",
+        "region_code": "BE32"
+      }
+    ],
+    "source_ids": [
+      "recruitee-batch-chr-haute-senne"
+    ]
+  },
+  {
+    "id": "recruitee-batch-abrio",
+    "name": "ABRIO GmbH",
+    "website_url": "https://www.abrio.de/pages/alle-jobs",
+    "career_url": "https://abriogmbh.recruitee.com/",
+    "evidence_url": "https://www.abrio.de/pages/alle-jobs",
+    "target_countries": [
+      "DE"
+    ],
+    "workplaces": [
+      {
+        "city": "Frankfurt",
+        "country": "DE",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://abriogmbh.recruitee.com/o/praktikum-hr-recruiting-employer-branding-mwd-3",
+        "region_code": "DE71",
+        "subregion_code": "DE712"
+      }
+    ],
+    "source_ids": [
+      "recruitee-batch-abrio"
+    ]
   }
 ]
