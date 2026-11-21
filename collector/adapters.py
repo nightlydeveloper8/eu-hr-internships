@@ -118,6 +118,9 @@ def collect(source,client):
     if kind in PUBLIC_API_ADAPTERS:
         from .public_sources import collect_public
         return collect_public(source,client)
+    if kind=='workable-public':
+        from .workable_public import workable_public_records
+        return workable_public_records(source,client)
     if kind in ('personio-xml','recruitee'):
         from .public_feeds import personio_records,recruitee_records
         reader=personio_records if kind=='personio-xml' else recruitee_records
