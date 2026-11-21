@@ -3048,6 +3048,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "blackwave-gmbh",
+    "name": "Blackwave GmbH",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://blackwave.com/career",
+    "source_ids": [
+      "auto-blackwave-gmbh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "bloezem",
     "name": "Bloezem",
     "candidate_countries": [
@@ -4678,6 +4692,22 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "climeworks-ch",
+    "name": "Climeworks",
+    "candidate_countries": [
+      "CH"
+    ],
+    "state": "integration-required",
+    "career_url": "https://climeworks.recruitee.com/",
+    "source_ids": [
+      "recruitee-climeworks-ch"
+    ],
+    "access_blocks": [
+      "2026-11-21: https://climeworks.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta."
+    ],
+    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
+  },
+  {
     "company_id": "cloetta",
     "name": "Cloetta",
     "candidate_countries": [
@@ -5418,6 +5448,20 @@
     "career_url": null,
     "source_ids": [
       "auto-dsd-stalinrichting-b-v"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "dutchboxx",
+    "name": "DUTCHBOXX",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://dutchboxx.nl/vacatures",
+    "source_ids": [
+      "auto-dutchboxx"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -7833,6 +7877,22 @@
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "fanatics-collectibles-gb",
+    "name": "Fanatics Collectibles",
+    "candidate_countries": [
+      "GB"
+    ],
+    "state": "integration-required",
+    "career_url": "https://job-boards.greenhouse.io/fanaticscollectibles",
+    "source_ids": [
+      "greenhouse-fanatics-collectibles-gb"
+    ],
+    "access_blocks": [
+      "2026-11-21: https://boards-api.greenhouse.io/robots.txt vieta /embed/; https://job-boards.greenhouse.io/robots.txt non ha regole attive. GET documentata https://docs.greenhouse.io/job-board; https://www.greenhouse.com/master-subscription-agreement disciplina i clienti, non autorizzazione generale a terzi."
+    ],
+    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
   {
     "company_id": "farm-dairy",
@@ -10997,20 +11057,6 @@
     "career_url": null,
     "source_ids": [
       "auto-horsa-spa"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "hotel-bornholm-bv",
-    "name": "Hotel Bornholm BV",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://www.hotelbornholm.nl/vacatures",
-    "source_ids": [
-      "auto-hotel-bornholm-bv"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -16587,6 +16633,22 @@
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "peripass-be",
+    "name": "Peripass",
+    "candidate_countries": [
+      "BE"
+    ],
+    "state": "integration-required",
+    "career_url": "https://peripass.recruitee.com/",
+    "source_ids": [
+      "recruitee-peripass-be"
+    ],
+    "access_blocks": [
+      "2026-11-21: https://peripass.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta."
+    ],
+    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
   {
     "company_id": "perkinelmer",
@@ -25463,20 +25525,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "blackwave-gmbh",
-    "name": "Blackwave GmbH",
-    "candidate_countries": [
-      "DE"
-    ],
-    "state": "collecting",
-    "career_url": "https://blackwave.com/career",
-    "source_ids": [
-      "auto-blackwave-gmbh"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "bundl",
     "name": "Bundl",
     "candidate_countries": [
@@ -25607,20 +25655,6 @@
     "career_url": "https://drive-consulting.de/karriere/",
     "source_ids": [
       "personio-xml-drive-consulting"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "dutchboxx",
-    "name": "DUTCHBOXX",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://dutchboxx.nl/vacatures",
-    "source_ids": [
-      "auto-dutchboxx"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26015,6 +26049,20 @@
     "career_url": "https://werkenbij.hvhl.nl/",
     "source_ids": [
       "auto-hogeschool-van-hall-larenstein"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "hotel-bornholm-bv",
+    "name": "Hotel Bornholm BV",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://www.hotelbornholm.nl/vacatures",
+    "source_ids": [
+      "auto-hotel-bornholm-bv"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
