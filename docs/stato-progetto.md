@@ -1,6 +1,14 @@
 # Stato di ripresa — People Placement
 
-## 20 novembre 2026 — redesign visivo premium dark (branch `design/premium-dark-redesign`, non in produzione)
+## 21 novembre 2026 — `AGENTS.md`: regole comuni per gli agenti AI
+
+- Nuovo `AGENTS.md` nella radice. Raccoglie in un unico punto, letto automaticamente da Codex/ChatGPT e Claude: perimetro del progetto, autorizzazioni (niente merge, push su `main`, attivazione di fonti o chiusura di PR senza via libera), fonti ammesse, regole di dominio (solo stage HR per studenti; esclusi working student e graduate; livelli di prova policy v2 a 48 ore), regole UI, comandi di verifica, mappa del repository e formato richiesto per PR e resoconti.
+- Due rischi operativi resi espliciti: un push su `main` che tocca `collector/**`, `data/sources.json` o `data/companies.json` avvia subito la raccolta di produzione; il provisioning attiva automaticamente un crawler per ogni datore senza fonte attiva, salvo `collection_activation_hold`.
+- Comandi verificati su `a71b260`: 514 test `unittest`, 33 test Node, `evaluate.py`, `company_coverage.py`, `build.py`, `collector.daily provision` (idempotente). `company_coverage.py` riscrive i file `data/*-coverage.json`: documentato in `AGENTS.md`.
+- Corretta la voce del 20/11 sul redesign, che risultava ancora "non in produzione".
+- Solo documentazione: nessun cambiamento a codice, dati, fonti o workflow.
+
+## 20 novembre 2026 — redesign visivo premium dark (in produzione con PR #100, squash `5ffb2d1`)
 
 - **Ambito solo UI/UX.** Modificati `src/index.html`, `src/style.css`, `src/app.js`, `src/map.js`, `src/favicon.svg`, l'intestazione delle pagine secondarie e due helper puri in `src/logic.js` (`evidenceLevel`, `zoomViewBox`). Invariati collector, fonti, policy v2, verifiche delle candidature, catalogo, geometrie e codici paese, ID, URL dei filtri e preferiti locali (`people-placement:saved`).
 - **Integra la branch `fix/application-evidence-filter-20261119`** (filtro *Application route confirmed*, mai unita a main) invece di riscriverla: la distinzione fra stage attuali (428), candidatura diretta verificata (39), annunci dei servizi pubblici (389) e lead da verificare (323) è la base della nuova UI.
@@ -9,7 +17,8 @@
 - **Schede.** Gerarchia azienda → titolo → specializzazione/durata/modalità → badge di prova + massimo tre lingue documentate; CTA diversa per livello: "Apply on employer site" solo con candidatura verificata, "View official listing" per EURES/servizi pubblici, "Check at employer" per i lead. Dettagli ed evidenze linguistiche in un pannello espandibile.
 - **Verifiche locali.** 33 test Node (2 nuovi), 514 test Python, 47 controlli Playwright su build `dist/` (conteggi mappa/filtri/risultati coerenti col catalogo `7c5ce80`, sincronizzazione mappa↔filtri↔URL, tastiera, Escape, drawer inerte, preferiti persistenti, link legacy `?unverified=true` ignorato, tap mobile senza tooltip-hover, bottom sheet, nessun overflow a 375/768/1440, reduced motion). Contrasto AA: testo più tenue 5,0:1 sulla superficie più chiara.
 - **Peso e prestazioni (headless, senza GPU).** Asset frontend esclusi dati e `eu-map.js`: 25,8 → 34,3 KB gzip (+8,5 KB). Nessuna dipendenza, font esterno o tracking; CSP invariata. Costo dell'hover 32 → 36 ms ogni due frame dopo aver rimosso vignettatura e `backdrop-filter` sopra la mappa; tempo al primo rendering dei risultati 257 → 330 ms (mediana di 5).
-- **Non verificato.** Browser reali Safari/Firefox, screen reader e anteprima Cloudflare. Nessun merge né deploy.
+- **Rilascio.** Merge autorizzato dal maintainer il 20/11 (PR #100 → `5ffb2d1`); CI, `Validate application` e Cloudflare Pages riusciti, homepage pubblica verificata. PR #79 chiusa come assorbita.
+- **Non verificato.** Browser reali Safari/Firefox e screen reader.
 
 ## 20 novembre 2026 — lotto Recruitee verificato in produzione
 
