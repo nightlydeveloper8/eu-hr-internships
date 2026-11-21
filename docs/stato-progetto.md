@@ -1,5 +1,13 @@
 # Stato di ripresa — People Placement
 
+## 21 novembre 2026 — inventario ATS e staging di tenant già noti
+
+[Rapporto e inventario](inventario-ats-2026-11-21.md): individuate 68 coppie datore–tenant, 20 non registrate come ATS attivo; i paesi sono soltanto ambito di ricerca. 18 tenant esaminati o bloccati e due Lever esclusi. La scansione ha riconfermato tre vacancy già predisposte da #110; Berenschot è già nel catalogo come candidatura diretta, mentre Focus/PulluP richiede riconciliazione e Mynaric Personio ha submit disabilitato. **0 nuove candidature distinte e 0 nuove fonti preparate**. Spesi 50 GET / almeno 11.747.768 byte / 36,115 secondi cumulati, senza POST né invio; PR #110 già integrata in `841278f`.
+
+Python 3.12: 531 test; Node: 35; classificazione, build, validazione e provisioning idempotente riusciti. Catalogo invariato: 907 ID, 0 persi. Il primo run con Python 3.9 non è riuscito; dettagli nel rapporto. Nessuna attivazione o modifica a file del bot.
+
+**Prossimo passo:** rivedere l'identità Focus/PulluP e il conflitto fra hold aziendale e crawler universale già attivo, salvaguardando provisioning e ID; ricercare altre fonti e tenere Personio incompleto finché il modulo non è dimostrato. Esclusione dalle PR aperte verificata su descrizioni e modifiche ai registri, non su ogni file; completare prima di preparare fonti ulteriori.
+
 ## 21 novembre 2026 — sette fonti ATS, staging senza attivazione
 
 [Verifica e costi](sette-fonti-ats-2026-11-21.md): Climeworks CH, Peripass BE e Fanatics GB ciascuna con una candidatura diretta policy v2 nello staging, studenti iscritti ammessi. Fonti disabilitate e hold sui tre datori. 12 GET / 4.830.640 byte / 7,391 secondi-fonte nel ciclo misurato. Finalizzazione temporanea 907 → 910 ID, zero persi. Nessuna variazione al catalogo di produzione. Sungrow e Entrix non superano il controllo del modulo; Social Hub ha host e date da riconciliare; Workable espone due HR ma il modulo non è dimostrato. Robots e limiti dei termini nel rapporto e review_notes. Il lettore Workable pubblico è proposto con test, senza fonte registrata. Verifica locale: 531 test Python 3.12, 35 Node, valutazione, copertura, build e validazione catalogo riusciti.
