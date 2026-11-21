@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {catalogueAdLanguages} from '../src/logic.js';
 import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,applicationConfirmed,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
@@ -9,6 +10,16 @@ test('closed always hidden and unverified optional',()=>{assert.equal(matches({.
 test('saved jobs filter uses local IDs',()=>{assert.ok(matches(base,{...f,saved:true},new Set(['1'])));assert.equal(matches(base,{...f,saved:true}),false);});
 test('Netherlands priority is independent from country filtering',()=>{const newer={...base,id:'2',countries:['FR'],published_at:'2026-11-02'};assert.equal(rankJobs([newer,base],f)[0].id,'1');assert.equal(rankJobs([newer,base],{...f,mode:'eu',sort:'recent'})[0].id,'2');assert.ok(matches(newer,f));});
 test('keyword relevance ranks title matches',()=>{const other={...base,id:'2',title:'HR Intern',city:'Talent City'};assert.equal(rankJobs([other,base],{...f,q:'talent'})[0].id,'1');});
+test('direct application breaks relevance ties before recency and honours v2 freshness',()=>{
+ const clock=Date.parse('2026-11-21T12:00:00Z');
+ const direct={...base,id:'direct',last_verified_at:'2026-11-21T08:00:00Z',application_verification:{method:'same-vacancy-applicant-form',url:'https://example.org/apply/1'}};
+ const current={...direct,id:'current',published_at:'2026-11-20',first_discovered_at:'2026-11-20',link_status:'public-api-active-listing'};
+ const expired={...direct,id:'expired',last_verified_at:'2026-11-18T08:00:00Z',published_at:'2026-11-21'};
+ assert.equal(rankJobs([current,expired,direct],f,clock)[0].id,'direct');
+ for (const sort of ['recent','discovered']) assert.notEqual(rankJobs([current,direct],{...f,sort},clock)[0].id,'direct');
+ assert.equal(rankJobs([{...current,title:'Recruitment Intern'},{...direct,title:'HR Intern',city:'Recruitment'}],{...f,q:'recruitment'},clock)[0].id,'current');
+ assert.equal(rankJobs([{...direct,countries:['BE']},current],f,clock)[0].id,'current');
+});
 test('accent-insensitive keyword search',()=>{assert.ok(matches({...base,title:'Stage Chargé de Recrutement'},{...f,q:'charge recrutement'}));});
 test('all multi-country locations match independently',()=>{assert.ok(matches({...base,countries:['FR','NL']},{...f,country:'FR'}));});
 test('unknown dates sort after known recency',()=>{assert.equal(rankJobs([{...base,id:'2',published_at:null},base],{...f,sort:'recent'})[0].id,'1');});
@@ -178,6 +189,24 @@ test('country language counts: verified ads only, English and local languages fi
  assert.deepEqual(languageBreakdown('IT',byLang.IT).map(x=>[x.code,x.kind]),[['en','english'],['it','local'],['de','other'],['unknown','unknown']]);
  assert.equal(languageBreakdown('IE',{en:2})[0].kind,'english');
  assert.equal(NATIONAL_LANGUAGES.CH.includes('it'),true);
+});
+
+test('Europe-wide ad languages count each current ad once and count English separately in GB',()=>{
+ const clock=Date.now();
+ const jobs=[
+  {...base,id:'en',countries:['GB','IE']},
+  {...base,id:'fr',countries:['NL','BE'],advertisement_language:{code:'fr'}},
+  {...base,id:'it',countries:['BE'],advertisement_language:{code:'it'}},
+  {...base,id:'unknown',advertisement_language:{code:null}},
+  {...base,id:'closed',status:'closed'},
+  {...base,id:'blocked',ownership_risk:{state:'historical-unreviewed-external-host'}},
+ ];
+ assert.deepEqual(catalogueAdLanguages(jobs,clock),{
+  mix:{english:1,local:1,other:1,unknown:1}, byLanguage:{en:1,fr:1,it:1,unknown:1},
+ });
+ assert.deepEqual(catalogueAdLanguages([],clock),{
+  mix:{english:0,local:0,other:0,unknown:0}, byLanguage:{},
+ });
 });
 
 test('application filter and counts distinguish current public listings from application evidence',()=>{
