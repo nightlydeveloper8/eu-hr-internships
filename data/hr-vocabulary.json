@@ -1,0 +1,1296 @@
+{
+  "version": 1,
+  "description": "Multilingual HR vocabulary used by collector/classify.py (title classification) and collector/public_sources.py (public job-bank search queries). Terms are written naturally; accents and case are normalised at load time exactly like job titles. A trailing * matches any word ending (German/Nordic compounds, Slavic inflections). Spaces also match hyphens, slashes and ampersands. 'strong' terms make a title HR on their own. 'contextual' terms count only when the title, or the same sentence of the text (application instructions excluded), also contains an hr_context term or a strong hr-generalist term, and the title has no non_hr_domain word. Every change must keep scripts/evaluate.py at zero errors; add positive and negative examples to data/evaluation.json.",
+  "categories": {
+    "talent-acquisition": {
+      "strong": {
+        "en": [
+          "talent acquisition",
+          "recruitment",
+          "recruiting",
+          "recruiter",
+          "talent sourcing",
+          "talent attraction",
+          "campus recruiting",
+          "resourcing"
+        ],
+        "it": [
+          "selezione del personale",
+          "ricerca e selezione",
+          "reclutamento",
+          "recruiting",
+          "recruiter"
+        ],
+        "es": [
+          "selección de personal",
+          "reclutamiento",
+          "captación de talento",
+          "atracción de talento",
+          "atracción del talento"
+        ],
+        "pt": [
+          "recrutamento e seleção",
+          "recrutamento",
+          "atração de talento",
+          "atração de talentos"
+        ],
+        "fr": [
+          "recrutement",
+          "chargé de recrutement",
+          "chargée de recrutement",
+          "acquisition de talents"
+        ],
+        "de": [
+          "personalbeschaffung",
+          "personalgewinnung",
+          "rekrutierung",
+          "recruiting"
+        ],
+        "nl": [
+          "werving en selectie",
+          "werving & selectie",
+          "w&s",
+          "werving"
+        ],
+        "sv": [
+          "rekrytering*",
+          "rekryterare"
+        ],
+        "da": [
+          "rekruttering*"
+        ],
+        "fi": [
+          "rekrytointi*",
+          "rekrytoija"
+        ],
+        "pl": [
+          "rekrutacj*",
+          "rekruter*",
+          "pozyskiwanie talentów"
+        ],
+        "cs": [
+          "nábor*",
+          "náborář*"
+        ],
+        "sk": [
+          "nábor*",
+          "náborár*"
+        ],
+        "sl": [
+          "kadrovanj*",
+          "zaposlovanje kadrov"
+        ],
+        "hr": [
+          "regrutacij*",
+          "zapošljavanje i selekcija"
+        ],
+        "hu": [
+          "toborzás*",
+          "munkaerő-toborzás"
+        ],
+        "ro": [
+          "recrutare",
+          "recrutare și selecție"
+        ],
+        "bg": [
+          "подбор на персонал",
+          "набиране на персонал",
+          "рекрутмънт"
+        ],
+        "el": [
+          "προσλήψεων",
+          "στελέχωση*"
+        ],
+        "et": [
+          "värbamine",
+          "värbaja",
+          "värbamis*"
+        ],
+        "lv": [
+          "personāla atlase",
+          "personāla atlas*",
+          "darbinieku atlas*"
+        ],
+        "lt": [
+          "personalo atranka",
+          "personalo atrank*",
+          "darbuotojų atrank*"
+        ]
+      },
+      "contextual": {
+        "en": [
+          "sourcing",
+          "hiring",
+          "talent"
+        ],
+        "it": [
+          "selezione"
+        ],
+        "es": [
+          "selección"
+        ],
+        "pt": [
+          "seleção"
+        ],
+        "sl": [
+          "zaposlovanj*"
+        ],
+        "hr": [
+          "zapošljavanj*",
+          "selekcij*"
+        ],
+        "hu": [
+          "kiválasztás*"
+        ],
+        "lt": [
+          "atrank*",
+          "įdarbinim*"
+        ],
+        "lv": [
+          "atlase"
+        ],
+        "bg": [
+          "подбор"
+        ]
+      }
+    },
+    "people-operations": {
+      "strong": {
+        "en": [
+          "people operations",
+          "people ops",
+          "people and culture",
+          "people & culture",
+          "hr operations",
+          "hr ops",
+          "people & organisation",
+          "people & organization"
+        ],
+        "de": [
+          "personalkultur"
+        ],
+        "nl": [
+          "people & culture"
+        ]
+      },
+      "contextual": {}
+    },
+    "learning-development": {
+      "strong": {
+        "en": [
+          "learning and development",
+          "learning & development",
+          "l&d",
+          "training and development",
+          "training & development",
+          "talent development",
+          "people development",
+          "talent management",
+          "learning and organisational development"
+        ],
+        "it": [
+          "formazione e sviluppo",
+          "formazione del personale",
+          "sviluppo del personale",
+          "sviluppo delle risorse umane",
+          "formazione risorse umane",
+          "talent management",
+          "gestione dei talenti"
+        ],
+        "es": [
+          "formación y desarrollo",
+          "desarrollo de personas",
+          "desarrollo del talento",
+          "gestión del talento",
+          "formación de personal"
+        ],
+        "pt": [
+          "formação e desenvolvimento",
+          "treinamento e desenvolvimento",
+          "desenvolvimento de pessoas",
+          "gestão de talento",
+          "gestão de talentos"
+        ],
+        "fr": [
+          "formation et développement",
+          "apprentissage et développement",
+          "développement des compétences",
+          "développement des talents",
+          "gestion des talents",
+          "chargé de formation",
+          "chargée de formation",
+          "formation rh"
+        ],
+        "de": [
+          "personalentwicklung*",
+          "aus- und weiterbildung",
+          "aus und weiterbildung",
+          "talentmanagement",
+          "talent management"
+        ],
+        "nl": [
+          "opleiding en ontwikkeling",
+          "leren en ontwikkelen",
+          "talentontwikkeling",
+          "learning & development"
+        ],
+        "sv": [
+          "kompetensutveckling",
+          "talangutveckling",
+          "lärande och utveckling"
+        ],
+        "da": [
+          "kompetenceudvikling",
+          "talentudvikling",
+          "læring og udvikling"
+        ],
+        "fi": [
+          "osaamisen kehittäminen",
+          "henkilöstön kehittäminen",
+          "koulutus ja kehittäminen"
+        ],
+        "pl": [
+          "szkolenia i rozwój",
+          "szkoleń i rozwoju",
+          "rozwój pracowników",
+          "rozwoju pracowników",
+          "rozwój talentów"
+        ],
+        "cs": [
+          "vzdělávání a rozvoj",
+          "rozvoj zaměstnanců",
+          "rozvoje zaměstnanců"
+        ],
+        "sk": [
+          "vzdelávanie a rozvoj",
+          "rozvoj zamestnancov"
+        ],
+        "sl": [
+          "izobraževanje in razvoj",
+          "razvoj kadrov",
+          "razvoj zaposlenih"
+        ],
+        "hr": [
+          "obrazovanje i razvoj",
+          "razvoj zaposlenika",
+          "razvoj ljudskih potencijala"
+        ],
+        "hu": [
+          "képzés és fejlesztés",
+          "képzés-fejlesztés",
+          "tehetségmenedzsment"
+        ],
+        "ro": [
+          "formare și dezvoltare",
+          "training și dezvoltare",
+          "dezvoltare profesională a angajaților"
+        ],
+        "bg": [
+          "обучение и развитие"
+        ],
+        "el": [
+          "εκπαίδευση και ανάπτυξη",
+          "εκπαίδευσης και ανάπτυξης"
+        ],
+        "et": [
+          "koolitus ja arendus",
+          "personali arendus"
+        ],
+        "lv": [
+          "apmācības un attīstība",
+          "personāla attīstība"
+        ],
+        "lt": [
+          "mokymai ir tobulinimas",
+          "darbuotojų tobulinim*"
+        ]
+      },
+      "contextual": {
+        "en": [
+          "training",
+          "learning",
+          "onboarding"
+        ],
+        "it": [
+          "formazione"
+        ],
+        "es": [
+          "formación"
+        ],
+        "pt": [
+          "formação",
+          "treinamento"
+        ],
+        "fr": [
+          "formation"
+        ],
+        "de": [
+          "weiterbildung",
+          "schulung*"
+        ],
+        "nl": [
+          "opleiding*"
+        ],
+        "sv": [
+          "utbildning*"
+        ],
+        "da": [
+          "uddannelse*"
+        ],
+        "fi": [
+          "koulutu*"
+        ],
+        "pl": [
+          "szkoleń",
+          "szkolenia"
+        ],
+        "cs": [
+          "vzdělávání"
+        ],
+        "hu": [
+          "képzés*"
+        ],
+        "ro": [
+          "formare"
+        ],
+        "et": [
+          "koolitus*"
+        ],
+        "lt": [
+          "mokym*"
+        ]
+      }
+    },
+    "employer-branding": {
+      "strong": {
+        "en": [
+          "employer branding",
+          "employer brand"
+        ],
+        "fr": [
+          "marque employeur"
+        ],
+        "de": [
+          "personalmarketing",
+          "ausbildungsmarketing",
+          "arbeitgebermarke*",
+          "employer branding"
+        ],
+        "nl": [
+          "arbeidsmarktcommunicatie",
+          "employer branding"
+        ],
+        "es": [
+          "marca empleadora",
+          "employer branding"
+        ],
+        "pt": [
+          "marca empregadora",
+          "employer branding"
+        ],
+        "it": [
+          "employer branding"
+        ],
+        "pl": [
+          "employer branding"
+        ]
+      },
+      "contextual": {}
+    },
+    "people-analytics": {
+      "strong": {
+        "en": [
+          "hr analytics",
+          "people analytics",
+          "workforce analytics",
+          "hr data",
+          "people data",
+          "hr controlling",
+          "hris",
+          "hr systems",
+          "hr technology"
+        ],
+        "de": [
+          "personalcontrolling",
+          "hr-controlling",
+          "hr-systeme"
+        ],
+        "fr": [
+          "sirh",
+          "contrôle de gestion sociale"
+        ],
+        "nl": [
+          "hr-systemen",
+          "hr analytics"
+        ],
+        "it": [
+          "sistemi hr",
+          "hr analytics"
+        ],
+        "es": [
+          "analítica de personas",
+          "hr analytics"
+        ]
+      },
+      "contextual": {}
+    },
+    "compensation-benefits": {
+      "strong": {
+        "en": [
+          "payroll",
+          "compensation and benefits",
+          "compensation & benefits",
+          "c&b",
+          "total rewards",
+          "total reward",
+          "remuneration"
+        ],
+        "it": [
+          "paghe e contributi",
+          "elaborazione paghe",
+          "amministrazione paghe",
+          "buste paga",
+          "retribuzioni",
+          "compensation & benefits"
+        ],
+        "es": [
+          "nóminas",
+          "nómina",
+          "compensación y beneficios",
+          "retribución y beneficios"
+        ],
+        "pt": [
+          "processamento salarial",
+          "folha de pagamento",
+          "remuneração e benefícios",
+          "compensação e benefícios"
+        ],
+        "fr": [
+          "paie",
+          "gestionnaire de paie",
+          "rémunération et avantages sociaux",
+          "comp & ben",
+          "c&b"
+        ],
+        "de": [
+          "lohnbuchhaltung",
+          "gehaltsabrechnung",
+          "lohn- und gehaltsabrechnung",
+          "lohn und gehaltsabrechnung",
+          "entgeltabrechnung",
+          "vergütung und benefits"
+        ],
+        "nl": [
+          "salarisadministratie",
+          "loonadministratie",
+          "arbeidsvoorwaarden",
+          "beloningsbeleid"
+        ],
+        "sv": [
+          "lönekonsult*",
+          "löneadministrat*",
+          "lön och förmåner"
+        ],
+        "da": [
+          "lønbogholder*",
+          "lønadministration",
+          "løn og personale"
+        ],
+        "fi": [
+          "palkanlaskenta",
+          "palkkahallinto",
+          "palkanlaskija"
+        ],
+        "pl": [
+          "kadr i płac",
+          "kadry i płace",
+          "kadrowo-płacow*",
+          "naliczanie płac",
+          "wynagrodzeń i benefitów"
+        ],
+        "cs": [
+          "mzdov*",
+          "mzdy a personalistika"
+        ],
+        "sk": [
+          "mzdov*",
+          "mzdy a personalistika"
+        ],
+        "sl": [
+          "obračun plač"
+        ],
+        "hr": [
+          "obračun plaća"
+        ],
+        "hu": [
+          "bérszámfejt*"
+        ],
+        "ro": [
+          "salarizare"
+        ],
+        "bg": [
+          "работни заплати",
+          "трудови възнаграждения"
+        ],
+        "el": [
+          "μισθοδοσία",
+          "μισθοδοσίας"
+        ],
+        "et": [
+          "palgaarvest*",
+          "palgaarvestaja"
+        ],
+        "lv": [
+          "algu grāmatved*",
+          "darba samaksa"
+        ],
+        "lt": [
+          "darbo užmokesč*"
+        ]
+      },
+      "contextual": {
+        "en": [
+          "benefits",
+          "compensation",
+          "rewards"
+        ],
+        "fr": [
+          "rémunération"
+        ],
+        "de": [
+          "vergütung*"
+        ],
+        "nl": [
+          "beloning",
+          "salaris"
+        ],
+        "pt": [
+          "salários"
+        ],
+        "lt": [
+          "atlyginim*"
+        ]
+      }
+    },
+    "employee-relations": {
+      "strong": {
+        "en": [
+          "employee relations",
+          "labour relations",
+          "labor relations",
+          "industrial relations"
+        ],
+        "it": [
+          "relazioni industriali",
+          "relazioni sindacali"
+        ],
+        "es": [
+          "relaciones laborales"
+        ],
+        "pt": [
+          "relações laborais",
+          "relações de trabalho"
+        ],
+        "fr": [
+          "relations sociales",
+          "relations individuelles et collectives"
+        ],
+        "de": [
+          "arbeitsbeziehungen",
+          "mitbestimmung"
+        ],
+        "nl": [
+          "arbeidsverhoudingen"
+        ]
+      },
+      "contextual": {
+        "en": [
+          "employment law"
+        ],
+        "fr": [
+          "droit social"
+        ],
+        "de": [
+          "arbeitsrecht"
+        ],
+        "nl": [
+          "arbeidsrecht"
+        ],
+        "it": [
+          "diritto del lavoro"
+        ],
+        "es": [
+          "derecho laboral"
+        ],
+        "pl": [
+          "prawo pracy"
+        ]
+      }
+    },
+    "employee-experience": {
+      "strong": {
+        "en": [
+          "employee experience",
+          "people experience",
+          "employee engagement",
+          "people engagement",
+          "employee wellbeing",
+          "employee well-being"
+        ],
+        "de": [
+          "mitarbeiterbindung",
+          "employee experience"
+        ],
+        "it": [
+          "welfare aziendale",
+          "benessere organizzativo",
+          "employee experience"
+        ],
+        "nl": [
+          "medewerkersbetrokkenheid",
+          "employee experience"
+        ],
+        "fr": [
+          "expérience collaborateur",
+          "qualité de vie au travail"
+        ],
+        "es": [
+          "experiencia del empleado",
+          "bienestar laboral"
+        ]
+      },
+      "contextual": {
+        "en": [
+          "wellbeing"
+        ]
+      }
+    },
+    "diversity-inclusion": {
+      "strong": {
+        "en": [
+          "diversity equity and inclusion",
+          "diversity equity & inclusion",
+          "diversity and inclusion",
+          "diversity & inclusion",
+          "d&i",
+          "dei&b",
+          "dei intern",
+          "dei internship",
+          "dei program*",
+          "dei team",
+          "dei specialist"
+        ],
+        "fr": [
+          "diversité et inclusion"
+        ],
+        "de": [
+          "diversität und inklusion",
+          "diversity & inclusion"
+        ],
+        "it": [
+          "diversità e inclusione",
+          "diversity & inclusion"
+        ],
+        "es": [
+          "diversidad e inclusión"
+        ],
+        "pt": [
+          "diversidade e inclusão"
+        ],
+        "nl": [
+          "diversiteit en inclusie"
+        ]
+      },
+      "contextual": {}
+    },
+    "organizational-development": {
+      "strong": {
+        "en": [
+          "organisational development",
+          "organizational development",
+          "organisation development",
+          "organization development"
+        ],
+        "it": [
+          "sviluppo organizzativo"
+        ],
+        "es": [
+          "desarrollo organizacional"
+        ],
+        "pt": [
+          "desenvolvimento organizacional"
+        ],
+        "fr": [
+          "développement organisationnel"
+        ],
+        "de": [
+          "organisationsentwicklung"
+        ],
+        "nl": [
+          "organisatieontwikkeling"
+        ],
+        "sv": [
+          "organisationsutveckling"
+        ]
+      },
+      "contextual": {}
+    },
+    "hr-administration": {
+      "strong": {
+        "en": [
+          "hr administration",
+          "hr admin",
+          "personnel administration",
+          "hr administrator"
+        ],
+        "it": [
+          "amministrazione del personale",
+          "gestione amministrativa del personale"
+        ],
+        "es": [
+          "administración de personal",
+          "administración de rrhh"
+        ],
+        "pt": [
+          "administração de pessoal",
+          "departamento de pessoal",
+          "departamento pessoal"
+        ],
+        "fr": [
+          "administration du personnel",
+          "gestion administrative du personnel"
+        ],
+        "de": [
+          "personaladministration",
+          "personalverwaltung"
+        ],
+        "nl": [
+          "personeelsadministratie"
+        ],
+        "sv": [
+          "personaladministrat*"
+        ],
+        "da": [
+          "personaleadministration"
+        ],
+        "cs": [
+          "personální agend*"
+        ],
+        "pl": [
+          "administracja kadrow*",
+          "administracji kadrow*"
+        ]
+      },
+      "contextual": {}
+    },
+    "hr-generalist": {
+      "strong": {
+        "en": [
+          "hr",
+          "hrm",
+          "hrbp",
+          "human resources",
+          "human resource",
+          "hr business partner",
+          "people partner",
+          "people team",
+          "personnel officer",
+          "personnel department",
+          "personnel management"
+        ],
+        "it": [
+          "risorse umane",
+          "gestione del personale",
+          "ufficio personale",
+          "ufficio del personale",
+          "direzione del personale",
+          "area personale"
+        ],
+        "es": [
+          "recursos humanos",
+          "rrhh",
+          "rr.hh",
+          "rr hh",
+          "gestión de personas",
+          "departamento de personas"
+        ],
+        "pt": [
+          "recursos humanos",
+          "gestão de pessoas",
+          "rh"
+        ],
+        "fr": [
+          "ressources humaines",
+          "rh",
+          "drh"
+        ],
+        "de": [
+          "personalwesen",
+          "personalabteilung",
+          "personalmanagement",
+          "personalreferent*",
+          "personalsachbearbeit*",
+          "personalbetreuung",
+          "personalwirtschaft"
+        ],
+        "nl": [
+          "personeelszaken",
+          "p&o",
+          "personeel en organisatie",
+          "personeelsbeleid",
+          "hr-advies",
+          "hr-adviseur"
+        ],
+        "sv": [
+          "personalavdelning*",
+          "personalfunktion*",
+          "hr-avdelning*",
+          "personalvetar*"
+        ],
+        "da": [
+          "personaleafdeling*",
+          "hr-afdeling*"
+        ],
+        "fi": [
+          "henkilöstöhallinto",
+          "henkilöstöasi*",
+          "henkilöstöpalvelu*",
+          "henkilöstö"
+        ],
+        "pl": [
+          "zasoby ludzkie",
+          "zasobów ludzkich",
+          "dział kadr",
+          "dziale kadr",
+          "działu kadr",
+          "kadry",
+          "specjalista ds. kadr"
+        ],
+        "cs": [
+          "lidské zdroje",
+          "lidských zdrojů",
+          "personální oddělení",
+          "personalistik*",
+          "personalist*"
+        ],
+        "sk": [
+          "ľudské zdroje",
+          "ľudských zdrojov",
+          "personálne oddelenie",
+          "personalistik*",
+          "personalist*"
+        ],
+        "sl": [
+          "kadrovsk*",
+          "človeški viri",
+          "človeških virov",
+          "kadrovnik"
+        ],
+        "hr": [
+          "ljudski potencijali",
+          "ljudskih potencijala",
+          "ljudski resursi",
+          "ljudskih resursa",
+          "kadrovsk*"
+        ],
+        "hu": [
+          "emberi erőforrás*",
+          "munkaügy*",
+          "hr"
+        ],
+        "ro": [
+          "resurse umane",
+          "resurselor umane"
+        ],
+        "bg": [
+          "човешки ресурси",
+          "човешките ресурси"
+        ],
+        "el": [
+          "ανθρώπινο δυναμικό",
+          "ανθρώπινου δυναμικού",
+          "ανθρώπινων πόρων"
+        ],
+        "et": [
+          "personalitöö",
+          "personaliosakond",
+          "personalijuht*",
+          "personalispetsialist*",
+          "personaliassistent*"
+        ],
+        "lv": [
+          "personāla vadīb*",
+          "personāla daļ*",
+          "cilvēkresurs*",
+          "personāla speciālist*",
+          "personāla"
+        ],
+        "lt": [
+          "personalo",
+          "žmogiškųjų išteklių",
+          "žmogiškieji ištekliai"
+        ]
+      },
+      "contextual": {}
+    }
+  },
+  "hr_context": {
+    "note": "Department phrases that make a contextual title term HR. Every strong hr-generalist term also counts.",
+    "en": [
+      "hr department",
+      "human resources department",
+      "hr team",
+      "people team",
+      "people & culture"
+    ],
+    "it": [
+      "ufficio risorse umane",
+      "direzione risorse umane",
+      "area risorse umane",
+      "ufficio hr",
+      "team hr",
+      "funzione hr"
+    ],
+    "es": [
+      "departamento de recursos humanos",
+      "departamento de rrhh",
+      "área de personas",
+      "equipo de rrhh"
+    ],
+    "pt": [
+      "departamento de recursos humanos",
+      "equipa de rh",
+      "equipe de rh"
+    ],
+    "fr": [
+      "service rh",
+      "direction des ressources humaines",
+      "équipe rh",
+      "fonction rh"
+    ],
+    "de": [
+      "personalabteilung",
+      "hr-abteilung",
+      "hr-team",
+      "personalbereich"
+    ],
+    "nl": [
+      "hr-afdeling",
+      "hr-team",
+      "afdeling hr",
+      "afdeling p&o"
+    ]
+  },
+  "non_hr_domain": {
+    "note": "Title words that veto a contextual term (a 'formazione' internship at a school or a 'sviluppo' internship in software is not HR).",
+    "terms": [
+      "software",
+      "developer",
+      "sviluppatore",
+      "entwickler",
+      "développeur",
+      "desarrollador",
+      "ontwikkelaar",
+      "programm*",
+      "engineer*",
+      "ingegner*",
+      "ingenieur*",
+      "ingeniero",
+      "teacher*",
+      "insegnant*",
+      "docent*",
+      "enseignant*",
+      "lehrer*",
+      "leraar*",
+      "profesor*",
+      "professeur*",
+      "tutor",
+      "educator*",
+      "sales",
+      "vendite",
+      "vendeur",
+      "verkauf*",
+      "commercial*",
+      "marketing",
+      "product",
+      "prodotto",
+      "produkt*",
+      "data scientist",
+      "it support",
+      "helpdesk",
+      "sport*",
+      "fitness",
+      "coach",
+      "nurse",
+      "infermier*",
+      "pfleg*",
+      "medical",
+      "medico",
+      "clinic*",
+      "lab*",
+      "laboratorio",
+      "logistic*",
+      "magazzin*",
+      "lager*",
+      "warehouse",
+      "finance",
+      "finanza",
+      "accounting",
+      "contabilità",
+      "audit*",
+      "legal",
+      "legale",
+      "law firm",
+      "studio legale",
+      "customer",
+      "clienti",
+      "kunden*",
+      "business development",
+      "machine learning",
+      "deep learning",
+      "data",
+      "ai",
+      "community",
+      "event*",
+      "lehrkr*",
+      "scuol*",
+      "school*",
+      "école*",
+      "escuela*",
+      "studenti",
+      "alunni",
+      "schüler*",
+      "leerling*",
+      "schule",
+      "schulen",
+      "grundschul*",
+      "berufsschul*"
+    ]
+  },
+  "search": {
+    "note": "Public job-bank title searches are generated as one placement term + one HR term per language. Keep each list short: EURES requires 10 seconds between requests.",
+    "placement_terms": {
+      "en": [
+        "intern",
+        "internship",
+        "trainee"
+      ],
+      "it": [
+        "tirocinio",
+        "stage"
+      ],
+      "es": [
+        "prácticas",
+        "becario"
+      ],
+      "pt": [
+        "estágio",
+        "estagiário"
+      ],
+      "fr": [
+        "stage",
+        "stagiaire"
+      ],
+      "de": [
+        "praktikum",
+        "werkstudent"
+      ],
+      "nl": [
+        "stage",
+        "stagiair"
+      ],
+      "sv": [
+        "praktik",
+        "praktikant"
+      ],
+      "da": [
+        "praktikant",
+        "praktik"
+      ],
+      "fi": [
+        "harjoittelija",
+        "harjoittelu"
+      ],
+      "pl": [
+        "staż",
+        "praktyki",
+        "stażysta"
+      ],
+      "cs": [
+        "stáž",
+        "stážista"
+      ],
+      "sk": [
+        "stáž",
+        "stážista"
+      ],
+      "sl": [
+        "praksa",
+        "pripravnik"
+      ],
+      "hr": [
+        "praksa",
+        "pripravnik"
+      ],
+      "hu": [
+        "gyakornok"
+      ],
+      "ro": [
+        "stagiu",
+        "internship"
+      ],
+      "bg": [
+        "стаж",
+        "стажант"
+      ],
+      "el": [
+        "πρακτική άσκηση"
+      ],
+      "et": [
+        "praktika",
+        "praktikant"
+      ],
+      "lv": [
+        "prakse",
+        "praktikants"
+      ],
+      "lt": [
+        "praktika",
+        "praktikantas"
+      ]
+    },
+    "hr_terms": {
+      "en": [
+        "hr",
+        "human resources",
+        "recruitment",
+        "talent acquisition",
+        "learning development",
+        "payroll",
+        "people"
+      ],
+      "it": [
+        "risorse umane",
+        "hr",
+        "selezione personale",
+        "formazione sviluppo",
+        "paghe",
+        "personale"
+      ],
+      "es": [
+        "recursos humanos",
+        "rrhh",
+        "selección",
+        "formación",
+        "nóminas",
+        "personas"
+      ],
+      "pt": [
+        "recursos humanos",
+        "rh",
+        "recrutamento",
+        "gestão de pessoas",
+        "formação"
+      ],
+      "fr": [
+        "rh",
+        "ressources humaines",
+        "recrutement",
+        "formation",
+        "paie"
+      ],
+      "de": [
+        "hr",
+        "personal",
+        "recruiting",
+        "personalentwicklung",
+        "lohnbuchhaltung"
+      ],
+      "nl": [
+        "hr",
+        "hrm",
+        "recruitment",
+        "werving",
+        "p&o",
+        "salarisadministratie"
+      ],
+      "sv": [
+        "hr",
+        "rekrytering",
+        "personal"
+      ],
+      "da": [
+        "hr",
+        "rekruttering",
+        "personale"
+      ],
+      "fi": [
+        "hr",
+        "henkilöstö",
+        "rekrytointi"
+      ],
+      "pl": [
+        "hr",
+        "kadry",
+        "rekrutacja",
+        "zasoby ludzkie"
+      ],
+      "cs": [
+        "hr",
+        "personalistika",
+        "lidské zdroje",
+        "nábor"
+      ],
+      "sk": [
+        "hr",
+        "personalistika",
+        "ľudské zdroje",
+        "nábor"
+      ],
+      "sl": [
+        "kadrovsk",
+        "hr",
+        "človeški viri"
+      ],
+      "hr": [
+        "ljudski potencijali",
+        "hr",
+        "ljudski resursi"
+      ],
+      "hu": [
+        "hr",
+        "emberi erőforrás",
+        "toborzás"
+      ],
+      "ro": [
+        "resurse umane",
+        "hr",
+        "recrutare"
+      ],
+      "bg": [
+        "човешки ресурси",
+        "hr",
+        "подбор"
+      ],
+      "el": [
+        "ανθρώπινο δυναμικό",
+        "hr"
+      ],
+      "et": [
+        "personal",
+        "hr",
+        "värbamine"
+      ],
+      "lv": [
+        "personāla",
+        "hr",
+        "cilvēkresursi"
+      ],
+      "lt": [
+        "personalo",
+        "hr",
+        "žmogiškieji ištekliai"
+      ]
+    }
+  }
+}

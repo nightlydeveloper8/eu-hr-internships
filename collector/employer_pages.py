@@ -37,8 +37,20 @@ def approved(url,source):
     if urlsplit(value).hostname not in source['allowed_hosts']:raise ValueError('Unapproved employer-page host')
     return value
 
+def slug_title(url):
+    """Readable title words of a job URL slug (Radancy, Phenom): ids and separators removed."""
+    path=unquote(urlsplit(url).path)
+    return re.sub(r'\s+',' ',re.sub(r'\b(?:R|JR|REQ)?\d{4,}\b|[-_/]+',' ',path)).strip()
+
+def slug_prefilter(url):
+    """Large multi-country sitemaps: read only job pages whose URL title already names an
+    HR internship. The page's JobPosting is still classified in full afterwards."""
+    from .classify import classify_role
+    return bool(classify_role(slug_title(url)))
+
 def sitemap_records(source,client):
     pending=list(source['sitemaps']);seen=set();job_urls=set();pattern=re.compile(source['job_url_pattern'])
+    prefilter=source.get('url_slug_prefilter')==True;listed=0
     while pending:
         url=approved(pending.pop(0),source)
         if url in seen:continue
@@ -51,9 +63,11 @@ def sitemap_records(source,client):
         urls=[x.text.strip() for x in root.iter() if x.tag.rsplit('}',1)[-1]=='loc' and x.text]
         for target in urls:
             if tag=='sitemapindex':pending.append(approved(target,source))
-            elif pattern.search(target):job_urls.add(approved(target,source))
+            elif pattern.search(target):
+                listed+=1
+                if not prefilter or slug_prefilter(target):job_urls.add(approved(target,source))
         if len(job_urls)>source.get('max_job_urls',20000):raise ValueError('Job URL safety limit; snapshot incomplete')
-    if not job_urls:raise ValueError('No matching job URLs; source layout needs review')
+    if not listed:raise ValueError('No matching job URLs; source layout needs review')
     # Missing old links on a sitemap alone must never close a posting.
     return [dict(source_id=source['id'],external_id=u,employer=source['employer'],title=re.sub(r'[-_]+',' ',unquote(urlsplit(u).path)),location='',text='',url=u,apply_url=u,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True) for u in sorted(job_urls)]
 
@@ -130,6 +144,10 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
         employer=data.get('hiringOrganization',{}).get('name')
         if employer and not any(token in employer.lower() for token in source.get('employer_tokens',[source['employer'].lower()])):raise ValueError('Unexpected hiring organisation')
         if countries:result['countries']=sorted({code for country in countries for code in country_codes('',country)})
+        else:
+            # Reviewed site sections that publish one country but leave addressCountry empty.
+            reviewed=[code for pattern,code in source.get('url_country_patterns',{}).items() if re.search(pattern,record['url'])]
+            if len(set(reviewed))==1:result['countries']=reviewed[:1];countries=reviewed[:1]
         employment=data.get('employmentType')
         if isinstance(employment,list):
             # JobPosting employmentType can be a list with null members; do not turn

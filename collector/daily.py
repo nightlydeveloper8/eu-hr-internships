@@ -48,7 +48,18 @@ def provision(companies,sources):
     """Idempotently attach an actual crawler to every unserved employer."""
     companies=copy.deepcopy(companies);sources=copy.deepcopy(sources)
     by_id={s['id']:s for s in sources}
+    enabled_company_ids = {source.get('company_id') for source in sources if source.get('enabled')}
     for company in companies:
+        # Explicit review hold: a disabled reviewed source must never cause an
+        # enabled auto-universal fallback on the next daily provisioning run.
+        # Activation requires removing the hold AND enabling the reviewed source
+        # in a separately authorized change.
+        if company.get('collection_activation_hold'):
+            if company['id'] in enabled_company_ids or any(
+                by_id[s].get('enabled') for s in company.get('source_ids', []) if s in by_id
+            ):
+                raise ValueError('Held employer has an enabled source: '+company['id'])
+            continue
         active=[by_id[s] for s in company.get('source_ids',[]) if s in by_id and by_id[s].get('enabled')]
         if active:continue
         starts=list(dict.fromkeys(canonical_url(u) for u in [company.get('career_url'),company.get('website_url')] if u))
@@ -100,7 +111,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
                     known_job_titles=known_titles.get(source['id'],{}))
         started=time.monotonic();client=BudgetClient(seconds=seconds or source.get('collection_seconds',180 if source['adapter'] in ('employer-sitemap','employer-index') else 120),max_requests=source.get('max_requests',180))
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
-        if part['report']['status']=='failed' and source['adapter']!='universal-employer' and client.remaining()>15:
+        if part['report']['status']=='failed' and source['adapter']!='universal-employer' and source.get('source_kind')!='public-employment-service' and client.remaining()>15:
             c=company_for.get(source['id'],{});starts=list(dict.fromkeys(u for u in [source.get('career_url'),c.get('website_url')] if u))
             if starts:
                 fallback=dict(source,adapter='universal-employer',start_urls=starts,max_pages=60,max_navigation_depth=3,max_render_pages=4,allowed_hosts=sorted(set(source['allowed_hosts'])|{urlsplit(u).hostname for u in starts}))

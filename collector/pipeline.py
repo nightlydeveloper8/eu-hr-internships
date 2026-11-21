@@ -79,10 +79,17 @@ def posting_url_identity(job):
 def apply_listing_reviews(jobs,reviews):
     excluded={canonical_url(r['url']) for r in reviews if r.get('decision')=='excluded'}
     pending={canonical_url(r['url']):r for r in reviews if r.get('decision')=='needs-verification'}
+    gone={canonical_url(r['url']):r for r in reviews if r.get('decision')=='closed'}
     result=[]
     for job in jobs:
         url=canonical_url(job['url'])
         if url in excluded:continue
+        # A reviewed closure (e.g. the official vacancy page answered 404/410 on
+        # repeated checks) keeps history. A fresh verification on this run wins.
+        if url in gone and job.get('status')!='open':
+            review=gone[url]
+            job=dict(job,status='closed',closure_reason=review['reason'],link_status='closed',
+                     verification=dict(state='closed',checked_at=review['reviewed_on']+'T00:00:00+00:00',policy_version=2,reason=review['reason']))
         if url in pending:
             job=dict(job,status='unverified',link_status='review-required',review_note=pending[url]['reason'])
         result.append(job)
@@ -178,7 +185,7 @@ def align_observations(previous,current):
 
 def validate_catalog(data):
     assert data['schema_version']==1
-    assert len(data['countries'])==27
+    assert set(data['countries'])==set(COUNTRIES)
     ids=set()
     for j in data['jobs']:
         assert j['id'] not in ids; ids.add(j['id'])
@@ -264,7 +271,17 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             verified=None; link_status='not-checked'; application=None; closed=False
             observation={}
             verification={'state':'incomplete','checked_at':stamp,'policy_version':2,'reason':'Verification disabled'}
-            if verify:
+            from .public_sources import PUBLIC_API_ADAPTERS
+            public_api=source['adapter'] in PUBLIC_API_ADAPTERS
+            if public_api:
+                # Public-API verification rule (docs/fonti-pubbliche.md): an
+                # official search that lists only currently published
+                # advertisements is itself evidence of an active vacancy.
+                from .public_sources import public_api_verification
+                verified,link_status,reason=public_api_verification(source,record,stamp)
+                verification.update(state='verified' if verified else 'incomplete',reason=reason)
+                if verified:verification['policy']='public-api-active-listing'
+            elif verify:
                 from .verification import verify_vacancy, blocked_error
                 from .applications import ApplicationClosed
                 try:
@@ -290,6 +307,9 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 intake=dict(intake,provenance=provenance['kind'],observed_via=provenance.get('origin',provenance['kind']))
             if intake:staged[-1]['intake']=intake
             if application:staged[-1]['application_verification']=dict(application,checked_at=stamp)
+            if public_api:
+                staged[-1].update(inventory_evidence=record.get('inventory_evidence'),public_api_listed_at=stamp)
+                if record.get('external_application_url'):staged[-1]['external_application_url']=record['external_application_url']
             if closed:staged[-1].update(status='closed',closure_reason='Official recruiting page explicitly disables applications')
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
@@ -330,6 +350,9 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     current=apply_ownership_reviews(current,reviews)
     reviewed=reconcile(previous,current,closure_eligible,stamp)
     jobs=deduplicate(apply_listing_reviews(reviewed,read(ROOT/'data/listing-reviews.json',[])))
+    from .public_sources import PUBLIC_API_ADAPTERS, SECONDARY_PUBLIC_ADAPTERS, merge_public_duplicates
+    jobs,public_duplicates=merge_public_duplicates(jobs,[s['id'] for s in registry if s.get('adapter') in PUBLIC_API_ADAPTERS],
+        [s['id'] for s in registry if s.get('adapter') in SECONDARY_PUBLIC_ADAPTERS])
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     for job in jobs:
         if canonical_url(job['url']) in explicitly_closed:
@@ -366,6 +389,7 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     counts=Counter(c for j in jobs if j['status']!='closed' for c in j['countries'])
     all_reports=list(report_by_id.values())
     coverage={'generated_at':stamp,'exhaustive':False,'sources':all_reports,'countries':[{'code':c,'name':n,'listings':counts[c],'sources_with_observed_jobs':sum(c in r.get('observed_countries',[]) for r in all_reports if r['status']=='ok'),'discovery_candidates':sum(c in s.get('target_countries',[]) for s in registry if not s.get('enabled'))} for c,n in COUNTRIES.items()],'quality':{'total':len(jobs),'open':sum(j['status']=='open' for j in jobs),'unverified':sum(j['status']=='unverified' for j in jobs),'confirmed_english':sum(any(l['code']=='en' and l['requirement']!='preferred' for l in j['workplace_languages']) for j in jobs if j['status']!='closed'),'sources_succeeded':len(successful),'sources_attempted':len(selected),'sources_partial':len(partial_sources)}}
+    coverage['quality']['public_service_duplicates_merged']=public_duplicates
     coverage['quality']['historical_unreviewed_external_records']=sum(bool(j.get('ownership_risk',{}).get('state')=='historical-unreviewed-external-host') for j in jobs)
     coverage['quality'].update(verified_internships=sum(j['status']=='open' and j['internship_type']=='internship' for j in jobs),verified_working_students=sum(j['status']=='open' and j['internship_type']=='working-student' for j in jobs),verified_traineeships=sum(j['status']=='open' and j['internship_type']=='traineeship' for j in jobs))
     # Validate both documents before either is exported; the build copies only a successful run.

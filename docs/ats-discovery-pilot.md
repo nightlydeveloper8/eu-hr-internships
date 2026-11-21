@@ -61,3 +61,37 @@ I test nuovi includono due esecuzioni identiche di discovery, URL non HTTPS o co
 ## Passaggio successivo (non incluso)
 
 Collegare, in una PR separata dopo revisione, la produzione periodica di osservazioni ufficiali ai checkpoint del crawler esistente. Abilitare nuove fonti solo dopo verifica live di host/robots, proprieta' del tenant, feed completo, paese effettivo, costi di richieste e idempotenza del catalogo. Non toccare il gate Dynamic ATS `pilot-v1` della Issue #23. Nessun merge o rollout autorizzato qui.
+
+## Esito verifica d'accesso ATS (18/11/2026)
+
+Censimento dal rapporto di copertura: le fonti generiche hanno incontrato SuccessFactors in 55 casi, Workday in 38, SmartRecruiters in 25, Personio in 24, Recruitee in 20, Teamtailor in 15 e Greenhouse in 13.
+
+| Piattaforma | Esito | Prova |
+|---|---|---|
+| Workday (`*.myworkdayjobs.com`) | **Non integrabile** | Il robots.txt consente l'API delle bacheche (blocca solo `/refreshFacet/`). Però Cloudflare risponde **429 al client del progetto** (urllib) anche sul robots.txt, mentre accetta curl con lo stesso User-Agent dichiarato. Il filtro è sull'impronta del client, non sulla frequenza: cambiare client per passare sarebbe aggirare un blocco. Bacheche viste: Accenture, Airbus, Dow, GE Aerospace, Hitachi, LEGO, Medtronic, Michelin, Miele, Philips, Roche, Thales, Thermo Fisher, ESET, Infobip e altre. |
+| SuccessFactors (portali `career*.successfactors.*`) | **Escluso** | robots.txt: `User-agent: *` / `Disallow: /`. I siti aziendali "Career Site Builder" su domini propri restano gestiti dallo scraper generico solo se il loro robots.txt lo consente. |
+| SmartRecruiters | Escluso (già noto) | Il robots.txt esclude i bot generici. |
+| Greenhouse / Lever (Doctolib, Delivery Hero, Qonto, Mollie, Picnic, sennder, Personio, Back Market, Team Lewis) | **Bacheche dismesse** | Le API ufficiali, sia USA (`boards-api.greenhouse.io`, `api.lever.co`) sia UE (`api.eu.lever.co`), rispondono 404 per tutti i codici. Le fonti `greenhouse-*` e `lever-*` restano disattivate: le aziende hanno cambiato ATS e i link visti dallo scraper sono vecchi. |
+
+Conseguenza per la Fase 2: le due piattaforme più diffuse tra le multinazionali non si possono usare entro i vincoli del progetto (rispetto di robots.txt e nessun aggiramento di blocchi). Le strade rimaste sono:
+1. Recruitee, Personio e Teamtailor sui siti delle singole aziende, con i raccoglitori esistenti o un nuovo raccoglitore Teamtailor.
+2. I siti carriere delle multinazionali su domini propri che pubblicano dati `JobPosting` (Fase 3).
+3. EURES, che porta gli annunci dei servizi pubblici di tutti i paesi.
+
+## Fase 3: siti carriera con sitemap e JobPosting (18/11/2026)
+
+Molte multinazionali pubblicano gli annunci su piattaforme (Radancy, Phenom) che espongono una sitemap e, su ogni pagina, i dati strutturati schema.org `JobPosting`. Il collettore `employer-sitemap` legge solo quei dati: nessuna estrazione dal testo della pagina.
+
+- **Filtro sull'URL** (`url_slug_prefilter: true`): queste sitemap sono globali (fino a 31.000 annunci per Marriott). Si leggono solo le pagine il cui titolo nell'URL nomina già uno stage HR; poi la pagina viene classificata per intero. Lacuna nota: uno stage HR il cui URL non contiene né il termine HR né quello di stage.
+- **Paese**: da `addressCountry` del JobPosting. Se è vuoto e una sezione del sito pubblica un solo paese, si usa una regola rivista (`url_country_patterns`, es. Adecco Francia `/26094/`).
+- **Fonti aggiunte**: Procter & Gamble, The Adecco Group, AstraZeneca, Roche, BAT, Sanofi, Thermo Fisher, GE Aerospace, Mars, Marriott. Per Roche, Thermo Fisher e GE Aerospace sostituiscono il crawler automatico, che non trovava l'elenco degli annunci.
+- **Verifica**: invariata (politica v2). Si conferma solo se la candidatura avviene su un modulo legato allo stesso annuncio. BAT e Unilever si verificano; Adecco (Lumesse TalentLink), Marriott (Oracle Cloud HCM) e Roche (Workday) hanno moduli solo JavaScript, quindi i loro stage restano "da verificare".
+- **Prova del 18/11** (lettura reale, senza budget): Adecco 128 stage HR (127 in Francia, 1 in Portogallo), Marriott 9 (MT, PT, NL, ES, IT, DE, FR), Roche 3 (PL, DE), BAT 1 verificato (FR), Sanofi 1 (FR), P&G 12 pagine HR tutte chiuse ("has been filled"), AstraZeneca, Thermo Fisher, GE Aerospace e Mars 0 al momento.
+- **Escluse**: SuccessFactors con dominio proprio (IDEMIA: nessun JobPosting), Vodafone (403), Coca-Cola (429), McDonald's (403), DHL (sitemap in errore 500), PepsiCo (URL senza titolo: il filtro non è applicabile e leggere 2.800 pagine al giorno non è proporzionato).
+
+### Fase 3b (18/11/2026, sera): seconda mappatura
+
+- **Esaminati 185 portali** di multinazionali in due tornate (probe automatico: robots.txt, sitemap, JobPosting, titoli leggibili negli URL). Circa 120 nomi di host non esistono o non rispondono; altri sono esclusi per robots (Novo Nordisk, Safran), 403 (Hyatt, IHG, Boehringer Ingelheim, UBS, BNP Paribas), siti SuccessFactors senza JobPosting (JTI, Swiss Re) o pagine senza JobPosting (EY, Capgemini, ZF, Volvo Group, Merck KGaA, TE, Atlas Copco).
+- **Integrati 21 portali**: ABB, Thales, Siemens Healthineers, Allianz, Kuehne+Nagel, UPS, ING, Société Générale, Philips, BD, FedEx, Takeda, Mastercard, Hilti, Marsh McLennan, HPE, Stryker, AkzoNobel, Infineon, WTW, Ericsson. Allianz, BD, Hilti, Philips e Thales sostituiscono il crawler automatico. Infineon ed Ericsson (Eightfold) vietano `/` ma consentono esplicitamente `/careers`, dove stanno gli annunci.
+- **Correzione Phenom**: la pagina servita senza JavaScript contiene sempre il riquadro "the job … is no longer available / has been filled", che il browser nasconde per gli annunci attivi. Lo stato si legge ora dal `jobDetail` incorporato (phApp): `hits` > 0 = annuncio attivo, 0 = chiuso. Prima di questa correzione gli stage di P&G, ABB, Thales e Allianz risultavano chiusi per errore.
+- **Date**: le scadenze nel formato `2026/12/01` (Société Générale) sono ora lette correttamente.
