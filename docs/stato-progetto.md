@@ -8,6 +8,12 @@
 - Corretta la voce del 20/11 sul redesign, che risultava ancora "non in produzione".
 - Solo documentazione: nessun cambiamento a codice, dati, fonti o workflow.
 
+## 20 novembre 2026 — coda automatizzabile di conversione ATS per i mercati a zero
+
+- Elaborato uno script **offline, nessuna promozione** [`scripts/official_ats_country_queue.py`](../scripts/official_ats_country_queue.py) che genera per PL, IE, CZ e SE una graduatoria riproducibile dal catalogo corrente. Conserva gli ID, deduplica per URL osservato, segnala famiglie ATS/ID come sole piste di verifica e non tocca il registro. Suite di test negativa per paese vuoto, provider, URL insicuri, duplicati, vecchie chiusure e titolarità ignota.
+- Baseline catalogo attuale: PL **10 schede non verificate**, IE **0 schede**, CZ **3 schede** (2 closed, 1 unverified). La conversione pubblica→ATS svedese resta separata dai provenienti da datori. [Dossier fonti PL/IE/CZ](ricerca/ats-mercati-zero-20261120.md) segnala SmartRecruiters Averna/Clifford Chance, Regeneron e Manifesto, con link ufficiali e blocchi di prova ancora aperti.
+- **Nessuna nuova candidatura policy v2**, nessun GET BudgetClient, byte 0, rendering 0, nessun cambio scheduler, fonti, budget o dati in produzione. Prossimo intervento ad alto impatto: pilota bounded su board SmartRecruiters PL + careers-page CZ, poi Regeneron IE, esaminando il modulo stesso-ID e misurando conversioni/100 richieste. Le proposte JKS e SE restano nelle PR separate #93/#91.
+
 ## 20 novembre 2026 — redesign visivo premium dark (in produzione con PR #100, squash `5ffb2d1`)
 
 - **Ambito solo UI/UX.** Modificati `src/index.html`, `src/style.css`, `src/app.js`, `src/map.js`, `src/favicon.svg`, l'intestazione delle pagine secondarie e due helper puri in `src/logic.js` (`evidenceLevel`, `zoomViewBox`). Invariati collector, fonti, policy v2, verifiche delle candidature, catalogo, geometrie e codici paese, ID, URL dei filtri e preferiti locali (`people-placement:saved`).
