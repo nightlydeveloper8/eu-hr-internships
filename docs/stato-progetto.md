@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 21 novembre 2026 — fase 3, candidatura Adecco/Radancy
+
+[Cinque posting FR in staging](lead-adecco-entry-2026-11-21.md): la CTA porta a una scheda Talentsoft con ID, i percorsi successivi osservati sono CV generico o account. 0 moduli specifici nel campione, 0 recuperi stimati. Proposta di causale circoscritta ai casi documentati, da rivedere se compare un percorso specifico.
+
 ## 21 novembre 2026 — diagnosi misurata dei 367 lead, senza promozioni
 
 - **Branch dedicata:** `analysis/lead-conversion-audit-20261121`, a partire da `main@f0cfe6`. Prima del lavoro letti `AGENTS.md`, questo stato e **29 PR aperte**; in particolare evitata la sovrascrittura della diagnosi ATS in [#84](https://github.com/nightlydeveloper8/eu-hr-internships/pull/84) e degli interventi connessi.
