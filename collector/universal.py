@@ -49,6 +49,23 @@ def safe_url(url):
         return value
     except (ValueError,TypeError,AttributeError):return None
 
+def distinct_frontier(entries):
+    """Keep one entry per exact URL without losing job evidence or shallower reach.
+
+    Duplicates with different (is_job, depth) previously survived tuple
+    deduplication and filled the 2,000-entry checkpoint. The same URL is only
+    fetched once in a collection anyway. Do not collapse distinct URLs,
+    postings or parameters.
+    """
+    merged={}
+    for url,is_job,depth in entries:
+        if url in merged:
+            old_job,old_depth=merged[url]
+            merged[url]=(old_job or bool(is_job), min(old_depth,depth))
+        else:
+            merged[url]=(bool(is_job),depth)
+    return [(url,job,depth) for url,(job,depth) in merged.items()]
+
 class Document(HTMLParser):
     def __init__(self,body,url):
         super().__init__(convert_charrefs=True);self.url=url;self.links=[];self.frames=[];self.buttons=[];self.h1=[];self.main=[];self.body=[];self.locations=[];self.stack=[];self.anchor=None;self.heading=None;self.button=None;self.meta={}
@@ -154,7 +171,7 @@ class Crawler:
         self.state['ownership_policy_version']=1
         self.allowed=set(source['allowed_hosts'])
         if source.get('ownership_scope')!='reviewed-hosts':self.allowed.update(self.state.get('allowed_hosts',[]))
-        self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set();self.structured_identity_mismatches=0
+        self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set();self.structured_identity_mismatches=0;self.frontier_duplicates_pruned=0;self.frontier_static_skips=0
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
@@ -324,7 +341,13 @@ class Crawler:
         seeds=[u for u in [self.state.get('preferred_career_url')]+self.source['start_urls'] if u and self.allow(u)]
         queue=deque((u,True,0) for u in self.source.get('known_job_urls',[]) if self.allow(u));queue.extend((u,False,0) for u in dict.fromkeys(seeds));pending=self.state.get('pending',[])
         for entry in pending:
-            if not provider_resource(entry.get('url','')) and self.allow(entry.get('url','')):queue.append((entry['url'],entry.get('job',True),entry.get('depth',1)))
+            if provider_resource(entry.get('url','')):
+                self.frontier_static_skips+=1
+                continue
+            if self.allow(entry.get('url','')):queue.append((entry['url'],entry.get('job',True),entry.get('depth',1)))
+        unique=distinct_frontier(queue)
+        self.frontier_duplicates_pruned+=len(queue)-len(unique)
+        queue=deque(unique)
         max_pages=self.source.get('max_pages',60)
         try:
             while queue:
@@ -341,20 +364,28 @@ class Crawler:
                     self.empty|=result['empty']
                     for r in result['records']:self.add_record(r)
                     for link in result['links']:
+                        if provider_resource(link['url']):
+                            self.frontier_static_skips+=1
+                            continue
                         if link['job']:self.job_candidates.add(link['url'])
                         if link['url'] not in self.urls_seen and (link['job'] or depth<self.source.get('max_navigation_depth',3)):
                             queue.append((link['url'],link['job'],depth+1))
                             if not link['job'] and CAREER.search(link['url']):self.state['preferred_career_url']=link['url']
                     # New pages precede cached details so a large employer resumes fairly.
-                    if len(queue)>2:queue=deque(dict.fromkeys(sorted(queue,key=self.priority)))
+                    if len(queue)>2:
+                        unique=distinct_frontier(queue)
+                        self.frontier_duplicates_pruned+=len(queue)-len(unique)
+                        queue=deque(sorted(unique,key=self.priority))
                 except CollectionBudgetExceeded:self.urls_seen.discard(url);queue.appendleft((url,is_job,depth));raise
                 except Exception as exc:self.errors.append(dict(url=url,error=str(exc)[:180]))
         except CollectionBudgetExceeded as exc:self.incomplete=True;self.errors.append(dict(url='collection-budget',error=str(exc)))
-        remaining=[dict(url=u,job=j,depth=d) for u,j,d in queue if u not in self.urls_seen]
+        unique=distinct_frontier(queue)
+        self.frontier_duplicates_pruned+=len(queue)-len(unique)
+        remaining=[dict(url=u,job=j,depth=d) for u,j,d in unique if u not in self.urls_seen]
         self.state['allowed_hosts']=sorted(self.allowed);self.state['pending']=remaining[:2000];self.cache.save_state(self.state)
         unresolved=sum(bool(r.get('geography_unresolved')) for r in self.records.values())
         complete=(bool(self.completed_feeds) and self.inventory or self.empty) and not self.incomplete and not self.errors and not remaining and not unresolved
-        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),verified_closed_urls=sorted(self.closed_urls),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed),structured_identity_mismatches=self.structured_identity_mismatches,explicit_known_closures=len(self.closed_urls.intersection(self.known_job_titles)))
+        stats=dict(status='ok' if complete else 'partial' if self.records or self.pages else 'failed',inventory_kind='bounded-public-career-crawl',complete=complete,closure_complete=complete and bool(self.completed_feeds),verified_closed_urls=sorted(self.closed_urls),pages_read=self.pages,sitemaps_read=self.sitemaps_read,rendered_pages=self.rendered,job_urls_discovered=len(self.job_candidates),pending_urls=len(remaining),frontier_duplicates_pruned=self.frontier_duplicates_pruned,frontier_static_skips=self.frontier_static_skips,frontier_checkpoint_dropped=max(0,len(remaining)-2000),records_inspected=len(self.records),unresolved_geography=unresolved,explicit_empty=self.empty,methods=sorted(self.used_methods),cache_hits=self.cache.hits,page_failures=len(self.errors),page_errors=self.errors[:30],allowed_hosts=sorted(self.allowed),structured_identity_mismatches=self.structured_identity_mismatches,explicit_known_closures=len(self.closed_urls.intersection(self.known_job_titles)))
         if not self.inventory and not self.empty:stats['error']='No verified job inventory or explicit empty vacancy list found; discovery continues automatically'
         if not self.inventory and not self.empty and self.errors and all(
             re.search(r'Access challenge|robots\.txt disallows|HTTP Error: (?:401|403|429|451)',e['error'],re.I)
