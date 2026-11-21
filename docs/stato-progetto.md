@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 21 novembre 2026 — sette fonti ATS, staging senza attivazione
+
+[Verifica e costi](sette-fonti-ats-2026-11-21.md): Climeworks CH, Peripass BE e Fanatics GB ciascuna con una candidatura diretta policy v2 nello staging, studenti iscritti ammessi. Fonti disabilitate e hold sui tre datori. 12 GET / 4.830.640 byte / 7,391 secondi-fonte nel ciclo misurato. Finalizzazione temporanea 907 → 910 ID, zero persi. Nessuna variazione al catalogo di produzione. Sungrow e Entrix non superano il controllo del modulo; Social Hub ha host e date da riconciliare; Workable espone due HR ma il modulo non è dimostrato. Robots e limiti dei termini nel rapporto e review_notes. Il lettore Workable pubblico è proposto con test, senza fonte registrata. Verifica locale: 531 test Python 3.12, 35 Node, valutazione, copertura, build e validazione catalogo riusciti.
+
+Prossimo passo: review della PR e dei termini applicabili provider/datori; solo dopo eventuale approvazione esplicita del merge e approvazioni distinte per l'attivazione. Rifare le prove se scadute prima di qualunque rilascio; non avviare raccolte complete.
+
 ## 21 novembre 2026 — fase 2, ricontrollo EURES prima della ricerca
 
 [Diagnosi e confronto in staging](lead-eures-rechecks-2026-11-21.md) sul catalogo `a71b260`: cinque cicli al tetto di 330 richieste. La proposta anticipa al massimo cinque verifiche. Nel campione, 4 schede attive come Public employment service e 1 risposta 404. Se la PR verrà integrata, verificare recuperi e recall nel primo ciclo automatico.

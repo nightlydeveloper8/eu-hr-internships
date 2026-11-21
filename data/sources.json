@@ -50496,5 +50496,79 @@
     "permission_basis": "Official employer link to exact tenant and reviewed public GET inventory. Runtime robots and same-posting visible form enforced.",
     "max_requests": 14,
     "collection_seconds": 55
+  },
+  {
+    "id": "recruitee-climeworks-ch",
+    "company_id": "climeworks-ch",
+    "employer": "Climeworks",
+    "adapter": "recruitee",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://climeworks.recruitee.com/",
+    "allowed_hosts": [
+      "climeworks.recruitee.com"
+    ],
+    "target_countries": [
+      "CH"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "permission_basis": "Public feed and same vacancy form reviewed; robots checked each run; provider/employer terms require review before rollout",
+    "review_notes": "2026-11-21: https://climeworks.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta.",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "feed_format": "recruitee-public-xml",
+    "application_check": "recruitee-linked",
+    "feed_url": "https://climeworks.recruitee.com/api/feeds/offers.xml"
+  },
+  {
+    "id": "recruitee-peripass-be",
+    "company_id": "peripass-be",
+    "employer": "Peripass",
+    "adapter": "recruitee",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://peripass.recruitee.com/",
+    "allowed_hosts": [
+      "peripass.recruitee.com"
+    ],
+    "target_countries": [
+      "BE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "permission_basis": "Public feed and same vacancy form reviewed; robots checked each run; provider/employer terms require review before rollout",
+    "review_notes": "2026-11-21: https://peripass.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta.",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "feed_format": "recruitee-public-xml",
+    "application_check": "recruitee-linked",
+    "feed_url": "https://peripass.recruitee.com/api/feeds/offers.xml"
+  },
+  {
+    "id": "greenhouse-fanatics-collectibles-gb",
+    "company_id": "fanatics-collectibles-gb",
+    "employer": "Fanatics Collectibles",
+    "adapter": "greenhouse",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://job-boards.greenhouse.io/fanaticscollectibles",
+    "allowed_hosts": [
+      "boards-api.greenhouse.io",
+      "job-boards.greenhouse.io"
+    ],
+    "target_countries": [
+      "GB"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "permission_basis": "Public feed and same vacancy form reviewed; robots checked each run; provider/employer terms require review before rollout",
+    "review_notes": "2026-11-21: https://boards-api.greenhouse.io/robots.txt vieta /embed/; https://job-boards.greenhouse.io/robots.txt non ha regole attive. GET documentata https://docs.greenhouse.io/job-board; https://www.greenhouse.com/master-subscription-agreement disciplina i clienti, non autorizzazione generale a terzi.",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "board": "fanaticscollectibles"
   }
 ]
