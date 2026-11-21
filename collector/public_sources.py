@@ -383,6 +383,10 @@ def eures_detail_summary(detail, identifier):
                 availableLanguages=[detail['preferredLanguage']] if detail.get('preferredLanguage') else [])
 
 
+# Keep discovery the primary use of the existing request budget.
+EURES_PRIORITY_RECHECK_LIMIT = 5
+
+
 def eures_records(source, client):
     from .classify import classify_role
     records, requests, truncated, errors = {}, 0, [], []
@@ -436,6 +440,43 @@ def eures_records(source, client):
             budget_stop.append(label)
             truncated.append(label)
 
+    # Check a small oldest-first slice before query pagination can consume
+    # the request budget. Prefer search summaries when a posting appears in both.
+    closed, rechecked = [], {}
+    known_urls = source.get('known_job_urls', [])
+    max_known = source.get('max_known_checks', 40)
+    priority_urls = list(dict.fromkeys(source.get('priority_recheck_urls', [])))
+    priority_urls = priority_urls[:min(EURES_PRIORITY_RECHECK_LIMIT, max_known)]
+
+    def lookup(url):
+        nonlocal requests
+        identifier = urlsplit(url).path.rstrip('/').split('/')[-1]
+        try:
+            jv = client.json(EURES_API + '/jv/id/' + identifier + '?requestLang=en&preferredLang=en')
+        except Exception as exc:
+            if getattr(exc, 'code', None) != 404:
+                raise
+            closed.append(url)
+            return None
+        requests += 1
+        if jv.get('id') and str(jv['id']) != identifier:
+            raise ValueError('EURES detail returned a different vacancy identifier')
+        return eures_record(source, eures_detail_summary(jv, identifier))
+
+    for url in priority_urls:
+        try:
+            record = lookup(url)
+        except Exception as exc:
+            if type(exc).__name__ == 'CollectionBudgetExceeded':
+                budget_stop.append('priority-vacancy-recheck')
+                break
+            if _fatal(exc):
+                raise
+            errors.append(dict(query='priority-vacancy-recheck', error=str(exc)[:160]))
+            continue
+        if record:
+            rechecked[record['external_id']] = record
+
     guarded('positionOffering=internship', lambda page: eures_criteria(offering=['internship'], page=page),
             EURES_OFFERING_MAX_PAGES, False)
     # 2. Pair queries (placement term + HR term), highest-volume languages first.
@@ -444,21 +485,16 @@ def eures_records(source, client):
     # 3. Combined per-language queries add a few extra matches when time remains.
     for query in source.get('combined_queries', EURES_QUERIES):
         guarded(query, lambda page, q=query: eures_criteria(keywords=[q], page=page), EURES_MAX_PAGES, True)
-    # 3. Known vacancies outside today's result windows: explicit status only.
-    closed = []
-    for url in ([] if budget_stop else source.get('known_job_urls', [])[:source.get('max_known_checks', 40)]):
+    closed = [url for url in closed if urlsplit(url).path.rstrip('/').split('/')[-1] not in records]
+    for identifier, record in rechecked.items():
+        records.setdefault(identifier, record)
+    # Known vacancies outside today's result windows: explicit status only.
+    tail = [url for url in known_urls if url not in priority_urls][:max_known-len(priority_urls)]
+    for url in ([] if budget_stop else tail):
         identifier = urlsplit(url).path.rstrip('/').split('/')[-1]
         if identifier in records:
             continue
-        try:
-            jv = client.json(EURES_API + '/jv/id/' + identifier + '?requestLang=en&preferredLang=en')
-        except Exception as exc:
-            if getattr(exc, 'code', None) == 404:
-                closed.append(url)
-                continue
-            raise
-        requests += 1
-        record = eures_record(source, eures_detail_summary(jv, identifier))
+        record = lookup(url)
         if record:
             records[record['external_id']] = record
     if errors and not records:

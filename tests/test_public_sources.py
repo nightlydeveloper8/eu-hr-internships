@@ -363,6 +363,40 @@ class EuresBudgetTests(unittest.TestCase):
         self.assertEqual(len(rows), 4)
         self.assertEqual(client.gets, [])  # no per-vacancy checks after the budget ran out
 
+    def test_priority_details_survive_search_budget_and_keep_exact_id(self):
+        from collector.runtime import CollectionBudgetExceeded
+
+        class Budgeted(FakeEuresClient):
+            def post_json(self, url, payload):
+                self.posts.append(payload)
+                raise CollectionBudgetExceeded('Request budget exhausted')
+
+        detail = {'id': 'SAME', 'preferredLanguage': 'nl', 'creationDate': 1794698333140,
+                  'jvProfiles': {'nl': {'title': 'Stage HR', 'locations': [{'countryCode': 'BE'}]}}}
+        client = Budgeted({'SAME': detail, 'WRONG': detail})
+        known = ['https://europa.eu/eures/portal/jv-se/jv-details/' + key + '?lang=en'
+                 for key in ('SAME', 'WRONG', 'MISSING', 'OTHER')]
+        source = eures_source(known_job_urls=known, priority_recheck_urls=known,
+                              max_known_checks=3, active_listing_api=True)
+        part = process_source(source, client, '2026-11-21T09:00:00+00:00')
+        self.assertEqual(len(client.gets), 3)
+        self.assertEqual(len(client.posts), 1)
+        self.assertEqual(part['report']['status'], 'partial')
+        self.assertEqual(part['report']['budget_stopped_at'], 'positionOffering=internship')
+        self.assertEqual(part['report']['verified_closed_urls'], [known[2]])
+        self.assertEqual([job['external_id'] for job in part['jobs']], ['SAME'])
+        job = part['jobs'][0]
+        self.assertEqual(job['verification']['policy'], 'public-api-active-listing')
+        self.assertIsNone(job.get('application_verification'))
+
+    def test_same_cycle_search_result_overrides_priority_detail_404(self):
+        client = FakeEuresClient()
+        url = 'https://europa.eu/eures/portal/jv-se/jv-details/QkUtSFItMQ?lang=en'
+        rows = collect(eures_source(priority_recheck_urls=[url], known_job_urls=[url]), client)
+        self.assertEqual(len(client.gets), 1)
+        self.assertNotIn(url, rows.stats['verified_closed_urls'])
+        self.assertIn(url, [row['url'] for row in rows])
+
     def test_pair_queries_are_generated_and_deduplicated(self):
         from collector.public_sources import EURES_PAIR_QUERIES
         from collector.classify import fold

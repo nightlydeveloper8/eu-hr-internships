@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 21 novembre 2026 — fase 2, ricontrollo EURES prima della ricerca
+
+[Diagnosi e confronto in staging](lead-eures-rechecks-2026-11-21.md) sul catalogo `a71b260`: cinque cicli al tetto di 330 richieste. La proposta anticipa al massimo cinque verifiche. Nel campione, 4 schede attive come Public employment service e 1 risposta 404. Se la PR verrà integrata, verificare recuperi e recall nel primo ciclo automatico.
+
 ## 21 novembre 2026 — diagnosi misurata dei 367 lead, senza promozioni
 
 - **Branch dedicata:** `analysis/lead-conversion-audit-20261121`, a partire da `main@f0cfe6`. Prima del lavoro letti `AGENTS.md`, questo stato e **29 PR aperte**; in particolare evitata la sovrascrittura della diagnosi ATS in [#84](https://github.com/nightlydeveloper8/eu-hr-internships/pull/84) e degli interventi connessi.
