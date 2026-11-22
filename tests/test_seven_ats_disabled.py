@@ -5,7 +5,14 @@ from collector.daily import provision
 from collector.company_registry import validate_registry
 
 ROOT=Path(__file__).resolve().parents[1]
-SOURCES={'recruitee-climeworks-ch':'climeworks-ch', 'recruitee-peripass-be':'peripass-be', 'greenhouse-fanatics-collectibles-gb':'fanatics-collectibles-gb'}
+SOURCES = {
+    'recruitee-climeworks-ch': 'climeworks-ch',
+    'recruitee-peripass-be': 'peripass-be',
+    'greenhouse-fanatics-collectibles-gb': 'fanatics-collectibles-gb',
+    'recruitee-aquablu-nl': 'aquablu-nl',
+    'recruitee-zeromotorcycles-nl': 'zero-motorcycles-nl',
+    'recruitee-werkenbijyouvia-nl': 'youvia-nl',
+}
 
 class SevenATSHoldTests(unittest.TestCase):
     @classmethod
@@ -30,8 +37,13 @@ class SevenATSHoldTests(unittest.TestCase):
         self.assertEqual(provision(companies,sources),(companies,sources))
 
     def test_hold_rejects_accidental_enablement(self):
-        sources=[dict(s,enabled=True) if s['id']=='recruitee-climeworks-ch' else s for s in self.sources]
-        with self.assertRaisesRegex(ValueError,'Held employer has an enabled source'):
-            provision(self.companies,sources)
+        for source_id in SOURCES:
+            with self.subTest(source_id=source_id):
+                sources = [
+                    dict(source, enabled=True) if source['id'] == source_id else source
+                    for source in self.sources
+                ]
+                with self.assertRaisesRegex(ValueError, 'Held employer has an enabled source'):
+                    provision(self.companies, sources)
 
 if __name__=='__main__': unittest.main()
