@@ -1,5 +1,13 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — revisione gate ATS, Grecia e paesi senza candidature dirette
+
+[Decisioni documentate](revisione-ats-e-rollout-2026-11-22.md) sulla base delle misure #110 e dell'inventario ATS: le tre fonti CH/BE/GB restano **disabilitate**, nessun rollout autorizzato o eseguito. Climeworks ha un conflitto significativo nei termini contro robot/monitoraggio su siti collegati; Peripass e Fanatics richiedono review specifica del recruiting (i termini generali Fanatics escludono espressamente hiring). Le due vacancy Workable GR sono lead, non moduli v2 verificati. Priorità operativa alle prove già ottenute PL/DK/SE della #102, senza duplicarle; #113 NL utile ma non riduce paesi a zero.
+
+Revisione solo documentale, dati di riferimento 21/11: catalogo 907 ID, 407 stage correnti e 37 candidature dirette; **nessun nuovo ID, candidatura o fonte attiva**, nessun file del bot modificato e nessuna richiesta BudgetClient nuova (letture via web non misurate come traffico collector). Attenzione: l'XML feed Recruitee resta escluso dall'obbligo token Careers API del 10/02/2027 secondo la documentazione ufficiale. Nessun merge né attivazione di questa PR.
+
+**Prossimo passo:** risolvere il gate termini fonte per fonte, rifare prove live fresche e chiedere via libera specifico all'eventuale attivazione; parallelamente riallineare #102 alla main e mantenere Workable in staging finché non mostra form same-ID valido.
+
 ## 21 novembre 2026 — inventario ATS e staging di tenant già noti
 
 [Rapporto e inventario](inventario-ats-2026-11-21.md): individuate 68 coppie datore–tenant, 20 non registrate come ATS attivo; i paesi sono soltanto ambito di ricerca. 18 tenant esaminati o bloccati e due Lever esclusi. La scansione ha riconfermato tre vacancy già predisposte da #110; Berenschot è già nel catalogo come candidatura diretta, mentre Focus/PulluP richiede riconciliazione e Mynaric Personio ha submit disabilitato. **0 nuove candidature distinte e 0 nuove fonti preparate**. Spesi 50 GET / almeno 11.747.768 byte / 36,115 secondi cumulati, senza POST né invio; PR #110 già integrata in `841278f`.
