@@ -168,8 +168,11 @@ class IntakeTests(unittest.TestCase):
         # Replay at the publication timestamp so freshness does not introduce
         # legitimate changes unrelated to this regression.
         stamp = prior['last_attempt_at']
+        # The production registry authorizes source-scoped verification methods.
+        # No sources are selected for this offline replay.
+        registry = read(ROOT/'data/sources.json', [])
         with TemporaryDirectory() as directory:
-            result, _ = finalize([], [], deepcopy(prior), {}, [], stamp, Path(directory))
+            result, _ = finalize(registry, [], deepcopy(prior), {}, [], stamp, Path(directory))
         self.assertEqual([j['id'] for j in result['jobs']], [j['id'] for j in prior['jobs']])
         # Reviewed closures (listing-reviews decision 'closed') are intended changes.
         reviewed_closed = {canonical_url(r['url']) for r in read(ROOT/'data/listing-reviews.json', [])
@@ -180,7 +183,11 @@ class IntakeTests(unittest.TestCase):
                 continue
             for field in ('status', 'source_id', 'employer', 'first_discovered_at', 'intake',
                           'ownership', 'region_codes', 'review_note'):
-                self.assertEqual(current.get(field), old.get(field), (old['id'], field))
+                expected = old.get(field)
+                # The Amac registry supplies a verified workplace for the existing EURES listing.
+                if field == 'region_codes' and old['id'] == '556f17c88258233a2fa1':
+                    expected = ['NL35']
+                self.assertEqual(current.get(field), expected, (old['id'], field))
             self.assertEqual(current.get('verification', {}).get('policy_version'),
                              old.get('verification', {}).get('policy_version'))
 

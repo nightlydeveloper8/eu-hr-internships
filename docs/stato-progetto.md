@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — conversione EURES Amac in staging
+
+[Dossier dei 30 datori](eures-to-direct-2026-11.md). Su `main@d69c664`, Amac Recruitee `2828451` in hold, con prova v2 e precedenza sul match EURES univoco.
+Simulazione con Python 3.12: **926 → 926 ID, zero persi, 52 → 53 dirette, 422 → 422 stage aperti**. 1.937 collector attivi.
+Prova Amac 4 GET / 1.852.861 byte / 1,799 s. Audit complessivo 96 GET / 10.316.874 byte / 59,117 secondi-datore.
+Prossimo passo: revisione del [branch dedicato](https://github.com/nightlydeveloper8/eu-hr-internships/compare/main...research/eures-to-direct-20261122) e prova fresca prima di un’eventuale attivazione autorizzata.
+
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
 [#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.

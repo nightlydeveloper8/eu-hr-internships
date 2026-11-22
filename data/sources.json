@@ -50879,5 +50879,32 @@
     "application_check": "personio-feed-same-id-static-form",
     "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
     "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://avantgarde.jobs.personio.de/privacy-policy ; https://avantgarde.net/de/imprint/. Candidate privacy and employer imprint; no express job automation restriction found. Fresh policy v2 staging: posting 2888187, 4 GET, 1338691 bytes, 2.935 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "recruitee-amac-nl",
+    "company_id": "amac-nl",
+    "employer": "Amac",
+    "adapter": "recruitee",
+    "enabled": false,
+    "feed_format": "recruitee-public-xml",
+    "application_check": "recruitee-linked",
+    "feed_url": "https://werkenbijamac.nl/api/feeds/offers.xml",
+    "career_url": "https://werkenbijamac.nl/",
+    "allowed_hosts": [
+      "werkenbijamac.nl"
+    ],
+    "target_countries": [
+      "NL"
+    ],
+    "require_employer_identity": true,
+    "ownership_scope": "reviewed-hosts",
+    "max_requests": 8,
+    "collection_seconds": 30,
+    "reviewed_public_mirrors": {
+      "2828451": "https://europa.eu/eures/portal/jv-se/jv-details/NjBhZTRlNTctZmQ3Ni0wODhhLWUwNjMtNjg5M2IyMGFhM2M1IDQy?lang=en"
+    },
+    "permission_basis": "Public employer XML and vacancy-specific form GET; reviewed host and runtime robots.",
+    "reviewed_on": "2026-11-22",
+    "status": "pending-integration-and-rollout-approval"
   }
 ]
