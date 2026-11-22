@@ -1,11 +1,25 @@
 # Stato di ripresa — People Placement
 
-## 22 novembre 2026 — monitoraggio e prima raccolta dopo #116
+## 22 novembre 2026 — monitoraggio della raccolta di produzione
 
-Il monitor riusa le issue GitHub per catalogo oltre 36 h, ID persi, calo degli stage aperti >15%, EURES fallito/vuoto e guasti >20% fra le fonti recentemente riuscite.
-[Prima raccolta post-#116](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45002015989) in corso alla verifica. Prima: 913 ID, 407 stage aperti, 36 dirette. Dopo, ID persi e costo delle 14 fonti: non dimostrato.
-Controlli locali superati: 543 unittest Python 3.12, 42 Node, zero errori di valutazione, coverage, build e provisioning idempotente (1.937 collector attivi).
-Prossimo passo: dopo il publish confrontare commit del bot, esiti/costi delle 14 fonti e catalogo servito. Un eventuale merge del monitor avvia la raccolta di produzione.
+La raccolta innescata da #118 controlla ID persi, calo degli stage >15%, EURES fallito o vuoto e guasti >20% tra fonti recentemente riuscite. Il monitor pianificato segnala catalogo oltre 36 ore.
+[Prima raccolta dopo #116](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45002015989) riuscita. Baseline pubblicata in `d69c664`: 926 ID, 422 stage aperti, 52 candidature dirette, 13 paesi con stage.
+Verifica prima di #118: CI Python 3.12 verde dopo #132; #124 e #123 integrate. Filtro di inizio e scheda senza data verificati sul sito pubblico a 375 e 1440 px.
+Prossimo passo: verificare run e publish post-merge, integrità degli ID, variazioni di freschezza, candidature dirette, EURES e issue del monitor.
+
+## 22 novembre 2026 — finestra di stage IHRM del secondo anno
+
+Filtro di inizio dal 5 gennaio al 13 marzo 2027. Il filtro di durata compare da 10 stage verificati con durata esplicita.
+Baseline `d69c664`: 926 ID, 422 stage aperti, 52 candidature dirette, 13 paesi con stage aperti.
+Il replay ripreso da #119 è già integrato con #132. La PR non attiva collect.yml.
+Prossimo passo: verificare il deploy Cloudflare e il sito pubblico a 375 e 1440 px.
+
+## 22 novembre 2026 — diario per ramo e limite alle PR degli agenti
+
+Frammenti di massimo otto righe, consolidati nel commit di integrazione.
+Limite di cinque PR aperte create da agenti e sospensione dei nuovi piloti di ricerca.
+Verifica offline del consolidatore; nessun cambiamento alla raccolta.
+Prossimo passo: usare il frammento nelle PR e ridurre la coda con le decisioni del maintainer.
 
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
