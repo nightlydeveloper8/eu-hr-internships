@@ -168,8 +168,11 @@ class IntakeTests(unittest.TestCase):
         # Replay at the publication timestamp so freshness does not introduce
         # legitimate changes unrelated to this regression.
         stamp = prior['last_attempt_at']
+        # The production registry authorizes source-scoped verification methods.
+        # No sources are selected for this offline replay.
+        registry = read(ROOT/'data/sources.json', [])
         with TemporaryDirectory() as directory:
-            result, _ = finalize([], [], deepcopy(prior), {}, [], stamp, Path(directory))
+            result, _ = finalize(registry, [], deepcopy(prior), {}, [], stamp, Path(directory))
         self.assertEqual([j['id'] for j in result['jobs']], [j['id'] for j in prior['jobs']])
         # Reviewed closures (listing-reviews decision 'closed') are intended changes.
         reviewed_closed = {canonical_url(r['url']) for r in read(ROOT/'data/listing-reviews.json', [])
