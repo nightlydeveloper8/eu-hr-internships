@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — metodo Personio e nove fonti con hold
+
+[Verifica di staging e costi](personio-static-applications-2026-11-22.md). Su `main@f606443`, otto candidature Personio con feed e modulo stesso ID e una Recruitee v2. Mercedes-Benz.io, ten23 health e Reformer Club indicano anche l’ammissione di neolaureati. Watson Farley & Williams conserva l’ID EURES; Studyflix resta a un annuncio. Nove fonti predisposte disabilitate e con hold. 38 GET, 4.210.328 byte, 20,734 secondi-fonte nel ciclo conclusivo. Simulazione 913 → 921 ID, zero persi, 407 → 415 stage verificati, 36 → 45 diretti, 365 lead invariati. Nessuna raccolta o attivazione di produzione. Prossimo passo: revisione della PR e, prima di un eventuale rollout, termini dei singoli datori e prova fresca.
+
 ## 21 novembre 2026 — inventario ATS e staging di tenant già noti
 
 [Rapporto e inventario](inventario-ats-2026-11-21.md): individuate 68 coppie datore–tenant, 20 non registrate come ATS attivo; i paesi sono soltanto ambito di ricerca. 18 tenant esaminati o bloccati e due Lever esclusi. La scansione ha riconfermato tre vacancy già predisposte da #110; Berenschot è già nel catalogo come candidatura diretta, mentre Focus/PulluP richiede riconciliazione e Mynaric Personio ha submit disabilitato. **0 nuove candidature distinte e 0 nuove fonti preparate**. Spesi 50 GET / almeno 11.747.768 byte / 36,115 secondi cumulati, senza POST né invio; PR #110 già integrata in `841278f`.

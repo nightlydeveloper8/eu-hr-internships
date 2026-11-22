@@ -74,6 +74,9 @@ export function safeUrl(value) { try {const url = new URL(value); return url.pro
 
 export function verificationMessage(job, clock = Date.now()) {
   if (verifiedJob(job, clock) && publicEmploymentListing(job)) return 'Listed as open by an official public employment service within the last 48 hours. Check the official posting for application instructions.';
+  if (applicationConfirmed(job, clock) && job.application_verification.method === 'personio-feed-same-id-static-form') {
+    return 'The official Personio feed and the matching application form were checked within the last 48 hours. The submit button may start disabled.';
+  }
   if (applicationConfirmed(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
   if (verifiedJob(job, clock)) return 'The listing is current. Check the original posting for application instructions.';
   if (job.status === 'closed') return 'The employer has closed this listing.';

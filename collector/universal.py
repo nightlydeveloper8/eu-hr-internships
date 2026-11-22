@@ -51,7 +51,7 @@ def safe_url(url):
 
 class Document(HTMLParser):
     def __init__(self,body,url):
-        super().__init__(convert_charrefs=True);self.url=url;self.links=[];self.frames=[];self.buttons=[];self.h1=[];self.main=[];self.body=[];self.locations=[];self.stack=[];self.anchor=None;self.heading=None;self.button=None;self.meta={}
+        super().__init__(convert_charrefs=True);self.url=url;self.links=[];self.frames=[];self.buttons=[];self.h1=[];self.main=[];self.body=[];self.locations=[];self.stack=[];self.anchor=None;self.heading=None;self.button=None;self.meta={};self.canonical_links=[]
         self.structured=PageParser();self.structured.feed(body.decode('utf-8','replace'));self.feed(body.decode('utf-8','replace'))
     def handle_starttag(self,tag,attrs):
         # HTMLParser represents valueless attributes as None. Presentation hints
@@ -71,6 +71,8 @@ class Document(HTMLParser):
         if tag=='button':self.button=[]
         if tag=='iframe' and a.get('src'):self.frames.append(a['src'])
         if tag=='meta' and a.get('content'):self.meta[a.get('property') or a.get('name','')]=a['content']
+        if tag=='link' and a.get('href') and 'canonical' in a.get('rel','').lower().split():
+            self.canonical_links.append(a['href'])
         if tag=='link' and a.get('rel')=='next' and a.get('href'):self.links.append([a['href'],'next','next'])
     def handle_data(self,data):
         node=self.stack[-1] if self.stack else {}

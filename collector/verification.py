@@ -131,6 +131,65 @@ def disabled_submit_applicant_form(body):
     return False
 
 
+PERSONIO_STATIC_FORM = 'personio-feed-same-id-static-form'
+
+
+def personio_static_application(record, source, client, vacancy, stamp):
+    """Verify Personio using current XML and an observed same-ID HTML form."""
+    host = urlsplit(vacancy.url).hostname or ''
+    posting_id = str(record.get('posting_identifier') or '')
+    vacancy_path = '/job/' + posting_id
+    if (source['adapter'] != 'personio-xml' or not host.endswith('.jobs.personio.de')
+            or not posting_id.isascii() or not posting_id.isdigit()
+            or urlsplit(vacancy.url).path.rstrip('/') != vacancy_path
+            or record.get('source_id') != source['id']
+            or record.get('external_id') != posting_id
+            or record.get('inventory_evidence') != 'current-employer-feed'
+            or record.get('personio_feed_url') != f'https://{host}/xml'
+            or source.get('feed_url') != record['personio_feed_url']):
+        raise ValueError('Current same-tenant Personio XML posting required')
+    def same_posting_identity(page):
+        for href in page.canonical_links:
+            canonical = urlsplit(urljoin(page.url, href))
+            if (canonical.scheme != 'https' or canonical.netloc != host
+                    or canonical.path.rstrip('/') not in (vacancy_path, vacancy_path + '/apply')):
+                return False
+        identifiers = structured_identifiers(page, record['title'])
+        return all(value == posting_id or re.fullmatch(posting_id + r'-[0-9]+', value)
+                   for value in identifiers)
+
+    if not same_posting_identity(vacancy):
+        raise ValueError('Personio vacancy identifier differs')
+
+    def same_entry(url):
+        parsed = urlsplit(url)
+        return parsed.netloc == host and parsed.path == vacancy_path + '/apply'
+
+    entries = dict.fromkeys(canonical_url(urljoin(vacancy.url, href))
+                           for href, _, _ in vacancy.links
+                           if urlsplit(urljoin(vacancy.url, href)).scheme == 'https'
+                           and same_entry(urljoin(vacancy.url, href)))
+    if not entries:
+        raise ValueError('Observed Personio application link does not retain the posting ID')
+    target = next(iter(entries))
+    body, page = checked_document(target, source, client)
+    if canonical_url(page.url) != target or not same_title(page, record['title']):
+        raise ValueError('Personio application redirected or identifies another vacancy')
+    for post in page.jobposts():
+        if expired(post.get('validThrough'), stamp):
+            raise ApplicationClosed('Application deadline has passed')
+    if not same_posting_identity(page):
+        raise ValueError('Personio application posting identifier differs')
+    for form in ApplicantForms(body, strict=True).forms:
+        fields = {(f.get('name'), f.get('type', 'text')) for f in form['fields']
+                  if f.get('type') != 'hidden'}
+        required = {('first_name', 'text'), ('last_name', 'text'),
+                    ('email', 'email'), ('documents.cv', 'file')}
+        if required <= fields and (form['submit'] or form['disabled_submits']):
+            return dict(url=target, method=PERSONIO_STATIC_FORM)
+    raise ValueError('Visible Personio candidate fields and submit control required')
+
+
 def _verify_vacancy(record, source, client, stamp, observation=None):
     """No successful HEAD, cached page or JSON-LD alone establishes an opening."""
     closure=None
@@ -144,7 +203,7 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
             raise ValueError('Current page does not identify the same vacancy')
     fresh_deadline=next((post.get('validThrough') for post in doc.jobposts() if fold(plain(post.get('title')))==fold(record['title'])),None)
     identifiers=structured_identifiers(doc,record['title'])
-    if len(identifiers)>1 or (record.get('posting_identifier') and identifiers and str(record['posting_identifier']) not in identifiers):raise ValueError('Vacancy identifier differs from collected position')
+    if len(identifiers)>1 or (source.get('application_check') != PERSONIO_STATIC_FORM and record.get('posting_identifier') and identifiers and str(record['posting_identifier']) not in identifiers):raise ValueError('Vacancy identifier differs from collected position')
     # Capture the identified vacancy independently of application success. A
     # current page with no start supersedes an older feed/cache start as well.
     if observation is not None:
@@ -154,6 +213,10 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     for post in doc.jobposts():
         if fold(plain(post.get('title'))) == fold(record['title']) and expired(post.get('validThrough'), stamp):
             raise ApplicationClosed('Published application deadline has passed')
+    if source.get('application_check') == PERSONIO_STATIC_FORM:
+        reviewed = personio_static_application(record, source, client, doc, stamp)
+        return dict(reviewed, valid_through=fresh_deadline, vacancy_match='personio-posting-id',
+                    inventory=record['inventory_evidence'])
     reviewed = (verify_application(record,source,client,vacancy_document=(body,doc))
                 if source.get('application_check') in ('publication-linked','official-email','recruitee-linked')
                 else verify_application(record,source,client))

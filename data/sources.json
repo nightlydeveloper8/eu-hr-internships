@@ -50570,5 +50570,252 @@
     "collection_seconds": 90,
     "status": "pending-integration-and-rollout-approval",
     "board": "fanaticscollectibles"
+  },
+  {
+    "id": "recruitee-mercedes-benz-io-pt",
+    "company_id": "mercedes-benz-io-pt",
+    "employer": "Mercedes-Benz.io",
+    "adapter": "recruitee",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://mbio.recruitee.com/",
+    "allowed_hosts": [
+      "mbio.recruitee.com"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "PT"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://mbio.recruitee.com/api/feeds/offers.xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "employer_aliases": [
+      "Mercedes-Benz.io GmbH"
+    ],
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://recruitee.com/terms); no general reuse licence demonstrated. Posting 2833968; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-ten23-health-ch",
+    "company_id": "ten23-health-ch",
+    "employer": "ten23 health",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://ten23-health.jobs.personio.de/",
+    "allowed_hosts": [
+      "ten23-health.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "CH"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://ten23-health.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 2139342; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-watson-farley-williams-de",
+    "company_id": "watson-farley-williams-de",
+    "employer": "Watson Farley & Williams LLP",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://watson-farley-williams-llp.jobs.personio.de/",
+    "allowed_hosts": [
+      "watson-farley-williams-llp.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://watson-farley-williams-llp.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "reviewed_public_mirrors": {
+      "2634127": "https://europa.eu/eures/portal/jv-se/jv-details/MTAwMDEtMTAwMzk2MTczMy1TIDE?lang=en"
+    },
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 2634127; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-studyflix-de",
+    "company_id": "studyflix-de",
+    "employer": "Studyflix",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://studyflix-gmbh.jobs.personio.de/",
+    "allowed_hosts": [
+      "studyflix-gmbh.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://studyflix-gmbh.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "duplicate_posting_ids": [
+      "1119149"
+    ],
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 1119140; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-bloomwell-group-de",
+    "company_id": "bloomwell-group-de",
+    "employer": "Bloomwell Group",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://bloomwell.jobs.personio.de/",
+    "allowed_hosts": [
+      "bloomwell.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://bloomwell.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 2888191; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-vamo-de",
+    "company_id": "vamo-de",
+    "employer": "Vamo",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://vamo.jobs.personio.de/",
+    "allowed_hosts": [
+      "vamo.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://vamo.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 2471392; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-reformer-club-de",
+    "company_id": "reformer-club-de",
+    "employer": "Reformer Club",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://reformer-club.jobs.personio.de/",
+    "allowed_hosts": [
+      "reformer-club.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://reformer-club.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 2669913; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-wilken-software-group-de",
+    "company_id": "wilken-software-group-de",
+    "employer": "Wilken Software Group",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://wilken.jobs.personio.de/",
+    "allowed_hosts": [
+      "wilken.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://wilken.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "reviewed_office_countries": {
+      "DE_Ulm": "DE"
+    },
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 2840229; see docs/personio-static-applications-2026-11-22.md."
+  },
+  {
+    "id": "personio-avantgarde-de",
+    "company_id": "avantgarde-de",
+    "employer": "Avantgarde",
+    "adapter": "personio-xml",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://avantgarde.jobs.personio.de/",
+    "allowed_hosts": [
+      "avantgarde.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://avantgarde.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Public employer XML and same-posting vacancy/application via GET with tenant robots enforced. Held pending terms review and rollout approval.",
+    "review_notes": "2026-11-22: exact tenant robots checked; XML, vacancy and form allowed. Provider terms reviewed (https://www.personio.com/terms/); no general reuse licence demonstrated. Posting 2888187; see docs/personio-static-applications-2026-11-22.md."
   }
 ]

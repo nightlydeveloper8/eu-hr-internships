@@ -27,7 +27,7 @@ class ApplicantForms(HTMLParser):
         self.feed(body.decode('utf-8','replace'))
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
-        blocked=('disabled' in a or 'disabled' in a.get('class','').split() or 'hidden' in a or a.get('aria-hidden')=='true'
+        blocked=(tag in ('template','noscript') or 'disabled' in a or 'disabled' in a.get('class','').split() or 'hidden' in a or a.get('aria-hidden')=='true'
                  or a.get('aria-disabled')=='true' or bool(re.search(r'display\s*:\s*none|visibility\s*:\s*hidden',a.get('style',''),re.I)))
         inherited=any(value for _,value in self.scopes) if self.strict else False
         if tag not in ('area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'):
@@ -35,8 +35,8 @@ class ApplicantForms(HTMLParser):
         if tag=='form':
             self.current=dict(attrs=a,fields=[],submit=False,disabled_submits=0);self.forms.append(self.current)
         # Some applicant forms expose all candidate fields, but publish their
-        # submit button as disabled in the initial HTML. This is a DIAGNOSTIC,
-        # never a substitute for an enabled submit under policy v2.
+        # submit button as disabled in the initial HTML. The verification layer
+        # decides whether the surrounding evidence can use this signal.
         if self.current is not None and not inherited and (
             (tag=='button' and a.get('type','submit')=='submit') or
             (tag=='input' and a.get('type')=='submit')) and (

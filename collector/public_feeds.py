@@ -1,7 +1,7 @@
 """Documented public recruiting feeds; only job metadata leaves this module."""
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
-from .classify import plain
+from .classify import country_codes, plain
 from .employer_pages import approved
 
 def personio_records(source,client):
@@ -9,15 +9,32 @@ def personio_records(source,client):
     if b'<!DOCTYPE' in body.upper():raise ValueError('DOCTYPE not permitted')
     root=ET.fromstring(body)
     if root.tag!='workzag-jobs':raise ValueError('Not a Personio jobs feed')
-    base=final.split('/xml',1)[0];out=[]
+    static_form = source.get('application_check') == 'personio-feed-same-id-static-form'
+    if static_form and (final != url or urlsplit(url).path != '/xml'):
+        raise ValueError('Reviewed Personio live XML must use the exact tenant endpoint')
+    base=final.split('/xml',1)[0];out=[];seen=set()
     for j in root.findall('position'):
         identifier=j.findtext('id','')
-        if not identifier.isdigit():raise ValueError('Malformed position ID')
+        if not identifier.isascii() or not identifier.isdigit():raise ValueError('Malformed position ID')
+        if identifier in seen:
+            raise ValueError('Duplicate positions')
+        seen.add(identifier)
+        if static_form and identifier in source.get('duplicate_posting_ids', ()):
+            continue
         offices=[j.findtext('office','')]+[x.text or '' for x in j.findall('additionalOffices/office')]
         text=' '.join(plain(x.findtext('name','')+' '+x.findtext('value','')) for x in j.findall('jobDescriptions/jobDescription'))
         job_url=approved(base+'/job/'+identifier,source)
         out.append(dict(inventory_evidence='current-employer-feed',source_id=source['id'],external_id=identifier,employer=source['employer'],title=plain(j.findtext('name')),location='; '.join(offices),text=text,url=job_url,apply_url=job_url,language=None,published_at=None,employment=j.findtext('employmentType',''),city='; '.join(offices),country=None,work_mode=None))
-    if len({x['external_id'] for x in out})!=len(out):raise ValueError('Duplicate positions')
+    if static_form:
+        from .universal import Inventory
+        for record in out:
+            offices = record['location'].split('; ')
+            reviewed = source.get('reviewed_office_countries', {})
+            countries = {code for office in offices
+                         for code in country_codes(office, reviewed.get(office))}
+            record.update(posting_identifier=record['external_id'], personio_feed_url=url,
+                          countries=sorted(countries))
+        return Inventory(out, dict(status='ok', complete=False, closure_complete=False))
     return out
 
 def recruitee_public_xml_records(source,client):
