@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {catalogueAdLanguages} from '../src/logic.js';
+import {readFileSync} from 'node:fs';
+import {catalogueAdLanguages, START_WINDOW, LONG_ENOUGH, readFilterParams, startCompatibility, durationCompatibility, showDurationFilter, STUDENT_PLACEMENT, publishedStart, applicationDeadline} from '../src/logic.js';
 import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,applicationConfirmed,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
@@ -253,4 +254,122 @@ test('map zoom is display-only and stays inside the base viewBox',async()=>{
   assert.deepEqual(zoomViewBox('0 0 1000 860',10,10,2),[0,0,500,430]);
   assert.deepEqual(zoomViewBox('0 0 1000 860',990,850,2),[500,430,500,430]);
   assert.deepEqual(zoomViewBox('0 0 1000 860',500,430,0.2),[0,0,1000,860]);
+});
+
+test('start window applies inclusive boundaries without assigning a day to partial dates', () => {
+  const filters = {...f, start: START_WINDOW};
+  for (const published_start of ['2027-01-05', '2027-02', '2027-03-13']) {
+    const job = {...base, intake:{published_start}};
+    assert.equal(startCompatibility(job), 'compatible', published_start);
+    assert.ok(matches(job, filters));
+  }
+  for (const published_start of ['2027-01-04', '2027-03-14', '2027-04']) {
+    assert.equal(matches({...base, intake:{published_start}}, filters), false, published_start);
+  }
+  for (const published_start of ['2027-01', '2027-03', '2027-02-30', null]) {
+    const job = {...base, intake:{published_start}, duration:'16 weeks full-time'};
+    assert.equal(startCompatibility(job), 'unknown', published_start);
+    assert.ok(matches(job, filters));
+    assert.equal(matches(job, {...filters, hideUnknownTiming:true}), false);
+  }
+  assert.equal(startCompatibility({...base, intake:{published_start:'2027-02', provenance:'cache'}}), 'unknown');
+  assert.equal(publishedStart(base), null);
+});
+
+test('duration filter requires ten current verified internships with explicit durations', () => {
+  const clock = Date.parse('2026-11-22T12:00:00Z');
+  const internship = {...base, last_verified_at:'2026-11-22T08:00:00Z', duration:'20 weeks'};
+  const jobs = Array.from({length: 9}, (_, i) => ({...internship, id:String(i)}));
+  assert.equal(STUDENT_PLACEMENT.minimumVerifiedDurations, 10);
+  assert.equal(showDurationFilter([], clock), false);
+  assert.equal(showDurationFilter([...jobs,
+    {...internship, id:'old', last_verified_at:'2026-11-19T08:00:00Z'},
+    {...internship, id:'lead', status:'unverified'},
+    {...internship, id:'trainee', internship_type:'traineeship'},
+    {...internship, id:'end', duration:null, intake:{published_end:'2027-05-31'}},
+    {...internship, id:'unknown', duration:'Negotiable'},
+  ], clock), false);
+  assert.equal(showDurationFilter([...jobs, {...internship, id:'tenth'}], clock), true);
+});
+
+test('duration uses explicit time, schedule and placement end evidence', () => {
+  const filters = {...f, duration: LONG_ENOUGH};
+  for (const duration of ['16 weeks full-time', '4 - 6 Monate Vollzeit', '5 of 10 maanden (voltijd)']) {
+    const job = {...base, duration};
+    assert.equal(durationCompatibility(job), 'compatible', duration);
+    assert.ok(matches(job, filters));
+  }
+  for (const duration of ['15 weeks full-time', '3 mois', '20 weeks part-time']) {
+    assert.equal(matches({...base, duration}, filters), false, duration);
+  }
+  for (const duration of ['20 weken', '12 mois', '12–16 weeks full-time', 'Negotiable', null]) {
+    const job = {...base, duration, intake:{published_start:'2027-02'}};
+    assert.equal(durationCompatibility(job), 'unknown', duration);
+    assert.ok(matches(job, filters));
+    assert.equal(matches(job, {...filters, hideUnknownTiming:true}), false);
+  }
+  assert.equal(durationCompatibility({...base, intake:{published_end:'2027-05-31'}}), 'compatible');
+  assert.equal(durationCompatibility({...base, duration:'15 weeks', intake:{published_end:'2027-05-30'}}), 'incompatible');
+  assert.equal(durationCompatibility({...base, intake:{published_end:'2027-05-30'}}), 'unknown');
+  assert.equal(durationCompatibility({...base, valid_through:'2027-06-01'}), 'unknown');
+  assert.equal(durationCompatibility({...base, intake:{published_end:'2027-06-01', provenance:'cache'}}), 'unknown');
+});
+
+test('timing filters compose with country, language, search and saved filters', () => {
+  const job = {...base, duration:'16 weeks full-time', intake:{published_start:'2027-02'}};
+  const filters = {...f, start:START_WINDOW, duration:LONG_ENOUGH, hideUnknownTiming:true,
+    q:'talent', country:'NL', workplace:'en', saved:true};
+  const saved = new Set([job.id]);
+  assert.ok(matches(job, filters, saved));
+  assert.equal(matches(job, {...filters, country:'BE'}, saved), false);
+  assert.equal(matches(job, {...filters, workplace:'de'}, saved), false);
+  assert.equal(matches(job, {...filters, q:'payroll'}, saved), false);
+  assert.equal(matches(job, filters), false);
+});
+
+test('deadline sort orders explicit dates across countries with unknown dates last', () => {
+  const missing = {...base, id:'missing'};
+  const invalid = {...base, id:'invalid', valid_through:'2027-02-30'};
+  const early = {...base, id:'early', countries:['BE'], valid_through:'2027-01-01T23:59:00+0100'};
+  const late = {...base, id:'late', valid_through:'2027-01-02'};
+  assert.equal(applicationDeadline(early), '2027-01-01');
+  assert.equal(applicationDeadline(invalid), null);
+  assert.deepEqual(rankJobs([missing, invalid, late, early], {...f,sort:'deadline'}).map(j=>j.id),
+    ['early','late','invalid','missing']);
+});
+
+test('timing parameters round trip without persisting leads', () => {
+  const defaults = {...f,start:'',duration:'',hideUnknownTiming:false};
+  const selection = {...defaults,start:START_WINDOW,duration:LONG_ENOUGH,sort:'deadline',hideUnknownTiming:true};
+  const params = shareableFilterParams({...selection,unverified:true},defaults);
+  assert.deepEqual(Object.fromEntries(params),
+    {start:START_WINDOW,duration:LONG_ENOUGH,sort:'deadline',hideUnknownTiming:'true'});
+  params.set('unverified', 'true');
+  assert.deepEqual(readFilterParams(params, defaults), selection);
+  assert.equal(shareableFilterParams(defaults, defaults).has('hideUnknownTiming'), false);
+});
+
+test('relevance puts documented starts in the selected window ahead of unspecified starts', () => {
+  const confirmed = {...base,id:'timed',countries:['BE'],intake:{published_start:'2027-02'}};
+  const unspecified = {...base,application_verification:{method:'form',url:'https://example.org/job/1'}};
+  assert.equal(rankJobs([unspecified,confirmed],{...f,start:START_WINDOW})[0].id,'timed');
+  assert.equal(rankJobs([unspecified,confirmed],f)[0].id,base.id);
+});
+
+test('advertisement language composes with the IHRM start window and duration threshold', () => {
+  const clock = Date.now();
+  const job = {...base, advertisement_language:{code:'bilingual', codes:['en','nl']},
+    intake:{published_start:'2027-01-05'}, duration:'16 weeks full-time'};
+  const filters = {...f, ad:'bilingual', start:START_WINDOW, duration:LONG_ENOUGH, hideUnknownTiming:true};
+  assert.equal(matches(job, filters), true);
+  assert.equal(matches({...job, intake:{published_start:'2027-03-14'}}, filters), false);
+  assert.equal(matches({...job, intake:undefined}, filters), false);
+  const jobs = Array.from({length:10}, (_, index) => ({...job, id:String(index)}));
+  assert.equal(showDurationFilter(jobs.slice(0, 9), clock), false);
+  assert.equal(showDurationFilter(jobs, clock), true);
+});
+
+test('the internship card retains the IHRM fallback for an unstated start', () => {
+  const app = readFileSync(new URL('../src/app.js', import.meta.url), 'utf8');
+  assert.ok(app.includes("meta.push(start ? `Start: ${start}` : 'Start date not stated – ask the employer');"));
 });

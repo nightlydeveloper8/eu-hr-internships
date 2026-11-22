@@ -6,6 +6,9 @@ on:
 permissions:
   contents: read
   issues: write
+concurrency:
+  group: catalog-freshness
+  cancel-in-progress: false
 jobs:
   stale:
     runs-on: ubuntu-latest
@@ -17,13 +20,11 @@ jobs:
           script: |
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('data/catalog.json','utf8'));
-            const stamp = Date.parse(data.updated_at || '');
-            const stale = !Number.isFinite(stamp) || Date.now()-stamp > 36*60*60*1000;
-            const title = '[monitor] Catalog has missed its daily update';
+            const {freshnessLine, upsertAlert} = require('./scripts/monitor-collection.cjs');
+            const stale = freshnessLine(data.updated_at);
+            await upsertAlert(github, context, '[monitor] Catalog has missed its daily update',
+              stale ? [stale] : [], 'Check the latest scheduled collection and its publish job.');
             const {data: issues} = await github.rest.issues.listForRepo({...context.repo,state:'open',creator:'github-actions[bot]',per_page:100});
-            const existing = issues.find(i=>i.title===title);
-            if(stale && !existing) await github.rest.issues.create({...context.repo,title,body:'The last successful collection is older than 36 hours. Check Actions schedules, repository activity, source access and workflow permissions. GitHub may delay scheduled runs and disables public-repository schedules after 60 days without repository activity.'});
-            if(!stale && existing) await github.rest.issues.update({...context.repo,issue_number:existing.number,state:'closed'});
             // Use the same policy-v2 and 48h criterion as the public frontend.
             const {opportunityCounts} = await import(require('url').pathToFileURL(require('path').resolve('src/logic.js')).href);
             const counts = opportunityCounts(Array.isArray(data.jobs) ? data.jobs : []);

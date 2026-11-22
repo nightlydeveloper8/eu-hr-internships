@@ -1,18 +1,18 @@
-import { adLanguageLabel, adLanguageName, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
+import { adLanguageLabel, adLanguageName, START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
 import { drawMap, describeCountry, describeLanguages, countryFacts } from './map.js';
 
 const $ = id => document.getElementById(id);
-const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',unverified:false,applicationConfirmed:false,saved:false,mode:'nl',sort:'relevance'};
+const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',start:'',duration:'',hideUnknownTiming:false,unverified:false,applicationConfirmed:false,saved:false,mode:'nl',sort:'relevance'};
 const advancedKeys = ['region','type','workMode','ad','english','englishOnly','unverified'];
 const filters = {...defaults};
 let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true, mapView, counts = {}, languageCounts = {};
 try { const stored = JSON.parse(localStorage.getItem('people-placement:saved') || '[]'); if (Array.isArray(stored)) saved = new Set(stored.filter(x => typeof x === 'string')); } catch { persistent = false; }
-const bindings = {'search':'q','country':'country','region':'region','category':'category','workplace-language':'workplace','english':'english','english-only':'englishOnly','ad-language':'ad','type':'type','work-mode':'workMode','include-unverified':'unverified','sort':'sort'};
+const bindings = {'search':'q','country':'country','region':'region','category':'category','workplace-language':'workplace','english':'english','english-only':'englishOnly','ad-language':'ad','type':'type','work-mode':'workMode','start-window':'start','duration':'duration','hide-unknown-timing':'hideUnknownTiming','include-unverified':'unverified','sort':'sort'};
 const motion = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 
 function el(tag, cls, text) { const node = document.createElement(tag); if (cls) node.className = cls; if (text !== undefined) node.textContent = text; return node; }
 function option(select, value, text) { const o = document.createElement('option'); o.value = value; o.textContent = text; select.append(o); }
-function date(value) { if (!value) return 'Unknown'; const d = new Date(value); return Number.isFinite(d.valueOf()) ? d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',...(/^\d{4}-\d{2}-\d{2}$/.test(value) ? {} : {hour:'2-digit',minute:'2-digit',timeZoneName:'short'})}) : 'Unknown'; }
+function date(value) { if (!value) return 'Unknown'; const d = new Date(value); return Number.isFinite(d.valueOf()) ? d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',...(/^\d{4}-\d{2}-\d{2}$/.test(value) ? {timeZone:'UTC'} : {hour:'2-digit',minute:'2-digit',timeZoneName:'short'})}) : 'Unknown'; }
 function shortDate(value) { const d = new Date(value || ''); return Number.isFinite(d.valueOf()) ? d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}) : null; }
 function ago(value) {
   const t = Date.parse(value || ''); if (!Number.isFinite(t)) return 'update time unknown';
@@ -42,7 +42,6 @@ const EVIDENCE = {
   current: {label:'Current listing', cta:'View at employer'},
   lead: {label:'Lead to check', cta:'Check at employer'},
 };
-const PUBLIC_EXPLANATION = 'Via an official public employment service, active in the last 48 h · employer’s own form not checked.';
 function card(job) {
   const level = evidenceLevel(job);
   const isPublic = publicEmploymentListing(job);
@@ -73,7 +72,12 @@ function card(job) {
   const h3 = el('h3','job-title'); const titleLink = el('a','',job.title); titleLink.href = safeUrl(job.url) || '#'; titleLink.target = '_blank'; titleLink.rel = 'noopener noreferrer'; h3.append(titleLink); article.append(h3);
 
   const meta = [catalog.categories[job.category]];
+  const start = publishedStart(job);
+  const deadline = applicationDeadline(job);
+  meta.push(start ? `Start: ${start}` : 'Start date not stated – ask the employer');
   if (job.duration) meta.push(job.duration);
+  if (durationCompatibility(job) === 'unknown') meta.push('Confirm duration and hours with the employer');
+  if (deadline) meta.push(`Apply by ${date(deadline)}`);
   if (job.work_mode && job.work_mode !== 'unspecified') meta.push(displayMode(job.work_mode));
   article.append(el('p','card-meta',meta.filter(Boolean).join(' · ')));
 
@@ -91,10 +95,7 @@ function card(job) {
   if (job.also_open_to_recent_graduates === true) tags.append(el('span','tag','Also open to recent graduates'));
   article.append(tags);
 
-  if (level === 'public') {
-    if (!undisclosedOnEures) article.append(el('p','verification-explanation',PUBLIC_EXPLANATION));
-  }
-  else if (!confirmed) article.append(el('p',`verification-explanation${level === 'lead' ? ' warn' : ''}`,verificationMessage(job)));
+  article.append(el('p',`verification-explanation${level === 'lead' ? ' warn' : ''}`,evidenceSummary(job)));
   for (const code of new Set(job.countries||[])) if (PERMIT_NOTES[code]) article.append(permitNote(code));
 
   const bottom = el('div','card-bottom');
@@ -121,9 +122,9 @@ function card(job) {
   row('Last seen on board',date(job.last_seen_at));
   row('Last verification attempt',date(job.verification?.checked_at));
   row('Vacancy last verified',verifiedJob(job) ? date(job.last_verified_at) : 'No current verification');
-  row('Availability evidence',level === 'public' && undisclosedOnEures ? PUBLIC_EXPLANATION : verificationMessage(job));
+  row('Availability evidence',verificationMessage(job));
   if (job.intake) {
-    row('Published start',job.intake.published_start || 'Not specified; confirm with the employer.');
+    row('Published start',job.intake.published_start || job.intake.alternatives?.join(' / ') || 'Not specified; confirm with the employer.');
     const provenance={live:'Official vacancy',feed:'Official feed',cache:'Historical cached evidence'}[job.intake.provenance];
     if (provenance) row('Start evidence',`${provenance} · observed ${date(job.intake.checked_at)}`);
   }
@@ -265,7 +266,7 @@ function render() {
   $('show-all').textContent=`Show all ${jobs.length}`;
   $('result-pagination').textContent=jobs.length ? `Showing ${Math.min(jobs.length,limit)} of ${jobs.length} matching internships` : '';
   $('active-filters').replaceChildren();
-  const labels = {q:v=>`“${v}”`,country:v=>catalog.countries[v],region:v=>geography.units.find(u=>u.code===v)?.name,category:v=>catalog.categories[v],workplace:v=>v==='unknown'?'Language requirements unknown':`Works in ${catalog.languages[v]}`,ad:v=>`Advertisement language: ${adLanguageName(v, catalog.languages)}`,english:()=>'English evidence',englishOnly:()=>'English alone documented',saved:()=>'Saved only',unverified:()=>'Including leads',applicationConfirmed:()=>'Direct application verified',type:v=>String(v).replaceAll('-',' '),workMode:v=>displayMode(v)};
+  const labels = {q:v=>`“${v}”`,country:v=>catalog.countries[v],region:v=>geography.units.find(u=>u.code===v)?.name,category:v=>catalog.categories[v],workplace:v=>v==='unknown'?'Language requirements unknown':`Works in ${catalog.languages[v]}`,ad:v=>`Advertisement language: ${adLanguageName(v, catalog.languages)}`,english:()=>'English evidence',englishOnly:()=>'English alone documented',saved:()=>'Saved only',unverified:()=>'Including leads',applicationConfirmed:()=>'Direct application verified',type:v=>String(v).replaceAll('-',' '),workMode:v=>displayMode(v),start:()=>STUDENT_PLACEMENT.startLabel,duration:()=>STUDENT_PLACEMENT.durationLabel,hideUnknownTiming:()=>'Hide unclear timing'};
   let active = 0;
   for (const [key,value] of Object.entries(filters)) {
     if (value===defaults[key]||['mode','sort'].includes(key)) continue;
@@ -348,19 +349,22 @@ function heroStats(totals, countries) {
 }
 
 async function init(){try {
+  option($('start-window'), START_WINDOW, STUDENT_PLACEMENT.startLabel);
   const responses=await Promise.all(['catalog','coverage','sources','geography'].map(name=>fetch(`./data/${name}.json`,{cache:'no-cache'})));
   if(responses.some(r=>!r.ok))throw new Error('Data could not be loaded');
   [catalog,coverage,registry,geography]=await Promise.all(responses.map(r=>r.json()));
   if(catalog.schema_version!==1||!Array.isArray(catalog.jobs))throw new Error('Unsupported dataset');
+  if (showDurationFilter(catalog.jobs)) {
+    option($('duration'), LONG_ENOUGH, STUDENT_PLACEMENT.durationLabel);
+    $('duration-field').hidden = false;
+  }
   for(const [code,name] of Object.entries(catalog.countries).sort((a,b)=>a[1].localeCompare(b[1])))option($('country'),code,name);
   for(const [code,name] of Object.entries(catalog.categories))option($('category'),code,name);
   for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}
   for (const code of ['bilingual', 'multilingual', 'unknown']) option($('ad-language'), code, adLanguageName(code, catalog.languages));
   for(const job of catalog.jobs)job.search_terms=[...job.countries.map(c=>catalog.countries[c]),...job.categories.map(c=>catalog.categories[c])];
-  const params=new URLSearchParams(location.search);
-  for(const [key,def]of Object.entries(defaults)){if(key==='unverified'||!params.has(key))continue;filters[key]=typeof def==='boolean'?params.get(key)==='true':params.get(key);}
-  // Legacy emergency ?unverified=true links are ignored and removed by render().
-  // Unverified records require a conscious click and never persist across reloads.
+  const params = new URLSearchParams(location.search);
+  Object.assign(filters, readFilterParams(params, defaults));
   fillRegions();
   for(const [id,key]of Object.entries(bindings))if($(id).tagName==='SELECT'&&![...$(id).options].some(o=>o.value===filters[key]))filters[key]=defaults[key];
   if(!['eu','nl'].includes(filters.mode))filters.mode='nl';
