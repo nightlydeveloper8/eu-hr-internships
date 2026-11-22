@@ -119,7 +119,7 @@ class PersonioStaticApplicationTests(unittest.TestCase):
                          'Recent graduates should apply.', 'You must be enrolled throughout the placement.'):
             self.assertFalse(also_open_to_recent_graduates(evidence))
 
-    def test_reviewed_sources_remain_held_through_provisioning(self):
+    def test_reviewed_sources_remain_enabled_through_provisioning(self):
         from pathlib import Path
 
         from collector.daily import provision
@@ -142,10 +142,13 @@ class PersonioStaticApplicationTests(unittest.TestCase):
             with self.subTest(source=source_id):
                 source = by_id[source_id]
                 company = employers[source['company_id']]
-                self.assertIs(source['enabled'], False)
-                self.assertIs(source['collection_activation_hold'], True)
-                self.assertIs(company['collection_activation_hold'], True)
+                self.assertIs(source['enabled'], True)
+                self.assertNotIn('collection_activation_hold', source)
+                self.assertNotIn('collection_activation_hold', company)
+                self.assertEqual(company['source_ids'], [source_id])
                 self.assertNotIn('auto-' + company['id'], by_id)
-                active = [dict(s, enabled=True) if s['id'] == source_id else s for s in sources]
-                with self.assertRaisesRegex(ValueError, 'Held employer has an enabled source'):
-                    provision(companies, active)
+                self.assertEqual(
+                    [candidate['id'] for candidate in provisioned_sources
+                     if candidate.get('company_id') == company['id'] and candidate['enabled']],
+                    [source_id],
+                )
