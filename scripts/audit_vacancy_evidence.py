@@ -62,7 +62,7 @@ def audit_source(source,baseline,limit,seconds):
 
 def offline_comparison(baseline):
     from collector import classify as current
-    roles=read(ROOT/'data/evaluation.json',[]);languages=read(ROOT/'data/language-evaluation.json',[])
+    roles=read(ROOT/'data/evaluation.json',[]);languages=read(ROOT/'data/language-evaluation.json',{})['requirement_cases']
     result={}
     for label,module in [('before',baseline),('after',current)]:
         role_errors=[];language_errors=[]

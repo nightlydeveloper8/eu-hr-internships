@@ -1,4 +1,4 @@
-import { START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
+import { adLanguageLabel, adLanguageName, START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
 import { drawMap, describeCountry, describeLanguages, countryFacts } from './map.js';
 
 const $ = id => document.getElementById(id);
@@ -112,8 +112,9 @@ function card(job) {
   row('Internship type',`${job.internship_type.replaceAll('-',' ')} · ${job.internship_confidence}`);
   row('Arrangement',displayMode(job.work_mode));
   row('Duration',job.duration || 'Unspecified');
-  row('Advertisement',job.advertisement_language?.code ? `${catalog.languages[job.advertisement_language.code]}${job.advertisement_language.confidence==='uncertain' ? ' · estimated' : ''}` : 'Unknown');
+  row('Advertisement',adLanguageLabel(job.advertisement_language, catalog.languages));
   for (const lang of langs) row(catalog.languages[lang.code],`“${lang.evidence}” · ${requirementLabel(lang.requirement)}`,'evidence');
+  for (const excerpt of info.unnamed_language_evidence || []) row('Other language requirements', `“${excerpt}”`, 'evidence');
   if (!langs.length) row('Workplace language','No explicit statement extracted. Check the original posting.');
   row('English alone',info.english_sufficiency==='documented' ? 'Explicitly documented' : 'Unknown; English evidence does not establish sufficiency');
   row('Student enrolment',job.enrollment || 'Unspecified. Check the employer’s requirements.');
@@ -147,7 +148,7 @@ function factList(c) {
 }
 const adShare = new Intl.NumberFormat('en', {style:'percent', maximumFractionDigits:1});
 function languageSummary(mix, heading = 'h3') {
-  const labels = {english:'English', local:'Local (excluding English)', other:'Other languages', unknown:'Unidentified'};
+  const labels = {english:'English', local:'Local language', bilingual:'Bilingual', multilingual:'Multilingual', other:'Other languages', unknown:'Unknown'};
   const total = Object.values(mix).reduce((sum, count) => sum + count, 0);
   const summary = el('div','ad-language-summary');
   summary.append(el(heading,'ad-language-title','Language of current ads'));
@@ -160,9 +161,9 @@ function languageSummary(mix, heading = 'h3') {
       segment.style.flexGrow = String(count);
       bar.append(segment);
     }
-    if (count || kind === 'english' || kind === 'local') {
+    if (count || (kind !== 'other' && kind !== 'multilingual')) {
       const row = el('li',kind);
-      row.append(el('span','',label), el('strong','',`${count} · ${adShare.format(count / total)}`));
+      row.append(el('span','',label), el('strong','',`${count} · ${adShare.format(total ? count / total : 0)}`));
       legend.append(row);
     }
   }
@@ -197,10 +198,9 @@ function updatePanel() {
     const langs = el('div','panel-languages'); langs.append(languageSummary(mix));
     const row = el('div','chip-row');
     for (const {code: lang, count, kind} of breakdown) {
-      if (lang === 'unknown') continue;
       const b = el('button',`language-chip ${kind}`); b.type = 'button';
-      b.append(el('span','',catalog.languages[lang] || lang), el('b','',String(count)));
-      b.setAttribute('aria-label', `Show ${count} current ${catalog.languages[lang] || lang}-language ads in ${catalog.countries[code] || code}`);
+      b.append(el('span','',adLanguageName(lang, catalog.languages)), el('b','',String(count)));
+      b.setAttribute('aria-label', `Show ${count} current ads in ${catalog.countries[code] || code} with advertisement language ${adLanguageName(lang, catalog.languages)}`);
       b.addEventListener('click', () => { filters.ad = lang; filters.unverified = false; filters.applicationConfirmed = false; selectCountry(code); });
       row.append(b);
     }
@@ -266,7 +266,7 @@ function render() {
   $('show-all').textContent=`Show all ${jobs.length}`;
   $('result-pagination').textContent=jobs.length ? `Showing ${Math.min(jobs.length,limit)} of ${jobs.length} matching internships` : '';
   $('active-filters').replaceChildren();
-  const labels = {q:v=>`“${v}”`,country:v=>catalog.countries[v],region:v=>geography.units.find(u=>u.code===v)?.name,category:v=>catalog.categories[v],workplace:v=>v==='unknown'?'Language requirements unknown':`Works in ${catalog.languages[v]}`,ad:v=>`Ad in ${catalog.languages[v]}`,english:()=>'English evidence',englishOnly:()=>'English alone documented',saved:()=>'Saved only',unverified:()=>'Including leads',applicationConfirmed:()=>'Direct application verified',type:v=>String(v).replaceAll('-',' '),workMode:v=>displayMode(v),start:()=>STUDENT_PLACEMENT.startLabel,duration:()=>STUDENT_PLACEMENT.durationLabel,hideUnknownTiming:()=>'Hide unclear timing'};
+  const labels = {q:v=>`“${v}”`,country:v=>catalog.countries[v],region:v=>geography.units.find(u=>u.code===v)?.name,category:v=>catalog.categories[v],workplace:v=>v==='unknown'?'Language requirements unknown':`Works in ${catalog.languages[v]}`,ad:v=>`Advertisement language: ${adLanguageName(v, catalog.languages)}`,english:()=>'English evidence',englishOnly:()=>'English alone documented',saved:()=>'Saved only',unverified:()=>'Including leads',applicationConfirmed:()=>'Direct application verified',type:v=>String(v).replaceAll('-',' '),workMode:v=>displayMode(v),start:()=>STUDENT_PLACEMENT.startLabel,duration:()=>STUDENT_PLACEMENT.durationLabel,hideUnknownTiming:()=>'Hide unclear timing'};
   let active = 0;
   for (const [key,value] of Object.entries(filters)) {
     if (value===defaults[key]||['mode','sort'].includes(key)) continue;
@@ -361,6 +361,7 @@ async function init(){try {
   for(const [code,name] of Object.entries(catalog.countries).sort((a,b)=>a[1].localeCompare(b[1])))option($('country'),code,name);
   for(const [code,name] of Object.entries(catalog.categories))option($('category'),code,name);
   for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}
+  for (const code of ['bilingual', 'multilingual', 'unknown']) option($('ad-language'), code, adLanguageName(code, catalog.languages));
   for(const job of catalog.jobs)job.search_terms=[...job.countries.map(c=>catalog.countries[c]),...job.categories.map(c=>catalog.categories[c])];
   const params = new URLSearchParams(location.search);
   Object.assign(filters, readFilterParams(params, defaults));
@@ -395,10 +396,10 @@ async function init(){try {
     languageSection.prepend(languageSummary(mix, 'h2'));
     languageSection.hidden = false;
   }
-  for (const [lang, n] of Object.entries(byLanguage).filter(([lang]) => lang !== 'unknown').sort((a, b) => (a[0] === 'en' ? -1 : b[0] === 'en' ? 1 : b[1] - a[1]))) {
+  for (const [lang, n] of Object.entries(byLanguage).sort((a, b) => (a[0] === 'en' ? -1 : b[0] === 'en' ? 1 : b[1] - a[1]))) {
     const chip = el('button',`language-chip${lang==='en'?' english':''}`); chip.type = 'button';
-    chip.append(el('span','',catalog.languages[lang] || lang), el('b','',String(n)));
-    chip.setAttribute('aria-label', `Show ${n} current ads written in ${catalog.languages[lang] || lang}, in every country`);
+    chip.append(el('span','',adLanguageName(lang, catalog.languages)), el('b','',String(n)));
+    chip.setAttribute('aria-label', `Show ${n} current ads with advertisement language ${adLanguageName(lang, catalog.languages)}`);
     chip.addEventListener('click', () => { filters.ad = lang; filters.country = ''; filters.region = ''; filters.unverified = false; filters.applicationConfirmed = false; limit = 20; syncControls(); render(); scrollToResults(); });
     $('language-totals').append(chip);
   }

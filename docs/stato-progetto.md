@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 23 novembre 2026 — lingua dell’annuncio e requisiti linguistici
+[Rapporto e campione](lingue-2026-11.md) di 80 annunci EURES. Il collector usa metadati e corpo; l’interfaccia distingue anche bilingue e sconosciuto.
+Campione prima → dopo: precisione e copertura 80/80 → 80/80; annunci con estratti 25 → 30; coppie stage–lingua corrette 23 → 51.
+Il filtro di inizio e la soglia di durata IHRM sono coperti dai test Node. Replay parziale su evidenze salvate: 126/927 schede (94/414 aperte), zero cambi di lingua. Stage aperti con estratto nominativo: 104 → 109.
+Il maintainer ha accettato il replay parziale. Istantanea pre-merge dal catalogo bot `94f8144`. Prossimo passo: confrontare la prima raccolta dopo il merge con quella baseline prima di procedere con #120.
+
 ## 22 novembre 2026 — monitoraggio della raccolta di produzione
 
 La raccolta innescata da #118 controlla ID persi, calo degli stage >15%, EURES fallito o vuoto e guasti >20% tra fonti recentemente riuscite. Il monitor pianificato segnala catalogo oltre 36 ore.
