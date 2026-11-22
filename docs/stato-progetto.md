@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — monitoraggio e prima raccolta dopo #116
+
+Il monitor riusa le issue GitHub per catalogo oltre 36 h, ID persi, calo degli stage aperti >15%, EURES fallito/vuoto e guasti >20% fra le fonti recentemente riuscite.
+[Prima raccolta post-#116](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45002015989) in corso alla verifica. Prima: 913 ID, 407 stage aperti, 36 dirette. Dopo, ID persi e costo delle 14 fonti: non dimostrato.
+Controlli locali superati: 543 unittest Python 3.12, 42 Node, zero errori di valutazione, coverage, build e provisioning idempotente (1.937 collector attivi).
+Prossimo passo: dopo il publish confrontare commit del bot, esiti/costi delle 14 fonti e catalogo servito. Un eventuale merge del monitor avvia la raccolta di produzione.
+
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
 [#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.
