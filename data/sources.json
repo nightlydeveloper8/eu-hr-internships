@@ -50570,5 +50570,89 @@
     "collection_seconds": 90,
     "status": "pending-integration-and-rollout-approval",
     "board": "fanaticscollectibles"
+  },
+  {
+    "id": "recruitee-aquablu-nl",
+    "employer": "Aquablu",
+    "allowed_hosts": [
+      "aquablu.recruitee.com"
+    ],
+    "adapter": "recruitee",
+    "feed_url": "https://aquablu.recruitee.com/api/feeds/offers.xml",
+    "require_employer_identity": true,
+    "ownership_scope": "reviewed-hosts",
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "target_countries": [
+      "NL"
+    ],
+    "employer_aliases": [
+      "Aquablu B.V"
+    ],
+    "company_id": "aquablu-nl",
+    "career_url": "https://aquablu.recruitee.com/",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "permission_basis": "Employer-published public Recruitee XML and policy v2 same-posting form. Runtime robots checked. Provider and employer terms require review before rollout.",
+    "review_notes": "2026-11-21 staging: Recruitee posting 2822890, same vacancy ID and visible enabled form. Exact tenant reviewed for GET; see docs/recruitee-hr-internships-2026-11-21.md."
+  },
+  {
+    "id": "recruitee-zeromotorcycles-nl",
+    "employer": "Zero Motorcycles",
+    "allowed_hosts": [
+      "zeromotorcycles.recruitee.com"
+    ],
+    "adapter": "recruitee",
+    "feed_url": "https://zeromotorcycles.recruitee.com/api/feeds/offers.xml",
+    "require_employer_identity": true,
+    "ownership_scope": "reviewed-hosts",
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "target_countries": [
+      "NL"
+    ],
+    "employer_aliases": [
+      "Zero Motorcycles Inc."
+    ],
+    "company_id": "zero-motorcycles-nl",
+    "career_url": "https://zeromotorcycles.recruitee.com/",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "permission_basis": "Employer-published public Recruitee XML and policy v2 same-posting form. Runtime robots checked. Provider and employer terms require review before rollout.",
+    "review_notes": "2026-11-21 staging: Recruitee posting 2668002, same vacancy ID and visible enabled form. Exact tenant reviewed for GET; see docs/recruitee-hr-internships-2026-11-21.md."
+  },
+  {
+    "id": "recruitee-werkenbijyouvia-nl",
+    "employer": "Youvia",
+    "allowed_hosts": [
+      "werkenbijyouvia.recruitee.com"
+    ],
+    "adapter": "recruitee",
+    "feed_url": "https://werkenbijyouvia.recruitee.com/api/feeds/offers.xml",
+    "require_employer_identity": true,
+    "ownership_scope": "reviewed-hosts",
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "target_countries": [
+      "NL"
+    ],
+    "employer_aliases": [
+      "Youvia BV"
+    ],
+    "company_id": "youvia-nl",
+    "career_url": "https://werkenbijyouvia.recruitee.com/",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "status": "pending-integration-and-rollout-approval",
+    "permission_basis": "Employer-published public Recruitee XML and policy v2 same-posting form. Runtime robots checked. Provider and employer terms require review before rollout.",
+    "review_notes": "2026-11-21 staging: Recruitee posting 2202199, same vacancy ID and visible enabled form. Exact tenant reviewed for GET; see docs/recruitee-hr-internships-2026-11-21.md."
   }
 ]
