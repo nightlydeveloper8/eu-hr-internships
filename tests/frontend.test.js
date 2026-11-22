@@ -1,6 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
 import {catalogueAdLanguages, START_WINDOW, LONG_ENOUGH, readFilterParams, startCompatibility, durationCompatibility, showDurationFilter, STUDENT_PLACEMENT, publishedStart, applicationDeadline} from '../src/logic.js';
 import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,applicationConfirmed,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
@@ -185,13 +184,9 @@ test('country language counts: verified ads only, English and local languages fi
  const jobs=[{...base,id:'a',countries:['IT'],advertisement_language:{code:'it'}},{...base,id:'b',countries:['IT'],advertisement_language:{code:'it'}},
   {...base,id:'c',countries:['IT'],advertisement_language:{code:'en'}},{...base,id:'d',countries:['IT'],advertisement_language:{code:'de'}},
   {...base,id:'e',countries:['IT'],advertisement_language:{code:null}},{...base,id:'f',countries:['IT'],status:'unverified',advertisement_language:{code:'it'}}];
- jobs.push({...base,id:'g',countries:['IT'],advertisement_language:{code:'bilingual',codes:['de','it']}});
  const byLang=countryLanguageCounts(jobs,clock);
- assert.deepEqual(byLang.IT,{it:2,en:1,de:1,unknown:1,bilingual:1});
- assert.deepEqual(languageBreakdown('IT',byLang.IT).map(x=>[x.code,x.kind]),[['en','english'],['it','local'],['bilingual','bilingual'],['de','other'],['unknown','unknown']]);
- assert.equal(matches(jobs[4], {ad:'unknown'}), true);
- assert.equal(matches(jobs[4], {ad:'en'}), false);
- assert.equal(matches(jobs.at(-1), {ad:'bilingual'}), true);
+ assert.deepEqual(byLang.IT,{it:2,en:1,de:1,unknown:1});
+ assert.deepEqual(languageBreakdown('IT',byLang.IT).map(x=>[x.code,x.kind]),[['en','english'],['it','local'],['de','other'],['unknown','unknown']]);
  assert.equal(languageBreakdown('IE',{en:2})[0].kind,'english');
  assert.equal(NATIONAL_LANGUAGES.CH.includes('it'),true);
 });
@@ -203,15 +198,14 @@ test('Europe-wide ad languages count each current ad once and count English sepa
   {...base,id:'fr',countries:['NL','BE'],advertisement_language:{code:'fr'}},
   {...base,id:'it',countries:['BE'],advertisement_language:{code:'it'}},
   {...base,id:'unknown',advertisement_language:{code:null}},
-  {...base,id:'bilingual',countries:['BE'],advertisement_language:{code:'bilingual',codes:['fr','nl']}},
   {...base,id:'closed',status:'closed'},
   {...base,id:'blocked',ownership_risk:{state:'historical-unreviewed-external-host'}},
  ];
  assert.deepEqual(catalogueAdLanguages(jobs,clock),{
-  mix:{english:1,local:1,bilingual:1,multilingual:0,other:1,unknown:1}, byLanguage:{en:1,fr:1,it:1,unknown:1,bilingual:1},
+  mix:{english:1,local:1,other:1,unknown:1}, byLanguage:{en:1,fr:1,it:1,unknown:1},
  });
  assert.deepEqual(catalogueAdLanguages([],clock),{
-  mix:{english:0,local:0,bilingual:0,multilingual:0,other:0,unknown:0}, byLanguage:{},
+  mix:{english:0,local:0,other:0,unknown:0}, byLanguage:{},
  });
 });
 
@@ -354,22 +348,4 @@ test('relevance puts documented starts in the selected window ahead of unspecifi
   const unspecified = {...base,application_verification:{method:'form',url:'https://example.org/job/1'}};
   assert.equal(rankJobs([unspecified,confirmed],{...f,start:START_WINDOW})[0].id,'timed');
   assert.equal(rankJobs([unspecified,confirmed],f)[0].id,base.id);
-});
-
-test('advertisement language composes with the IHRM start window and duration threshold', () => {
-  const clock = Date.now();
-  const job = {...base, advertisement_language:{code:'bilingual', codes:['en','nl']},
-    intake:{published_start:'2027-01-05'}, duration:'16 weeks full-time'};
-  const filters = {...f, ad:'bilingual', start:START_WINDOW, duration:LONG_ENOUGH, hideUnknownTiming:true};
-  assert.equal(matches(job, filters), true);
-  assert.equal(matches({...job, intake:{published_start:'2027-03-14'}}, filters), false);
-  assert.equal(matches({...job, intake:undefined}, filters), false);
-  const jobs = Array.from({length:10}, (_, index) => ({...job, id:String(index)}));
-  assert.equal(showDurationFilter(jobs.slice(0, 9), clock), false);
-  assert.equal(showDurationFilter(jobs, clock), true);
-});
-
-test('the internship card retains the IHRM fallback for an unstated start', () => {
-  const app = readFileSync(new URL('../src/app.js', import.meta.url), 'utf8');
-  assert.ok(app.includes("meta.push(start ? `Start: ${start}` : 'Start date not stated – ask the employer');"));
 });

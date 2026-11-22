@@ -312,14 +312,11 @@ def eures_employer_from_text(text):
 def eures_language(hint, title, text):
     """EURES' language label is the national service's default (UWV labels English
     ads as Dutch). A clear stopword reading of the text wins over the label."""
-    from .classify import advertisement_language, language_codes
-    codes = language_codes(hint)
-    reading = advertisement_language(text or title)
-    if reading['code'] in ('bilingual', 'multilingual'):
+    from .classify import advertisement_language
+    reading = advertisement_language(title + '. ' + (text or ''))
+    if reading['code'] and hint and reading['code'] != hint.lower().split('-')[0]:
         return None
-    if reading['code'] and codes and reading['code'] not in codes:
-        return None
-    return codes[0] if len(codes) == 1 else None
+    return hint
 
 
 def eures_fingerprint(record):
@@ -363,7 +360,7 @@ def eures_record(source, jv):
         posting_identifier=identifier, employer=employer, title=plain(jv['title']),
         location='; '.join(places + sorted(countries)), text=text, url=page, apply_url=page,
         countries=sorted(countries), published_at=published,
-        language=eures_language(languages[0], plain(jv['title']), text) if len(languages) == 1 else None,
+        language=eures_language(languages[0], plain(jv['title']), plain(jv.get('description') or '')) if len(languages) == 1 else None,
         valid_through=None, employment=plain(jv.get('positionOfferingCode') or ''),
         city='; '.join(places), country=sorted(countries)[0] if len(countries) == 1 else None, work_mode=None)
 

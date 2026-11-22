@@ -14,10 +14,9 @@ from .classify import canonical_url, plain, country_codes
 class PageParser(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.language=None;self.scripts=[];self.fragments=[];self.links=[];self._json=False;self._body=[]
+        self.scripts=[];self.fragments=[];self.links=[];self._json=False;self._body=[]
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
-        if tag=='html':self.language=a.get('lang')
         if tag=='script' and a.get('type','').lower()=='application/ld+json':self._json=True;self._body=[]
         if tag=='article' and a.get('data-cmp-contentfragment-model','').endswith('danone-job-model'):
             self.fragments.append({k:v for k,v in a.items() if k in ('title','country','city','locale','posted','jobid','key','description','descriptionheader','positiontype','workfromhome')})
@@ -158,9 +157,6 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
         elif not isinstance(employment,str):employment=''
         result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=data.get('datePosted'),employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
     else:raise ValueError('No supported JobPosting structured data; no page-text guessing')
-    if data and data.get('inLanguage'):
-        result['language']=data['inLanguage']
-    result['page_language']=parser.language
     if not result['title'] or not result['text']:raise ValueError('Missing structured title/description')
     # Job page is the official application entry point. Never invent an apply URL.
     result['url']=approved(final,source);result['apply_url']=result['url'];result['needs_page']=False
