@@ -140,7 +140,13 @@ def vocabulary_categories(title, text):
 
 
 def classify_role(title, text='', employment=''):
-    title, text, employment = map(fold,(plain(title),plain(text),plain(employment)))
+    # Preserve the accent to distinguish Czech/Slovak stáž from Polish staż.
+    # Match the role label, rather than a mention of prior experience.
+    localized_title = plain(title).lower()
+    hr_placement = re.match(r'^hr\s+stáž\b', localized_title) and not re.search(
+        r'\b(?:werkstud\w*|working[ -]student|trainee(?:ship)?|graduate)\b', localized_title
+    )
+    title, text, employment = map(fold,(localized_title,plain(text),plain(employment)))
     extra = vocabulary_categories(title, text)
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title) or k in extra]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
@@ -173,7 +179,7 @@ def classify_role(title, text='', employment=''):
     # inside a permanent HR title/description is not a placement signal.
     signal = signal or re.search(r'^practicas\b',title) or re.search(r'^practicas\b',employment)
     signal = signal or re.search(POLISH_PLACEMENT,title) or re.search(POLISH_PLACEMENT,employment)
-    if not signal: return None
+    if not signal and not hr_placement: return None
     # Traineeships are usually graduate jobs, out of scope (owner decision 18/11/2026).
     # A trainee title counts only when the text documents a student placement.
     if re.search(r'trainee',title) and not re.search(PLACEMENT_TITLE,title) and not re.search(STUDENT_PLACEMENT,fold(plain(text))):return None

@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — diagnosi e recupero dei paesi a zero
+Su `main@d69c664`, [diagnosi sui 19 paesi](paesi-a-zero-2026-11.md), tre giri EURES in staging e datori candidati in hold. GB ha già Fanatics aperto. PT/ES contano 2/3 schede aperte.
+Cinque termini di ricerca aggiunti e falso negativo Mark2 corretto. Catalogo 926 → 926 ID, 0 persi. EURES 0 record nuovi. Fixture CZ 0 → 1 match HR.
+EURES: 3 GET robots riuscite, 1 fallita, 28 POST di sola ricerca, 2.186.230 byte, 281,45 s cumulati.
+Prossimo passo: rivedere fonti IE/CZ, riprendere PL/DK dalla #102 e verificare gli originali PT/ES. Nessuna attivazione o pubblicazione.
+
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
 [#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.
