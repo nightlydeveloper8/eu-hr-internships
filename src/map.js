@@ -1,3 +1,4 @@
+import { adLanguageName } from './logic.js';
 import { MAP_VIEWBOX, EU_SHAPES, CONTEXT_SHAPES } from './eu-map.js';
 import { countBucket, zoomViewBox } from './logic.js';
 
@@ -14,7 +15,7 @@ const BENELUX = ['NL', 'BE', 'LU'];
 
 // "3 in English · 31 in Italian" for the current ads of one country.
 export function describeLanguages(breakdown = [], languageNames = {}) {
-  return breakdown.map(({code, count}) => `${count} in ${code === 'unknown' ? 'an unidentified language' : languageNames[code] || code}`).join(' · ');
+  return breakdown.map(({code, count}) => `${count}${['bilingual', 'multilingual'].includes(code) ? ' ' : ' in '}${code === 'unknown' ? 'an unidentified language' : adLanguageName(code, languageNames)}`).join(' · ');
 }
 
 // One-line summary used for accessible names and chips. Absence of listings is never presented as absence of internships.

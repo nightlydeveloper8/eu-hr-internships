@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — lingua dell’annuncio e requisiti
+[Rapporto](lingue-2026-11.md) e campione manuale di 80 stage. Il collector usa metadati e corpo, estrae requisiti espliciti e mostra bilingue e sconosciuto nell’interfaccia.
+Baseline 422 aperti, 314 lingue confermate, 107 con estratto, 41 con inglese documentato, 0 con solo inglese documentato.
+Campione prima → dopo: precisione e copertura 80/80 → 80/80; confermati 66 → 66; estratti 25 → 30; coppie stage–lingua corrette 23 → 51.
+Letture mirate: 103 GET di client / 453.534 byte letti / 36,646 s. Risultato sul catalogo completo dopo il cambio: non dimostrato.
+[Branch per revisione](https://github.com/nightlydeveloper8/eu-hr-internships/tree/feat/language-evaluation-20261122). Prossimo passo: revisione e, dopo eventuale integrazione autorizzata, misura sul primo ciclo programmato.
+
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
 [#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.

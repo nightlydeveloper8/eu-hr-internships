@@ -181,20 +181,40 @@ def classify_role(title, text='', employment=''):
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
 LANG_ALIASES = {
- 'en':r'english|anglais(?:e)?|englisch|engels(?:e)?|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands(?:e)?|neerlandais|ollandese', 'fr':r'french|francais(?:e)?|franzosisch|frans|francese', 'de':r'german|deutsch(?:kenntnisse)?|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'
+ 'en':r'english|anglais(?:e)?|englisch(?:kenntnisse)?|engels(?:e)?|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands(?:e)?|neerlandais|ollandese', 'fr':r'french|francais(?:e)?|franzosisch|frans|francese', 'de':r'german|deutsch(?:e[nrs]?|kenntnisse)?|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'
 }
+
+LANGUAGE_NAMES = '|'.join(LANG_ALIASES.values())
+LANGUAGE_MENTION = re.compile(r'\b(?:' + LANGUAGE_NAMES + r')\b')
+GENERIC_LANGUAGE_CUE = r'required|mandatory|essential|must|requis|obligatoire|verplicht|vereist|niveau|livello|nivel|advantage'
+SPECIFIC_LANGUAGE_CUE = re.compile(
+    r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|'
+    r'preferred|preferably|nice.to.have|a plus|von vorteil|'
+    r'parl(?:ez|er)|couramment|\bfluen|proficien|command of|(?:official|corporate|company|business|main|working) language|working (?:proficiency|in)|work in|'
+    r'communication(?: and \w+)? skills|communicat\w* (?:in|skills)|spea[kc]|'
+    r'written and (?:verbal|spoken)|oral and written|'
+    r'writ\w* strong|comfortable.{0,30}english|maitrise|courant|biling|kenntnisse|beherrschen|vloeiend|beheers|conoscenza|dominio|competencia|'
+    r'communiceer\w*(?: \w+){0,2} in|\bspreek\w*|\bsprachen:|talar och skriver|'
+    r'stilsicher|\bkenntnis\w*|\bkennis van|\bin wort und schrift|\ba l.oral|\bbonnes connaissances|\b(?:bonne|une) connaissance|\b[abc][12]\b|'
+    r'spreken en schrijven|taalvaardigheid|grundkenntnisse'
+)
+LANGUAGE_CUE = re.compile(SPECIFIC_LANGUAGE_CUE.pattern + r'|\b(?:' + GENERIC_LANGUAGE_CUE + r')\b')
+
 
 def workplace_languages(text):
     evidence = []
-    for sentence in re.split(r'(?<=[.!?;])\s+|[\n•]', plain(text)):
+    source_text = re.sub(r'(?<=[a-zà-ÿ])(?=Additional Information:|Qualifications:)', '. ', plain(text))
+    for sentence in re.split(r'(?<=[.!?;])\s+|[\n•]', source_text):
         s = fold(sentence)
         # Application language / language classes / marketing are not workplace evidence.
         if re.search(r'(?:applications?|cv|resume|cover letter).{0,45}(?:in english|in french)|language (?:classes|courses)|(?:english|french|german).{0,15}(?:lessons|classes|courses)',s): continue
-        cue = r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|preferred|preferably|nice.to.have|a plus|von vorteil|required|mandatory|essential|must|requis|obligatoire|verplicht|vereist|parl(?:ez|er)|couramment|\bfluen|proficien|command of|(?:official|corporate|company|business|main|working) language|working (?:proficiency|in)|work in|communication(?: and \w+)? skills|communicat\w* (?:in|skills)|spea[kc]|written and (?:verbal|spoken)|oral and written|writ\w* strong|comfortable.{0,30}english|maitrise|courant|biling|kenntnisse|beherrschen|vloeiend|beheers|niveau|livello|conoscenza|dominio|competencia'
         # Spanish level requirements are workplace evidence; language courses
         # and CV language instructions are not.
         if re.search(r'\b(?:clases|cursos?)\s+(?:de\s+)?(?:ingles|frances|aleman|idiomas)\b|(?:cv|curriculum|carta de presentacion|solicitud).{0,60}\ben ingles\b',s):continue
-        if not re.search(cue+r'|\bnivel\b',s): continue
+        if not LANGUAGE_CUE.search(s):
+            continue
+        language_list = re.search(r'\blanguage skills:\s*([^.;&*]+)', s)
+        mentions = sorted((match.start(), match.end()) for match in LANGUAGE_MENTION.finditer(s))
         for code,pattern in LANG_ALIASES.items():
             m = re.search(r'\b(?:'+pattern+r')\b',s)
             if not m: continue
@@ -204,18 +224,33 @@ def workplace_languages(text):
             following=re.search(r',|\b(?:but|maar|mais|aber)\b',s[m.end():])
             if following:local=s[max(start+1,m.start()-45):m.end()+following.start()]
             if re.search(r'not (?:required|necessary|essential|mandatory)|(?:do not|don.t) (?:need|require)|no need to (?:speak|know)|no .{0,20}(?:required|necessary)|nicht erforderlich|niet vereist|pas (?:requis|necessaire)|no (?:se )?(?:requiere|exige)|no (?:es )?(?:necesario|obligatorio|requerido|imprescindible)',local): continue
+            explicit_list = language_list and language_list.start(1) <= m.start() < language_list.end(1)
+            if re.match(r'\s+(?:office|university|market|nationality|company|branch|passport)\b', s[m.end():]):
+                continue
+            if not (LANGUAGE_CUE.search(local) or explicit_list):
+                continue
+            # Generic eligibility words need a language or skill construction.
+            optional_pair = bool(re.search(
+                r'\b(?:' + pattern + r')\b\s+or\s+(?:' + LANGUAGE_NAMES + r')\s+(?:is |are )?(?:an? )?(?:advantage|plus)\b',
+                local))
+            if not SPECIFIC_LANGUAGE_CUE.search(local) and not explicit_list and not optional_pair:
+                alias = r'(?:' + pattern + r')'
+                stated = (rf'\b{alias}\b\s*(?:language|skills?|taal)?\s*(?:is |are |est |e |ist )?(?:the only )?(?:an? )?(?:{GENERIC_LANGUAGE_CUE})\b'
+                          rf'|\b{alias}\b\s+(?:and|or|en|et|und|oder)\s+(?:{LANGUAGE_NAMES})\s+(?:are |is )?(?:{GENERIC_LANGUAGE_CUE})\b'
+                          rf'|\b(?:{GENERIC_LANGUAGE_CUE})\s+(?:in |en |di |de )?{alias}\b'
+                          rf'|\b(?:{GENERIC_LANGUAGE_CUE})\s+\w+\s+(?:in|en|di|de)\s+{alias}\b')
+                if not re.search(stated, local):
+                    continue
             tail = local[local.find(m.group(0))+len(m.group(0)):]
-            next_language = '|'.join(LANG_ALIASES.values())
-            tail = re.split(r'\b(?:additional languages|other languages|'+next_language+r')\b',tail,maxsplit=1)[0]
-            optional = bool(re.search(r'plus|advantage|bonus|preferred|nice.to.have|appreciated|souhait|apprecie|von vorteil|deseable|valorable|preferible',tail))
+            tail = re.split(r'\b(?:additional languages|other languages|plus\s*:|'+LANGUAGE_NAMES+r')\b',tail,maxsplit=1)[0]
+            optional = optional_pair or bool(re.search(r'plus|advantage|bonus|preferred|nice.to.have|appreciated|souhait|apprecie|atout|von vorteil|deseable|valorable|preferible',tail))
             optional = optional or bool(re.match(r'preferred languages?(?: are)?\s*:',s) or re.match(r'preferred languages? are\b',s))
             optional = optional or bool(re.search(r'(?:preferred|preferably|nice.to.have|ideally)\s+(?:\w+\s+){0,2}$',s[max(start+1,m.start()-35):m.start()]))
             optional = optional or bool(re.search(r'(?:deseable|valorable|preferible)\s*:?\s*(?:\w+\s+){0,5}$',s[max(start+1,m.start()-65):m.start()]))
-            mentions=sorted((x.start(),x.end()) for p in LANG_ALIASES.values() for x in re.finditer(r'\b(?:'+p+r')\b',s))
             alternative=any(re.fullmatch(r'\s+(?:or|and\s*/\s*or|oder|of|en\s*/\s*of|ou|oppure)\s+',s[a[1]:b[0]]) and m.start() in (a[0],b[0]) for a,b in zip(mentions,mentions[1:]))
             working=bool(re.search(r'arbeitssprache|langue de travail|voertaal|lingua di lavoro|(?:working|corporate|company|business|official|main) language|work in',local))
             if re.search(r'\b(?:required|mandatory|must|verplicht|vereist|requis)\b',s[m.end():m.end()+35]):working=False
-            excerpt = sentence[max(0,m.start()-100):m.end()+120]
+            excerpt = sentence[max(0,m.start()-65):m.end()+85].strip()
             item = {'code':code, 'confidence':'confirmed','requirement':'preferred' if optional else 'alternative' if alternative else 'working' if working else 'required-or-working','method':'explicit-language-pattern','evidence':excerpt}
             if not any(e['code']==code and e['requirement']==item['requirement'] for e in evidence): evidence.append(item)
     return evidence
@@ -225,22 +260,63 @@ def language_summary(text, languages=None):
     supported=[l for l in languages if l['requirement'] in ('required-or-working','required','working')]
     required=sorted({l['code'] for l in supported if l['requirement']!='working'})
     english=any(l['code']=='en' and l['requirement']!='preferred' for l in languages)
-    sufficiency=re.search(r'english is the only (?:required|working) language|no (?:other|additional) languages? (?:is |are )?required',fold(plain(text)))
-    only=english and not any(c!='en' for c in required) and bool(sufficiency)
-    return dict(requirements_status='explicit' if any(l['requirement']!='preferred' for l in languages) else 'unknown',required_languages=required,
+    source_text = plain(text)
+    unnamed = [match.group(0) for match in re.finditer(
+        r'bonne connaissance de deux langues officielles|gute kenntnisse zweier amtssprachen',
+        source_text, re.I)]
+    sufficiency=re.search(r'english is the only (?:required|working) language|no (?:other|additional) languages? (?:is |are )?required',source_text,re.I)
+    only=english and not unnamed and not any(l['code'] != 'en' and l['requirement'] != 'preferred' for l in languages) and bool(sufficiency)
+    return dict(requirements_status='explicit' if languages or unnamed else 'unknown',required_languages=required,
+                unnamed_language_evidence=unnamed,
                 alternative_languages=sorted({l['code'] for l in languages if l['requirement']=='alternative'}),
-                english_support='documented' if english else 'unknown',english_sufficiency='documented' if only else 'unknown',english_sufficiency_evidence=sufficiency.group(0) if only else None)
+                english_support='documented' if english else 'unknown',english_sufficiency='documented' if only else 'unknown',english_sufficiency_evidence=source_text[sufficiency.start():sufficiency.end()] if only else None)
 
 
-def advertisement_language(text, hint=None):
-    if hint:hint=hint.replace('_','-')
-    if hint and hint.lower().split('-')[0] in LANGUAGES:
-        return {'code':hint.lower().split('-')[0], 'confidence':'confirmed','method':'source metadata'}
-    words = set(re.findall(r'\b\w+\b',fold(text)))
-    clues = {'en':'the and you your with will our are have','nl':'het een je jouw wij voor van zijn','fr':'les des vous votre nous pour une avec','de':'und sie wir mit fur der die das','es':'los las una para con nuestro tu como','it':'gli della il per con che una tuo','pt':'voce uma para com nosso que dos pelo','pl':'oraz jest sie dla twoje przez','sv':'och att med som din vara','da':'og med til dig vores den','fi':'ja on olet kanssa sinulla','ro':'si pentru este echipa care','hu':'es hogy vagy egy','cs':'se pro na nas'}
-    scores = sorted(((len(words & set(v.split())),k) for k,v in clues.items()),reverse=True)
-    if scores[0][0]>=3 and scores[0][0]>scores[1][0]: return {'code':scores[0][1],'confidence':'uncertain','method':'deterministic stopword heuristic'}
-    return {'code':None,'confidence':'unspecified','method':'insufficient evidence'}
+AD_CLUES = {code: set(words.split()) for code, words in {'en':'the and you your with will our are have','nl':'het een je jouw wij voor van zijn','fr':'les des vous votre nous pour une avec','de':'und sie wir mit fur der die das','es':'los las una para con nuestro tu como','it':'gli della il per con che una tuo','pt':'voce uma para com nosso que dos pelo','pl':'oraz jest sie dla twoje przez','sv':'och att med som din vara','da':'og med til dig vores den','fi':'ja on olet kanssa sinulla','ro':'si pentru este echipa care','hu':'es hogy vagy egy','cs':'se pro na nas'}.items()}
+
+
+def language_codes(hint):
+    values = hint if isinstance(hint, (list, tuple)) else [hint]
+    normalized = [value.strip().lower().replace('_', '-').split('-')[0]
+                  for value in values if isinstance(value, str)]
+    return sorted(set(normalized) & LANGUAGES.keys())
+
+
+def ad_text_language(words):
+    distinct = set(words)
+    scores = sorted(((len(distinct & clues), code) for code, clues in AD_CLUES.items()), reverse=True)
+    best, code = scores[0]
+    return code if best >= 3 and best > scores[1][0] else None
+
+
+def advertisement_language(text, hint=None, *, page_hint=None):
+    metadata = language_codes(hint)
+    page_metadata = language_codes(page_hint)
+    words = re.findall(r'\b\w+\b', fold(plain(text)))
+    # Disjoint blocks avoid double-counting a short foreign title or boilerplate.
+    blocks = [words[start:start + 50] for start in range(0, len(words), 50)]
+    counts = {}
+    for block in blocks:
+        code = ad_text_language(block) if len(block) >= 25 else None
+        if code:
+            counts[code] = counts.get(code, 0) + 1
+    substantial = sorted(code for code, count in counts.items()
+                         if count >= 2 and count * 4 >= len(blocks))
+    if len(metadata) >= 2 or len(substantial) >= 2:
+        return {'code': 'bilingual' if max(len(metadata), len(substantial)) == 2 else 'multilingual',
+                'codes': metadata if len(metadata) >= 2 else substantial,
+                'confidence': 'confirmed' if len(metadata) >= 2 else 'uncertain',
+                'method': 'source metadata' if len(metadata) >= 2 else 'multiple body languages'}
+    if metadata:
+        return {'code': metadata[0], 'confidence': 'confirmed', 'method': 'source metadata'}
+    ranked = sorted(counts, key=counts.get, reverse=True)
+    reading = ranked[0] if ranked and (len(ranked) == 1 or counts[ranked[0]] > counts[ranked[1]]) else ad_text_language(words)
+    if len(page_metadata) == 1 and (not substantial or page_metadata == substantial):
+        return {'code': page_metadata[0], 'confidence': 'confirmed', 'method': 'HTML lang'}
+    if reading:
+        return {'code': reading, 'confidence': 'uncertain', 'method': 'deterministic body heuristic'}
+    return {'code': None, 'confidence': 'unspecified', 'method': 'insufficient evidence'}
+
 
 def extract_metadata(text, work_mode=None):
     text = plain(text)

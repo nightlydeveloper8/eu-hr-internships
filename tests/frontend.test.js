@@ -184,9 +184,13 @@ test('country language counts: verified ads only, English and local languages fi
  const jobs=[{...base,id:'a',countries:['IT'],advertisement_language:{code:'it'}},{...base,id:'b',countries:['IT'],advertisement_language:{code:'it'}},
   {...base,id:'c',countries:['IT'],advertisement_language:{code:'en'}},{...base,id:'d',countries:['IT'],advertisement_language:{code:'de'}},
   {...base,id:'e',countries:['IT'],advertisement_language:{code:null}},{...base,id:'f',countries:['IT'],status:'unverified',advertisement_language:{code:'it'}}];
+ jobs.push({...base,id:'g',countries:['IT'],advertisement_language:{code:'bilingual',codes:['de','it']}});
  const byLang=countryLanguageCounts(jobs,clock);
- assert.deepEqual(byLang.IT,{it:2,en:1,de:1,unknown:1});
- assert.deepEqual(languageBreakdown('IT',byLang.IT).map(x=>[x.code,x.kind]),[['en','english'],['it','local'],['de','other'],['unknown','unknown']]);
+ assert.deepEqual(byLang.IT,{it:2,en:1,de:1,unknown:1,bilingual:1});
+ assert.deepEqual(languageBreakdown('IT',byLang.IT).map(x=>[x.code,x.kind]),[['en','english'],['it','local'],['bilingual','bilingual'],['de','other'],['unknown','unknown']]);
+ assert.equal(matches(jobs[4], {ad:'unknown'}), true);
+ assert.equal(matches(jobs[4], {ad:'en'}), false);
+ assert.equal(matches(jobs.at(-1), {ad:'bilingual'}), true);
  assert.equal(languageBreakdown('IE',{en:2})[0].kind,'english');
  assert.equal(NATIONAL_LANGUAGES.CH.includes('it'),true);
 });
@@ -198,14 +202,15 @@ test('Europe-wide ad languages count each current ad once and count English sepa
   {...base,id:'fr',countries:['NL','BE'],advertisement_language:{code:'fr'}},
   {...base,id:'it',countries:['BE'],advertisement_language:{code:'it'}},
   {...base,id:'unknown',advertisement_language:{code:null}},
+  {...base,id:'bilingual',countries:['BE'],advertisement_language:{code:'bilingual',codes:['fr','nl']}},
   {...base,id:'closed',status:'closed'},
   {...base,id:'blocked',ownership_risk:{state:'historical-unreviewed-external-host'}},
  ];
  assert.deepEqual(catalogueAdLanguages(jobs,clock),{
-  mix:{english:1,local:1,other:1,unknown:1}, byLanguage:{en:1,fr:1,it:1,unknown:1},
+  mix:{english:1,local:1,bilingual:1,multilingual:0,other:1,unknown:1}, byLanguage:{en:1,fr:1,it:1,unknown:1,bilingual:1},
  });
  assert.deepEqual(catalogueAdLanguages([],clock),{
-  mix:{english:0,local:0,other:0,unknown:0}, byLanguage:{},
+  mix:{english:0,local:0,bilingual:0,multilingual:0,other:0,unknown:0}, byLanguage:{},
  });
 });
 

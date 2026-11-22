@@ -48,7 +48,7 @@ export function matches(job, filters, saved = new Set()) {
   if (filters.workplace && filters.workplace !== 'unknown' && !job.workplace_languages.some(l => l.code === filters.workplace && l.confidence === 'confirmed' && ['required','required-or-working','working'].includes(l.requirement))) return false;
   if (filters.english && info.english_support !== 'documented') return false;
   if (filters.englishOnly && info.english_sufficiency !== 'documented') return false;
-  if (filters.ad && job.advertisement_language.code !== filters.ad) return false;
+  if (filters.ad && (job.advertisement_language?.code || 'unknown') !== filters.ad) return false;
   if (filters.type && job.internship_type !== filters.type) return false;
   if (filters.workMode && job.work_mode !== filters.workMode) return false;
   const haystack = fold([job.title, job.employer, job.city, ...job.countries, ...(job.search_terms || [])].join(' '));
@@ -133,6 +133,7 @@ export const NATIONAL_LANGUAGES = {AT:['de'],BE:['nl','fr','de'],BG:['bg'],HR:['
 
 function adLanguageKind(code, countries) {
   if (code === 'en') return 'english';
+  if (code === 'bilingual' || code === 'multilingual') return code;
   if (code === 'unknown') return 'unknown';
   return countries.some(country => NATIONAL_LANGUAGES[country]?.includes(code)) ? 'local' : 'other';
 }
@@ -144,7 +145,7 @@ function currentAdLanguage(job, clock) {
 
 // Each current ad counts once in the Europe-wide mix, even when it covers several countries.
 export function catalogueAdLanguages(jobs, clock = Date.now()) {
-  const mix = {english:0, local:0, other:0, unknown:0};
+  const mix = {english:0, local:0, bilingual:0, multilingual:0, other:0, unknown:0};
   const byLanguage = {};
   for (const job of jobs) {
     const code = currentAdLanguage(job, clock);
@@ -171,7 +172,7 @@ export function countryLanguageCounts(jobs, clock = Date.now()) {
 
 // English and local-language ads first, then any other language, then unknown.
 export function languageBreakdown(country, byLanguage = {}) {
-  const order = {english:0, local:1, other:2, unknown:3};
+  const order = {english:0, local:1, bilingual:2, multilingual:3, other:4, unknown:5};
   return Object.entries(byLanguage).filter(([, n]) => n > 0)
     .map(([code, count]) => ({code, count, kind: adLanguageKind(code, [country])}))
     .sort((a, b) => order[a.kind] - order[b.kind] || b.count - a.count || a.code.localeCompare(b.code));
@@ -215,4 +216,15 @@ export function zoomViewBox(base, cx, cy, factor = 1) {
   const x = Math.min(Math.max(cx - w / 2, bx), bx + bw - w);
   const y = Math.min(Math.max(cy - h / 2, by), by + bh - h);
   return [x, y, w, h].map(n => Math.round(n * 10) / 10);
+}
+
+export function adLanguageName(code, names) {
+  return ({bilingual:'Bilingual', multilingual:'Multilingual', unknown:'Unknown'})[code] || names[code] || code;
+}
+
+export function adLanguageLabel(language, names) {
+  const name = adLanguageName(language?.code || 'unknown', names);
+  const codes = language?.codes || [];
+  const details = codes.length ? ' (' + codes.map(code => adLanguageName(code, names)).join(' / ') + ')' : '';
+  return name + details + (language?.confidence === 'uncertain' ? ' · estimated' : '');
 }
