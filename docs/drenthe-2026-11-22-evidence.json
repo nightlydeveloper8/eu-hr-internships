@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-22T07:41:03.655265+00:00",
+  "base_commit": "f606443e269a21784b6bec4df9792c08b286bf70",
+  "previous_head": "e34cc4c097724e709c00aa01932cded127438fdc",
+  "attempts": [
+    {
+      "url": "https://www.noordenveld.nl/werken-bij-gemeente-noordenveld",
+      "checked_at": "2026-11-22T07:37:48.335902+00:00",
+      "status": 200,
+      "final": "https://www.noordenveld.nl/werken-bij-gemeente-noordenveld",
+      "sha256": "6b2623545110897efc21960e2a9debed0d0d791eb12c3d1e4453136d9b421b42",
+      "budget_request_calls": 2,
+      "successful_response_bytes": 48583,
+      "elapsed_seconds": 0.672
+    },
+    {
+      "url": "https://www.meppel.nl/werken-bij/stagelopen-en-afstuderen/",
+      "checked_at": "2026-11-22T07:37:49.007572+00:00",
+      "status": 200,
+      "final": "https://www.meppel.nl/werken-bij/stagelopen-en-afstuderen/",
+      "sha256": "aa6ec340c230077b9df01be5031c7b7d17ad31465c72135246fb3be41b6dd0df",
+      "budget_request_calls": 2,
+      "successful_response_bytes": 85367,
+      "elapsed_seconds": 1.418
+    }
+  ],
+  "measurement": "BudgetClient request calls include robots requests and attempted content requests; not a complete wire-level GET or redirect count. Response bytes count successful client responses only. Search engine traffic is excluded and unmetered.",
+  "budget_request_calls": 4,
+  "successful_response_bytes": 133950,
+  "elapsed_seconds": 2.09,
+  "catalog_sha256": "9a3ea888f35df04b4f0532839f61e3b24e589035d7366c44efe993825ce07f03",
+  "catalog_snapshot_at": "2026-11-22T07:34:26.563397+00:00",
+  "before": {
+    "catalog_jobs": 913,
+    "distinct_ids": 913,
+    "duplicate_ids": 0,
+    "current_verified_internships": 407,
+    "direct_applications_verified": 36,
+    "public_service_current": 371,
+    "actionable_leads": 365,
+    "legacy_ownership_holds": 92,
+    "remaining_archived": 49
+  },
+  "after": {
+    "catalog_jobs": 913,
+    "distinct_ids": 913,
+    "duplicate_ids": 0,
+    "current_verified_internships": 407,
+    "direct_applications_verified": 36,
+    "public_service_current": 371,
+    "actionable_leads": 365,
+    "legacy_ownership_holds": 92,
+    "remaining_archived": 49
+  },
+  "ids_lost": 0,
+  "new_verified_hr_internships": 0,
+  "new_employers": 0,
+  "qualification_change": "Noordenveld unknown -> verified_50_plus; WZA evidence preserved; DOC Kaas remains in separate PR #57",
+  "qualification_summary": {
+    "employers": 40,
+    "qualified_employers": 29,
+    "distinct_groups": 40,
+    "qualified_groups": 29,
+    "size_unknown": 11,
+    "below_threshold": 0,
+    "municipalities": 12,
+    "municipalities_with_qualified_employers": 12,
+    "configured": 40,
+    "attempted_recently": 40,
+    "collection_states": {
+      "partial": 19,
+      "discovery-incomplete": 10,
+      "blocked-or-failed": 5,
+      "collected": 6
+    },
+    "qualified_collection_states": {
+      "partial": 15,
+      "discovery-incomplete": 8,
+      "blocked-or-failed": 1,
+      "collected": 5
+    },
+    "verified_hr_internships": 2,
+    "verified_hr_internships_qualified_employers": 1
+  },
+  "language": "Dutch page text observed; neither page states specific required working languages. No English-only eligibility inferred.",
+  "meppel": "Open student placement programme; contact with HR team is not an HR internship. No specific vacancy or application verified.",
+  "noordenveld": "General student/open application programme only; no HR vacancy or same-vacancy application form established.",
+  "published_bot_reports": "Retained byte for byte from current main; research recomputation stored separately under docs.",
+  "country_and_region_comparison": {
+    "NL": {
+      "before": {
+        "catalog_jobs": 438,
+        "distinct_ids": 438,
+        "duplicate_ids": 0,
+        "current_verified_internships": 227,
+        "direct_applications_verified": 19,
+        "public_service_current": 208,
+        "actionable_leads": 92,
+        "legacy_ownership_holds": 92,
+        "remaining_archived": 27
+      },
+      "after": {
+        "catalog_jobs": 438,
+        "distinct_ids": 438,
+        "duplicate_ids": 0,
+        "current_verified_internships": 227,
+        "direct_applications_verified": 19,
+        "public_service_current": 208,
+        "actionable_leads": 92,
+        "legacy_ownership_holds": 92,
+        "remaining_archived": 27
+      }
+    },
+    "Drenthe": {
+      "before": {
+        "catalog_jobs": 5,
+        "distinct_ids": 5,
+        "duplicate_ids": 0,
+        "current_verified_internships": 2,
+        "direct_applications_verified": 2,
+        "public_service_current": 0,
+        "actionable_leads": 3,
+        "legacy_ownership_holds": 0,
+        "remaining_archived": 0
+      },
+      "after": {
+        "catalog_jobs": 5,
+        "distinct_ids": 5,
+        "duplicate_ids": 0,
+        "current_verified_internships": 2,
+        "direct_applications_verified": 2,
+        "public_service_current": 0,
+        "actionable_leads": 3,
+        "legacy_ownership_holds": 0,
+        "remaining_archived": 0
+      }
+    }
+  }
+}

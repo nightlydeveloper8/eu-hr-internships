@@ -10,17 +10,21 @@ from pathlib import Path
 from urllib.parse import urlsplit
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from collector.pipeline import now
-from collector.runtime import BudgetClient
+from collector.runtime import BudgetClient, CollectionBudgetExceeded
 
 
 def probe(urls, client=None):
     client = client or BudgetClient(seconds=60, max_requests=20)
     blocked = {}
+    exhausted = None
     output = []
     for url in dict.fromkeys(urls):
         host = urlsplit(url).hostname
         if urlsplit(url).scheme != 'https' or not host:
             raise ValueError('Research URLs must be explicit HTTPS URLs')
+        if exhausted:
+            output.append(dict(url=url, checked_at=now(), status='skipped-budget', reason=exhausted))
+            continue
         if host in blocked:
             output.append(dict(url=url, checked_at=now(), status='skipped-host', reason=blocked[host]))
             continue
@@ -28,6 +32,9 @@ def probe(urls, client=None):
             body, status, final = client.request(url)
             output.append(dict(url=url, final=final, checked_at=now(), status=status,
                                sha256=hashlib.sha256(body).hexdigest(), bytes=len(body)))
+        except CollectionBudgetExceeded as exc:
+            exhausted = str(exc)
+            output.append(dict(url=url, checked_at=now(), status='unread', reason=exhausted))
         except Exception as exc:
             reason = str(exc)
             output.append(dict(url=url, checked_at=now(), status='unread', reason=reason))

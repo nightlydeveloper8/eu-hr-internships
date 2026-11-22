@@ -68354,7 +68354,7 @@
         "settlement_code": "WP1647",
         "location_confidence": "confirmed",
         "evidence_url": "https://www.noordenveld.nl/",
-        "checked_on": "2026-11-06"
+        "checked_on": "2026-11-22"
       }
     ],
     "source_ids": [
@@ -68365,18 +68365,28 @@
     "review_status": "research-required",
     "aliases": [],
     "drenthe_research": {
-      "checked_on": "2026-11-06",
+      "checked_on": "2026-11-22",
       "size": {
-        "qualification": "unknown",
-        "employees_min": null,
-        "employees_text": "Headcount not established in this initial source review.",
+        "qualification": "verified_50_plus",
+        "employees_min": 400,
+        "employees_text": "Official municipal careers page describes more than 400 colleagues working for the municipality. Employer-wide workforce, not a count per establishment; contract/external composition and reference date are not specified.",
         "scope": "employer",
-        "source_url": null,
+        "source_url": "https://www.noordenveld.nl/werken-bij-gemeente-noordenveld",
         "source_date": null
       },
       "employer_type": "public",
       "group_name": null,
-      "notes": []
+      "notes": [
+        "22 November: exact municipal careers page read with robots and normal client. Its open internship programme is not a specific HR vacancy, application proof or language requirement."
+      ]
+    },
+    "employee_size_evidence": {
+      "qualification": "verified_50_plus",
+      "employees_min": 400,
+      "employees_text": "Official municipal careers page describes more than 400 colleagues working for the municipality. Employer-wide workforce, not a count per establishment; contract/external composition and reference date are not specified.",
+      "scope": "employer",
+      "source_url": "https://www.noordenveld.nl/werken-bij-gemeente-noordenveld",
+      "source_date": null
     }
   },
   {
@@ -73509,5 +73519,68 @@
     "source_ids": [
       "recruitee-batch-abrio"
     ]
+  },
+  {
+    "id": "climeworks-ch",
+    "name": "Climeworks",
+    "career_url": "https://climeworks.recruitee.com/",
+    "evidence_url": "https://climeworks.recruitee.com/o/human-resources-intern-recruiting-hr-projects-80-100",
+    "target_countries": [
+      "CH"
+    ],
+    "workplaces": [
+      {
+        "city": "Zurich",
+        "country": "CH",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://climeworks.recruitee.com/o/human-resources-intern-recruiting-hr-projects-80-100"
+      }
+    ],
+    "source_ids": [
+      "recruitee-climeworks-ch"
+    ],
+    "collection_activation_hold": true
+  },
+  {
+    "id": "peripass-be",
+    "name": "Peripass",
+    "career_url": "https://peripass.recruitee.com/",
+    "evidence_url": "https://peripass.recruitee.com/o/hr-intern",
+    "target_countries": [
+      "BE"
+    ],
+    "workplaces": [
+      {
+        "city": "Gent",
+        "country": "BE",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://peripass.recruitee.com/o/hr-intern"
+      }
+    ],
+    "source_ids": [
+      "recruitee-peripass-be"
+    ],
+    "collection_activation_hold": true
+  },
+  {
+    "id": "fanatics-collectibles-gb",
+    "name": "Fanatics Collectibles",
+    "career_url": "https://job-boards.greenhouse.io/fanaticscollectibles",
+    "evidence_url": "https://job-boards.greenhouse.io/fanaticscollectibles/jobs/4510457009",
+    "target_countries": [
+      "GB"
+    ],
+    "workplaces": [
+      {
+        "city": "London",
+        "country": "GB",
+        "location_confidence": "confirmed",
+        "evidence_url": "https://job-boards.greenhouse.io/fanaticscollectibles/jobs/4510457009"
+      }
+    ],
+    "source_ids": [
+      "greenhouse-fanatics-collectibles-gb"
+    ],
+    "collection_activation_hold": true
   }
 ]

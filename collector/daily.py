@@ -15,6 +15,7 @@ from .classify import COUNTRIES,canonical_url
 from .runtime import BudgetClient,PageCache
 LOG=logging.getLogger(__name__)
 MAX_SHARD_AGE=timedelta(hours=24)
+EURES_RECHECK_AGE=timedelta(hours=24)
 CLOCK_SKEW=timedelta(minutes=5)
 
 def collection_run_id(shards,run_id=None):
@@ -93,10 +94,19 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     counts={r['id']:r.get('collected',0) for r in read(ROOT/'data/coverage.json',{}).get('sources',[])}
     known={}
     known_titles={}
+    eures_rechecks=[]
+    stamp=now();cutoff=collection_time(stamp)-EURES_RECHECK_AGE
     for job in read(ROOT/'data/catalog.json',{}).get('jobs',[]):
         if job.get('status')!='closed':
             known.setdefault(job['source_id'],[]).append(job['url'])
             known_titles.setdefault(job['source_id'],{})[job['url']]=job['title']
+            if job['source_id']=='public-eu-eures' and job.get('last_verified_at'):
+                try:
+                    last_seen=collection_time(job['last_seen_at'])
+                except (KeyError, TypeError, ValueError):
+                    continue
+                if last_seen <= cutoff:
+                    eures_rechecks.append((last_seen, job['url']))
     regional={}
     for company in companies:
         research=[company[key] for key in ('friesland_research','groningen_research','drenthe_research','utrecht_research','flevoland_research') if company.get(key)]
@@ -104,11 +114,13 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
             priority=0 if any(r.get('size',{}).get('qualification')=='verified_50_plus' for r in research) else 1
             for sid in company.get('source_ids',[]):regional[sid]=min(regional.get(sid,2),priority)
     selected.sort(key=lambda s:(regional.get(s['id'],2),s['id'] not in known,s['adapter']=='universal-employer',-counts.get(s['id'],0),s['id']))
-    stamp=now();parts=[]
+    parts=[]
     company_for={sid:c for c in companies for sid in c.get('source_ids',[])}
     def work(source):
         source=dict(reviewed_source(source,identity_reviews),known_job_urls=known.get(source['id'],[]),
                     known_job_titles=known_titles.get(source['id'],{}))
+        if source['id']=='public-eu-eures':
+            source['priority_recheck_urls']=[url for _,url in sorted(eures_rechecks)]
         started=time.monotonic();client=BudgetClient(seconds=seconds or source.get('collection_seconds',180 if source['adapter'] in ('employer-sitemap','employer-index') else 120),max_requests=source.get('max_requests',180))
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
         if part['report']['status']=='failed' and source['adapter']!='universal-employer' and source.get('source_kind')!='public-employment-service' and client.remaining()>15:

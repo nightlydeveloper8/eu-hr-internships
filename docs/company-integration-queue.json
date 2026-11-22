@@ -4692,6 +4692,22 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "climeworks-ch",
+    "name": "Climeworks",
+    "candidate_countries": [
+      "CH"
+    ],
+    "state": "integration-required",
+    "career_url": "https://climeworks.recruitee.com/",
+    "source_ids": [
+      "recruitee-climeworks-ch"
+    ],
+    "access_blocks": [
+      "2026-11-21: https://climeworks.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta."
+    ],
+    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
+  },
+  {
     "company_id": "cloetta",
     "name": "Cloetta",
     "candidate_countries": [
@@ -5432,6 +5448,20 @@
     "career_url": null,
     "source_ids": [
       "auto-dsd-stalinrichting-b-v"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "dutchboxx",
+    "name": "DUTCHBOXX",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://dutchboxx.nl/vacatures",
+    "source_ids": [
+      "auto-dutchboxx"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -6602,6 +6632,20 @@
     "career_url": "https://www.eco-cert.it/lavora-con-noi/",
     "source_ids": [
       "auto-eco-certificazioni-spa"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "edco",
+    "name": "EDCO",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://werkenbijedco.nl/",
+    "source_ids": [
+      "recruitee-edco"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -7847,6 +7891,22 @@
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "fanatics-collectibles-gb",
+    "name": "Fanatics Collectibles",
+    "candidate_countries": [
+      "GB"
+    ],
+    "state": "integration-required",
+    "career_url": "https://job-boards.greenhouse.io/fanaticscollectibles",
+    "source_ids": [
+      "greenhouse-fanatics-collectibles-gb"
+    ],
+    "access_blocks": [
+      "2026-11-21: https://boards-api.greenhouse.io/robots.txt vieta /embed/; https://job-boards.greenhouse.io/robots.txt non ha regole attive. GET documentata https://docs.greenhouse.io/job-board; https://www.greenhouse.com/master-subscription-agreement disciplina i clienti, non autorizzazione generale a terzi."
+    ],
+    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
   {
     "company_id": "farm-dairy",
@@ -16587,6 +16647,22 @@
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "peripass-be",
+    "name": "Peripass",
+    "candidate_countries": [
+      "BE"
+    ],
+    "state": "integration-required",
+    "career_url": "https://peripass.recruitee.com/",
+    "source_ids": [
+      "recruitee-peripass-be"
+    ],
+    "access_blocks": [
+      "2026-11-21: https://peripass.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta."
+    ],
+    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
   {
     "company_id": "perkinelmer",
@@ -25598,20 +25674,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "dutchboxx",
-    "name": "DUTCHBOXX",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://dutchboxx.nl/vacatures",
-    "source_ids": [
-      "auto-dutchboxx"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "de-wolff-konstruktiebedrijf",
     "name": "De Wolff Konstruktiebedrijf",
     "candidate_countries": [
@@ -25635,20 +25697,6 @@
     "career_url": "https://dommelvallei.recruitee.com/",
     "source_ids": [
       "recruitee-dienst-dommelvallei"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "edco",
-    "name": "EDCO",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://werkenbijedco.nl/",
-    "source_ids": [
-      "recruitee-edco"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"

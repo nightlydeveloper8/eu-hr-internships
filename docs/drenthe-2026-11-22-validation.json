@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-11-22T07:42:08.785292+00:00",
+  "runtime": "Python 3.12; Node 22+",
+  "python_tests": 535,
+  "frontend_tests": 35,
+  "bot_snapshots_equal_main": true,
+  "registry_valid": true,
+  "import_idempotent": true,
+  "provision_idempotent": true,
+  "checks": [
+    {
+      "name": "python",
+      "command": ".venv/bin/python -m unittest discover -s tests -q",
+      "exit_code": 0,
+      "sha256": "b5ddc49adbf6c94dab9f9346dbcb14ba1eac1bd21e85c680429a1eb0940f2fbc",
+      "output_tail": ": 365, \"catalog_jobs\": 913, \"current_verified_internships\": 407, \"direct_applications_verified\": 36, \"distinct_ids\": 913, \"duplicate_ids\": 0, \"legacy_ownership_holds\": 92, \"public_service_current\": 371, \"remaining_archived\": 49}, \"by_country\": {\"AT\": 1, \"BE\": 3, \"CH\": 4, \"CZ\": 1, \"DE\": 36, \"ES\": 20, \"FR\": 142, \"GB\": 7, \"HU\": 2, \"IT\": 39, \"LU\": 3, \"MT\": 1, \"NL\": 92, \"PL\": 10, \"PT\": 1, \"SE\": 3}, \"by_reason\": {\"application-id-not-matched\": 37, \"application-identity-mismatch\": 6, \"disabled-applicant-submit\": 2, \"dynamic-form-or-login-unconfirmed\": 3, \"expired-verification\": 56, \"legacy-proof-ineligible\": 1, \"missing-application-entry\": 176, \"other-unclassified\": 5, \"ownership-review-required\": 2, \"parsing-error\": 2, \"public-listing-too-old-or-undated\": 10, \"rate-limited\": 2, \"read-timeout\": 1, \"redirect-identity-unconfirmed\": 1, \"request-budget-exhausted\": 1, \"robots-disallowed\": 3, \"robots-unavailable\": 30, \"time-budget-exhausted\": 13, \"vacancy-identity-mismatch\": 14}, \"matrix_rows\": 77}\n"
+    },
+    {
+      "name": "frontend",
+      "command": "/Users/dennis/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --test tests/*.test.js",
+      "exit_code": 0,
+      "sha256": "a7ac80f1c0282eea073edc26595828b9df64395432ea7e24be38b49ae7d4dbd7",
+      "output_tail": "ent policy v2 and 48h evidence (0.051ms)\n✔ historical external publisher records stay in JSON but never display as official leads (0.04175ms)\n✔ map country counts separate verified and unverified, skip closed, count each listed country (0.05625ms)\n✔ map colour buckets (0.023875ms)\n✔ country language counts: verified ads only, English and local languages first (0.120291ms)\n✔ Europe-wide ad languages count each current ad once and count English separately in GB (0.056208ms)\n✔ application filter and counts distinguish current public listings from application evidence (0.121ms)\n✔ evidence level never upgrades public listings or leads to direct applications (0.0735ms)\n✔ map zoom is display-only and stays inside the base viewBox (0.102958ms)\n✔ Alert lifecycle is idempotent in .github/workflows/stale.yml (3.838125ms)\n✔ Alert lifecycle is idempotent in .github/workflows/collect.yml (0.571417ms)\nℹ tests 35\nℹ suites 0\nℹ pass 35\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 46.705375\n"
+    },
+    {
+      "name": "evaluation",
+      "command": ".venv/bin/python scripts/evaluate.py",
+      "exit_code": 0,
+      "sha256": "9e46801b1ab790d434b76f2248897dfff323250eacc4a03334b1a78909b05841",
+      "output_tail": "{\n  \"examples\": 103,\n  \"true_positives\": 62,\n  \"true_negatives\": 41,\n  \"false_positives\": 0,\n  \"false_negatives\": 0,\n  \"errors\": [],\n  \"limitation\": \"Small manually labelled regression set; these scores are not estimates of accuracy on all European jobs.\"\n}\n"
+    },
+    {
+      "name": "coverage",
+      "command": ".venv/bin/python scripts/company_coverage.py",
+      "exit_code": 0,
+      "sha256": "9c493b2c9525b4140e754258dab56e26b19a4c4718c4ee61eaaba62ad3bde388",
+      "output_tail": "1903 companies; 1900 monitored; 1442 regional research areas\n"
+    },
+    {
+      "name": "build",
+      "command": ".venv/bin/python scripts/build.py",
+      "exit_code": 0,
+      "sha256": "c0bdb257b50fcac6e22a39dc09fceb7ea696907b6ad7aa7494ab488cf58ecbf2",
+      "output_tail": "Built dist/ — static files, no runtime services required\n"
+    },
+    {
+      "name": "catalog",
+      "command": ".venv/bin/python -m collector.pipeline --validate",
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    },
+    {
+      "name": "provision",
+      "command": ".venv/bin/python -m collector.daily provision",
+      "exit_code": 0,
+      "sha256": "bf8f42d90701cfe9c0b32533b901167da7a3a8eda5c13cd0390dae25c37b710e",
+      "output_tail": "1903 employers; 1923 active collectors\n"
+    },
+    {
+      "name": "diff",
+      "command": "git diff --check",
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    }
+  ]
+}

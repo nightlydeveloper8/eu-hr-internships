@@ -1,0 +1,2133 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-22T07:41:03.649841+00:00",
+  "province": "Drenthe",
+  "region_code": "NL13",
+  "exhaustive": false,
+  "geography_reference_date": "2026-01-01",
+  "employee_threshold": 50,
+  "size_counting": "Documented employer/group qualification; group headcount is never assigned to a local establishment. Unknown size stays separate.",
+  "municipal_counting": "A distinct employer counts once provincially and once in each documented municipality; municipality totals overlap.",
+  "summary": {
+    "employers": 40,
+    "qualified_employers": 29,
+    "distinct_groups": 40,
+    "qualified_groups": 29,
+    "size_unknown": 11,
+    "below_threshold": 0,
+    "municipalities": 12,
+    "municipalities_with_qualified_employers": 12,
+    "configured": 40,
+    "attempted_recently": 40,
+    "collection_states": {
+      "partial": 19,
+      "discovery-incomplete": 10,
+      "blocked-or-failed": 5,
+      "collected": 6
+    },
+    "qualified_collection_states": {
+      "partial": 15,
+      "discovery-incomplete": 8,
+      "blocked-or-failed": 1,
+      "collected": 5
+    },
+    "verified_hr_internships": 2,
+    "verified_hr_internships_qualified_employers": 1
+  },
+  "municipalities": [
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1680",
+      "name": "Aa en Hunze",
+      "settlements": 35,
+      "employers": 3,
+      "qualified_employers": 3,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-aa-en-hunze",
+        "landal",
+        "royal-avebe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [
+        "0d026302ba6f8aedd558",
+        "95dca55a4e83f8016444"
+      ],
+      "verified_hr_internships": 2,
+      "code": "GM0106",
+      "name": "Assen",
+      "settlements": 7,
+      "employers": 8,
+      "qualified_employers": 7,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 6,
+        "collected": 2
+      },
+      "company_ids": [
+        "cosis",
+        "gemeente-assen",
+        "het-drentse-landschap",
+        "interzorg-noord-nederland",
+        "skk-kozijnwacht",
+        "vanboeijen",
+        "wilhelmina-ziekenhuis-assen",
+        "ziengs-schoenen"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1681",
+      "name": "Borger-Odoorn",
+      "settlements": 25,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 2,
+        "partial": 1
+      },
+      "company_ids": [
+        "avitec",
+        "gemeente-borger-odoorn",
+        "paas-b-v"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0109",
+      "name": "Coevorden",
+      "settlements": 25,
+      "employers": 5,
+      "qualified_employers": 3,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "center-parcs",
+        "emco-groep",
+        "forbo-novilon",
+        "gemeente-coevorden",
+        "intergas-verwarming-b-v"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1690",
+      "name": "De Wolden",
+      "settlements": 13,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3
+      },
+      "company_ids": [
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "zzwd-zorgcollectief"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0114",
+      "name": "Emmen",
+      "settlements": 16,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "emco-groep",
+        "gemeente-emmen",
+        "sw-vastgoedverbetering"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0118",
+      "name": "Hoogeveen",
+      "settlements": 11,
+      "employers": 7,
+      "qualified_employers": 5,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 3,
+        "discovery-incomplete": 3,
+        "collected": 1
+      },
+      "company_ids": [
+        "doc-kaas-b-v",
+        "nncz",
+        "royal-a-ware",
+        "samenwerkingsorganisatie-de-wolden-hoogeveen",
+        "sw-vastgoedverbetering",
+        "tvm-verzekeringen",
+        "unigarant"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM0119",
+      "name": "Meppel",
+      "settlements": 5,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 1,
+        "collected": 1,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-meppel",
+        "reestmond",
+        "scania"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1731",
+      "name": "Midden-Drenthe",
+      "settlements": 25,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 2
+      },
+      "company_ids": [
+        "astron",
+        "attero",
+        "gemeente-midden-drenthe"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1699",
+      "name": "Noordenveld",
+      "settlements": 21,
+      "employers": 3,
+      "qualified_employers": 3,
+      "size_unknown": 0,
+      "below_threshold": 0,
+      "collection_states": {
+        "partial": 2,
+        "discovery-incomplete": 1
+      },
+      "company_ids": [
+        "gemeente-noordenveld",
+        "interzorg-noord-nederland",
+        "vdl-wientjes-roden"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1730",
+      "name": "Tynaarlo",
+      "settlements": 18,
+      "employers": 3,
+      "qualified_employers": 2,
+      "size_unknown": 1,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 1,
+        "collected": 1
+      },
+      "company_ids": [
+        "gemeente-tynaarlo",
+        "groningen-airport-eelde",
+        "interzorg-noord-nederland"
+      ]
+    },
+    {
+      "verified_hr_internship_ids": [],
+      "verified_hr_internships": 0,
+      "code": "GM1701",
+      "name": "Westerveld",
+      "settlements": 26,
+      "employers": 4,
+      "qualified_employers": 2,
+      "size_unknown": 2,
+      "below_threshold": 0,
+      "collection_states": {
+        "discovery-incomplete": 1,
+        "partial": 2,
+        "blocked-or-failed": 1
+      },
+      "company_ids": [
+        "astron",
+        "bats-uitzendburo",
+        "gemeente-westerveld",
+        "zzwd-zorgcollectief"
+      ]
+    }
+  ],
+  "employers": [
+    {
+      "company_id": "center-parcs",
+      "name": "Center Parcs",
+      "group_name": "Pierre & Vacances–Center Parcs",
+      "career_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 360,
+        "employees_text": "Official park careers page reports 360 colleagues at De Huttenheugte; park figure, not global group headcount.",
+        "scope": "establishment",
+        "source_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Dalen",
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": "WP2148",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.workatcenterparcs.com/nl/werken-bij-de-huttenheugte/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-center-parcs"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:57.766289+00:00",
+      "public_job_records": 30,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-center-parcs",
+          "message": "[{'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4690253-stagiair-learning-development-februari-2027-5563-vb-westerhoven', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "landal",
+      "name": "Landal",
+      "group_name": "Landal",
+      "career_url": "https://jobs.landal.com/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 450,
+        "employees_text": "Current official Hof van Saksen vacancy states more than 450 colleagues at the resort. Conservative documented employer lower bound from this site, not total Landal group headcount; not assigned to other parks.",
+        "scope": "employer",
+        "source_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Nooitgedacht",
+          "municipality": "Aa en Hunze",
+          "municipality_code": "GM1680",
+          "settlement_code": "WP1174",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360/",
+          "checked_on": "2026-11-13"
+        }
+      ],
+      "source_ids": [
+        "auto-landal"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:58.109020+00:00",
+      "public_job_records": 5,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-landal",
+          "message": "[{'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr-corporate-recruitment/JR104108', 'error': 'Vacancy verification: Remote end closed connection without response'}, {'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360', 'error': 'Vacancy verification: Remote end closed connection without response'}, {'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr-employer-branding/JR104107', 'error': 'Vacancy verification: Remote end closed connection without response'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "royal-a-ware",
+      "name": "Royal A-ware",
+      "group_name": "Royal A-ware",
+      "career_url": "https://werkenbijaware.com/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 5300,
+        "employees_text": "Official group homepage describes more than 5,300 colleagues including food and AB Texel transport; not Lopik staff count.",
+        "scope": "group",
+        "source_url": "https://www.royal-aware.com/nl/",
+        "source_date": null,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Ruinerwold",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "settlement_code": "WP3170",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651",
+          "checked_on": "2026-11-08"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijaware.com/vacatures/qa-medewerker-operations-req2651",
+          "checked_on": "2026-11-08"
+        }
+      ],
+      "source_ids": [
+        "auto-royal-a-ware"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:42.184134+00:00",
+      "public_job_records": 70,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-royal-a-ware",
+          "message": "[{'url': 'https://werkenbijaware.com/vacatures/stage-hr-heerenveen-req2679', 'error': 'Vacancy verification: Current page does not identify the same vacancy'}, {'url': 'https://werkenbijaware.com/vacatures/manager-maintenance-req2157', 'error': 'A-ware reviewed title, workplace, description or application form missing'}, {'url': 'https://werkenbijaware.com/vacatures/operator-rijping-req1420', 'error': 'A-ware workplace country requires review: Woerden'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "royal-avebe",
+      "name": "Royal Avebe",
+      "group_name": "Royal Avebe",
+      "career_url": "https://careers.avebe.com/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1285,
+        "employees_text": "2023/2024 audited statement reports an average 1,285 employees, including 285 outside the Netherlands.",
+        "scope": "group",
+        "source_url": "https://publications.avebe.com/en/integrated-annual-report-20232024/financial-statements/notes-to-the-consolidated-profit-and-loss-account",
+        "source_date": "2023/2024"
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Gasselternijveen",
+          "municipality": "Aa en Hunze",
+          "municipality_code": "GM1680",
+          "settlement_code": "WP1163",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.avebe.com/locations/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-royal-avebe"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:37.739190+00:00",
+      "public_job_records": 1,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-royal-avebe",
+          "message": "[{'url': 'https://www.werkenbijavebe.nl/verhalen/verhalen/erikweinans2', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-aa-en-hunze",
+      "name": "Gemeente Aa en Hunze",
+      "group_name": null,
+      "career_url": "https://www.aaenhunze.nl/Alle_onderwerpen/Werken_bij_Aa_en_Hunze/Vooruit_in_Drenthe",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official organisation page describes approximately 300 employees and tax team in Gieten.",
+        "scope": "employer",
+        "source_url": "https://aaenhunze.nl/Alle_onderwerpen/Bestuur_en_organisatie",
+        "source_date": null,
+        "employees_estimate": 300,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Gieten",
+          "municipality": "Aa en Hunze",
+          "municipality_code": "GM1680",
+          "settlement_code": "WP1167",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://aaenhunze.nl/Alle_onderwerpen/Bestuur_en_organisatie",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-aa-en-hunze"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:32.761975+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-aa-en-hunze",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-assen",
+      "name": "Gemeente Assen",
+      "group_name": null,
+      "career_url": "https://www.werkenbijassen.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 600,
+        "employees_text": "Employer-owned LinkedIn profile describes more than 600 employees; not a site-specific count.",
+        "scope": "employer",
+        "source_url": "https://nl.linkedin.com/company/gemeente-assen",
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://nl.linkedin.com/company/gemeente-assen",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-assen"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:56.205945+00:00",
+      "public_job_records": 8,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-assen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-borger-odoorn",
+      "name": "Gemeente Borger-Odoorn",
+      "group_name": null,
+      "career_url": "https://www.borger-odoorn.nl/werken-bij-de-gemeente-borger-odoorn",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official careers page describes around 250 employees.",
+        "scope": "employer",
+        "source_url": "https://www.borger-odoorn.nl/werken-bij-de-gemeente-borger-odoorn",
+        "source_date": null,
+        "employees_estimate": 250,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Exloo",
+          "municipality": "Borger-Odoorn",
+          "municipality_code": "GM1681",
+          "settlement_code": "WP1795",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.borger-odoorn.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-borger-odoorn"
+      ],
+      "state": "blocked-or-failed",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:58.109020+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-borger-odoorn",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-coevorden",
+      "name": "Gemeente Coevorden",
+      "group_name": null,
+      "career_url": "https://www.coevorden.nl/vacatures",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": null,
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.coevorden.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-coevorden"
+      ],
+      "state": "blocked-or-failed",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:03.133844+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-coevorden",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-emmen",
+      "name": "Gemeente Emmen",
+      "group_name": null,
+      "career_url": "https://gemeente.emmen.nl/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": null,
+          "municipality": "Emmen",
+          "municipality_code": "GM0114",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://gemeente.emmen.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-emmen"
+      ],
+      "state": "blocked-or-failed",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:01.807735+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-emmen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "samenwerkingsorganisatie-de-wolden-hoogeveen",
+      "name": "Samenwerkingsorganisatie De Wolden Hoogeveen",
+      "group_name": null,
+      "career_url": "https://www.werkenbijdeswo.nl/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Absolute employee headcount remains unestablished. Annual accounts 2024, pages 18–19, report FTE per 1,000 inhabitants, including external capacity in bezetting; neither ratio nor budgeted formation is an employee count.",
+        "scope": "employer",
+        "source_url": "https://www.werkenbijdeswo.nl/openen-downloadbaar-bestand-prs/jaarstukken-2024",
+        "source_date": "2024-12-31"
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijdeswo.nl/",
+          "checked_on": "2026-11-06"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Zuidwolde",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "settlement_code": "WP3172",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijdeswo.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-samenwerkingsorganisatie-de-wolden-hoogeveen"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:28.725110+00:00",
+      "public_job_records": 1,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-samenwerkingsorganisatie-de-wolden-hoogeveen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-meppel",
+      "name": "Gemeente Meppel",
+      "group_name": null,
+      "career_url": "https://www.meppel.nl/werken-bij/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": null,
+          "municipality": "Meppel",
+          "municipality_code": "GM0119",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.meppel.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-meppel"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:01.807735+00:00",
+      "public_job_records": 6,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-meppel",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-midden-drenthe",
+      "name": "Gemeente Midden-Drenthe",
+      "group_name": null,
+      "career_url": "https://www.middendrenthe.nl/bestuur-organisatie/over-de-gemeente/werken-bij-de-gemeente",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 201,
+        "employees_text": "Employer-owned LinkedIn profile reports size band 201–500; floor 201 is not exact headcount.",
+        "scope": "employer",
+        "source_url": "https://nl.linkedin.com/company/middendrenthe",
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Beilen",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "settlement_code": "WP3006",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.middendrenthe.nl/bestuur-organisatie/over-de-gemeente/werken-bij-de-gemeente",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-midden-drenthe"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:32.761975+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-midden-drenthe",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-noordenveld",
+      "name": "Gemeente Noordenveld",
+      "group_name": null,
+      "career_url": "https://www.vooruitindrenthe.nl/organisaties/gemeente-noordenveld/79f9e333-1e81-4307-e795-08dc814a5a06",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 400,
+        "employees_text": "Official municipal careers page describes more than 400 colleagues working for the municipality. Employer-wide workforce, not a count per establishment; contract/external composition and reference date are not specified.",
+        "scope": "employer",
+        "source_url": "https://www.noordenveld.nl/werken-bij-gemeente-noordenveld",
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Roden",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "settlement_code": "WP1647",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.noordenveld.nl/",
+          "checked_on": "2026-11-22"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-noordenveld"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:32.268629+00:00",
+      "public_job_records": 89,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-noordenveld",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-tynaarlo",
+      "name": "Gemeente Tynaarlo",
+      "group_name": null,
+      "career_url": "https://www.tynaarlo.nl/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Vries",
+          "municipality": "Tynaarlo",
+          "municipality_code": "GM1730",
+          "settlement_code": "WP2912",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.tynaarlo.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-tynaarlo"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:37.739190+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-tynaarlo",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "gemeente-westerveld",
+      "name": "Gemeente Westerveld",
+      "group_name": null,
+      "career_url": "https://www.gemeentewesterveld.nl/Alle_onderwerpen/Werken_bij_Westerveld",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 180,
+        "employees_text": "Official municipal organisation page states approximately 180–200 employees; rounded employer range, not precise establishment headcount. No reference date published.",
+        "scope": "employer",
+        "source_url": "https://www.gemeentewesterveld.nl/Alle_onderwerpen/Bestuur_en_organisatie/Zo_werkt_de_gemeente/Gemeentelijke_organisatie",
+        "source_date": null
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": null,
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": null,
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.gemeentewesterveld.nl/",
+          "checked_on": "2026-11-14"
+        }
+      ],
+      "source_ids": [
+        "auto-gemeente-westerveld"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:42.184134+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-gemeente-westerveld",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "het-drentse-landschap",
+      "name": "Het Drentse Landschap",
+      "group_name": null,
+      "career_url": "https://werkenbij.drentslandschap.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 54,
+        "employees_text": "Official careers page distinguishes 54 paid employees from 500+ volunteers.",
+        "scope": "employer",
+        "source_url": "https://werkenbij.drentslandschap.nl/",
+        "source_date": null
+      },
+      "employer_type": "nonprofit",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbij.drentslandschap.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-het-drentse-landschap"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:11.923755+00:00",
+      "public_job_records": 18,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-het-drentse-landschap",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "vanboeijen",
+      "name": "Vanboeijen",
+      "group_name": null,
+      "career_url": "https://www.vanboeijen.nl/vacatures",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1600,
+        "employees_text": "Official ANBI page reports more than 1,600 staff across about 100 locations. Employer total, not Assen site headcount.",
+        "scope": "employer",
+        "source_url": "https://www.vanboeijen.nl/de-organisatie/anbi-publicatie",
+        "source_date": null
+      },
+      "employer_type": "healthcare",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.vanboeijen.nl/de-organisatie/anbi-publicatie",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-vanboeijen"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:37.739190+00:00",
+      "public_job_records": 61,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-vanboeijen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "vdl-wientjes-roden",
+      "name": "VDL Wientjes Roden",
+      "group_name": "VDL Groep",
+      "career_url": "https://www.werkenbijvdl.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 70,
+        "employees_text": "Official homepage counter reports 70 employees and Roden address.",
+        "scope": "employer",
+        "source_url": "https://www.vdlwientjesroden.nl/nl",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Roden",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "settlement_code": "WP1647",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.vdlwientjesroden.nl/nl",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-vdl-wientjes-roden"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:01.807735+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-vdl-wientjes-roden",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "avitec",
+      "name": "Avitec",
+      "group_name": "Avitec",
+      "career_url": "https://avitec.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 160,
+        "employees_text": "Official employer article describes more than 160 employees in 2021. Historical qualification; not a current census.",
+        "scope": "employer",
+        "source_url": "https://avitec.nl/nieuws/avitec-infra-milieu-breidt-uit-met-overname-revoort-slopen-saneren/",
+        "source_date": "2021-02-10"
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Nieuw-Buinen",
+          "municipality": "Borger-Odoorn",
+          "municipality_code": "GM1681",
+          "settlement_code": "WP1797",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://avitec.nl/nieuws/avitec-infra-milieu-breidt-uit-met-overname-revoort-slopen-saneren/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-avitec"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:03.133844+00:00",
+      "public_job_records": 9,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-avitec",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "tvm-verzekeringen",
+      "name": "TVM verzekeringen",
+      "group_name": null,
+      "career_url": "https://www.tvm.nl/werken-bij-tvm",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official 2019 employer statement describes approximately 500 staff; current headquarters confirmed in 2024. Historical size.",
+        "scope": "employer",
+        "source_url": "https://www.tvm.nl/nieuws/hoofdkantoor-tvm-verzekeringen-blijft-hoogeveen",
+        "source_date": "2019-12-04",
+        "employees_estimate": 500,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.tvm.nl/nieuws/tvm-hoofdvestiging-naar-nieuwe-locatie-hoogeveen",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-tvm-verzekeringen"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:11.923755+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-tvm-verzekeringen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "unigarant",
+      "name": "Unigarant",
+      "group_name": "ANWB",
+      "career_url": "https://werkenbijunigarant.nl/vacatures/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 650,
+        "employees_text": "Official employer overview publishes 650+ Unigarant colleagues; employer-wide, not ANWB group or office-specific staff count.",
+        "scope": "employer",
+        "source_url": "https://www.unigarant.nl/over-ons/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.unigarant.nl/over-ons/",
+          "checked_on": "2026-11-08"
+        }
+      ],
+      "source_ids": [
+        "auto-unigarant"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:34.232765+00:00",
+      "public_job_records": 9,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "wilhelmina-ziekenhuis-assen",
+      "name": "Wilhelmina Ziekenhuis Assen",
+      "group_name": null,
+      "career_url": "https://www.wza.nl/werken-en-leren/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1500,
+        "employees_text": "Official hospital careers page states more than 1,500 people working at WZA, excluding medical specialists. Employer-wide workforce figure, not headcount of each establishment. Contract/volunteer composition and reference date not specified.",
+        "scope": "employer",
+        "source_url": "https://www.wza.nl/werken-en-leren/kom-bij-ons-werken/",
+        "source_date": null
+      },
+      "employer_type": "healthcare",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.wza.nl/",
+          "checked_on": "2026-11-21"
+        }
+      ],
+      "source_ids": [
+        "auto-wilhelmina-ziekenhuis-assen"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:56.205945+00:00",
+      "public_job_records": 15,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-wilhelmina-ziekenhuis-assen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "cosis",
+      "name": "Cosis",
+      "group_name": null,
+      "career_url": "https://www.cosis.nu/alles-over-cosis/werken-bij",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 4000,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official 2025 quality report describes approximately 4000 employees across Groningen and Drenthe, separately from approximately 800 volunteers. Historical 2025 employer total, not Assen establishment headcount.",
+        "scope": "employer",
+        "source_url": "https://jaarbericht.cosis.nu/2025/kwaliteitsbeeld-2025/we-stellen-ons-even-voor-2/11-wat-doet-cosis",
+        "source_date": "2025"
+      },
+      "employer_type": "healthcare",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.cosis.nu/",
+          "checked_on": "2026-11-08"
+        }
+      ],
+      "source_ids": [
+        "auto-cosis"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:42.184134+00:00",
+      "public_job_records": 99,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-cosis",
+          "message": "[{'url': 'https://cosis-acceptatie.sites.kirra.nl/%242041', 'error': 'HTTP Error 403: Forbidden'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "interzorg-noord-nederland",
+      "name": "Interzorg Noord Nederland",
+      "group_name": null,
+      "career_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 1400,
+        "employees_text": "Official organisation page states fourteen hundred employees, with more than 800 volunteers separately. Employer total across nine locations, not headcount of an individual site.",
+        "scope": "employer",
+        "source_url": "https://www.interzorg.nl/uw-ons-verhaal/organisatie",
+        "source_date": null
+      },
+      "employer_type": "healthcare",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom",
+          "checked_on": "2026-11-10"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Roden",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "settlement_code": "WP1647",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+          "checked_on": "2026-11-10"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Peize",
+          "municipality": "Noordenveld",
+          "municipality_code": "GM1699",
+          "settlement_code": "WP1646",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+          "checked_on": "2026-11-10"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Vries",
+          "municipality": "Tynaarlo",
+          "municipality_code": "GM1730",
+          "settlement_code": "WP2912",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures",
+          "checked_on": "2026-11-10"
+        }
+      ],
+      "source_ids": [
+        "auto-interzorg-noord-nederland"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:37.739190+00:00",
+      "public_job_records": 7,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-interzorg-noord-nederland",
+          "message": "[{'url': 'https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/basisarts-grz', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/woonbegeleider', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://www.interzorg.nl/je-bent-van-harte-welkom/vacatures/physician-assistant-grz', 'error': 'Visible vacancy workplace requires review'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "astron",
+      "name": "ASTRON",
+      "group_name": null,
+      "career_url": "https://werkenbijastron.nl/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "research",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Dwingeloo",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3110",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.astron.nl/contact/",
+          "checked_on": "2026-11-08"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Zwiggelte",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "settlement_code": "WP3029",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.astron.nl/contact/",
+          "checked_on": "2026-11-08"
+        }
+      ],
+      "source_ids": [
+        "auto-astron"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:32.273112+00:00",
+      "public_job_records": 17,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-astron",
+          "message": "[{'url': 'https://www.astron.nl/careers-3', 'error': 'HTTP Error 500: Internal Server Error'}, {'url': 'https://astron.recruitee.com/api/offers', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "doc-kaas-b-v",
+      "name": "DOC Kaas B.V.",
+      "group_name": "Arla Foods",
+      "career_url": "https://dockaasbv.nl/werken-bij-ons/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://dockaas.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-doc-kaas-b-v"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:32.273112+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-doc-kaas-b-v",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "forbo-novilon",
+      "name": "Forbo Novilon",
+      "group_name": "Forbo",
+      "career_url": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/pxd3oi",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Coevorden",
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": "WP2147",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.forbo.com/flooring/nl-nl/werken-bij-forbo/pxd3oi",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-forbo-novilon"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:01.807735+00:00",
+      "public_job_records": 1,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-forbo-novilon",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "paas-b-v",
+      "name": "Paas B.V.",
+      "group_name": null,
+      "career_url": "https://www.paasbv.com/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established in this initial source review.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Nieuw-Buinen",
+          "municipality": "Borger-Odoorn",
+          "municipality_code": "GM1681",
+          "settlement_code": "WP1797",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.paasbv.com/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-paas-b-v"
+      ],
+      "state": "blocked-or-failed",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:06.017270+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-paas-b-v",
+          "message": "Public source access blocked; no inventory established; no bypass attempted"
+        }
+      ]
+    },
+    {
+      "company_id": "skk-kozijnwacht",
+      "name": "SKK Kozijnwacht",
+      "group_name": null,
+      "career_url": "https://skk.nl/werken-bij-skk/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established; an HR vacancy is not proof of size.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://skk.nl/werken-bij-skk/stagiair-hr/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-skk-kozijnwacht"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:57.766289+00:00",
+      "public_job_records": 3,
+      "verified_hr_internship_ids": [
+        "0d026302ba6f8aedd558"
+      ],
+      "errors": []
+    },
+    {
+      "company_id": "nncz",
+      "name": "NNCZ",
+      "group_name": null,
+      "career_url": "https://werkenbij.nncz.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 501,
+        "employees_text": "Employer-owned LinkedIn size band 501–1,000; not exact payroll or local site count.",
+        "scope": "employer",
+        "source_url": "https://nl.linkedin.com/company/nncz",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/hr-stagiaire-hoogeveen-od-1310226",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-nncz"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:56.205945+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-nncz",
+          "message": "[{'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-thuiszorg-def', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verpleegkundige-schots-19-11-26', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-schots-19-11-26', 'error': 'Visible vacancy workplace requires review'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "ziengs-schoenen",
+      "name": "Ziengs Schoenen",
+      "group_name": "Ziengs & Scapino",
+      "career_url": "https://www.werkenbijziengs.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 700,
+        "employees_text": "Official Ziengs profile reports more than 700 employees. This is Ziengs employer size, not the combined Ziengs/Scapino group or Assen office.",
+        "scope": "employer",
+        "source_url": "https://www.werkenbijziengs.nl/over-ons",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Assen",
+          "municipality": "Assen",
+          "municipality_code": "GM0106",
+          "settlement_code": "WP2391",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.werkenbijziengs.nl/vacatures/hr-stagiaire-scapino-ziengs",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-ziengs-schoenen"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:32.268629+00:00",
+      "public_job_records": 5,
+      "verified_hr_internship_ids": [
+        "95dca55a4e83f8016444"
+      ],
+      "errors": []
+    },
+    {
+      "company_id": "bats-uitzendburo",
+      "name": "Bats Uitzendburo",
+      "group_name": null,
+      "career_url": "https://batsuitzendburo.nl/",
+      "size": {
+        "qualification": "unknown",
+        "employees_min": null,
+        "employees_text": "Headcount not established; an HR vacancy is not proof of size.",
+        "scope": "employer",
+        "source_url": null,
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Nijensleek",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3116",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://batsuitzendburo.nl/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-bats-uitzendburo"
+      ],
+      "state": "blocked-or-failed",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:01.807735+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-bats-uitzendburo",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "scania",
+      "name": "Scania",
+      "group_name": "Scania",
+      "career_url": "https://jobs.scania.com/search?q=Meppel",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official vacancy describes approximately 58,000 group colleagues in more than 100 countries. Approximate group workforce; not Meppel headcount.",
+        "scope": "group",
+        "source_url": "https://jobs.scania.com/job/Meppel-Stage-Human-Resource-Management-7944HT/1454163033/",
+        "source_date": null,
+        "employees_estimate": 58000,
+        "measurement": "approximate-headcount"
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Meppel",
+          "municipality": "Meppel",
+          "municipality_code": "GM0119",
+          "settlement_code": "WP1082",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://jobs.scania.com/job/Meppel-Stage-Human-Resource-Management-7944HT/1454163033/",
+          "checked_on": "2026-11-06"
+        }
+      ],
+      "source_ids": [
+        "auto-scania"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:32.268629+00:00",
+      "public_job_records": 3,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "groningen-airport-eelde",
+      "name": "Groningen Airport Eelde",
+      "group_name": null,
+      "career_url": "https://www.groningenairport.nl/werken-op/vacatures",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 80,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official careers page describes about 80 employees at Groningen Airport Eelde; excludes other campus employers.",
+        "scope": "employer",
+        "source_url": "https://www.groningenairport.nl/en/careers",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Eelde",
+          "municipality": "Tynaarlo",
+          "municipality_code": "GM1730",
+          "settlement_code": "WP2909",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.groningenairport.nl/en/careers",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-groningen-airport-eelde"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:06.017270+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "emco-groep",
+      "name": "EMCO-groep",
+      "group_name": null,
+      "career_url": "https://emco-groep.nl/werkenbij",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_text": "Official organisation page describes more than 1500 employees across the employer; not the headcount of either local establishment.",
+        "scope": "employer",
+        "source_url": "https://emco-groep.nl/over-emco-groep",
+        "source_date": null,
+        "employees_min": 1500
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Emmen",
+          "municipality": "Emmen",
+          "municipality_code": "GM0114",
+          "settlement_code": "WP1988",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://emco-groep.nl/contact",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Coevorden",
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": "WP2147",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://emco-groep.nl/contact",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-emco-groep"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:01.807735+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-emco-groep",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "zzwd-zorgcollectief",
+      "name": "ZZWD Zorgcollectief",
+      "group_name": null,
+      "career_url": "https://www.zzwd.nl/vacatures/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_estimate": 400,
+        "measurement": "approximate-headcount",
+        "employees_text": "Official organisation page describes approximately 400 employees, separately from approximately 400 volunteers. Employer total across villages, not per-location headcount.",
+        "scope": "employer",
+        "source_url": "https://www.zzwd.nl/over-zzwd/",
+        "source_date": null
+      },
+      "employer_type": "nonprofit",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Dwingeloo",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3110",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Havelte",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3113",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Diever",
+          "municipality": "Westerveld",
+          "municipality_code": "GM1701",
+          "settlement_code": "WP3107",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Ruinen",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "settlement_code": "WP3169",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Koekange",
+          "municipality": "De Wolden",
+          "municipality_code": "GM1690",
+          "settlement_code": "WP3167",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.zzwd.nl/",
+          "checked_on": "2026-11-07"
+        }
+      ],
+      "source_ids": [
+        "auto-zzwd-zorgcollectief"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:21:11.923755+00:00",
+      "public_job_records": 4,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-zzwd-zorgcollectief",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "sw-vastgoedverbetering",
+      "name": "SW Vastgoedverbetering",
+      "group_name": null,
+      "career_url": "https://werkenbij.swbv.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 450,
+        "employees_text": "Official employer page states more than four hundred and fifty professionals across six branches. Employer total, not headcount in Hoogeveen or Emmen.",
+        "scope": "employer",
+        "source_url": "https://www.swbv.nl/over-ons/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Hoogeveen",
+          "municipality": "Hoogeveen",
+          "municipality_code": "GM0118",
+          "settlement_code": "WP1814",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.swbv.nl/vestigingen/noord/",
+          "checked_on": "2026-11-09"
+        },
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Emmen",
+          "municipality": "Emmen",
+          "municipality_code": "GM0114",
+          "settlement_code": "WP1988",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.swbv.nl/vestigingen/noord/",
+          "checked_on": "2026-11-09"
+        }
+      ],
+      "source_ids": [
+        "auto-sw-vastgoedverbetering"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:34.232765+00:00",
+      "public_job_records": 40,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    },
+    {
+      "company_id": "reestmond",
+      "name": "Reestmond",
+      "group_name": null,
+      "career_url": "https://www.reestmond.nl/vacatures/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 270,
+        "employees_text": "Annual accounts 2025, printed page 21: 270 employees with SW indication employed at Reestmond on 31 December 2025 (228 FTE, 233 SE). Conservative employer lower bound for this employee category; not total personnel or the joint headcount with NoordWestGroep.",
+        "scope": "employer",
+        "source_url": "https://www.reestmond.nl/wp-content/uploads/2026/07/Jaarrekening-2025-Reestmond.pdf",
+        "source_date": "2025-12-31"
+      },
+      "employer_type": "public",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Meppel",
+          "municipality": "Meppel",
+          "municipality_code": "GM0119",
+          "settlement_code": "WP1082",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.reestmond.nl/contact/",
+          "checked_on": "2026-11-10"
+        }
+      ],
+      "source_ids": [
+        "auto-reestmond"
+      ],
+      "state": "discovery-incomplete",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:58.109020+00:00",
+      "public_job_records": 0,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-reestmond",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
+    },
+    {
+      "company_id": "attero",
+      "name": "Attero",
+      "group_name": null,
+      "career_url": "https://www.attero.nl/nl/werken-bij/vacatures/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 800,
+        "employees_text": "Official employer page states 800 employees across 18 locations. Employer total; not personnel at Wijster.",
+        "scope": "employer",
+        "source_url": "https://www.attero.nl/nl/over-attero/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Wijster",
+          "municipality": "Midden-Drenthe",
+          "municipality_code": "GM1731",
+          "settlement_code": "WP3026",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://www.attero.nl/nl/locaties/wijster/",
+          "checked_on": "2026-11-11"
+        }
+      ],
+      "source_ids": [
+        "auto-attero"
+      ],
+      "state": "partial",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:28.725110+00:00",
+      "public_job_records": 28,
+      "verified_hr_internship_ids": [],
+      "errors": [
+        {
+          "source_id": "auto-attero",
+          "message": "[{'url': 'https://www.attero.nl/nl/werken-bij/vacatures/3645311-werkvoorbereider-mineraal', 'error': 'No supported JobPosting structured data; no page-text guessing'}]"
+        }
+      ]
+    },
+    {
+      "company_id": "intergas-verwarming-b-v",
+      "name": "Intergas Verwarming B.V.",
+      "group_name": null,
+      "career_url": "https://werkenbijintergas.nl/",
+      "size": {
+        "qualification": "verified_50_plus",
+        "employees_min": 500,
+        "employees_text": "Official careers homepage states approximately 500 colleagues. Rounded employer figure, not a measured minimum or headcount of Coevorden only; no reference date published.",
+        "scope": "employer",
+        "source_url": "https://werkenbijintergas.nl/",
+        "source_date": null
+      },
+      "employer_type": "private",
+      "workplaces": [
+        {
+          "country": "NL",
+          "region_code": "NL13",
+          "city": "Coevorden",
+          "municipality": "Coevorden",
+          "municipality_code": "GM0109",
+          "settlement_code": "WP2147",
+          "location_confidence": "confirmed",
+          "evidence_url": "https://werkenbijintergas.nl/contact",
+          "checked_on": "2026-11-12"
+        }
+      ],
+      "source_ids": [
+        "auto-intergas-verwarming-b-v"
+      ],
+      "state": "collected",
+      "attempted_recently": true,
+      "last_attempt_at": "2026-11-22T07:20:57.068788+00:00",
+      "public_job_records": 11,
+      "verified_hr_internship_ids": [],
+      "errors": []
+    }
+  ],
+  "verified_hr_internship_ids": [
+    "0d026302ba6f8aedd558",
+    "95dca55a4e83f8016444"
+  ],
+  "research_opportunities": [
+    {
+      "employer": "Het Drentse Landschap",
+      "title": "HR internships within the general student programme",
+      "url": "https://werkenbij.drentslandschap.nl/",
+      "city": "Assen; exact internship workplace to confirm",
+      "country": "NL",
+      "kind": "hr_internship_programme",
+      "application_status": "open_stage_request_not_confirmed_vacancy",
+      "scope_status": "medium_large",
+      "checked_at": "2026-11-06T19:59:00+00:00",
+      "availability_note": "General HR placement route for mbo/hbo/wo students; contact the employer to establish availability, assignment and workplace. No concrete HR vacancy was listed at the research check."
+    },
+    {
+      "employer": "Intergas Verwarming B.V.",
+      "title": "Stageplaats bij Intergas 2027 — HR among multiple possible departments",
+      "url": "https://intergas.recruitee.com/o/stageplaats-bij-intergas-2027",
+      "city": "Coevorden; exact department and assignment to agree",
+      "country": "NL",
+      "kind": "hr_internship_programme",
+      "application_status": "open_stage_request_not_confirmed_vacancy",
+      "scope_status": "medium_large",
+      "checked_at": "2026-11-12T01:00:49.957461+00:00",
+      "availability_note": "Current official general internship request, including HR & Recruitment among multiple disciplines. Department, assignment and period require matching; not a specific verified HR vacancy. Mbo/hbo/wo enrolment and preferably at least three months stated. Dutch advertisement alone does not establish required languages or English sufficiency. No application submitted."
+    }
+  ],
+  "schedule": {
+    "workflow": "collect.yml",
+    "cron_utc": "17 6 * * *",
+    "note": "Daily hosted runner; Europe/Amsterdam 07:17 winter / 08:17 summer. Scheduled start may be delayed by GitHub."
+  },
+  "limitations": [
+    "Employer mapping is still expanding; no complete business-register denominator is available.",
+    "Configured, attempted, fully read observed inventory, partial and blocked sources are distinct.",
+    "No current vacancy is inferred from company presence or a general internship programme."
+  ],
+  "research_only": true,
+  "limitation": "Offline recomputation from existing collection snapshots; no new source collection and no bot report replacement."
+}
