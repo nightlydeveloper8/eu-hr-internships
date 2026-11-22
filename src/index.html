@@ -70,18 +70,25 @@
         </div>
         <div class="finder-tools">
           <label class="sr-only" for="sort">Sort opportunities</label>
-          <select id="sort" class="select-compact"><option value="relevance">Most relevant</option><option value="recent">Recently posted</option><option value="discovered">Recently discovered</option></select>
+          <select id="sort" class="select-compact"><option value="relevance">Most relevant</option><option value="deadline">Application deadline (soonest)</option><option value="recent">Recently posted</option><option value="discovered">Recently discovered</option></select>
         </div>
       </div>
 
       <div class="search-panel">
-        <div class="searchbar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><label class="sr-only" for="search">Search titles, companies or cities</label><input id="search" type="search" placeholder="Search “talent acquisition”, a company or a city" autocomplete="off" enterkeyhint="search"></div>
+        <div class="searchbar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><label class="sr-only" for="search">Search titles, companies or cities</label><input id="search" type="search" placeholder="Search roles, employers or cities" autocomplete="off" enterkeyhint="search"></div>
         <div class="quick-filters">
           <div class="field"><label for="country">Country</label><select id="country"><option value="">All countries</option></select></div>
-          <div class="field"><label for="category">HR specialisation</label><select id="category"><option value="">All specialisations</option></select></div>
+          <div class="field"><label for="category">HR specialisation</label><select id="category"><option value="">All HR areas</option></select></div>
           <div class="field"><label for="workplace-language">Language</label><select id="workplace-language"><option value="">Any language</option><option value="unknown">Requirements unknown</option></select></div>
           <button type="button" class="btn btn-outline filter-button" id="filter-toggle" aria-expanded="false" aria-controls="filters"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Advanced <span class="count" id="advanced-count" hidden>0</span></button>
         </div>
+      </div>
+
+      <div class="timing-filters">
+        <div class="field"><label for="start-window">Start window</label><select id="start-window" aria-describedby="timing-note"><option value="">Any start date</option></select></div>
+        <div class="field"><label for="duration">Duration</label><select id="duration" aria-describedby="timing-note"><option value="">Any duration</option></select></div>
+        <label class="check-label timing-toggle"><input id="hide-unknown-timing" type="checkbox" aria-describedby="timing-note"> Hide listings with unclear timing</label>
+        <p id="timing-note" class="input-note">Listings with unclear timing stay visible. <a href="./how-to-use.html">How to use this site</a></p>
       </div>
 
       <div class="evidence-bar">
@@ -116,7 +123,7 @@
   </main>
 
   <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
-  <aside class="filters drawer" id="filters" aria-labelledby="filters-title" tabindex="-1">
+  <aside class="filters drawer" id="filters" inert aria-labelledby="filters-title" tabindex="-1">
     <div class="filter-header"><h2 id="filters-title">Advanced filters</h2><button id="filters-close" class="icon-button" type="button" aria-label="Close filters">×</button></div>
     <div class="drawer-body">
       <fieldset class="mode-picker"><legend>Order</legend><label><input type="radio" name="mode" value="nl" checked> Netherlands first</label><label><input type="radio" name="mode" value="eu"> All countries equally</label></fieldset>

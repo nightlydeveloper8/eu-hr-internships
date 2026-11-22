@@ -1,5 +1,13 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — finestra di stage IHRM del secondo anno
+
+Su `main@d69c664`, filtro 5 gennaio–13 marzo 2027 e almeno 16 settimane a tempo pieno o fine dal 31 maggio; timing incerto visibile di default.
+Snapshot del catalogo: 422 aperti, 22 inizi in finestra (tutti NL), 382 senza inizio pubblicato e 395 con inizio non determinabile; durata compatibile non dimostrata per alcuna scheda.
+Verifica alle 22:57 CET: 414 ancora entro 48 ore, 22 in finestra, 374 senza inizio; tabella per paese nella descrizione della PR.
+Build e tastiera a 375/768/1440 px; [schermate prima/dopo](ihrm-start-window/), 41 test Node e 543 Python. Ripresa da #119 la sola correzione del replay offline.
+Nessun percorso trigger di `collect.yml`. Prossimo passo: revisione della PR `design/student-start-window` e verifica della CI sul commit pubblicato.
+
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
 [#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.
