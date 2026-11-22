@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 21 novembre 2026 — revisione annunci Recruitee
+
+[Risultati, requisiti e costi](recruitee-hr-internships-2026-11-21.md). Tre fonti NL con candidatura diretta v2 (Aquablu, Zero Motorcycles, Youvia), predisposte disabilitate e con hold. Finalizzazione temporanea 907 → 910 ID, 0 persi. Mercedes-Benz.io è un caso limite con modulo verificato e ammissione di neolaureati. Prossimo passo: revisione, decisione sul caso limite e prova fresca prima di ogni eventuale attivazione. Base `2c937f7`. Verificati 531 test Python 3.12, 35 test Node, build, catalogo e provisioning idempotente. 1.923 collector attivi prima e dopo.
+
 ## 21 novembre 2026 — inventario ATS e staging di tenant già noti
 
 [Rapporto e inventario](inventario-ats-2026-11-21.md): individuate 68 coppie datore–tenant, 20 non registrate come ATS attivo; i paesi sono soltanto ambito di ricerca. 18 tenant esaminati o bloccati e due Lever esclusi. La scansione ha riconfermato tre vacancy già predisposte da #110; Berenschot è già nel catalogo come candidatura diretta, mentre Focus/PulluP richiede riconciliazione e Mynaric Personio ha submit disabilitato. **0 nuove candidature distinte e 0 nuove fonti preparate**. Spesi 50 GET / almeno 11.747.768 byte / 36,115 secondi cumulati, senza POST né invio; PR #110 già integrata in `841278f`.
