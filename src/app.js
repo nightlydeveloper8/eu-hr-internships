@@ -88,6 +88,7 @@ function card(job) {
   for (const [cls, text] of languageTags.slice(0,3)) tags.append(el('span',cls,text));
   if (languageTags.length > 3) tags.append(el('span','tag lang',`+${languageTags.length - 3}`));
   if (info.requirements_status === 'unknown' && !languageTags.length) tags.append(el('span','tag muted','Language not specified'));
+  if (job.also_open_to_recent_graduates === true) tags.append(el('span','tag','Also open to recent graduates'));
   article.append(tags);
 
   if (level === 'public') {

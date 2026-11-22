@@ -144,6 +144,10 @@ def classify_role(title, text='', employment=''):
     extra = vocabulary_categories(title, text)
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title) or k in extra]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
+    if (not cats and VOCAB_CONTEXTUAL['people-operations'].search(title)
+            and not NON_HR_DOMAIN.search(title)
+            and re.search(r'\b(?:hr-projekte|hr-teilprojekte|personalstammdaten|employee records)\b', text)):
+        cats = ['people-operations']
     if not cats and re.search(r'people (?:&|and) events',title) and re.search(r'personalbetreuung|personalentwicklung|human resources|hr administration',text):cats=['hr-generalist']
     # A People & Organisation internship is HR only when the description
     # actually establishes an HR function, not from generic organisation work.
@@ -255,6 +259,24 @@ def extract_metadata(text, work_mode=None):
     if work_mode not in ('remote','hybrid','on-site'):
         work_mode = 'hybrid' if re.search(r'\bhybrid\b',text,re.I) else 'on-site' if re.search(r'\bon.site\b',text,re.I) else 'unspecified'
     return {'duration':duration.group(0) if duration else None,'enrollment':enrollment[:260] if enrollment else None,'work_mode':work_mode}
+
+def explicitly_admits_enrolled_students(text):
+    return bool(re.search(
+        r'\b(?:currently pursuing|enrolled in|currently enrolled|current(?:ly)?(?: full-time)? students?|'
+        r'immatrikuliert\w*|eingeschrieben\w*|du studierst|'
+        r'du absolvierst (?:aktuell |derzeit )?ein studium)\b',
+        plain(text), re.I))
+
+
+def also_open_to_recent_graduates(text):
+    """Require an explicit alternative to current study in the same statement."""
+    patterns = (
+        r'(?:currently pursuing|enrolled in)\b[^.!?]{0,100}\bor\s+recently (?:completed|graduated)',
+        r'\b(?:recent graduates?|recent graduate)\s+or\s+(?:an?\s+)?students?\b',
+        r'\bdu studierst\b[^.!?]{0,160}\boder hast dein studium bereits\b[^.!?]{0,55}\babgeschlossen\b',
+    )
+    return any(re.search(pattern, plain(text), re.I) for pattern in patterns)
+
 
 def stable_id(source_id, external_id):
     return hashlib.sha256((source_id+':'+str(external_id)).encode()).hexdigest()[:20]

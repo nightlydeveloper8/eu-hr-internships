@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — metodo Personio e nove fonti con hold
+
+[Verifica di staging e costi](personio-static-applications-2026-11-22.md). Su `main@f606443`, otto candidature Personio con feed e modulo stesso ID e una Recruitee v2. Mercedes-Benz.io, ten23 health e Reformer Club indicano anche l’ammissione di neolaureati. Watson Farley & Williams conserva l’ID EURES; Studyflix resta a un annuncio. Nove fonti predisposte disabilitate e con hold. 38 GET, 4.210.328 byte, 20,734 secondi-fonte nel ciclo conclusivo. Simulazione 913 → 921 ID, zero persi, 407 → 415 stage verificati, 36 → 45 diretti, 365 lead invariati. Nessuna raccolta o attivazione di produzione. Prossimo passo: revisione della PR e, prima di un eventuale rollout, termini dei singoli datori e prova fresca.
+
 ## 21 novembre 2026 — revisione annunci Recruitee
 
 [Risultati, requisiti e costi](recruitee-hr-internships-2026-11-21.md). Tre fonti NL con candidatura diretta v2 (Aquablu, Zero Motorcycles, Youvia), predisposte disabilitate e con hold. Finalizzazione temporanea 907 → 910 ID, 0 persi. Mercedes-Benz.io è un caso limite con modulo verificato e ammissione di neolaureati. Prossimo passo: revisione, decisione sul caso limite e prova fresca prima di ogni eventuale attivazione. Base `2c937f7`. Verificati 531 test Python 3.12, 35 test Node, build, catalogo e provisioning idempotente. 1.923 collector attivi prima e dopo.
