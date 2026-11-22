@@ -13,6 +13,7 @@ from urllib.parse import urlsplit
 from .pipeline import ROOT,read,write,now,process_source,finalize,deduplicate
 from .classify import COUNTRIES,canonical_url
 from .runtime import BudgetClient,PageCache
+from . import cadence
 LOG=logging.getLogger(__name__)
 MAX_SHARD_AGE=timedelta(hours=24)
 EURES_RECHECK_AGE=timedelta(hours=24)
@@ -86,17 +87,24 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')]
     if source_ids and set(source_ids)-{s['id'] for s in enabled}:raise ValueError('Unknown or disabled source IDs: '+str(sorted(set(source_ids)-{s['id'] for s in enabled})))
     selected=[s for s in enabled if shard_for(s['id'],shards)==shard and (not source_ids or s['id'] in source_ids)]
+    stamp=now()
+    catalog=read(ROOT/'data/catalog.json',{})
+    coverage=read(ROOT/'data/coverage.json',{})
+    cadence_base=None
+    if cadence.enabled() and not source_ids:
+        cadence_base=fingerprint([catalog,coverage])
+        selected=cadence.select(selected,catalog,coverage,collection_time(stamp))
     from .employer_resolution import reviewed_source, validate_reviews
     selected_ids={s['id'] for s in selected}
     identity_reviews=[r for r in read(ROOT/'data/employer-identity-reviews.json',[])
                       if r.get('source_id') in selected_ids]
     validate_reviews(identity_reviews,selected)
-    counts={r['id']:r.get('collected',0) for r in read(ROOT/'data/coverage.json',{}).get('sources',[])}
+    counts={r['id']:r.get('collected',0) for r in coverage.get('sources',[])}
     known={}
     known_titles={}
     eures_rechecks=[]
-    stamp=now();cutoff=collection_time(stamp)-EURES_RECHECK_AGE
-    for job in read(ROOT/'data/catalog.json',{}).get('jobs',[]):
+    cutoff=collection_time(stamp)-EURES_RECHECK_AGE
+    for job in catalog.get('jobs',[]):
         if job.get('status')!='closed':
             known.setdefault(job['source_id'],[]).append(job['url'])
             known_titles.setdefault(job['source_id'],{})[job['url']]=job['title']
@@ -144,9 +152,11 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
             LOG.info('Shard %s: %s/%s employers; %s %s; %s HR matches',shard,len(parts),len(selected),source['employer'],part['report']['status'],len(part['jobs']))
             # A killed runner leaves a usable diagnostic checkpoint, never a partial catalog.
             payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=sorted(s['id'] for s in selected),parts=parts,complete=len(parts)==len(selected))
+            if cadence_base is not None:payload['cadence_base']=cadence_base
             write(output or ROOT/'.staging/results'/('shard-'+str(shard)+'.json'),payload)
     if not selected:
         payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=[],parts=[],complete=True)
+        if cadence_base is not None:payload['cadence_base']=cadence_base
         write(output or ROOT/'.staging/results'/('shard-'+str(shard)+'.json'),payload)
     return payload
 
@@ -169,6 +179,11 @@ def merge(inputs,shards=8,output=ROOT/'data',run_id=None):
     if shards<1:raise ValueError('Invalid shard count')
     run_id=collection_run_id(shards,run_id);clock=collection_time(now());finished_times=[]
     companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')];expected={s['id'] for s in enabled};seen=set();parts=[];payloads=[]
+    prior=read(output/'catalog.json',{'jobs':[]})
+    prior_report=read(output/'coverage.json',{})
+    use_cadence=cadence.enabled()
+    cadence_base=fingerprint([prior,prior_report]) if use_cadence else None
+    previous_reports={report['id']:report for report in prior_report.get('sources',[])}
     for i in range(shards):
         files=list(Path(inputs).rglob('shard-'+str(i)+'.json'))
         if len(files)!=1:raise ValueError('Expected exactly one result for shard '+str(i))
@@ -176,13 +191,39 @@ def merge(inputs,shards=8,output=ROOT/'data',run_id=None):
         if p.get('run_id')!=run_id:raise ValueError('Shard belongs to another collection run; previous catalog retained')
         finished_times.append(validate_shard_times(p,clock))
         if p.get('shard')!=i or p.get('shards')!=shards or not p.get('complete') or p.get('registry_fingerprint')!=fingerprint(enabled):raise ValueError('Incomplete/stale shard '+str(i)+'; previous catalog retained')
-        assigned={s for s in expected if shard_for(s,shards)==i}
+        if p.get('cadence_base')!=cadence_base:
+            raise ValueError('Cadence configuration or publication base changed')
+        assigned_sources=[s for s in enabled if shard_for(s['id'],shards)==i]
+        if use_cadence:
+            assigned_sources=cadence.select(assigned_sources,prior,prior_report,
+                                            collection_time(p['started_at']))
+        assigned={s['id'] for s in assigned_sources}
         ids=[part['report']['id'] for part in p['parts']]
         if set(ids)!=assigned or len(ids)!=len(set(ids)) or set(ids)&seen:raise ValueError('Missing, duplicate or unexpected employer results in shard '+str(i))
         seen.update(ids);parts.extend(p['parts'])
-    if seen!=expected:raise ValueError('Every enabled employer must be attempted before publishing')
+    if not use_cadence and seen!=expected:raise ValueError('Every enabled employer must be attempted before publishing')
+    if use_cadence:
+        catalog_hr={}
+        for job in prior.get('jobs',[]):
+            last_seen=cadence.timestamp(job.get('last_seen_at'))
+            if job.get('internship_type')=='internship' and last_seen:
+                sid=job['source_id']
+                catalog_hr[sid]=max(last_seen,catalog_hr.get(sid,last_seen))
+        for part in parts:
+            report=part['report']
+            old=previous_reports.get(report['id'],{})
+            # Legacy positive counts include other student roles. Keep those
+            # sources daily conservatively while strict history accrues.
+            previous=old.get('cadence',{})
+            if not previous and old.get('matching') and cadence.timestamp(old.get('checked_at')):
+                previous={'last_hr':old['checked_at']}
+            recent=catalog_hr.get(report['id'])
+            if recent and (not previous.get('last_hr') or recent>cadence.timestamp(previous['last_hr'])):
+                previous=dict(previous,last_hr=recent.isoformat())
+            report['cadence']=cadence.observe(previous,report,sum(
+                job.get('internship_type')=='internship' for job in part['jobs']))
     stamp=max(finished_times).isoformat()
-    result,coverage=finalize(sources,enabled,read(output/'catalog.json',{'jobs':[]}),read(output/'coverage.json',{}),parts,stamp,output)
+    result,coverage=finalize(sources,[s for s in enabled if s['id'] in seen],prior,prior_report,parts,stamp,output)
     employers=employer_report(companies,sources,parts,stamp,result['jobs'])
     write(output/'employer-collection.json',employers)
     LOG.info('All-employer collection: %s',employers['summary']);return result,coverage,employers

@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — rendimento e cadenza delle fonti
+[Rapporto sui 14 cicli e replay](rendimento-fonti-2026-11.md), base `d69c664`. Politica opt-in disattivata.
+Replay con storico: 478.505 → 460.687 richieste, −361,77 minuti-fonte, 0 stage aperti persi o ritardati nella finestra.
+Produzione: 926 → 926 ID, 422 → 422 stage aperti, 1.937 → 1.937 fonti attive. Prove live: 0 GET / 0 byte / 0 s-fonte.
+Prossimo passo: revisione della cadenza e delle 14 proposte di disattivazione prima di un'eventuale decisione sull'opt-in.
+
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
 [#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.
