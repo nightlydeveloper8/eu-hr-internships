@@ -10,11 +10,7 @@ Python 3.12: 531 test; Node: 35; classificazione, build, validazione e provision
 
 ## 21 novembre 2026 — revisione annunci Personio
 
-[Risultati, requisiti e costi](personio-hr-internships-2026-11-21.md). Venti annunci ricontrollati; cinque moduli same-ID con submit inizialmente e ancora disabilitato in Playwright. Il robots del CDN impedisce la prova di idratazione completa. Nessuna fonte preparata o modifica a policy v2. Prossimo passo: decisione sulla prova accettabile per distinguere validazione client e blocco del modulo.
-
-## 21 novembre 2026 — revisione annunci Personio
-
-[Risultati, requisiti e costi](personio-hr-internships-2026-11-21.md). Venti annunci ricontrollati; cinque moduli same-ID con submit inizialmente e ancora disabilitato in Playwright. Il robots del CDN impedisce la prova di idratazione completa. Nessuna fonte preparata o modifica a policy v2. Prossimo passo: decisione sulla prova accettabile per distinguere validazione client e blocco del modulo.
+[Risultati, requisiti e costi](personio-hr-internships-2026-11-21.md). Venti annunci ricontrollati; cinque moduli same-ID con submit inizialmente e ancora disabilitato in Playwright. Il robots del CDN impedisce la prova di idratazione completa. Nessuna fonte preparata o modifica a policy v2. Prossimo passo: decisione sulla prova accettabile per distinguere validazione client e blocco del modulo. Base `2c937f7`. [PR #112](https://github.com/nightlydeveloper8/eu-hr-internships/pull/112). Verificati 531 test Python 3.12, 35 test Node, build, catalogo e provisioning idempotente. 1.923 collector attivi prima e dopo.
 
 ## 21 novembre 2026 — sette fonti ATS, staging senza attivazione
 
