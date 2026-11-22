@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
+
+[#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.
+
 ## 22 novembre 2026 — metodo Personio e nove fonti con hold
 
 [Verifica di staging e costi](personio-static-applications-2026-11-22.md). Su `main@f606443`, otto candidature Personio con feed e modulo stesso ID e una Recruitee v2. Mercedes-Benz.io, ten23 health e Reformer Club indicano anche l’ammissione di neolaureati. Watson Farley & Williams conserva l’ID EURES; Studyflix resta a un annuncio. Nove fonti predisposte disabilitate e con hold. 38 GET, 4.210.328 byte, 20,734 secondi-fonte nel ciclo conclusivo. Simulazione 913 → 921 ID, zero persi, 407 → 415 stage verificati, 36 → 45 diretti, 365 lead invariati. Nessuna raccolta o attivazione di produzione. Prossimo passo: revisione della PR e, prima di un eventuale rollout, termini dei singoli datori e prova fresca.
