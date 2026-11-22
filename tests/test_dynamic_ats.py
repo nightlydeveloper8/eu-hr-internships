@@ -217,15 +217,17 @@ class ReplayTests(unittest.TestCase):
 
 class BrowserSafetyTests(unittest.TestCase):
     """Exercise the real renderer's routing/click code with a fake transport."""
-    def render(self,requests,disallow=None,toggle=False,handler="toggleForm('hident2')",response_status=200,headers=None):
+    def render(self,requests,disallow=None,toggle=False,handler="toggleForm('hident2')",response_status=200,headers=None,universal=False,response_headers=None):
         import sys
         from types import SimpleNamespace
         from unittest.mock import Mock,MagicMock
         from collector.rendering import render_pages
         url='https://approved.org/vacatures/123'
         client=BudgetClient(seconds=90,max_requests=100,delay=0)
+        if universal:client.universal_host_scope=True
         client.permitted=Mock(side_effect=lambda target:target!=disallow)
         page=MagicMock();page.url=url;page.content.return_value='<h1>Stage HR</h1>'
+        page.get_by_role.return_value.or_.return_value.count.return_value=0
         locator=MagicMock();locator.inner_text.return_value='Stage HR';page.locator.return_value=locator
         control=MagicMock();control.inner_text.return_value='Solliciteer direct'
         control.get_attribute.return_value=handler
@@ -241,7 +243,7 @@ class BrowserSafetyTests(unittest.TestCase):
             for method,kind,target,nav in requests:
                 req=SimpleNamespace(method=method,resource_type=kind,url=target,is_navigation_request=lambda nav=nav:nav,headers=headers or {})
                 route=Mock(request=req)
-                route.fetch.return_value=Mock(status=response_status,body=lambda:b'public resource')
+                route.fetch.return_value=Mock(status=response_status,headers=response_headers or {},body=lambda:b'public resource')
                 route_handler(route);routes.append(route)
             return SimpleNamespace(status=200)
         page.goto.side_effect=goto
@@ -250,7 +252,7 @@ class BrowserSafetyTests(unittest.TestCase):
         with patch.dict(sys.modules,modules):
             try:
                 result=render_pages(url,client,lambda target:target.startswith('https://approved.org/'),
-                                    application_read=True,application_toggle=toggle,metrics=metrics)
+                                    application_read=not universal,application_toggle=toggle,metrics=metrics)
                 return result,client,routes,context,page,control,metrics
             except Exception:
                 self.routes=routes;self.metrics=metrics;self.control=control;raise
@@ -267,6 +269,19 @@ class BrowserSafetyTests(unittest.TestCase):
         for route in routes:self.assertEqual(route.fetch.call_args.kwargs['max_redirects'],0)
         control.click.assert_called_once();page.get_by_role.assert_not_called()
         context.route_web_socket.assert_called_once();context.close.assert_called_once()
+
+    def test_universal_renderer_denies_ats_scripts_and_redirects(self):
+        target='https://jobs.ashbyhq.com/example'
+        requests=[('GET','script',target,False),('GET','script','https://approved.org/app.js',False)]
+        _,client,routes,context,_,_,_=self.render(
+            requests,universal=True,response_status=302,response_headers={'location':target})
+        routes[0].fetch.assert_not_called()
+        routes[0].abort.assert_called_once()
+        self.assertEqual(routes[1].fetch.call_args.kwargs['max_redirects'],0)
+        routes[1].abort.assert_called_once()
+        routes[1].fulfill.assert_not_called()
+        client.permitted.assert_any_call('https://approved.org/app.js')
+        context.route_web_socket.assert_called_once()
 
     def test_post_including_search_and_application_never_sent(self):
         for path in ('/jobs/search','/application/submit'):

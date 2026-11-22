@@ -13,6 +13,7 @@ from urllib.parse import urlsplit,urljoin,parse_qs
 from .classify import canonical_url,plain,fold,classify_role,country_codes
 from .employer_pages import PageParser,walk_json
 from .runtime import CollectionBudgetExceeded,PageCache
+from .universal_hosts import excluded_host, excluded_url, universal_host_scope
 from .ownership import employer_matches,owned_record
 from .employer_resolution import is_reviewed_publisher
 
@@ -156,12 +157,15 @@ class Crawler:
         self.state['ownership_policy_version']=1
         self.allowed=set(source['allowed_hosts'])
         if source.get('ownership_scope')!='reviewed-hosts':self.allowed.update(self.state.get('allowed_hosts',[]))
+        self.allowed={host for host in self.allowed if not excluded_host(host)}
+        if excluded_url(self.state.get('preferred_career_url')):
+            self.state.pop('preferred_career_url',None)
         self.records={};self.errors=[];self.pages=0;self.rendered=0;self.inventory=False;self.empty=False;self.incomplete=False;self.feeds=set();self.completed_feeds=set();self.urls_seen=set();self.job_candidates=set();self.used_methods=set();self.sitemap_origins=set();self.sitemaps_read=0;self.closed_urls=set();self.custom_recruitee=set();self.structured_identity_mismatches=0
     def allow(self,url,observed=False):
         value=safe_url(url)
         if not value:return False
         host=urlsplit(value).hostname
-        if host in VENDOR_HOSTS:return False
+        if excluded_host(host) or host in VENDOR_HOSTS:return False
         if self.source.get('ownership_scope')=='reviewed-hosts' and host not in self.source['allowed_hosts']:return False
         if host in self.allowed:return True
         if observed and provider_host(host):self.allowed.add(host);return True
@@ -170,18 +174,16 @@ class Crawler:
         if not r or not owned_record(r,self.source):return
         # URL was explicitly published in a trusted employer's structured data/feed.
         url=safe_url(r['url'])
-        if not url:return
+        if not url or excluded_url(url):return
         if self.source.get('ownership_scope')=='reviewed-hosts' and not self.allow(url):return
         self.allowed.add(urlsplit(url).hostname);r['source_id']=self.source['id'];self.records[url]=r
     def feed(self,url):
         """Only documented endpoints with identifiers observed in employer links."""
-        from .adapters import collect,enrich
+        from .adapters import collect
         p=urlsplit(url);host=p.hostname or '';path=[x for x in p.path.split('/') if x];adapter=None;board=None;feed=None
         if host in ('job-boards.greenhouse.io','boards.greenhouse.io','boards.eu.greenhouse.io') and path and path[0]!='embed':adapter='greenhouse';board=path[0]
         elif host in ('jobs.lever.co','jobs.eu.lever.co') and path:adapter='lever';board=path[0]
         elif re.fullmatch(r'[a-z0-9-]+\.jobs\.personio\.(?:de|com)',host):adapter='personio-xml';feed='https://'+host+'/xml'
-        elif host=='jobs.ashbyhq.com' and path:adapter='ashby';board=path[0]
-        elif host in ('careers.smartrecruiters.com','jobs.smartrecruiters.com') and path:adapter='smartrecruiters';board=path[0]
         elif host.endswith('.recruitee.com') and host not in ('www.recruitee.com','careers-analytics.recruitee.com'):adapter='recruitee';feed='https://'+host+'/api/offers/'
         elif host in self.custom_recruitee:adapter='recruitee';feed='https://'+host+'/api/offers/'
         if not adapter:return False
@@ -197,7 +199,6 @@ class Crawler:
         try:
             rows=collect(s,self.client)
             for r in rows:
-                if adapter=='smartrecruiters' and classify_role(r['title'],'',r.get('employment','')):r=enrich(r,s,self.client)
                 self.add_record(r)
             self.inventory=True;self.empty=not rows;self.completed_feeds.add(key);self.used_methods.add(adapter);return True
         except CollectionBudgetExceeded:raise
@@ -209,7 +210,7 @@ class Crawler:
             for record in cached.get('records',[]):record.pop('inventory_evidence',None)
             self.used_methods.add('cached-job-page');return cached
         body,_,final=self.client.request(url)
-        if not safe_url(final):raise ValueError('Unsafe final URL')
+        if not safe_url(final) or excluded_url(final):raise ValueError('Unsafe or excluded final URL')
         if self.source.get('ownership_scope')=='reviewed-hosts' and not self.allow(final):raise ValueError('Unreviewed career redirect host')
         # A declared employer redirect is public provenance for its final host.
         self.allowed.add(urlsplit(final).hostname);self.pages+=1
@@ -297,7 +298,7 @@ class Crawler:
             if posts or visible:self.inventory=True;self.used_methods.add('jobposting' if posts else 'visible-html')
             for href,label,rel in d.links:
                 target=safe_url(urljoin(d.url,href.strip()))
-                if not target:continue
+                if not target or excluded_url(target):continue
                 if CAREER.search(label) and self.source.get('ownership_scope')!='reviewed-hosts' and not re.search(r'facebook|linkedin|instagram|youtube|twitter|tiktok',urlsplit(target).hostname):self.allowed.add(urlsplit(target).hostname)
                 if not self.allow(target,observed=True):continue
                 label=plain(label)
@@ -364,4 +365,6 @@ class Crawler:
             stats.update(status='failed',error='Public source access blocked; no inventory established; no bypass attempted')
         return Inventory(self.records.values(),stats)
 
-def collect_universal(source,client):return Crawler(source,client).run()
+def collect_universal(source,client):
+    with universal_host_scope(client):
+        return Crawler(source,client).run()

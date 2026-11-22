@@ -1,5 +1,9 @@
 # Stato di ripresa — People Placement
 
+## 22 novembre 2026 — esclusione SmartRecruiters e Ashby
+
+[#116](https://github.com/nightlydeveloper8/eu-hr-internships/pull/116) integrata su autorizzazione. [Audit e proposta](esclusione-host-ats-universale-2026-11-22.md) su `main@dc72e6f`: 17 fonti esaminate, 809 richieste totali senza ripartizione per host, 31 blocchi robots visibili. Conservati i canali propri di Bosch, JDE Peet’s e Accor; proposta di hold per 14 fonti e blocco runtime universale su SmartRecruiters e Ashby. Zero ID persi nel replay offline. Recruitee JSON e Amazon Jobs in audit separato senza modifiche. Prossimo passo: review della PR e, dopo eventuale merge autorizzato, verifica della raccolta sui tre host propri e del catalogo servito.
+
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
 [#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.

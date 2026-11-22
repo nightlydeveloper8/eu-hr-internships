@@ -3527,16 +3527,10 @@
     "company_id": "avery-dennison",
     "employer": "Avery Dennison",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.smartrecruiters.com/AveryDennison/744000155814550-internship-hr-talent-acquisition-employer-branding",
-      "https://careers.smartrecruiters.com/AveryDennison"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/AveryDennison",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "BE",
       "DE",
@@ -3556,7 +3550,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-avz-group",
@@ -4759,13 +4754,10 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
-      "https://jobs.smartrecruiters.com/BoschGroup/744000155452020-hr-internship-administration-training-organization-",
       "https://www.bosch.com/careers"
     ],
     "career_url": "https://www.bosch.com/careers/",
     "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com",
       "www.bosch.com"
     ],
     "target_countries": [
@@ -5927,14 +5919,10 @@
     "company_id": "choco",
     "employer": "Choco",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.ashbyhq.com/choco"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://jobs.ashbyhq.com/choco",
-    "allowed_hosts": [
-      "jobs.ashbyhq.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "BE",
       "DE",
@@ -5947,7 +5935,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-chr-mayr-gmbh-co-kg",
@@ -7303,14 +7292,10 @@
     "company_id": "delta-electronics",
     "employer": "Delta Electronics",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://careers.smartrecruiters.com/DeltaElectronics"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/DeltaElectronics",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "DE",
       "NL",
@@ -7323,7 +7308,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-deutsche-pfandbriefbank-ag",
@@ -8232,14 +8218,10 @@
     "company_id": "emidat",
     "employer": "Emidat",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.ashbyhq.com/emidat"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://jobs.ashbyhq.com/emidat",
-    "allowed_hosts": [
-      "jobs.ashbyhq.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "DE"
     ],
@@ -8249,7 +8231,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-enerfinity-gmbh",
@@ -11919,13 +11902,11 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
-      "https://careers-nl.jdepeets.com/job-search/",
-      "https://careers.smartrecruiters.com/JACOBSDOUWEEGBERTS"
+      "https://careers-nl.jdepeets.com/job-search/"
     ],
-    "career_url": "https://careers.smartrecruiters.com/JACOBSDOUWEEGBERTS",
+    "career_url": "https://careers-nl.jdepeets.com/job-search/",
     "allowed_hosts": [
-      "careers-nl.jdepeets.com",
-      "careers.smartrecruiters.com"
+      "careers-nl.jdepeets.com"
     ],
     "target_countries": [
       "BE",
@@ -15304,14 +15285,10 @@
     "company_id": "payrails",
     "employer": "Payrails",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.ashbyhq.com/payrails"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://jobs.ashbyhq.com/payrails",
-    "allowed_hosts": [
-      "jobs.ashbyhq.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "DE"
     ],
@@ -15321,7 +15298,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-pelico",
@@ -16437,14 +16415,10 @@
     "company_id": "reedsy",
     "employer": "Reedsy",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.ashbyhq.com/reedsy"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://jobs.ashbyhq.com/reedsy",
-    "allowed_hosts": [
-      "jobs.ashbyhq.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "ES",
       "FR",
@@ -16458,7 +16432,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-rekeep-spa",
@@ -17648,14 +17623,10 @@
     "company_id": "scoreplay",
     "employer": "ScorePlay",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.ashbyhq.com/scoreplay"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://jobs.ashbyhq.com/scoreplay",
-    "allowed_hosts": [
-      "jobs.ashbyhq.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -17665,7 +17636,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-scs-azioninnova",
@@ -21419,14 +21391,10 @@
     "company_id": "zefir",
     "employer": "Zefir",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.ashbyhq.com/zefir"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://jobs.ashbyhq.com/zefir",
-    "allowed_hosts": [
-      "jobs.ashbyhq.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -21436,7 +21404,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-zeta-gmbh",
@@ -21592,16 +21561,10 @@
     "company_id": "smcp",
     "employer": "SMCP",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.smartrecruiters.com/SMCP/744000150973440--janvier-2027-stage-rh-charge-e-de-recrutement-h-f",
-      "https://careers.smartrecruiters.com/SMCP"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/SMCP",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -21611,23 +21574,18 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-altarea",
     "company_id": "altarea",
     "employer": "ALTAREA",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.smartrecruiters.com/altarea/744000149884227",
-      "https://careers.smartrecruiters.com/altarea"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/altarea",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -21637,23 +21595,18 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-salomon",
     "company_id": "salomon",
     "employer": "Salomon",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.smartrecruiters.com/Salomon/744000154123609-stage-assistant-e-rh-generaliste-m-f-x-",
-      "https://careers.smartrecruiters.com/Salomon"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/Salomon",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -21663,23 +21616,18 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-sia",
     "company_id": "sia",
     "employer": "Sia",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.smartrecruiters.com/sia/744000150702789-internship-junior-hr-assessment-consultant",
-      "https://careers.smartrecruiters.com/sia"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/sia",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -21689,23 +21637,18 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-interlogement-93",
     "company_id": "interlogement-93",
     "employer": "Interlogement 93",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.smartrecruiters.com/Interlogement93/744000152430750-stage-charge-e-de-mission-developpement-rh",
-      "https://careers.smartrecruiters.com/Interlogement93"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/Interlogement93",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -21715,7 +21658,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-accor",
@@ -21724,13 +21668,10 @@
     "adapter": "universal-employer",
     "enabled": true,
     "start_urls": [
-      "https://jobs.smartrecruiters.com/AccorCorpo/744000153563639-stage-charge-e-de-missions-ressources-humaines-division-luxury-lifestyle-orient-express-f-m-x-",
-      "https://careers.smartrecruiters.com/AccorCorpo"
+      "https://careers.accor.com/global/en"
     ],
-    "career_url": "https://careers.smartrecruiters.com/AccorCorpo",
+    "career_url": "https://careers.accor.com/global/en",
     "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com",
       "careers.accor.com"
     ],
     "target_countries": [
@@ -21742,7 +21683,6 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending",
     "host_reviews": [
       {
         "hosts": [
@@ -21758,16 +21698,10 @@
     "company_id": "devoteam",
     "employer": "Devoteam",
     "adapter": "universal-employer",
-    "enabled": true,
-    "start_urls": [
-      "https://jobs.smartrecruiters.com/Devoteam/744000156731782-stage-talent-acquisition-specialist-h-f-",
-      "https://careers.smartrecruiters.com/Devoteam"
-    ],
+    "enabled": false,
+    "start_urls": [],
     "career_url": "https://careers.smartrecruiters.com/Devoteam",
-    "allowed_hosts": [
-      "careers.smartrecruiters.com",
-      "jobs.smartrecruiters.com"
-    ],
+    "allowed_hosts": [],
     "target_countries": [
       "FR"
     ],
@@ -21777,7 +21711,8 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "held-excluded-universal-ats",
+    "collection_activation_hold": true
   },
   {
     "id": "auto-isero",

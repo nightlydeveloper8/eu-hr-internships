@@ -13,6 +13,7 @@ from urllib.parse import urlsplit
 from .pipeline import ROOT,read,write,now,process_source,finalize,deduplicate
 from .classify import COUNTRIES,canonical_url
 from .runtime import BudgetClient,PageCache
+from .universal_hosts import excluded_url
 LOG=logging.getLogger(__name__)
 MAX_SHARD_AGE=timedelta(hours=24)
 EURES_RECHECK_AGE=timedelta(hours=24)
@@ -63,11 +64,13 @@ def provision(companies,sources):
             continue
         active=[by_id[s] for s in company.get('source_ids',[]) if s in by_id and by_id[s].get('enabled')]
         if active:continue
-        starts=list(dict.fromkeys(canonical_url(u) for u in [company.get('career_url'),company.get('website_url')] if u))
-        if not starts:raise ValueError('Employer has no public starting URL: '+company['id'])
+        declared=[u for u in (company.get('career_url'),company.get('website_url')) if u]
+        if not declared:raise ValueError('Employer has no public starting URL: '+company['id'])
+        starts=list(dict.fromkeys(canonical_url(u) for u in declared if not excluded_url(u)))
+        if not starts:continue
         sid='auto-'+company['id']
         if sid in by_id:raise ValueError('Automatic source ID collision: '+sid)
-        source=dict(id=sid,company_id=company['id'],employer=company['name'],adapter='universal-employer',enabled=True,start_urls=starts,career_url=company.get('career_url') or starts[0],allowed_hosts=sorted({urlsplit(u).hostname for u in starts}),target_countries=company.get('target_countries',[]),max_pages=70,max_requests=110,collection_seconds=120,max_navigation_depth=3,max_render_pages=4,permission_basis='Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass',status='automatic-collection-pending')
+        source=dict(id=sid,company_id=company['id'],employer=company['name'],adapter='universal-employer',enabled=True,start_urls=starts,career_url=starts[0],allowed_hosts=sorted({urlsplit(u).hostname for u in starts}),target_countries=company.get('target_countries',[]),max_pages=70,max_requests=110,collection_seconds=120,max_navigation_depth=3,max_render_pages=4,permission_basis='Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass',status='automatic-collection-pending')
         sources.append(source);by_id[sid]=source;company.setdefault('source_ids',[]).append(sid)
     return companies,sources
 
@@ -124,7 +127,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
         started=time.monotonic();client=BudgetClient(seconds=seconds or source.get('collection_seconds',180 if source['adapter'] in ('employer-sitemap','employer-index') else 120),max_requests=source.get('max_requests',180))
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
         if part['report']['status']=='failed' and source['adapter']!='universal-employer' and source.get('source_kind')!='public-employment-service' and client.remaining()>15:
-            c=company_for.get(source['id'],{});starts=list(dict.fromkeys(u for u in [source.get('career_url'),c.get('website_url')] if u))
+            c=company_for.get(source['id'],{});starts=list(dict.fromkeys(u for u in [source.get('career_url'),c.get('website_url')] if u and not excluded_url(u)))
             if starts:
                 fallback=dict(source,adapter='universal-employer',start_urls=starts,max_pages=60,max_navigation_depth=3,max_render_pages=4,allowed_hosts=sorted(set(source['allowed_hosts'])|{urlsplit(u).hostname for u in starts}))
                 primary_error=part['report'].get('error');part=process_source(fallback,client,stamp,verify=True,cache=PageCache(source['id']))

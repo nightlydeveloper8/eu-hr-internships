@@ -9,6 +9,8 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.robotparser import RobotFileParser
 from .classify import plain
 
+from .universal_hosts import excluded_url
+
 LOG = logging.getLogger(__name__)
 AGENT = 'PeoplePlacementBot/1.0 (public HR internship discovery; source: README.md)'
 
@@ -17,6 +19,8 @@ class CheckedRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         from .classify import canonical_url
         canonical_url(newurl)
+        if getattr(self.client, 'universal_host_scope', False) and excluded_url(newurl):
+            raise ValueError('Redirect to excluded universal ATS host')
         # Optional stricter per-client redirect scope. This also applies to
         # robots.txt fetches (robots=False), before any redirect is followed.
         scope = getattr(self.client, "redirect_scope_allowed", None)
@@ -37,6 +41,8 @@ class Client:
     def pause(self,seconds):time.sleep(seconds)
 
     def request(self, url, method='GET', robots=True, timeout=35, attempts=3, accept=None, body=None, content_type=None):
+        if getattr(self, 'universal_host_scope', False) and excluded_url(url):
+            raise ValueError('Excluded universal ATS host')
         host = urlsplit(url).netloc
         # Some career CMSs return an API fragment whenever JSON appears in
         # Accept, even at a lower weight. Document requests must prefer HTML;

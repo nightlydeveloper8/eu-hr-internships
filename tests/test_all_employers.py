@@ -52,8 +52,8 @@ class AllEmployerTests(unittest.TestCase):
   self.assertEqual(len(rows),1);self.assertEqual(rows[0]['countries'],['NL']);self.assertIn('work.example.net',rows.stats['allowed_hosts'])
   self.assertFalse(rows.stats['complete'])
  def test_ats_script_resource_not_crawled_and_public_posting_remains_discoverable(self):
-  asset='https://js-www.smartrecruiters.com/career-site-ui/static/js/libs.1ca70.js'
-  vacancy='https://jobs.smartrecruiters.com/Example/744000155193669-intern-human-resources'
+  asset='https://boards-api.greenhouse.io/career-site-ui/static/js/libs.1ca70.js'
+  vacancy='https://job-boards.greenhouse.io/example/jobs/123'
   html='<main><h1>Example careers</h1><a href="'+vacancy+'">HR internship</a></main><script src="'+asset+'"></script>'
   pages={'https://example.org':html,vacancy:'<script type="application/ld+json">'+json.dumps(posting(hiringOrganization={'name':'Example'}))+'</script>'}
   c=FakeClient(pages)
@@ -66,7 +66,7 @@ class AllEmployerTests(unittest.TestCase):
   self.assertEqual(result[0]['title'],'HR Intern')
   self.assertFalse(result.stats['complete'])
  def test_stale_ats_script_checkpoint_is_not_retried(self):
-  asset='https://js-www.smartrecruiters.com/career-site-ui/static/js/libs.1ca70.js'
+  asset='https://boards-api.greenhouse.io/career-site-ui/static/js/libs.1ca70.js'
   c=FakeClient({'https://example.org':'<main><h1>Company</h1></main>'})
   with tempfile.TemporaryDirectory() as d,patch.dict('os.environ',{'COLLECTOR_CACHE_DIR':d}):
    PageCache('auto-example').save_state({'allowed_hosts':['js-www.smartrecruiters.com'], 'pending':[{'url':asset,'job':False,'depth':1}]})

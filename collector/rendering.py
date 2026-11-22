@@ -4,6 +4,7 @@ from urllib.parse import urlsplit,parse_qs
 from .adapters import AGENT
 from .classify import canonical_url
 from .runtime import CollectionBudgetExceeded
+from .universal_hosts import excluded_url
 _BROWSER_SLOTS=threading.BoundedSemaphore(2)
 MORE=re.compile(r'^(?:load more|show more|more jobs|next|next page|see more|carica altro|mostra altr[ei]|successiv[ao]|volgende|meer vacatures|mehr (?:anzeigen|stellen)|weiter|suivant|voir plus|cargar más|siguiente|próxim[ao]|pokaż więcej|następna|visa fler|nästa)(?:\s.*)?$',re.I)
 BLOCK=re.compile(r'captcha|verify (?:you are|that you are) human|access denied|just a moment|security verification',re.I)
@@ -48,6 +49,8 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
     """A fresh browser has no user cookies or credentials; no applications submitted."""
     if application_read and (cegid_search or unigarant_search):
         raise ValueError('Application reads cannot enable inventory POSTs')
+    scoped_universal = getattr(client, 'universal_host_scope', False)
+    if scoped_universal and excluded_url(url):raise ValueError('Excluded universal ATS host')
     metrics = metrics if metrics is not None else {}
     metrics.update(browser_requests=0, blocked_requests=0,browser_bytes=0,suppressed_resources=0)
     canonical_url(url)
@@ -61,7 +64,7 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
             browser=p.chromium.launch(headless=True,args=['--disable-dev-shm-usage'],
                 **({'timeout':min(20000,max(50,int(client.remaining()*1000)))} if application_read else {}))
             context=browser.new_context(user_agent='Mozilla/5.0 (compatible; '+AGENT+')',ignore_https_errors=False,
-                **({'service_workers':'block'} if application_read else {}))
+                **({'service_workers':'block'} if application_read or scoped_universal else {}))
             page=context.new_page();page.set_default_timeout(4000)
             denied=[]
             def strict_route(route):
@@ -76,6 +79,7 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
                     return route.abort()
                 try:
                     canonical_url(req.url)
+                    if scoped_universal and excluded_url(req.url):raise ValueError('Excluded universal ATS host')
                     if 'authorization' in req.headers:raise ValueError('authentication-excluded')
                     if not allowed(req.url):raise ValueError('unapproved-host-or-navigation: '+urlsplit(req.url).netloc+urlsplit(req.url).path)
                     if req.is_navigation_request() and canonical_url(req.url)!=canonical_url(url):raise ValueError('application-navigation-or-redirect')
@@ -110,23 +114,39 @@ def render_pages(url,client,allowed,limit=5,*,cegid_search=False,cegid_responses
 
             def route_request(route):
                 req=route.request;host=urlsplit(req.url).hostname or ''
+                if scoped_universal and excluded_url(req.url):return route.abort()
                 read_search=(req.method=='POST' and req.resource_type in ('xhr','fetch') and bool(re.search(r'/(?:jobs|search|positions|postings)(?:[/?]|$)',urlsplit(req.url).path,re.I)) and not re.search(r'apply|candidate|login|submit|mutation',req.url+' '+(req.post_data or ''),re.I))
                 if cegid_search and req.method=='POST' and req.resource_type in ('xhr','fetch'):
                     read_search=read_search or cegid_inventory_search(req.url,req.post_data,url)
                 if unigarant_search and req.method=='POST' and req.resource_type in ('xhr','fetch'):
                     read_search=read_search or unigarant_inventory_search(req.url,req.post_data,url)
                 if (req.method not in ('GET','HEAD') and not read_search) or req.resource_type in ('image','font','media') or re.search(r'google-analytics|googletagmanager|doubleclick|facebook|linkedin',host):return route.abort()
-                if req.is_navigation_request() or req.resource_type in ('xhr','fetch'):
+                if scoped_universal or req.is_navigation_request() or req.resource_type in ('xhr','fetch'):
                     try:
                         client.check()
                         if req.is_navigation_request() and not allowed(req.url):return route.abort()
                         if not client.permitted(req.url):return route.abort()
                         client.requests+=1
                     except Exception:return route.abort()
+                if scoped_universal:
+                    # Chromium can follow redirects without invoking a route again.
+                    # Fulfil only the inspected response and block redirect hops.
+                    try:
+                        response=route.fetch(max_redirects=0,max_retries=0,
+                                             timeout=max(50,int(client.remaining()*1000)))
+                        try:
+                            if 300<=response.status<400 and response.headers.get('location'):
+                                return route.abort()
+                            return route.fulfill(response=response)
+                        finally:
+                            response.dispose()
+                    except Exception:
+                        return route.abort()
                 return route.continue_()
             context.route('**/*',strict_route if application_read else route_request)
-            if application_read:
+            if application_read or scoped_universal:
                 context.route_web_socket('**/*',lambda socket: socket.close())
+            if application_read:
                 page.on('response',lambda response: denied.append('HTTP '+str(response.status)) if response.status>=400 else None)
             try:
                 client.check()

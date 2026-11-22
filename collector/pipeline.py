@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
 from .intake import extract_intake
+from .universal_hosts import excluded_host, excluded_url, universal_host_scope
 from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata, also_open_to_recent_graduates, explicitly_admits_enrolled_students
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -41,6 +42,8 @@ def reconcile(previous,current,successful,stamp):
     seen={j['id'] for j in current}
     for key,job in merged.items():
         if key in seen or job['source_id'] not in successful or job.get('status')=='closed': continue
+        if job.get('source_type')=='universal-employer' and excluded_url(job['url']):
+            continue
         if job.get('last_missing_run')==stamp[:10]: continue
         job['missing_count']=job.get('missing_count',0)+1
         job['missing_since']=job.get('missing_since',stamp)
@@ -218,6 +221,14 @@ def record_countries(record):
     return country_codes(record['location'],record.get('country'))
 
 def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
+    if source['adapter']=='universal-employer':
+        with universal_host_scope(client):
+            source=dict(source,allowed_hosts=[h for h in source['allowed_hosts'] if not excluded_host(h)])
+            return _process_source(source,client,stamp,prev_count,verify,cache)
+    return _process_source(source,client,stamp,prev_count,verify,cache)
+
+
+def _process_source(source,client,stamp,prev_count,verify,cache):
     current=[];successful=set();closure_eligible=set();partial_sources=set()
     LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
     report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
@@ -237,6 +248,9 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
         for record in records:
             if source['adapter']=='universal-employer':
+                if excluded_url(record['url']):
+                    filter_reasons['excluded-universal-ats-host']+=1
+                    continue
                 from .ownership import owned_record
                 if not owned_record(record,ownership_source):
                     filter_reasons['ownership-rejected']+=1
@@ -280,6 +294,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     or not explicitly_admits_enrolled_students(record['text'])):
                 filter_reasons['explicitly-enrolled-student-internship-required']+=1
                 continue
+            if source['adapter']=='universal-employer' and excluded_url(record['apply_url']):
+                record=dict(record,apply_url=record['url'])
             url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
             verified=None; link_status='not-checked'; application=None; closed=False
             observation={}
