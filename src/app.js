@@ -1,4 +1,4 @@
-import { START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
+import { START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
 import { drawMap, describeCountry, describeLanguages, countryFacts } from './map.js';
 
 const $ = id => document.getElementById(id);
@@ -350,11 +350,14 @@ function heroStats(totals, countries) {
 
 async function init(){try {
   option($('start-window'), START_WINDOW, STUDENT_PLACEMENT.startLabel);
-  option($('duration'), LONG_ENOUGH, STUDENT_PLACEMENT.durationLabel);
   const responses=await Promise.all(['catalog','coverage','sources','geography'].map(name=>fetch(`./data/${name}.json`,{cache:'no-cache'})));
   if(responses.some(r=>!r.ok))throw new Error('Data could not be loaded');
   [catalog,coverage,registry,geography]=await Promise.all(responses.map(r=>r.json()));
   if(catalog.schema_version!==1||!Array.isArray(catalog.jobs))throw new Error('Unsupported dataset');
+  if (showDurationFilter(catalog.jobs)) {
+    option($('duration'), LONG_ENOUGH, STUDENT_PLACEMENT.durationLabel);
+    $('duration-field').hidden = false;
+  }
   for(const [code,name] of Object.entries(catalog.countries).sort((a,b)=>a[1].localeCompare(b[1])))option($('country'),code,name);
   for(const [code,name] of Object.entries(catalog.categories))option($('category'),code,name);
   for(const [code,name] of Object.entries(catalog.languages).sort((a,b)=>a[1].localeCompare(b[1]))){option($('workplace-language'),code,name);option($('ad-language'),code,name);}

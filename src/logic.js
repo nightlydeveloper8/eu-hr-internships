@@ -41,6 +41,7 @@ export const STUDENT_PLACEMENT = Object.freeze({
   lastStart: '2027-03-13',
   earliestEnd: '2027-05-31',
   minimumWeeks: 16,
+  minimumVerifiedDurations: 10,
   startLabel: 'Starts Jan – mid-Mar 2027',
   durationLabel: 'Long enough (≈640 h)',
 });
@@ -92,12 +93,27 @@ export function applicationDeadline(job) {
   return null;
 }
 
+function explicitDuration(job) {
+  return /^(\d+)(?:\s*(?:[-–]|of|or)\s*(\d+))?\s*(weeks?|weken|wochen|semaines?|months?|maanden?|monate?|mois|mesi|meses)(?:\s*\(?\s*(full[- ]time|voltijd|voltijds|vollzeit|temps plein|part[- ]time|deeltijd)\s*\)?)?$/i.exec(job.duration?.trim() || '');
+}
+
+export function showDurationFilter(jobs, clock = Date.now()) {
+  let count = 0;
+  for (const job of jobs) {
+    if (job.internship_type !== 'internship' || unreviewedExternal(job) || !verifiedJob(job, clock)
+        || !explicitDuration(job)) continue;
+    count++;
+    if (count >= STUDENT_PLACEMENT.minimumVerifiedDurations) return true;
+  }
+  return false;
+}
+
 export function durationCompatibility(job) {
   const {earliestEnd, minimumWeeks} = STUDENT_PLACEMENT;
   const end = job.intake?.provenance === 'cache' ? null : isoDate(job.intake?.published_end);
   if (end && end >= earliestEnd) return 'compatible';
 
-  const match = /^(\d+)(?:\s*(?:[-–]|of|or)\s*(\d+))?\s*(weeks?|weken|wochen|semaines?|months?|maanden?|monate?|mois|mesi|meses)(?:\s*\(?\s*(full[- ]time|voltijd|voltijds|vollzeit|temps plein|part[- ]time|deeltijd)\s*\)?)?$/i.exec(job.duration?.trim() || '');
+  const match = explicitDuration(job);
   if (!match) return 'unknown';
   const [, first, last = first, unit, schedule] = match;
   const weeks = /^(?:week|weken|wochen|semaine)/i.test(unit);

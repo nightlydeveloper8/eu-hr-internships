@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {catalogueAdLanguages, START_WINDOW, LONG_ENOUGH, readFilterParams, startCompatibility, durationCompatibility, publishedStart, applicationDeadline} from '../src/logic.js';
+import {catalogueAdLanguages, START_WINDOW, LONG_ENOUGH, readFilterParams, startCompatibility, durationCompatibility, showDurationFilter, STUDENT_PLACEMENT, publishedStart, applicationDeadline} from '../src/logic.js';
 import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,applicationConfirmed,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
@@ -268,6 +268,22 @@ test('start window applies inclusive boundaries without assigning a day to parti
   }
   assert.equal(startCompatibility({...base, intake:{published_start:'2027-02', provenance:'cache'}}), 'unknown');
   assert.equal(publishedStart(base), null);
+});
+
+test('duration filter requires ten current verified internships with explicit durations', () => {
+  const clock = Date.parse('2026-11-22T12:00:00Z');
+  const internship = {...base, last_verified_at:'2026-11-22T08:00:00Z', duration:'20 weeks'};
+  const jobs = Array.from({length: 9}, (_, i) => ({...internship, id:String(i)}));
+  assert.equal(STUDENT_PLACEMENT.minimumVerifiedDurations, 10);
+  assert.equal(showDurationFilter([], clock), false);
+  assert.equal(showDurationFilter([...jobs,
+    {...internship, id:'old', last_verified_at:'2026-11-19T08:00:00Z'},
+    {...internship, id:'lead', status:'unverified'},
+    {...internship, id:'trainee', internship_type:'traineeship'},
+    {...internship, id:'end', duration:null, intake:{published_end:'2027-05-31'}},
+    {...internship, id:'unknown', duration:'Negotiable'},
+  ], clock), false);
+  assert.equal(showDurationFilter([...jobs, {...internship, id:'tenth'}], clock), true);
 });
 
 test('duration uses explicit time, schedule and placement end evidence', () => {
