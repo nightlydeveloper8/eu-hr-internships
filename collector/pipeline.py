@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
 from .intake import extract_intake
-from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata, also_open_to_recent_graduates, explicitly_admits_enrolled_students
+from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata, also_open_to_recent_graduates, explicitly_admits_enrolled_students, italian_student_eligibility
 
 ROOT=Path(__file__).resolve().parents[1]
 LOG=logging.getLogger(__name__)
@@ -234,12 +234,6 @@ def agency_sitemap_due(records,state,known,stamp):
             ordered.append((0 if modified or not last_seen else 1,last_seen or '',url,record))
     return [record for _,_,_,record in sorted(ordered,key=lambda entry:entry[:3])]
 
-def italian_student_placement(record):
-    evidence=record['title']+' '+record['text']
-    return explicitly_admits_enrolled_students(evidence) or bool(
-        re.search(r'\b(?:curriculare|curricolare|laureand[oaie]|student[ei] universitari[oaie])\b',evidence,re.I)
-    )
-
 def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
     current=[];successful=set();closure_eligible=set();partial_sources=set()
     LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
@@ -255,6 +249,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             report['error']='Large inventory reduction; new valid matches accepted, absence-based closure disabled pending review'
         report['collected']=len(records)
         staged=[];page_errors=[];inspected=[];filter_reasons=Counter();verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
+        ineligible_italian_urls=set()
         agency_sitemap=cache and source['adapter']=='employer-sitemap' and source.get('italian_agency_slug_triage')
         if agency_sitemap:
             previous=cache.state().get('agency_sitemap',{})
@@ -305,10 +300,14 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             if not role or not countries:
                 filter_reasons['not-hr-student-role' if not role else 'hr-candidate-without-country']+=1
                 continue
-            if source.get('italian_agency_slug_triage') and (
-                    role['internship_type']!='internship' or not italian_student_placement(record)):
-                filter_reasons['explicitly-enrolled-student-internship-required']+=1
-                continue
+            eligibility=None
+            if countries==['IT']:
+                eligibility=italian_student_eligibility(record['title'],record['text'])
+                if eligibility=='excluded':
+                    filter_reasons['italian-student-eligibility-excluded']+=1
+                    if text_observation.get('kind')!='cache':
+                        ineligible_italian_urls.add(allowed_url(record['url'],source))
+                    continue
             if source.get('require_enrolled_students') and (
                     role['internship_type'] != 'internship'
                     or not explicitly_admits_enrolled_students(record['text'])):
@@ -338,11 +337,17 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     verification.update(state='verified',reason=application['method'])
                 except Exception as exc:
                     closed=isinstance(exc,ApplicationClosed)
-                    state='closed' if closed else 'blocked' if blocked_error(exc) else 'incomplete'
-                    verification.update(state=state,reason=str(exc)[:200])
-                    link_status=state
-                    if not closed:page_errors.append(dict(url=apply,error='Vacancy verification: '+str(exc)[:150]))
-                    LOG.warning('Vacancy %s %s: %s',url,state,str(exc)[:150])
+                    listing=observation.get('current_listing')
+                    if listing and not closed:
+                        verified=stamp;link_status='verified'
+                        verification.update(state='verified',reason=listing['method'])
+                        verification['application_reason']=str(exc)[:200]
+                    else:
+                        state='closed' if closed else 'blocked' if blocked_error(exc) else 'incomplete'
+                        verification.update(state=state,reason=str(exc)[:200])
+                        link_status=state
+                        if not closed:page_errors.append(dict(url=apply,error='Vacancy verification: '+str(exc)[:150]))
+                        LOG.warning('Vacancy %s %s: %s',url,state,str(exc)[:150])
             from .dynamic_ats import PILOTS
             if source.get('id') in PILOTS and observation.get('dynamic_ats'):
                 report.setdefault('dynamic_ats',[]).append(dict(url=url,**observation['dynamic_ats']))
@@ -353,6 +358,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 provenance=dict(kind='live',checked_at=stamp) if 'intake' in observation else text_observation
                 intake=dict(intake,provenance=provenance['kind'],observed_via=provenance.get('origin',provenance['kind']))
             if intake:staged[-1]['intake']=intake
+            if eligibility:staged[-1]['student_eligibility']=eligibility
             if source.get('staffing_agency') and record.get('agency_client')=='non indicato':
                 staged[-1].update(employer=source['employer'],agency_client='non indicato')
             if role['internship_type']=='internship' and also_open_to_recent_graduates(record['text']):
@@ -373,6 +379,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         report.update(status='partial' if source['id'] in partial_sources else 'ok',candidate_filter_reasons=dict(filter_reasons),matching=len(staged),verification_states=dict(Counter(j['verification']['state'] for j in staged)),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
         report['verified_closed_urls']=sorted(verified_closed_urls)
+        if ineligible_italian_urls:report['ineligible_italian_urls']=sorted(ineligible_italian_urls)
         if bulk_disappearance:report['status']='partial'
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
         # Inventory discovery can succeed while a detail/application read fails.
@@ -410,7 +417,10 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     jobs,public_duplicates=merge_public_duplicates(jobs,[s['id'] for s in registry if s.get('adapter') in PUBLIC_API_ADAPTERS],
         [s['id'] for s in registry if s.get('adapter') in SECONDARY_PUBLIC_ADAPTERS])
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
+    ineligible_italian_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_italian_urls',[])}
     for job in jobs:
+        if job['countries']==['IT'] and canonical_url(job['url']) in ineligible_italian_urls:
+            job['student_eligibility']='excluded'
         if canonical_url(job['url']) in explicitly_closed:
             job['status']='closed';job['closure_reason']='Official recruiting page explicitly disables applications';job['verification']=dict(state='closed',checked_at=stamp,policy_version=2,reason=job['closure_reason'])
     from .company_registry import region_codes_for_job

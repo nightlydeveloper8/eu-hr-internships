@@ -2,7 +2,8 @@ import unittest
 from unittest.mock import Mock
 
 from collector.employer_pages import italian_agency_slug_candidate, sitemap_records
-from collector.pipeline import agency_sitemap_due, italian_student_placement
+from collector.pipeline import agency_sitemap_due
+from collector.classify import italian_student_eligibility
 
 
 class ItalianAgencySitemapTests(unittest.TestCase):
@@ -41,7 +42,8 @@ class ItalianAgencySitemapTests(unittest.TestCase):
         self.assertEqual(agency_sitemap_due([changed], state, set(), "2026-11-23T01:00:00Z"), [changed])
         self.assertEqual(agency_sitemap_due([same], state, {self.candidate}, "2026-11-23T18:00:00Z"), [same])
 
-    def test_student_evidence_is_explicit_and_extracurricular_is_not_enough(self):
-        self.assertTrue(italian_student_placement(dict(title="Tirocinio curricolare HR", text="")))
-        self.assertTrue(italian_student_placement(dict(title="Stage HR", text="Posizione per laureandi.")))
-        self.assertFalse(italian_student_placement(dict(title="Stage extracurriculare HR", text="Per laureati.")))
+    def test_italian_student_evidence_is_independent_of_generic_stage_label(self):
+        self.assertEqual(italian_student_eligibility("Tirocinio curricolare HR"), "confirmed")
+        self.assertEqual(italian_student_eligibility("Stage HR", "Posizione per laureandi."), "confirmed")
+        self.assertEqual(italian_student_eligibility("Stage HR", "Supporto nelle selezioni."), "not_stated")
+        self.assertEqual(italian_student_eligibility("Stage extracurriculare HR"), "excluded")

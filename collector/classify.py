@@ -180,6 +180,33 @@ def classify_role(title, text='', employment=''):
     kind = 'internship'
     return {'categories':cats,'category':cats[0], 'internship_type':kind,'internship_confidence':'confirmed'}
 
+
+def italian_student_eligibility(title, text=''):
+    """Classify Italian student eligibility after identifying an HR internship."""
+    title, text = (fold(plain(value)) for value in (title,text))
+    posting=title+'. '+text
+    restricted_audience = r'(?:neo[ -]?laureat\w*|disoccupat\w*|inoccupat\w*|percettor\w* di (?:sostegn\w*|sussid\w*|naspi)|recent graduates|unemployed applicants)'
+    if re.search(r'\bextra[ -]?curricul\w*\b|\bextra[ -]?curricol\w*\b',posting):
+        return 'excluded'
+    if re.search(r'\b(?:graduate (?:program\w*|scheme)|programma graduate)\b|'+STUDENT_JOB,title):
+        return 'excluded'
+    if re.search(r'\b(?:riservat\w*|esclusivament[ea]|solo|unicamente|reserved for|only open to)\b[^.!?]{0,55}\b'+restricted_audience,posting):
+        return 'excluded'
+    if re.search(r'\bper\s+(?:i\s+|le\s+)?'+restricted_audience+r'\b',title):
+        return 'excluded'
+    if re.search(r'\bnon (?:si accettano student[ei]|(?:e )?apert[oa] (?:agli|a) student[ei])\b',posting):
+        return 'excluded'
+    if re.search(r'\b(?:richiest\w*|obbligatori\w*|requisit\w*)\b[^.!?]{0,35}\b(?:stato di disoccupazione|iscrizione al programma gol|naspi)\b',posting):
+        return 'excluded'
+    if explicitly_admits_enrolled_students(posting) or re.search(
+        r'\b(?:curricular[ei]|curricolar[ei]|curricular internship|laureand[oaie]|'
+        r'student[ei] (?:iscritt[oaie]|universitari[oaie])|'
+        r'iscrizione universitaria|convenzione (?:universitaria|con (?:l[’\x27])?universita|'
+        r'con (?:l[’\x27])?ateneo))\b',posting
+    ):
+        return 'confirmed'
+    return 'not_stated'
+
 LANG_ALIASES = {
  'en':r'english|anglais(?:e)?|englisch(?:kenntnisse)?|engels(?:e)?|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands(?:e)?|neerlandais|ollandese', 'fr':r'french|francais(?:e)?|franzosisch|frans|francese', 'de':r'german|deutsch(?:e[nrs]?|kenntnisse)?|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'
 }

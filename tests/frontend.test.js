@@ -380,3 +380,16 @@ test('agency label requires an explicitly undisclosed client and names the agenc
   assert.equal(agencyClientLabel({employer:'Example Agency'}), '');
   assert.equal(agencyClientLabel({employer:'Example Agency',agency_client:'ACME'}), '');
 });
+
+test('Italian student eligibility label does not change evidence level', async () => {
+  const {studentEligibilityLabel,evidenceLevel} = await import('../src/logic.js');
+  const candidate = {...base,student_eligibility:'not_stated'};
+  assert.equal(studentEligibilityLabel(candidate),
+    'Student eligibility not stated – check with the employer');
+  assert.equal(studentEligibilityLabel({...candidate,student_eligibility:'confirmed'}), '');
+  assert.equal(evidenceLevel(candidate), evidenceLevel(base));
+  const excluded = {...base,student_eligibility:'excluded'};
+  assert.equal(matches(excluded, {...f,unverified:true}), false);
+  assert.equal(opportunityCounts([excluded]).total, 0);
+  assert.equal(evidenceLevel(excluded), evidenceLevel(base));
+});

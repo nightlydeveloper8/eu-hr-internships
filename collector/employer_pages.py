@@ -102,7 +102,9 @@ def sitemap_records(source,client):
         job_urls.update(approved(url,source) for url in source.get('known_job_urls',[]) if pattern.search(url))
     records=[dict(source_id=source['id'],external_id=u,employer=source['employer'],title=re.sub(r'[-_]+',' ',unquote(urlsplit(u).path)),location='',text='',url=u,apply_url=u,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True) for u in sorted(job_urls)]
     if agency_triage:
-        for record in records:record['sitemap_lastmod']=lastmods.get(record['url'])
+        for record in records:
+            record['sitemap_lastmod']=lastmods.get(record['url'])
+            record['agency_sitemap_current']=record['url'] in lastmods
     return records
 
 def walk_json(value):

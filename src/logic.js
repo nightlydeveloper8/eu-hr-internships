@@ -1,7 +1,11 @@
 export const fold = value => String(value ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 export const unreviewedExternal = job => job.ownership_risk?.state === 'historical-unreviewed-external-host';
+const visibleCatalogJob = job => job.student_eligibility !== 'excluded' && !unreviewedExternal(job);
 export function agencyClientLabel(job) {
   return job.agency_client === 'non indicato' ? `Client not disclosed (via ${job.employer})` : '';
+}
+export function studentEligibilityLabel(job) {
+  return job.student_eligibility === 'not_stated' ? 'Student eligibility not stated – check with the employer' : '';
 }
 export function languageInfo(job) {
   const explicit = (job.workplace_languages || []).filter(l => l.confidence === 'confirmed' && ['required','required-or-working','working','alternative'].includes(l.requirement));
@@ -26,8 +30,8 @@ export function applicationConfirmed(job, clock = Date.now()) {
 // This must never change verifiedJob(), policy v2, or the 48-hour freshness threshold.
 export function unverifiedFallback(catalog, clock = Date.now()) {
   return stale(catalog?.updated_at, clock) && Array.isArray(catalog?.jobs)
-    && catalog.jobs.some(job => job.status !== 'closed' && !unreviewedExternal(job))
-    && !catalog.jobs.some(job => verifiedJob(job, clock));
+    && catalog.jobs.some(job => job.status !== 'closed' && visibleCatalogJob(job))
+    && !catalog.jobs.some(job => visibleCatalogJob(job) && verifiedJob(job, clock));
 }
 
 // The unverified view is an explicit session choice, never a persistent emergency URL.
@@ -103,7 +107,7 @@ function explicitDuration(job) {
 export function showDurationFilter(jobs, clock = Date.now()) {
   let count = 0;
   for (const job of jobs) {
-    if (job.internship_type !== 'internship' || unreviewedExternal(job) || !verifiedJob(job, clock)
+    if (job.internship_type !== 'internship' || !visibleCatalogJob(job) || !verifiedJob(job, clock)
         || !explicitDuration(job)) continue;
     count++;
     if (count >= STUDENT_PLACEMENT.minimumVerifiedDurations) return true;
@@ -129,7 +133,7 @@ export function durationCompatibility(job) {
 }
 
 export function matches(job, filters, saved = new Set()) {
-  if (unreviewedExternal(job) || job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
+  if (!visibleCatalogJob(job) || job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
   if (filters.applicationConfirmed && !applicationConfirmed(job)) return false;
   if (filters.saved && !saved.has(job.id)) return false;
   if (filters.country && !job.countries.includes(filters.country)) return false;
@@ -219,7 +223,7 @@ export function verificationMessage(job, clock = Date.now()) {
   return 'We could not confirm the current vacancy and its application route. The listing may still be open; check the original employer page.';
 }
 export function opportunityCounts(jobs, clock = Date.now()) {
-  const active = jobs.filter(job => job.status !== 'closed' && !unreviewedExternal(job));
+  const active = jobs.filter(job => job.status !== 'closed' && visibleCatalogJob(job));
   return {total:active.length,verified:active.filter(job => verifiedJob(job,clock)).length,
     applicationConfirmed:active.filter(job => applicationConfirmed(job, clock)).length,
     publicListings:active.filter(job => verifiedJob(job, clock) && publicEmploymentListing(job)).length,
@@ -238,7 +242,7 @@ export function opportunityCounts(jobs, clock = Date.now()) {
 export function countryCounts(jobs, clock = Date.now()) {
   const counts = {};
   for (const job of jobs || []) {
-    if (job.status === 'closed' || unreviewedExternal(job)) continue;
+    if (job.status === 'closed' || !visibleCatalogJob(job)) continue;
     const verified = verifiedJob(job, clock);
     const confirmed = applicationConfirmed(job, clock);
     for (const code of new Set(job.countries || [])) {
@@ -266,7 +270,7 @@ function adLanguageKind(code, countries) {
 }
 
 function currentAdLanguage(job, clock) {
-  if (unreviewedExternal(job) || !verifiedJob(job, clock)) return null;
+  if (!visibleCatalogJob(job) || !verifiedJob(job, clock)) return null;
   return job.advertisement_language?.code || 'unknown';
 }
 
