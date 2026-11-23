@@ -36,6 +36,95 @@ export function shareableFilterParams(filters, defaults) {
   return params;
 }
 
+export const STUDENT_PLACEMENT = Object.freeze({
+  firstStart: '2027-01-05',
+  lastStart: '2027-03-13',
+  earliestEnd: '2027-05-31',
+  minimumWeeks: 16,
+  minimumVerifiedDurations: 10,
+  startLabel: 'Starts Jan – mid-Mar 2027',
+  durationLabel: 'Long enough (≈640 h)',
+});
+
+export const START_WINDOW = `${STUDENT_PLACEMENT.firstStart}-to-${STUDENT_PLACEMENT.lastStart}`;
+export const LONG_ENOUGH = 'long-enough';
+
+export function readFilterParams(params, defaults) {
+  const filters = {...defaults};
+  for (const [key, value] of Object.entries(defaults)) {
+    if (key === 'unverified' || !params.has(key)) continue;
+    filters[key] = typeof value === 'boolean' ? params.get(key) === 'true' : params.get(key);
+  }
+  return filters;
+}
+
+function isoDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
+  const date = new Date(value);
+  return Number.isFinite(+date) && date.toISOString().slice(0, 10) === value ? value : null;
+}
+
+export function publishedStart(job) {
+  const intake = job.intake;
+  return intake?.provenance !== 'cache' ? intake?.published_start || null : null;
+}
+
+export function startCompatibility(job) {
+  const value = publishedStart(job);
+  const {firstStart, lastStart} = STUDENT_PLACEMENT;
+  if (isoDate(value)) return value >= firstStart && value <= lastStart ? 'compatible' : 'incompatible';
+  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(value || '')) return 'unknown';
+
+  // Compare the entire published month without assigning a start day.
+  const firstMonth = firstStart.slice(0, 7);
+  const lastMonth = lastStart.slice(0, 7);
+  if (value < firstMonth || value > lastMonth) return 'incompatible';
+  if (value > firstMonth && value < lastMonth) return 'compatible';
+  const lastDay = new Date(Date.UTC(+value.slice(0, 4), +value.slice(5), 0)).getUTCDate();
+  return `${value}-01` >= firstStart && `${value}-${lastDay}` <= lastStart ? 'compatible' : 'unknown';
+}
+
+export function applicationDeadline(job) {
+  const value = job.valid_through;
+  if (!value) return null;
+  if (isoDate(value)) return value;
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})$/i.test(value)
+      && Number.isFinite(Date.parse(value))) return isoDate(value.slice(0, 10));
+  return null;
+}
+
+function explicitDuration(job) {
+  return /^(\d+)(?:\s*(?:[-–]|of|or)\s*(\d+))?\s*(weeks?|weken|wochen|semaines?|months?|maanden?|monate?|mois|mesi|meses)(?:\s*\(?\s*(full[- ]time|voltijd|voltijds|vollzeit|temps plein|part[- ]time|deeltijd)\s*\)?)?$/i.exec(job.duration?.trim() || '');
+}
+
+export function showDurationFilter(jobs, clock = Date.now()) {
+  let count = 0;
+  for (const job of jobs) {
+    if (job.internship_type !== 'internship' || unreviewedExternal(job) || !verifiedJob(job, clock)
+        || !explicitDuration(job)) continue;
+    count++;
+    if (count >= STUDENT_PLACEMENT.minimumVerifiedDurations) return true;
+  }
+  return false;
+}
+
+export function durationCompatibility(job) {
+  const {earliestEnd, minimumWeeks} = STUDENT_PLACEMENT;
+  const end = job.intake?.provenance === 'cache' ? null : isoDate(job.intake?.published_end);
+  if (end && end >= earliestEnd) return 'compatible';
+
+  const match = explicitDuration(job);
+  if (!match) return 'unknown';
+  const [, first, last = first, unit, schedule] = match;
+  const weeks = /^(?:week|weken|wochen|semaine)/i.test(unit);
+  // Bounds preserve explicit calendar-month durations without inventing a start date.
+  const minimumDays = Math.min(+first, +last) * (weeks ? 7 : 28);
+  const maximumDays = Math.max(+first, +last) * (weeks ? 7 : 31);
+  if (maximumDays < minimumWeeks * 7 || /^(?:part|deeltijd)/i.test(schedule || '')) return 'incompatible';
+  if (minimumDays >= minimumWeeks * 7 && schedule) return 'compatible';
+  return 'unknown';
+}
+
 export function matches(job, filters, saved = new Set()) {
   if (unreviewedExternal(job) || job.status === 'closed' || (!filters.unverified && !verifiedJob(job))) return false;
   if (filters.applicationConfirmed && !applicationConfirmed(job)) return false;
@@ -48,9 +137,19 @@ export function matches(job, filters, saved = new Set()) {
   if (filters.workplace && filters.workplace !== 'unknown' && !job.workplace_languages.some(l => l.code === filters.workplace && l.confidence === 'confirmed' && ['required','required-or-working','working'].includes(l.requirement))) return false;
   if (filters.english && info.english_support !== 'documented') return false;
   if (filters.englishOnly && info.english_sufficiency !== 'documented') return false;
-  if (filters.ad && job.advertisement_language.code !== filters.ad) return false;
+  if (filters.ad && (job.advertisement_language?.code || 'unknown') !== filters.ad) return false;
   if (filters.type && job.internship_type !== filters.type) return false;
   if (filters.workMode && job.work_mode !== filters.workMode) return false;
+  if (filters.start === START_WINDOW || filters.hideUnknownTiming) {
+    const start = startCompatibility(job);
+    if (filters.start === START_WINDOW && start === 'incompatible') return false;
+    if (filters.hideUnknownTiming && start === 'unknown') return false;
+  }
+  if (filters.duration === LONG_ENOUGH || filters.hideUnknownTiming) {
+    const duration = durationCompatibility(job);
+    if (filters.duration === LONG_ENOUGH && duration === 'incompatible') return false;
+    if (filters.hideUnknownTiming && duration === 'unknown') return false;
+  }
   const haystack = fold([job.title, job.employer, job.city, ...job.countries, ...(job.search_terms || [])].join(' '));
   return fold(filters.q).split(/\s+/).filter(Boolean).every(word => haystack.includes(word));
 }
@@ -59,7 +158,21 @@ export function rankJobs(jobs, filters, clock = Date.now()) {
   const score = job => terms.reduce((sum, t) => sum + (fold(job.title).includes(t) ? 4 : 0) + (fold(job.employer).includes(t) ? 2 : 0), 0);
   const date = (job, field) => { const parsed = Date.parse(job[field] || ''); return Number.isFinite(parsed) ? parsed : 0; };
   const direct = filters.sort === 'relevance' ? new Set(jobs.filter(job => applicationConfirmed(job, clock))) : null;
+  const deadlines = filters.sort === 'deadline'
+    ? new Map(jobs.map(job => [job, applicationDeadline(job) || '9999-99-99']))
+    : null;
+  const documentedStarts = direct && filters.start === START_WINDOW
+    ? new Set(jobs.filter(job => startCompatibility(job) === 'compatible'))
+    : null;
   return [...jobs].sort((a,b) => {
+    if (documentedStarts) {
+      const difference = Number(documentedStarts.has(b)) - Number(documentedStarts.has(a));
+      if (difference) return difference;
+    }
+    if (deadlines) {
+      const difference = deadlines.get(a).localeCompare(deadlines.get(b));
+      if (difference) return difference;
+    }
     if (filters.mode === 'nl') { const nl = Number(b.countries.includes('NL')) - Number(a.countries.includes('NL')); if (nl) return nl; }
     if (direct) {
       const delta = score(b) - score(a) || Number(direct.has(b)) - Number(direct.has(a));
@@ -72,8 +185,22 @@ export function rankJobs(jobs, filters, clock = Date.now()) {
 export function stale(updatedAt, clock = Date.now()) { return !updatedAt || clock - Date.parse(updatedAt) > 36*60*60*1000 || !Number.isFinite(Date.parse(updatedAt)) || Date.parse(updatedAt) > clock; }
 export function safeUrl(value) { try {const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : null;} catch {return null;} }
 
+export function evidenceSummary(job, clock = Date.now()) {
+  const level = evidenceLevel(job, clock);
+  if (level === 'direct') return 'Apply directly — the employer’s application route was checked in the last 48 hours.';
+  if (level === 'public') {
+    const service = /^EURES\b/i.test(job.source_name || '') || job.source_type === 'eures' ? 'EURES' : 'an official employment service';
+    return `Listed on ${service} — check the employer’s page before applying.`;
+  }
+  if (level === 'current') return 'Open at the last check — read the original posting for application instructions.';
+  return 'Availability unconfirmed — check the employer’s site for a current vacancy.';
+}
+
 export function verificationMessage(job, clock = Date.now()) {
   if (verifiedJob(job, clock) && publicEmploymentListing(job)) return 'Listed as open by an official public employment service within the last 48 hours. Check the official posting for application instructions.';
+  if (applicationConfirmed(job, clock) && job.application_verification.method === 'personio-feed-same-id-static-form') {
+    return 'The official Personio feed and the matching application form were checked within the last 48 hours. The submit button may start disabled.';
+  }
   if (applicationConfirmed(job, clock)) return 'The current vacancy and its application route were confirmed within the last 48 hours.';
   if (verifiedJob(job, clock)) return 'The listing is current. Check the original posting for application instructions.';
   if (job.status === 'closed') return 'The employer has closed this listing.';
@@ -130,6 +257,7 @@ export const NATIONAL_LANGUAGES = {AT:['de'],BE:['nl','fr','de'],BG:['bg'],HR:['
 
 function adLanguageKind(code, countries) {
   if (code === 'en') return 'english';
+  if (code === 'bilingual' || code === 'multilingual') return code;
   if (code === 'unknown') return 'unknown';
   return countries.some(country => NATIONAL_LANGUAGES[country]?.includes(code)) ? 'local' : 'other';
 }
@@ -141,7 +269,7 @@ function currentAdLanguage(job, clock) {
 
 // Each current ad counts once in the Europe-wide mix, even when it covers several countries.
 export function catalogueAdLanguages(jobs, clock = Date.now()) {
-  const mix = {english:0, local:0, other:0, unknown:0};
+  const mix = {english:0, local:0, bilingual:0, multilingual:0, other:0, unknown:0};
   const byLanguage = {};
   for (const job of jobs) {
     const code = currentAdLanguage(job, clock);
@@ -168,7 +296,7 @@ export function countryLanguageCounts(jobs, clock = Date.now()) {
 
 // English and local-language ads first, then any other language, then unknown.
 export function languageBreakdown(country, byLanguage = {}) {
-  const order = {english:0, local:1, other:2, unknown:3};
+  const order = {english:0, local:1, bilingual:2, multilingual:3, other:4, unknown:5};
   return Object.entries(byLanguage).filter(([, n]) => n > 0)
     .map(([code, count]) => ({code, count, kind: adLanguageKind(code, [country])}))
     .sort((a, b) => order[a.kind] - order[b.kind] || b.count - a.count || a.code.localeCompare(b.code));
@@ -212,4 +340,15 @@ export function zoomViewBox(base, cx, cy, factor = 1) {
   const x = Math.min(Math.max(cx - w / 2, bx), bx + bw - w);
   const y = Math.min(Math.max(cy - h / 2, by), by + bh - h);
   return [x, y, w, h].map(n => Math.round(n * 10) / 10);
+}
+
+export function adLanguageName(code, names) {
+  return ({bilingual:'Bilingual', multilingual:'Multilingual', unknown:'Unknown'})[code] || names[code] || code;
+}
+
+export function adLanguageLabel(language, names) {
+  const name = adLanguageName(language?.code || 'unknown', names);
+  const codes = language?.codes || [];
+  const details = codes.length ? ' (' + codes.map(code => adLanguageName(code, names)).join(' / ') + ')' : '';
+  return name + details + (language?.confidence === 'uncertain' ? ' · estimated' : '');
 }

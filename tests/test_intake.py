@@ -8,6 +8,7 @@ import unittest
 
 from collector.intake import extract_intake
 from collector.pipeline import ROOT, finalize, process_source, read
+from collector.verification import PERSONIO_STATIC_FORM
 from collector.verification import verified_job
 
 STAMP = '2026-11-08T12:00:00+00:00'
@@ -168,8 +169,11 @@ class IntakeTests(unittest.TestCase):
         # Replay at the publication timestamp so freshness does not introduce
         # legitimate changes unrelated to this regression.
         stamp = prior['last_attempt_at']
+        # The production registry authorizes source-scoped verification methods.
+        # No sources are selected for this offline replay.
+        registry = read(ROOT/'data/sources.json', [])
         with TemporaryDirectory() as directory:
-            result, _ = finalize([], [], deepcopy(prior), {}, [], stamp, Path(directory))
+            result, _ = finalize(registry, [], deepcopy(prior), {}, [], stamp, Path(directory))
         self.assertEqual([j['id'] for j in result['jobs']], [j['id'] for j in prior['jobs']])
         # Reviewed closures (listing-reviews decision 'closed') are intended changes.
         reviewed_closed = {canonical_url(r['url']) for r in read(ROOT/'data/listing-reviews.json', [])
@@ -183,6 +187,22 @@ class IntakeTests(unittest.TestCase):
                 self.assertEqual(current.get(field), old.get(field), (old['id'], field))
             self.assertEqual(current.get('verification', {}).get('policy_version'),
                              old.get('verification', {}).get('policy_version'))
+
+    def test_personio_static_form_replay_requires_source_authorization(self):
+        prior = read(ROOT/'data/catalog.json', {})
+        job = next((job for job in prior['jobs'] if job['status'] == 'open'
+                    and job.get('application_verification', {}).get('method')
+                    == PERSONIO_STATIC_FORM), None)
+        self.assertIsNotNone(job, 'Expected an open Personio static-form record')
+        prior['jobs'] = [job]
+        with TemporaryDirectory() as directory:
+            result, _ = finalize([], [], prior, {}, [], prior['last_attempt_at'], Path(directory))
+        replayed = result['jobs'][0]
+        self.assertEqual(replayed['id'], job['id'])
+        self.assertEqual(replayed['status'], 'unverified')
+        self.assertEqual(replayed['verification']['reason'],
+                         'Personio static-form verification withdrawn')
+        self.assertNotIn('application_verification', replayed)
 
     def test_growing_catalog_preserves_existing_and_new_records(self):
         prior = read(ROOT/'data/catalog.json', {})

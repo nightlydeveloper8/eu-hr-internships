@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-11-23T01:04:02.759908+00:00",
+  "runtime": "Python 3.12; Node 22+",
+  "python_tests": 555,
+  "frontend_tests": 51,
+  "bot_snapshots_equal_main": true,
+  "registry_valid": true,
+  "import_idempotent": true,
+  "provision_idempotent": true,
+  "checks": [
+    {
+      "name": "python",
+      "command": ".venv/bin/python -m unittest discover -s tests -q",
+      "exit_code": 0,
+      "sha256": "4b7c9c0f6965f89d57e5ee0b877821336789332b5b4a22ea4d81fb2a0ae5347d",
+      "output_tail": "ine\": {\"actionable_leads\": 369, \"catalog_jobs\": 927, \"current_verified_internships\": 414, \"direct_applications_verified\": 52, \"distinct_ids\": 927, \"duplicate_ids\": 0, \"legacy_ownership_holds\": 92, \"public_service_current\": 362, \"remaining_archived\": 52}, \"by_country\": {\"AT\": 1, \"BE\": 2, \"CH\": 6, \"CZ\": 1, \"DE\": 38, \"ES\": 20, \"FR\": 144, \"GB\": 7, \"HU\": 2, \"IT\": 39, \"LU\": 3, \"MT\": 1, \"NL\": 91, \"PL\": 10, \"PT\": 1, \"SE\": 3}, \"by_reason\": {\"application-id-not-matched\": 38, \"application-identity-mismatch\": 6, \"disabled-applicant-submit\": 2, \"dynamic-form-or-login-unconfirmed\": 3, \"expired-verification\": 61, \"legacy-proof-ineligible\": 1, \"missing-application-entry\": 177, \"ownership-review-required\": 2, \"parsing-error\": 2, \"public-listing-too-old-or-undated\": 10, \"rate-limited\": 4, \"read-timeout\": 1, \"redirect-identity-unconfirmed\": 1, \"request-budget-exhausted\": 1, \"robots-disallowed\": 3, \"robots-unavailable\": 30, \"time-budget-exhausted\": 13, \"vacancy-identity-mismatch\": 14}, \"matrix_rows\": 75}\n"
+    },
+    {
+      "name": "frontend",
+      "command": "/Users/dennis/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --test tests/*.test.js",
+      "exit_code": 0,
+      "sha256": "b788c023813e6dd0110ce197f25afcc437c0e5b6ac8781ef8999b6ec279ebb9f",
+      "output_tail": "ad of unspecified starts (0.052917ms)\n✔ advertisement language composes with the IHRM start window and duration threshold (0.07075ms)\n✔ the internship card retains the IHRM fallback for an unstated start (0.379875ms)\n✔ Alert lifecycle is idempotent in .github/workflows/stale.yml (3.420958ms)\n✔ Alert lifecycle is idempotent in .github/workflows/collect.yml (0.788ms)\n✔ Freshness alerts strictly after 36 hours (0.050042ms)\n✔ One missing ID alerts even when total records increase (0.126375ms)\n✔ Open internship alert excludes an exact 15% drop (0.069375ms)\n✔ EURES alerts on failure or zero postings, independently of HR matches (0.089125ms)\n✔ Source failures alert strictly above 20% among recent successes attempted again (0.106ms)\n✔ Alert updates the existing issue and includes the run and first action (0.122ms)\n✔ The scheduled freshness monitor creates and updates one stale issue (0.31225ms)\nℹ tests 51\nℹ suites 0\nℹ pass 51\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 55.866916\n"
+    },
+    {
+      "name": "evaluation",
+      "command": ".venv/bin/python scripts/evaluate.py",
+      "exit_code": 0,
+      "sha256": "569828dc56a05fefea16ac0e27759668c0e65848bb8e0afd9eca73568b29eb38",
+      "output_tail": "{\n  \"examples\": 105,\n  \"true_positives\": 63,\n  \"true_negatives\": 42,\n  \"false_positives\": 0,\n  \"false_negatives\": 0,\n  \"errors\": [],\n  \"limitation\": \"Small manually labelled regression set; these scores are not estimates of accuracy on all European jobs.\"\n}\n"
+    },
+    {
+      "name": "languages",
+      "command": ".venv/bin/python scripts/evaluate_languages.py",
+      "exit_code": 0,
+      "sha256": "c7391b373c70b2544a1bfce839e449724fd664fd21acaa8ff48228a515b38ae8",
+      "output_tail": "sample_before\": {\n    \"classified\": 80,\n    \"matching\": 80,\n    \"confirmed\": 66\n  },\n  \"sample_after\": {\n    \"classified\": 80,\n    \"matching\": 80,\n    \"confirmed\": 66\n  },\n  \"sample_per_country_before\": {\n    \"AT\": {\n      \"de\": 3\n    },\n    \"BE\": {\n      \"nl\": 11,\n      \"fr\": 3\n    },\n    \"CH\": {\n      \"fr\": 6,\n      \"de\": 3,\n      \"en\": 1\n    },\n    \"DE\": {\n      \"de\": 10,\n      \"en\": 1\n    },\n    \"ES\": {\n      \"sv\": 1,\n      \"es\": 1\n    },\n    \"FR\": {\n      \"fr\": 14\n    },\n    \"IT\": {\n      \"it\": 12\n    },\n    \"LU\": {\n      \"en\": 1\n    },\n    \"NL\": {\n      \"nl\": 13\n    }\n  },\n  \"sample_per_country_after\": {\n    \"AT\": {\n      \"de\": 3\n    },\n    \"BE\": {\n      \"nl\": 11,\n      \"fr\": 3\n    },\n    \"CH\": {\n      \"fr\": 6,\n      \"de\": 3,\n      \"en\": 1\n    },\n    \"DE\": {\n      \"de\": 10,\n      \"en\": 1\n    },\n    \"ES\": {\n      \"sv\": 1,\n      \"es\": 1\n    },\n    \"FR\": {\n      \"fr\": 14\n    },\n    \"IT\": {\n      \"it\": 12\n    },\n    \"LU\": {\n      \"en\": 1\n    },\n    \"NL\": {\n      \"nl\": 13\n    }\n  }\n}\n"
+    },
+    {
+      "name": "coverage",
+      "command": ".venv/bin/python scripts/company_coverage.py",
+      "exit_code": 0,
+      "sha256": "4bc2af964c535b493aa582268c610a7a46fb2dfe5869e6a75a4f551c49655a8e",
+      "output_tail": "1915 companies; 1914 monitored; 1442 regional research areas\n"
+    },
+    {
+      "name": "build",
+      "command": ".venv/bin/python scripts/build.py",
+      "exit_code": 0,
+      "sha256": "c0bdb257b50fcac6e22a39dc09fceb7ea696907b6ad7aa7494ab488cf58ecbf2",
+      "output_tail": "Built dist/ — static files, no runtime services required\n"
+    },
+    {
+      "name": "catalog",
+      "command": ".venv/bin/python -m collector.pipeline --validate",
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    },
+    {
+      "name": "provision",
+      "command": ".venv/bin/python -m collector.daily provision",
+      "exit_code": 0,
+      "sha256": "bab8528ea98bb53335aeb18ecc540066e632bbebbde7310ecea580346b4aaa2d",
+      "output_tail": "1915 employers; 1937 active collectors\n"
+    },
+    {
+      "name": "diff",
+      "command": "git diff --check",
+      "exit_code": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_tail": ""
+    }
+  ]
+}

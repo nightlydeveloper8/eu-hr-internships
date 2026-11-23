@@ -94,7 +94,7 @@ function harness(path) {
       return {data: issue};
     }
   };
-  const github = {rest: {issues: issuesApi}};
+  const github = {rest: {issues: issuesApi}, paginate: async (method, params) => (await method(params)).data};
   const context = {repo: {owner: 'nightlydeveloper8', repo: 'eu-hr-internships'}, runId: 1234};
   const core = {summary: {
     addHeading() {return this;},
@@ -103,6 +103,7 @@ function harness(path) {
   }};
   const requireMock = spec => {
     if (spec === 'path') return {...nodeRequire(spec), resolve: (...parts) => resolve(root, ...parts)};
+    if (spec.startsWith('./scripts/')) return nodeRequire(resolve(root, spec));
     if (spec !== 'fs') return nodeRequire(spec);
     return {readFileSync: file => {
       if (file === 'data/catalog.json') return JSON.stringify(currentCatalog);
@@ -111,11 +112,11 @@ function harness(path) {
     }};
   };
   return {
-    async run(nextCatalog) {
+    async run(nextCatalog, title = alertTitle) {
       currentCatalog = nextCatalog;
       const from = calls.length;
       await execute(requireMock, github, context, core, {env: {JOB_STATUS: 'success'}});
-      return calls.slice(from).filter(x => x.title === alertTitle);
+      return calls.slice(from).filter(x => x.title === title);
     },
     alerts() {return issues.filter(x => x.title === alertTitle);},
     openAlerts() {return issues.filter(x => x.title === alertTitle && x.state === 'open');}
@@ -157,3 +158,92 @@ for (const path of sources) {
     assert.equal(h.alerts().length, 2); // Historical closed issue retained.
   });
 }
+
+const {freshnessLine, collectionLines, upsertAlert} = nodeRequire('../scripts/monitor-collection.cjs');
+const cycleStart = '2026-11-21T08:00:00Z';
+const cycleEnd = '2026-11-22T08:00:00Z';
+const previousCoverage = {generated_at: cycleStart, sources: []};
+const currentCoverage = {generated_at: cycleEnd, sources: []};
+const openCatalog = {jobs: Array.from({length: 20}, (_, id) =>
+  ({id, status: 'open', internship_type: 'internship'}))};
+const compare = (after = openCatalog, previous = [], current = []) => collectionLines(
+  openCatalog, after, {...previousCoverage, sources: previous}, {...currentCoverage, sources: current}
+);
+
+test('Freshness alerts strictly after 36 hours', () => {
+  const cutoff = Date.parse(cycleStart) + 36 * 60 * 60 * 1000;
+  assert.equal(freshnessLine(cycleStart, cutoff), null);
+  assert.match(freshnessLine(cycleStart, cutoff + 1), /limit 36/);
+});
+
+test('One missing ID alerts even when total records increase', () => {
+  assert.deepEqual(compare(), []);
+  const jobs = [...openCatalog.jobs.slice(1), {id: 21}, {id: 22}];
+  assert.match(compare({jobs})[0], /Lost catalog IDs: 1/);
+});
+
+test('Open internship alert excludes an exact 15% drop', () => {
+  const close = count => ({jobs: openCatalog.jobs.map((job, i) =>
+    i < count ? {...job, status: 'closed'} : job)});
+  assert.deepEqual(compare(close(3)), []);
+  assert.match(compare(close(4))[0], /20 → 16/);
+});
+
+test('EURES alerts on failure or zero postings, independently of HR matches', () => {
+  const eures = {id: 'public-eu-eures', checked_at: cycleEnd, status: 'ok', matching: 0};
+  assert.deepEqual(compare(openCatalog, [], [{...eures, collected: 1}]), []);
+  assert.match(compare(openCatalog, [], [{...eures, collected: 0}])[0], /0 postings/);
+  assert.match(compare(openCatalog, [], [{...eures, status: 'failed'}])[0], /failed/);
+  assert.deepEqual(compare(openCatalog, [], [{...eures, checked_at: cycleStart, collected: 0}]), []);
+});
+
+test('Source failures alert strictly above 20% among recent successes attempted again', () => {
+  const reports = Array.from({length: 5}, (_, id) => ({id, checked_at: cycleStart, status: 'ok'}));
+  const previous = [
+    ...reports,
+    {id: 'old', checked_at: '2026-11-19T08:00:00Z', status: 'ok'},
+    {id: 'already-failed', checked_at: cycleStart, status: 'failed'},
+    {id: 'absent', checked_at: cycleStart, status: 'ok'}
+  ];
+  const current = previous.filter(row => row.id !== 'absent').map(row => ({
+    ...row, checked_at: cycleEnd, status: row.id === 0 || typeof row.id === 'string' ? 'failed' : 'ok'
+  }));
+  assert.deepEqual(compare(openCatalog, previous, current), []);
+  current[1].status = 'failed';
+  assert.match(compare(openCatalog, previous, current)[0], /2\/5/);
+});
+
+test('Alert updates the existing issue and includes the run and first action', async () => {
+  const issues = [];
+  const github = {
+    paginate: async () => issues,
+    rest: {issues: {
+      create: async issue => issues.push({...issue, number: 114}),
+      update: async issue => {
+        assert.equal(issue.issue_number, 114);
+        issues[0].body = issue.body;
+      }
+    }}
+  };
+  const context = {repo: {owner: 'owner', repo: 'repo'}, runId: 123};
+  await upsertAlert(github, context, 'Title', [], 'Inspect logs.');
+  assert.equal(issues.length, 0);
+  await upsertAlert(github, context, 'Title', ['Original'], 'Inspect logs.');
+  await upsertAlert(github, context, 'Title', ['Updated'], 'Inspect logs.');
+  assert.equal(issues.length, 1);
+  assert.equal(issues[0].body.split('\n').length, 3);
+  assert.match(issues[0].body, /Updated.*\n.*actions\/runs\/123.*\nFirst action: Inspect logs\./);
+});
+
+test('The scheduled freshness monitor creates and updates one stale issue', async () => {
+  const h = harness('.github/workflows/stale.yml');
+  const title = '[monitor] Catalog has missed its daily update';
+  const fresh = catalog([fixtureRecords().fresh]);
+  assert.deepEqual(await h.run(fresh, title), []);
+  const stale = {...fresh, updated_at: new Date(Date.now() - 37 * 60 * 60 * 1000).toISOString()};
+  const [created] = await h.run(stale, title);
+  const [updated] = await h.run(stale, title);
+  assert.equal(created.action, 'create');
+  assert.equal(updated.action, 'update');
+  assert.equal(created.number, updated.number);
+});

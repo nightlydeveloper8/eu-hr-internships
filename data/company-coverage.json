@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-22T07:34:43.917981+00:00",
+  "generated_at": "2026-11-22T23:51:20.076416+00:00",
   "exhaustive": false,
-  "company_count": 1903,
-  "career_pages_recorded": 1374,
+  "company_count": 1915,
+  "career_pages_recorded": 1386,
   "career_pages_verified_this_mapping": 471,
-  "monitored_companies": 1900,
+  "monitored_companies": 1914,
   "regions": [
     {
       "code": "AT11",
@@ -14034,7 +14034,7 @@
       "level": 2,
       "companies_located": 893,
       "companies_monitored": 893,
-      "open_listings": 1,
+      "open_listings": 2,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
         "2-cnnct",
@@ -15224,14 +15224,17 @@
       "name": "Noord-Holland",
       "country": "NL",
       "level": 2,
-      "companies_located": 3,
-      "companies_monitored": 3,
-      "open_listings": 0,
+      "companies_located": 6,
+      "companies_monitored": 6,
+      "open_listings": 3,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
         "alliander",
         "danone",
-        "heineken"
+        "heineken",
+        "aquablu-nl",
+        "zero-motorcycles-nl",
+        "youvia-nl"
       ],
       "status": "monitoring"
     },
@@ -18430,8 +18433,8 @@
       "baseline_target": 100,
       "expansion_target": 800,
       "companies_located": 2,
-      "companies_with_located_career_channel": 1,
-      "located_employers_with_monitoring_configured": 1,
+      "companies_with_located_career_channel": 2,
+      "located_employers_with_monitoring_configured": 2,
       "companies_monitored_in_country": 7,
       "baseline_gap": 93,
       "expansion_gap": 793,
@@ -18569,17 +18572,17 @@
     {
       "code": "DE",
       "name": "Germany",
-      "companies_identified": 261,
+      "companies_identified": 269,
       "regions_with_employers": 2,
       "baseline_target": 100,
       "expansion_target": 1500,
-      "companies_located": 3,
-      "companies_with_located_career_channel": 3,
-      "located_employers_with_monitoring_configured": 3,
-      "companies_monitored_in_country": 24,
-      "baseline_gap": 76,
-      "expansion_gap": 1476,
-      "size_unknown": 260,
+      "companies_located": 10,
+      "companies_with_located_career_channel": 10,
+      "located_employers_with_monitoring_configured": 10,
+      "companies_monitored_in_country": 25,
+      "baseline_gap": 75,
+      "expansion_gap": 1475,
+      "size_unknown": 268,
       "status": "integration-required"
     },
     {
@@ -18633,17 +18636,17 @@
     {
       "code": "IT",
       "name": "Italy",
-      "companies_identified": 327,
+      "companies_identified": 328,
       "regions_with_employers": 2,
       "baseline_target": 100,
       "expansion_target": 1500,
       "companies_located": 10,
       "companies_with_located_career_channel": 10,
       "located_employers_with_monitoring_configured": 10,
-      "companies_monitored_in_country": 4,
-      "baseline_gap": 96,
-      "expansion_gap": 1496,
-      "size_unknown": 326,
+      "companies_monitored_in_country": 5,
+      "baseline_gap": 95,
+      "expansion_gap": 1495,
+      "size_unknown": 327,
       "status": "integration-required"
     },
     {
@@ -18713,17 +18716,17 @@
     {
       "code": "NL",
       "name": "Netherlands",
-      "companies_identified": 1224,
+      "companies_identified": 1227,
       "regions_with_employers": 12,
       "baseline_target": 100,
       "expansion_target": 800,
-      "companies_located": 1045,
-      "companies_with_located_career_channel": 1045,
-      "located_employers_with_monitoring_configured": 1045,
+      "companies_located": 1048,
+      "companies_with_located_career_channel": 1048,
+      "located_employers_with_monitoring_configured": 1048,
       "companies_monitored_in_country": 46,
       "baseline_gap": 54,
       "expansion_gap": 754,
-      "size_unknown": 1008,
+      "size_unknown": 1011,
       "status": "integration-required"
     },
     {
@@ -18745,7 +18748,7 @@
     {
       "code": "PT",
       "name": "Portugal",
-      "companies_identified": 6,
+      "companies_identified": 7,
       "regions_with_employers": 0,
       "baseline_target": 100,
       "expansion_target": 800,
@@ -18755,7 +18758,7 @@
       "companies_monitored_in_country": 2,
       "baseline_gap": 98,
       "expansion_gap": 798,
-      "size_unknown": 6,
+      "size_unknown": 7,
       "status": "integration-required"
     },
     {
@@ -18841,7 +18844,7 @@
     {
       "code": "CH",
       "name": "Switzerland",
-      "companies_identified": 1,
+      "companies_identified": 2,
       "regions_with_employers": 0
     },
     {
@@ -18857,16 +18860,16 @@
     "Unknown regional placement remains unknown; zero monitoring is not zero openings."
   ],
   "collection_outcomes": {
-    "verified-empty": 31,
-    "blocked-or-failed": 280,
-    "partial": 529,
-    "discovery-incomplete": 985,
-    "collected": 75,
-    "not-attempted": 3,
-    "companies": 1903,
-    "configured": 1900,
-    "attempted": 1900
+    "verified-empty": 29,
+    "blocked-or-failed": 279,
+    "partial": 536,
+    "discovery-incomplete": 981,
+    "collected": 89,
+    "not-attempted": 1,
+    "companies": 1915,
+    "configured": 1914,
+    "attempted": 1914
   },
-  "collection_checked_at": "2026-11-22T07:34:26.563397+00:00",
+  "collection_checked_at": "2026-11-22T23:51:00.035914+00:00",
   "monitored_companies_definition": "Automatic collectors configured; extraction success is reported separately in collection_outcomes"
 }

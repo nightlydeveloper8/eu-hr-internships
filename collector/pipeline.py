@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
 from .intake import extract_intake
-from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata
+from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata, also_open_to_recent_graduates, explicitly_admits_enrolled_students
 
 ROOT=Path(__file__).resolve().parents[1]
 LOG=logging.getLogger(__name__)
@@ -143,10 +143,10 @@ def duplicate_groups(jobs):
         for key in existing['keys']:by_key[key]=index
     return [group['members'] for group in groups if group is not None]
 
-def consolidate_group(members):
+def consolidate_group(members, preferred=None):
     """Merge every member of an already established identity component."""
     first=members[0]
-    newest=max(members,key=lambda j:(observation_time(j),j.get('status')=='closed'))
+    newest=preferred or max(members,key=lambda j:(observation_time(j),j.get('status')=='closed'))
     merged=dict(newest,id=first['id'],first_discovered_at=first.get('first_discovered_at'))
     verified=[m.get('last_verified_at') for m in members if m.get('last_verified_at')]
     if not merged.get('last_verified_at') and verified:merged['last_verified_at']=max(verified,key=lambda stamp:observation_time({'last_verified_at':stamp}))
@@ -177,7 +177,15 @@ def align_observations(previous,current):
             if rows:
                 # rows can be disconnected without the other side's bridge.
                 # Membership was already established by the complete component.
-                job=consolidate_group(rows)
+                preferred=None
+                if rows is fresh:
+                    from .verification import PERSONIO_STATIC_FORM
+                    public_urls={canonical_url(j['url']) for j in rows
+                                 if j.get('verification',{}).get('policy')=='public-api-active-listing'}
+                    preferred=next((j for j in rows if j.get('status')=='open'
+                                    and j.get('application_verification',{}).get('method')==PERSONIO_STATIC_FORM
+                                    and public_urls.intersection(j.get('identity_aliases',()))),None)
+                job=consolidate_group(rows,preferred)
                 job.update(id=canonical['id'],first_discovered_at=canonical.get('first_discovered_at'))
                 preserve_identity_aliases(job,members)
                 aligned.append(job)
@@ -267,6 +275,11 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             if not role or not countries:
                 filter_reasons['not-hr-student-role' if not role else 'hr-candidate-without-country']+=1
                 continue
+            if source.get('require_enrolled_students') and (
+                    role['internship_type'] != 'internship'
+                    or not explicitly_admits_enrolled_students(record['text'])):
+                filter_reasons['explicitly-enrolled-student-internship-required']+=1
+                continue
             url=allowed_url(record['url'],source); apply=allowed_url(record['apply_url'],source)
             verified=None; link_status='not-checked'; application=None; closed=False
             observation={}
@@ -300,13 +313,19 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             if source.get('id') in PILOTS and observation.get('dynamic_ats'):
                 report.setdefault('dynamic_ats',[]).append(dict(url=url,**observation['dynamic_ats']))
             langs=workplace_languages(record['text'])
-            staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'],record.get('language')),workplace_languages=langs,language_requirements=language_summary(record['text'],langs),language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),valid_through=application.get('valid_through') if application else record.get('valid_through'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,verification=verification,status='open' if verified else 'unverified'))
+            staged.append(dict(id=stable_id(source['id'],record['external_id']),external_id=record['external_id'],source_id=source['id'],source_name=source['employer'],source_type=source['adapter'],source_posting_id=record.get('posting_identifier'),employer=record['employer'],title=record['title'],country=countries[0],countries=countries,city=record.get('city') or record['location'],url=url,apply_url=apply,**role,advertisement_language=advertisement_language(record['text'], record.get('language'), page_hint=record.get('page_language')),workplace_languages=langs,language_requirements=language_summary(record['text'],langs),language_confidence='confirmed' if langs else 'unspecified',**extract_metadata(record['text'],record.get('work_mode')),published_at=record.get('published_at'),valid_through=application.get('valid_through') if application else record.get('valid_through'),first_discovered_at=stamp,last_seen_at=stamp,last_verified_at=verified,link_status=link_status,verification=verification,status='open' if verified else 'unverified'))
             intake=observation['intake'] if 'intake' in observation else extract_intake(record['text'],text_observation['checked_at'])
             if intake:
                 provenance=dict(kind='live',checked_at=stamp) if 'intake' in observation else text_observation
                 intake=dict(intake,provenance=provenance['kind'],observed_via=provenance.get('origin',provenance['kind']))
             if intake:staged[-1]['intake']=intake
-            if application:staged[-1]['application_verification']=dict(application,checked_at=stamp)
+            if role['internship_type']=='internship' and also_open_to_recent_graduates(record['text']):
+                staged[-1]['also_open_to_recent_graduates']=True
+            if application:
+                staged[-1]['application_verification']=dict(application,checked_at=stamp)
+                mirror=source.get('reviewed_public_mirrors',{}).get(record.get('posting_identifier'))
+                if mirror:
+                    staged[-1]['identity_aliases']=[canonical_url(mirror)]
             if public_api:
                 staged[-1].update(inventory_evidence=record.get('inventory_evidence'),public_api_listed_at=stamp)
                 if record.get('external_application_url'):staged[-1]['external_application_url']=record['external_application_url']
@@ -365,8 +384,16 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     for j in jobs:
         if not j.get('last_verified_at') and j['id'] in old: j['last_verified_at']=old[j['id']].get('last_verified_at')
     result={'schema_version':1,'updated_at':stamp if successful else prior.get('updated_at'),'last_attempt_at':stamp,'update_status':'ok' if len(successful)==len(selected) and selected and not partial_sources else 'partial' if successful else 'failed','countries':COUNTRIES,'languages':LANGUAGES,'categories':{k:v[0] for k,v in CATEGORIES.items()},'jobs':jobs}
+    from .verification import expired, PERSONIO_STATIC_FORM
+    static_form_sources={s['id'] for s in registry if s.get('application_check')==PERSONIO_STATIC_FORM}
     for job in jobs:
-        from .verification import expired
+        if (job.get('application_verification',{}).get('method')==PERSONIO_STATIC_FORM
+                and job['source_id'] not in static_form_sources):
+            job.pop('application_verification')
+            if job['status']=='open':
+                job.update(status='unverified',link_status='review-required',
+                           verification=dict(state='incomplete',checked_at=stamp,policy_version=2,
+                                             reason='Personio static-form verification withdrawn'))
         try:
             if expired(job.get('valid_through'),stamp):
                 job.update(status='closed',closure_reason='Published application deadline has passed',verification=dict(state='closed',checked_at=stamp,policy_version=2,reason='Published application deadline has passed'))

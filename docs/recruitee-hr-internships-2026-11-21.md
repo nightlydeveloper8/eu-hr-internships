@@ -1,0 +1,28 @@
+# Recruitee — 12 annunci esaminati il 21 novembre 2026
+
+Base di staging `2c937f7`, che include #110 e #111. Confronto con registro e catalogo per nome, alias e tenant. Esaminate le modifiche a `data/companies.json` e `data/sources.json` nelle 27 PR aperte. SmartWays compare in #102 e #96. Mercedes-Benz Group AG è già censita come gruppo; Mercedes-Benz.io GmbH è l'entità che pubblica l'annuncio.
+
+Il conteggio delle 12 righe prevale sul totale introduttivo della lista ricevuta. I costi sono per riga e si riferiscono allo staging conclusivo quando presente, altrimenti alla lettura iniziale del feed o alla verifica della pagina SmartWays. GET include robots e tentativi falliti; byte indica i corpi effettivamente letti dal client. I tempi sono in secondi decimali. Si sono effettuati anche controlli diagnostici separati di alias e redirect. Nessun invio.
+
+| # | Datore | Paese | ATS | Esito | GET / byte / s | Requisiti documentati |
+| ---: | --- | --- | --- | --- | ---: | --- |
+| 1 | [SmartWays](https://smartways.recruitee.com/o/recruitment-internship-programme-paid) | PL | Recruitee | Scartato dal lotto: già in #102 e #96; recruiting per clienti | 2 / 193.156 / 0.619 | Studenti universitari, almeno 35 h/settimana per 6 mesi; lingua non esplicitata |
+| 2 | [Mercedes-Benz.io](https://mbio.recruitee.com/o/intern-people-operations-partner-fmx/c/new) | PT | Recruitee | Caso limite: modulo v2 verificato; ammette anche neolaureati | 4 / 721.076 / 1.696 | Laurea in corso o recente in HR, management, psicologia o affine; PT e EN |
+| 3 | [Gérard Bertrand](https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf) | FR | Recruitee | Scartato: già nel registro; iscrizione non esplicita | 2 / 121.895 / 0.621 | Bac+4/5 in HR, scuola di commercio o equivalente; lingua non esplicitata |
+| 4 | [Bundl](https://bundl.recruitee.com/o/hr-intern?lang=en) | BE | Recruitee | Scartato dal lotto: già nel registro come Bundl | 2 / 31.995 / 0.586 | Studi in HR, Office Management, psicologia applicata o del lavoro; EN e NL fluenti |
+| 5 | [Ibexa](https://ibexa.recruitee.com/o/human-resources-internship-2) | BE | Recruitee | Scartato dal lotto: già nel registro come Ibexa | 2 / 13.057 / 0.566 | Studente full-time in HR o affine; FR e EN fluenti; inizio febbraio 2027 |
+| 6 | [Hotel Beveren (Van der Valk)](https://vandervalkbeveren.recruitee.com/o/hr-stage) | BE | Recruitee | Scartato dalla preparazione: host del modulo non risolto (DNS) | 4 / 20.337 / 0.651 | Convenzione con università o hogeschool; lingua non esplicitata |
+| 7 | [Aquablu](https://aquablu.recruitee.com/o/people-culture-intern-1?lang=en) | NL | Recruitee | Valido: modulo v2 verificato; fonte predisposta | 4 / 805.399 / 1.679 | Bachelor/Master in corso per tutta la durata; EN fluente, NL preferenziale; febbraio 2027 |
+| 8 | [Zero Motorcycles](https://zeromotorcycles.recruitee.com/o/human-resources-hr-europe-intern-hbo/c/new) | NL | Recruitee | Valido: modulo v2 verificato; fonte predisposta | 4 / 523.110 / 1.658 | HBO, iscritto a HR o affine, preferibilmente 3° anno; NL fluente, buon EN |
+| 9 | [Youvia](https://werkenbijyouvia.recruitee.com/o/hr-stage-meewerkstage-human-resource-management-hrm) | NL | Recruitee | Valido: modulo v2 verificato; fonte predisposta | 4 / 493.165 / 1.663 | HBO HRM in corso; NL eccellente |
+| 10 | [VIGO groep](https://werkenbijvigogroep.recruitee.com/o/stagiaire-hr-leren-ontwikkelen-32-uur-vigo-2027) | NL | Recruitee | Scartato dal lotto: VIGO già nel registro; scadenza ancora futura al controllo | 2 / 1.131.325 / 0.705 | HBO HRM, 3°/4° anno; lingua non esplicitata; candidatura prima del 25 novembre 2026 |
+| 11 | [Koninklijke Remia](https://remiacv.recruitee.com/o/hr-stagiaire) | NL | Recruitee | Scartato dal lotto: Koninklijke Remia C.V. già nel registro | 2 / 66.264 / 0.602 | HRM in corso; profilo HBO, testo cita anche MBO e WO; minimo 4 mesi da febbraio 2027; lingua non esplicitata |
+| 12 | [Life Outdoor Living](https://lifeoutdoorliving.recruitee.com/o/hr-stagiaire-2027) | NL | Recruitee | Scartato dalla preparazione: robots sul dominio carriera risponde con redirect a www; percorso esatto non verificato | 4 / 91.189 / 0.971 | AD/HBO in corso, preferibilmente 2°/3° anno o anno di tesi; da febbraio 2027; lingua non esplicitata |
+
+## Fonti proposte
+
+Aquablu `2822890`, Zero Motorcycles `2668002` e Youvia `2202199`. Il feed XML pubblico ha pubblicato la pagina vacancy e il modulo. Il collector v2 ha controllato host e robots, l'ID strutturato su entrambe le pagine, il nome legale del datore e i campi con submit utilizzabile. I tre esiti sono candidature dirette v2. Costo dei tre cicli mirati **12 GET / 1.821.674 byte / 5,000 s**. I feed non danno copertura sufficiente per chiudere offerte per assenza.
+
+Fonti `enabled: false` e hold aziendale e di fonte. La finalizzazione in staging ha prodotto **907 → 910 ID, 0 persi**, con tre nuovi ID diretti dei Paesi Bassi: `e1e26cddfabfbb0a1425`, `157986757eefed28b59b`, `981390eb686cddbdbbbd`. Incremento potenziale per paese **NL +3; BE, FR, PL, PT +0** in questa proposta. Prima di un'attivazione autorizzata servono review dei termini e prova fresca.
+
+Mercedes-Benz.io `2833968` ha lo stesso esito tecnico positivo. La fonte resta fuori dalla proposta in attesa della decisione sui ruoli che ammettono anche neolaureati. Hotel Beveren `2740481` e Life Outdoor Living `2755778` hanno prove di studio nel feed, ma il percorso ufficiale non ha superato la verifica. Life Outdoor Living pubblica anche un indirizzo email nel testo del feed; la prova richiesta per il modulo Recruitee resta incompleta.

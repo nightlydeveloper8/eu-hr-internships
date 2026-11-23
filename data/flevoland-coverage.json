@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T07:34:45.685699+00:00",
+  "generated_at": "2026-11-22T23:51:21.642783+00:00",
   "province": "Flevoland",
   "region_code": "NL23",
   "exhaustive": false,
@@ -20,8 +20,8 @@
     "configured": 19,
     "attempted_recently": 19,
     "collection_states": {
-      "partial": 12,
-      "discovery-incomplete": 6,
+      "partial": 11,
+      "discovery-incomplete": 7,
       "blocked-or-failed": 1
     },
     "qualified_collection_states": {},
@@ -102,7 +102,8 @@
       "size_unknown": 3,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2,
+        "discovery-incomplete": 1,
+        "partial": 1,
         "blocked-or-failed": 1
       },
       "company_ids": [
@@ -185,13 +186,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:56.205945+00:00",
+      "last_attempt_at": "2026-11-22T23:36:20.714789+00:00",
       "public_job_records": 13,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-alfen",
-          "message": "[{'url': 'https://alfen.com/werken-bij/vacatures', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures/data-engineer-1275177/solliciteren', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures/project-engineer-sgs-1210086', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -227,7 +228,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:32.761975+00:00",
+      "last_attempt_at": "2026-11-22T23:36:18.629219+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -269,7 +270,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:56.205945+00:00",
+      "last_attempt_at": "2026-11-22T23:36:20.714789+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -311,7 +312,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:32.273112+00:00",
+      "last_attempt_at": "2026-11-22T23:36:21.469550+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -348,7 +349,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:32.268629+00:00",
+      "last_attempt_at": "2026-11-22T23:36:36.427975+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -390,7 +391,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:21:11.923755+00:00",
+      "last_attempt_at": "2026-11-22T23:36:21.439207+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -432,7 +433,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:42.184134+00:00",
+      "last_attempt_at": "2026-11-22T23:36:44.708951+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -474,7 +475,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:21:03.133844+00:00",
+      "last_attempt_at": "2026-11-22T23:36:46.532903+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -516,7 +517,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:56.205945+00:00",
+      "last_attempt_at": "2026-11-22T23:36:20.714789+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [
         "36be83296822b67167cb"
@@ -553,12 +554,17 @@
       "source_ids": [
         "auto-smt-netherlands"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:21:06.017270+00:00",
-      "public_job_records": 5,
+      "last_attempt_at": "2026-11-22T23:36:48.853648+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-smt-netherlands",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "groothuisbouw",
@@ -592,7 +598,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:32.761975+00:00",
+      "last_attempt_at": "2026-11-22T23:36:18.629219+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -634,7 +640,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:57.766289+00:00",
+      "last_attempt_at": "2026-11-22T23:36:22.080963+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -676,7 +682,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:34.232765+00:00",
+      "last_attempt_at": "2026-11-22T23:36:44.025615+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -718,7 +724,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:32.761975+00:00",
+      "last_attempt_at": "2026-11-22T23:36:18.629219+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -760,7 +766,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:34.232765+00:00",
+      "last_attempt_at": "2026-11-22T23:36:44.025615+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -797,7 +803,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:29.032679+00:00",
+      "last_attempt_at": "2026-11-22T23:36:23.458494+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -839,7 +845,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:56.205945+00:00",
+      "last_attempt_at": "2026-11-22T23:36:20.714789+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -881,7 +887,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:29.032679+00:00",
+      "last_attempt_at": "2026-11-22T23:36:23.458494+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -923,7 +929,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-22T07:20:28.725110+00:00",
+      "last_attempt_at": "2026-11-22T23:36:25.640815+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [

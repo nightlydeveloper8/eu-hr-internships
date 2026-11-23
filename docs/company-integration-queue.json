@@ -4703,7 +4703,7 @@
       "recruitee-climeworks-ch"
     ],
     "access_blocks": [
-      "2026-11-21: https://climeworks.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta."
+      "2026-11-22: Tellent Product-Specific Terms 2.9 https://recruitee.com/terms and public XML offer feed https://docs.recruitee.com/reference/authentication-1 (exempt from Careers API token); scoped public GET not prohibited in reviewed texts. Employer texts: https://climeworks.com/website-terms-use. Employer terms §§1.1, 3.6–3.7 cover linked associated sites and prohibit robots and automated monitoring or copying. Keep both holds. No staging requests."
     ],
     "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
@@ -5406,6 +5406,20 @@
     "career_url": "https://www.donat-it.de/karriere/",
     "source_ids": [
       "auto-donat-it-gmbh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "dop-advocaten",
+    "name": "DOP advocaten",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://dopadvocaten.nl/werken-bij/",
+    "source_ids": [
+      "auto-dop-advocaten"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -6632,20 +6646,6 @@
     "career_url": "https://www.eco-cert.it/lavora-con-noi/",
     "source_ids": [
       "auto-eco-certificazioni-spa"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "edco",
-    "name": "EDCO",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://werkenbijedco.nl/",
-    "source_ids": [
-      "recruitee-edco"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -7891,22 +7891,6 @@
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "fanatics-collectibles-gb",
-    "name": "Fanatics Collectibles",
-    "candidate_countries": [
-      "GB"
-    ],
-    "state": "integration-required",
-    "career_url": "https://job-boards.greenhouse.io/fanaticscollectibles",
-    "source_ids": [
-      "greenhouse-fanatics-collectibles-gb"
-    ],
-    "access_blocks": [
-      "2026-11-21: https://boards-api.greenhouse.io/robots.txt vieta /embed/; https://job-boards.greenhouse.io/robots.txt non ha regole attive. GET documentata https://docs.greenhouse.io/job-board; https://www.greenhouse.com/master-subscription-agreement disciplina i clienti, non autorizzazione generale a terzi."
-    ],
-    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
   {
     "company_id": "farm-dairy",
@@ -10357,6 +10341,20 @@
     "career_url": "https://hjfdekoning.nl/vacature/",
     "source_ids": [
       "auto-h-j-f-de-koning-scheepsstoffering"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "hanos",
+    "name": "HANOS",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://www.werkenbijhanos.nl/werkgebieden/HR",
+    "source_ids": [
+      "auto-hanos"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -16647,22 +16645,6 @@
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "peripass-be",
-    "name": "Peripass",
-    "candidate_countries": [
-      "BE"
-    ],
-    "state": "integration-required",
-    "career_url": "https://peripass.recruitee.com/",
-    "source_ids": [
-      "recruitee-peripass-be"
-    ],
-    "access_blocks": [
-      "2026-11-21: https://peripass.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta."
-    ],
-    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
   {
     "company_id": "perkinelmer",
@@ -24865,6 +24847,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "zva-maatwerk",
+    "name": "ZvA-maatwerk",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://zvamaatwerk.nl/vacature/",
+    "source_ids": [
+      "auto-zva-maatwerk"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "zwembad-mounewetter",
     "name": "Zwembad Mounewetter",
     "candidate_countries": [
@@ -25483,6 +25479,34 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "aquablu-nl",
+    "name": "Aquablu",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://aquablu.recruitee.com/",
+    "source_ids": [
+      "recruitee-aquablu-nl"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "avantgarde-de",
+    "name": "Avantgarde",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://avantgarde.jobs.personio.de/",
+    "source_ids": [
+      "personio-avantgarde-de"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "bsh-electrodomesticos-espana",
     "name": "BSH Electrodomésticos España",
     "candidate_countries": [
@@ -25534,6 +25558,20 @@
     "career_url": "https://www.bibliotheekdrachten.nl/over-ons/vacatures/vacatures.html",
     "source_ids": [
       "auto-bibliotheek-drachten-smallingerland"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "bloomwell-group-de",
+    "name": "Bloomwell Group",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://bloomwell.jobs.personio.de/",
+    "source_ids": [
+      "personio-bloomwell-group-de"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25646,20 +25684,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "dop-advocaten",
-    "name": "DOP advocaten",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://dopadvocaten.nl/werken-bij/",
-    "source_ids": [
-      "auto-dop-advocaten"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "drive-consulting",
     "name": "DRIVE Consulting",
     "candidate_countries": [
@@ -25697,6 +25721,20 @@
     "career_url": "https://dommelvallei.recruitee.com/",
     "source_ids": [
       "recruitee-dienst-dommelvallei"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "edco",
+    "name": "EDCO",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://werkenbijedco.nl/",
+    "source_ids": [
+      "recruitee-edco"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25771,6 +25809,20 @@
     "career_url": "https://www.fzorganicfood.com/vacatures",
     "source_ids": [
       "auto-fz-organic-food"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "fanatics-collectibles-gb",
+    "name": "Fanatics Collectibles",
+    "candidate_countries": [
+      "GB"
+    ],
+    "state": "collecting",
+    "career_url": "https://job-boards.greenhouse.io/fanaticscollectibles",
+    "source_ids": [
+      "greenhouse-fanatics-collectibles-gb"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25970,20 +26022,6 @@
     "career_url": "https://gerardbertrand.recruitee.com/o/stage-ressources-humaines-deploiement-sirh-hf?lang=fr",
     "source_ids": [
       "recruitee-gerard-bertrand"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "hanos",
-    "name": "HANOS",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://www.werkenbijhanos.nl/werkgebieden/HR",
-    "source_ids": [
-      "auto-hanos"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26268,6 +26306,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "mercedes-benz-io-pt",
+    "name": "Mercedes-Benz.io",
+    "candidate_countries": [
+      "PT"
+    ],
+    "state": "collecting",
+    "career_url": "https://mbio.recruitee.com/",
+    "source_ids": [
+      "recruitee-mercedes-benz-io-pt"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "metaalplus-bv",
     "name": "Metaalplus BV",
     "candidate_countries": [
@@ -26366,6 +26418,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "peripass-be",
+    "name": "Peripass",
+    "candidate_countries": [
+      "BE"
+    ],
+    "state": "collecting",
+    "career_url": "https://peripass.recruitee.com/",
+    "source_ids": [
+      "recruitee-peripass-be"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "pigment",
     "name": "Pigment",
     "candidate_countries": [
@@ -26459,6 +26525,20 @@
     "career_url": "https://www.rederij-doeksen.nl/werken-bij-rederij-doeksen",
     "source_ids": [
       "auto-rederij-doeksen"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "reformer-club-de",
+    "name": "Reformer Club",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://reformer-club.jobs.personio.de/",
+    "source_ids": [
+      "personio-reformer-club-de"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26646,6 +26726,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "studyflix-de",
+    "name": "Studyflix",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://studyflix-gmbh.jobs.personio.de/",
+    "source_ids": [
+      "personio-studyflix-de"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "thermo-fisher-scientific",
     "name": "Thermo Fisher Scientific",
     "candidate_countries": [
@@ -26714,6 +26808,20 @@
     "career_url": "https://werkenbijvigogroep.recruitee.com/",
     "source_ids": [
       "recruitee-batch-vigo-groep"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "vamo-de",
+    "name": "Vamo",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://vamo.jobs.personio.de/",
+    "source_ids": [
+      "personio-vamo-de"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26820,6 +26928,62 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "watson-farley-williams-de",
+    "name": "Watson Farley & Williams LLP",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://watson-farley-williams-llp.jobs.personio.de/",
+    "source_ids": [
+      "personio-watson-farley-williams-de"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "wilken-software-group-de",
+    "name": "Wilken Software Group",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://wilken.jobs.personio.de/",
+    "source_ids": [
+      "personio-wilken-software-group-de"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "youvia-nl",
+    "name": "Youvia",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://werkenbijyouvia.recruitee.com/",
+    "source_ids": [
+      "recruitee-werkenbijyouvia-nl"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "zero-motorcycles-nl",
+    "name": "Zero Motorcycles",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://zeromotorcycles.recruitee.com/",
+    "source_ids": [
+      "recruitee-zeromotorcycles-nl"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "ziengs-schoenen",
     "name": "Ziengs Schoenen",
     "candidate_countries": [
@@ -26829,20 +26993,6 @@
     "career_url": "https://www.werkenbijziengs.nl/",
     "source_ids": [
       "auto-ziengs-schoenen"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "zva-maatwerk",
-    "name": "ZvA-maatwerk",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://zvamaatwerk.nl/vacature/",
-    "source_ids": [
-      "auto-zva-maatwerk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26899,6 +27049,20 @@
     "career_url": "https://qwitto.com/qwitto-career/",
     "source_ids": [
       "personio-xml-qwitto-gmbh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "ten23-health-ch",
+    "name": "ten23 health",
+    "candidate_countries": [
+      "CH"
+    ],
+    "state": "collecting",
+    "career_url": "https://ten23-health.jobs.personio.de/",
+    "source_ids": [
+      "personio-ten23-health-ch"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"

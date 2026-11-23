@@ -256,6 +256,7 @@ main { max-width: 1520px; margin: 0 auto; padding: 0 var(--gutter); }
 .ad-language-summary .english { --language-color: var(--accent-2); }
 .ad-language-summary .local { --language-color: #a49aee; }
 .ad-language-summary .other { --language-color: var(--warn); }
+.ad-language-summary .bilingual, .ad-language-summary .multilingual { --language-color: #8559c4; }
 .ad-language-summary .unknown { --language-color: var(--text-3); }
 .ad-language-legend { list-style: none; margin: 8px 0 0; padding: 0; color: var(--text-2); font-size: 12px; }
 .ad-language-legend li { display: flex; gap: 7px; align-items: baseline; }
@@ -588,4 +589,34 @@ tbody th { color: var(--text); font-weight: 500; }
 @media (forced-colors: active) {
   .hover-outline, .selected-outline { stroke: Highlight; }
   .evidence-badge, .tag, .btn { border: 1px solid ButtonText; }
+}
+
+/* Search timing and student guide */
+.timing-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; margin-top: 14px; }
+.timing-filters label { color: var(--text-2); margin-bottom: 4px; }
+.timing-filters select { border-color: var(--text-3); }
+.timing-filters :is(select, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 520px) {
+  .timing-filters { grid-template-columns: minmax(0, 1fr); }
+}
+.timing-filters .timing-toggle, .timing-filters .input-note { grid-column: 1 / -1; }
+.usage-guide { max-width: 76ch; }
+.usage-guide section { display: grid; gap: 12px; margin-block: 24px; }
+.usage-guide h2 { font-size: 20px; }
+.usage-guide p, .usage-guide dd { color: var(--text-2); }
+.usage-guide dd { margin: 0 0 12px; }
+.usage-guide .btn { justify-self: start; }
+
+.save-button, .map-controls button, .icon-button { width: 44px; height: 44px; }
+.job-details summary, .registry-method summary, .employer-list summary { min-height: 24px; }
+.company-line, .job-location { white-space: normal; overflow-wrap: anywhere; }
+.eu-country:focus-visible > path, .eu-country:focus-visible .small-marker { stroke: var(--ice); stroke-width: 2; }
+.segmented { overflow: visible; }
+.segmented button { white-space: normal; }
+@media (max-width: 760px) {
+  .segmented button { min-height: 44px; padding-inline: 4px; gap: 4px; }
+  #coverage-nav { width: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .job-card:hover, .save-button.pulse, .apply-link:hover .arrow { transform: none; }
 }

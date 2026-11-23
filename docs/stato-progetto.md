@@ -1,8 +1,43 @@
 # Stato di ripresa — People Placement
 
-## 22 novembre 2026 — Drenthe, Noordenveld e stop del budget
+## 23 novembre 2026 — lingua dell’annuncio e requisiti linguistici
+[Rapporto e campione](lingue-2026-11.md) di 80 annunci EURES. Il collector usa metadati e corpo; l’interfaccia distingue anche bilingue e sconosciuto.
+Campione prima → dopo: precisione e copertura 80/80 → 80/80; annunci con estratti 25 → 30; coppie stage–lingua corrette 23 → 51.
+Il filtro di inizio e la soglia di durata IHRM sono coperti dai test Node. Replay parziale su evidenze salvate: 126/927 schede (94/414 aperte), zero cambi di lingua. Stage aperti con estratto nominativo: 104 → 109.
+Il maintainer ha accettato il replay parziale. Istantanea pre-merge dal catalogo bot `94f8144`. Prossimo passo: confrontare la prima raccolta dopo il merge con quella baseline prima di procedere con #120.
 
-[Ricerca e limiti](drenthe-2026-11-22.md), [prove](drenthe-2026-11-22-evidence.json), [copertura separata](drenthe-2026-11-22-coverage.json), [test](drenthe-2026-11-22-validation.json). Noordenveld qualificata dalla pagina comunale: oltre 400 colleghi, perimetro contrattuale/data non specificati. Meppel offre stage generici, non una vacancy HR dimostrata. Ramo #41: 40 datori, 29 qualificati, 11 ignoti; DOC Kaas resta in #57. Nessun nuovo stage verificato o requisito linguistico dedotto. Probe fermato su tutti gli host dopo esaurimento del budget condiviso, con due test nuovi. Preservati head concorrente `e34cc4c`, UI e raccolta main; conflitti dei report risolti mantenendo gli export del bot senza ricalcoli pubblicati. Misure: 4 chiamate client incluse robots / 133.950 byte riusciti / 2,090 s; non contatore wire completo. Catalogo identico al main `f606443`, 913 ID e zero persi. Nessun merge o produzione. Primo passo residuo: vacancy HR specifiche e candidature ufficiali sui canali accessibili.
+## 22 novembre 2026 — monitoraggio della raccolta di produzione
+
+La raccolta innescata da #118 controlla ID persi, calo degli stage >15%, EURES fallito o vuoto e guasti >20% tra fonti recentemente riuscite. Il monitor pianificato segnala catalogo oltre 36 ore.
+[Prima raccolta dopo #116](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45002015989) riuscita. Baseline pubblicata in `d69c664`: 926 ID, 422 stage aperti, 52 candidature dirette, 13 paesi con stage.
+Verifica prima di #118: CI Python 3.12 verde dopo #132; #124 e #123 integrate. Filtro di inizio e scheda senza data verificati sul sito pubblico a 375 e 1440 px.
+Prossimo passo: verificare run e publish post-merge, integrità degli ID, variazioni di freschezza, candidature dirette, EURES e issue del monitor.
+
+## 22 novembre 2026 — finestra di stage IHRM del secondo anno
+
+Filtro di inizio dal 5 gennaio al 13 marzo 2027. Il filtro di durata compare da 10 stage verificati con durata esplicita.
+Baseline `d69c664`: 926 ID, 422 stage aperti, 52 candidature dirette, 13 paesi con stage aperti.
+Il replay ripreso da #119 è già integrato con #132. La PR non attiva collect.yml.
+Prossimo passo: verificare il deploy Cloudflare e il sito pubblico a 375 e 1440 px.
+
+## 22 novembre 2026 — diario per ramo e limite alle PR degli agenti
+
+Frammenti di massimo otto righe, consolidati nel commit di integrazione.
+Limite di cinque PR aperte create da agenti e sospensione dei nuovi piloti di ricerca.
+Verifica offline del consolidatore; nessun cambiamento alla raccolta.
+Prossimo passo: usare il frammento nelle PR e ridurre la coda con le decisioni del maintainer.
+
+## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
+
+[#113](https://github.com/nightlydeveloper8/eu-hr-internships/pull/113) e [#115](https://github.com/nightlydeveloper8/eu-hr-internships/pull/115) integrate su autorizzazione, con le fonti ancora in hold. Su `main@5181ca8`, [proposta e misure](attivazione-ats-2026-11-22.md) confermano 14 fonti idonee, 56 GET / 10.189.498 byte / 29,616 secondi-fonte. Climeworks resta in hold per i termini. Simulazione 913 → 926 ID, zero persi, 407 → 420 stage verificati e 36 → 50 diretti. Audit delle fonti già attive senza modifiche. Prossimo passo: revisione del maintainer, poi controllare il primo ciclo e il catalogo servito in caso di merge autorizzato.
+
+## 22 novembre 2026 — metodo Personio e nove fonti con hold
+
+[Verifica di staging e costi](personio-static-applications-2026-11-22.md). Su `main@f606443`, otto candidature Personio con feed e modulo stesso ID e una Recruitee v2. Mercedes-Benz.io, ten23 health e Reformer Club indicano anche l’ammissione di neolaureati. Watson Farley & Williams conserva l’ID EURES; Studyflix resta a un annuncio. Nove fonti predisposte disabilitate e con hold. 38 GET, 4.210.328 byte, 20,734 secondi-fonte nel ciclo conclusivo. Simulazione 913 → 921 ID, zero persi, 407 → 415 stage verificati, 36 → 45 diretti, 365 lead invariati. Nessuna raccolta o attivazione di produzione. Prossimo passo: revisione della PR e, prima di un eventuale rollout, termini dei singoli datori e prova fresca.
+
+## 21 novembre 2026 — revisione annunci Recruitee
+
+[Risultati, requisiti e costi](recruitee-hr-internships-2026-11-21.md). Tre fonti NL con candidatura diretta v2 (Aquablu, Zero Motorcycles, Youvia), predisposte disabilitate e con hold. Finalizzazione temporanea 907 → 910 ID, 0 persi. Mercedes-Benz.io è un caso limite con modulo verificato e ammissione di neolaureati. Prossimo passo: revisione, decisione sul caso limite e prova fresca prima di ogni eventuale attivazione. Base `2c937f7`. Verificati 531 test Python 3.12, 35 test Node, build, catalogo e provisioning idempotente. 1.923 collector attivi prima e dopo.
 
 ## 21 novembre 2026 — inventario ATS e staging di tenant già noti
 
@@ -71,14 +106,6 @@ Revisione del maintainer. [#107](https://github.com/nightlydeveloper8/eu-hr-inte
 - Corretta la voce del 20/11 sul redesign, che risultava ancora "non in produzione".
 - Solo documentazione: nessun cambiamento a codice, dati, fonti o workflow.
 
-## 21 novembre 2026 — Drenthe, WZA qualificato
-
-[Rapporto](drenthe-2026-11-21.md), [audit](drenthe-2026-11-21-audit.json), [validazione](drenthe-2026-11-21-validation.json). Pagina ufficiale WZA acquisita: oltre 1.500 persone al lavoro, esclusi specialisti; perimetro contrattuale/data non specificati. Nel ramo #41: 40 datori, 28 qualificati, 12 ignoti; DOC Kaas rimane nella distinta #57, non duplicata. Catalogo identico al main `a71b260`; nessun nuovo stage verificato, fonte, browser o raccolta completa. Preservati nuovo design #100 e lavoro precedente. Nessun merge o produzione; controlli e CI nella PR. Proseguire sugli organici ignoti e canali incompleti senza reiterare i blocchi precedenti.
-
-## 20 novembre 2026 — Drenthe, probe rispettoso dei blocchi
-
-[Rapporto](drenthe-2026-11-20.md) e [prove](drenthe-2026-11-20-evidence.json). Pista Aalbers Nieuw-Buinen (organico e programma HR generico solo indicizzati), non integrata per robots 403; Paas non qualificata dal personale del cliente in una pagina progetto. Nuovo helper di ricerca con budget condiviso, deduplica e stop delle successive URL dello stesso host dopo errore robots; due test offline. Dati e fonti invariati, nessun nuovo stage verificato. Nessun merge o produzione; risultati test/CI nella PR #41. Non reiterare oggi i blocchi.
-
 ## 20 novembre 2026 — redesign visivo premium dark (in produzione con PR #100, squash `5ffb2d1`)
 
 - **Ambito solo UI/UX.** Modificati `src/index.html`, `src/style.css`, `src/app.js`, `src/map.js`, `src/favicon.svg`, l'intestazione delle pagine secondarie e due helper puri in `src/logic.js` (`evidenceLevel`, `zoomViewBox`). Invariati collector, fonti, policy v2, verifiche delle candidature, catalogo, geometrie e codici paese, ID, URL dei filtri e preferiti locali (`people-placement:saved`).
@@ -115,20 +142,12 @@ Revisione del maintainer. [#107](https://github.com/nightlydeveloper8/eu-hr-inte
 - Misura dei piloti live: 52 tentativi GET e 18.591.880 byte per il lotto e i controlli indipendenti. Il primo lotto ha impiegato 32 GET e 16.315.466 byte, dei quali 12.691.834 attribuiti al feed e alle pagine di VIGO. I quattro profili sono stati verificati in staging con hold prima del via libera. I rispettivi inventari sono esclusi dalle chiusure per assenza.
 - Simulazione in memoria: attivazione delle sole quattro fonti, da 1.919 a 1.923 attive, zero fonti universali aggiunte, provisioning idempotente e 25 test mirati superati. La bozza consolida il codice delle [PR #80](https://github.com/nightlydeveloper8/eu-hr-internships/pull/80) e [#81](https://github.com/nightlydeveloper8/eu-hr-internships/pull/81) sulla base corrente. Rollout autorizzato il 20 novembre per le sole quattro fonti di questo lotto. La PR #86 abilita le quattro voci e rimuove i rispettivi hold. Il primo ciclo automatico deve confermare quali candidature sono pubblicabili. [Verifica di rilascio](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44739820014)
 
-## 19 novembre 2026 — Drenthe, prova ASTRON storica
-
-La PR documentale #41 conserva la pista Emmen bloccata ed è estesa con [ASTRON](drenthe-2026-11-19.md) e [prova strutturata](drenthe-2026-11-19-evidence.json). PDF ufficialmente ospitato acquisito: 180 dipendenti nel profilo di reclutamento 2023, non prova dell'organico 2026. Homepage attuale senza conferma numerica: dimensione resta ignota. Dati/catalogo/fonti invariati dal main `17aea99`, nessuna nuova vacancy verificata, raccolta completa, attivazione o merge. Non ripetere il PDF o il blocco Emmen; cercare fonte istituzionale recente e proseguire sugli altri canali. PR #57 separata, lavoro concorrente preservato.
-
 ## 19 novembre 2026 — 33 candidature confermate, filtro dedicato e Ampelmann al secondo giorno
 
 - **Raccolta ordinaria.** [Run #44479557241](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44479557241): 18/18 job riusciti. Catalogo pubblicato su main al commit [3f20f51](https://github.com/nightlydeveloper8/eu-hr-internships/commit/3f20f511092d7cd5cb12aa3428bf8b4edc0ca3e6), aggiornato alle 08:46 CET. Da `17aea99`: **816 → 835 ID**, +19 e zero persi, **379 → 398 stage attuali**. Fra i 398, **33** hanno una prova fresca del percorso di candidatura (+1, ProWurk, Surhuisterveen) e **365** sono elencati come attivi dai servizi pubblici (+18: EURES 360, JobTech 5). I 33 sono in NL 19, FR 6, BE 3, DE 3, ES 1 e PT 1. I due numeri misurano evidenze distinte. [Issue #1](https://github.com/nightlydeveloper8/eu-hr-internships/issues/1): 1.896 datori tentati, 71 collected, 34 verified-empty, 528 partial, 275 blocked-or-failed, 988 discovery-incomplete. La corrispondenza byte per byte del catalogo servito dal sito di produzione resta da verificare.
 - **Interfaccia in revisione.** Il filtro **Application route confirmed** usa la prova strutturata e la verifica v2 entro 48 ore. Mappa, schede e report di copertura mostrano il livello di prova, con azione verso il servizio ufficiale o il percorso di candidatura verificato. L'impostazione iniziale continua a mostrare tutti gli stage attuali. Stessi ID, fonti, policy e cadenza. 29 casi del frontend verificati localmente. Zero richieste del collector per questa modifica, che resta sul branch della PR.
 - **Ampelmann, prova live isolata.** [Run #44500469749](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/44500469749) del 19/11 alle 10:53 CET. Stesso posting ufficiale `2822573` e stesso ID staging `b05fc810ebc3e04dc51b` del 17/11. Il feed XML e il modulo Recruitee pubblicato per lo stesso posting hanno prodotto +1 stage verified nello staging e conservato tutti i 363 record della baseline di prova. **5 GET, 943.779 byte, 5,741 s, 0 rendering e 0 invii.** Workflow temporaneo rimosso nel commit [81391cd](https://github.com/nightlydeveloper8/eu-hr-internships/commit/81391cddab4efeeb2d30be8a3104131337e7dc0e). Gate del giorno distinto soddisfatto. [PR #60](https://github.com/nightlydeveloper8/eu-hr-internships/pull/60) da riallineare a main e [PR #65](https://github.com/nightlydeveloper8/eu-hr-internships/pull/65) ancora in attesa della dipendenza e delle autorizzazioni. Ampelmann resta fuori dal catalogo main.
 - **Prima attività residua.** Riallineare l'adapter Recruitee #60 al main attuale e verificare la compatibilità con la configurazione disabilitata #65. Per #63, portare a CI corrente la deduplica delle code prima di misurare il risparmio HTTP in produzione. L'audit precedente riguarda il 20,38% delle voci salvate, non una riduzione equivalente di HTTP. Nessun merge o attivazione in questa sessione.
-
-## 17 novembre 2026 — ripresa documentale della PR #41 Drenthe
-
-Il checkpoint del [ramo #41](https://github.com/nightlydeveloper8/eu-hr-internships/pull/41) è stato riallineato alla baseline aggiornata `ab51981ff` **senza merge**. La prova Emmen del 16 novembre ha ricevuto `robots.txt unavailable: 403`; organico ancora **ignoto** in quel checkpoint, programma generico non equivalso a vacancy HR. Prove originali conservate in `docs/drenthe-2026-11-16-evidence.json` e `docs/drenthe-2026-11-16.md`. La distinta PR #57 documenta una qualificazione di *DOC Kaas*, non una nuova candidatura. Nessuna fonte/annuncio/rollout aggiunto; solo continuità delle evidenze. Non ripetere automaticamente GET proibiti.
 
 ## 17 novembre 2026 — riparato il gate CI che ha interrotto la raccolta programmata
 

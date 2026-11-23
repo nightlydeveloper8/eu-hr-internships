@@ -50514,21 +50514,21 @@
     "ownership_scope": "reviewed-hosts",
     "require_employer_identity": true,
     "permission_basis": "Public feed and same vacancy form reviewed; robots checked each run; provider/employer terms require review before rollout",
-    "review_notes": "2026-11-21: https://climeworks.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta.",
+    "review_notes": "2026-11-22: Tellent Product-Specific Terms 2.9 https://recruitee.com/terms and public XML offer feed https://docs.recruitee.com/reference/authentication-1 (exempt from Careers API token); scoped public GET not prohibited in reviewed texts. Employer texts: https://climeworks.com/website-terms-use. Employer terms §§1.1, 3.6–3.7 cover linked associated sites and prohibit robots and automated monitoring or copying. Keep both holds. No staging requests.",
     "max_requests": 20,
     "collection_seconds": 90,
     "status": "pending-integration-and-rollout-approval",
     "feed_format": "recruitee-public-xml",
     "application_check": "recruitee-linked",
-    "feed_url": "https://climeworks.recruitee.com/api/feeds/offers.xml"
+    "feed_url": "https://climeworks.recruitee.com/api/feeds/offers.xml",
+    "reviewed_on": "2026-11-22"
   },
   {
     "id": "recruitee-peripass-be",
     "company_id": "peripass-be",
     "employer": "Peripass",
     "adapter": "recruitee",
-    "enabled": false,
-    "collection_activation_hold": true,
+    "enabled": true,
     "career_url": "https://peripass.recruitee.com/",
     "allowed_hosts": [
       "peripass.recruitee.com"
@@ -50538,22 +50538,21 @@
     ],
     "ownership_scope": "reviewed-hosts",
     "require_employer_identity": true,
-    "permission_basis": "Public feed and same vacancy form reviewed; robots checked each run; provider/employer terms require review before rollout",
-    "review_notes": "2026-11-21: https://peripass.recruitee.com/robots.txt: User-agent *; Disallow /v/; XML /api/feeds/offers.xml e posting /o/ non vietati. Termini https://recruitee.com/terms e documentazione https://docs.recruitee.com/docs/feed: feed pubblico; termini per subscriber, nessuna autorizzazione generale a terzi dedotta.",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Tellent Product-Specific Terms 2.9 https://recruitee.com/terms and public XML offer feed https://docs.recruitee.com/reference/authentication-1 (exempt from Careers API token); scoped public GET not prohibited in reviewed texts. Employer texts: https://legal.peripass.com/PortPass_TermsOfService.pdf ; https://peripass.com/privacy-policy/. PortPass automation clause applies to its logistics platform. The board links the privacy policy, which has no recruiting automation prohibition. Fresh policy v2 staging: posting 2262981, 4 GET, 872349 bytes, 1.844 seconds. Exact hosts and runtime robots.",
     "max_requests": 20,
     "collection_seconds": 90,
-    "status": "pending-integration-and-rollout-approval",
     "feed_format": "recruitee-public-xml",
     "application_check": "recruitee-linked",
-    "feed_url": "https://peripass.recruitee.com/api/feeds/offers.xml"
+    "feed_url": "https://peripass.recruitee.com/api/feeds/offers.xml",
+    "reviewed_on": "2026-11-22"
   },
   {
     "id": "greenhouse-fanatics-collectibles-gb",
     "company_id": "fanatics-collectibles-gb",
     "employer": "Fanatics Collectibles",
     "adapter": "greenhouse",
-    "enabled": false,
-    "collection_activation_hold": true,
+    "enabled": true,
     "career_url": "https://job-boards.greenhouse.io/fanaticscollectibles",
     "allowed_hosts": [
       "boards-api.greenhouse.io",
@@ -50564,11 +50563,321 @@
     ],
     "ownership_scope": "reviewed-hosts",
     "require_employer_identity": true,
-    "permission_basis": "Public feed and same vacancy form reviewed; robots checked each run; provider/employer terms require review before rollout",
-    "review_notes": "2026-11-21: https://boards-api.greenhouse.io/robots.txt vieta /embed/; https://job-boards.greenhouse.io/robots.txt non ha regole attive. GET documentata https://docs.greenhouse.io/job-board; https://www.greenhouse.com/master-subscription-agreement disciplina i clienti, non autorizzazione generale a terzi.",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Greenhouse public Job Board GET https://docs.greenhouse.io/job-board.html and subscription MSA https://www.greenhouse.com/master-subscription-agreement; automated-access restriction at https://my.greenhouse.io/users/agreement applies to My Greenhouse account service, outside these exact public hosts. Employer texts: https://www.fanaticsinc.com/fanatics-holding-terms ; https://static1.squarespace.com/static/5ff494b9931735466ce28d5b/t/69de53bde2c02c25e9c38758/1776178110037/Candidate+Privacy+Policy+April+2026.pdf. Holding Terms expressly exclude recruitment. The linked candidate policy concerns applicant data; no prohibition for these public board/API GETs found. Fresh policy v2 staging: posting 4510457009, 4 GET, 3295091 bytes, 1.977 seconds. Exact hosts and runtime robots.",
     "max_requests": 20,
     "collection_seconds": 90,
-    "status": "pending-integration-and-rollout-approval",
-    "board": "fanaticscollectibles"
+    "board": "fanaticscollectibles",
+    "reviewed_on": "2026-11-22"
+  },
+  {
+    "id": "recruitee-aquablu-nl",
+    "employer": "Aquablu",
+    "allowed_hosts": [
+      "aquablu.recruitee.com"
+    ],
+    "adapter": "recruitee",
+    "feed_url": "https://aquablu.recruitee.com/api/feeds/offers.xml",
+    "require_employer_identity": true,
+    "ownership_scope": "reviewed-hosts",
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "target_countries": [
+      "NL"
+    ],
+    "employer_aliases": [
+      "Aquablu B.V"
+    ],
+    "company_id": "aquablu-nl",
+    "career_url": "https://aquablu.recruitee.com/",
+    "enabled": true,
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Tellent Product-Specific Terms 2.9 https://recruitee.com/terms and public XML offer feed https://docs.recruitee.com/reference/authentication-1 (exempt from Careers API token); scoped public GET not prohibited in reviewed texts. Employer texts: https://www.aquablu.com/general-terms-and-conditions. Lease, purchase and service terms; no clause found covering the Recruitee tenant or automated job reads. Fresh policy v2 staging: posting 2822890, 4 GET, 805399 bytes, 1.799 seconds. Exact hosts and runtime robots.",
+    "reviewed_on": "2026-11-22"
+  },
+  {
+    "id": "recruitee-zeromotorcycles-nl",
+    "employer": "Zero Motorcycles",
+    "allowed_hosts": [
+      "zeromotorcycles.recruitee.com"
+    ],
+    "adapter": "recruitee",
+    "feed_url": "https://zeromotorcycles.recruitee.com/api/feeds/offers.xml",
+    "require_employer_identity": true,
+    "ownership_scope": "reviewed-hosts",
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "target_countries": [
+      "NL"
+    ],
+    "employer_aliases": [
+      "Zero Motorcycles Inc."
+    ],
+    "company_id": "zero-motorcycles-nl",
+    "career_url": "https://zeromotorcycles.recruitee.com/",
+    "enabled": true,
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Tellent Product-Specific Terms 2.9 https://recruitee.com/terms and public XML offer feed https://docs.recruitee.com/reference/authentication-1 (exempt from Careers API token); scoped public GET not prohibited in reviewed texts. Employer texts: https://zeromotorcycles.com/en-gb/terms-and-conditions ; https://zeromotorcycles.com/en-gb/zero-terms-of-service. Commercial site terms; no express restriction found for automated job reads on the separate Recruitee tenant. Fresh policy v2 staging: posting 2668002, 4 GET, 523110 bytes, 1.754 seconds. Exact hosts and runtime robots.",
+    "reviewed_on": "2026-11-22"
+  },
+  {
+    "id": "recruitee-werkenbijyouvia-nl",
+    "employer": "Youvia",
+    "allowed_hosts": [
+      "werkenbijyouvia.recruitee.com"
+    ],
+    "adapter": "recruitee",
+    "feed_url": "https://werkenbijyouvia.recruitee.com/api/feeds/offers.xml",
+    "require_employer_identity": true,
+    "ownership_scope": "reviewed-hosts",
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "target_countries": [
+      "NL"
+    ],
+    "employer_aliases": [
+      "Youvia BV"
+    ],
+    "company_id": "youvia-nl",
+    "career_url": "https://werkenbijyouvia.recruitee.com/",
+    "enabled": true,
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Tellent Product-Specific Terms 2.9 https://recruitee.com/terms and public XML offer feed https://docs.recruitee.com/reference/authentication-1 (exempt from Careers API token); scoped public GET not prohibited in reviewed texts. Employer texts: https://werkenbijyouvia.recruitee.com/privacy. Tenant recruitment privacy notice; no prohibition on reading public job postings automatically found. Fresh policy v2 staging: posting 2202199, 4 GET, 493165 bytes, 1.801 seconds. Exact hosts and runtime robots.",
+    "reviewed_on": "2026-11-22"
+  },
+  {
+    "id": "recruitee-mercedes-benz-io-pt",
+    "company_id": "mercedes-benz-io-pt",
+    "employer": "Mercedes-Benz.io",
+    "adapter": "recruitee",
+    "enabled": true,
+    "career_url": "https://mbio.recruitee.com/",
+    "allowed_hosts": [
+      "mbio.recruitee.com"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "PT"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://mbio.recruitee.com/api/feeds/offers.xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "employer_aliases": [
+      "Mercedes-Benz.io GmbH"
+    ],
+    "application_check": "recruitee-linked",
+    "feed_format": "recruitee-public-xml",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Tellent Product-Specific Terms 2.9 https://recruitee.com/terms and public XML offer feed https://docs.recruitee.com/reference/authentication-1 (exempt from Careers API token); scoped public GET not prohibited in reviewed texts. Employer texts: https://www.mercedes-benz.io/jobs/ ; https://www.mercedes-benz.io/recruiting-data-protection-notice. The recruiting notice covers applicant data and contains no express prohibition on automated vacancy reads on the public Recruitee tenant. Fresh policy v2 staging: posting 2833968, 4 GET, 721076 bytes, 1.709 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-ten23-health-ch",
+    "company_id": "ten23-health-ch",
+    "employer": "ten23 health",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://ten23-health.jobs.personio.de/",
+    "allowed_hosts": [
+      "ten23-health.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "CH"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://ten23-health.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://ten23-health.jobs.personio.de/privacy-policy. Tenant candidate privacy notice, no automation prohibition found. Fresh policy v2 staging: posting 2139342, 4 GET, 248928 bytes, 1.765 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-watson-farley-williams-de",
+    "company_id": "watson-farley-williams-de",
+    "employer": "Watson Farley & Williams LLP",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://watson-farley-williams-llp.jobs.personio.de/",
+    "allowed_hosts": [
+      "watson-farley-williams-llp.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://watson-farley-williams-llp.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "reviewed_public_mirrors": {
+      "2634127": "https://europa.eu/eures/portal/jv-se/jv-details/MTAwMDEtMTAwMzk2MTczMy1TIDE?lang=en"
+    },
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://watson-farley-williams-llp.jobs.personio.de/privacy-policy ; https://www.wfw.com/legal-and-regulatory/legal-notices-germany/. Candidate data and German legal notices; no express prohibition covering Personio job reads found. Fresh policy v2 staging: posting 2634127, 4 GET, 223608 bytes, 1.734 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-studyflix-de",
+    "company_id": "studyflix-de",
+    "employer": "Studyflix",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://studyflix-gmbh.jobs.personio.de/",
+    "allowed_hosts": [
+      "studyflix-gmbh.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://studyflix-gmbh.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "duplicate_posting_ids": [
+      "1119149"
+    ],
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://studyflix-gmbh.jobs.personio.de/privacy-policy ; https://studyflix.de/impressum. Candidate data and legal notice; no express job automation restriction found. Fresh policy v2 staging: posting 1119140, 4 GET, 272895 bytes, 1.666 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-bloomwell-group-de",
+    "company_id": "bloomwell-group-de",
+    "employer": "Bloomwell Group",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://bloomwell.jobs.personio.de/",
+    "allowed_hosts": [
+      "bloomwell.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://bloomwell.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://bloomwell.jobs.personio.de/privacy-policy ; https://bloomwell.de/nutzungsbedingungen. Candidate privacy and terms for patient-facing services; no express restriction found for Personio job reads. Fresh policy v2 staging: posting 2888191, 4 GET, 288595 bytes, 1.701 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-vamo-de",
+    "company_id": "vamo-de",
+    "employer": "Vamo",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://vamo.jobs.personio.de/",
+    "allowed_hosts": [
+      "vamo.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://vamo.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://vamo.jobs.personio.de/privacy-policy ; https://www.vamo-energy.com/impressum. Candidate privacy and employer imprint; no express job automation restriction found. Fresh policy v2 staging: posting 2471392, 4 GET, 330055 bytes, 2.669 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-reformer-club-de",
+    "company_id": "reformer-club-de",
+    "employer": "Reformer Club",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://reformer-club.jobs.personio.de/",
+    "allowed_hosts": [
+      "reformer-club.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://reformer-club.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://reformer-club.jobs.personio.de/privacy-policy ; https://www.reformer-club.com/impressum. Candidate privacy and employer imprint; no express job automation restriction found. Fresh policy v2 staging: posting 2669913, 4 GET, 328534 bytes, 3.968 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-wilken-software-group-de",
+    "company_id": "wilken-software-group-de",
+    "employer": "Wilken Software Group",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://wilken.jobs.personio.de/",
+    "allowed_hosts": [
+      "wilken.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://wilken.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "reviewed_office_countries": {
+      "DE_Ulm": "DE"
+    },
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://wilken.jobs.personio.de/privacy-policy ; https://www.wilken.de/impressum. Candidate privacy and employer imprint; no express job automation restriction found. Fresh policy v2 staging: posting 2840229, 4 GET, 448002 bytes, 2.294 seconds. Exact hosts and runtime robots."
+  },
+  {
+    "id": "personio-avantgarde-de",
+    "company_id": "avantgarde-de",
+    "employer": "Avantgarde",
+    "adapter": "personio-xml",
+    "enabled": true,
+    "career_url": "https://avantgarde.jobs.personio.de/",
+    "allowed_hosts": [
+      "avantgarde.jobs.personio.de"
+    ],
+    "require_enrolled_students": true,
+    "target_countries": [
+      "DE"
+    ],
+    "ownership_scope": "reviewed-hosts",
+    "require_employer_identity": true,
+    "feed_url": "https://avantgarde.jobs.personio.de/xml",
+    "max_requests": 20,
+    "collection_seconds": 90,
+    "reviewed_on": "2026-11-22",
+    "application_check": "personio-feed-same-id-static-form",
+    "permission_basis": "Published public ATS feed and vacancy-specific form GET. Scoped provider and employer review recorded; exact hosts and robots enforced.",
+    "review_notes": "2026-11-22: Personio terms https://www.personio.com/terms/ and official public jobs feed GET https://developer.personio.de/v1.0/reference/get_xml; scoped public feed and career page GET not prohibited in reviewed texts. No requests to the Personio assets CDN. Employer texts: https://avantgarde.jobs.personio.de/privacy-policy ; https://avantgarde.net/de/imprint/. Candidate privacy and employer imprint; no express job automation restriction found. Fresh policy v2 staging: posting 2888187, 4 GET, 1338691 bytes, 2.935 seconds. Exact hosts and runtime robots."
   }
 ]

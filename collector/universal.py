@@ -51,7 +51,7 @@ def safe_url(url):
 
 class Document(HTMLParser):
     def __init__(self,body,url):
-        super().__init__(convert_charrefs=True);self.url=url;self.links=[];self.frames=[];self.buttons=[];self.h1=[];self.main=[];self.body=[];self.locations=[];self.stack=[];self.anchor=None;self.heading=None;self.button=None;self.meta={}
+        super().__init__(convert_charrefs=True);self.url=url;self.links=[];self.frames=[];self.buttons=[];self.h1=[];self.main=[];self.body=[];self.locations=[];self.stack=[];self.anchor=None;self.heading=None;self.button=None;self.meta={};self.canonical_links=[]
         self.structured=PageParser();self.structured.feed(body.decode('utf-8','replace'));self.feed(body.decode('utf-8','replace'))
     def handle_starttag(self,tag,attrs):
         # HTMLParser represents valueless attributes as None. Presentation hints
@@ -71,6 +71,8 @@ class Document(HTMLParser):
         if tag=='button':self.button=[]
         if tag=='iframe' and a.get('src'):self.frames.append(a['src'])
         if tag=='meta' and a.get('content'):self.meta[a.get('property') or a.get('name','')]=a['content']
+        if tag=='link' and a.get('href') and 'canonical' in a.get('rel','').lower().split():
+            self.canonical_links.append(a['href'])
         if tag=='link' and a.get('rel')=='next' and a.get('href'):self.links.append([a['href'],'next','next'])
     def handle_data(self,data):
         node=self.stack[-1] if self.stack else {}
@@ -117,7 +119,7 @@ def job_from_json(data,url,source):
         if urlsplit(canonical_url(url)).hostname!=urlsplit(job_url).hostname:return None
     if not name and (source.get('require_employer_identity') or urlsplit(job_url).hostname not in source['allowed_hosts']):return None
     employment=data.get('employmentType','');employment=' '.join(str(x) for x in employment) if isinstance(employment,list) else str(employment or '')
-    record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=None,published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting',valid_through=data.get('validThrough'))
+    record=dict(source_id=source['id'],external_id=job_url,employer=plain(name) or source['employer'],title=title,text=text,location='; '.join(cities+sorted(set(countries))),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,url=job_url,apply_url=job_url,language=data.get('inLanguage'),published_at=data.get('datePosted') if isinstance(data.get('datePosted'),str) else None,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None,needs_page=False,extraction_method='jobposting',valid_through=data.get('validThrough'))
     identifier=data.get('identifier')
     if isinstance(identifier,dict):identifier=identifier.get('value')
     if isinstance(identifier,(str,int)) and str(identifier).strip():record['posting_identifier']=str(identifier).strip()
@@ -142,7 +144,7 @@ def job_from_visible(doc,source,is_job=False):
     if len(location)>160:location=''
     url=safe_url(doc.url)
     if not url:return None
-    return dict(source_id=source['id'],external_id=url,employer=source['employer'],title=title,text=text,location=location,city=location or None,country=None,url=url,apply_url=url,language=None,published_at=None,employment='',work_mode=None,needs_page=False,extraction_method='visible-html',geography_unresolved=not bool(country_codes(location)))
+    return dict(source_id=source['id'],external_id=url,employer=source['employer'],title=title,text=text,location=location,city=location or None,country=None,url=url,apply_url=url,language=None,page_language=doc.structured.language,published_at=None,employment='',work_mode=None,needs_page=False,extraction_method='visible-html',geography_unresolved=not bool(country_codes(location)))
 
 class Inventory(list):
     def __init__(self,records=(),stats=None):super().__init__(records);self.stats=stats or {}
@@ -289,7 +291,9 @@ class Crawler:
                     # Reviewed AFAS template: title/address are structured, while
                     # its description is published only in the same visible page.
                     r=job_from_json(dict(post,description=d.text),d.url,self.source)
-                if r:result['records'].append(r)
+                if r:
+                    r['page_language']=d.structured.language
+                    result['records'].append(r)
             visible=job_from_visible(d,self.source,is_job) if not posts else None
             if visible:result['records'].append(visible)
             if posts or visible:self.inventory=True;self.used_methods.add('jobposting' if posts else 'visible-html')
