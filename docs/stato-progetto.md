@@ -1,11 +1,39 @@
+Warning: truncated output (original token count: 25440)
+Total output lines: 753
+
 # Stato di ripresa — People Placement
 
-## 22 novembre 2026 — conversione EURES Amac in staging
+## 23 novembre 2026 — conversione EURES Amac predisposta in hold
+[PR #120](https://github.com/nightlydeveloper8/eu-hr-internships/pull/120) · [Dossier dei 30 datori](eures-to-direct-2026-11.md). Prova storica same-ID Recruitee 2828451, 4 GET / 1.852.861 byte / 1,799 s.
+Il replay storico mantiene 926 ID e una sola scheda Amac, con 52 → 53 candidature dirette in simulazione. Fonte disabilitata e hold aziendale mantenuto.
+La raccolta successiva al commit deve confermare la conservazione di ID, stage e candidature dirette, con EURES operativo e Amac esclusa.
 
-[Dossier dei 30 datori](eures-to-direct-2026-11.md). Su `main@d69c664`, Amac Recruitee `2828451` in hold, con prova v2 e precedenza sul match EURES univoco.
-Simulazione con Python 3.12: **926 → 926 ID, zero persi, 52 → 53 dirette, 422 → 422 stage aperti**. 1.937 collector attivi.
-Prova Amac 4 GET / 1.852.861 byte / 1,799 s. Audit complessivo 96 GET / 10.316.874 byte / 59,117 secondi-datore.
-Prossimo passo: revisione del [branch dedicato](https://github.com/nightlydeveloper8/eu-hr-internships/compare/main...research/eures-to-direct-20261122) e prova fresca prima di un’eventuale attivazione autorizzata.
+## 23 novembre 2026 — lingua dell’annuncio e requisiti linguistici
+[Rapporto e campione](lingue-2026-11.md) di 80 annunci EURES. Il collector usa metadati e corpo; l’interfaccia distingue anche bilingue e sconosciuto.
+Campione prima → dopo: precisione e copertura 80/80 → 80/80; annunci con estratti 25 → 30; coppie stage–lingua corrette 23 → 51.
+Il filtro di inizio e la soglia di durata IHRM sono coperti dai test Node. Replay parziale su evidenze salvate: 126/927 schede (94/414 aperte), zero cambi di lingua. Stage aperti con estratto nominativo: 104 → 109.
+Il maintainer ha accettato il replay parziale. Istantanea pre-merge dal catalogo bot `94f8144`. Prossimo passo: confrontare la prima raccolta dopo il merge con quella baseline prima di procedere con #120.
+
+## 22 novembre 2026 — monitoraggio della raccolta di produzione
+
+La raccolta innescata da #118 controlla ID persi, calo degli stage >15%, EURES fallito o vuoto e guasti >20% tra fonti recentemente riuscite. Il monitor pianificato segnala catalogo oltre 36 ore.
+[Prima raccolta dopo #116](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45002015989) riuscita. Baseline pubblicata in `d69c664`: 926 ID, 422 stage aperti, 52 candidature dirette, 13 paesi con stage.
+Verifica prima di #118: CI Python 3.12 verde dopo #132; #124 e #123 integrate. Filtro di inizio e scheda senza data verificati sul sito pubblico a 375 e 1440 px.
+Prossimo passo: verificare run e publish post-merge, integrità degli ID, variazioni di freschezza, candidature dirette, EURES e issue del monitor.
+
+## 22 novembre 2026 — finestra di stage IHRM del secondo anno
+
+Filtro di inizio dal 5 gennaio al 13 marzo 2027. Il filtro di durata compare da 10 stage verificati con durata esplicita.
+Baseline `d69c664`: 926 ID, 422 stage aperti, 52 candidature dirette, 13 paesi con stage aperti.
+Il replay ripreso da #119 è già integrato con #132. La PR non attiva collect.yml.
+Prossimo passo: verificare il deploy Cloudflare e il sito pubblico a 375 e 1440 px.
+
+## 22 novembre 2026 — diario per ramo e limite alle PR degli agenti
+
+Frammenti di massimo otto righe, consolidati nel commit di integrazione.
+Limite di cinque PR aperte create da agenti e sospensione dei nuovi piloti di ricerca.
+Verifica offline del consolidatore; nessun cambiamento alla raccolta.
+Prossimo passo: usare il frammento nelle PR e ridurre la coda con le decisioni del maintainer.
 
 ## 22 novembre 2026 — attivazione ATS proposta dopo verifica fresca
 
@@ -167,30 +195,7 @@ Revisione del maintainer. [#107](https://github.com/nightlydeveloper8/eu-hr-inte
 
 **Problemi prioritari residui:** 44 casi senza application entry, 18 con identificativo candidatura differente, 16 con titolo/identità diversa e 8 su robots 403. Controlli web puntuali: L'Oréal stage RH Parigi ID 229626 ufficiale ma CTA su altro host `careers-apply.loreal.com` respinta HTTP 406 (non approvarlo implicitamente); DAF HR Officer stage Eindhoven ufficiale ma form non attestato, lingua olandese richiesta; AXS HR Stage indicizzato, la pagina esatta restituisce 404 nel lettore; JDE BE titolo differente; Amazon ES robots non disponibile (non riprovare con workaround). Nessuna verifica di formulario sufficiente per aumentare i verified.
 
-**Verifica richiesta della nuova raccolta ordinaria:** [#43931128227](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43931128227) **success**, 1 test + 16 collect + 1 publish riusciti. Pubblicazione su `main` commit **`9ea1373`**, 16 novembre 18:53:11 UTC: **362 record, 28 internship verified, 1 working student DE**, uguali a prima; 134 righe modificate, **0 nuovi ID, 0 ID persi e 0 verified guadagnati o persi**. Stato catalogo **partial**, report aziende: **1.896 attempted, 67 collected, 32 verified-empty, 530 partial, 277 blocked-or-failed, 990 discovery-incomplete**. Check Cloudflare Pages **success** sul commit esatto; impossibile scaricare da lettore web il JSON pubblico per confrontare SHA256: la pubblicazione indipendente lato browser resta **non verificata**. Il ciclo annullato precedente #43929695521 non va contato come riuscito.
-
-**Test indipendenti dalla cronologia:** un fixture esistente costruiva nuovi annunci sintetici copiando anche `identity_aliases` dal primo record del catalogo, modificato legittimamente nel ciclo delle 18:53. È stato corretto il fixture per non far collidere identità fittizie, lasciando invariata la deduplica di produzione; controllare la CI della HEAD della PR.\n\n**Costo osservato del ciclo ordinario prima della correzione:** sui 1.894 rapporti aggiornati (esclusi 19 vecchi) risultano **36.174 richieste / 4.159.256.878 byte / 3.286 rendering / 43.410,44 secondi-fonte cumulati**. **1.832 fonti senza match HR in questo ciclo** consumano **34.192 richieste, 3.765.755.480 byte e 3.187 rendering**. Il costo monetario e il tempo wall-clock non sono ricavati da questi totali. Non spegnere fonti sulla base di un solo ciclo; misurare una politica conservativa di frequenza dopo l'integrazione. **Risparmio della patch lotto 10 non ancora provato in produzione**.
-
-**Costi e confini:** audit offline e patch **0 nuove richieste collector, 0 rendering, 0 byte**, nessuna variazione di scheduling o `data/companies.json`/`data/sources.json`; la ricerca web non è metrica BudgetClient, costo monetario non misurato. Risparmio operativo effettivo del nuovo codice **ancora non misurato in produzione**. Nessun invio candidatura, login o aggiramento protezioni.
-
-**Prove:** [BATCH-10-REVIEW.md](eu27-expansion/BATCH-10-REVIEW.md), [batch-10-recovery-audit-2026-11-16.json](eu27-expansion/batch-10-recovery-audit-2026-11-16.json). PR tecnica di questo checkpoint da controllare per CI/merge nella relativa conversazione GitHub; **la raccolta ordinaria citata è precedente alla patch**, che non deve essere presentata come già eseguita in produzione. Primo lavoro residuo: integrare solo se CI/review verdi, confrontare il primo ciclo successivo con gli stessi 362 ID e il conteggio dei 108 casi di ownership, poi lavorare sulle cause del mancato formulario senza allentare policy v2. **UE27 non mappata completamente**.
-
-## 16 novembre 2026 — lotto 09 CZ/RO/IE/LU, PANDOO via email provata ma non promossa
-
-**Risultato effettivo:** 4 paesi, 8 canali ufficiali nel preflight GET-only, **25 richieste, 2.410.101 byte, 22,233 secondi-fonte**, 0 rendering e **0 nuove vacancy verified**. Piste CZ SAP recruiting REF3475V (inglese + tedesco) e Amazon 10561439 (ceco + inglese), entrambi annunci/indici 200 ma senza form anonimo; RO BAT HR Intern req 81347 (form landing "Hi there") e Marquardt Mingle sUQZQQ (shell); IE TikTok 7694622895491205429 (pagina/redirect same-ID ma nessun modulo statico); LU PANDOO, EY HR Mobility Intern 1749932 e Deloitte L&D Intern 13618 (annunci pubblici, EY/Deloitte senza form). Manifesto CZ precedentemente 429 e Fidelity IE 404 non riprovati. **Nessuna fonte nuova attivata**.
-
-**PANDOO LU:** il portale aziendale `pandoo.lu/jobs` elenca HR Intern F/M/D e la pagina ufficiale specifica `/hr-intern-f/m/d` contiene `mailto:hr@pandoo.lu` con etichetta **Apply now** e frase affermativa **“please send us your application”**. Nuovo supporto riutilizzabile per queste istruzioni inglesi dentro `application_check='official-email'`, senza cambiare policy v2, senza email inviate e senza accettare generici contatti. Il controllo finale con `verify_vacancy` sul contenuto live conferma `official-vacancy-email-instructions`, `delivery_verified=false`; riuso del documento già letto elimina un secondo GET di verification. **Non promuovere PANDOO**: la singola vacancy non specifica esplicitamente il luogo dello stage, mentre l'indirizzo Luxembourg compare soltanto nel footer societario; la sede lavorativa deve essere provata autonomamente. Nessun nuovo ID catalogo creato.
-
-**Costo PANDOO reale:** tre run one-shot, ognuno 3 richieste / 45.842 byte, con errori di pilot nel primo (link non-HTTP) e secondo (triplice link grafico alla stessa vacancy), corretti e dichiarati; durate 5,201 + 3,786 + 3,739 secondi-fonte. **Totale lotto 09 incluse ripetizioni: 34 GET, 2.547.627 byte, 34,959 s-fonte, 0 rendering.** Nessun costo aggiuntivo quotidiano e costo monetario non misurato. Tutti i workflow pilot sono stati **rimossi** dai rami isolati, non integrati su main.
-
-**Personio in parallelo:** PR tecnica [#51](https://github.com/nightlydeveloper8/eu-hr-internships/pull/51) **squash merged `bbfe4e8`**, CI 435 test Python/26 Node verde. I form Personio con campi nome/email/CV e submit inizialmente disabled restano **incomplete**, ma il collector evita rendering inutili senza agire sui dati personali; gli altri ATS mantengono il fallback. Beneficio economico live ancora da misurare.
-
-**Evidenze:** [BATCH-09-REVIEW.md](eu27-expansion/BATCH-09-REVIEW.md) e [batch-09-live-preflight-2026-11-16.json](eu27-expansion/batch-09-live-preflight-2026-11-16.json), contenente i quattro run reali, redirect, hash e costi. Nuovo codice su PR review di lotto, non ancora integrato/attivato; catalogo precedente resta **362 record, 28 stage HR verified in cinque paesi + 1 working student DE** (ultimo snapshot 16:51:25 UTC). La CI, eventuale merge e produzione vanno verificati separatamente.
-
-**Primo punto incompleto:** provare la località effettiva dello stage PANDOO su fonte ufficiale, poi eventuale proposta azienda+fonte disabled e approvazione specifica del rollout. Non attivare sulla sola sede legale. Per CZ/RO/IE cercare nuovi canali con modulo consentito e verificabile. Successivo lotto geografico **10 — NL, BE, FR, ES, PT**; **nessuna copertura nazionale UE27 dichiarata completa**.
-
-## 16 novembre 2026 — lotto 08 AT/DE/DK/FI/PL/SE, feed Personio validi ma nessuna candidatura v2
-
+**Verifica richiesta della nuova raccolta ordinaria:** [#43931128227](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43931128227) **success**, 1 test + 16 collect + 1 publish riusciti. Pubblicazione su `main` commit **`9ea1373`**, 16 novembre 18:53:11 UTC: **362 record, 28 internship verified, 1 working student DE**, uguali a prima; 134 righe modificate, **0 nuovi ID, 0 ID persi e 0 verified guadagnati o persi**. Stato catalogo **partial**, report aziende: **1.896 attempted, 67 collected, 32 verified-empty, 530 partial, 277 blocked-or-failed, 990 discovery-incomplete**. Check Cloudflare Pages **success** sul commit esatto; impossibile scaricare da lettore web il JSON pubblico per confrontare SHA256: la pubblicazione …1440 tokens truncated…
 **Risultato effettivo:** 6 paesi esaminati, 7 canali ATS/aziendali sottoposti a GET read-only su GitHub Actions isolata, più un controllo dei moduli e feed. **Zero nuovi stage HR candidabili e verificati policy v2, zero nuove fonti attivate, zero nuovi paesi con stage verified**. Catalogo di riferimento invariato nell'ultimo ciclo realmente letto: **362 record / 28 stage verified in 5 paesi + 1 working student DE** (16 novembre 16:51:25 UTC). L'ultima validazione post-merge di #49, [#43920247195](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/43920247195), è **success**. Nessuna evidenza di aumento della produzione attribuibile al lotto 08.
 
 **Fonti e blocchi principali:**

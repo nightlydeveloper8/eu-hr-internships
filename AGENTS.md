@@ -25,6 +25,8 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
   Inoltre, un push che tocca `collector/**`, `data/sources.json`, `data/companies.json`, `data/*-geography.json`,
   `data/*-opportunities.json`, `scripts/company_coverage.py`, `requirements-collector.txt` o `.github/workflows/collect.yml`
   **avvia subito la raccolta di produzione** (`collect.yml`).
+- **Massimo 5 PR aperte create da agenti**, incluse bozze e PR con base su un altro ramo. Prima di aprirne una, controlla le PR aperte del repository e conta quelle create da agenti, anche se pubblicate tramite l'account del maintainer. Usa la provenienza del lavoro e la descrizione della PR, oltre all'autore GitHub. Se il limite è raggiunto, oppure non puoi stabilire che ci sia posto, fermati e segnala il conteggio o l'incertezza. Indica nella descrizione che la PR è stata creata da un agente.
+- **Niente nuovi piloti di ricerca di fonti o paesi** finché il maintainer non li riapre esplicitamente. Sono ammessi correzioni, monitoraggio e lavoro sull'interfaccia per gli studenti.
 - **Niente attivazione di fonti in produzione.** Le nuove fonti restano `"enabled": false` (o con l'hold, vedi §4) finché il maintainer non approva il rollout.
 - **Niente chiusura di PR o issue**, niente modifica di impostazioni del repository, secrets, variabili Actions o Cloudflare.
 - Una richiesta di lavoro ("fai X") **non** è un'autorizzazione al merge. Alla fine apri una PR pronta per la revisione e fermati.
@@ -118,13 +120,15 @@ Per run multi-shard manuali usa lo stesso `--run-id` (o `COLLECTOR_RUN_ID`) per 
 | `src/` | Sito: `index.html`, `app.js`, `logic.js` (regole condivise con i monitor di Actions), `map.js`, `eu-map.js`, `style.css`, pagine registro e province |
 | `scripts/` | Build, valutazione, audit, metriche per paese, strumenti di integrazione |
 | `tests/` | Test Python (`unittest`) e Node (`frontend.test.js`, `monitor-alert.test.js`) |
-| `docs/stato-progetto.md` | Stato operativo aggiornato (da aggiornare a ogni lavoro) |
+| `docs/stato-progetto.md` | Diario operativo consolidato al merge |
 | `.github/workflows/` | `check.yml` (test su push/PR), `collect.yml` (raccolta quotidiana 06:17 UTC + push su main), `stale.yml` (monitor freschezza) |
 
 ## 9. Come consegnare il lavoro
 
 1. Esegui tutti i comandi della sezione 7. Se un test fallisce già su `main`, documentalo; non correggerlo di nascosto.
-2. Aggiorna `docs/stato-progetto.md` aggiungendo **in alto** una voce `## <data> — <titolo>` in italiano con ciò che è stato **fatto e verificato**, distinto da ciò che non è stato verificato.
+2. Scrivi la voce in `docs/diario/<nome-branch>.md` usando il nome completo del ramo, per esempio `docs/diario/fix/esempio.md`. Usa al massimo 8 righe fisiche, inclusi titolo e righe vuote. Inizia con `## <data> — <titolo>` e registra in italiano risultato, verifiche, limiti e prossimo passo. Scrivi i link relativi come se la voce fosse già in `docs/stato-progetto.md`. La PR lascia `docs/stato-progetto.md` intatto.
+   - Solo nel checkout di integrazione, dopo aver applicato la PR e prima di creare il commit che la integra, esegui `python3 scripts/consolida_diario.py <nome-branch>`. Includi nello stesso commit il diario aggiornato e la rimozione del frammento. Il pulsante di merge GitHub da solo salta questo passaggio.
+   - Per una PR esistente che modifica ancora il diario, trasferisci la voce nel frammento e mantieni la versione corrente del diario durante la risoluzione dei conflitti. Per un accorpamento, conserva evidenze e riferimenti nella voce del ramo che sarà integrato.
 3. Commit con messaggi in inglese, chiari e piccoli. Titolo e descrizione della PR in italiano.
 4. La descrizione della PR deve contenere:
    - obiettivo e perimetro (cosa è stato toccato e cosa no);
