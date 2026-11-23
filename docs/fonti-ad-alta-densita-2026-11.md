@@ -241,3 +241,160 @@ Replay parziale dei tre risultati verificati in staging · 937 → 961 ID, 0 per
 - Tirocinio HR - Recruiter · unverified · `e0dd0ea02c5d3cac53ae`
 
 Controlli in Python 3.12.14, 582 test Python e 52 Node passati. Valutazione, provisioning idempotente, copertura, build e validazione del catalogo in copia di lavoro. Nessun merge, attivazione o publish.
+
+## Regola di idoneità italiana e rivalutazione v2
+
+La regola italiana separa il riconoscimento dello stage HR, l'idoneità degli studenti e la verifica di apertura. Si includono tirocini curriculari e tirocini con iscrizione o convenzione esplicita come `confirmed`. Uno stage HR senza indicazione sull'idoneità e senza esclusione esplicita entra come `not_stated` e mostra «Student eligibility not stated – check with the employer». Extracurriculari, graduate e offerte riservate a neolaureati, disoccupati o percettori di sostegni non entrano. Una vacancy italiana già nota e successivamente esclusa conserva il suo ID e il suo storico di verifica, ma sparisce dalle liste e dai conteggi visibili.
+
+I lead del replay precedente dipendevano dal verificatore che richiedeva anche il percorso di candidatura. Nei dati osservati mancava una form attiva identificata o il link di candidatura non conservava l'ID. Ora il collector distingue: una pagina ufficiale letta entro 48 ore, presente nell'inventario sitemap, con URL e JobPosting corrispondenti, scadenza valida e assenza di chiusura esplicita è una current listing v2. L'idoneità studentesca non modifica quel livello. La verifica diretta richiede ancora una form ufficiale per la stessa vacancy. Le date Gi Group in formato giorno/mese/anno sono normalizzate. Una scadenza antecedente alla pubblicazione non supporta né apertura né chiusura. Nessun GET è stato inviato a `/my-randstad/apply-proxy/`, nessun invio di candidatura.
+
+| Agenzia | Confermato | Non indicato | Escluso | Non HR o non stage | Non dimostrato | GET | Byte | s HTTP |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Randstad | 4 | 20 | 7 | 2 | 0 | 33 | 18416398 | 24.397 |
+| Synergie | 1 | 19 | 14 | 0 | 0 | 34 | 22794864 | 63.908 |
+| Manpower | 3 | 4 | 3 | 1 | 0 | 11 | 1549228 | 4.549 |
+| Gi Group | 6 | 28 | 14 | 2 | 0 | 50 | 11452265 | 102.256 |
+| Adecco | 8 | 30 | 6 | 5 | 0 | 49 | 21869728 | 16.695 |
+
+Gi Group · 50/50 GET con risposta 200 e URL distinti, 98,4 min dal primo all’ultimo inizio registrato. La prima coppia ha un delta di 119,996 s nell’orologio di sistema. Dal checkpoint si usa un timer monotono con margine di 0,5 s e proseguimento senza ripetere gli URL. Il budget proposto in produzione è due dettagli arricchiti e verificati per ciclo con due GET per dettaglio, dopo robots e sitemap. Un'eventuale chiamata di candidatura può consumare l'ultimo slot. Prima del rollout serve una coda per host condivisa tra il canale proposto (shard 12) e il crawler Gi Group esistente (shard 4), con una sola richiesta avviata per intervallo. I due shard oggi non condividono il timer. Il tetto nominale per lo shard è +14 minuti. L'incremento effettivo end-to-end è **non dimostrato**.
+
+Replay con gli stessi ID e funzioni di pubblicazione, solo su output staging. Manpower è classificata per il confronto, ma non simulata come fonte pubblica per il divieto di link da siti terzi. I 27 aperti EURES precedenti conservano il loro livello e non hanno il nuovo campo di idoneità. Il recall abbina le 70 righe italiane tramite URL canonico o ID di posting nello stesso host.
+
+| Metrica | Prima | Dopo |
+|---|---:|---:|
+| ID distinti | 937 | 1043 |
+| ID persi | 0 | 0 |
+| Italia, aperti | 27 | 112 |
+| Italia, nuova classificazione confermata | 0 | 13 |
+| Italia, nuova classificazione non indicata | 0 | 72 |
+| Italia, storico con idoneità non riclassificata | 27 | 27 |
+| Italia, current listing | 0 | 85 |
+| Italia, servizio pubblico | 27 | 27 |
+| Italia, candidature dirette | 0 | 0 |
+| Recall italiano | 0/70 | 15/70 |
+
+Sono stati esaminati e classificati tutti i 177 candidati. Nessuna fonte attivata, nessun merge e nessun publish. La misura completa del runtime e la cadenza fra shard restano da verificare.
+
+### Tutti i titoli che diventano visibili nel replay
+
+- Adecco Italia · ADECCO STAGE HR · confermato · current · `8a562709dbf954ee427a`
+- Adecco Italia · HR Admin - Stage Staff Interno · confermato · current · `2ab330c03a581de5f764`
+- Adecco Italia · HR Consultant - Stage · non indicato · current · `b4df738df67b9157c5fc`
+- Adecco Italia · HR Consultant Internship · non indicato · current · `4db3de018d82590232a6`
+- Adecco Italia · Hr Internship · non indicato · current · `aa1a263b3a5a3df02d76`
+- Adecco Italia · Hr Internship · non indicato · current · `e54ebcefb3942a2c8c00`
+- Adecco Italia · HR Recruiter - Stage · non indicato · current · `f2fc946a0e1cd858b7b5`
+- Adecco Italia · HR Recruiter - Stage interno · non indicato · current · `e73f6f0f02f110267c52`
+- Adecco Italia · HR Recruiting Intern Onsite · non indicato · current · `466773de1dc69654a620`
+- Adecco Italia · RECRUITER/SELEZIONE DEL PERSONALE_ STAGE TREVISO · non indicato · current · `084849153ac2ffc983a5`
+- Adecco Italia · RECRUITER/SELEZIONE DEL PERSONALE_ STAGE TREVISO · non indicato · current · `e05e0e69777a6c6e9662`
+- Adecco Italia · Stage addetto/a Risorse Umane · non indicato · current · `2404c31878ec2d692ef3`
+- Adecco Italia · Stage ambito HR · non indicato · current · `2121ffe45c7cbeab7afa`
+- Adecco Italia · Stage ambito risorse umane · confermato · current · `e652cd7a5bbbb9de0fd7`
+- Adecco Italia · Stage Assistente Risorse Umane · confermato · current · `42724fa765794ca05882`
+- Adecco Italia · Stage HR · non indicato · current · `4a64e6299ea50d727e14`
+- Adecco Italia · Stage HR · non indicato · current · `9da07674910e6ec77a5b`
+- Adecco Italia · Stage HR Recruiter - Cologno Monzese · non indicato · current · `267719b752e72dd5994f`
+- Adecco Italia · Stage HR Recruiter - Cologno Monzese · non indicato · current · `fb3f49ee3cc05766d2cc`
+- Adecco Italia · STAGE HR RECRUITER - FILIALE DI ODERZO · non indicato · current · `a3f495e1dbece879266c`
+- Adecco Italia · Stage HR Recruiter - Staff Interno · confermato · current · `f6bf7b39de10d0e730cb`
+- Adecco Italia · Stage Hr selezione e amministrazione personale · non indicato · current · `1d7f3f3bbd6a7bd35148`
+- Adecco Italia · Stage Impiegato Amministrativo - HR · non indicato · current · `1849d7ebdba255dc5cd7`
+- Adecco Italia · STAGE RISORSE UMANE · confermato · current · `2c4d34b086ec7ef6e56d`
+- Adecco Italia · Stage Risorse Umane · non indicato · current · `8bcd452e4186a074fe30`
+- Adecco Italia · Stage Selezione e Amministrazione del personale · confermato · current · `d9d98baf88f1b8ef9c9a`
+- Adecco Italia · Stagista HR · non indicato · current · `3a5b934f87d8a67f9ca7`
+- Adecco Italia · STAGISTA ORGANICO INTERNO HR · non indicato · current · `1478c414f8e493eb83f0`
+- Adecco Italia · STAGISTA ORGANICO INTERNO HR · non indicato · current · `6c25f6fe12c4b08edc41`
+- Adecco Italia · Stagista Risorse Umane · non indicato · current · `677230818222119ba226`
+- Adecco Italia · STAGISTA RISORSE UMANE · non indicato · current · `93ad6726d3422ccb456d`
+- Adecco Italia · TIROCINANTE HR RECRUITER · non indicato · current · `3f43f5a4979faf183c6d`
+- Adecco Italia · Tirocinante Risorse Umane · non indicato · current · `c74e90befdd6131c8976`
+- Adecco Italia · Tirocinio curriculare -ufficio personale (per staff interno) · confermato · current · `a4bbe9603fad40eef845`
+- Adecco Italia · Tirocinio HR- Staff Interno · non indicato · current · `4f77db5e99dbe8c24543`
+- Adecco Italia · Tirocinio selezione del personale · non indicato · current · `76076772ff1b4fad30eb`
+- Adecco Italia · Un/una stagista HR · non indicato · current · `a1db87cd8900e08ad0d4`
+- Adecco Italia · Uno/una stagista HR in ADECCO · non indicato · current · `66976bddc140a9fefb09`
+- Gi Group · HR RECRUITER IN STAGE · non indicato · current · `52dbf5d49f940e6e5d4c`
+- Gi Group · TIROCINIO - RECRUITER · non indicato · current · `38bafde6d5ace59dba25`
+- Gi Group · TIROCINIO RISORSE UMANE - ALBA · non indicato · current · `0cdd8941475649f216a5`
+- Randstad Italia Spa · Addetto ufficio risorse umane - stage (f/m/nb) · non indicato · current · `d010533d39ce60f814a4`
+- Randstad Italia Spa · Amministrazione del Personale Azienda Farmaceutica Stagista HR scopo assuntivo (m/f/nb) · non indicato · current · `d092117c3dfb3e49c72c`
+- Randstad Italia Spa · Amministrazione del Personale Azienda Farmaceutica Stagista HR scopo assuntivo (m/f/nb) · non indicato · current · `dfc58851299438f05590`
+- Randstad Italia Spa · HR Account manager (Stage) · non indicato · current · `c299416b29ef854247de`
+- Randstad Italia Spa · HR Intern - Risorse Umane (M/F/NB) · non indicato · current · `9c322aab688f59f42570`
+- Randstad Italia Spa · HR internship (f/m/nb) · non indicato · current · `132e2eae282bcb54ea65`
+- Randstad Italia Spa · HR RECRUITER (F/M/NB) - STAGE - MILANO · non indicato · current · `00b6504912c97efad439`
+- Randstad Italia Spa · HR RECRUITER IN STAGE (F/M/NB) - BRESCIA · non indicato · current · `bbb697966b1a56fd3cab`
+- Randstad Italia Spa · HR Specialist stage (M/F/NB) · non indicato · current · `b92723e01a88f2ca008c`
+- Randstad Italia Spa · STAGE CURRICULARE RECRUITER (f/m/nb) · confermato · current · `ed657b2119c38c825358`
+- Randstad Italia Spa · STAGE CURRICULARE RECRUITER JUNIOR · confermato · current · `f77ef6b6b5a0217f07ab`
+- Randstad Italia Spa · Stage Curriculare – HR Recruiting Specialist Healthcare · confermato · current · `288ae6ab43fca6160ec8`
+- Randstad Italia Spa · STAGE HR · non indicato · current · `6c9f4b01fde078716112`
+- Randstad Italia Spa · STAGE HR (F/M/NB) - TALENT MOBILITY · non indicato · current · `f535b3f5f6a338c183a6`
+- Randstad Italia Spa · Stage HR - Account Manager (F/M/NB) · non indicato · current · `f1d09468628a970a0a47`
+- Randstad Italia Spa · Stage HR - organico interno · non indicato · current · `7ed480359947e4daa4b6`
+- Randstad Italia Spa · STAGE HR account specialist · non indicato · current · `6f6a9d97e0bbfd7879de`
+- Randstad Italia Spa · Stage hr in amministrazione e gestione del personale · non indicato · current · `6dd4b1d8a72014f4b562`
+- Randstad Italia Spa · STAGE HR RECRUITER · non indicato · current · `0b4af14d37def37bb275`
+- Randstad Italia Spa · STAGE HR RECRUITER · non indicato · current · `b90a1f6d6cb3c813d2d2`
+- Randstad Italia Spa · STAGE HR RECRUITER (m/f/nb) · non indicato · current · `67698d460b1fa8ef9c2f`
+- Randstad Italia Spa · stage risorse umane (m/f/nb) · non indicato · current · `233ed675c0e7a9e6f847`
+- Randstad Italia Spa · Stage ufficio del personale · non indicato · current · `35d367bfadcde28b3677`
+- Randstad Italia Spa · Tirocinio curriculare HR Account Manager (f/m/nb) - Siracusa (SR) · confermato · current · `be2debc2fa1c4be3d281`
+- Synergie Italia · Addetto/a alla selezione del personale in Tirocinio · non indicato · current · `521e060e5de063fcf372`
+- Synergie Italia · ADDETTO/A ALLE RISORSE UMANE (stage) · non indicato · current · `ae3bf75a8d7cd1956d81`
+- Synergie Italia · HR ASSISTANT IN STAGE · non indicato · current · `2c1d366554ea934c6873`
+- Synergie Italia · HR ASSISTANT IN TIROCINIO - CUNEO · non indicato · current · `381e527d5d48da892e41`
+- Synergie Italia · HR CONSULTANT - STAGE · non indicato · current · `13dc16546bbd93e59f07`
+- Synergie Italia · HR GENERALIST IN STAGE · non indicato · current · `23f1ac5fdc5779a17957`
+- Synergie Italia · HR Generalist in stage · non indicato · current · `47e42e391f9fddbb9c76`
+- Synergie Italia · HR RECRUITER ( STAGE) · confermato · current · `1477a6fbc55e4460019e`
+- Synergie Italia · HR RECRUITER - STAGE · non indicato · current · `bf50cab07c369ab2b6bf`
+- Synergie Italia · HR RECRUITER - STAGE · non indicato · current · `e1199bcb086033dfe6a5`
+- Synergie Italia · HR STAFF INTERNO TIROCINIO · non indicato · current · `90dbe7b95051be1cf507`
+- Synergie Italia · HR STAFF INTERNO TIROCINIO · non indicato · current · `dab805780ce41db74e3f`
+- Synergie Italia · STAGE ADDETTA/O SELEZIONE E AMMINISTRAZIONE DEL PERSONALE · non indicato · current · `7f926796c99e64c929de`
+- Synergie Italia · STAGE ADDETTO/A ALLA RICERCA E SELEZIONE DEL PERSONALE · non indicato · current · `d84f15c821668d42656b`
+- Synergie Italia · STAGE HR GESTIONE E AMMINISTRAZIONE DEL PERSONALE · non indicato · current · `df5c007ffd145874ad27`
+- Synergie Italia · STAGE HR RECRUITER PER STAFF INTERNO - MONTECCHIO MAGGIORE · non indicato · current · `5e13559df3336a8a94ef`
+- Synergie Italia · STAGE HR RECRUITING & SELEZIONE DEL PERSONALE - DA GENNAIO 2027 · non indicato · current · `2c98320aaf5c564785cc`
+- Synergie Italia · STAGE HR STAFF INTERNO · non indicato · current · `7f13f9c2c10d72104809`
+- Synergie Italia · TIROCINIO HR RISORSE UMANE - SALUZZO · non indicato · current · `0eaeb054dfbd2e156853`
+- Synergie Italia · TIROCINIO UFFICIO PERSONALE · non indicato · current · `d777d492179d7b211ede`
+
+### Altri nuovi ID del replay, fuori dagli aperti
+
+- Addetto/a selezione del personale in stage · confermato · unverified · `5d84349cf7fe284698d7`
+- Addetto/a selezione del personale in stage · confermato · unverified · `97459ecc8ff2035be4c6`
+- HR GENERALIST STAGE · non indicato · unverified · `9292726cdcb23543f15c`
+- HR INTERNSHIP · non indicato · unverified · `e1913eaa8d0a7f43e407`
+- HR RECRUITER in stage · non indicato · unverified · `5448ec898383b090fe23`
+- HR RECRUITER IN STAGE · non indicato · unverified · `60c83f4d25bbb00ff00a`
+- INTERNSHIP HR CONSULTANT · non indicato · unverified · `0db471ec36ae10d360c3`
+- INTERNSHIP HR CONSULTANT · non indicato · unverified · `f1b8ccbf9d21d70385b8`
+- PAYROLL SPECIALIST IN STAGE · non indicato · unverified · `7acf3c252889df4ed8eb`
+- RECRUITMENT CONSULTANT - INTERNSHIP · non indicato · unverified · `f304f0d08ad5d3d378cd`
+- STAGE HR - RICERCA, SELEZIONE E AMMINISTRAZIONE DEL PERSONALE · non indicato · unverified · `22b01953aa3eb4732065`
+- STAGE HR - RICERCA, SELEZIONE E AMMINISTRAZIONE DEL PERSONALE · non indicato · unverified · `76e49478e2e88f7978ec`
+- STAGE HR ADMINISTRATION · non indicato · unverified · `0f5864f051aed6b315da`
+- STAGE in Amministrazione del personale - per multinazionale NAPOLI Città · non indicato · unverified · `cc3041c37e2a047abcec`
+- STAGE IN RICERCA E SELEZIONE DEL PERSONALE PER LA SEDE DI MILANO · confermato · unverified · `1109939ec7ab4648af70`
+- STAGE RECRUITMENT CONSULTANT · non indicato · unverified · `349acc8f6d3ebce71737`
+- STAGE RETAIL PEOPLE DEVELOPMENT · non indicato · unverified · `e93e28e884f0ad86a26b`
+- STAGE RICERCA E SELEZIONE FILIALE DI PONTEDERA · non indicato · unverified · `29f703a695e33b91e446`
+- STAGE RISORSE UMANE · confermato · unverified · `c7e2b9e7ee9f7047c7d3`
+- STAGE RISORSE UMANE · confermato · unverified · `e4c01472bcfcb1c963ef`
+- TIROCINANTE PER SELEZIONE E GESTIONE DEL PERSONALE · non indicato · unverified · `8aff19634b3badbeaef2`
+- TIROCINIO ADDETTO ALLA SELEZIONE DEL PERSONALE · non indicato · unverified · `5c65d0ccd3db9b918e75`
+- TIROCINIO HR _ GI GROUP CAGLIARI · confermato · unverified · `3fb25a38ba5860ee090a`
+- TIROCINIO RISORSE UMANE - CASALE MONFERRATO · non indicato · unverified · `2a5c5a4bbf69f0bc37ff`
+- TIROCINIO RISORSE UMANE - CASTEL SAN GIOVANNI (PC) · non indicato · unverified · `f9ea79bcd31667f0a993`
+- TIROCINIO RISORSE UMANE - CHIVASSO · non indicato · unverified · `fd25bcfaf4fd5d913bf2`
+- TIROCINIO RISORSE UMANE - CUNEO · non indicato · unverified · `2f64dac1038a4da6e6e3`
+- TIROCINIO RISORSE UMANE - RIVAROLO · non indicato · unverified · `c5ad87397a829a8b5a0c`
+- TIROCINIO RISORSE UMANE - RIVOLI · non indicato · unverified · `7650ae6b930aff0614ed`
+- TIROCINIO RISORSE UMANE - SALUZZO · non indicato · unverified · `8cb091547af9567eea38`
+- TIROCINIO RISORSE UMANE - TORTONA · non indicato · unverified · `372d4d5198124f7a22b1`
+
+Valutazione in Python 3.12.14 con 117 esempi e zero errori. Passati 586 test Python, 53 Node, provisioning idempotente, copertura e build. Etichetta verificata nella build di replay a 375, 768 e 1440 px.
