@@ -182,9 +182,12 @@ def align_observations(previous,current):
                     from .verification import PERSONIO_STATIC_FORM
                     public_urls={canonical_url(j['url']) for j in rows
                                  if j.get('verification',{}).get('policy')=='public-api-active-listing'}
-                    preferred=next((j for j in rows if j.get('status')=='open'
-                                    and j.get('application_verification',{}).get('method')==PERSONIO_STATIC_FORM
-                                    and public_urls.intersection(j.get('identity_aliases',()))),None)
+                    reviewed_direct_methods={PERSONIO_STATIC_FORM, 'official-recruitee-same-posting-visible-form'}
+                    direct_matches=[j for j in rows if j.get('status')=='open'
+                                    and j.get('application_verification',{}).get('method') in reviewed_direct_methods
+                                    and public_urls.intersection(j.get('identity_aliases',()))]
+                    if len(direct_matches)==1:
+                        preferred=direct_matches[0]
                 job=consolidate_group(rows,preferred)
                 job.update(id=canonical['id'],first_discovered_at=canonical.get('first_discovered_at'))
                 preserve_identity_aliases(job,members)

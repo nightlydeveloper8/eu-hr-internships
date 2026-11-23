@@ -111,6 +111,22 @@ class PersonioStaticApplicationTests(unittest.TestCase):
         self.assertIn(public_url, merged['identity_aliases'])
         self.assertEqual(merged['application_verification']['method'], PERSONIO_STATIC_FORM)
 
+    def test_reviewed_recruitee_mirror_precedes_same_cycle_public_copy(self):
+        public_url = 'https://europa.eu/eures/portal/jv-se/jv-details/example?lang=en'
+        public = dict(id='existing-id', source_id='public-eu-eures', url=public_url,
+                      first_discovered_at='2026-11-01T00:00:00+00:00', countries=['NL'],
+                      status='open', verification={'policy': 'public-api-active-listing'})
+        direct = dict(id='direct-id', source_id='recruitee-example',
+                      url='https://example.org/o/hr-intern', countries=['NL'],
+                      status='open', last_seen_at=STAMP, identity_aliases=[public_url],
+                      application_verification={'method': 'official-recruitee-same-posting-visible-form'})
+        refreshed = dict(public, last_seen_at='2026-11-16T17:07:00+00:00')
+        merged, = reconcile([public], [direct, refreshed], set(), STAMP)
+        self.assertEqual(merged['id'], public['id'])
+        self.assertEqual(merged['source_id'], direct['source_id'])
+        self.assertIn(public_url, merged['identity_aliases'])
+        self.assertIn('catalog:direct-id', merged['identity_aliases'])
+
     def test_recent_graduate_badge_requires_an_explicit_student_alternative(self):
         for evidence in ('Enrolled in or recently completed a degree.',
                          'Du studierst Psychologie oder hast dein Studium bereits erfolgreich abgeschlossen.'):
