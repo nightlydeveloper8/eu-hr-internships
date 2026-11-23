@@ -3,9 +3,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import Mock
-from urllib.error import HTTPError
 
-from scripts.ats_tenant_discovery import collect, identity, registry_keys, sample
+from scripts.ats_columnar_index import overlaps
+from scripts.ats_tenant_discovery import enumerate_partitions, identity, prefixes, registry_keys, sample
 
 
 class DiscoveryTest(unittest.TestCase):
@@ -20,7 +20,7 @@ class DiscoveryTest(unittest.TestCase):
             "https://testco.teamtailor.com/jobs/42": ("teamtailor", "testco.teamtailor.com"),
             "https://apply.workable.com/acme/j/42": ("workable", "acme"),
             "https://candidate.hr-manager.net/ApplicationInit.aspx?ProjectId=157629&cid=1601": ("talentech", "1601"),
-            "https://acme.intervieweb.it/acme/it/career": ("inrecruiting", "acme.intervieweb.it"),
+            "https://acme.intervieweb.it/acme/it/career": ("inrecruiting", "acme.intervieweb.it/acme"),
             "https://www.welcometothejungle.com/fr/companies/acme/jobs/x": ("welcome-to-the-jungle", "acme"),
         }
         for url, result in examples.items():
@@ -53,24 +53,36 @@ class DiscoveryTest(unittest.TestCase):
                 ("lever", "known"), ("lever", "eu/known"), ("greenhouse", "hidden"),
             })
 
-    def test_pages_and_failure_remain_distinct(self):
+    def test_surt_overlap_has_correct_boundaries(self):
+        self.assertEqual(prefixes("greenhouse", "job-boards.greenhouse.io"),
+                         ["io,greenhouse,job-boards)/"])
+        self.assertEqual(prefixes("personio-xml", "jobs.personio.de"), ["de,personio,jobs,"])
+        self.assertTrue(overlaps(("a", "de,personio,jobs,"), "de,personio,jobs,"))
+        self.assertFalse(overlaps(("de,personio,jobs,\uffff", "z"), "de,personio,jobs,"))
+
+    def test_scans_all_intersecting_files_and_reports_missing_metadata(self):
         client = Mock()
-        capture = {"url": "https://acme.recruitee.com/o/test", "status": "200",
-                   "timestamp": "20261101000000"}
-        client.read.side_effect = [
-            b'{"pages": 2}', json.dumps(capture).encode(),
-            HTTPError("https://index.commoncrawl.org/", 504, "timeout", {}, None),
-        ]
-        seen, queries = collect(client, ["CC-MAIN-2026-43", "CC-MAIN-2026-39"], ["recruitee"], 1)
-        self.assertEqual(len(seen), 1)
-        self.assertEqual([query["status"] for query in queries], ["capped", "incomplete"])
+        client.urls.return_value = [("https://acme.recruitee.com/o/test", "acme.recruitee.com")]
+        seen, queries = enumerate_partitions(client, {
+            "first": [{"path": "left", "bounds": ["a", "com,recruitee,acme"]},
+                      {"path": "right", "bounds": ["com,recruitee,acme", "z"]},
+                      {"path": "missing", "error": "missing statistics"}],
+            "second": [{"path": "all", "bounds": ["a", "z"]}],
+        }, ["recruitee"])
+        self.assertEqual(seen[("recruitee", "acme.recruitee.com")], {"first", "second"})
+        self.assertEqual([(q["selected_ranges"], q["complete"]) for q in queries],
+                         [(2, False), (1, True)])
+        self.assertEqual(client.urls.call_count, 3)
 
     def test_sample_excludes_registered_and_is_order_independent(self):
-        rows = [{"ats": "lever", "tenant": str(i), "registered": i == 300} for i in range(302)]
+        rows = [{"ats": "lever", "tenant": str(i), "registered": i == 300,
+                 "crawls": ["a", "b"] if i < 6 else ["a"]} for i in range(302)]
         result = sample(rows, "example")
         self.assertEqual(result, sample(reversed(rows), "example"))
-        self.assertEqual(len(set(result["lever"])), 300)
-        self.assertNotIn("300", result["lever"])
+        tenants = {row["tenant"] for row in result["lever"]}
+        self.assertEqual(len(tenants), 300)
+        self.assertNotIn("300", tenants)
+        self.assertEqual({row["stratum"] for row in result["lever"]}, {"one-crawl", "multiple-crawls"})
 
 
 class YieldTest(unittest.TestCase):
@@ -78,8 +90,10 @@ class YieldTest(unittest.TestCase):
         from scripts.ats_tenant_yield import summarize
 
         result = summarize([
-            {"ats": "lever", "state": "incomplete", "logical_get": 2, "seconds": 10},
-            {"ats": "lever", "state": "feed-read", "logical_get": 1,
+            {"ats": "lever", "state": "incomplete", "stratum": "one-crawl", "population": 4,
+             "logical_get": 2, "seconds": 10},
+            {"ats": "lever", "state": "feed-read", "stratum": "one-crawl", "population": 4,
+             "logical_get": 1,
              "body_bytes": 900, "seconds": 2, "postings": 3,
              "internships": [{"countries": ["sconosciuto"]}]},
         ])["lever"]
@@ -88,3 +102,29 @@ class YieldTest(unittest.TestCase):
         self.assertEqual(result["cost_per_stage_feed_signal"], {
             "logical_get": 3, "body_bytes": 900, "source_seconds": 12,
         })
+
+
+    def test_uncertain_yield_and_operational_detection_are_distinct(self):
+        from scripts.ats_tenant_yield import estimate, estimate_detectable_tenants
+
+        rows = [{"stratum": "one-crawl", "population": 40, "state": "feed-read",
+                 "internships": []} for _ in range(30)]
+        self.assertEqual(estimate(rows), "non dimostrato")
+        result = estimate_detectable_tenants(rows)
+        self.assertEqual(result["tenant_detections"], 0)
+        self.assertGreater(result["interval95"][1], 0)
+
+    def test_measure_uses_posting_geography_and_feed_level_only(self):
+        from scripts.ats_tenant_yield import measure
+
+        known = {"external_id": "1", "title": "HR Intern", "text": "HR internship",
+                 "location": "London, United Kingdom", "country": None}
+        unknown = dict(known, external_id="2", location="Remote")
+        outside = dict(known, external_id="3", location="London, Ontario", country="CA")
+        with unittest.mock.patch("scripts.ats_tenant_yield.collect", return_value=[known, unknown, outside]):
+            result = measure("lever", "sample", {"allowed_hosts": ["api.lever.co"]})
+        self.assertEqual(result["european_postings"], 1)
+        self.assertEqual(result["unknown_location"], 1)
+        self.assertEqual(result["internships"], [
+            {"external_id": "1", "countries": ["GB"], "proof": "feed-signal-only"},
+        ])
