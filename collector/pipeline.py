@@ -322,6 +322,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 provenance=dict(kind='live',checked_at=stamp) if 'intake' in observation else text_observation
                 intake=dict(intake,provenance=provenance['kind'],observed_via=provenance.get('origin',provenance['kind']))
             if intake:staged[-1]['intake']=intake
+            if source.get('staffing_agency') and record.get('agency_client')=='non indicato':
+                staged[-1].update(employer=source['employer'],agency_client='non indicato')
             if role['internship_type']=='internship' and also_open_to_recent_graduates(record['text']):
                 staged[-1]['also_open_to_recent_graduates']=True
             if application:

@@ -1,4 +1,4 @@
-import { adLanguageLabel, adLanguageName, START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
+import { agencyClientLabel, adLanguageLabel, adLanguageName, START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
 import { drawMap, describeCountry, describeLanguages, countryFacts } from './map.js';
 
 const $ = id => document.getElementById(id);
@@ -60,6 +60,8 @@ function card(job) {
     company.append(el('span','job-employer-note','Employer not disclosed'));
   }
   org.append(company);
+  const agencyLabel = agencyClientLabel(job);
+  if (agencyLabel) org.append(el('p','job-employer-note',agencyLabel));
   const where = [job.city, ...(job.countries || []).map(c => catalog.countries[c] || c)].filter(Boolean);
   org.append(el('p','job-location',[...new Set(where)].join(' · ')));
   heading.append(org);

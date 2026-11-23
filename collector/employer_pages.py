@@ -11,6 +11,11 @@ from urllib.parse import urlsplit, unquote
 import xml.etree.ElementTree as ET
 from .classify import canonical_url, plain, country_codes
 
+UNDISCLOSED_AGENCY_CLIENT = re.compile(
+    r"\b(?:azienda cliente|cliente)(?:\s*[:–-]\s*|\s+)(?:non indicat[oa]|non dichiarat[oa]|riservat[oa])\b",
+    re.IGNORECASE,
+)
+
 class PageParser(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -143,6 +148,8 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
             locality=a.get('addressLocality') or source.get('reviewed_locality_fields',{}).get(a.get('streetAddress'))
             if locality:cities.append(locality)
         employer=data.get('hiringOrganization',{}).get('name')
+        if source.get('staffing_agency') and UNDISCLOSED_AGENCY_CLIENT.search(plain(data.get('description'))):
+            result['agency_client']='non indicato'
         if employer and not any(token in employer.lower() for token in source.get('employer_tokens',[source['employer'].lower()])):raise ValueError('Unexpected hiring organisation')
         if countries:result['countries']=sorted({code for country in countries for code in country_codes('',country)})
         else:

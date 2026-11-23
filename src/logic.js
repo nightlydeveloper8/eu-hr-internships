@@ -1,5 +1,8 @@
 export const fold = value => String(value ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 export const unreviewedExternal = job => job.ownership_risk?.state === 'historical-unreviewed-external-host';
+export function agencyClientLabel(job) {
+  return job.agency_client === 'non indicato' ? `Client not disclosed (via ${job.employer})` : '';
+}
 export function languageInfo(job) {
   const explicit = (job.workplace_languages || []).filter(l => l.confidence === 'confirmed' && ['required','required-or-working','working','alternative'].includes(l.requirement));
   return job.language_requirements || {requirements_status:explicit.length ? 'explicit' : 'unknown', english_support:(job.workplace_languages || []).some(l=>l.code==='en' && l.confidence==='confirmed' && ['required','required-or-working','working','alternative'].includes(l.requirement)) ? 'documented' : 'unknown', english_sufficiency:'unknown'};

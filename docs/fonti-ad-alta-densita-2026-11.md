@@ -150,3 +150,32 @@ Replay offline di pubblicazione P1 con inventario parziale e zero nuovi record p
 Prima di una simulazione utile con nuovo rendimento verificato servono una misura Randstad completa senza inferire l'idoneità dall'etichetta stage, le verifiche di accesso per gli altri tenant e un controllo del tempo effettivo con gli shard del workflow.
 
 Controlli in copia scrivibile con Python 3.12.14, 574 test Python e 51 test Node superati. Passano anche valutazione, copertura, build e validazione del catalogo. Provisioning idempotente con 1.916 datori e 1.937 collector attivi.
+
+## Estensione Italia · lotto IT-agenzie
+
+Le quantità di seguito sono misure degli indici pubblicati. Le sitemap non attestano che ogni vacancy sia ancora attiva né contengono il testo necessario alla classificazione per studenti. Il conteggio di stage HR per studenti di oggi rimane **non dimostrato**. I GET includono le letture utili al punto italiano in questa sessione. Il costo Randstad include il preflight e le letture riusate dalla prima sessione. Ritmo per host adottato per le verifiche iterative di 2 s, prima di eventuali ritardi imposti da robots. Budget per singola risposta di 15–25 s e 2–16 MB secondo il tipo di risposta. Il collector Randstad predisposto ha budget 80 richieste e 120 s. Nessun pilot di raccolta intera è partito.
+
+| Dominio | Accesso e misura dell’inventario | Stage HR studenti oggi | GET / byte / secondi HTTP |
+|---|---|---|---|
+| Randstad IT | Sitemap e dettaglio JSON-LD ammessi. 9.997 URL distinti nei due XML completi, attualità di ciascuno non dimostrato | non dimostrato | 7 / 3.070.251 / 1,910 |
+| Manpower IT | Termini §§10–12 su riuso e collegamenti. Ammissione al lotto non dimostrato | non dimostrato | 0 nuovi GET |
+| Synergie IT | 4.617 ID distinti nella sitemap job. Lista web senza JobPosting JSON-LD, termini e formato bulk completo non dimostrato | non dimostrato | 2 / 1.429.894 / 0,748 |
+| Humangest | Arca24, sitemap di navigazione e microdati. Totale non dimostrato | non dimostrato | 3 / 298.465 / 1,122 |
+| Openjobmetis | Board pubblico con conteggio dichiarato variabile; inventario integrale e formato ammesso non dimostrato | non dimostrato | 0 nuovi GET diretti |
+| Gi Group principale | 4.536 URL nella sitemap offerte, 4.501 con ID terminale numerico. Termini myGiGroup escludono ricerche automatizzate, portata sul distinto board pubblico non dimostrato | non dimostrato | 2 / 1.121.857 / 1,163 |
+| Gi Group Holding | Arca24, sitemap di navigazione e microdati. Totale non dimostrato | non dimostrato | 3 / 290.518 / 1,293 |
+| Adecco IT | Condizioni di estrazione restrittive su siti del gruppo. Applicabilità al percorso specifico e inventario non dimostrato | non dimostrato | 0 nuovi GET |
+| Umana | Esclusa per divieto esplicito di estrazione automatica, individuato dopo i GET d’indice. Nessuna scheda letta | non dimostrato | 2 / 750 / 1,722 |
+| Etjca | Arca24, sitemap di navigazione e microdati. Totale non dimostrato | non dimostrato | 3 / 316.660 / 1,131 |
+| Orienta | Arca24, sitemap di navigazione e microdati. Totale non dimostrato | non dimostrato | 3 / 312.471 / 1,679 |
+| MAW | Esclusa per i termini | non dimostrato | 0 nuovi GET |
+
+Prove sui termini. [Umana](https://www.umana.it/condizioni-d-uso-del-sito/) · [Gi Group](https://www.gigroup.it/condizioni-di-utilizzo/) · [Adecco Group](https://www.adeccogroup.com/it-it/terms/terms-of-use) · [Manpower](https://www.manpower.it/it/terms-of-use) · [MAW](https://www.maw.it/termini-e-condizioni).
+
+Il percorso `/job/view-job.php?id=` e gli asset `arca24-front` identificano la piattaforma condivisa dai quattro tenant. Tutte le sitemap dichiarate lette contengono quattro link di navigazione. Il primo indice mostra i dettagli e rimandi paginati con `source=`, che i robots vietano. Le quattro schede HTTP 200 usano microdati HTML `JobPosting` e JSON-LD di tipo `TravelAction` e `InteractAction`. La regola richiede JSON pubblico, sitemap di vacancy o JSON-LD JobPosting, oppure RSS pubblico secondo la richiesta. Un formato ammesso per le vacancy e un inventario completo su questi quattro host sono **non dimostrato**. L’adattatore e le voci di registro Arca24 restano bloccati su questa condizione.
+
+Sulle schede di controllo, «Planner» di Etjca, «Cuoco/a ristorazione collettiva» di Orienta e «Impiegato/a amministrativo/a logistico» di Humangest sono ruoli non stage. «Stage risorse umane» sul portale Gi Group Holding è una pista senza verifica del formato e dell’ammissibilità. Per Randstad, «Stage HR Recruiter» a Udine ha JSON-LD ma prova studentesca **non dimostrato**. I titoli Werkstudent o graduate incontrati in un inventario completo sono **non dimostrato**.
+
+Il solo nuovo canale già ammesso ai percorsi strutturati provati fa parte di `IT-agenzie`. L’export registra `agency_client: "non indicato"` e usa l’agenzia come datore quando l’annuncio di una fonte marcata agenzia dichiara esplicitamente il cliente riservato o non indicato. La scheda pubblica mostra «Client not disclosed (via <agenzia>)». Una menzione generica di un cliente o un nome presente nella scheda non attivano l’etichetta.
+
+Il replay di controllo, eseguito con il lotto fermo, mantiene 937 → 937 ID, 0 persi, 27 → 27 stage italiani aperti tutti via servizio pubblico, 0 → 0 dirette e 39 → 39 lead italiani. Nessun titolo entra nel replay. La simulazione con nuovi titoli richiede una lettura integrale classificata. Per il solo Randstad, 9.997 GET di dettaglio a 2 s di distanza richiedono almeno 5 ore e 33 minuti, prima delle letture di inventario e candidatura. Questo limite inferiore riguarda il censimento seriale delle schede, non l’incremento del workflow. L’aumento di durata di `collect.yml`, l’elenco dei nuovi titoli effettivi e il recall italiano atteso dal lotto attivo sono **non dimostrato**. Il controllo di riferimento mantiene 0/70. Nessun rollout o publish avviato.
