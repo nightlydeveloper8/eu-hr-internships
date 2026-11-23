@@ -35,6 +35,14 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
 
 - **Solo fonti pubbliche accessibili direttamente**: ATS pubblici, sitemap e pagine careers dei datori, servizi pubblici per l'impiego già rivisti (EURES `public-eu-eures`, JobTech `public-se-jobtech`).
   Controlla robots.txt e termini d'uso prima di integrare una fonte e documenta la verifica (`permission_basis`, `review_notes`, `reviewed_on` in `data/sources.json`).
+- **Accesso automatizzato a piattaforme e tenant.** Un canale è ammesso soltanto se valgono tutte le condizioni seguenti.
+  1. Scaricare con successo `robots.txt` e controllare che il percorso usato sia consentito. Se robots non è leggibile, fermarsi. Su un primo 429 a robots, ritentare lentamente e rispettare `Retry-After` e il crawl delay.
+  2. Il dato è pubblico e raggiungibile senza login, chiave, CAPTCHA o elusione di blocchi.
+  3. Il formato è quello già usato dalla pagina pubblica (JSON), una sitemap o markup JSON-LD schema.org `JobPosting`.
+  4. I termini applicabili non vietano esplicitamente l’accesso automatizzato. Il silenzio non è un divieto.
+  5. Usare un ritmo basso, rispettare il crawl delay e identificare onestamente People Placement nello user agent.
+  6. Interrompere e registrare subito l’accesso in caso di 403/429 ripetuti o di richiesta del datore.
+  Classificare come **incerto** solo se almeno una condizione non è verificabile. Esempio ammesso: sitemap Workday di Damen dichiarata nel robots dello stesso host e consentita il 23 novembre 2026, con termini del percorso rivisti. Esempio escluso: Welcome to the Jungle, che vieta espressamente lo scraping nelle condizioni d’uso.
 - **Vietato**: chiedere autorizzazioni ad autorità o enti (BA, ELA, SECO, France Travail, DWP…), usare API a pagamento o con chiave,
   aggirare login, captcha, robots o blocchi, fingersi un crawler autorizzato, inviare candidature.
   Restano disabilitate SmartRecruiters (robots lo vieta) e Ashby (robots 401) finché l'accesso non è chiarito.
