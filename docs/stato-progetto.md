@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 23 novembre 2026 — benchmark 225 e primo canale ad alta densità in hold
+
+[Dossier](fonti-ad-alta-densita-2026-11.md) · [Diario](diario/research/fonti-ad-alta-densita-20261123.md). Catalogo `8f15504`: 1/225 aperto confermato (NL) e 24 lead. Randstad Italia predisposta sul ramo `research/fonti-alta-densita-20261123`. Il replay parziale mantiene 937 ID.
+Prima del rollout completare l'inventario verificato del lotto P1, con approvazione del maintainer per qualsiasi attivazione. Proseguire preflight e misura per P2 e P3.
+
 ## 23 novembre 2026 — scoperta tenant ATS da Common Crawl
 [Dossier iniziale](ats-tenant-discovery-2026-11.md): 19.482 chiavi, 36 nel registro, 13 segnali HR da 1.032 feed. Candidature v2 e copertura europea completa non dimostrate.
 [Dossier enterprise](ats-enterprise-2026-11.md): 9.574 chiavi su tre crawl; regola di accesso del maintainer aggiunta in AGENTS.md. Workday, iCIMS, Avature e Cornerstone campionati in staging sui percorsi ammessi.

@@ -16285,6 +16285,37 @@
     "status": "automatic-collection-pending"
   },
   {
+    "id": "held-randstad-it-jobposting",
+    "company_id": "randstad-italia-spa",
+    "employer": "Randstad Italia Spa",
+    "employer_tokens": [
+      "randstad"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://www.randstad.it/offerte-lavoro/",
+    "allowed_hosts": [
+      "www.randstad.it"
+    ],
+    "target_countries": [
+      "IT"
+    ],
+    "sitemaps": [
+      "https://www.randstad.it/sitemaps/jobs/it/sitemap-jobdetails.xml",
+      "https://www.randstad.it/sitemaps/jobs/it/sitemap-jobdetails-2.xml"
+    ],
+    "job_url_pattern": "^https://www\\.randstad\\.it/offerte-lavoro/[^/?]+_[0-9a-f-]{36}/?$",
+    "url_slug_prefilter": true,
+    "max_sitemaps": 2,
+    "max_requests": 80,
+    "collection_seconds": 120,
+    "permission_basis": "Official robots advertises sitemap; same-host public JSON-LD detail; reviewed candidate terms do not explicitly prohibit these reads",
+    "reviewed_on": "2026-11-23",
+    "status": "reviewed-disabled",
+    "review_notes": "Read-only sitemap discovery with title-slug prefilter; full HR student yield and application routes are unproven. Existing universal collector remains independently configured."
+  },
+  {
     "id": "auto-randstad-italia-spa",
     "company_id": "randstad-italia-spa",
     "employer": "Randstad Italia Spa",
