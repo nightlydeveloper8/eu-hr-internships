@@ -13,12 +13,13 @@ class ItalianAgencyEvidenceTests(unittest.TestCase):
     source = dict(id="agency", employer="Agency", adapter="employer-sitemap",
                   allowed_hosts=[host], italian_agency_slug_triage=True)
 
-    def replay(self, description, deadline="2026-12-01", listed=True, message=""):
+    def replay(self, description, deadline="2026-12-01", listed=True, message="", posted=None, source=None):
         posting = dict(title="Stage HR", description=description, validThrough=deadline,
                        hiringOrganization={"name": "Agency"},
                        jobLocation={"address": {"addressCountry": "IT"}},
                        identifier={"value": "123"})
         posting["@type"] = "JobPosting"
+        if posted:posting["datePosted"] = posted
         body = (f'<h1>Stage HR</h1><p>{message}</p><script type="application/ld+json">'
                 + json.dumps(posting) + "</script>").encode()
         record = dict(source_id="agency", external_id=self.url, employer="Agency",
@@ -27,7 +28,7 @@ class ItalianAgencyEvidenceTests(unittest.TestCase):
         client = Mock()
         client.request.return_value = (body, 200, self.url)
         with patch("collector.pipeline.collect", return_value=[record]):
-            return process_source(self.source, client, self.stamp)["jobs"]
+            return process_source(source or self.source, client, self.stamp)["jobs"]
 
     def test_sitemap_and_live_structured_deadline_support_current_listing_only(self):
         job, = self.replay("Supporto al recruitment.")
@@ -45,3 +46,13 @@ class ItalianAgencyEvidenceTests(unittest.TestCase):
         self.assertEqual(self.replay("Tirocinio extracurriculare."), [])
         job, = self.replay("Tirocinio curriculare.", message="L'annuncio non è più disponibile.")
         self.assertEqual(job["status"], "closed")
+
+    def test_italian_dates_are_unambiguous_and_contradictory_deadlines_are_not_closure(self):
+        source=dict(self.source,jobposting_date_format="%d/%m/%Y")
+        job,=self.replay("Stage HR per laureandi.", posted="12/11/2026", source=source)
+        self.assertEqual(job["published_at"], "2026-11-12")
+        self.assertEqual(job["status"], "open")
+        job,=self.replay("Stage HR per laureandi.", posted="12/11/2026",
+                         deadline="1970-04-01", source=source)
+        self.assertIsNone(job["valid_through"])
+        self.assertEqual(job["status"], "unverified")

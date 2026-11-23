@@ -116,6 +116,24 @@ def walk_json(value):
         for k in ('@graph','mainEntity','itemListElement','item'):
             if k in value:yield from walk_json(value[k])
 
+
+def jobposting_dates(posting,source):
+    """Use the reviewed publisher date format and discard contradictory dates."""
+    posted=posting.get('datePosted')
+    deadline=posting.get('validThrough')
+    input_format=source.get('jobposting_date_format')
+    if input_format and posted:
+        try:posted=datetime.strptime(posted.strip(),input_format).date().isoformat()
+        except (TypeError,ValueError,AttributeError):posted=None
+    if source.get('italian_agency_slug_triage') and posted and deadline:
+        try:
+            start=datetime.fromisoformat(posted.strip().replace('Z','+00:00')).date()
+            end=datetime.fromisoformat(deadline.strip().replace('Z','+00:00')).date()
+            if end<start:deadline=None
+        except (TypeError,ValueError,AttributeError):
+            pass
+    return posted, deadline
+
 def page_record(record,source,client,clock=None,defer_expiry=False):
     body,_,final=client.request(approved(record['url'],source));approved(final,source)
     parser=PageParser();parser.feed(body.decode('utf-8','replace'))
@@ -162,8 +180,8 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
         identifier=data.get('identifier')
         if isinstance(identifier,dict):identifier=identifier.get('value')
         if isinstance(identifier,(str,int)):result['posting_identifier']=str(identifier)
-        result['valid_through']=data.get('validThrough')
-        expires=data.get('validThrough')
+        published_at,expires=jobposting_dates(data,source)
+        result['valid_through']=expires
         if expires:
             from .verification import expired
             from .applications import ApplicationClosed
@@ -193,7 +211,7 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
             employment=' '.join(value.strip() for value in employment
                                 if isinstance(value,str) and value.strip())
         elif not isinstance(employment,str):employment=''
-        result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=data.get('datePosted'),employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
+        result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=published_at,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
     else:raise ValueError('No supported JobPosting structured data; no page-text guessing')
     if data and data.get('inLanguage'):
         result['language']=data['inLanguage']

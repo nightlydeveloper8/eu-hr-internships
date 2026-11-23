@@ -202,7 +202,9 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
         if doc.h1 or [fold(t) for t in reviewed_titles(body,source)] != [fold(record['title'])]:
             raise ValueError('Current page does not identify the same vacancy')
     matching_posts=[post for post in doc.jobposts() if fold(plain(post.get('title')))==fold(record['title'])]
-    fresh_deadline=next((post.get('validThrough') for post in matching_posts),None)
+    from .employer_pages import jobposting_dates
+    matching_dates=[jobposting_dates(post,source) for post in matching_posts]
+    fresh_deadline=matching_dates[0][1] if matching_dates else None
     identifiers=structured_identifiers(doc,record['title'])
     if len(identifiers)>1 or (source.get('application_check') != PERSONIO_STATIC_FORM and record.get('posting_identifier') and identifiers and str(record['posting_identifier']) not in identifiers):raise ValueError('Vacancy identifier differs from collected position')
     # Capture the identified vacancy independently of application success. A
@@ -211,9 +213,15 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
         from .intake import extract_intake
         observation['intake'] = extract_intake(doc.text, stamp)
     if closure:raise closure
-    for post in matching_posts:
-        if expired(post.get('validThrough'), stamp):
+    for published,deadline in matching_dates:
+        if expired(deadline, stamp):
             raise ApplicationClosed('Published application deadline has passed')
+        if source.get('italian_agency_slug_triage') and published:
+            try:
+                future=datetime.fromisoformat(published.strip().replace('Z','+00:00')).date()>datetime.fromisoformat(stamp).date()
+            except (AttributeError,ValueError):
+                future=False
+            if future:raise ValueError('Structured publication date is in the future')
     if source.get('italian_agency_slug_triage') and re.search(
             r'\b(?:annuncio|offerta|posizione) (?:di lavoro )?(?:non (?:e )?piu (?:disponibile|attiv[oa])|'
             r'(?:e )?scadut[oa]|(?:e stat[oa] )?chius[oa])\b',
