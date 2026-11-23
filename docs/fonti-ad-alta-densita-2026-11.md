@@ -178,4 +178,66 @@ Sulle schede di controllo, «Planner» di Etjca, «Cuoco/a ristorazione colletti
 
 Il solo nuovo canale già ammesso ai percorsi strutturati provati fa parte di `IT-agenzie`. L’export registra `agency_client: "non indicato"` e usa l’agenzia come datore quando l’annuncio di una fonte marcata agenzia dichiara esplicitamente il cliente riservato o non indicato. La scheda pubblica mostra «Client not disclosed (via <agenzia>)». Una menzione generica di un cliente o un nome presente nella scheda non attivano l’etichetta.
 
-Il replay di controllo, eseguito con il lotto fermo, mantiene 937 → 937 ID, 0 persi, 27 → 27 stage italiani aperti tutti via servizio pubblico, 0 → 0 dirette e 39 → 39 lead italiani. Nessun titolo entra nel replay. La simulazione con nuovi titoli richiede una lettura integrale classificata. Per il solo Randstad, 9.997 GET di dettaglio a 2 s di distanza richiedono almeno 5 ore e 33 minuti, prima delle letture di inventario e candidatura. Questo limite inferiore riguarda il censimento seriale delle schede, non l’incremento del workflow. L’aumento di durata di `collect.yml`, l’elenco dei nuovi titoli effettivi e il recall italiano atteso dal lotto attivo sono **non dimostrato**. Il controllo di riferimento mantiene 0/70. Nessun rollout o publish avviato.
+Il replay di controllo, eseguito con il lotto fermo, mantiene 937 → 937 ID, 0 persi, 27 → 27 stage italiani aperti tutti via servizio pubblico, 0 → 0 dirette e 39 → 39 lead italiani. Nessun titolo entra nel replay. La simulazione con nuovi titoli richiede una lettura integrale classificata. L’aumento di durata di `collect.yml`, l’elenco dei nuovi titoli effettivi e il recall italiano atteso dal lotto attivo sono **non dimostrato**. Il controllo di riferimento mantiene 0/70. Nessun rollout o publish avviato.
+
+## Metodo corretto · triage sugli slug italiani
+
+Si leggono gli indici delle vacancy per intero. Il dettaglio si apre quando lo slug contiene sia un termine di stage sia un termine HR. La selezione tramite slug non classifica la vacancy e non esclude annunci a titolo definitivo. Titolo e descrizione del JobPosting passano dal classificatore esistente. Per il lotto si cerca anche prova esplicita di placement per studenti, per esempio tirocinio curricolare o accesso ai laureandi. Le candidature passano dal verificatore v2.
+
+Il ciclo predisposto registra solo `lastmod` e ora di lettura del dettaglio. Dà priorità a URL nuovi o con `lastmod` cambiata. I record già raccolti tornano in coda dopo 24 ore, gli altri candidati già letti dopo sette giorni. Il budget può differire la coda. La scomparsa dalla sitemap non chiude una vacancy; i record noti tornano in coda per la verifica della scheda e si conserva il criterio di chiusura del collector. Niente verifica aggiornata sulla sola base dei metadati. Il canale fallito non passa al crawler universale per espandere il perimetro.
+
+I valori comunicati dal maintainer sono il confronto di riferimento. Qui si contano gli URL delle effettive sitemap delle schede. Manpower aveva 8.000 URL di offerta più 3.037 pagine di indice, filtro o località in un file distinto. Il §12.4 vieta gli automatismi che compromettono il servizio; il §12.8 vieta i collegamenti da siti terzi senza autorizzazione. La lettura a basso ritmo è stata misurata in staging; Manpower non entra nel registro pubblico del lotto. Gi Group pubblico è stato distinto da myGiGroup. Un dettaglio espone JobPosting ma non dimostra accesso ai laureandi o stage curricolare. A 120 s per GET, la prima passata di 50 dettagli richiede almeno 98 minuti tra il primo e l’ultimo GET, prima delle candidature. Il budget di 840 s copre solo una tranche. [Termini Manpower](https://www.manpower.it/it/terms-of-use) · [Condizioni myGiGroup](https://www.gigroup.it/condizioni-di-utilizzo/) · [Robots Gi Group](https://www.gigroup.it/robots.txt).
+
+Per Arca24 resta la prova già raccolta sui quattro host. I sitemap pubblici rimandano a pagine di navigazione e i dettagli esaminati hanno microdati HTML e JSON-LD di altre entità. Un inventario delle vacancy in un formato ammesso resta **non dimostrato**. Openjobmetis ha presentato HTML di protezione al posto di robots. Il primo controllo dell’indice ha restituito lo stesso corpo da 212 byte e lì la lettura si è fermata. Adecco espone una sitemap per le vacancy italiane tramite l’indice pubblico dei job. [Indice Adecco](https://www.adecco.com/jobsindex.xml) · [Condizioni brand Adecco](https://www.adeccogroup.com/it-it/terms/termini-e-condizioni-brand-gruppo-adecco) · [Condizioni Synergie](https://www.synergie-italia.it/privacy).
+
+Il controllo dei falsi negativi ha selezionato 70 esclusi Randstad, 70 Synergie e 60 Manpower con seme 138. Una risposta Synergie ha rediretto senza scheda leggibile ed è stata sostituita da un altro URL estratto con lo stesso seme. Su 200 dettagli leggibili, zero stage HR con prova studentesca osservati fuori triage. Il recall sull’intero inventario resta **non dimostrato** e il controllo non copre Gi Group, Adecco o Arca24. «HR Plant Specialist Stage» senza prova studentesca è un esempio di candidato escluso a valle da Manpower. «Consultant Assistant - Staff Interno (STAGE)» è un esempio Adecco escluso dal classificatore HR.
+
+Il lotto ha quattro fonti disabilitate e in hold. Il limite configurato aggiuntivo nel più carico tra gli shard interessati è 840 s (14 min), esclusi merge e publish. È un tetto di budget per lo shard, non una misurazione di `collect.yml` al completo. I titoli ancora da verificare dopo il limite Gi Group e il costo di un primo ciclo completo restano **non dimostrato**.
+
+| Agenzia | URL di dettaglio | Candidati | Annunci HR con prova studentesca | GET o richieste di verifica incluse | Byte | Secondi HTTP delle schede |
+|---|---:|---:|---|---:|---:|---:|
+| Randstad | 9,997 | 33 | 6 | 118 | 66,178,896 | 64.511 |
+| Synergie | 4,617 | 34 | 7 | 121 | 79,911,512 | 197.644 |
+| Manpower | 8,000 | 11 | 5 | 75 | 15,629,556 | 34.550 |
+| Adecco | 6,986 | 49 | 12 | 76 | 33,957,556 | 103.226 |
+| Gi Group | 4.536 | 50 | non dimostrato, 1 dettaglio letto | 3 | 1.352.370 | 2,780 |
+| Arca24, quattro tenant | non dimostrato | non dimostrato | non dimostrato | 0 nuovi | 0 | 0 |
+| Openjobmetis | non dimostrato | non dimostrato | non dimostrato | 1 | 212 | 0,119 |
+| MAW e Umana, escluse | non dimostrato | non dimostrato | non dimostrato | 0 nuovi | 0 | 0 |
+
+I costi includono indici riusati dove disponibili, schede selezionate, controlli, e verifiche di ammissione quando eseguite. I secondi HTTP delle schede escludono gli indici e il passaggio di verifica delle candidature, separato per host qui sotto. I tempi di attesa e i crawl delay non sono inclusi nei secondi HTTP.
+
+- Randstad · verifica v2 12 richieste, 6,694,538 byte, 46.3 s di budget trascorso (include le attese). Esiti {'unverified': 6}.
+- Synergie · verifica v2 14 richieste, 9,383,738 byte, 35.1 s di budget trascorso (include le attese). Esiti {'unverified': 7}.
+- Adecco · verifica v2 24 richieste, 10,694,664 byte, 46.3 s di budget trascorso (include le attese). Esiti {'unverified': 12}.
+
+Replay parziale dei tre risultati verificati in staging · 937 → 961 ID, 0 persi. Italia 27 → 27 aperti, 0 candidature dirette nella simulazione. Recall italiano per URL 0/70 sul replay. Il recall con tutto il lotto attivo è **non dimostrato** perché Gi Group è incompleta. Nessuna rimozione di hold.
+
+### Tutti i nuovi titoli del replay parziale
+
+- STAGE - Account Specialist HR Internship Randstad · unverified · `6d0c849cb835bb067230`
+- Stage Curriculare – HR Recruiting Specialist Healthcare · unverified · `8705026bbdaaefd5056f`
+- STAGE CURRICULARE RECRUITER (f/m/nb) · unverified · `8ec3f3e1ce4b91299e80`
+- STAGE CURRICULARE RECRUITER JUNIOR · unverified · `1ebf61e60afd51667fd7`
+- Tirocinio curriculare HR Account Manager (f/m/nb) - Siracusa (SR) · unverified · `dc49481a8213e4adf729`
+- HR COMMERCIALE & RECRUITMENT - STAGE FILIALE · unverified · `80085313cda0868a7e6b`
+- HR RECRUITER ( STAGE) · unverified · `1477a6fbc55e4460019e`
+- HR RECRUITER STAGE · unverified · `4f5279ac0b84ee827c39`
+- STAGE HR RECRUITER · unverified · `9d567f2f555b3c02806d`
+- STAGE HR RECRUITER - SELEZIONE DEL PERSONALE · unverified · `025c6130cb56b1a7b1d5`
+- STAGE HR RISORSE UMANE - tirocinio extra curriculare · unverified · `d9a01f36c4535b03b1b1`
+- STAGE HR - STAFF INTERNO · unverified · `bb69cfadfd75fc816c07`
+- ADECCO STAGE HR · unverified · `8a562709dbf954ee427a`
+- HR Admin - Stage Staff Interno · unverified · `2ab330c03a581de5f764`
+- Stage ambito risorse umane · unverified · `e652cd7a5bbbb9de0fd7`
+- Stage Assistente Risorse Umane · unverified · `42724fa765794ca05882`
+- Stage HR Recruiter - Staff Interno · unverified · `f6bf7b39de10d0e730cb`
+- Stage Risorse Umane · unverified · `4f083ebfa757a8c2569a`
+- STAGE RISORSE UMANE - MILANO (MI) · unverified · `c09829deaaf4e06ed6af`
+- STAGE RISORSE UMANE · unverified · `2c4d34b086ec7ef6e56d`
+- Stage Selezione e Amministrazione del personale · unverified · `d9d98baf88f1b8ef9c9a`
+- Tirocinante HR - Risorse Umane · unverified · `153d4e719a7503e7aece`
+- Tirocinio curriculare -ufficio personale (per staff interno) · unverified · `a4bbe9603fad40eef845`
+- Tirocinio HR - Recruiter · unverified · `e0dd0ea02c5d3cac53ae`
+
+Controlli in Python 3.12.14, 582 test Python e 52 Node passati. Valutazione, provisioning idempotente, copertura, build e validazione del catalogo in copia di lavoro. Nessun merge, attivazione o publish.

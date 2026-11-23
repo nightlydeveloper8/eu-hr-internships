@@ -26,3 +26,13 @@ class HighDensityHoldTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "collection activation hold"):
             collect(dict(source, enabled=True), client)
         self.assertEqual(client.mock_calls, [])
+
+    def test_entire_it_lot_is_held_and_provisioning_is_idempotent(self):
+        companies = json.loads((ROOT / "data/companies.json").read_text())
+        sources = json.loads((ROOT / "data/sources.json").read_text())
+        lot = [s for s in sources if s.get("collection_lot") == "IT-agenzie"]
+        self.assertEqual({s["id"] for s in lot},
+                         {"held-randstad-it-jobposting", "held-synergie-it-jobposting",
+                          "held-gi-group-it-jobposting", "held-adecco-it-jobposting"})
+        self.assertTrue(all(s["enabled"] is False and s["collection_activation_hold"] is True for s in lot))
+        self.assertEqual(provision(companies, sources), (companies, sources))

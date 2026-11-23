@@ -16309,9 +16309,11 @@
     ],
     "job_url_pattern": "^https://www\\.randstad\\.it/offerte-lavoro/[^/?]+_[0-9a-f-]{36}/?$",
     "url_slug_prefilter": true,
+    "italian_agency_slug_triage": true,
     "max_sitemaps": 2,
     "max_requests": 80,
-    "collection_seconds": 120,
+    "collection_seconds": 240,
+    "collection_delay": 2,
     "permission_basis": "Official robots advertises sitemap; same-host public JSON-LD detail; reviewed candidate terms do not explicitly prohibit these reads",
     "reviewed_on": "2026-11-23",
     "status": "reviewed-disabled",
@@ -50939,5 +50941,113 @@
     "permission_basis": "Public employer XML and vacancy-specific form GET; reviewed host and runtime robots.",
     "reviewed_on": "2026-11-22",
     "status": "pending-integration-and-rollout-approval"
+  },
+  {
+    "id": "held-synergie-it-jobposting",
+    "company_id": "synergie-italia",
+    "employer": "Synergie Italia",
+    "employer_tokens": [
+      "synergie"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "IT-agenzie",
+    "staffing_agency": true,
+    "career_url": "https://www.synergie-italia.it/candidato/offerte-di-lavoro",
+    "allowed_hosts": [
+      "www.synergie-italia.it"
+    ],
+    "target_countries": [
+      "IT"
+    ],
+    "sitemaps": [
+      "https://www.synergie-italia.it/sitemap-jobs.xml"
+    ],
+    "job_url_pattern": "^https://www\\.synergie-italia\\.it/candidato/offerte-di-lavoro/[^/?]+-\\d+$",
+    "url_slug_prefilter": true,
+    "italian_agency_slug_triage": true,
+    "max_sitemaps": 1,
+    "max_requests": 100,
+    "collection_seconds": 240,
+    "collection_delay": 2,
+    "permission_basis": "Robots declares the sitemap; same-host public JobPosting details and reviewed candidate portal terms",
+    "reviewed_on": "2026-11-23",
+    "status": "reviewed-disabled",
+    "review_notes": "Candidate terms scope the candidate portal. Includes no login or application submission. Full inventory is used for slug triage only."
+  },
+  {
+    "id": "held-gi-group-it-jobposting",
+    "company_id": "gi-group",
+    "employer": "Gi Group",
+    "employer_tokens": [
+      "gi group"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "IT-agenzie",
+    "staffing_agency": true,
+    "career_url": "https://www.gigroup.it/offerte-lavoro/",
+    "allowed_hosts": [
+      "www.gigroup.it"
+    ],
+    "target_countries": [
+      "IT"
+    ],
+    "sitemaps": [
+      "https://www.gigroup.it/offerte-sitemap.xml"
+    ],
+    "job_url_pattern": "^https://www\\.gigroup\\.it/offerte-lavoro-dettaglio/[^/?]+/[a-zA-Z0-9]+/?$",
+    "url_country_patterns": {
+      "^https://www\\.gigroup\\.it/offerte-lavoro-dettaglio/": "IT"
+    },
+    "url_slug_prefilter": true,
+    "italian_agency_slug_triage": true,
+    "max_sitemaps": 1,
+    "max_requests": 7,
+    "collection_seconds": 840,
+    "collection_delay": 120,
+    "permission_basis": "Robots declares the index and permits public posting details for People Placement; observed same-host JobPosting",
+    "reviewed_on": "2026-11-23",
+    "status": "reviewed-disabled",
+    "review_notes": "myGiGroup portal terms prohibit automated searches. This source is scoped to the distinct public job board and uses a 120-second delay on this host. First pass at this budget cannot verify the full candidate set."
+  },
+  {
+    "id": "held-adecco-it-jobposting",
+    "company_id": "adecco",
+    "employer": "Adecco Italia",
+    "employer_tokens": [
+      "adecco"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "IT-agenzie",
+    "staffing_agency": true,
+    "career_url": "https://www.adecco.com/it-it/cerca-lavoro",
+    "allowed_hosts": [
+      "www.adecco.com"
+    ],
+    "target_countries": [
+      "IT"
+    ],
+    "sitemaps": [
+      "https://www.adecco.com/sitemap-jobs-italy-it.xml"
+    ],
+    "job_url_pattern": "^https://www\\.adecco\\.com/it-it/cerca-lavoro/[^/?]+/[^/?]+/?$",
+    "url_country_patterns": {
+      "^https://www\\.adecco\\.com/it-it/cerca-lavoro/": "IT"
+    },
+    "url_slug_prefilter": true,
+    "italian_agency_slug_triage": true,
+    "max_sitemaps": 1,
+    "max_requests": 120,
+    "collection_seconds": 300,
+    "collection_delay": 2,
+    "permission_basis": "Public Italy sitemap declared by the site jobs index and same-host JobPosting detail; no explicit automated-access ban found in the reviewed Italian brand terms",
+    "reviewed_on": "2026-11-23",
+    "status": "reviewed-disabled",
+    "review_notes": "Scope is restricted to www.adecco.com/it-it Italian job details. No restricted paths or application submission."
   }
 ]

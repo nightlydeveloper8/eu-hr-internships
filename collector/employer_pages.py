@@ -54,9 +54,25 @@ def slug_prefilter(url):
     from .classify import classify_role
     return bool(classify_role(slug_title(url)))
 
+AGENCY_INTERNSHIP_SLUG = re.compile(r'\b(?:stage|stagist\w*|tirocin\w*|intern|internship)\b')
+AGENCY_HR_SLUG = re.compile(
+    r'\b(?:hr|risorse umane|recruit\w*|selezion\w*|personale|payroll|paghe|talent\w*|formazione|people|staff interno)\b'
+)
+
+def italian_agency_slug_candidate(url):
+    parts = urlsplit(url).path.rstrip('/').split('/')
+    slug = parts[-1]
+    if len(parts)>2 and re.fullmatch(r'(?:[a-z]?\d{4,}|\d+-\d+|[0-9a-f-]{36})',slug,re.I):
+        slug = parts[-2]
+    title = slug_title('/'+slug).casefold()
+    return bool(AGENCY_INTERNSHIP_SLUG.search(title) and AGENCY_HR_SLUG.search(title))
+
 def sitemap_records(source,client):
     pending=list(source['sitemaps']);seen=set();job_urls=set();pattern=re.compile(source['job_url_pattern'])
     prefilter=source.get('url_slug_prefilter')==True;listed=0
+    matches_slug=italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
+    agency_triage=source.get('italian_agency_slug_triage')
+    lastmods={}
     while pending:
         url=approved(pending.pop(0),source)
         if url in seen:continue
@@ -66,16 +82,28 @@ def sitemap_records(source,client):
         root=ET.fromstring(body)
         tag=root.tag.rsplit('}',1)[-1]
         if tag not in ('urlset','sitemapindex'):raise ValueError('Not a sitemap')
-        urls=[x.text.strip() for x in root.iter() if x.tag.rsplit('}',1)[-1]=='loc' and x.text]
-        for target in urls:
+        for node in root:
+            fields={child.tag.rsplit('}',1)[-1]:child.text for child in node}
+            if not fields.get('loc'):continue
+            target=fields['loc'].strip()
             if tag=='sitemapindex':pending.append(approved(target,source))
             elif pattern.search(target):
                 listed+=1
-                if not prefilter or slug_prefilter(target):job_urls.add(approved(target,source))
+                if prefilter and not agency_triage and not matches_slug(target):continue
+                url=approved(target,source)
+                if not prefilter or matches_slug(target):job_urls.add(url)
+                if agency_triage:lastmods[url]=fields.get('lastmod')
         if len(job_urls)>source.get('max_job_urls',20000):raise ValueError('Job URL safety limit; snapshot incomplete')
     if not listed:raise ValueError('No matching job URLs; source layout needs review')
     # Missing old links on a sitemap alone must never close a posting.
-    return [dict(source_id=source['id'],external_id=u,employer=source['employer'],title=re.sub(r'[-_]+',' ',unquote(urlsplit(u).path)),location='',text='',url=u,apply_url=u,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True) for u in sorted(job_urls)]
+    if agency_triage:
+        # Periodically recheck previously collected postings even if the sitemap
+        # stops advertising them. A missing URL alone is not closure evidence.
+        job_urls.update(approved(url,source) for url in source.get('known_job_urls',[]) if pattern.search(url))
+    records=[dict(source_id=source['id'],external_id=u,employer=source['employer'],title=re.sub(r'[-_]+',' ',unquote(urlsplit(u).path)),location='',text='',url=u,apply_url=u,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True) for u in sorted(job_urls)]
+    if agency_triage:
+        for record in records:record['sitemap_lastmod']=lastmods.get(record['url'])
+    return records
 
 def walk_json(value):
     if isinstance(value,list):

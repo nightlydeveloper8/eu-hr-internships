@@ -220,6 +220,26 @@ def record_countries(record):
         return sorted({code for c in record['countries'] for code in country_codes('',c)})
     return country_codes(record['location'],record.get('country'))
 
+def agency_sitemap_due(records,state,known,stamp):
+    """Keep sitemap hints separate from fresh vacancy observations."""
+    ordered=[]
+    for record in records:
+        url=record['url']
+        previous=state.get(url,{})
+        last_seen=previous.get('checked_at')
+        modified=previous.get('lastmod')!=record.get('sitemap_lastmod')
+        interval=86400 if url in known else 7*86400
+        elapsed=observation_time({'last_seen_at':stamp})-observation_time({'last_seen_at':last_seen})
+        if not last_seen or modified or elapsed>=interval:
+            ordered.append((0 if modified or not last_seen else 1,last_seen or '',url,record))
+    return [record for _,_,_,record in sorted(ordered,key=lambda entry:entry[:3])]
+
+def italian_student_placement(record):
+    evidence=record['title']+' '+record['text']
+    return explicitly_admits_enrolled_students(evidence) or bool(
+        re.search(r'\b(?:curriculare|curricolare|laureand[oaie]|student[ei] universitari[oaie])\b',evidence,re.I)
+    )
+
 def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
     current=[];successful=set();closure_eligible=set();partial_sources=set()
     LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
@@ -235,7 +255,12 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             report['error']='Large inventory reduction; new valid matches accepted, absence-based closure disabled pending review'
         report['collected']=len(records)
         staged=[];page_errors=[];inspected=[];filter_reasons=Counter();verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
-        if cache:
+        agency_sitemap=cache and source['adapter']=='employer-sitemap' and source.get('italian_agency_slug_triage')
+        if agency_sitemap:
+            previous=cache.state().get('agency_sitemap',{})
+            snapshot={r['url']:previous[r['url']] for r in records if r['url'] in previous}
+            records=agency_sitemap_due(records,snapshot,set(source.get('known_job_urls',[])),stamp)
+        elif cache:
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
         for record in records:
@@ -249,11 +274,13 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             text_observation=record.get('_text_observation',dict(kind='feed',checked_at=stamp))
             if record.get('needs_page'):
                 try:
-                    cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache else None
+                    hint=record.get('sitemap_lastmod')
+                    cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache and not agency_sitemap else None
                     record=cached or enrich(record,source,client,defer_expiry=True)
                     text_observation=record.get('_text_observation',dict(kind='live',checked_at=stamp))
                     record=dict(record,_text_observation=text_observation)
-                    if cache and not cached:cache.put(record['url'],record)
+                    if agency_sitemap:snapshot[record['url']]=dict(lastmod=hint,checked_at=stamp)
+                    elif cache and not cached:cache.put(record['url'],record)
                 except Exception as exc:
                     from .applications import ApplicationClosed
                     if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
@@ -277,6 +304,10 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             countries=record_countries(record)
             if not role or not countries:
                 filter_reasons['not-hr-student-role' if not role else 'hr-candidate-without-country']+=1
+                continue
+            if source.get('italian_agency_slug_triage') and (
+                    role['internship_type']!='internship' or not italian_student_placement(record)):
+                filter_reasons['explicitly-enrolled-student-internship-required']+=1
                 continue
             if source.get('require_enrolled_students') and (
                     role['internship_type'] != 'internship'
@@ -335,6 +366,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 staged[-1].update(inventory_evidence=record.get('inventory_evidence'),public_api_listed_at=stamp)
                 if record.get('external_application_url'):staged[-1]['external_application_url']=record['external_application_url']
             if closed:staged[-1].update(status='closed',closure_reason='Official recruiting page explicitly disables applications')
+        if agency_sitemap:cache.save_state({'agency_sitemap':snapshot})
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
         if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])

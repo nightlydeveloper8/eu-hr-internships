@@ -1,4 +1,4 @@
-## 23 novembre 2026 — benchmark 225 e lotto IT-agenzie
-[Dossier](fonti-ad-alta-densita-2026-11.md) · [Confronto](recall-fonti-ad-alta-densita-2026-11.csv) · [PR #138](https://github.com/nightlydeveloper8/eu-hr-internships/pull/138). Dal catalogo `8f15504` risultano 1 aperto confermato su 225 e 0 su 70 in Italia.
-Nel lotto IT-agenzie Randstad resta disabilitata e in hold. Il replay di controllo conserva 937 ID e 27 stage aperti in Italia. Aggiunta l’etichetta del cliente esplicitamente non indicato.
-I quattro portali Arca24 condividono il frontend. Il loro formato ammesso e il rendimento del lotto sono non dimostrato. Prossimo passo: trovare un inventario con contenuti strutturati completi e verificare il rendimento prima del rollout.
+## 23 novembre 2026 — triage degli stage HR nelle agenzie italiane
+[Dossier e titoli](fonti-ad-alta-densita-2026-11.md) · [PR #138](https://github.com/nightlydeveloper8/eu-hr-internships/pull/138). Sitemap, triage sugli slug, verifica strutturata, lastmod e rotazione per Randstad, Synergie, Gi Group e Adecco. Lotto disabilitato e in hold.
+Controllo stratificato su 200 slug esclusi, zero stage HR con prova studentesca osservati. Replay parziale 937 → 961 ID, zero persi, 24 nuovi lead, Italia 27 → 27 aperti e recall 0/70.
+Passano 582 test Python 3.12, 52 test Node e provisioning idempotente. Prossimo passo: dimostrare percorsi di candidatura e misurare la tranche Gi Group a 120 s tra richieste. Resa e durata del lotto completo non dimostrato.
