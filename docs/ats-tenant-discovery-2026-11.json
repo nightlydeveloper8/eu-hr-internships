@@ -1,0 +1,106 @@
+{
+  "crawls": [
+    "CC-MAIN-2026-43",
+    "CC-MAIN-2026-39"
+  ],
+  "queries": [
+    {
+      "crawl": "CC-MAIN-2026-43",
+      "ats": "workable",
+      "host": "apply.workable.com",
+      "read": 0,
+      "status": "incomplete",
+      "error": "HTTP 504"
+    },
+    {
+      "crawl": "CC-MAIN-2026-43",
+      "ats": "inrecruiting",
+      "host": "intervieweb.it",
+      "read": 0,
+      "status": "incomplete",
+      "error": "HTTP 504"
+    },
+    {
+      "crawl": "CC-MAIN-2026-39",
+      "ats": "workable",
+      "host": "apply.workable.com",
+      "read": 0,
+      "status": "incomplete",
+      "error": "HTTP 504"
+    },
+    {
+      "crawl": "CC-MAIN-2026-39",
+      "ats": "inrecruiting",
+      "host": "intervieweb.it",
+      "read": 0,
+      "status": "incomplete",
+      "error": "HTTP 504"
+    }
+  ],
+  "requests": [
+    {
+      "endpoint": "/collinfo.json",
+      "status": 200,
+      "bytes": 35501,
+      "seconds": 0.531
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-43-index?url=apply.workable.com&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 24.526
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-43-index?url=apply.workable.com&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 5.426
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-43-index?url=intervieweb.it&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 21.462
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-43-index?url=intervieweb.it&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 10.554
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-39-index?url=apply.workable.com&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 20.468
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-39-index?url=apply.workable.com&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 10.427
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-39-index?url=intervieweb.it&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 21.538
+    },
+    {
+      "endpoint": "/CC-MAIN-2026-39-index?url=intervieweb.it&matchType=domain&output=json&pageSize=1&filter=status%3A200&showNumPages=true",
+      "status": 504,
+      "bytes": 0,
+      "seconds": 12.481
+    }
+  ],
+  "tenants": [],
+  "sample_seed": "2026-11-23",
+  "scope": "Incomplete Common Crawl CDX pilot. An empty tenant array only records zero usable captures.",
+  "exact_control": {
+    "crawl": "CC-MAIN-2026-43",
+    "host": "berenschot.recruitee.com",
+    "status": 504,
+    "response_bytes": 167,
+    "seconds": 5.319
+  }
+}
