@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-23T08:01:23.940279+00:00",
+  "generated_at": "2026-11-23T17:46:02.127659+00:00",
   "exhaustive": false,
-  "company_count": 1915,
-  "career_pages_recorded": 1386,
+  "company_count": 1916,
+  "career_pages_recorded": 1387,
   "career_pages_verified_this_mapping": 471,
   "monitored_companies": 1914,
   "regions": [
@@ -14034,7 +14034,7 @@
       "level": 2,
       "companies_located": 893,
       "companies_monitored": 893,
-      "open_listings": 1,
+      "open_listings": 2,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
         "2-cnnct",
@@ -15369,9 +15369,9 @@
       "name": "Utrecht",
       "country": "NL",
       "level": 2,
-      "companies_located": 51,
+      "companies_located": 52,
       "companies_monitored": 51,
-      "open_listings": 3,
+      "open_listings": 4,
       "listing_mapping": "confirmed employer/city match",
       "company_ids": [
         "danone",
@@ -15424,7 +15424,8 @@
         "eemhart",
         "vak-infra",
         "ouwehands-dierenpark",
-        "zorgdomein"
+        "zorgdomein",
+        "amac-nl"
       ],
       "status": "monitoring"
     },
@@ -15433,12 +15434,14 @@
       "name": "Utrecht",
       "country": "NL",
       "level": 3,
-      "companies_located": 0,
+      "companies_located": 1,
       "companies_monitored": 0,
       "open_listings": null,
       "listing_mapping": "region only; subregion not inferred",
-      "company_ids": [],
-      "status": "not-researched"
+      "company_ids": [
+        "amac-nl"
+      ],
+      "status": "employers-identified"
     },
     {
       "code": "NL36",
@@ -18579,9 +18582,9 @@
       "companies_located": 10,
       "companies_with_located_career_channel": 10,
       "located_employers_with_monitoring_configured": 10,
-      "companies_monitored_in_country": 25,
-      "baseline_gap": 75,
-      "expansion_gap": 1475,
+      "companies_monitored_in_country": 26,
+      "baseline_gap": 74,
+      "expansion_gap": 1474,
       "size_unknown": 268,
       "status": "integration-required"
     },
@@ -18643,9 +18646,9 @@
       "companies_located": 10,
       "companies_with_located_career_channel": 10,
       "located_employers_with_monitoring_configured": 10,
-      "companies_monitored_in_country": 5,
-      "baseline_gap": 95,
-      "expansion_gap": 1495,
+      "companies_monitored_in_country": 4,
+      "baseline_gap": 96,
+      "expansion_gap": 1496,
       "size_unknown": 327,
       "status": "integration-required"
     },
@@ -18716,17 +18719,17 @@
     {
       "code": "NL",
       "name": "Netherlands",
-      "companies_identified": 1227,
+      "companies_identified": 1228,
       "regions_with_employers": 12,
       "baseline_target": 100,
       "expansion_target": 800,
-      "companies_located": 1048,
+      "companies_located": 1049,
       "companies_with_located_career_channel": 1048,
       "located_employers_with_monitoring_configured": 1048,
-      "companies_monitored_in_country": 46,
-      "baseline_gap": 54,
-      "expansion_gap": 754,
-      "size_unknown": 1011,
+      "companies_monitored_in_country": 47,
+      "baseline_gap": 53,
+      "expansion_gap": 753,
+      "size_unknown": 1012,
       "status": "integration-required"
     },
     {
@@ -18860,16 +18863,16 @@
     "Unknown regional placement remains unknown; zero monitoring is not zero openings."
   ],
   "collection_outcomes": {
-    "verified-empty": 31,
-    "blocked-or-failed": 278,
-    "partial": 530,
-    "discovery-incomplete": 986,
-    "collected": 89,
-    "not-attempted": 1,
-    "companies": 1915,
+    "verified-empty": 30,
+    "blocked-or-failed": 288,
+    "partial": 525,
+    "discovery-incomplete": 980,
+    "collected": 91,
+    "not-attempted": 2,
+    "companies": 1916,
     "configured": 1914,
     "attempted": 1914
   },
-  "collection_checked_at": "2026-11-23T08:00:58.739722+00:00",
+  "collection_checked_at": "2026-11-23T17:45:40.303430+00:00",
   "monitored_companies_definition": "Automatic collectors configured; extraction success is reported separately in collection_outcomes"
 }
