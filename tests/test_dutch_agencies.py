@@ -18,7 +18,7 @@ class DutchAgencyTests(unittest.TestCase):
         self.assertFalse(dutch_agency_slug_candidate(
             "https://www.randstad.nl/vacatures/123456/werkstudent-hr?filter=stage"))
 
-    def test_disabled_sources_cannot_collect_and_provisioning_is_idempotent(self):
+    def test_rollout_and_hold_guard_and_provisioning_is_idempotent(self):
         companies, sources = [
             json.loads((ROOT / "data" / name).read_text())
             for name in ("companies.json", "sources.json")
@@ -26,10 +26,10 @@ class DutchAgencyTests(unittest.TestCase):
         lot = [source for source in sources if source.get("collection_lot") == "AGENZIE-NL"]
         self.assertEqual(len(lot), 3)
         for source in lot:
-            self.assertIs(source["enabled"], False)
-            self.assertIs(source["collection_activation_hold"], True)
+            self.assertIs(source["enabled"], True)
+            self.assertNotIn("collection_activation_hold", source)
             client = Mock()
             with self.assertRaisesRegex(ValueError, "collection activation hold"):
-                collect(dict(source, enabled=True), client)
+                collect(dict(source, enabled=True, collection_activation_hold=True), client)
             self.assertEqual(client.mock_calls, [])
         self.assertEqual(provision(companies, sources), (companies, sources))

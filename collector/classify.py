@@ -139,8 +139,17 @@ def vocabulary_categories(title, text):
 
 
 
+def excluded_german_title(title):
+    return bool(re.search(
+        r'\b(?:werk[ -]?stud(?:ent|ierende)\w*|freiwilligendienst\w*|bundesfreiwilligendienst|'
+        r'freiwilliges soziales jahr|freiwilliges okologisches jahr|volontariat\w*|fsj|bfd)\b',
+        fold(plain(title)),
+    ))
+
+
 def classify_role(title, text='', employment=''):
     title, text, employment = map(fold,(plain(title),plain(text),plain(employment)))
+    if excluded_german_title(title):return None
     extra = vocabulary_categories(title, text)
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title) or k in extra]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
@@ -226,6 +235,8 @@ LOCAL_STUDENT_RULES = {
 
 def student_eligibility_for_country(country, title, text='', employment=''):
     """Apply the explicitly reviewed student rule for a single workplace country."""
+    if country=='DE' and excluded_german_title(title):
+        return 'excluded'
     if country == 'IT':
         return italian_student_eligibility(title, text)
     if country not in LOCAL_STUDENT_RULES:

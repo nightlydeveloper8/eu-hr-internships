@@ -259,6 +259,8 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
             # Discovering the frame only confirms that this posting is advertised.
             # We do not treat the frame URL as verified application evidence.
             observation['current_listing']=dict(method='teamtailor-sitemap-same-job-form-frame')
+    if source.get('slow_collection_lane'):
+        raise ValueError('Slow lane checks the public listing only')
     if source.get('application_check') == PERSONIO_STATIC_FORM:
         reviewed = personio_static_application(record, source, client, doc, stamp)
         return dict(reviewed, valid_through=fresh_deadline, vacancy_match='personio-posting-id',

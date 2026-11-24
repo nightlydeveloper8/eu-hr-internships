@@ -42,10 +42,13 @@ class HighDensityHoldTests(unittest.TestCase):
         sources = json.loads((ROOT / "data/sources.json").read_text())
         existing = next(s for s in sources if s["id"] == "auto-gi-group")
         reviewed = next(s for s in sources if s["id"] == "held-gi-group-it-jobposting")
-        self.assertEqual(reviewed["agency_details_per_cycle"], 2)
+        self.assertEqual(reviewed["agency_details_per_cycle"], 15)
         hosts = shared_collection_hosts([existing, reviewed])
         self.assertEqual(source_shard(reviewed, 16, hosts), shard_for(existing["id"], 16))
         self.assertEqual(source_shard(existing, 16, hosts), shard_for(existing["id"], 16))
+
+        self.assertEqual(source_shard(reviewed,16,hosts,{"www.gigroup.it"}),16)
+        self.assertEqual(source_shard(existing,16,hosts,{"www.gigroup.it"}),16)
 
         host = "www.gigroup.it"
         url = "https://" + host

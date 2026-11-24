@@ -265,6 +265,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             records=records[:detail_limit]
             partial_sources.add(source['id'])
             report['rotation_pending']=rotation_pending
+        detail_attempts=0
         for record in records:
             if source['adapter']=='universal-employer':
                 from .ownership import owned_record
@@ -278,6 +279,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 try:
                     hint=record.get('sitemap_lastmod')
                     cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache and not agency_sitemap and source['adapter']!='sf-rmk' else None
+                    if not cached:detail_attempts+=1
                     record=cached or enrich(record,source,client,defer_expiry=True)
                     text_observation=record.get('_text_observation',dict(kind='live',checked_at=stamp))
                     record=dict(record,_text_observation=text_observation)
@@ -421,6 +423,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index','sf-rmk'):closure_eligible.add(source['id'])
         report.update(status='partial' if source['id'] in partial_sources else 'ok',candidate_filter_reasons=dict(filter_reasons),matching=len(staged),verification_states=dict(Counter(j['verification']['state'] for j in staged)),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
+        if source.get('retry_transient_reads') or source.get('slow_collection_lane'):
+            report['detail_attempts']=detail_attempts
         report['verified_closed_urls']=sorted(verified_closed_urls)
         if ineligible_italian_urls:report['ineligible_italian_urls']=sorted(ineligible_italian_urls)
         if ineligible_student_urls:report['ineligible_student_urls']=sorted(ineligible_student_urls)
@@ -463,7 +467,10 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     ineligible_italian_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_italian_urls',[])}
     ineligible_student_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_student_urls',[])}
+    from .classify import excluded_german_title
     for job in jobs:
+        if 'DE' in job['countries'] and excluded_german_title(job['title']):
+            job['student_eligibility']='excluded'
         if job['countries']==['IT'] and canonical_url(job['url']) in ineligible_italian_urls:
             job['student_eligibility']='excluded'
         if len(job['countries'])==1 and canonical_url(job['url']) in ineligible_student_urls:

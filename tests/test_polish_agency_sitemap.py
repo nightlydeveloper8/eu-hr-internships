@@ -17,13 +17,13 @@ class PolishAgencySitemapTests(unittest.TestCase):
         self.assertFalse(polish_agency_slug_candidate(
             'https://www.randstad.pl/znajdz-prace/specjalista-kadr?search=stazysta'))
 
-    def test_hold_blocks_collection_and_provisioning_is_idempotent(self):
+    def test_rollout_and_hold_guard_and_provisioning_is_idempotent(self):
         companies = read(ROOT / 'data/companies.json', [])
         sources = read(ROOT / 'data/sources.json', [])
         source = next(source for source in sources if source['id'] == 'held-randstad-pl-jobposting')
-        self.assertFalse(source['enabled'])
+        self.assertTrue(source['enabled'])
         client = Mock()
         with self.assertRaisesRegex(ValueError, 'collection activation hold'):
-            collect(dict(source, enabled=True), client)
+            collect(dict(source, enabled=True, collection_activation_hold=True), client)
         self.assertEqual(client.mock_calls, [])
         self.assertEqual(provision(companies, sources), (companies, sources))
