@@ -260,7 +260,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
         detail_limit=source.get('agency_details_per_cycle')
-        rotation_pending=max(0,len(records)-detail_limit) if agency_sitemap and detail_limit else 0
+        rotation_pending=max(0,len(records)-detail_limit) if detail_limit else 0
         if rotation_pending:
             records=records[:detail_limit]
             partial_sources.add(source['id'])
@@ -467,9 +467,13 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     ineligible_italian_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_italian_urls',[])}
     ineligible_student_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_student_urls',[])}
-    from .classify import excluded_german_title
+    from .classify import excluded_german_title, excluded_placement_title
+    from .sf_rmk import remove_repeated_text
+    rmk_sources={source['id'] for source in registry if source.get('adapter')=='sf-rmk'}
     for job in jobs:
-        if 'DE' in job['countries'] and excluded_german_title(job['title']):
+        if job['source_id'] in rmk_sources:
+            job['title']=remove_repeated_text(job['title'])
+        if excluded_placement_title(job['title']) or ('DE' in job['countries'] and excluded_german_title(job['title'])):
             job['student_eligibility']='excluded'
         if job['countries']==['IT'] and canonical_url(job['url']) in ineligible_italian_urls:
             job['student_eligibility']='excluded'

@@ -33,6 +33,9 @@ class ItalianAgencySitemapTests(unittest.TestCase):
         self.assertEqual(records, {self.candidate: "2026-11-23",
                                    self.base + "/jobs/archived-slug": None})
 
+        strict = sitemap_records(dict(source, slow_collection_lane=True), client)
+        self.assertEqual([record["url"] for record in strict], [self.candidate])
+
     def test_lastmod_update_and_rotation_are_due(self):
         first_check = "2026-11-22T18:00:00Z"
         state = {self.candidate: dict(lastmod="2026-11-22", checked_at=first_check)}

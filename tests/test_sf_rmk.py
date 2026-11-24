@@ -3,7 +3,7 @@ from urllib.error import HTTPError
 
 from collector.adapters import collect
 from collector.pipeline import process_source
-from collector.sf_rmk import candidate, request
+from collector.sf_rmk import candidate, job_record, request
 
 
 HOST = 'https://careers.example.org'
@@ -53,6 +53,24 @@ class RmkTests(unittest.TestCase):
         self.assertEqual(job['verification']['reason'], 'sf-rmk-sitemap-live-jobposting')
         self.assertNotIn('application_verification', job)
         self.assertEqual(report['report']['sitemap_jobs'], 2)
+
+    def test_repeated_title_and_description_are_normalized(self):
+        title = 'Stage - Assistant Projet/Etudes RH (F-H)'
+        paragraph = 'Convention de stage obligatoire pour cette mission.'
+        body = f'''<html lang="fr"><link rel="canonical" href="{JOB}">
+            <div itemscope itemtype="https://schema.org/JobPosting">
+              <h1 itemprop="title">{title} {title} {title} {title}</h1>
+              <div itemprop="description"><p>{paragraph}</p><p>{paragraph}</p></div>
+              <meta itemprop="datePosted" content="Mon Nov 23 00:00:00 UTC 2026">
+              <meta itemprop="streetAddress" content="Paris, FR, 75001">
+              <a href="/applybutton/123/">Postuler</a>
+            </div></html>'''.encode()
+        client = Replay(body)
+        records = collect(SOURCE, client)
+        posting = job_record(records[0], SOURCE, client)
+        self.assertEqual(posting['external_id'], '123')
+        self.assertEqual(posting['title'], title)
+        self.assertEqual(posting['text'].rstrip('.'), paragraph.rstrip('.'))
 
     def test_hold_and_robots_guard(self):
         client = Replay(b'')

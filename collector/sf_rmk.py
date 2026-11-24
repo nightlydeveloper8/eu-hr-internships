@@ -244,6 +244,18 @@ def rmk_date(value):
     raise ValueError('Unrecognized SF-RMK posting date')
 
 
+def remove_repeated_text(value):
+    """Collapse exact repeated copies of the entire rendered field."""
+    words=value.split()
+    if not words:
+        return value
+    copies=[index for index, word in enumerate(words) if word==words[0]]
+    for length in copies[1:]:
+        if len(words)%length==0 and words[:length]*(len(words)//length)==words:
+            return ' '.join(words[:length])
+    return value
+
+
 def job_record(record, source, client):
     from .applications import ensure_open_document
     from .universal import Document, job_from_json
@@ -276,6 +288,8 @@ def job_record(record, source, client):
     result=job_from_json(dict(post,validThrough=None),final,source)
     if not result or not result.get('countries'):
         raise ValueError('Missing SF-RMK job title or description')
+    for field in ('title','text'):
+        result[field]=remove_repeated_text(result[field])
     cta=any(urlsplit(urljoin(final,href)).hostname==urlsplit(final).hostname and
             re.fullmatch(r'/(?:talentcommunity/apply|applybutton)/'+final_id+r'/?',
                          urlsplit(urljoin(final,href)).path) for href,_,_ in doc.links)

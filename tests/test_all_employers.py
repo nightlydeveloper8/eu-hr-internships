@@ -46,7 +46,7 @@ class AllEmployerTests(unittest.TestCase):
     if agency_source in enabled:
      self.assertEqual(enabled[agency_source]['collection_lot'],'IT-agenzie')
     expected={agency_source} if agency_source in enabled else set()
-    if company_id!='synergie-italia':
+    if company_id not in {'gi-group','synergie-italia'}:
      expected.add('auto-'+company_id)
     self.assertEqual(active,expected,company_id)
    elif not rollout:self.assertEqual(len(active),1,company['id'])

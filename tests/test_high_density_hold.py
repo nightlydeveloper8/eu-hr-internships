@@ -38,12 +38,14 @@ class HighDensityHoldTests(unittest.TestCase):
             source.update(enabled=False, collection_activation_hold=True)
         self.assertEqual(provision(companies, sources), (companies, sources))
 
-    def test_gi_group_channels_share_shard_and_minimum_delay(self):
+    def test_gi_group_only_collects_the_reviewed_sitemap_with_minimum_delay(self):
         sources = json.loads((ROOT / "data/sources.json").read_text())
         existing = next(s for s in sources if s["id"] == "auto-gi-group")
         reviewed = next(s for s in sources if s["id"] == "held-gi-group-it-jobposting")
         self.assertEqual(reviewed["agency_details_per_cycle"], 15)
-        hosts = shared_collection_hosts([existing, reviewed])
+        self.assertFalse(existing["enabled"])
+        self.assertTrue(reviewed["enabled"])
+        hosts = shared_collection_hosts([reviewed])
         self.assertEqual(source_shard(reviewed, 16, hosts), shard_for(existing["id"], 16))
         self.assertEqual(source_shard(existing, 16, hosts), shard_for(existing["id"], 16))
 

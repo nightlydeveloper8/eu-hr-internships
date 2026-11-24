@@ -92,7 +92,7 @@ jobs:
   collect-slow:
     needs: test
     runs-on: ubuntu-24.04
-    timeout-minutes: 17
+    timeout-minutes: 36
     env:
       COLLECTOR_CACHE_DIR: .cache/collector
       PYTHONUNBUFFERED: '1'
