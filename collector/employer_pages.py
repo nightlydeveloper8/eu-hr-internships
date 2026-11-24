@@ -5,6 +5,8 @@ never the final role/geography decision. Opaque URLs remain an explicit coverage
 """
 from datetime import datetime, timezone
 from html.parser import HTMLParser
+from io import BytesIO
+import gzip
 import json
 import re
 from urllib.parse import urlsplit, unquote
@@ -94,11 +96,36 @@ def dutch_agency_slug_candidate(url):
     return bool(DUTCH_AGENCY_STAGE.search(title) and DUTCH_AGENCY_HR.search(title))
 
 
+GERMAN_STAGE = re.compile(r'\b(?:pflichtpraktikum|praktikum|praktikant\w*|intern|internship)\b')
+GERMAN_HR = re.compile(
+    r'\b(?:hr|human resources|personal\w*|recruit\w*|talent acquisition|people|payroll|entgeltabrechnung)\b'
+)
+GERMAN_NON_STAGE = re.compile(r'\b(?:werkstudent\w*|trainee\w*|ausbildung)\b')
+
+
+def german_hr_stage_slug_candidate(url):
+    slug = urlsplit(url).path.rstrip('/').rsplit('/', 1)[-1]
+    title = slug_title('/' + slug).casefold()
+    return bool(GERMAN_STAGE.search(title) and GERMAN_HR.search(title)
+                and not GERMAN_NON_STAGE.search(title))
+
+
+def decompress_sitemap(body):
+    if not body.startswith(b'\x1f\x8b'):
+        return body
+    with gzip.GzipFile(fileobj=BytesIO(body)) as zipped:
+        result = zipped.read(20_000_001)
+    if len(result) > 20_000_000:
+        raise ValueError('Sitemap decompression limit')
+    return result
+
+
 def sitemap_records(source,client):
     pending=list(source['sitemaps']);seen=set();job_urls=set();pattern=re.compile(source['job_url_pattern'])
     prefilter=source.get('url_slug_prefilter')==True;listed=0
     country=source.get('agency_slug_country')
-    matches_slug = {'ES': spanish_agency_slug_candidate, 'NL': dutch_agency_slug_candidate}.get(country)
+    matches_slug = {'ES': spanish_agency_slug_candidate, 'NL': dutch_agency_slug_candidate,
+                    'DE': german_hr_stage_slug_candidate}.get(country)
     if matches_slug is None:
         matches_slug = italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
     agency_triage=(source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
@@ -108,6 +135,7 @@ def sitemap_records(source,client):
         if url in seen:continue
         if len(seen)>=source.get('max_sitemaps',20):raise ValueError('Sitemap safety limit; snapshot incomplete')
         seen.add(url);body,_,final=client.request(url);approved(final,source)
+        body=decompress_sitemap(body)
         if b'<!DOCTYPE' in body.upper():raise ValueError('DOCTYPE not permitted in sitemap')
         root=ET.fromstring(body)
         tag=root.tag.rsplit('}',1)[-1]

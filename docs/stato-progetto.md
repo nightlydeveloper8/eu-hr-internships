@@ -1,6 +1,8 @@
 # Stato di ripresa — People Placement
 
-**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [preflight AGENZIE-FR](agenzie-fr-2026-11.md) concluso su otto host. Lotto in hold senza fonti ammissibili. Simulazione con zero ID persi, 44 → 44 stage aperti e recall 0/30 → 0/30. Prossimo passo DE, con il lotto DE-CORPORATE separato, poi PL.
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [Germania](agenzie-de-2026-11.md) verificata nei lotti AGENZIE-DE e DE-CORPORATE. DB in hold, un nuovo lead confermato, 36 → 36 stage aperti, recall 0/30 → 0/30, zero ID persi. Prossimo passo PL, poi FR-ATS.
+
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [preflight AGENZIE-FR](agenzie-fr-2026-11.md) concluso su otto host. Lotto in hold senza fonti ammissibili. Simulazione con zero ID persi, 44 → 44 stage aperti e recall 0/30 → 0/30.
 
 ## 24 novembre 2026 — idoneità italiana e verifica delle agenzie
 [Dossier e titoli](fonti-ad-alta-densita-2026-11.md) · [PR #138](https://github.com/nightlydeveloper8/eu-hr-internships/pull/138). Classificati tutti i 177 candidati, inclusi i 50 dettagli Gi Group. Idoneità studentesca e livello di prova distinti.

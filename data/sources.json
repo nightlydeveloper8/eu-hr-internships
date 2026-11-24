@@ -51215,5 +51215,38 @@
     "reviewed_on": "2026-11-24",
     "permission_basis": "Same-host robots permits the declared sitemap and Dutch vacancy routes. Public JobPosting. No explicit automation prohibition found in the public site notices reviewed.",
     "review_notes": "Only the declared job_openings sitemap and Dutch vacancy detail routes. Observed JobPosting does not specify expiry. No current listing inferred from the sitemap on its own."
+  },
+  {
+    "id": "held-deutsche-bahn-de-jobposting",
+    "company_id": "deutsche-bahn-ag-de",
+    "employer": "Deutsche Bahn AG",
+    "employer_tokens": [
+      "deutsche bahn"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "DE-CORPORATE",
+    "target_countries": [
+      "DE"
+    ],
+    "allowed_hosts": [
+      "db.jobs"
+    ],
+    "career_url": "https://db.jobs/de-de",
+    "sitemaps": [
+      "https://db.jobs//service-sitemap-DEabb9885062448d6945c87a820ba891-sitemap_index.xml"
+    ],
+    "job_url_pattern": "^https://db\\.jobs/de-de/Suche/[^/?]+--\\d+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "DE",
+    "max_sitemaps": 2,
+    "max_requests": 30,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-disabled",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots declares the German sitemap index and permits public JobPosting details. Career portal legal notice reviewed: https://db.jobs/de-de/Impressum-5555662",
+    "review_notes": "Read the German sitemap and descriptive vacancy routes only. Missing expiry and unverified application route leave the qualifying listing at lead."
   }
 ]
