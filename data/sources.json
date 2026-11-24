@@ -51117,5 +51117,103 @@
       "published_listing_platform": "teamtailor",
       "permission_basis": "Tenant robots declares its sitemap and permits job details; reviewed tenant notices and Teamtailor published posting documentation",
       "review_notes": "Same-host public Teamtailor JobPosting and same-posting application frame. The frame is an advertisement signal and does not establish direct application."
-    }
+    },
+  {
+    "id": "held-randstad-nl-jobposting",
+    "company_id": "randstad-groep-nederland",
+    "employer": "Randstad Nederland",
+    "employer_tokens": ["randstad"],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "AGENZIE-NL",
+    "staffing_agency": true,
+    "target_countries": [
+      "NL"
+    ],
+    "allowed_hosts": [
+      "www.randstad.nl"
+    ],
+    "career_url": "https://www.randstad.nl/vacatures",
+    "sitemaps": [
+      "https://www.randstad.nl/job-sitemap.xml"
+    ],
+    "job_url_pattern": "^https://www\\.randstad\\.nl/vacatures/\\d+/[^/?]+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "NL",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-disabled",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots declares the job sitemap and permits public structured detail pages. Exact site terms permit showing attributed, linked vacancies: https://www.randstad.nl/over-randstad/voorwaarden",
+    "review_notes": "Existing group employer and its active careers source are unchanged. This separate public vacancy channel remains disabled and held."
+  },
+  {
+    "id": "held-tempo-team-nl-jobposting",
+    "company_id": "randstad-groep-nederland",
+    "employer": "Tempo-Team",
+    "employer_tokens": ["tempo team", "tempo-team"],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "AGENZIE-NL",
+    "staffing_agency": true,
+    "target_countries": [
+      "NL"
+    ],
+    "allowed_hosts": [
+      "www.tempo-team.nl"
+    ],
+    "career_url": "https://www.tempo-team.nl/vacatures",
+    "sitemaps": [
+      "https://www.tempo-team.nl/job-sitemap.xml"
+    ],
+    "job_url_pattern": "^https://www\\.tempo-team\\.nl/vacatures/\\d+/[^/?]+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "NL",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-disabled",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots declares the job sitemap and permits public structured detail pages. Exact site terms permit showing attributed, linked vacancies: https://www.tempo-team.nl/over-tempo-team/voorwaarden/gebruikersvoorwaarden-algemeen",
+    "review_notes": "Existing group employer and its active careers source are unchanged. This separate public vacancy channel remains disabled and held."
+  },
+  {
+    "id": "held-youngcapital-nl-jobposting",
+    "company_id": "youngcapital-nederland",
+    "employer": "YoungCapital",
+    "employer_tokens": [
+      "youngcapital"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "AGENZIE-NL",
+    "staffing_agency": true,
+    "target_countries": [
+      "NL"
+    ],
+    "allowed_hosts": [
+      "www.youngcapital.nl"
+    ],
+    "career_url": "https://www.youngcapital.nl/vacatures",
+    "sitemaps": [
+      "https://www.youngcapital.nl/sitemap/job_openings.xml"
+    ],
+    "job_url_pattern": "^https://www\\.youngcapital\\.nl/vacatures/\\d+-[^/?]+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "NL",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-disabled",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots permits the declared sitemap and Dutch vacancy routes. Public JobPosting. No explicit automation prohibition found in the public site notices reviewed.",
+    "review_notes": "Only the declared job_openings sitemap and Dutch vacancy detail routes. Observed JobPosting does not specify expiry. No current listing inferred from the sitemap on its own."
+  }
 ]

@@ -84,11 +84,23 @@ def spanish_agency_slug_candidate(url):
     return bool(SPANISH_AGENCY_STAGE.search(title) and SPANISH_AGENCY_HR.search(title))
 
 
+DUTCH_AGENCY_STAGE = re.compile(r'\b(?:stage|stagiai?r\w*|meewerkstage|afstudeerstage|intern|internship)\b')
+DUTCH_AGENCY_HR = re.compile(r'\b(?:hr|human resources|recruit\w*|personeel\w*|intercedent\w*|talent acquisition)\b')
+
+
+def dutch_agency_slug_candidate(url):
+    slug = urlsplit(url).path.rstrip('/').rsplit('/', 1)[-1]
+    title = slug_title('/' + slug).casefold()
+    return bool(DUTCH_AGENCY_STAGE.search(title) and DUTCH_AGENCY_HR.search(title))
+
+
 def sitemap_records(source,client):
     pending=list(source['sitemaps']);seen=set();job_urls=set();pattern=re.compile(source['job_url_pattern'])
     prefilter=source.get('url_slug_prefilter')==True;listed=0
     country=source.get('agency_slug_country')
-    matches_slug=spanish_agency_slug_candidate if country=='ES' else italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
+    matches_slug = {'ES': spanish_agency_slug_candidate, 'NL': dutch_agency_slug_candidate}.get(country)
+    if matches_slug is None:
+        matches_slug = italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
     agency_triage=(source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
     lastmods={}
     while pending:
