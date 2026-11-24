@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-23T17:46:03.791512+00:00",
+  "generated_at": "2026-11-24T07:56:48.664459+00:00",
   "province": "Flevoland",
   "region_code": "NL23",
   "exhaustive": false,
@@ -20,9 +20,9 @@
     "configured": 19,
     "attempted_recently": 19,
     "collection_states": {
-      "partial": 11,
-      "discovery-incomplete": 7,
-      "blocked-or-failed": 1
+      "partial": 12,
+      "discovery-incomplete": 5,
+      "blocked-or-failed": 2
     },
     "qualified_collection_states": {},
     "verified_hr_internships": 1,
@@ -102,8 +102,7 @@
       "size_unknown": 3,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1,
-        "partial": 1,
+        "partial": 2,
         "blocked-or-failed": 1
       },
       "company_ids": [
@@ -124,7 +123,8 @@
       "below_threshold": 0,
       "collection_states": {
         "partial": 2,
-        "discovery-incomplete": 2
+        "blocked-or-failed": 1,
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "kramer-fish-group",
@@ -186,13 +186,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:34:40.448515+00:00",
-      "public_job_records": 10,
+      "last_attempt_at": "2026-11-24T07:31:39.590311+00:00",
+      "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-alfen",
-          "message": "[{'url': 'https://alfen.com/werken-bij/vacatures', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures/project-engineer-sgs-ess-belgi%C3%AB--1340865/solliciteren', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures/medewerker-logistiek-ess-1343443', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "[{'url': 'https://alfen.com/werken-bij', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures/monteur-laagspanning-zuid-nederland-1220740', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -228,7 +228,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:28:06.254132+00:00",
+      "last_attempt_at": "2026-11-24T07:31:40.436759+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -270,7 +270,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:34:40.448515+00:00",
+      "last_attempt_at": "2026-11-24T07:31:39.590311+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -312,7 +312,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:28:10.681591+00:00",
+      "last_attempt_at": "2026-11-24T07:31:42.378197+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -349,7 +349,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:32:14.760185+00:00",
+      "last_attempt_at": "2026-11-24T07:31:36.397479+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -391,7 +391,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:30:26.473495+00:00",
+      "last_attempt_at": "2026-11-24T07:31:40.229100+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -433,7 +433,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:27:41.231740+00:00",
+      "last_attempt_at": "2026-11-24T07:40:48.721833+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -475,7 +475,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:27:44.711117+00:00",
+      "last_attempt_at": "2026-11-24T07:39:49.108119+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -517,7 +517,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:34:40.448515+00:00",
+      "last_attempt_at": "2026-11-24T07:31:39.590311+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [
         "36be83296822b67167cb"
@@ -554,17 +554,12 @@
       "source_ids": [
         "auto-smt-netherlands"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:29:13.783516+00:00",
-      "public_job_records": 0,
+      "last_attempt_at": "2026-11-24T07:37:34.312099+00:00",
+      "public_job_records": 2,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-smt-netherlands",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "groothuisbouw",
@@ -598,7 +593,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:28:06.254132+00:00",
+      "last_attempt_at": "2026-11-24T07:31:40.436759+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -640,7 +635,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:27:38.830568+00:00",
+      "last_attempt_at": "2026-11-24T07:38:01.241017+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -682,7 +677,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:28:04.622653+00:00",
+      "last_attempt_at": "2026-11-24T07:31:45.319590+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -722,9 +717,9 @@
       "source_ids": [
         "auto-urker-zalmhuys"
       ],
-      "state": "discovery-incomplete",
+      "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:28:06.254132+00:00",
+      "last_attempt_at": "2026-11-24T07:31:40.436759+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -766,7 +761,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:28:04.622653+00:00",
+      "last_attempt_at": "2026-11-24T07:31:45.319590+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -803,7 +798,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:31:03.597968+00:00",
+      "last_attempt_at": "2026-11-24T07:39:19.662260+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -845,7 +840,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:34:40.448515+00:00",
+      "last_attempt_at": "2026-11-24T07:31:39.590311+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -887,7 +882,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:31:03.597968+00:00",
+      "last_attempt_at": "2026-11-24T07:39:19.662260+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -929,13 +924,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-23T17:32:16.963420+00:00",
+      "last_attempt_at": "2026-11-24T07:41:11.073946+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-gemeente-zeewolde",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.samenkanjemeer.nl/vacatures/financieel-adviseur-jeugdwet', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.samenkanjemeer.nl/vacatures/directeur-organisatie-en-bedrijfsvoering', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.samenkanjemeer.nl/vacatures/teamleider-stadstoezicht', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     }

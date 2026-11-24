@@ -1,11 +1,12 @@
 """The reviewed Randstad channel cannot trigger collection while on hold."""
 import json
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from collector.adapters import collect
-from collector.daily import provision
+from collector.daily import provision, shard_for, shared_collection_hosts, source_shard
 from collector.pipeline import ROOT
+from collector.runtime import BudgetClient
 
 
 class HighDensityHoldTests(unittest.TestCase):
@@ -36,3 +37,23 @@ class HighDensityHoldTests(unittest.TestCase):
                           "held-gi-group-it-jobposting", "held-adecco-it-jobposting"})
         self.assertTrue(all(s["enabled"] is False and s["collection_activation_hold"] is True for s in lot))
         self.assertEqual(provision(companies, sources), (companies, sources))
+
+    def test_gi_group_channels_share_shard_and_minimum_delay(self):
+        sources = json.loads((ROOT / "data/sources.json").read_text())
+        existing = next(s for s in sources if s["id"] == "auto-gi-group")
+        reviewed = next(s for s in sources if s["id"] == "held-gi-group-it-jobposting")
+        self.assertEqual(reviewed["agency_details_per_cycle"], 2)
+        hosts = shared_collection_hosts([existing, reviewed])
+        self.assertEqual(source_shard(reviewed, 16, hosts), shard_for(existing["id"], 16))
+        self.assertEqual(source_shard(existing, 16, hosts), shard_for(existing["id"], 16))
+
+        host = "www.gigroup.it"
+        url = "https://" + host
+        with patch.dict("collector.runtime._DELAYS", {}, clear=True), patch.dict(
+            "collector.runtime._ROBOTS", {}, clear=True
+        ):
+            BudgetClient.set_host_delays({host: hosts[host][1]})
+            client = BudgetClient()
+            with patch.object(client, "request", return_value=(b"User-agent: *\nCrawl-delay: 5", 200, url)):
+                self.assertTrue(client.permitted(url))
+            self.assertEqual(client.host_delays[host], 120)

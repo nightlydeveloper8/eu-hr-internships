@@ -258,6 +258,12 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         elif cache:
             known=set(source.get('known_job_urls',[]))
             records=sorted(records,key=lambda r:(0 if r['url'] in known else 1 if classify_role(r.get('title','')) else 3 if r.get('needs_page') and cache.exists(r['url']) else 2,cache.timestamp(r['url'])))
+        detail_limit=source.get('agency_details_per_cycle')
+        rotation_pending=max(0,len(records)-detail_limit) if agency_sitemap and detail_limit else 0
+        if rotation_pending:
+            records=records[:detail_limit]
+            partial_sources.add(source['id'])
+            report['rotation_pending']=rotation_pending
         for record in records:
             if source['adapter']=='universal-employer':
                 from .ownership import owned_record
@@ -282,6 +288,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     page_errors.append(dict(url=record['url'],error=str(exc)[:180]))
                     from .runtime import CollectionBudgetExceeded
                     if isinstance(exc,CollectionBudgetExceeded):break
+                    if agency_sitemap and detail_limit:
+                        snapshot[record['url']]=dict(lastmod=hint,checked_at=stamp)
                     continue
             else:
                 role=classify_role(record['title'],record['text'],record.get('employment',''))

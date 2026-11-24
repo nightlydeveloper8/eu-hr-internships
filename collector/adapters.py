@@ -86,7 +86,7 @@ class Client:
             self.robots[origin]=parser
         parser=self.robots[origin]
         delay=parser.crawl_delay(AGENT) or parser.crawl_delay('*')
-        if delay: self.host_delays[p.netloc]=max(self.delay,delay)
+        if delay: self.host_delays[p.netloc]=max(self.host_delays.get(p.netloc,0),self.delay,delay)
         return parser.can_fetch(AGENT,url)
 
     def json(self,url):

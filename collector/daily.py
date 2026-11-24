@@ -78,6 +78,22 @@ def provision_files():
 
 def shard_for(source_id,shards):return int(hashlib.sha256(source_id.encode()).hexdigest()[:12],16)%shards
 
+def shared_collection_hosts(sources):
+    """Keep the reviewed Gi Group feed and existing crawler on one runner."""
+    return {
+        host: (source['shared_host_shard_source'], source['collection_delay'])
+        for source in sources if source.get('shared_host_shard_source')
+        for host in source['allowed_hosts']
+    }
+
+
+def source_shard(source, shards, shared_hosts):
+    for host in source.get('allowed_hosts', []):
+        if host in shared_hosts:
+            return shard_for(shared_hosts[host][0], shards)
+    return shard_for(source['id'], shards)
+
+
 def fingerprint(sources):return hashlib.sha256(json.dumps(sources,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 
 def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds=None,run_id=None):
@@ -85,7 +101,8 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
     run_id=collection_run_id(shards,run_id)
     companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')]
     if source_ids and set(source_ids)-{s['id'] for s in enabled}:raise ValueError('Unknown or disabled source IDs: '+str(sorted(set(source_ids)-{s['id'] for s in enabled})))
-    selected=[s for s in enabled if shard_for(s['id'],shards)==shard and (not source_ids or s['id'] in source_ids)]
+    shared_hosts=shared_collection_hosts(enabled)
+    selected=[s for s in enabled if source_shard(s,shards,shared_hosts)==shard and (not source_ids or s['id'] in source_ids)]
     from .employer_resolution import reviewed_source, validate_reviews
     selected_ids={s['id'] for s in selected}
     identity_reviews=[r for r in read(ROOT/'data/employer-identity-reviews.json',[])
@@ -114,6 +131,8 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
             priority=0 if any(r.get('size',{}).get('qualification')=='verified_50_plus' for r in research) else 1
             for sid in company.get('source_ids',[]):regional[sid]=min(regional.get(sid,2),priority)
     selected.sort(key=lambda s:(regional.get(s['id'],2),s['id'] not in known,s['adapter']=='universal-employer',-counts.get(s['id'],0),s['id']))
+    BudgetClient.set_host_delays({host: delay for host, (anchor, delay) in shared_hosts.items()
+                                  if shard_for(anchor, shards)==shard})
     parts=[]
     company_for={sid:c for c in companies for sid in c.get('source_ids',[])}
     def work(source):
@@ -171,6 +190,7 @@ def merge(inputs,shards=8,output=ROOT/'data',run_id=None):
     if shards<1:raise ValueError('Invalid shard count')
     run_id=collection_run_id(shards,run_id);clock=collection_time(now());finished_times=[]
     companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')];expected={s['id'] for s in enabled};seen=set();parts=[];payloads=[]
+    shared_hosts=shared_collection_hosts(enabled)
     for i in range(shards):
         files=list(Path(inputs).rglob('shard-'+str(i)+'.json'))
         if len(files)!=1:raise ValueError('Expected exactly one result for shard '+str(i))
@@ -178,7 +198,7 @@ def merge(inputs,shards=8,output=ROOT/'data',run_id=None):
         if p.get('run_id')!=run_id:raise ValueError('Shard belongs to another collection run; previous catalog retained')
         finished_times.append(validate_shard_times(p,clock))
         if p.get('shard')!=i or p.get('shards')!=shards or not p.get('complete') or p.get('registry_fingerprint')!=fingerprint(enabled):raise ValueError('Incomplete/stale shard '+str(i)+'; previous catalog retained')
-        assigned={s for s in expected if shard_for(s,shards)==i}
+        assigned={s['id'] for s in enabled if source_shard(s,shards,shared_hosts)==i}
         ids=[part['report']['id'] for part in p['parts']]
         if set(ids)!=assigned or len(ids)!=len(set(ids)) or set(ids)&seen:raise ValueError('Missing, duplicate or unexpected employer results in shard '+str(i))
         seen.update(ids);parts.extend(p['parts'])
