@@ -3,13 +3,13 @@ import json
 from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from collector.classify import classify_role, italian_student_eligibility
+from collector.classify import classify_role, student_eligibility_for_country
 root=Path(__file__).resolve().parents[1]
 rows=json.loads((root/'data/evaluation.json').read_text())
 errors=[];tp=tn=fp=fn=0
 for row in rows:
     result=classify_role(row['title'],row.get('text',''),row.get('employment',''))
-    eligibility=italian_student_eligibility(row['title'],row.get('text','')) if 'student_eligibility' in row else None
+    eligibility=student_eligibility_for_country(row.get('student_country','IT'),row['title'],row.get('text',''),row.get('employment','')) if 'student_eligibility' in row else None
     predicted=bool(result) and eligibility!='excluded';expected=row['include']
     if predicted and expected:tp+=1
     elif not predicted and not expected:tn+=1

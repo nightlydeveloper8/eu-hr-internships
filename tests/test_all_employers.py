@@ -32,6 +32,9 @@ class AllEmployerTests(unittest.TestCase):
   # assert zero enabled sources only under the fail-closed activation hold.
   for company in c:
    active=enabled.keys() & set(company['source_ids'])
+   rollout={x['id'] for x in enabled.values() if x.get('collection_lot') in {'AGENZIE-ES','AGENZIE-NL','AGENZIE-PL','CORPORATE-RMK'} and x['company_id']==company['id']}
+   self.assertTrue(rollout <= active,company['id'])
+   active-=rollout
    if company.get('collection_activation_hold'):
     self.assertEqual(len(active),0,company['id'])
     held_disabled={src['id'] for src in s if not src.get('enabled')
@@ -46,7 +49,8 @@ class AllEmployerTests(unittest.TestCase):
     if company_id!='synergie-italia':
      expected.add('auto-'+company_id)
     self.assertEqual(active,expected,company_id)
-   else:self.assertEqual(len(active),1,company['id'])
+   elif not rollout:self.assertEqual(len(active),1,company['id'])
+   else:self.assertLessEqual(len(active),1,company['id'])
   self.assertEqual(provision(c,s),(c,s))
   hosts=shared_collection_hosts(enabled.values())
   assigned=[sid for i in range(8) for sid,source in enabled.items() if source_shard(source,8,hosts)==i]

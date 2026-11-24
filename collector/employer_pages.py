@@ -5,6 +5,8 @@ never the final role/geography decision. Opaque URLs remain an explicit coverage
 """
 from datetime import datetime, timezone
 from html.parser import HTMLParser
+from io import BytesIO
+import gzip
 import json
 import re
 from urllib.parse import urlsplit, unquote
@@ -19,7 +21,7 @@ UNDISCLOSED_AGENCY_CLIENT = re.compile(
 class PageParser(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.language=None;self.scripts=[];self.fragments=[];self.links=[];self._json=False;self._body=[]
+        self.language=None;self.scripts=[];self.fragments=[];self.links=[];self.teamtailor_application_frames=[];self._json=False;self._body=[]
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
         if tag=='html':self.language=a.get('lang')
@@ -27,6 +29,8 @@ class PageParser(HTMLParser):
         if tag=='article' and a.get('data-cmp-contentfragment-model','').endswith('danone-job-model'):
             self.fragments.append({k:v for k,v in a.items() if k in ('title','country','city','locale','posted','jobid','key','description','descriptionheader','positiontype','workfromhome')})
         if tag=='a' and a.get('href'):self.links.append(a['href'])
+        if tag=='turbo-frame' and a.get('id')=='application_form' and a.get('src'):
+            self.teamtailor_application_frames.append(a['src'])
     def handle_data(self,data):
         if self._json:self._body.append(data)
     def handle_endtag(self,tag):
@@ -67,17 +71,85 @@ def italian_agency_slug_candidate(url):
     title = slug_title('/'+slug).casefold()
     return bool(AGENCY_INTERNSHIP_SLUG.search(title) and AGENCY_HR_SLUG.search(title))
 
+SPANISH_AGENCY_STAGE = re.compile(r'\b(?:practic\w*|becari\w*|beca|intern|internship)\b')
+SPANISH_AGENCY_HR = re.compile(
+    r'\b(?:rrhh|rr hh|recursos humanos|recruit\w*|seleccio\w*|talent\w*|nomina\w*|people|personal|formacion)\b'
+)
+
+def spanish_agency_slug_candidate(url):
+    from .classify import fold
+    parts=unquote(urlsplit(url).path).rstrip('/').split('/')
+    slug=parts[-1]
+    if len(parts)>2 and re.fullmatch(r'(?:\d{4,}|\d+-\d+|[0-9a-f]{32}|[0-9a-f-]{36})',slug,re.I):
+        slug=parts[-2]
+    title=fold(slug_title('/'+slug))
+    return bool(SPANISH_AGENCY_STAGE.search(title) and SPANISH_AGENCY_HR.search(title))
+
+
+DUTCH_AGENCY_STAGE = re.compile(r'\b(?:stage|stagiai?r\w*|meewerkstage|afstudeerstage|intern|internship)\b')
+DUTCH_AGENCY_HR = re.compile(r'\b(?:hr|human resources|recruit\w*|personeel\w*|intercedent\w*|talent acquisition)\b')
+
+
+def dutch_agency_slug_candidate(url):
+    slug = urlsplit(url).path.rstrip('/').rsplit('/', 1)[-1]
+    title = slug_title('/' + slug).casefold()
+    return bool(DUTCH_AGENCY_STAGE.search(title) and DUTCH_AGENCY_HR.search(title))
+
+
+GERMAN_STAGE = re.compile(r'\b(?:pflichtpraktikum|praktikum|praktikant\w*|intern|internship)\b')
+GERMAN_HR = re.compile(
+    r'\b(?:hr|human resources|personal\w*|recruit\w*|talent acquisition|people|payroll|entgeltabrechnung)\b'
+)
+GERMAN_NON_STAGE = re.compile(r'\b(?:werkstudent\w*|trainee\w*|ausbildung)\b')
+
+
+def german_hr_stage_slug_candidate(url):
+    slug = urlsplit(url).path.rstrip('/').rsplit('/', 1)[-1]
+    title = slug_title('/' + slug).casefold()
+    return bool(GERMAN_STAGE.search(title) and GERMAN_HR.search(title)
+                and not GERMAN_NON_STAGE.search(title))
+
+
+POLISH_STAGE = re.compile(r'\b(?:staz(?:yst\w*|u)?|praktyk\w*|intern|internship)\b')
+POLISH_HR = re.compile(
+    r'\b(?:hr|human resources|zasob\w* ludzk\w*|rekrut\w*|recruit\w*|kadry|kadr\w*|'
+    r'plac\w*|talent acquisition|people|payroll)\b'
+)
+
+
+def polish_agency_slug_candidate(url):
+    from .classify import fold
+    slug = urlsplit(url).path.rstrip('/').rsplit('/', 1)[-1]
+    title = fold(slug_title('/' + slug)).replace('ł', 'l')
+    return bool(POLISH_STAGE.search(title) and POLISH_HR.search(title))
+
+
+def decompress_sitemap(body):
+    if not body.startswith(b'\x1f\x8b'):
+        return body
+    with gzip.GzipFile(fileobj=BytesIO(body)) as zipped:
+        result = zipped.read(20_000_001)
+    if len(result) > 20_000_000:
+        raise ValueError('Sitemap decompression limit')
+    return result
+
+
 def sitemap_records(source,client):
     pending=list(source['sitemaps']);seen=set();job_urls=set();pattern=re.compile(source['job_url_pattern'])
     prefilter=source.get('url_slug_prefilter')==True;listed=0
-    matches_slug=italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
-    agency_triage=source.get('italian_agency_slug_triage')
+    country=source.get('agency_slug_country')
+    matches_slug = {'ES': spanish_agency_slug_candidate, 'NL': dutch_agency_slug_candidate,
+                    'DE': german_hr_stage_slug_candidate, 'PL': polish_agency_slug_candidate}.get(country)
+    if matches_slug is None:
+        matches_slug = italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
+    agency_triage=(source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
     lastmods={}
     while pending:
         url=approved(pending.pop(0),source)
         if url in seen:continue
         if len(seen)>=source.get('max_sitemaps',20):raise ValueError('Sitemap safety limit; snapshot incomplete')
         seen.add(url);body,_,final=client.request(url);approved(final,source)
+        body=decompress_sitemap(body)
         if b'<!DOCTYPE' in body.upper():raise ValueError('DOCTYPE not permitted in sitemap')
         root=ET.fromstring(body)
         tag=root.tag.rsplit('}',1)[-1]
@@ -125,7 +197,7 @@ def jobposting_dates(posting,source):
     if input_format and posted:
         try:posted=datetime.strptime(posted.strip(),input_format).date().isoformat()
         except (TypeError,ValueError,AttributeError):posted=None
-    if source.get('italian_agency_slug_triage') and posted and deadline:
+    if (source.get('italian_agency_slug_triage') or source.get('agency_slug_country')) and posted and deadline:
         try:
             start=datetime.fromisoformat(posted.strip().replace('Z','+00:00')).date()
             end=datetime.fromisoformat(deadline.strip().replace('Z','+00:00')).date()

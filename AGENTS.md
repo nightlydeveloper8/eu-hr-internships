@@ -25,7 +25,7 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
   Inoltre, un push che tocca `collector/**`, `data/sources.json`, `data/companies.json`, `data/*-geography.json`,
   `data/*-opportunities.json`, `scripts/company_coverage.py`, `requirements-collector.txt` o `.github/workflows/collect.yml`
   **avvia subito la raccolta di produzione** (`collect.yml`).
-- **Massimo 5 PR aperte create da agenti**, incluse bozze e PR con base su un altro ramo. Prima di aprirne una, controlla le PR aperte del repository e conta quelle create da agenti, anche se pubblicate tramite l'account del maintainer. Usa la provenienza del lavoro e la descrizione della PR, oltre all'autore GitHub. Se il limite è raggiunto, oppure non puoi stabilire che ci sia posto, fermati e segnala il conteggio o l'incertezza. Indica nella descrizione che la PR è stata creata da un agente.
+- **Massimo 5 PR aperte**, incluse bozze e PR con base su un altro ramo. In questo repository tutte le PR sono create da agenti (Codex, ChatGPT, Claude). Il maintainer non scrive codice. Il limite di cinque PR si calcola su tutte le PR aperte, senza verifiche di provenienza. Prima di aprire una PR, conta tutte le PR aperte. Se il limite è raggiunto o il conteggio non è verificabile, fermati e segnala il conteggio o l’incertezza. Indica nella descrizione che la PR è stata creata da un agente.
 - **Niente nuovi piloti di ricerca di fonti o paesi** finché il maintainer non li riapre esplicitamente. Sono ammessi correzioni, monitoraggio e lavoro sull'interfaccia per gli studenti.
 - **Niente attivazione di fonti in produzione.** Le nuove fonti restano `"enabled": false` (o con l'hold, vedi §4) finché il maintainer non approva il rollout.
 - **Niente chiusura di PR o issue**, niente modifica di impostazioni del repository, secrets, variabili Actions o Cloudflare.
@@ -38,7 +38,7 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
 - **Accesso automatizzato a piattaforme e tenant.** Un canale è ammesso soltanto se valgono tutte le condizioni seguenti.
   1. Scaricare con successo `robots.txt` e controllare che il percorso usato sia consentito. Se robots non è leggibile, fermarsi. Su un primo 429 a robots, ritentare lentamente e rispettare `Retry-After` e il crawl delay.
   2. Il dato è pubblico e raggiungibile senza login, chiave, CAPTCHA o elusione di blocchi.
-  3. Il formato è quello già usato dalla pagina pubblica (JSON), una sitemap o markup JSON-LD schema.org `JobPosting`.
+  3. Il formato è quello già usato dalla pagina pubblica (JSON), una sitemap o markup schema.org `JobPosting` in JSON-LD o microdati pubblici dei siti SAP SuccessFactors Recruiting Marketing rivisti.
   4. I termini applicabili non vietano esplicitamente l’accesso automatizzato. Il silenzio non è un divieto.
   5. Usare un ritmo basso, rispettare il crawl delay e identificare onestamente People Placement nello user agent.
   6. Interrompere e registrare subito l’accesso in caso di 403/429 ripetuti o di richiesta del datore.
@@ -64,6 +64,7 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
   traineeship e graduate programme per neolaureati (un titolo "trainee" vale solo se il posting documenta un placement per studenti);
   ruoli ordinari, anche se la descrizione cita gli stagisti.
 - **Idoneità studentesca in Italia.** Includere tirocini curriculari, stage per studenti iscritti e stage con convenzione universitaria (`student_eligibility: confirmed`). Includere stage HR e tirocini HR senza indicazione curriculare o extracurriculare né esclusione esplicita (`student_eligibility: not_stated`), con l’etichetta «Student eligibility not stated – check with the employer». Escludere tirocini extracurriculari, annunci riservati a neolaureati, disoccupati o percettori di sostegni e programmi graduate. Campo e livello di prova sono indipendenti.
+- **Idoneità studentesca per le agenzie europee.** ES include prácticas curriculares ed extracurriculares per iscritti e offerte becario/a, ed esclude il contratto en prácticas per laureati. FR include stage con convention de stage ed esclude alternance e apprentissage. NL include stage, meewerkstage e afstudeerstage ed esclude werkstudent, bijbaan e traineeship. DE include Pflichtpraktikum e freiwilliges Praktikum ed esclude Werkstudent, Trainee e Ausbildung. PL include praktyki studenckie e staż per studenti ed esclude lo staż dell’urząd pracy riservato ai disoccupati. Uno stage HR generico senza esclusione esplicita mantiene l’etichetta «Student eligibility not stated – check with the employer». L’idoneità non modifica il livello di prova.
 - **Livelli di prova** (definiti in `src/logic.js` e `collector/verification.py`, `POLICY_VERSION = 2`). Non confonderli mai:
   1. *Direct application verified* (`applicationConfirmed`): vacancy attuale **e** percorso di candidatura ufficiale per quella vacancy confermati entro **48 ore** (policy v2).
   2. *Public employment service* (`publicEmploymentListing`): attivo su EURES/JobTech entro 48 ore; il modulo del datore **non** è verificato.

@@ -50965,6 +50965,7 @@
     "job_url_pattern": "^https://www\\.synergie-italia\\.it/candidato/offerte-di-lavoro/[^/?]+-\\d+$",
     "url_slug_prefilter": true,
     "italian_agency_slug_triage": true,
+    "retry_transient_reads": true,
     "max_sitemaps": 1,
     "max_requests": 100,
     "collection_seconds": 240,
@@ -50995,7 +50996,8 @@
     "sitemaps": [
       "https://www.gigroup.it/offerte-sitemap.xml"
     ],
-    "agency_details_per_cycle": 2,
+    "agency_details_per_cycle": 15,
+    "slow_collection_lane": true,
     "shared_host_shard_source": "auto-gi-group",
     "job_url_pattern": "^https://www\\.gigroup\\.it/offerte-lavoro-dettaglio/[^/?]+/[a-zA-Z0-9]+/?$",
     "url_country_patterns": {
@@ -51005,13 +51007,13 @@
     "italian_agency_slug_triage": true,
     "jobposting_date_format": "%d/%m/%Y",
     "max_sitemaps": 1,
-    "max_requests": 7,
-    "collection_seconds": 840,
+    "max_requests": 17,
+    "collection_seconds": 780,
     "collection_delay": 120,
     "permission_basis": "Robots declares the index and permits public posting details for People Placement; observed same-host JobPosting",
     "reviewed_on": "2026-11-23",
     "status": "reviewed-active",
-    "review_notes": "myGiGroup portal terms prohibit automated searches. This source is scoped to the distinct public job board and uses a 120-second delay on this host. First pass at this budget cannot verify the full candidate set."
+    "review_notes": "myGiGroup portal terms prohibit automated searches. This source is scoped to the distinct public job board and uses a 120-second delay on this host. Slow lane rotates up to 15 details subject to the 13-minute budget."
   },
   {
     "id": "held-adecco-it-jobposting",
@@ -51048,5 +51050,491 @@
     "reviewed_on": "2026-11-23",
     "status": "reviewed-active",
     "review_notes": "Scope is restricted to www.adecco.com/it-it Italian job details. No restricted paths or application submission."
+  },
+  {
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_lot": "AGENZIE-ES",
+    "staffing_agency": true,
+    "target_countries": [
+      "ES"
+    ],
+    "url_slug_prefilter": true,
+    "agency_slug_country": "ES",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "id": "held-adecco-es-jobposting",
+    "company_id": "adecco",
+    "employer": "Adecco España",
+    "employer_tokens": [
+      "adecco"
+    ],
+    "allowed_hosts": [
+      "www.adecco.com"
+    ],
+    "career_url": "https://www.adecco.com/es-es",
+    "sitemaps": [
+      "https://www.adecco.com/sitemap-jobs-spain-es.xml"
+    ],
+    "job_url_pattern": "^https://www\\.adecco\\.com/es-es/ofertas-trabajo/[^/?]+/[^/?]+/?$",
+    "permission_basis": "Public Spain job sitemap, same-host robots and public JSON-LD details; reviewed exact-site and company notices",
+    "review_notes": "Only Spain posting URLs and allowed read-only routes. No credentials or submission."
+  },
+  {
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_lot": "AGENZIE-ES",
+    "staffing_agency": true,
+    "target_countries": [
+      "ES"
+    ],
+    "url_slug_prefilter": true,
+    "agency_slug_country": "ES",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "id": "held-grupo-ras-es-jobposting",
+    "company_id": "grupo-ras-espana",
+    "employer": "Grupo RAS España",
+    "employer_tokens": [
+      "grupo ras"
+    ],
+    "allowed_hosts": [
+      "empleo.gruporas.es"
+    ],
+    "career_url": "https://empleo.gruporas.es/jobs",
+    "sitemaps": [
+      "https://empleo.gruporas.es/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://empleo\\.gruporas\\.es/jobs/\\d+-[^/?]+/?$",
+    "published_listing_platform": "teamtailor",
+    "permission_basis": "Tenant robots declares its sitemap and permits job details; reviewed tenant notices and Teamtailor published posting documentation",
+    "review_notes": "Same-host public Teamtailor JobPosting and same-posting application frame. The frame is an advertisement signal and does not establish direct application."
+  },
+  {
+    "id": "held-randstad-nl-jobposting",
+    "company_id": "randstad-groep-nederland",
+    "employer": "Randstad Nederland",
+    "employer_tokens": [
+      "randstad"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_lot": "AGENZIE-NL",
+    "staffing_agency": true,
+    "target_countries": [
+      "NL"
+    ],
+    "allowed_hosts": [
+      "www.randstad.nl"
+    ],
+    "career_url": "https://www.randstad.nl/vacatures",
+    "sitemaps": [
+      "https://www.randstad.nl/job-sitemap.xml"
+    ],
+    "job_url_pattern": "^https://www\\.randstad\\.nl/vacatures/\\d+/[^/?]+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "NL",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots declares the job sitemap and permits public structured detail pages. Exact site terms permit showing attributed, linked vacancies: https://www.randstad.nl/over-randstad/voorwaarden",
+    "review_notes": "Existing group employer and its active careers source are unchanged. This separate public vacancy channel remains disabled and held."
+  },
+  {
+    "id": "held-tempo-team-nl-jobposting",
+    "company_id": "randstad-groep-nederland",
+    "employer": "Tempo-Team",
+    "employer_tokens": [
+      "tempo team",
+      "tempo-team"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_lot": "AGENZIE-NL",
+    "staffing_agency": true,
+    "target_countries": [
+      "NL"
+    ],
+    "allowed_hosts": [
+      "www.tempo-team.nl"
+    ],
+    "career_url": "https://www.tempo-team.nl/vacatures",
+    "sitemaps": [
+      "https://www.tempo-team.nl/job-sitemap.xml"
+    ],
+    "job_url_pattern": "^https://www\\.tempo-team\\.nl/vacatures/\\d+/[^/?]+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "NL",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots declares the job sitemap and permits public structured detail pages. Exact site terms permit showing attributed, linked vacancies: https://www.tempo-team.nl/over-tempo-team/voorwaarden/gebruikersvoorwaarden-algemeen",
+    "review_notes": "Existing group employer and its active careers source are unchanged. This separate public vacancy channel remains disabled and held."
+  },
+  {
+    "id": "held-youngcapital-nl-jobposting",
+    "company_id": "youngcapital-nederland",
+    "employer": "YoungCapital",
+    "employer_tokens": [
+      "youngcapital"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_lot": "AGENZIE-NL",
+    "staffing_agency": true,
+    "target_countries": [
+      "NL"
+    ],
+    "allowed_hosts": [
+      "www.youngcapital.nl"
+    ],
+    "career_url": "https://www.youngcapital.nl/vacatures",
+    "sitemaps": [
+      "https://www.youngcapital.nl/sitemap/job_openings.xml"
+    ],
+    "job_url_pattern": "^https://www\\.youngcapital\\.nl/vacatures/\\d+-[^/?]+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "NL",
+    "max_sitemaps": 1,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots permits the declared sitemap and Dutch vacancy routes. Public JobPosting. No explicit automation prohibition found in the public site notices reviewed.",
+    "review_notes": "Only the declared job_openings sitemap and Dutch vacancy detail routes. Observed JobPosting does not specify expiry. No current listing inferred from the sitemap on its own."
+  },
+  {
+    "id": "held-deutsche-bahn-de-jobposting",
+    "company_id": "deutsche-bahn-ag-de",
+    "employer": "Deutsche Bahn AG",
+    "employer_tokens": [
+      "deutsche bahn"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "DE-CORPORATE",
+    "target_countries": [
+      "DE"
+    ],
+    "allowed_hosts": [
+      "db.jobs"
+    ],
+    "career_url": "https://db.jobs/de-de",
+    "sitemaps": [
+      "https://db.jobs//service-sitemap-DEabb9885062448d6945c87a820ba891-sitemap_index.xml"
+    ],
+    "job_url_pattern": "^https://db\\.jobs/de-de/Suche/[^/?]+--\\d+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "DE",
+    "max_sitemaps": 2,
+    "max_requests": 30,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-disabled",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots declares the German sitemap index and permits public JobPosting details. Career portal legal notice reviewed: https://db.jobs/de-de/Impressum-5555662",
+    "review_notes": "Read the German sitemap and descriptive vacancy routes only. Missing expiry and unverified application route leave the qualifying listing at lead."
+  },
+  {
+    "id": "held-randstad-pl-jobposting",
+    "company_id": "randstad-polska-pl",
+    "employer": "Randstad Polska",
+    "employer_tokens": [
+      "randstad"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_lot": "AGENZIE-PL",
+    "staffing_agency": true,
+    "target_countries": [
+      "PL"
+    ],
+    "allowed_hosts": [
+      "www.randstad.pl"
+    ],
+    "career_url": "https://www.randstad.pl/znajdz-prace/",
+    "sitemaps": [
+      "https://www.randstad.pl/sitemaps/jobs/sitemap-jobdetails.xml",
+      "https://www.randstad.pl/sitemaps/jobs/sitemap-jobdetails-internal.xml"
+    ],
+    "job_url_pattern": "^https://www\\.randstad\\.pl/(?:znajdz-prace|kariera-w-randstad/obecnie-poszukujemy)/[^/?]+_\\d+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "PL",
+    "max_sitemaps": 2,
+    "max_requests": 40,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Polish robots permits its declared job sitemaps and public JSON-LD detail paths; scoped to the site notices linked by the Polish public site.",
+    "review_notes": "One canonical Polish path per vacancy. Locale aliases and any robots-disallowed application routes are excluded from the trial."
+  },
+  {
+    "id": "held-sf-rmk-bmw-group",
+    "company_id": "bmw-group",
+    "employer": "BMW Group",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "jobs.bmwgroup.com"
+    ],
+    "career_url": "https://jobs.bmwgroup.com/",
+    "sitemaps": [
+      "https://jobs.bmwgroup.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "DE"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://www.bmwgroup.jobs/de/de/general/impressum.html",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only.",
+    "reviewed_rmk_layout": "bmw-de"
+  },
+  {
+    "id": "held-sf-rmk-festo-rmk",
+    "company_id": "festo-rmk",
+    "employer": "Festo",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "jobs.festo.com"
+    ],
+    "career_url": "https://jobs.festo.com/",
+    "sitemaps": [
+      "https://jobs.festo.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "DE"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://www.festo.com/imprint",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-provinzial-rmk",
+    "company_id": "provinzial-rmk",
+    "employer": "Provinzial",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "karriere.provinzial.com"
+    ],
+    "career_url": "https://karriere.provinzial.com/",
+    "sitemaps": [
+      "https://karriere.provinzial.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "DE"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://www.provinzial.de/suedwest/unternehmen/impressum.html",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-kpmg-italia-rmk",
+    "company_id": "kpmg",
+    "employer": "KPMG Italia",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "careers.kpmg.it"
+    ],
+    "career_url": "https://careers.kpmg.it/",
+    "sitemaps": [
+      "https://careers.kpmg.it/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "IT"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://kpmg.com/it/it/careers.html",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-france-televisions-rmk",
+    "company_id": "france-televisions-rmk",
+    "employer": "France Télévisions",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "recrutement.francetelevisions.fr"
+    ],
+    "career_url": "https://recrutement.francetelevisions.fr/",
+    "sitemaps": [
+      "https://recrutement.francetelevisions.fr/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "FR"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://recrutement.francetelevisions.fr/content/conditions-generales-utilisation/?locale=fr_FR",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-danish-crown-rmk",
+    "company_id": "danish-crown-rmk",
+    "employer": "Danish Crown",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "jobs.danishcrown.com"
+    ],
+    "career_url": "https://jobs.danishcrown.com/",
+    "sitemaps": [
+      "https://jobs.danishcrown.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "DK",
+      "PL"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://www.danishcrown.com/global/job-and-career/vacancies/",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-crif-rmk",
+    "company_id": "crif-s-p-a",
+    "employer": "CRIF",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "careers.crif.com"
+    ],
+    "career_url": "https://careers.crif.com/",
+    "sitemaps": [
+      "https://careers.crif.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "IT"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://www.crif.com/privacy-policy/",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-jti-rmk",
+    "company_id": "jti-rmk",
+    "employer": "JTI",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "jobs.jti.com"
+    ],
+    "career_url": "https://jobs.jti.com/",
+    "sitemaps": [
+      "https://jobs.jti.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "PL"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://www.jti.com/en/privacy-and-legal",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-rwe-rmk",
+    "company_id": "rwe-rmk",
+    "employer": "RWE",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "jobs.rwe.com"
+    ],
+    "career_url": "https://jobs.rwe.com/",
+    "sitemaps": [
+      "https://jobs.rwe.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "DE"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://www.rwe.com/en/disclaimer/",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sf-rmk-schaeffler-rmk",
+    "company_id": "schaeffler-rmk",
+    "employer": "Schaeffler",
+    "adapter": "sf-rmk",
+    "allowed_hosts": [
+      "jobs.schaeffler.com"
+    ],
+    "career_url": "https://jobs.schaeffler.com/",
+    "sitemaps": [
+      "https://jobs.schaeffler.com/sitemap.xml"
+    ],
+    "enabled": true,
+    "collection_lot": "CORPORATE-RMK",
+    "target_countries": [
+      "DE"
+    ],
+    "collection_delay": 2,
+    "max_requests": 65,
+    "collection_seconds": 180,
+    "status": "reviewed-active",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://jobs.schaeffler.com/content/Nutzungsbedingungen/?locale=de_DE",
+    "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
   }
 ]

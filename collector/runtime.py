@@ -3,7 +3,8 @@ from contextlib import contextmanager
 from datetime import datetime,timezone
 import gzip,hashlib,json,os,threading,time
 from pathlib import Path
-from urllib.error import HTTPError
+from collections import Counter
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from .adapters import Client
 from .classify import canonical_url
@@ -18,6 +19,10 @@ class BudgetClient(Client):
         super().__init__(delay);self.deadline=time.monotonic()+seconds;self.max_requests=max_requests;self.requests=0;self.bytes=0
         self.last=_LAST;self.host_delays=_DELAYS;self.robots=_ROBOTS;self.last_response_url=None
         self.rate_limited_skips=0
+        self.retry_hosts=frozenset()
+        self.reuse_last_get=False
+        self.last_get=None
+        self.retry_outcomes=Counter()
     @staticmethod
     def set_host_delays(delays):
         with _LOCK:
@@ -41,6 +46,37 @@ class BudgetClient(Client):
         return super().permitted(url)
 
     def request(self,url,method='GET',robots=True,timeout=12,attempts=1,accept=None,body=None,content_type=None):
+        if self.reuse_last_get and method=='GET' and robots and not accept and body is None:
+            target=canonical_url(url)
+            previous=self.last_get
+            self.last_get=None
+            if previous and previous[0]==target:
+                return previous[1]
+            result=self._request_once(url,method,robots,timeout,attempts,accept,body,content_type)
+            self.last_get=(target,result)
+            return result
+        if method!='GET' or urlsplit(url).hostname not in self.retry_hosts:
+            return self._request_once(url,method,robots,timeout,attempts,accept,body,content_type)
+        for attempt in range(3):
+            try:
+                result=self._request_once(url,method,robots,timeout,1,accept,body,content_type)
+            except (HTTPError, URLError, TimeoutError) as exc:
+                if isinstance(exc,HTTPError) and exc.code==503:
+                    reason='http-503'
+                elif isinstance(exc,TimeoutError) or isinstance(getattr(exc,'reason',None),TimeoutError):
+                    reason='timeout'
+                else:
+                    raise
+                self.retry_outcomes[reason]+=1
+                if attempt==2 or self.requests>=self.max_requests or self.remaining()<=2**(attempt+1)+.05:
+                    self.retry_outcomes['exhausted']+=1
+                    raise
+                self.pause(2**(attempt+1))
+            else:
+                if attempt:self.retry_outcomes['recovered']+=1
+                return result
+
+    def _request_once(self,url,method,robots,timeout,attempts,accept,body,content_type):
         url=canonical_url(url);host=urlsplit(url).netloc;self.check();lock=host_lock(host)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')
         try:

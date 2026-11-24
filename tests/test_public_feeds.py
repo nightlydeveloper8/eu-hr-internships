@@ -32,7 +32,7 @@ class PublicFeedTests(unittest.TestCase):
  def test_local_country_metadata_and_working_student_kind(self):
   self.assertEqual(country_codes('', 'Nederland'),['NL']);self.assertEqual(country_codes('deutschlandweit remote'),['DE'])
   self.assertIsNone(classify_role('Werkstudierende Recruiting',employment='intern'))
-  self.assertEqual(classify_role('Praktikant / Werkstudent Recruiting (m/w/d)')['internship_type'],'internship')
+  self.assertIsNone(classify_role('Praktikant / Werkstudent Recruiting (m/w/d)'))
  def test_curated_job_title_wins_over_long_apply_button_label(self):
   source=dict(id='example',employer='Example',allowed_hosts=['example.org'],index_urls=['https://example.org/job/42/hr'],job_url_pattern=r'^https://example.org/job/\d+/',include_index_jobposting=True)
   body='<a href="  /students  ">Very long student navigation label</a><a href="/job/42/hr">Apply apply for this vacancy today</a><script type="application/ld+json">{"@type":"JobPosting","title":"HR Intern"}</script>'

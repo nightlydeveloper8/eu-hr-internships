@@ -139,8 +139,17 @@ def vocabulary_categories(title, text):
 
 
 
+def excluded_german_title(title):
+    return bool(re.search(
+        r'\b(?:werk[ -]?stud(?:ent|ierende)\w*|freiwilligendienst\w*|bundesfreiwilligendienst|'
+        r'freiwilliges soziales jahr|freiwilliges okologisches jahr|volontariat\w*|fsj|bfd)\b',
+        fold(plain(title)),
+    ))
+
+
 def classify_role(title, text='', employment=''):
     title, text, employment = map(fold,(plain(title),plain(text),plain(employment)))
+    if excluded_german_title(title):return None
     extra = vocabulary_categories(title, text)
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title) or k in extra]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
@@ -206,6 +215,58 @@ def italian_student_eligibility(title, text=''):
     ):
         return 'confirmed'
     return 'not_stated'
+
+
+LOCAL_STUDENT_RULES = {
+    'ES': (
+        r"\b(?:contrato (?:formativo (?:para (?:la )?obtencion de )?|en )practicas\b.{0,95}\b(?:titulad\w*|graduad\w*|licenciad\w*)|(?:reservad\w*|exclusivament\w*)\b.{0,55}\b(?:titulad\w*|graduad\w*)|practicas para (?:recien )?(?:graduad\w*|titulad\w*))\b",
+        r"\b(?:(?:si )?eres estudiant\w*|estudiant\w* o recien titulad\w*|estudiant\w* (?:matriculad\w*|inscrit\w*)|matriculad\w* en|matricula (?:vigente|activa)|convenio (?:de (?:practicas|cooperacion educativa)|con (?:una |tu |la )?universidad)|conveni (?:de practiques|amb (?:la |una )?universitat)|cursant (?:un |una )?(?:grau|estudis|master)|cursando (?:actualmente |un )?(?:estudios|grado|master))\b",
+    ),
+    'FR': (r"\b(?:alternance|apprentissage|alternant\w*|contrat de professionnalisation)\b",
+           r"\b(?:convention de stage|etudiant\w* inscrit\w*|en cours d'etudes)\b"),
+    'NL': (r"\b(?:werkstudent\w*|studentenbijbaan|bijbaan|traineeship)\b",
+           r"\b(?:meewerkstage|afstudeerstage|stageovereenkomst|ingeschreven|studerende|je volgt (?:een |de )?opleiding)\b"),
+    'DE': (r"\b(?:werkstudent\w*|trainee(?:programm|ship)?|ausbildung|auszubildende\w*)\b",
+           r"\b(?:pflichtpraktikum|freiwillig\w* praktikum|immatrikuliert\w*|eingeschrieben\w*)\b"),
+    'PL': (r"\b(?:staz z urzedu pracy|staz (?:dla bezrobotnych|z pup)|skierowanie z urzedu pracy|status osoby bezrobotnej)\b",
+           r"\b(?:praktyki studenckie|staz dla student\w*|status student\w*|aktualnie studiuj\w*)\b"),
+}
+
+
+def student_eligibility_for_country(country, title, text='', employment=''):
+    """Apply the explicitly reviewed student rule for a single workplace country."""
+    if country=='DE' and excluded_german_title(title):
+        return 'excluded'
+    if country == 'IT':
+        return italian_student_eligibility(title, text)
+    if country not in LOCAL_STUDENT_RULES:
+        return None
+    # Polish ł is a letter, not a combining accent. Normalise it only here.
+    title_and_type=fold(plain(title)+' '+plain(employment)).replace('ł','l')
+    description=fold(plain(text)).replace('ł','l')
+    excluded, confirmed=LOCAL_STUDENT_RULES[country]
+    restriction_scope=title_and_type+'. '+description if country in ('ES','PL') else title_and_type
+    if re.search(excluded,restriction_scope):
+        return 'excluded'
+    if explicitly_admits_enrolled_students(description) or re.search(confirmed,title_and_type+'. '+description):
+        return 'confirmed'
+    return 'not_stated'
+
+
+def classify_spanish_agency_role(title, text='', employment=''):
+    """Normalise reviewed Catalan vacancy terminology before using the HR classifier."""
+    aliases={'becari':'becario','becaria':'becaria','practiques':'practicas','seleccio':'seleccion',
+             'recursos humans':'recursos humanos'}
+    pattern=r'\b(?:'+'|'.join(aliases)+r')\b'
+    normalise=lambda value: re.sub(pattern, lambda match:aliases[match[0]], fold(plain(value)))
+    title=normalise(title)
+    if re.search(r'^practicas\b|\b(?:de|en) practicas\b',title) and not re.search(r'\bbuenas practicas\b',title):
+        employment=normalise(employment)+' en practicas'
+    description=normalise(text)
+    if re.search(r'^beca\s+seleccion\b',title) and re.search(
+            r'\b(?:procesos de seleccion|seleccion y evaluacion de talento|seleccion de personal)\b',description):
+        title += ' seleccion de personal'
+    return classify_role(title,description,employment)
 
 LANG_ALIASES = {
  'en':r'english|anglais(?:e)?|englisch(?:kenntnisse)?|engels(?:e)?|inglese|ingles|angielski|angielska', 'nl':r'dutch|nederlands(?:e)?|neerlandais|ollandese', 'fr':r'french|francais(?:e)?|franzosisch|frans|francese', 'de':r'german|deutsch(?:e[nrs]?|kenntnisse)?|allemand|duits|tedesco|aleman', 'es':r'spanish|espanol|espagnol|spanisch|spaans', 'it':r'italian|italian[oa]|italien|italiaans', 'pt':r'portuguese|portugues|portugais', 'pl':r'polish|polski|polonais', 'sv':r'swedish|svenska', 'da':r'danish|dansk', 'fi':r'finnish|suomi', 'el':r'greek|ελληνικ', 'cs':r'czech|cestina', 'ro':r'romanian|romana', 'hu':r'hungarian|magyar', 'bg':r'bulgarian|български', 'hr':r'croatian|hrvatski', 'sk':r'slovak|slovencina', 'sl':r'slovenian|slovenscina', 'et':r'estonian|eesti', 'lv':r'latvian|latviesu', 'lt':r'lithuanian|lietuviu', 'mt':r'maltese|malti', 'ga':r'irish|gaeilge', 'uk':r'ukrainian|українськ'

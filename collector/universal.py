@@ -7,11 +7,9 @@ from datetime import datetime,timezone
 from html.parser import HTMLParser
 import json,re,time
 import xml.etree.ElementTree as ET
-from io import BytesIO
-import gzip
 from urllib.parse import urlsplit,urljoin,parse_qs
 from .classify import canonical_url,plain,fold,classify_role,country_codes
-from .employer_pages import PageParser,walk_json
+from .employer_pages import PageParser,decompress_sitemap,walk_json
 from .runtime import CollectionBudgetExceeded,PageCache
 from .ownership import employer_matches,owned_record
 from .employer_resolution import is_reviewed_publisher
@@ -222,9 +220,7 @@ class Crawler:
                 if result is not None:
                     self.used_methods.add('public-smartrecruiters-json');self.closed_urls.update(result.get('closed_urls',[]))
                     self.inventory|=bool(result['records']);return result
-        if body.startswith(b'\x1f\x8b'):
-            with gzip.GzipFile(fileobj=BytesIO(body)) as zipped:body=zipped.read(20_000_001)
-            if len(body)>20_000_000:raise ValueError('Sitemap decompression limit')
+        body=decompress_sitemap(body)
         if re.search(br'<(?:[a-z]+:)?(?:urlset|sitemapindex)\b',body[:1000],re.I):
             if b'<!DOCTYPE' in body.upper():raise ValueError('Sitemap DOCTYPE not allowed')
             root=ET.fromstring(body);index=root.tag.rsplit('}',1)[-1]=='sitemapindex';links=[];self.sitemaps_read+=1;self.used_methods.add('robots-declared-sitemap')

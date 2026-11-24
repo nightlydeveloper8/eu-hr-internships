@@ -1,5 +1,15 @@
 # Stato di ripresa — People Placement
 
+**24 novembre 2026.** [Rollout #139](diario/operations/rollout-139-20261124.md), configurazione autorizzata per 16 fonti. Prossimo controllo sul primo publish, con confronto degli ID, qualità dei titoli e durata degli shard.
+
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [CORPORATE-RMK](corporate-rmk-2026-11.md). Rettificato l’accesso dei tre tenant tedeschi, dieci fonti in hold, zero ID persi, +38 offerte correnti simulate. Restano il censimento per emittente dei sette indici e le verifiche d’accesso documentate, poi FR-ATS.
+
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [AGENZIE-PL](agenzie-pl-2026-11.md) concluso. Randstad Polska in hold. Simulazione con zero ID persi, 0 → 7 stage aperti e recall 0/20 → 0/20. Ramo riallineato a main dopo #138, con registri e rollout italiani conservati.
+
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [Germania](agenzie-de-2026-11.md) verificata nei lotti AGENZIE-DE e DE-CORPORATE. DB in hold, un nuovo lead confermato, 36 → 36 stage aperti, recall 0/30 → 0/30, zero ID persi.
+
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [preflight AGENZIE-FR](agenzie-fr-2026-11.md) concluso su otto host. Lotto in hold senza fonti ammissibili. Simulazione con zero ID persi, 44 → 44 stage aperti e recall 0/30 → 0/30.
+
 ## 24 novembre 2026 — idoneità italiana e verifica delle agenzie
 [Dossier e titoli](fonti-ad-alta-densita-2026-11.md) · [PR #138](https://github.com/nightlydeveloper8/eu-hr-internships/pull/138). Classificati tutti i 177 candidati, inclusi i 50 dettagli Gi Group. Idoneità studentesca e livello di prova distinti.
 Replay staging 937 → 1.043 ID, zero persi. Italia 27 → 112 aperti, 85 current listing, zero dirette. Recall 0/70 → 15/70. I 27 EURES storici non sono riclassificati.

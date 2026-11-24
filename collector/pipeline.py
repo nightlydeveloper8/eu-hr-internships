@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlsplit,parse_qs
 from .adapters import Client, collect, enrich
 from .intake import extract_intake
-from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata, also_open_to_recent_graduates, explicitly_admits_enrolled_students, italian_student_eligibility
+from .classify import COUNTRIES, LANGUAGES, CATEGORIES, canonical_url, classify_role, country_codes, stable_id, workplace_languages, language_summary, advertisement_language, extract_metadata, also_open_to_recent_graduates, explicitly_admits_enrolled_students, italian_student_eligibility, student_eligibility_for_country, classify_spanish_agency_role
 
 ROOT=Path(__file__).resolve().parents[1]
 LOG=logging.getLogger(__name__)
@@ -250,7 +250,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         report['collected']=len(records)
         staged=[];page_errors=[];inspected=[];filter_reasons=Counter();verified_closed_urls=set(inventory_stats.get('verified_closed_urls',[]))
         ineligible_italian_urls=set()
-        agency_sitemap=cache and source['adapter']=='employer-sitemap' and source.get('italian_agency_slug_triage')
+        ineligible_student_urls=set()
+        agency_sitemap=cache and source['adapter']=='employer-sitemap' and (source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
         if agency_sitemap:
             previous=cache.state().get('agency_sitemap',{})
             snapshot={r['url']:previous[r['url']] for r in records if r['url'] in previous}
@@ -264,6 +265,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             records=records[:detail_limit]
             partial_sources.add(source['id'])
             report['rotation_pending']=rotation_pending
+        detail_attempts=0
         for record in records:
             if source['adapter']=='universal-employer':
                 from .ownership import owned_record
@@ -276,12 +278,13 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             if record.get('needs_page'):
                 try:
                     hint=record.get('sitemap_lastmod')
-                    cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache and not agency_sitemap else None
+                    cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache and not agency_sitemap and source['adapter']!='sf-rmk' else None
+                    if not cached:detail_attempts+=1
                     record=cached or enrich(record,source,client,defer_expiry=True)
                     text_observation=record.get('_text_observation',dict(kind='live',checked_at=stamp))
                     record=dict(record,_text_observation=text_observation)
                     if agency_sitemap:snapshot[record['url']]=dict(lastmod=hint,checked_at=stamp)
-                    elif cache and not cached:cache.put(record['url'],record)
+                    elif cache and not cached and source['adapter']!='sf-rmk':cache.put(record['url'],record)
                 except Exception as exc:
                     from .applications import ApplicationClosed
                     if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
@@ -303,18 +306,36 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                         if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
                         page_errors.append(dict(url=record['url'],error=str(exc)[:180]));continue
             inspected.append(record)
-            role=classify_role(record['title'],record['text'],record.get('employment',''))
+            role_classifier=classify_spanish_agency_role if source.get('agency_slug_country')=='ES' else classify_role
+            if source['adapter']=='sf-rmk':
+                from .sf_rmk import role_for_posting
+                role_classifier=role_for_posting
+            role=role_classifier(record['title'],record['text'],record.get('employment',''))
             countries=record_countries(record)
             if not role or not countries:
                 filter_reasons['not-hr-student-role' if not role else 'hr-candidate-without-country']+=1
                 continue
             eligibility=None
-            if countries==['IT']:
+            if source['adapter']=='sf-rmk':
+                from .sf_rmk import student_scope
+                countries,eligibility=student_scope(countries,record,role)
+                if not countries:
+                    filter_reasons['student-eligibility-excluded']+=1
+                    ineligible_student_urls.add(allowed_url(record['url'],source))
+                    continue
+            elif countries==['IT']:
                 eligibility=italian_student_eligibility(record['title'],record['text'])
                 if eligibility=='excluded':
                     filter_reasons['italian-student-eligibility-excluded']+=1
                     if text_observation.get('kind')!='cache':
                         ineligible_italian_urls.add(allowed_url(record['url'],source))
+                    continue
+            elif len(countries)==1 and source.get('agency_slug_country')==countries[0]:
+                eligibility=student_eligibility_for_country(countries[0],record['title'],record['text'],record.get('employment',''))
+                if eligibility=='excluded':
+                    filter_reasons['student-eligibility-excluded']+=1
+                    if text_observation.get('kind')!='cache':
+                        ineligible_student_urls.add(allowed_url(record['url'],source))
                     continue
             if source.get('require_enrolled_students') and (
                     role['internship_type'] != 'internship'
@@ -335,6 +356,22 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 verified,link_status,reason=public_api_verification(source,record,stamp)
                 verification.update(state='verified' if verified else 'incomplete',reason=reason)
                 if verified:verification['policy']='public-api-active-listing'
+            elif verify and source['adapter']=='sf-rmk':
+                from .verification import expired
+                deadline=record.get('valid_through')
+                published=record.get('published_at')
+                if expired(deadline,stamp):
+                    closed=True
+                    link_status='closed'
+                    verification.update(state='closed',reason='Published application deadline has passed')
+                elif published and published>stamp[:10]:
+                    verification.update(reason='Structured publication date is in the future')
+                elif record.get('sf_rmk_listing') and (deadline or published):
+                    verified=stamp
+                    link_status='verified'
+                    verification.update(state='verified',reason='sf-rmk-sitemap-live-jobposting')
+                else:
+                    verification.update(reason='SF-RMK current vacancy evidence incomplete')
             elif verify:
                 from .verification import verify_vacancy, blocked_error
                 from .applications import ApplicationClosed
@@ -383,11 +420,14 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
         if agency_sitemap:cache.save_state({'agency_sitemap':snapshot})
         current.extend(staged); successful.add(source['id'])
         if page_errors or inventory_stats.get('status','ok')!='ok':partial_sources.add(source['id'])
-        if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index'):closure_eligible.add(source['id'])
+        if not bulk_disappearance and not page_errors and inventory_stats.get('closure_complete',inventory_stats.get('complete',True)) and source['adapter'] not in ('employer-sitemap','employer-index','sf-rmk'):closure_eligible.add(source['id'])
         report.update(status='partial' if source['id'] in partial_sources else 'ok',candidate_filter_reasons=dict(filter_reasons),matching=len(staged),verification_states=dict(Counter(j['verification']['state'] for j in staged)),observed_countries=sorted({c for r in inspected for c in record_countries(r)}),records_inspected=len(inspected),page_failures=len(page_errors),page_errors=page_errors[:30],page_errors_truncated=len(page_errors)>30)
         report.update(inventory_stats)
+        if source.get('retry_transient_reads') or source.get('slow_collection_lane'):
+            report['detail_attempts']=detail_attempts
         report['verified_closed_urls']=sorted(verified_closed_urls)
         if ineligible_italian_urls:report['ineligible_italian_urls']=sorted(ineligible_italian_urls)
+        if ineligible_student_urls:report['ineligible_student_urls']=sorted(ineligible_student_urls)
         if bulk_disappearance:report['status']='partial'
         if page_errors:report.update(status='partial',page_failures=len(page_errors),page_errors=page_errors[:30])
         # Inventory discovery can succeed while a detail/application read fails.
@@ -426,8 +466,14 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
         [s['id'] for s in registry if s.get('adapter') in SECONDARY_PUBLIC_ADAPTERS])
     explicitly_closed={canonical_url(url) for p in parts for url in p['report'].get('verified_closed_urls',[])}
     ineligible_italian_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_italian_urls',[])}
+    ineligible_student_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_student_urls',[])}
+    from .classify import excluded_german_title
     for job in jobs:
+        if 'DE' in job['countries'] and excluded_german_title(job['title']):
+            job['student_eligibility']='excluded'
         if job['countries']==['IT'] and canonical_url(job['url']) in ineligible_italian_urls:
+            job['student_eligibility']='excluded'
+        if len(job['countries'])==1 and canonical_url(job['url']) in ineligible_student_urls:
             job['student_eligibility']='excluded'
         if canonical_url(job['url']) in explicitly_closed:
             job['status']='closed';job['closure_reason']='Official recruiting page explicitly disables applications';job['verification']=dict(state='closed',checked_at=stamp,policy_version=2,reason=job['closure_reason'])
