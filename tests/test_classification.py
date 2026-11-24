@@ -9,7 +9,11 @@ class ClassificationTests(unittest.TestCase):
         for row in rows:
             with self.subTest(row=row['title']):
                 actual=classify_role(row['title'],row.get('text',''),row.get('employment',''))
-                self.assertEqual(actual is not None,row['include'])
+                eligibility=None
+                if 'student_eligibility' in row:
+                    eligibility=italian_student_eligibility(row['title'],row.get('text',''))
+                    self.assertEqual(eligibility,row['student_eligibility'])
+                self.assertEqual(actual is not None and eligibility!='excluded',row['include'])
                 if row.get('category'): self.assertIn(row['category'],actual['categories'])
 
     def test_language_is_not_ad_language(self):

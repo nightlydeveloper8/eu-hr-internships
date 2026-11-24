@@ -18,6 +18,12 @@ class BudgetClient(Client):
         super().__init__(delay);self.deadline=time.monotonic()+seconds;self.max_requests=max_requests;self.requests=0;self.bytes=0
         self.last=_LAST;self.host_delays=_DELAYS;self.robots=_ROBOTS;self.last_response_url=None
         self.rate_limited_skips=0
+    @staticmethod
+    def set_host_delays(delays):
+        with _LOCK:
+            for host, delay in delays.items():
+                _DELAYS[host]=max(_DELAYS.get(host,0),delay)
+
     def remaining(self):return max(0,self.deadline-time.monotonic())
     def check(self):
         if self.remaining()<.05:raise CollectionBudgetExceeded('Time budget exhausted; checkpoint retained')

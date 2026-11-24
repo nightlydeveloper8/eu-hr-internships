@@ -11,6 +11,11 @@ from urllib.parse import urlsplit, unquote
 import xml.etree.ElementTree as ET
 from .classify import canonical_url, plain, country_codes
 
+UNDISCLOSED_AGENCY_CLIENT = re.compile(
+    r"\b(?:azienda cliente|cliente)(?:\s*[:–-]\s*|\s+)(?:non indicat[oa]|non dichiarat[oa]|riservat[oa])\b",
+    re.IGNORECASE,
+)
+
 class PageParser(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -49,9 +54,25 @@ def slug_prefilter(url):
     from .classify import classify_role
     return bool(classify_role(slug_title(url)))
 
+AGENCY_INTERNSHIP_SLUG = re.compile(r'\b(?:stage|stagist\w*|tirocin\w*|intern|internship)\b')
+AGENCY_HR_SLUG = re.compile(
+    r'\b(?:hr|risorse umane|recruit\w*|selezion\w*|personale|payroll|paghe|talent\w*|formazione|people|staff interno)\b'
+)
+
+def italian_agency_slug_candidate(url):
+    parts = urlsplit(url).path.rstrip('/').split('/')
+    slug = parts[-1]
+    if len(parts)>2 and re.fullmatch(r'(?:[a-z]?\d{4,}|\d+-\d+|[0-9a-f-]{36})',slug,re.I):
+        slug = parts[-2]
+    title = slug_title('/'+slug).casefold()
+    return bool(AGENCY_INTERNSHIP_SLUG.search(title) and AGENCY_HR_SLUG.search(title))
+
 def sitemap_records(source,client):
     pending=list(source['sitemaps']);seen=set();job_urls=set();pattern=re.compile(source['job_url_pattern'])
     prefilter=source.get('url_slug_prefilter')==True;listed=0
+    matches_slug=italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
+    agency_triage=source.get('italian_agency_slug_triage')
+    lastmods={}
     while pending:
         url=approved(pending.pop(0),source)
         if url in seen:continue
@@ -61,16 +82,30 @@ def sitemap_records(source,client):
         root=ET.fromstring(body)
         tag=root.tag.rsplit('}',1)[-1]
         if tag not in ('urlset','sitemapindex'):raise ValueError('Not a sitemap')
-        urls=[x.text.strip() for x in root.iter() if x.tag.rsplit('}',1)[-1]=='loc' and x.text]
-        for target in urls:
+        for node in root:
+            fields={child.tag.rsplit('}',1)[-1]:child.text for child in node}
+            if not fields.get('loc'):continue
+            target=fields['loc'].strip()
             if tag=='sitemapindex':pending.append(approved(target,source))
             elif pattern.search(target):
                 listed+=1
-                if not prefilter or slug_prefilter(target):job_urls.add(approved(target,source))
+                if prefilter and not agency_triage and not matches_slug(target):continue
+                url=approved(target,source)
+                if not prefilter or matches_slug(target):job_urls.add(url)
+                if agency_triage:lastmods[url]=fields.get('lastmod')
         if len(job_urls)>source.get('max_job_urls',20000):raise ValueError('Job URL safety limit; snapshot incomplete')
     if not listed:raise ValueError('No matching job URLs; source layout needs review')
     # Missing old links on a sitemap alone must never close a posting.
-    return [dict(source_id=source['id'],external_id=u,employer=source['employer'],title=re.sub(r'[-_]+',' ',unquote(urlsplit(u).path)),location='',text='',url=u,apply_url=u,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True) for u in sorted(job_urls)]
+    if agency_triage:
+        # Periodically recheck previously collected postings even if the sitemap
+        # stops advertising them. A missing URL alone is not closure evidence.
+        job_urls.update(approved(url,source) for url in source.get('known_job_urls',[]) if pattern.search(url))
+    records=[dict(source_id=source['id'],external_id=u,employer=source['employer'],title=re.sub(r'[-_]+',' ',unquote(urlsplit(u).path)),location='',text='',url=u,apply_url=u,language=None,published_at=None,employment='',city=None,country=None,work_mode=None,needs_page=True) for u in sorted(job_urls)]
+    if agency_triage:
+        for record in records:
+            record['sitemap_lastmod']=lastmods.get(record['url'])
+            record['agency_sitemap_current']=record['url'] in lastmods
+    return records
 
 def walk_json(value):
     if isinstance(value,list):
@@ -80,6 +115,24 @@ def walk_json(value):
         if 'JobPosting' in types:yield value
         for k in ('@graph','mainEntity','itemListElement','item'):
             if k in value:yield from walk_json(value[k])
+
+
+def jobposting_dates(posting,source):
+    """Use the reviewed publisher date format and discard contradictory dates."""
+    posted=posting.get('datePosted')
+    deadline=posting.get('validThrough')
+    input_format=source.get('jobposting_date_format')
+    if input_format and posted:
+        try:posted=datetime.strptime(posted.strip(),input_format).date().isoformat()
+        except (TypeError,ValueError,AttributeError):posted=None
+    if source.get('italian_agency_slug_triage') and posted and deadline:
+        try:
+            start=datetime.fromisoformat(posted.strip().replace('Z','+00:00')).date()
+            end=datetime.fromisoformat(deadline.strip().replace('Z','+00:00')).date()
+            if end<start:deadline=None
+        except (TypeError,ValueError,AttributeError):
+            pass
+    return posted, deadline
 
 def page_record(record,source,client,clock=None,defer_expiry=False):
     body,_,final=client.request(approved(record['url'],source));approved(final,source)
@@ -127,8 +180,8 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
         identifier=data.get('identifier')
         if isinstance(identifier,dict):identifier=identifier.get('value')
         if isinstance(identifier,(str,int)):result['posting_identifier']=str(identifier)
-        result['valid_through']=data.get('validThrough')
-        expires=data.get('validThrough')
+        published_at,expires=jobposting_dates(data,source)
+        result['valid_through']=expires
         if expires:
             from .verification import expired
             from .applications import ApplicationClosed
@@ -143,6 +196,8 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
             locality=a.get('addressLocality') or source.get('reviewed_locality_fields',{}).get(a.get('streetAddress'))
             if locality:cities.append(locality)
         employer=data.get('hiringOrganization',{}).get('name')
+        if source.get('staffing_agency') and UNDISCLOSED_AGENCY_CLIENT.search(plain(data.get('description'))):
+            result['agency_client']='non indicato'
         if employer and not any(token in employer.lower() for token in source.get('employer_tokens',[source['employer'].lower()])):raise ValueError('Unexpected hiring organisation')
         if countries:result['countries']=sorted({code for country in countries for code in country_codes('',country)})
         else:
@@ -156,7 +211,7 @@ def page_record(record,source,client,clock=None,defer_expiry=False):
             employment=' '.join(value.strip() for value in employment
                                 if isinstance(value,str) and value.strip())
         elif not isinstance(employment,str):employment=''
-        result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=data.get('datePosted'),employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
+        result.update(title=plain(data.get('title')),text=plain(data.get('description')),location='; '.join(cities+countries),city='; '.join(cities) or None,country=countries[0] if len(set(countries))==1 else None,published_at=published_at,employment=employment,work_mode='remote' if data.get('jobLocationType')=='TELECOMMUTE' else None)
     else:raise ValueError('No supported JobPosting structured data; no page-text guessing')
     if data and data.get('inLanguage'):
         result['language']=data['inLanguage']

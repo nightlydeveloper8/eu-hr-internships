@@ -63,6 +63,7 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
 - **Solo stage/placement per studenti con un ruolo HR.** Esclusi: Werkstudent/working student/lavori part-time per studenti;
   traineeship e graduate programme per neolaureati (un titolo "trainee" vale solo se il posting documenta un placement per studenti);
   ruoli ordinari, anche se la descrizione cita gli stagisti.
+- **Idoneità studentesca in Italia.** Includere tirocini curriculari, stage per studenti iscritti e stage con convenzione universitaria (`student_eligibility: confirmed`). Includere stage HR e tirocini HR senza indicazione curriculare o extracurriculare né esclusione esplicita (`student_eligibility: not_stated`), con l’etichetta «Student eligibility not stated – check with the employer». Escludere tirocini extracurriculari, annunci riservati a neolaureati, disoccupati o percettori di sostegni e programmi graduate. Campo e livello di prova sono indipendenti.
 - **Livelli di prova** (definiti in `src/logic.js` e `collector/verification.py`, `POLICY_VERSION = 2`). Non confonderli mai:
   1. *Direct application verified* (`applicationConfirmed`): vacancy attuale **e** percorso di candidatura ufficiale per quella vacancy confermati entro **48 ore** (policy v2).
   2. *Public employment service* (`publicEmploymentListing`): attivo su EURES/JobTech entro 48 ore; il modulo del datore **non** è verificato.

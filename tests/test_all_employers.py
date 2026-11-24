@@ -1,7 +1,7 @@
 import json,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
-from collector.daily import provision,shard_for,merge,employer_report
+from collector.daily import provision,shard_for,merge,employer_report,shared_collection_hosts,source_shard
 from collector.pipeline import read,ROOT,process_source,now
 from collector.universal import Document,job_from_json,job_from_visible,Crawler,Inventory
 from collector.runtime import PageCache,CollectionBudgetExceeded,BudgetClient
@@ -19,22 +19,38 @@ def posting(**extra):
  return dict({'@type':'JobPosting','title':'HR Intern','description':'Six month HR internship. Fluent in English.','jobLocation':{'address':{'addressLocality':'UnknownCity','addressCountry':'NL'}}},**extra)
 
 class AllEmployerTests(unittest.TestCase):
- def test_all_real_employers_have_exactly_one_active_collector_and_assignment_is_idempotent(self):
+ def test_all_real_employers_have_reviewed_collector_counts_and_assignment_is_idempotent(self):
   c,s=provision(read(ROOT/'data/companies.json',[]),read(ROOT/'data/sources.json',[]));self.assertGreaterEqual(len(c),842)
-  enabled={x['id'] for x in s if x.get('enabled')}
+  enabled={x['id']:x for x in s if x.get('enabled')}
+  agency_sources={
+   'adecco':'held-adecco-it-jobposting',
+   'gi-group':'held-gi-group-it-jobposting',
+   'randstad-italia-spa':'held-randstad-it-jobposting',
+   'synergie-italia':'held-synergie-it-jobposting',
+  }
   # An explicitly held, reviewed source is deliberately NOT collected:
   # assert zero enabled sources only under the fail-closed activation hold.
   for company in c:
-   active=enabled.intersection(company['source_ids'])
+   active=enabled.keys() & set(company['source_ids'])
    if company.get('collection_activation_hold'):
     self.assertEqual(len(active),0,company['id'])
     held_disabled={src['id'] for src in s if not src.get('enabled')
                    and src.get('company_id')==company['id']}
     self.assertTrue(bool(held_disabled.intersection(company['source_ids'])),company['id'])
+   elif company['id'] in agency_sources:
+    company_id=company['id']
+    agency_source=agency_sources[company_id]
+    if agency_source in enabled:
+     self.assertEqual(enabled[agency_source]['collection_lot'],'IT-agenzie')
+    expected={agency_source} if agency_source in enabled else set()
+    if company_id!='synergie-italia':
+     expected.add('auto-'+company_id)
+    self.assertEqual(active,expected,company_id)
    else:self.assertEqual(len(active),1,company['id'])
   self.assertEqual(provision(c,s),(c,s))
-  assigned=[sid for i in range(8) for sid in enabled if shard_for(sid,8)==i]
-  self.assertEqual(len(assigned),len(enabled));self.assertEqual(set(assigned),enabled)
+  hosts=shared_collection_hosts(enabled.values())
+  assigned=[sid for i in range(8) for sid,source in enabled.items() if source_shard(source,8,hosts)==i]
+  self.assertEqual(len(assigned),len(enabled));self.assertEqual(set(assigned),set(enabled))
  def test_missing_shard_cannot_overwrite_catalog(self):
   with tempfile.TemporaryDirectory() as d:
    out=Path(d);(out/'catalog.json').write_text('prior catalog')

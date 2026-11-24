@@ -86,7 +86,7 @@ class Client:
             self.robots[origin]=parser
         parser=self.robots[origin]
         delay=parser.crawl_delay(AGENT) or parser.crawl_delay('*')
-        if delay: self.host_delays[p.netloc]=max(self.delay,delay)
+        if delay: self.host_delays[p.netloc]=max(self.host_delays.get(p.netloc,0),self.delay,delay)
         return parser.can_fetch(AGENT,url)
 
     def json(self,url):
@@ -103,6 +103,8 @@ def _record(source, job_id,title,location,text,url,apply=None,**extra):
     return dict(source_id=source['id'],external_id=str(job_id),employer=source['employer'],title=plain(title),location=plain(location),text=plain(text),url=url,apply_url=apply or url,inventory_evidence='current-employer-feed',**extra)
 
 def collect(source,client):
+    if source.get('collection_activation_hold'):
+        raise ValueError('Source is on collection activation hold: '+source['id'])
     kind,board=source['adapter'],quote(source.get('board',''),safe='')
     out=[]
     if kind=='hlb-index':

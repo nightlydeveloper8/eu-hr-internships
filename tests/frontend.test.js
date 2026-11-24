@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {catalogueAdLanguages, START_WINDOW, LONG_ENOUGH, readFilterParams, startCompatibility, durationCompatibility, showDurationFilter, STUDENT_PLACEMENT, publishedStart, applicationDeadline} from '../src/logic.js';
+import {agencyClientLabel,catalogueAdLanguages, START_WINDOW, LONG_ENOUGH, readFilterParams, startCompatibility, durationCompatibility, showDurationFilter, STUDENT_PLACEMENT, publishedStart, applicationDeadline} from '../src/logic.js';
 import {completeRecentInventory,matches,rankJobs,stale,safeUrl,verifiedJob,applicationConfirmed,languageInfo,verificationMessage,opportunityCounts,provincialJobs,unverifiedFallback,shareableFilterParams,countryCounts,countBucket,countryLanguageCounts,languageBreakdown,NATIONAL_LANGUAGES} from '../src/logic.js';
 const base={id:'1',title:'Talent Acquisition Intern',employer:'Example',city:'Amsterdam',countries:['NL'],categories:['talent-acquisition'],workplace_languages:[{code:'en',confidence:'confirmed',requirement:'required-or-working'},{code:'nl',confidence:'confirmed',requirement:'required-or-working'}],advertisement_language:{code:'en'},internship_type:'internship',work_mode:'hybrid',status:'open',verification:{state:'verified',policy_version:2},last_verified_at:new Date().toISOString(),published_at:'2026-10-20T12:00:00Z',first_discovered_at:'2026-11-01T00:00:00Z'};
 const f={q:'',country:'',category:'',workplace:'',english:false,ad:'',type:'',workMode:'',unverified:false,saved:false,mode:'nl',sort:'relevance'};
@@ -372,4 +372,24 @@ test('advertisement language composes with the IHRM start window and duration th
 test('the internship card retains the IHRM fallback for an unstated start', () => {
   const app = readFileSync(new URL('../src/app.js', import.meta.url), 'utf8');
   assert.ok(app.includes("meta.push(start ? `Start: ${start}` : 'Start date not stated – ask the employer');"));
+});
+
+test('agency label requires an explicitly undisclosed client and names the agency', () => {
+  assert.equal(agencyClientLabel({employer:'Example Agency',agency_client:'non indicato'}),
+    'Client not disclosed (via Example Agency)');
+  assert.equal(agencyClientLabel({employer:'Example Agency'}), '');
+  assert.equal(agencyClientLabel({employer:'Example Agency',agency_client:'ACME'}), '');
+});
+
+test('Italian student eligibility label does not change evidence level', async () => {
+  const {studentEligibilityLabel,evidenceLevel} = await import('../src/logic.js');
+  const candidate = {...base,student_eligibility:'not_stated'};
+  assert.equal(studentEligibilityLabel(candidate),
+    'Student eligibility not stated – check with the employer');
+  assert.equal(studentEligibilityLabel({...candidate,student_eligibility:'confirmed'}), '');
+  assert.equal(evidenceLevel(candidate), evidenceLevel(base));
+  const excluded = {...base,student_eligibility:'excluded'};
+  assert.equal(matches(excluded, {...f,unverified:true}), false);
+  assert.equal(opportunityCounts([excluded]).total, 0);
+  assert.equal(evidenceLevel(excluded), evidenceLevel(base));
 });
