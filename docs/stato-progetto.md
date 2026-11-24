@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 24 novembre 2026 — Migrazione delle sitemap corporate già ammesse
+Replay dei 17 host su 8b7f061. Attivate cinque sitemap e sostituiti i cinque collector dello stesso host. Le altre 12 fonti nuove restano in hold e i collector precedenti restano attivi.
+[Rapporto di staging](staging/corporate-sitemap-migration-20261124.md): 589 → 602 aperti, due nuovi ID, zero ID persi, nessun titolo escluso. Stima conservativa 27m52s.
+Verificare il primo publish e ripristinare i vecchi collector se la raccolta supera 45 minuti, uno shard va in timeout o si perde un ID.
+
 ## 24 novembre 2026 — Rollout corporate della PR #142
 Il maintainer ha autorizzato Mercedes-Benz Group e TUI. Workday e 57 fonti corporate restano in hold. Kering esclusa e Richemont sospesa.
 [Simulazione](staging/held-career-activation-simulation-20261124.md): 578 → 589 aperti, +9 DE e +2 HU, 13 nuovi ID, zero persi. [Coda delle 57 fonti](corporate-da-rivedere.csv) con segnali storici del censimento.

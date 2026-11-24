@@ -6,7 +6,7 @@ from collector.runtime import BudgetClient, CollectionBudgetExceeded, _RATE_LIMI
 from unittest.mock import patch
 from urllib.error import HTTPError
 from collector.pipeline import process_source
-from collector.sitemap_jobposting import collect_records
+from collector.sitemap_jobposting import collect_records, phenom_listing, danone_posting, candidate
 
 HOST = 'https://careers.example.org'
 POSTING = HOST + '/en/jobs/hr-intern-12345'
@@ -170,6 +170,37 @@ class SitemapJobPostingTest(unittest.TestCase):
                 collect_records(cfg, client)
             self.assertEqual(requests, [robots])
             self.assertIn(host, _RATE_LIMITED_HOSTS)
+
+    def test_radancy_city_slug_and_numeric_suffix_are_triaged(self):
+        url = HOST + '/en/job/paris/stage-charge-de-recrutement/1234/12345678901'
+        client = FixtureClient({HOST+'/robots.txt': b'User-agent: *',
+                                HOST+'/sitemap.xml': sitemap('urlset', 'url', [url])})
+        self.assertEqual([record['url'] for record in collect_records(source(), client)], [url])
+        self.assertFalse(candidate('STAGE - Compensation d’une rotation par traitement IA'))
+        self.assertTrue(candidate('Intern Compensation & Benefits'))
+
+    def test_phenom_publication_needs_matching_external_job_and_route(self):
+        route = 'https://example.wd3.myworkdayjobs.com/Careers/job/Paris/Stage-HR_R0344574-1/apply'
+        job = dict(jobId='R0344574', reqId='R0344574', title='Stage HR',
+                   jobVisibility=['external'], applyUrl=route)
+        result = dict(posting_identifier='R0344574', title='Stage HR')
+        def document():
+            return ('<script>phApp.ddo = '+json.dumps({'jobDetail':{'data':{'job':job}}})+'</script>').encode()
+        hosts = ['example.wd3.myworkdayjobs.com']
+        self.assertTrue(phenom_listing(document(), result, hosts))
+        self.assertFalse(phenom_listing(document(), result, []))
+        job['jobVisibility'] = ['internal']
+        self.assertFalse(phenom_listing(document(), result, hosts))
+        job['jobVisibility'] = ['external']
+        job['applyUrl'] = route.replace('R0344574', 'R0344575')
+        self.assertFalse(phenom_listing(document(), result, hosts))
+
+    def test_danone_requires_fragment_for_the_exact_listing(self):
+        body = (b'<article data-cmp-contentfragment-model="/danone-job-model" title="Stage RH" key="stage-rh-29216-fr-fr" '
+                b'jobid="29216" country="France" posted="1795198980000" description="Stage RH"></article>')
+        url = HOST+'/jobs/stage-rh-29216-fr-fr.html'
+        self.assertIsNone(danone_posting(body, url.replace('29216','29217')))
+        self.assertEqual(danone_posting(body, url)['identifier'], '29216')
 
     def test_uncertain_access_makes_no_requests(self):
         client = FixtureClient({})
