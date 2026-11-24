@@ -133,6 +133,9 @@ def collect(source,client):
             for row in rows:row['external_id']=urlsplit(url).hostname+':'+row['external_id']
             records.extend(rows)
         return records
+    if kind=='sf-rmk':
+        from .sf_rmk import collect_records
+        return collect_records(source,client)
     if kind=='employer-index':
         from .employer_pages import index_records
         return index_records(source,client)
@@ -187,6 +190,9 @@ def collect(source,client):
     return out
 
 def enrich(record,source,client,defer_expiry=False):
+    if source['adapter']=='sf-rmk':
+        from .sf_rmk import job_record
+        return job_record(record,source,client)
     if source['adapter'] in ('employer-sitemap','employer-index'):
         from .employer_pages import page_record
         return page_record(record,source,client,defer_expiry=defer_expiry)

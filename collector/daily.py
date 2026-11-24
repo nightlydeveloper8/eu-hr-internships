@@ -147,7 +147,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
             source['priority_recheck_urls']=[url for _,url in sorted(eures_rechecks)]
         started=time.monotonic();client=BudgetClient(seconds=seconds or source.get('collection_seconds',180 if source['adapter'] in ('employer-sitemap','employer-index') else 120),max_requests=source.get('max_requests',180),delay=source.get('collection_delay',.5))
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
-        if (part['report']['status']=='failed' and source['adapter']!='universal-employer'
+        if (part['report']['status']=='failed' and source['adapter'] not in ('universal-employer','sf-rmk')
                 and not (source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
                 and source.get('source_kind')!='public-employment-service' and client.remaining()>15):
             c=company_for.get(source['id'],{});starts=list(dict.fromkeys(u for u in [source.get('career_url'),c.get('website_url')] if u))

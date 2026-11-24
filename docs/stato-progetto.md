@@ -1,6 +1,8 @@
 # Stato di ripresa — People Placement
 
-**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [AGENZIE-PL](agenzie-pl-2026-11.md) concluso. Randstad Polska in hold. Simulazione con zero ID persi, 0 → 7 stage aperti e recall 0/20 → 0/20. Prossimo passo FR-ATS con scoperta tenant nell’indice colonnare e verifica live dei percorsi ammessi. Ramo riallineato a main dopo #138, con registri e rollout italiani conservati.
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [CORPORATE-RMK](corporate-rmk-2026-11.md). Rettificato l’accesso dei tre tenant tedeschi, dieci fonti in hold, zero ID persi, +38 offerte correnti simulate. Restano il censimento per emittente dei sette indici e le verifiche d’accesso documentate, poi FR-ATS.
+
+**24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [AGENZIE-PL](agenzie-pl-2026-11.md) concluso. Randstad Polska in hold. Simulazione con zero ID persi, 0 → 7 stage aperti e recall 0/20 → 0/20. Ramo riallineato a main dopo #138, con registri e rollout italiani conservati.
 
 **24 novembre 2026.** [PR #139](https://github.com/nightlydeveloper8/eu-hr-internships/pull/139), [Germania](agenzie-de-2026-11.md) verificata nei lotti AGENZIE-DE e DE-CORPORATE. DB in hold, un nuovo lead confermato, 36 → 36 stage aperti, recall 0/30 → 0/30, zero ID persi.
 

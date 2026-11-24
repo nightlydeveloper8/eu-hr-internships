@@ -1,6 +1,6 @@
 # Germania — AGENZIE-DE e DE-CORPORATE
 
-Verifica del 24 novembre 2026. Il lotto **AGENZIE-DE** è in hold senza fonti registrate. **DE-CORPORATE** include il solo canale DB in hold nel registro delle fonti e dei datori.
+Verifica del 24 novembre 2026. Il lotto **AGENZIE-DE** è in hold senza fonti registrate. Per la rettifica sui tre tenant tedeschi SuccessFactors e la nuova simulazione, vedi [CORPORATE-RMK](corporate-rmk-2026-11.md). **DE-CORPORATE** include il solo canale DB in hold nel registro delle fonti e dei datori.
 
 ## AGENZIE-DE
 
@@ -25,7 +25,7 @@ Verifica del 24 novembre 2026. Il lotto **AGENZIE-DE** è in hold senza fonti re
 | jobsearch.daimlertruck.com | [Sitemap](https://jobsearch.daimlertruck.com/sitemap.xml) con 358 URL, tutti opachi `ac=jobad&id=…`. Il triage per titolo è indeterminato, comprese le due righe benchmark. Zero dettagli aperti. [Avviso legale](https://www.daimlertruck.com/anbieter-rechtliche-hinweise) |
 | db.jobs | [Avviso](https://db.jobs/de-de/Impressum-5555662) e robots rivisti. Dall’indice tedesco e dal sottoindice gzip risultano 3.984 URL totali. Tre slug stage HR prima delle esclusioni, due dettagli letti dopo aver escluso Werkstudent. Un JobPosting supera il classificatore HR e conferma l’idoneità studentesca. È la riga benchmark di Monaco. Rimane lead per assenza di scadenza e di prova di candidatura per lo stesso ID. |
 
-I microdati HTML non rientrano nei formati di dettaglio ammessi da AGENTS.md. Il preflight ha usato lo user agent People Placement, almeno 2 s di pausa per host e solo GET. I conteggi HTTP sotto includono robots e redirect osservati, escludono le consultazioni documentali esterne e includono nei GET i timeout iniziali su BMW e Manpower. I secondi si riferiscono alle risposte registrate.
+In questo preflight storico i microdati HTML erano fuori dai formati di dettaglio ammessi. La rettifica CORPORATE-RMK li ammette sui tenant SuccessFactors rivisti. Il preflight ha usato lo user agent People Placement, almeno 2 s di pausa per host e solo GET. I conteggi HTTP sotto includono robots e redirect osservati, escludono le consultazioni documentali esterne e includono nei GET i timeout iniziali su BMW e Manpower. I secondi si riferiscono alle risposte registrate.
 
 | Lotto | Domini ammessi | Stage DE aperti | Recall aperto DE | ID prima → dopo / persi | Costo del preflight | Tetto nominale per shard |
 |---|---|---:|---:|---|---|---|
