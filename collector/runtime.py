@@ -3,6 +3,7 @@ from contextlib import contextmanager
 from datetime import datetime,timezone
 import gzip,hashlib,json,os,threading,time
 from pathlib import Path
+from email.utils import parsedate_to_datetime
 from collections import Counter
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
@@ -22,6 +23,7 @@ class BudgetClient(Client):
         self.retry_hosts=frozenset()
         self.reuse_last_get=False
         self.last_get=None
+        self.preserve_request_url=False
         self.retry_outcomes=Counter()
     @staticmethod
     def set_host_delays(delays):
@@ -76,16 +78,44 @@ class BudgetClient(Client):
                 if attempt:self.retry_outcomes['recovered']+=1
                 return result
 
-    def _request_once(self,url,method,robots,timeout,attempts,accept,body,content_type):
-        url=canonical_url(url);host=urlsplit(url).netloc;self.check();lock=host_lock(host)
+    def retry_rate_limited_get(self, url, error):
+        """Retry a single rejected GET after the host cooldown under its lock."""
+        host = urlsplit(url).netloc
+        if error.code != 429 or canonical_url(error.geturl()) != canonical_url(url):
+            raise error
+        retry_after = error.headers.get('Retry-After', '') if error.headers else ''
+        wait = 60
+        if retry_after.isdecimal():
+            wait = max(wait, int(retry_after))
+        elif retry_after:
+            try:
+                wait = max(wait, (parsedate_to_datetime(retry_after)-datetime.now(timezone.utc)).total_seconds())
+            except (ValueError, TypeError, OverflowError):
+                pass
+        lock = host_lock(host)
+        if not lock.acquire(timeout=self.remaining()):
+            raise CollectionBudgetExceeded('Host queue exceeded collection budget')
+        try:
+            self.check()
+            self.pause(wait)
+            self.retry_outcomes['http-429'] += 1
+            return self._request_once(url, 'GET', False, 12, 1, None, None, None,
+                                      retry_rate_limit=True)
+        finally:
+            lock.release()
+
+    def _request_once(self,url,method,robots,timeout,attempts,accept,body,content_type,*,retry_rate_limit=False):
+        normalized=canonical_url(url)
+        url=url if self.preserve_request_url else normalized
+        host=urlsplit(url).netloc;self.check();lock=host_lock(host)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')
         try:
             self.check()
             # A 429 is a host-level rate limit, not a failed vacancy: do not
-            # spend more requests on that host during this collection process.
+            # spend more requests on that host unless the scoped cooldown retry applies.
             # The shared set also protects subsequent employer clients/shards
             # within the same Python process. A fresh daily process resets it.
-            if host in _RATE_LIMITED_HOSTS:
+            if host in _RATE_LIMITED_HOSTS and not retry_rate_limit:
                 self.rate_limited_skips+=1
                 raise HTTPError(url,429,'Host rate-limited earlier in this collection process',None,None)
             self.requests+=1
@@ -99,6 +129,8 @@ class BudgetClient(Client):
                     limited_host=urlsplit(exc.geturl() or url).netloc or host
                     with _LOCK:_RATE_LIMITED_HOSTS.add(limited_host)
                 raise
+            if retry_rate_limit and result[1] == 200:
+                with _LOCK:_RATE_LIMITED_HOSTS.discard(host)
             self.bytes+=len(result[0]);self.last_response_url=result[2];return result
         finally:lock.release()
 

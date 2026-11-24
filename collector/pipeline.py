@@ -234,13 +234,16 @@ def agency_sitemap_due(records,state,known,stamp):
             ordered.append((0 if modified or not last_seen else 1,last_seen or '',url,record))
     return [record for _,_,_,record in sorted(ordered,key=lambda entry:entry[:3])]
 
-def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
+def process_source(source,client,stamp,prev_count=0,verify=True,cache=None,*,staging=False):
+    from .sitemap_jobposting import ADAPTERS as SITEMAP_JOBPOSTING_ADAPTERS
+    sitemap_jobposting = source['adapter'] in SITEMAP_JOBPOSTING_ADAPTERS
+    live_sitemap_detail = source['adapter']=='sf-rmk' or sitemap_jobposting
     current=[];successful=set();closure_eligible=set();partial_sources=set()
     LOG.info('Collecting %s (%s)',source['employer'],source['adapter'])
     report={'id':source['id'],'employer':source['employer'],'adapter':source['adapter'],'checked_at':stamp}
     try:
         ownership_source=source
-        records=collect(source,client)
+        records=collect(source,client,staging=True) if staging else collect(source,client)
         inventory_stats=getattr(records,'stats',{})
         source=dict(source,allowed_hosts=sorted(set(source['allowed_hosts'])|set(inventory_stats.get('allowed_hosts',[]))))
         bulk_disappearance=prev_count>=20 and len(records)<prev_count*0.4 and inventory_stats.get('complete',True)
@@ -278,13 +281,13 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
             if record.get('needs_page'):
                 try:
                     hint=record.get('sitemap_lastmod')
-                    cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache and not agency_sitemap and source['adapter']!='sf-rmk' else None
+                    cached=cache.get(record['url'],max_age_hours=12 if record['url'] in source.get('known_job_urls',[]) else 48) if cache and not agency_sitemap and not live_sitemap_detail else None
                     if not cached:detail_attempts+=1
                     record=cached or enrich(record,source,client,defer_expiry=True)
                     text_observation=record.get('_text_observation',dict(kind='live',checked_at=stamp))
                     record=dict(record,_text_observation=text_observation)
                     if agency_sitemap:snapshot[record['url']]=dict(lastmod=hint,checked_at=stamp)
-                    elif cache and not cached and source['adapter']!='sf-rmk':cache.put(record['url'],record)
+                    elif cache and not cached and not live_sitemap_detail:cache.put(record['url'],record)
                 except Exception as exc:
                     from .applications import ApplicationClosed
                     if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
@@ -307,7 +310,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                         page_errors.append(dict(url=record['url'],error=str(exc)[:180]));continue
             inspected.append(record)
             role_classifier=classify_spanish_agency_role if source.get('agency_slug_country')=='ES' else classify_role
-            if source['adapter']=='sf-rmk':
+            if live_sitemap_detail:
                 from .sf_rmk import role_for_posting
                 role_classifier=role_for_posting
             role=role_classifier(record['title'],record['text'],record.get('employment',''))
@@ -316,7 +319,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 filter_reasons['not-hr-student-role' if not role else 'hr-candidate-without-country']+=1
                 continue
             eligibility=None
-            if source['adapter']=='sf-rmk':
+            if live_sitemap_detail:
                 from .sf_rmk import student_scope
                 countries,eligibility=student_scope(countries,record,role)
                 if not countries:
@@ -356,22 +359,25 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                 verified,link_status,reason=public_api_verification(source,record,stamp)
                 verification.update(state='verified' if verified else 'incomplete',reason=reason)
                 if verified:verification['policy']='public-api-active-listing'
-            elif verify and source['adapter']=='sf-rmk':
+            elif verify and live_sitemap_detail:
                 from .verification import expired
                 deadline=record.get('valid_through')
                 published=record.get('published_at')
+                listing = record.get('sitemap_jobposting_cta' if sitemap_jobposting else 'sf_rmk_listing')
                 if expired(deadline,stamp):
                     closed=True
                     link_status='closed'
                     verification.update(state='closed',reason='Published application deadline has passed')
                 elif published and published>stamp[:10]:
                     verification.update(reason='Structured publication date is in the future')
-                elif record.get('sf_rmk_listing') and (deadline or published):
+                elif listing and (deadline or published):
                     verified=stamp
                     link_status='verified'
-                    verification.update(state='verified',reason='sf-rmk-sitemap-live-jobposting')
+                    reason = 'official-sitemap-live-jobposting' if sitemap_jobposting else 'sf-rmk-sitemap-live-jobposting'
+                    verification.update(state='verified',reason=reason)
                 else:
-                    verification.update(reason='SF-RMK current vacancy evidence incomplete')
+                    reason = 'Current vacancy evidence incomplete' if sitemap_jobposting else 'SF-RMK current vacancy evidence incomplete'
+                    verification.update(reason=reason)
             elif verify:
                 from .verification import verify_vacancy, blocked_error
                 from .applications import ApplicationClosed

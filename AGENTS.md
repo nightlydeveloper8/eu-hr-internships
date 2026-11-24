@@ -46,6 +46,8 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
 - **Vietato**: chiedere autorizzazioni ad autorità o enti (BA, ELA, SECO, France Travail, DWP…), usare API a pagamento o con chiave,
   aggirare login, captcha, robots o blocchi, fingersi un crawler autorizzato, inviare candidature.
   Restano disabilitate SmartRecruiters (robots lo vieta) e Ashby (robots 401) finché l'accesso non è chiarito.
+  **Esclusioni di accesso, 24 novembre 2026.** Esclusione permanente di `www.kering.com` per la clausola «Use any deep-link, page-scrape, spider, robot, crawl, index, Internet agent or other automatic device» nei [termini Kering](https://www.kering.com/en/legal/).
+  Richemont resta fuori dai lotti CORPORATE e WORKDAY finché l'accesso al [dettaglio pubblico della vacancy](https://careers.richemont.com/en/jobs/jr133108/stage-assistant-rh-et-talent-acquisition-campus-hf/) risponde HTTP 403. Una nuova verifica del percorso deve precederne la riammissione.
 - **Provisioning automatico — attenzione.** `python -m collector.daily provision` collega un crawler `universal-employer` **attivo**
   a ogni datore di `data/companies.json` che non ha una fonte attiva. Quindi aggiungere un datore equivale ad attivarlo al primo merge.
   Per preparare un datore senza attivarlo usa `"collection_activation_hold": true` sul datore e la fonte rivista `"enabled": false`
