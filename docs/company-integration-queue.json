@@ -739,7 +739,8 @@
     "state": "collection-review-required",
     "career_url": "https://jobs.nl.adecco.com/openjob/a0wWy000000bW49IAE/apply",
     "source_ids": [
-      "auto-adecco"
+      "auto-adecco",
+      "held-adecco-it-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -9777,7 +9778,8 @@
     "state": "collection-review-required",
     "career_url": "https://www.gigroup.it/orientamento/wikijobs/",
     "source_ids": [
-      "auto-gi-group"
+      "auto-gi-group",
+      "held-gi-group-it-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -10369,20 +10371,6 @@
     "career_url": "https://hjfdekoning.nl/vacature/",
     "source_ids": [
       "auto-h-j-f-de-koning-scheepsstoffering"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "hanos",
-    "name": "HANOS",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://www.werkenbijhanos.nl/werkgebieden/HR",
-    "source_ids": [
-      "auto-hanos"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -17454,20 +17442,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "quantum-systems-gmbh",
-    "name": "Quantum Systems GmbH",
-    "candidate_countries": [
-      "DE"
-    ],
-    "state": "collection-review-required",
-    "career_url": null,
-    "source_ids": [
-      "auto-quantum-systems-gmbh"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "quobly",
     "name": "Quobly",
     "candidate_countries": [
@@ -17686,7 +17660,8 @@
     "state": "collection-review-required",
     "career_url": "https://www.randstad.it/carriere/",
     "source_ids": [
-      "auto-randstad-italia-spa"
+      "auto-randstad-italia-spa",
+      "held-randstad-it-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -20725,6 +20700,20 @@
     "career_url": "https://www.werkenbijsyncasso.nl/",
     "source_ids": [
       "auto-syncasso"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "synergie-italia",
+    "name": "Synergie Italia",
+    "candidate_countries": [
+      "IT"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://www.synergie-italia.it/candidato/offerte-di-lavoro",
+    "source_ids": [
+      "held-synergie-it-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26013,6 +26002,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "hanos",
+    "name": "HANOS",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://www.werkenbijhanos.nl/werkgebieden/HR",
+    "source_ids": [
+      "auto-hanos"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "haitsma-beton",
     "name": "Haitsma Beton",
     "candidate_countries": [
@@ -26497,6 +26500,20 @@
     "career_url": "https://werkenbijqbuzz.nl/",
     "source_ids": [
       "auto-qbuzz"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "quantum-systems-gmbh",
+    "name": "Quantum Systems GmbH",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": null,
+    "source_ids": [
+      "auto-quantum-systems-gmbh"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
