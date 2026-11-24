@@ -1013,7 +1013,7 @@
     "id": "employer-danone",
     "employer": "Danone",
     "adapter": "employer-sitemap",
-    "enabled": true,
+    "enabled": false,
     "career_url": "https://careers.danone.com",
     "sitemaps": [
       "https://careers.danone.com/sitemap.xml"
@@ -1034,7 +1034,8 @@
     "page_format": "danone",
     "permission_basis": "Official public employer sitemap and structured page metadata; robots checked every run; only discovery metadata exported",
     "reviewed_on": "2026-11-05",
-    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs."
+    "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+    "status": "superseded"
   },
   {
     "id": "employer-unilever",
@@ -17582,7 +17583,7 @@
     "company_id": "sap",
     "employer": "SAP",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://jobs.sap.com"
     ],
@@ -17600,7 +17601,7 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "superseded"
   },
   {
     "id": "auto-saygin-advies",
@@ -48894,7 +48895,7 @@
     "id": "employer-roche",
     "employer": "Roche",
     "adapter": "employer-sitemap",
-    "enabled": true,
+    "enabled": false,
     "career_url": "https://careers.roche.com/global/en",
     "sitemaps": [
       "https://careers.roche.com/global/en/sitemap_index.xml"
@@ -48945,7 +48946,8 @@
     "reviewed_on": "2026-11-18",
     "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
     "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting.",
-    "company_id": "roche"
+    "company_id": "roche",
+    "status": "superseded"
   },
   {
     "id": "employer-bat",
@@ -49338,7 +49340,7 @@
     "id": "employer-thales",
     "employer": "Thales",
     "adapter": "employer-sitemap",
-    "enabled": true,
+    "enabled": false,
     "career_url": "https://careers.thalesgroup.com/global/en",
     "sitemaps": [
       "https://careers.thalesgroup.com/global/en/sitemap_index.xml"
@@ -49387,7 +49389,8 @@
     "max_requests": 260,
     "reviewed_on": "2026-11-18",
     "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
-    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting.",
+    "status": "superseded"
   },
   {
     "id": "employer-siemens-healthineers",
@@ -49449,7 +49452,7 @@
     "id": "employer-allianz",
     "employer": "Allianz",
     "adapter": "employer-sitemap",
-    "enabled": true,
+    "enabled": false,
     "career_url": "https://careers.allianz.com/global/en",
     "sitemaps": [
       "https://careers.allianz.com/global/en/sitemap_index.xml"
@@ -49498,7 +49501,8 @@
     "max_requests": 260,
     "reviewed_on": "2026-11-18",
     "permission_basis": "Official employer career site (Phenom); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
-    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting.",
+    "status": "superseded"
   },
   {
     "id": "employer-kuehne-nagel",
@@ -51592,5 +51596,733 @@
     "access_review_url": "https://careers.tuigroup.com/en/cookie-notice",
     "collection_lot": "CORPORATE-SITEMAP",
     "target_countries": []
+  },
+  {
+    "employer": "Danone",
+    "target_countries": [
+      "NL",
+      "FR",
+      "DE",
+      "BE",
+      "ES",
+      "IT",
+      "PL"
+    ],
+    "id": "sitemap-careers-danone-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.danone.com"
+    ],
+    "career_url": "https://careers.danone.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Exact-host sitemap replacement. Historical catalog identities retained through URL and reviewed requisition aliases.",
+    "reviewed_on": "2026-11-24",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-danone"
+    ],
+    "reviewed_listing_layout": "danone",
+    "job_id_pattern": "-(?P<id>\\d{4,})-[a-z]{2}-[a-z]{2}\\.html$",
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "reviewed-active",
+    "company_id": "danone"
+  },
+  {
+    "employer": "Roche",
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "id": "sitemap-careers-roche-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.roche.com"
+    ],
+    "career_url": "https://careers.roche.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Exact-host sitemap replacement. Historical catalog identities retained through URL and reviewed requisition aliases.",
+    "reviewed_on": "2026-11-24",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-roche"
+    ],
+    "reviewed_phenom_application_hosts": [
+      "roche.wd3.myworkdayjobs.com"
+    ],
+    "preferred_sitemap_paths": [
+      "/global/en/",
+      "/fr/fr/",
+      "/de/de/"
+    ],
+    "job_id_pattern": "/job/(?P<id>[a-zA-Z0-9-]+)/",
+    "job_url_pattern": "/job/",
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "reviewed-active",
+    "company_id": "roche"
+  },
+  {
+    "employer": "Thales",
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "id": "sitemap-careers-thalesgroup-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.thalesgroup.com"
+    ],
+    "career_url": "https://careers.thalesgroup.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Exact-host sitemap replacement. Historical catalog identities retained through URL and reviewed requisition aliases.",
+    "reviewed_on": "2026-11-24",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-thales"
+    ],
+    "reviewed_phenom_application_hosts": [
+      "thales.wd3.myworkdayjobs.com"
+    ],
+    "preferred_sitemap_paths": [
+      "/fr/fr/",
+      "/global/en/"
+    ],
+    "job_id_pattern": "/job/(?P<id>[a-zA-Z0-9-]+)/",
+    "job_url_pattern": "/job/",
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "reviewed-active",
+    "company_id": "thales"
+  },
+  {
+    "employer": "SAP",
+    "target_countries": [
+      "BG",
+      "CZ"
+    ],
+    "id": "sitemap-jobs-sap-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "jobs.sap.com"
+    ],
+    "career_url": "https://jobs.sap.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Exact-host sitemap replacement. Historical catalog identities retained through URL and reviewed requisition aliases.",
+    "reviewed_on": "2026-11-24",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-sap"
+    ],
+    "employer_aliases": [
+      "SAP Careers"
+    ],
+    "job_id_pattern": "/jobs/(?P<id>\\d{15})/",
+    "reviewed_application_reference_hosts": [
+      "jobs.smartrecruiters.com"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "reviewed-active",
+    "company_id": "sap"
+  },
+  {
+    "employer": "Allianz",
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "id": "sitemap-careers-allianz-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.allianz.com"
+    ],
+    "career_url": "https://careers.allianz.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Exact-host sitemap replacement. Historical catalog identities retained through URL and reviewed requisition aliases.",
+    "reviewed_on": "2026-11-24",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-allianz"
+    ],
+    "reviewed_phenom_application_hosts": [
+      "career5.successfactors.eu"
+    ],
+    "preferred_sitemap_paths": [
+      "/fr/fr/",
+      "/de/de/",
+      "/global/en/"
+    ],
+    "job_id_pattern": "/job/(?P<id>[a-zA-Z0-9-]+)/",
+    "job_url_pattern": "/job/",
+    "employer_aliases": [
+      "Allianz Insurance"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "reviewed-active",
+    "company_id": "allianz"
+  },
+  {
+    "employer": "L’Oréal",
+    "target_countries": [
+      "FR"
+    ],
+    "id": "sitemap-careers-loreal-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.loreal.com"
+    ],
+    "career_url": "https://careers.loreal.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-l-oreal"
+    ],
+    "job_url_pattern": "/(?:job|emploi|empleo|stellenangebot)/",
+    "employer_aliases": [
+      "L'Oreal"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "Accor",
+    "target_countries": [
+      "FR"
+    ],
+    "id": "sitemap-careers-accor-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.accor.com"
+    ],
+    "career_url": "https://careers.accor.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-accor"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "Infineon",
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "id": "sitemap-jobs-infineon-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "jobs.infineon.com"
+    ],
+    "career_url": "https://jobs.infineon.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-infineon"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "ING",
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "id": "sitemap-careers-ing-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.ing.com"
+    ],
+    "career_url": "https://careers.ing.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-ing"
+    ],
+    "job_url_pattern": "/(?:job|emploi|empleo|stellenangebot)/",
+    "employer_aliases": [
+      "ING Bank"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "ASML",
+    "target_countries": [
+      "NL"
+    ],
+    "id": "sitemap-www-asml-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "www.asml.com"
+    ],
+    "career_url": "https://www.asml.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-asml"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "ABB",
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "id": "sitemap-careers-abb",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.abb"
+    ],
+    "career_url": "https://careers.abb",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-abb"
+    ],
+    "reviewed_phenom_application_hosts": [
+      "abb.wd3.myworkdayjobs.com"
+    ],
+    "preferred_sitemap_paths": [
+      "/global/en/",
+      "/fr/fr/",
+      "/de/de/"
+    ],
+    "job_id_pattern": "/job/(?P<id>[a-zA-Z0-9-]+)/",
+    "job_url_pattern": "/job/",
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "Philip Morris International",
+    "target_countries": [
+      "IT"
+    ],
+    "id": "sitemap-join-pmicareers-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "join.pmicareers.com"
+    ],
+    "career_url": "https://join.pmicareers.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-philip-morris-international"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "The Adecco Group",
+    "target_countries": [
+      "FR",
+      "PT",
+      "PL",
+      "NL",
+      "BE",
+      "DE",
+      "IT",
+      "ES",
+      "CH",
+      "GB",
+      "IE"
+    ],
+    "id": "sitemap-careers-adeccogroup-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.adeccogroup.com"
+    ],
+    "career_url": "https://careers.adeccogroup.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-adecco-group"
+    ],
+    "job_url_pattern": "/(?:job|emploi|empleo|stellenangebot)/",
+    "employer_aliases": [
+      "Adecco"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "Pirelli",
+    "target_countries": [
+      "IT"
+    ],
+    "id": "sitemap-jobs-pirelli-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "jobs.pirelli.com"
+    ],
+    "career_url": "https://jobs.pirelli.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-pirelli"
+    ],
+    "reviewed_rmk_dates": true,
+    "reviewed_rmk_redirects": true,
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "Knorr Bremse AG",
+    "target_countries": [
+      "DE"
+    ],
+    "id": "sitemap-careers-knorr-bremse-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "careers.knorr-bremse.com"
+    ],
+    "career_url": "https://careers.knorr-bremse.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-knorr-bremse-ag"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "Kuehne+Nagel",
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "id": "sitemap-jobs-kuehne-nagel-com",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "jobs.kuehne-nagel.com"
+    ],
+    "career_url": "https://jobs.kuehne-nagel.com",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "employer-kuehne-nagel"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
+  },
+  {
+    "employer": "Randstad Groep Nederland",
+    "target_countries": [
+      "NL"
+    ],
+    "id": "sitemap-www-werkenbijrandstad-nl",
+    "adapter": "sitemap-jobposting",
+    "allowed_hosts": [
+      "www.werkenbijrandstad.nl"
+    ],
+    "career_url": "https://www.werkenbijrandstad.nl",
+    "access_review": "allowed",
+    "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
+    "reviewed_on": "2026-11-24",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_seconds": 120,
+    "max_requests": 90,
+    "collection_delay": 2,
+    "replaces_source_ids": [
+      "auto-randstad-groep-nederland"
+    ],
+    "employer_aliases": [
+      "Randstad Nederland"
+    ],
+    "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+    "status": "migration-review-required"
   }
 ]

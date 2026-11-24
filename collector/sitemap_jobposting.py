@@ -1,5 +1,6 @@
 """Bounded GET-only discovery from reviewed corporate and Workday sitemaps."""
-from datetime import datetime
+from datetime import datetime, timezone
+import json
 from html.parser import HTMLParser
 import re
 from urllib.error import HTTPError, URLError
@@ -9,7 +10,7 @@ import xml.etree.ElementTree as ET
 from .adapters import AGENT, ScopedRedirect
 from .applications import ensure_open_document
 from .classify import canonical_url, fold, plain
-from .employer_pages import decompress_sitemap, slug_title
+from .employer_pages import PageParser, decompress_sitemap, slug_title
 from .runtime import CollectionBudgetExceeded
 from .ownership import employer_matches
 from .sf_rmk import HR, NON_STAGE, STAGE, PostingMarkup, path_match, rmk_date
@@ -72,7 +73,9 @@ def robots_allows(rules, url):
 
 def candidate(title):
     title = fold(title).replace('ł', 'l')
-    return bool(STAGE.search(title) and HR.search(title)
+    # Bare "compensation" can describe an engineering operation.
+    hr_title = re.sub(r'\bcompensation\b(?!\s+(?:and|&)\s+benefits)', '', title)
+    return bool(STAGE.search(title) and HR.search(hr_title)
                 and not NON_STAGE.search(title) and not EXCLUDED.search(title))
 
 
@@ -90,6 +93,13 @@ def posting_id(url, source):
     if source.get('reviewed_listing_layout') == 'mercedes-benz':
         match = re.search(r'-(mer[0-9a-z]{7}|j\d{9})$', path, re.I)
         return match[1].casefold() if match else None
+    if source.get('job_id_pattern'):
+        match = re.search(source['job_id_pattern'], path)
+        return match['id'].casefold() if match else None
+    if source.get('reviewed_rmk_dates'):
+        match = path_match(url)
+        if match:
+            return match['id']
     segment = path.rsplit('/', 1)[-1]
     segment = re.sub(r'\.(?:s?html?|aspx?)$', '', segment, flags=re.I)
     segment = re.sub(r'[-_][a-z]{2}[-_][a-z]{2}$', '', segment, flags=re.I)
@@ -143,7 +153,7 @@ class Scan:
         except ScopedRedirect as exc:
             original_id = posting_id(url, self.source)
             target = exc.target
-            old_rmk = path_match(url) if self.source.get('reviewed_rmk_layout') else None
+            old_rmk = path_match(url) if (self.source.get('reviewed_rmk_layout') or self.source.get('reviewed_rmk_redirects')) else None
             new_rmk = path_match(target) if old_rmk else None
             reviewed_rmk_redirect = bool(new_rmk and fold(old_rmk['slug']) == fold(new_rmk['slug']))
             sitemap_redirect = (self.discovering and self.requests < MAX_DISCOVERY_REQUESTS
@@ -226,13 +236,19 @@ def collect_records(source, client):
     pending = set(scan.preflight())
     seen, records = set(), {}
     url_filter = re.compile(source.get('job_url_pattern', ''))
+    preferred = tuple(source.get('preferred_sitemap_paths', ()))
     pending = {url for url in pending if scan.permitted(url)}
     if not pending:
         raise ValueError('No permitted same-host sitemap')
     errors = []
     maps_parsed = 0
+    def priority(url):
+        path = urlsplit(url).path
+        rank = next((i for i, prefix in enumerate(preferred) if path.startswith(prefix)), len(preferred))
+        return (not bool(JOB_MAP.search(path)), rank, url)
+
     while pending and scan.requests < MAX_DISCOVERY_REQUESTS and not scan.blocked:
-        sitemap = min(pending, key=lambda url: (not bool(JOB_MAP.search(urlsplit(url).path)), url))
+        sitemap = min(pending, key=priority)
         pending.remove(sitemap)
         if sitemap in seen or not scan.permitted(sitemap):
             continue
@@ -261,10 +277,10 @@ def collect_records(source, client):
             path = urlsplit(url).path.rstrip('/')
             if APPLICATION_ROUTE.search(unquote(path)) or not url_filter.search(path):
                 continue
-            parts = path.split('/')
-            slug = parts[-1]
-            if len(parts) > 2 and re.fullmatch(r'[A-Za-z]{0,8}\d+', slug):
-                slug = parts[-2]
+            parts = path.strip('/').split('/')
+            while len(parts)>1 and re.fullmatch(r'[A-Za-z]{0,8}\d+(?:[-_][a-z]{2}[-_][a-z]{2})?', parts[-1], re.I):
+                parts.pop()
+            slug = re.sub(r'\.(?:s?html?|aspx?)$', '', parts[-1], flags=re.I)
             title = slug_title('/' + slug.replace('_', '-'))
             identifier = posting_id(url, source)
             if not candidate(title) or (source['adapter'] == 'workday' and not identifier):
@@ -318,6 +334,50 @@ def mercedes_listing_control(body, url, source, identifier):
     return False
 
 
+def danone_posting(body, url):
+    """Read the reviewed Danone job fragment for this exact URL."""
+    parser = PageParser()
+    parser.feed(body.decode('utf-8', 'replace'))
+    key = urlsplit(url).path.rsplit('/', 1)[-1].removesuffix('.html')
+    matches = [item for item in parser.fragments if item.get('key') == key]
+    if not matches or any(item != matches[0] for item in matches[1:]):
+        return None
+    item = matches[0]
+    job_id = item.get('jobid') or ''
+    posted = item.get('posted') or ''
+    if not job_id.isdecimal() or not posted.isdecimal():
+        return None
+    return dict(title=item.get('title'), description=(item.get('descriptionheader') or '')+' '+(item.get('description') or ''),
+                employmentType=item.get('positiontype'), identifier=job_id, inLanguage=item.get('locale'),
+                datePosted=datetime.fromtimestamp(int(posted)/1000, timezone.utc).isoformat(),
+                jobLocation={'address': {'addressCountry': item.get('country'), 'addressLocality': item.get('city')}})
+
+
+def phenom_listing(body, result, hosts):
+    """The embedded external job and the official CTA must identify this JobPosting."""
+    expected = str(result.get('posting_identifier') or '').casefold()
+    script = re.search(r'phApp\.ddo\s*=\s*(?=\{)', body.decode('utf-8','replace'))
+    if not expected or script is None:
+        return False
+    try:
+        payload, _ = json.JSONDecoder().raw_decode(script.string, script.end())
+        job = payload['jobDetail']['data']['job']
+        if (str(job.get('jobId','')).casefold() != expected or str(job.get('reqId','')).casefold() != expected
+                or fold(plain(job.get('title'))) != fold(result['title'])
+                or not isinstance(job.get('jobVisibility'), list) or 'external' not in job['jobVisibility']):
+            return False
+        target = urlsplit(canonical_url(job['applyUrl']))
+        if target.hostname not in hosts:
+            return False
+        if target.hostname.endswith('.myworkdayjobs.com'):
+            match = WORKDAY.fullmatch(target.path.removesuffix('/apply'))
+            return bool(target.path.endswith('/apply') and match and
+                        match['id'].casefold() in (expected, expected+'-1'))
+        return parse_qs(target.query).get('career_job_req_id') == [expected] and target.path == '/careers'
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return False
+
+
 def job_record(record, source, client):
     scan = client.sitemap_jobposting_scan
     url = record['url']
@@ -336,6 +396,11 @@ def job_record(record, source, client):
     microdata = PostingMarkup(body).posting(layout, doc.h1) if not posts else None
     scan.observations[-1]['markup'] = ('json-ld' if posts else 'microdata' if microdata else 'none')
     post = posts[0] if len(posts) == 1 else microdata
+    danone = not post and not posts and source.get('reviewed_listing_layout') == 'danone'
+    if danone:
+        post = danone_posting(body, url)
+        if post:
+            scan.observations[-1]['markup'] = 'danone-structured-fragment'
     if not post:
         raise ValueError('No unique JobPosting')
     stable = posting_id(url, source)
@@ -379,6 +444,24 @@ def job_record(record, source, client):
         if re.search(r'\b(?:apply|bewerben|postuler|candidati|candidatar|solliciteer|inscribirse)\b', fold(label))
         for target in (urljoin(url, href),)
     )
+    reference_hosts = source.get('reviewed_application_reference_hosts', [])
+    if stable and reference_hosts:
+        result['sitemap_jobposting_cta'] |= any(
+            urlsplit(href).scheme == 'https' and urlsplit(href).hostname in reference_hosts
+            and shares_identifier(dict(result, external_id=stable), href)
+            for href,label,_ in doc.links if re.search(r'\b(?:apply|bewerben|postuler)\b', fold(label)))
+    sources_for_alias = source.get('replaces_source_ids', [])
+    if identifier:
+        result['identity_aliases'] = [f'posting:{previous}:{identifier}' for previous in sources_for_alias]
+    if source.get('reviewed_phenom_application_hosts'):
+        result['sitemap_jobposting_cta'] |= phenom_listing(body, result, source['reviewed_phenom_application_hosts'])
+    if danone:
+        result['sitemap_jobposting_cta'] |= any(
+            re.fullmatch(r'(?:de|fr|nl|uk|es|it|pl|global)apply-danone\.icims\.com', urlsplit(href).hostname or '')
+            and urlsplit(href).scheme == 'https'
+            and urlsplit(href).path.rstrip('/') == f'/jobs/{identifier}/login'
+            and 'apply' in fold(label)
+            for href,label,_ in doc.links)
     if source.get('reviewed_listing_layout') == 'mercedes-benz':
         result['sitemap_jobposting_cta'] |= mercedes_listing_control(
             body, url, source, result.get('posting_identifier'))

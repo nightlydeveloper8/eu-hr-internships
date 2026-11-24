@@ -409,6 +409,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None,*,sta
                 provenance=dict(kind='live',checked_at=stamp) if 'intake' in observation else text_observation
                 intake=dict(intake,provenance=provenance['kind'],observed_via=provenance.get('origin',provenance['kind']))
             if intake:staged[-1]['intake']=intake
+            if sitemap_jobposting and record.get('identity_aliases'):
+                staged[-1]['identity_aliases'] = record['identity_aliases']
             if eligibility:staged[-1]['student_eligibility']=eligibility
             if source.get('staffing_agency') and record.get('agency_client')=='non indicato':
                 staged[-1].update(employer=source['employer'],agency_client='non indicato')
