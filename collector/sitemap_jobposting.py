@@ -1,26 +1,27 @@
 """Bounded GET-only discovery from reviewed corporate and Workday sitemaps."""
 from datetime import datetime
 import re
-from urllib.error import HTTPError
-from urllib.parse import unquote, urljoin, urlsplit, parse_qs
+from urllib.error import HTTPError, URLError
+from urllib.parse import unquote, urljoin, urlsplit, urlunsplit, parse_qs, quote
 import xml.etree.ElementTree as ET
 
-from .adapters import AGENT
+from .adapters import AGENT, ScopedRedirect
 from .applications import ensure_open_document
-from .classify import canonical_url, fold
+from .classify import canonical_url, fold, plain
 from .employer_pages import decompress_sitemap, slug_title
 from .runtime import CollectionBudgetExceeded
-from .sf_rmk import HR, NON_STAGE, STAGE, PostingMarkup
+from .ownership import employer_matches
+from .sf_rmk import HR, NON_STAGE, STAGE, PostingMarkup, path_match, rmk_date
 from .universal import Document, Inventory, job_from_json
 from .verification import same_requisition, shares_identifier
 
 ADAPTERS = ('sitemap-jobposting', 'workday')
-MAX_SITEMAPS = 6
-MAX_DETAILS = 10
-MAX_REQUESTS = 1 + MAX_SITEMAPS + MAX_DETAILS
+MAX_DISCOVERY_REQUESTS = 12
+MAX_REQUESTS = 262
 WORKDAY = re.compile(r'/(?:[a-z]{2}(?:-[a-z]{2})?/)?(?P<site>[^/]+)/job/(?:[^/]+/)*[^/]+_(?P<id>[^/]+)', re.I)
 EXCLUDED = re.compile(r'\b(?:graduate|apprentice|apprenticeship)\b')
-JOB_MAP = re.compile(r'job|vacanc|career|stellen|emploi|offres|empleo|lavoro', re.I)
+APPLICATION_ROUTE = re.compile(r'(?:^|/)(?:apply|applybutton|application|preapply|talentcommunity|solliciteren|bewerben|postuler)(?:/|$)', re.I)
+JOB_MAP = re.compile(r'job|vacanc|career|offer|offre|stelle|emploi|empleo|lavoro|position', re.I)
 
 
 def robots_policy(text):
@@ -104,6 +105,8 @@ class Scan:
         self.rules = []
         self.requests = 0
         self.blocked = False
+        self.observations = []
+        self.discovering = True
 
     def scoped(self, url):
         try:
@@ -120,24 +123,62 @@ class Scan:
         return self.scoped(url) and robots_allows(self.rules, url) and robots_allows(self.rules, canonical_url(url))
 
     def get(self, url, *, robots=False):
+        try:
+            return self._get_once(url, robots=robots)
+        except ScopedRedirect as exc:
+            original_id = posting_id(url, self.source)
+            target = exc.target
+            old_rmk = path_match(url) if self.source.get('reviewed_rmk_layout') else None
+            new_rmk = path_match(target) if old_rmk else None
+            reviewed_rmk_redirect = bool(new_rmk and fold(old_rmk['slug']) == fold(new_rmk['slug']))
+            sitemap_redirect = (self.discovering and self.requests < MAX_DISCOVERY_REQUESTS
+                                and re.search(r'(?:sitemap[^/]*|[^/]+)\.xml(?:\.gz)?$',
+                                              urlsplit(target).path, re.I))
+            if not robots and sitemap_redirect and self.permitted(target):
+                return self._get_once(target, robots=False)
+            if (not robots and not self.discovering
+                    and original_id and self.permitted(target)
+                    and not APPLICATION_ROUTE.search(unquote(urlsplit(target).path))
+                    and (posting_id(target, self.source) == original_id or reviewed_rmk_redirect)):
+                return self._get_once(target, robots=False)
+            raise
+
+    def _get_once(self, url, *, robots):
         if self.blocked or self.requests >= MAX_REQUESTS:
             raise CollectionBudgetExceeded('Sitemap host stopped or request budget exhausted')
         if not self.scoped(url) or (not robots and not self.permitted(url)):
             raise ValueError('URL outside approved robots scope')
         previous = getattr(self.client, 'redirect_scope_allowed', None)
         self.client.redirect_scope_allowed = lambda target: False
+        preserve = getattr(self.client, 'preserve_request_url', False)
+        self.client.preserve_request_url = True
+        parsed = urlsplit(url)
+        wire_url = urlunsplit((parsed.scheme, parsed.netloc,
+                               quote(parsed.path, safe="/%:@!$&'()*+,;=-._~"),
+                               quote(parsed.query, safe="%/?+:@!$&'()*+,;=-._~"), ''))
         self.requests += 1
+        observation = dict(url=url, phase="robots" if robots else "sitemap" if self.discovering else "detail")
+        self.observations.append(observation)
         try:
-            body, status, final = self.client.request(url, robots=False, attempts=1)
+            body, status, final = self.client.request(wire_url, robots=False, attempts=1)
+            observation['http'] = status
             if status != 200 or canonical_url(url) != canonical_url(final):
                 raise ValueError('Exact public HTTP 200 response required')
             return body
+        except ScopedRedirect as exc:
+            observation.update(http=exc.status, redirect=exc.target)
+            raise
         except HTTPError as exc:
+            observation['http'] = exc.code
             if exc.code in (401, 403, 429, 451):
                 self.blocked = True
             raise
+        except (URLError, OSError, ValueError) as exc:
+            observation['error'] = str(exc)[:180]
+            raise
         finally:
             self.client.redirect_scope_allowed = previous
+            self.client.preserve_request_url = preserve
 
     def preflight(self):
         text = self.get(f'https://{self.host}/robots.txt', robots=True).decode('utf-8-sig')
@@ -160,34 +201,44 @@ def locations(root, child):
 
 def collect_records(source, client):
     scan = Scan(source, client)
+    client.sitemap_jobposting_observations = scan.observations
     pending = set(scan.preflight())
     seen, records = set(), {}
     url_filter = re.compile(source.get('job_url_pattern', ''))
     pending = {url for url in pending if scan.permitted(url)}
     if not pending:
         raise ValueError('No permitted same-host sitemap')
-    while pending and len(seen) < MAX_SITEMAPS:
-        sitemap = min(pending, key=lambda url: (not bool(JOB_MAP.search(url)), url))
+    errors = []
+    maps_parsed = 0
+    while pending and scan.requests < MAX_DISCOVERY_REQUESTS and not scan.blocked:
+        sitemap = min(pending, key=lambda url: (not bool(JOB_MAP.search(urlsplit(url).path)), url))
         pending.remove(sitemap)
         if sitemap in seen or not scan.permitted(sitemap):
             continue
         seen.add(sitemap)
-        body = decompress_sitemap(scan.get(sitemap))
-        # Reject DTDs even when the input declares UTF-16/32.
-        if b'<!DOCTYPE' in body.replace(b'\0', b'').upper():
-            raise ValueError('DOCTYPE not permitted in sitemap')
-        root = ET.fromstring(body)
+        try:
+            body = decompress_sitemap(scan.get(sitemap))
+            if b'<!DOCTYPE' in body.replace(b'\0', b'').upper():
+                raise ValueError('DOCTYPE not permitted in sitemap')
+            root = ET.fromstring(body)
+        except (CollectionBudgetExceeded, OSError, ValueError, ET.ParseError) as exc:
+            errors.append(dict(url=sitemap, error=str(exc)[:180]))
+            if isinstance(exc, CollectionBudgetExceeded):
+                break
+            continue
+        maps_parsed += 1
         kind = root.tag.rsplit('}', 1)[-1]
         if kind == 'sitemapindex':
             pending.update(set(locations(root, 'sitemap')) - seen)
             continue
         if kind != 'urlset':
-            raise ValueError('Unsupported sitemap root')
+            errors.append(dict(url=sitemap, error='Unsupported sitemap root'))
+            continue
         for url in locations(root, 'url'):
             if not scan.permitted(url):
                 continue
             path = urlsplit(url).path.rstrip('/')
-            if not url_filter.search(path):
+            if APPLICATION_ROUTE.search(unquote(path)) or not url_filter.search(path):
                 continue
             parts = path.split('/')
             slug = parts[-1]
@@ -200,16 +251,22 @@ def collect_records(source, client):
             key = identifier or canonical_url(url)
             records.setdefault(key, dict(source_id=source['id'], external_id=key, title=title,
                                          employer=source['employer'], url=url, apply_url=url, needs_page=True))
+    if not maps_parsed and errors:
+        raise ValueError(errors[-1]['error'])
+    scan.discovering = False
     client.sitemap_jobposting_scan = scan
-    selected = list(records.values())[:MAX_DETAILS]
-    return Inventory(selected, dict(sitemap_candidates=len(records), selected_candidates=len(selected),
-                                    sitemaps_read=len(seen), closure_complete=False))
+    return Inventory(records.values(), dict(sitemap_candidates=len(records),
+                                    sitemaps_read=len(seen), sitemap_errors=errors,
+                                    sitemaps_pending=sum(scan.permitted(url) for url in pending),
+                                    status='partial' if errors or pending else 'ok',
+                                    closure_complete=False))
 
 
 def job_record(record, source, client):
     scan = client.sitemap_jobposting_scan
     url = record['url']
     body = scan.get(url)
+    url = scan.observations[-1]['url']
     doc = Document(body, url)
     try:
         ensure_open_document(doc)
@@ -219,7 +276,10 @@ def job_record(record, source, client):
             scan.blocked = True
         raise
     posts = doc.jobposts()
-    post = posts[0] if len(posts) == 1 else PostingMarkup(body).posting() if not posts else None
+    layout = url if source.get('reviewed_rmk_layout') == 'bmw-de' and path_match(url) else None
+    microdata = PostingMarkup(body).posting(layout, doc.h1) if not posts else None
+    scan.observations[-1]['markup'] = ('json-ld' if posts else 'microdata' if microdata else 'none')
+    post = posts[0] if len(posts) == 1 else microdata
     if not post:
         raise ValueError('No unique JobPosting')
     stable = posting_id(url, source)
@@ -229,9 +289,18 @@ def job_record(record, source, client):
         if not scan.scoped(target) or (canonical_url(url) != canonical_url(target)
                                       and not (stable and posting_id(target, source) == stable)):
             raise ValueError('JobPosting URL does not identify the sitemap vacancy')
+    if source.get('reviewed_rmk_dates'):
+        post = dict(post, datePosted=rmk_date(post.get('datePosted')),
+                    validThrough=rmk_date(post.get('validThrough')))
     result = job_from_json(dict(post, url=url, validThrough=None), url, source)
     if not result or not result.get('countries'):
-        raise ValueError('Usable JobPosting and explicit workplace country required')
+        organization = post.get('hiringOrganization')
+        name = plain(organization.get('name')) if isinstance(organization, dict) else ''
+        if name and not employer_matches(name, source, url):
+            raise ValueError(f'Unreviewed hiring organization: {name[:100]}')
+        if not result:
+            raise ValueError('JobPosting missing a usable title or description')
+        raise ValueError('Explicit workplace country outside scope or missing')
     if not candidate(result['title']):
         raise ValueError('Structured title is outside HR internship scope')
     # Reject malformed or contradictory dates at detail scope, not host scope.

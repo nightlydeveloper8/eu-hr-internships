@@ -12,6 +12,12 @@ from .classify import plain
 LOG = logging.getLogger(__name__)
 AGENT = 'PeoplePlacementBot/1.0 (public HR internship discovery; source: README.md)'
 
+class ScopedRedirect(ValueError):
+    def __init__(self, status, target):
+        super().__init__("Redirect outside approved source scope")
+        self.status, self.target = status, target
+
+
 class CheckedRedirect(HTTPRedirectHandler):
     def __init__(self, client, robots=True): self.client,self.robots=client,robots
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -21,7 +27,7 @@ class CheckedRedirect(HTTPRedirectHandler):
         # robots.txt fetches (robots=False), before any redirect is followed.
         scope = getattr(self.client, "redirect_scope_allowed", None)
         if scope is not None and not scope(newurl):
-            raise ValueError("Redirect outside approved source scope")
+            raise ScopedRedirect(code, newurl)
         # Check destination robots before urllib follows, including same-host redirects.
         if self.robots and not self.client.permitted(newurl):raise ValueError('robots.txt disallows redirect '+newurl)
         host=urlsplit(newurl).netloc

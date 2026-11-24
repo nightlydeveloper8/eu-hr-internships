@@ -1,6 +1,7 @@
 import json
 import unittest
 
+from collector.adapters import ScopedRedirect
 from collector.pipeline import process_source
 from collector.sitemap_jobposting import collect_records
 
@@ -25,7 +26,10 @@ class FixtureClient:
         self.requests.append(url)
         assert not kwargs['robots']
         assert not self.redirect_scope_allowed(url)
-        return self.pages[url], 200, url
+        value = self.pages[url]
+        if isinstance(value, Exception):
+            raise value
+        return value, 200, url
 
 
 def source(**overrides):
@@ -61,6 +65,35 @@ class SitemapJobPostingTest(unittest.TestCase):
         self.assertEqual(job['status'], 'open')
         self.assertNotIn('application_verification', job)
         self.assertEqual(part['closure_eligible'], [])
+
+    def test_nested_job_maps_beyond_six_reads_exclude_application_routes(self):
+        maps = [f'{HOST}/jobs-{index}.xml' for index in range(10)]
+        distractions = [f'{HOST}/articles-{index}.xml' for index in range(4)]
+        pages = {
+            HOST + '/robots.txt': f'Sitemap: {maps[0]}'.encode(),
+            **{url: sitemap('sitemapindex', 'sitemap', [next_map, *distractions])
+               for url, next_map in zip(maps, maps[1:])},
+            maps[-1]: sitemap('urlset', 'url', [POSTING, HOST + '/apply/hr-intern-45678']),
+            **{url: sitemap('urlset', 'url', []) for url in distractions},
+        }
+        result = collect_records(source(), FixtureClient(pages))
+        self.assertEqual([record['url'] for record in result], [POSTING])
+        self.assertEqual(result.stats['sitemaps_read'], 11)
+        self.assertEqual(result.stats['sitemaps_pending'], 3)
+        self.assertEqual(result.stats['status'], 'partial')
+
+    def test_same_host_sitemap_redirect_is_counted_inside_discovery(self):
+        initial = HOST + '/sitemap.xml'
+        target = HOST + '/sitemap_index.xml'
+        client = FixtureClient({
+            HOST + '/robots.txt': b'User-agent: *',
+            initial: ScopedRedirect(307, target),
+            target: sitemap('urlset', 'url', [POSTING]),
+        })
+        self.assertEqual(len(collect_records(source(), client)), 1)
+        self.assertEqual(client.requests, [HOST + '/robots.txt', initial, target])
+        self.assertEqual([read['http'] for read in client.sitemap_jobposting_observations],
+                         [200, 307, 200])
 
     def test_workday_selects_its_site_and_deduplicates_locale_variants(self):
         jobs = HOST + '/jobs.xml'

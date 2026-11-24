@@ -1,5 +1,7 @@
 # Lotti carriere in hold — 24 novembre 2026
 
+Fotografia della prima bozza. Per baseline, metriche e verifiche aggiornate con Python 3.12, vedi il [riesame della PR #142](held-career-revision-20261124.md).
+
 Replay su `a5e609065cf947162f6b3cec79b2a5fdbeac9475`, registri dei lotti in [staging](held-career-lots-20261124.json). I due flag di hold restano nei manifest. La raccolta ordinaria non include questi manifest.
 
 | Lotto | Perimetro e osservazioni | GET misurate | ID persi | Budget aggiuntivo massimo sullo shard | Stima collect.yml |

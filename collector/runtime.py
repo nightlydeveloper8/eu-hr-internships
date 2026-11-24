@@ -22,6 +22,7 @@ class BudgetClient(Client):
         self.retry_hosts=frozenset()
         self.reuse_last_get=False
         self.last_get=None
+        self.preserve_request_url=False
         self.retry_outcomes=Counter()
     @staticmethod
     def set_host_delays(delays):
@@ -77,7 +78,9 @@ class BudgetClient(Client):
                 return result
 
     def _request_once(self,url,method,robots,timeout,attempts,accept,body,content_type):
-        url=canonical_url(url);host=urlsplit(url).netloc;self.check();lock=host_lock(host)
+        normalized=canonical_url(url)
+        url=url if self.preserve_request_url else normalized
+        host=urlsplit(url).netloc;self.check();lock=host_lock(host)
         if not lock.acquire(timeout=self.remaining()):raise CollectionBudgetExceeded('Host queue exceeded collection budget')
         try:
             self.check()

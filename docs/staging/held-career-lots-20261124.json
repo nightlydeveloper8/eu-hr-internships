@@ -2,89 +2,89 @@
   "CORPORATE-SITEMAP": {
     "input_rows": 95,
     "dispositions": {
-      "excluded": 1,
+      "excluded": 2,
       "covered": 33,
-      "hold": 61
+      "hold": 60
     },
     "projected_shard_budget": {
       "0": {
         "sources": 5,
-        "requests": 85,
+        "requests": 1310,
         "serial_seconds": 275
       },
       "1": {
-        "sources": 6,
-        "requests": 102,
-        "serial_seconds": 330
+        "sources": 5,
+        "requests": 1310,
+        "serial_seconds": 275
       },
       "2": {
         "sources": 2,
-        "requests": 34,
+        "requests": 524,
         "serial_seconds": 110
       },
       "3": {
         "sources": 4,
-        "requests": 68,
+        "requests": 1048,
         "serial_seconds": 220
       },
       "4": {
         "sources": 1,
-        "requests": 17,
+        "requests": 262,
         "serial_seconds": 55
       },
       "5": {
         "sources": 1,
-        "requests": 17,
+        "requests": 262,
         "serial_seconds": 55
       },
       "6": {
         "sources": 7,
-        "requests": 119,
+        "requests": 1834,
         "serial_seconds": 385
       },
       "7": {
         "sources": 5,
-        "requests": 85,
+        "requests": 1310,
         "serial_seconds": 275
       },
       "8": {
         "sources": 4,
-        "requests": 68,
+        "requests": 1048,
         "serial_seconds": 220
       },
       "9": {
         "sources": 3,
-        "requests": 51,
+        "requests": 786,
         "serial_seconds": 165
       },
       "10": {
         "sources": 4,
-        "requests": 68,
+        "requests": 1048,
         "serial_seconds": 220
       },
       "11": {
         "sources": 4,
-        "requests": 68,
+        "requests": 1048,
         "serial_seconds": 220
       },
       "12": {
         "sources": 2,
-        "requests": 34,
+        "requests": 524,
         "serial_seconds": 110
       },
       "13": {
         "sources": 6,
-        "requests": 102,
+        "requests": 1572,
         "serial_seconds": 330
       },
       "14": {
         "sources": 5,
-        "requests": 85,
+        "requests": 1310,
         "serial_seconds": 275
       },
       "15": {
         "sources": 2,
-        "requests": 34,
+        "requests": 524,
         "serial_seconds": 110
       }
     },
@@ -162,7 +162,7 @@
           "review_notes": "Revisione limitata alle sitemap e ai dettagli anonimi sullo stesso host.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "job_url_pattern": "^/en/[^/]+/jr\\d+/",
           "access_review_url": "https://careers.richemont.com/en/jobs/"
         },
@@ -280,13 +280,22 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Avviso legale applicabile al dominio e condizioni carriere rivisti. Nessun divieto espresso per letture di sitemap e annunci pubblici consentiti da robots.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "review_notes": "Solo sitemap e annunci pubblici sullo stesso host. Account e candidatura fuori perimetro.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262,
+          "access_review_url": "https://group.mercedes-benz.com/provider/",
+          "employer_aliases": [
+            "Mercedes-Benz AG",
+            "Mercedes-Benz Group AG",
+            "Mercedes-Benz Manufacturing Hungary Kft.",
+            "Mercedes-Benz Tech Innovation GmbH",
+            "Mercedes-AMG GmbH"
+          ],
+          "employer_alias_evidence": "https://group.mercedes-benz.com/documents/investors/reports/annual-report/mercedes-benz/mercedes-benz-annual-report-2025-incl-combined-management-report-mbg-ag.pdf"
         },
         "robots_url": "https://jobs.mercedes-benz.com/robots.txt",
         "robots_http_status": 200,
@@ -350,29 +359,15 @@
         "staging_requests": 1,
         "host": "jobs.vinci.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-vinci-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Vinci",
-          "career_url": "https://jobs.vinci.com",
-          "allowed_hosts": [
-            "jobs.vinci.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 17
-        },
+        "disposition": "excluded",
         "robots_url": "https://jobs.vinci.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "access_review": "excluded",
+        "exclusion_url": "https://jobs.vinci.com/en/conditions-of-use",
+        "exclusion_quote": "L’utilisation de VINCI JOBS est réservée à un usage strictement personnel.",
+        "exclusion_text_url": "https://jobs.vinci.com/fr/Conditions-G%C3%A9n%C3%A9rales-d%E2%80%99Utilisation"
       },
       {
         "employer": "Infineon Technologies",
@@ -427,7 +422,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobdetails.nestle.com/robots.txt",
         "robots_http_status": 200,
@@ -529,7 +524,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.dhl.com/robots.txt",
         "robots_http_status": 200,
@@ -568,7 +563,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.mtu.de/robots.txt",
         "robots_http_status": 200,
@@ -607,7 +602,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.capgemini.com/robots.txt",
         "robots_http_status": 200,
@@ -646,7 +641,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://basf.jobs/robots.txt",
         "robots_http_status": 200,
@@ -706,7 +701,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.volkswagen-group.com/robots.txt",
         "robots_http_status": 200,
@@ -745,7 +740,7 @@
           "review_notes": "Revisione limitata alle sitemap e ai dettagli anonimi sullo stesso host.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "job_url_pattern": "^/en/",
           "access_review_url": "https://careers.tuigroup.com/en/cookie-notice"
         },
@@ -853,7 +848,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.engie.com/robots.txt",
         "robots_http_status": 200,
@@ -891,7 +886,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://orange.jobs/robots.txt",
         "robots_http_status": 200,
@@ -969,7 +964,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.solvay.com/robots.txt",
         "robots_http_status": 200,
@@ -1027,7 +1022,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.sonova.com/robots.txt",
         "robots_http_status": 200,
@@ -1065,7 +1060,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.aholddelhaize.com/robots.txt",
         "robots_http_status": 200,
@@ -1102,7 +1097,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.deutsche-boerse.com/robots.txt",
         "robots_http_status": 200,
@@ -1139,7 +1134,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.munichre.com/robots.txt",
         "robots_http_status": 200,
@@ -1176,7 +1171,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.bechtle.com/robots.txt",
         "robots_http_status": 200,
@@ -1234,7 +1229,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.jobs-fraport.com/robots.txt",
         "robots_http_status": 200,
@@ -1290,7 +1285,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.bouygues-construction.com/robots.txt",
         "robots_http_status": 200,
@@ -1327,7 +1322,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.ferrari.com/robots.txt",
         "robots_http_status": 200,
@@ -1361,7 +1356,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.atlascopcogroup.com/robots.txt",
         "robots_http_status": 200,
@@ -1398,7 +1393,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.volvogroup.com/robots.txt",
         "robots_http_status": 200,
@@ -1435,7 +1430,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://sebgroup.com/robots.txt",
         "robots_http_status": 200,
@@ -1472,7 +1467,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://apply.careers.hsbc.com/robots.txt",
         "robots_http_status": 200,
@@ -1509,7 +1504,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.careers.zurich.com/robots.txt",
         "robots_http_status": 200,
@@ -1565,7 +1560,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.vanlanschotkempen.com/robots.txt",
         "robots_http_status": 200,
@@ -1601,7 +1596,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.freseniusmedicalcare.com/robots.txt",
         "robots_http_status": 200,
@@ -1637,7 +1632,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://karriere.fresenius.de/robots.txt",
         "robots_http_status": 200,
@@ -1673,7 +1668,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.henkel.com/robots.txt",
         "robots_http_status": 200,
@@ -1745,7 +1740,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.fuchs.com/robots.txt",
         "robots_http_status": 200,
@@ -1781,7 +1776,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.nordex-online.com/robots.txt",
         "robots_http_status": 200,
@@ -1817,7 +1812,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://about.puma.com/robots.txt",
         "robots_http_status": 200,
@@ -1853,7 +1848,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.thyssenkrupp.com/robots.txt",
         "robots_http_status": 200,
@@ -1943,7 +1938,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobsearch.grifols.com/robots.txt",
         "robots_http_status": 200,
@@ -1979,7 +1974,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.puig.com/robots.txt",
         "robots_http_status": 200,
@@ -2015,7 +2010,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://sacyrpeople.sacyr.com/robots.txt",
         "robots_http_status": 200,
@@ -2051,7 +2046,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.demant.com/robots.txt",
         "robots_http_status": 200,
@@ -2087,7 +2082,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.ryanair.com/robots.txt",
         "robots_http_status": 200,
@@ -2141,7 +2136,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.hubspot.com/robots.txt",
         "robots_http_status": 200,
@@ -2177,7 +2172,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.erstegroup.com/robots.txt",
         "robots_http_status": 200,
@@ -2213,7 +2208,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.andritz.com/robots.txt",
         "robots_http_status": 200,
@@ -2249,7 +2244,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.novartis.com/robots.txt",
         "robots_http_status": 200,
@@ -2285,7 +2280,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.werkenbijabnamro.nl/robots.txt",
         "robots_http_status": 200,
@@ -2339,7 +2334,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://projects.arcelormittal.com/robots.txt",
         "robots_http_status": 200,
@@ -2375,7 +2370,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.werkenbijasr.nl/robots.txt",
         "robots_http_status": 200,
@@ -2411,7 +2406,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.kpn.com/robots.txt",
         "robots_http_status": 200,
@@ -2483,7 +2478,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.careers.signify.com/robots.txt",
         "robots_http_status": 200,
@@ -2519,7 +2514,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.tkh-airportsolutions.com/robots.txt",
         "robots_http_status": 200,
@@ -2569,7 +2564,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://career.lanxess.com/robots.txt",
         "robots_http_status": 200,
@@ -2619,7 +2614,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.mapfre.com/robots.txt",
         "robots_http_status": 200,
@@ -2653,7 +2648,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.telefonica.com/robots.txt",
         "robots_http_status": 200,
@@ -2687,7 +2682,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://recruitment.tenaris.com/robots.txt",
         "robots_http_status": 200,
@@ -2737,7 +2732,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.saab.com/robots.txt",
         "robots_http_status": 200,
@@ -2771,7 +2766,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.amorim.com/robots.txt",
         "robots_http_status": 200,
@@ -2805,7 +2800,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.dropbox.jobs/robots.txt",
         "robots_http_status": 200,
@@ -2839,7 +2834,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.citi.com/robots.txt",
         "robots_http_status": 200,
@@ -2873,7 +2868,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.atos.net/robots.txt",
         "robots_http_status": 200,
@@ -2923,7 +2918,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://www.melexis.com/robots.txt",
         "robots_http_status": 200,
@@ -2957,7 +2952,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://careers.givaudan.com/robots.txt",
         "robots_http_status": 200,
@@ -2992,7 +2987,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "robots_url": "https://jobs.arcadis.com/robots.txt",
         "robots_http_status": 200,
@@ -3004,89 +2999,90 @@
   "WORKDAY": {
     "input_rows": 55,
     "dispositions": {
-      "hold": 34,
-      "tenant-unresolved": 19
+      "hold": 49,
+      "tenant-unresolved": 3,
+      "duplicate-tenant": 1
     },
     "projected_shard_budget": {
       "0": {
-        "sources": 3,
-        "requests": 51,
-        "serial_seconds": 165
+        "sources": 4,
+        "requests": 1048,
+        "serial_seconds": 220
       },
       "1": {
         "sources": 4,
-        "requests": 68,
+        "requests": 1048,
         "serial_seconds": 220
       },
       "2": {
         "sources": 1,
-        "requests": 17,
+        "requests": 262,
         "serial_seconds": 55
       },
       "3": {
-        "sources": 2,
-        "requests": 34,
-        "serial_seconds": 110
+        "sources": 3,
+        "requests": 786,
+        "serial_seconds": 165
       },
       "4": {
-        "sources": 1,
-        "requests": 17,
-        "serial_seconds": 55
-      },
-      "5": {
         "sources": 2,
-        "requests": 34,
+        "requests": 524,
         "serial_seconds": 110
       },
+      "5": {
+        "sources": 3,
+        "requests": 786,
+        "serial_seconds": 165
+      },
       "6": {
-        "sources": 1,
-        "requests": 17,
-        "serial_seconds": 55
+        "sources": 3,
+        "requests": 786,
+        "serial_seconds": 165
       },
       "7": {
-        "sources": 4,
-        "requests": 68,
-        "serial_seconds": 220
+        "sources": 5,
+        "requests": 1310,
+        "serial_seconds": 275
       },
       "8": {
         "sources": 2,
-        "requests": 34,
+        "requests": 524,
         "serial_seconds": 110
       },
       "9": {
         "sources": 1,
-        "requests": 17,
+        "requests": 262,
         "serial_seconds": 55
       },
       "10": {
         "sources": 1,
-        "requests": 17,
+        "requests": 262,
         "serial_seconds": 55
       },
       "11": {
-        "sources": 4,
-        "requests": 68,
-        "serial_seconds": 220
+        "sources": 5,
+        "requests": 1310,
+        "serial_seconds": 275
       },
       "12": {
-        "sources": 1,
-        "requests": 17,
-        "serial_seconds": 55
-      },
-      "13": {
-        "sources": 4,
-        "requests": 68,
-        "serial_seconds": 220
-      },
-      "14": {
         "sources": 2,
-        "requests": 34,
+        "requests": 524,
         "serial_seconds": 110
       },
+      "13": {
+        "sources": 7,
+        "requests": 1834,
+        "serial_seconds": 385
+      },
+      "14": {
+        "sources": 3,
+        "requests": 786,
+        "serial_seconds": 165
+      },
       "15": {
-        "sources": 1,
-        "requests": 17,
-        "serial_seconds": 55
+        "sources": 3,
+        "requests": 786,
+        "serial_seconds": 165
       }
     },
     "sources": [
@@ -3118,7 +3114,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "LeonardoCareerSite"
         },
         "staging_bytes_read": 112231,
@@ -3161,7 +3157,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Careers"
         },
         "staging_bytes_read": 288127,
@@ -3204,7 +3200,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Carriere"
         },
         "staging_bytes_read": 135,
@@ -3242,7 +3238,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Cucinelli"
         },
         "staging_bytes_read": 36283,
@@ -3268,9 +3264,37 @@
         "priority_it_es": true,
         "csv_alternates": [],
         "csv_career_url": "https://lottomaticagroup.com/it-it/home/careers/entra-in-squadra",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "lottomaticagroup.wd103.myworkdayjobs.com"
+        "csv_tenant_host_hint": "lottomaticagroup.wd103.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "LottomaticaCareers"
+          ],
+          "requests": 2,
+          "http": [
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-lottomaticagroup-wd103-myworkdayjobs-com-lottomaticacareers",
+          "adapter": "workday",
+          "employer": "Lottomatica Group",
+          "career_url": "https://lottomaticagroup.wd103.myworkdayjobs.com/LottomaticaCareers",
+          "workday_site": "LottomaticaCareers",
+          "allowed_hosts": [
+            "lottomaticagroup.wd103.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Acciona",
@@ -3305,7 +3329,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "ACCIONA_Employment_Channel"
         },
         "staging_bytes_read": 83168,
@@ -3348,7 +3372,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "jobs"
         },
         "staging_bytes_read": 28395,
@@ -3391,7 +3415,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "SantanderCareers"
         },
         "staging_bytes_read": 154927,
@@ -3434,7 +3458,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "BBVA"
         },
         "staging_bytes_read": 53449,
@@ -3477,7 +3501,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Portal_Externo"
         },
         "staging_bytes_read": 19134,
@@ -3520,7 +3544,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Ferrovial_Career_Site"
         },
         "staging_bytes_read": 51574,
@@ -3563,7 +3587,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Iberdrola"
         },
         "staging_bytes_read": 88864,
@@ -3606,7 +3630,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Repsol"
         },
         "staging_bytes_read": 27793,
@@ -3649,7 +3673,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "ROVI_Careers"
         },
         "staging_bytes_read": 18915,
@@ -3695,7 +3719,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 5734,
         "staging_recent_scan": {
@@ -3742,7 +3766,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Airbus",
           "employer_aliases": [
             "2781 Airbus Atlantic"
@@ -3776,8 +3800,38 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://www.gea.com/en/careers/apply-now/",
-        "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "GEACareers",
+            "equest"
+          ],
+          "requests": 3,
+          "http": [
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-gea-wd3-myworkdayjobs-com-geacareers",
+          "adapter": "workday",
+          "employer": "GEA Group",
+          "career_url": "https://gea.wd3.myworkdayjobs.com/GEACareers",
+          "workday_site": "GEACareers",
+          "allowed_hosts": [
+            "gea.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Heidelberg Materials",
@@ -3790,9 +3844,50 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://karriere.heidelbergmaterials.com/",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "heidelbergmaterials.wd3.myworkdayjobs.com"
+        "csv_tenant_host_hint": "heidelbergmaterials.wd3.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "Alex_Fraser_Careers",
+            "Global_HM_Career_Site",
+            "Heidelberg_Materials_UK_career_site",
+            "Hymix_Australia_Careers",
+            "Pioneer_North_Queensland",
+            "heidelberg_materials_NAM"
+          ],
+          "requests": 10,
+          "http": [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-heidelbergmaterials-wd3-myworkdayjobs-com-global-hm-career-site",
+          "adapter": "workday",
+          "employer": "Heidelberg Materials",
+          "career_url": "https://heidelbergmaterials.wd3.myworkdayjobs.com/Global_HM_Career_Site",
+          "workday_site": "Global_HM_Career_Site",
+          "allowed_hosts": [
+            "heidelbergmaterials.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "CTS Eventim",
@@ -3825,7 +3920,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 17711,
         "staging_recent_scan": {
@@ -3870,7 +3965,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 117883,
         "staging_recent_scan": {
@@ -3915,7 +4010,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 563329,
         "staging_recent_scan": {
@@ -3957,7 +4052,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "AirLiquideExternalCareer"
         },
         "staging_bytes_read": 570789,
@@ -3998,7 +4093,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 49694,
         "staging_recent_scan": {
@@ -4040,7 +4135,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "michelin"
         },
         "staging_bytes_read": 227770,
@@ -4078,7 +4173,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "pernod-ricard",
           "employer_aliases": [
             "G.H. MUMM & CIE S.V.C.S."
@@ -4129,7 +4224,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "renault-group-careers"
         },
         "staging_bytes_read": 292543,
@@ -4172,7 +4267,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "urw_career_site"
         },
         "staging_bytes_read": 140746,
@@ -4199,7 +4294,32 @@
         "csv_alternates": [],
         "csv_career_url": "https://www.home.sandvik/en/careers",
         "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "Sandvik_Internal_for_nonWD_employees",
+            "cimatron-jobs",
+            "coromant-jobs",
+            "dormerpramet-jobs",
+            "gibbscam-jobs",
+            "seco-jobs",
+            "sigmatek-jobs",
+            "walter-jobs"
+          ],
+          "requests": 10,
+          "http": [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200
+          ]
+        }
       },
       {
         "employer": "GN Store Nord",
@@ -4229,7 +4349,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "GN-Careers"
         },
         "staging_bytes_read": 78773,
@@ -4272,7 +4392,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "Workday"
         },
         "staging_bytes_read": 71571,
@@ -4298,8 +4418,44 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://careers.regeneron.com/en/locations/europe/dublin-ireland/",
-        "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "Careers",
+            "IrelandPrivate",
+            "US_Only_University_Relations_Career"
+          ],
+          "requests": 4,
+          "http": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-regeneron-wd1-myworkdayjobs-com-careers",
+          "adapter": "workday",
+          "employer": "Regeneron",
+          "career_url": "https://regeneron.wd1.myworkdayjobs.com/Careers",
+          "workday_site": "Careers",
+          "allowed_hosts": [
+            "regeneron.wd1.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262,
+          "employer_aliases": [
+            "Regeneron Ireland"
+          ],
+          "employer_alias_evidence": "https://careers.regeneron.com/en/locations/europe/dublin-ireland/"
+        }
       },
       {
         "employer": "Citigroup",
@@ -4317,7 +4473,15 @@
         "csv_alternates": [],
         "csv_career_url": "https://jobs.citi.com/location/poland/5441/798544/2",
         "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [],
+          "requests": 1,
+          "http": [
+            200
+          ],
+          "error": "Workday requires a robots-advertised sitemap"
+        }
       },
       {
         "employer": "Kyndryl",
@@ -4330,9 +4494,41 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://www.kyndryl.com/pl/pl/careers",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "kyndryl.wd5.myworkdayjobs.com"
+        "csv_tenant_host_hint": "kyndryl.wd5.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "ISMCareers",
+            "KyndrylEarlyCareers",
+            "KyndrylProfessionalCareers"
+          ],
+          "requests": 4,
+          "http": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-kyndryl-wd5-myworkdayjobs-com-kyndrylearlycareers",
+          "adapter": "workday",
+          "employer": "Kyndryl",
+          "career_url": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers",
+          "workday_site": "KyndrylEarlyCareers",
+          "allowed_hosts": [
+            "kyndryl.wd5.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Shell",
@@ -4343,11 +4539,56 @@
         "confirmed_by_workplace_country": "non dimostrato",
         "staging_requests": 0,
         "priority_it_es": false,
-        "csv_alternates": [],
+        "csv_alternates": [
+          {
+            "employer": "Shell",
+            "career_url": "https://www.shell.com/careers"
+          }
+        ],
         "csv_career_url": "https://www.shell.pl/o-shell/careers/shell-business-operations.html",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "shell.wd3.myworkdayjobs.com"
+        "csv_tenant_host_hint": "shell.wd3.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "Fasttrack",
+            "Proactive",
+            "ShellCareers"
+          ],
+          "requests": 12,
+          "http": [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-shell-wd3-myworkdayjobs-com-shellcareers",
+          "adapter": "workday",
+          "employer": "Shell",
+          "career_url": "https://shell.wd3.myworkdayjobs.com/ShellCareers",
+          "workday_site": "ShellCareers",
+          "allowed_hosts": [
+            "shell.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Accenture",
@@ -4360,8 +4601,40 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://www.accenture.com/pl-en/careers/jobsearch",
-        "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "AccentureCareers",
+            "AvanadeCareers"
+          ],
+          "requests": 5,
+          "http": [
+            200,
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-accenture-wd103-myworkdayjobs-com-accenturecareers",
+          "adapter": "workday",
+          "employer": "Accenture",
+          "career_url": "https://accenture.wd103.myworkdayjobs.com/AccentureCareers",
+          "workday_site": "AccentureCareers",
+          "allowed_hosts": [
+            "accenture.wd103.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Takeda",
@@ -4377,8 +4650,36 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://jobs.takeda.com",
-        "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "External"
+          ],
+          "requests": 2,
+          "http": [
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-takeda-wd502-myworkdayjobs-com-external",
+          "adapter": "workday",
+          "employer": "Takeda",
+          "career_url": "https://takeda.wd502.myworkdayjobs.com/External",
+          "workday_site": "External",
+          "allowed_hosts": [
+            "takeda.wd502.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "AB InBev",
@@ -4393,7 +4694,14 @@
         "csv_career_url": "https://europecareers.ab-inbev.com/programmes/internships",
         "disposition": "tenant-unresolved",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "abinbev.wd1.myworkdayjobs.com"
+        "csv_tenant_host_hint": "abinbev.wd1.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [],
+          "requests": 1,
+          "http": [
+            200
+          ]
+        }
       },
       {
         "employer": "Richemont",
@@ -4410,8 +4718,40 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://careers.richemont.com/en/jobs/",
-        "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "broadbean_external"
+          ],
+          "requests": 2,
+          "http": [
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-richemont-wd3-myworkdayjobs-com-broadbean-external",
+          "adapter": "workday",
+          "employer": "Richemont",
+          "career_url": "https://richemont.wd3.myworkdayjobs.com/broadbean_external",
+          "workday_site": "broadbean_external",
+          "allowed_hosts": [
+            "richemont.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262,
+          "employer_aliases": [
+            "IT13 PGI S.p.A."
+          ],
+          "employer_alias_evidence": "https://www.richemont.com/media/ue1bjrjv/richemont-fy25-annual-report-en.pdf"
+        }
       },
       {
         "employer": "Alcon",
@@ -4424,9 +4764,37 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://www.alcon.com/careers/",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "alcon.wd5.myworkdayjobs.com"
+        "csv_tenant_host_hint": "alcon.wd5.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "careers_alcon"
+          ],
+          "requests": 2,
+          "http": [
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-alcon-wd5-myworkdayjobs-com-careers-alcon",
+          "adapter": "workday",
+          "employer": "Alcon",
+          "career_url": "https://alcon.wd5.myworkdayjobs.com/careers_alcon",
+          "workday_site": "careers_alcon",
+          "allowed_hosts": [
+            "alcon.wd5.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Galderma",
@@ -4439,9 +4807,39 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://www.galderma.com/careers",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "galderma.wd3.myworkdayjobs.com"
+        "csv_tenant_host_hint": "galderma.wd3.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "External",
+            "broadbean_external"
+          ],
+          "requests": 3,
+          "http": [
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-galderma-wd3-myworkdayjobs-com-external",
+          "adapter": "workday",
+          "employer": "Galderma",
+          "career_url": "https://galderma.wd3.myworkdayjobs.com/External",
+          "workday_site": "External",
+          "allowed_hosts": [
+            "galderma.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Logitech",
@@ -4454,9 +4852,37 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://secure.logitech.com/en-ch/careers",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "logitech.wd5.myworkdayjobs.com"
+        "csv_tenant_host_hint": "logitech.wd5.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "Logitech"
+          ],
+          "requests": 2,
+          "http": [
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-logitech-wd5-myworkdayjobs-com-logitech",
+          "adapter": "workday",
+          "employer": "Logitech",
+          "career_url": "https://logitech.wd5.myworkdayjobs.com/Logitech",
+          "workday_site": "Logitech",
+          "allowed_hosts": [
+            "logitech.wd5.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Julius Bär",
@@ -4469,9 +4895,51 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://www.juliusbaer.com/en/careers/",
-        "disposition": "tenant-unresolved",
+        "disposition": "hold",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "juliusbaer.wd3.myworkdayjobs.com"
+        "csv_tenant_host_hint": "juliusbaer.wd3.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "External",
+            "Legal_Experts",
+            "Technology",
+            "Wealth_Managers",
+            "jobroom"
+          ],
+          "requests": 12,
+          "http": [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-juliusbaer-wd3-myworkdayjobs-com-external",
+          "adapter": "workday",
+          "employer": "Julius Bär",
+          "career_url": "https://juliusbaer.wd3.myworkdayjobs.com/External",
+          "workday_site": "External",
+          "allowed_hosts": [
+            "juliusbaer.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Aegon",
@@ -4504,7 +4972,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 18944,
         "staging_recent_scan": {
@@ -4533,8 +5001,47 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://careers.ing.com/",
-        "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "ICSAUSDIR",
+            "ICSFRADIR",
+            "ICSGBLCOR",
+            "ICSNLDGEN"
+          ],
+          "requests": 5,
+          "http": [
+            200,
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-ing-wd3-myworkdayjobs-com-icsgblcor",
+          "adapter": "workday",
+          "employer": "ING Group",
+          "career_url": "https://ing.wd3.myworkdayjobs.com/ICSGBLCOR",
+          "workday_site": "ICSGBLCOR",
+          "allowed_hosts": [
+            "ing.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262,
+          "employer_aliases": [
+            "ING Luxembourg SA",
+            "ING DIBA AG"
+          ],
+          "employer_alias_evidence": "https://ing.com/binaries/content/assets/documents/annual-reports/2025-ing-groep-nv-annual-report.pdf"
+        }
       },
       {
         "employer": "The Magnum Ice Cream Company",
@@ -4567,7 +5074,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 34575,
         "staging_recent_scan": {
@@ -4612,7 +5119,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 415639,
         "staging_recent_scan": {
@@ -4637,9 +5144,18 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://www.shell.com/careers",
-        "disposition": "tenant-unresolved",
+        "disposition": "duplicate-tenant",
         "access_review": "non dimostrato",
-        "csv_tenant_host_hint": "shell.wd3.myworkdayjobs.com"
+        "csv_tenant_host_hint": "shell.wd3.myworkdayjobs.com",
+        "tenant_discovery": {
+          "observed_sites": [
+            "Fasttrack",
+            "Proactive",
+            "ShellCareers"
+          ],
+          "requests": 0,
+          "http": []
+        }
       },
       {
         "employer": "Universal Music Group",
@@ -4672,7 +5188,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 705193,
         "staging_recent_scan": {
@@ -4697,8 +5213,44 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://careers.unilever.com/",
-        "disposition": "tenant-unresolved",
-        "access_review": "non dimostrato"
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "tenant_discovery": {
+          "observed_sites": [
+            "UK_TemporaryWorkersite",
+            "Unilever_Early_Bird_Early_Access_to_Job_Posting",
+            "Unilever_Early_Careers",
+            "Unilever_Experienced_Professionals",
+            "Unilever_UFLP_ULIP_Fast_Track_Career_Site"
+          ],
+          "requests": 6,
+          "http": [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        "source": {
+          "id": "held-workday-unilever-wd3-myworkdayjobs-com-unilever-early-careers",
+          "adapter": "workday",
+          "employer": "Unilever",
+          "career_url": "https://unilever.wd3.myworkdayjobs.com/Unilever_Early_Careers",
+          "workday_site": "Unilever_Early_Careers",
+          "allowed_hosts": [
+            "unilever.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
+          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 262
+        }
       },
       {
         "employer": "Wolters Kluwer",
@@ -4731,7 +5283,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 251072,
         "staging_recent_scan": {
@@ -4776,7 +5328,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 235207,
         "staging_recent_scan": {
@@ -4821,7 +5373,7 @@
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17
+          "max_requests": 262
         },
         "staging_bytes_read": 32281,
         "staging_recent_scan": {
@@ -4863,7 +5415,7 @@
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
           "collection_seconds": 55,
           "collection_delay": 2,
-          "max_requests": 17,
+          "max_requests": 262,
           "workday_site": "CareersAtVopak"
         },
         "staging_bytes_read": 54079,

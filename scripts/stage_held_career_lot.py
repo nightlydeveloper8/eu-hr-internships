@@ -11,6 +11,7 @@ import time
 from collector.classify import COUNTRIES, canonical_url
 from collector.pipeline import ROOT, finalize, now, process_source
 from collector.runtime import BudgetClient
+from collector.sitemap_jobposting import MAX_REQUESTS
 from collector.verification import verified_job
 
 MANIFEST = ROOT / 'docs/staging/held-career-lots-20261124.json'
@@ -23,13 +24,16 @@ def collect(source, stamp):
     start = time.monotonic()
     part = process_source(source, client, stamp, staging=True)
     part['report'].update(requests=client.requests, bytes_read=client.bytes,
-                          duration_seconds=round(time.monotonic() - start, 2))
+                          duration_seconds=round(time.monotonic() - start, 2),
+                          http_observations=getattr(client, 'sitemap_jobposting_observations', []))
     return part
 
 
 def openings(jobs, stamp):
     return [job for job in jobs if job['internship_type'] == 'internship'
-            and job.get('student_eligibility') != 'excluded' and verified_job(job, stamp)]
+            and job.get('student_eligibility') != 'excluded'
+            and job.get('ownership_risk', {}).get('state') != 'historical-unreviewed-external-host'
+            and verified_job(dict(job, link_status='verified'), stamp)]
 
 
 def summarise(registry, sources, parts, baseline, stamp, output):
@@ -57,14 +61,16 @@ def summarise(registry, sources, parts, baseline, stamp, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('lot', choices=['CORPORATE-SITEMAP', 'WORKDAY'])
+    parser.add_argument('--manifest', type=Path, default=MANIFEST)
+    parser.add_argument('--baseline-dir', type=Path, default=ROOT / 'data')
     parser.add_argument('--source', nargs='+', default=[])
     parser.add_argument('--workday-public-sitemap', action='store_true',
                         help='Staging only: apply the Nov 23 Workday review to robots-advertised sitemap routes')
     args = parser.parse_args()
-    data = ROOT / 'data'
+    data = args.baseline_dir
     registry = json.loads((data / 'sources.json').read_text())
     baseline = json.loads((data / 'catalog.json').read_text())
-    lot = json.loads(MANIFEST.read_text())[args.lot]
+    lot = json.loads(args.manifest.read_text())[args.lot]
     sources = [row['source'] for row in lot['sources'] if 'source' in row and row['source']['id'] in args.source]
     if set(args.source) != {source['id'] for source in sources}:
         parser.error('Unknown staging source ID')
@@ -73,6 +79,7 @@ def main():
             parser.error('Staging accepts held sources only')
         if args.workday_public_sitemap and source['adapter'] == 'workday':
             source.update(access_review='allowed', permission_basis='Workday review, 23 Nov 2026; robots-declared sitemap and public detail')
+        source.update(max_requests=MAX_REQUESTS, collection_seconds=source.get('staging_collection_seconds', 720))
         if source.get('access_review') != 'allowed':
             parser.error('Missing route-level access evidence')
     stamp = now() if sources else baseline['last_attempt_at']
@@ -80,6 +87,10 @@ def main():
         parts = list(pool.map(lambda source: collect(source, stamp), sources))
     output = Path(tempfile.mkdtemp(prefix='held-career-staging-'))
     result = summarise(registry, sources, parts, baseline, stamp, output)
+    result['snapshot_clock'] = baseline['last_attempt_at']
+    result['snapshot_by_country'] = dict(Counter(code for job in openings(baseline['jobs'], result['snapshot_clock'])
+                                                  for code in job['countries']))
+    (output / 'parts.json').write_text(json.dumps(parts, ensure_ascii=False))
     (output / 'report.json').write_text(json.dumps(result, indent=2, ensure_ascii=False))
     print(output / 'report.json')
     if result['ids_lost']:
