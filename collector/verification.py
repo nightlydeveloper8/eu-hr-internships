@@ -190,6 +190,23 @@ def personio_static_application(record, source, client, vacancy, stamp):
     raise ValueError('Visible Personio candidate fields and submit control required')
 
 
+
+def teamtailor_published_listing(body,url,published,stamp):
+    """An advertised Teamtailor job can publish a same-job form frame without a deadline."""
+    if not published or not re.fullmatch(r'/jobs/\d+-[^/]+',urlsplit(url).path.rstrip('/')):
+        return False
+    try:
+        posted=datetime.fromisoformat(published.replace('Z','+00:00'))
+        if posted.tzinfo is None or posted>datetime.fromisoformat(stamp.replace('Z','+00:00')):
+            return False
+    except (TypeError,ValueError,AttributeError):
+        return False
+    from .employer_pages import PageParser
+    parser=PageParser()
+    parser.feed(body.decode('utf-8','replace'))
+    expected=canonical_url(url)+'/'+'applications/new'
+    return expected in parser.teamtailor_application_frames
+
 def _verify_vacancy(record, source, client, stamp, observation=None):
     """No successful HEAD, cached page or JSON-LD alone establishes an opening."""
     closure=None
@@ -216,7 +233,7 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
     for published,deadline in matching_dates:
         if expired(deadline, stamp):
             raise ApplicationClosed('Published application deadline has passed')
-        if source.get('italian_agency_slug_triage') and published:
+        if (source.get('italian_agency_slug_triage') or source.get('agency_slug_country')) and published:
             try:
                 future=datetime.fromisoformat(published.strip().replace('Z','+00:00')).date()>datetime.fromisoformat(stamp).date()
             except (AttributeError,ValueError):
@@ -227,13 +244,21 @@ def _verify_vacancy(record, source, client, stamp, observation=None):
             r'(?:e )?scadut[oa]|(?:e stat[oa] )?chius[oa])\b',
             fold(doc.text)):
         raise ApplicationClosed('Official Italian posting says it is closed')
-    if (observation is not None and source.get('italian_agency_slug_triage')
-            and record.get('agency_sitemap_current') and len(matching_posts)==1 and fresh_deadline
-            and not expired(fresh_deadline, stamp)):
-        # This evidence ends at the identified vacancy. Application proof
-        # still requires the independent checks below.
-        observation['current_listing'] = dict(
-            method='official-sitemap-live-jobposting', valid_through=fresh_deadline)
+    if source.get('agency_slug_country')=='ES' and re.search(
+            r'\b(?:esta )?(?:oferta|vacante|posicion) (?:ya no esta disponible|'
+            r'(?:ha )?caducad[oa]|cerrad[oa])\b', fold(doc.text)):
+        raise ApplicationClosed('Official Spanish posting says it is closed')
+    if (observation is not None and (source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
+            and record.get('agency_sitemap_current') and len(matching_posts)==1):
+        if fresh_deadline and not expired(fresh_deadline,stamp):
+            # Vacancy identity and application proof are checked independently.
+            observation['current_listing']=dict(method='official-sitemap-live-jobposting',valid_through=fresh_deadline)
+        elif (not matching_posts[0].get('validThrough')
+                and source.get('published_listing_platform')=='teamtailor'
+                and teamtailor_published_listing(body,doc.url,matching_dates[0][0],stamp)):
+            # Discovering the frame only confirms that this posting is advertised.
+            # We do not treat the frame URL as verified application evidence.
+            observation['current_listing']=dict(method='teamtailor-sitemap-same-job-form-frame')
     if source.get('application_check') == PERSONIO_STATIC_FORM:
         reviewed = personio_static_application(record, source, client, doc, stamp)
         return dict(reviewed, valid_through=fresh_deadline, vacancy_match='personio-posting-id',

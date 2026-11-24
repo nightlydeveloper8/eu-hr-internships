@@ -51048,5 +51048,74 @@
     "reviewed_on": "2026-11-23",
     "status": "reviewed-active",
     "review_notes": "Scope is restricted to www.adecco.com/it-it Italian job details. No restricted paths or application submission."
-  }
+  },
+    {
+      "adapter": "employer-sitemap",
+      "enabled": false,
+      "collection_activation_hold": true,
+      "collection_lot": "AGENZIE-ES",
+      "staffing_agency": true,
+      "target_countries": [
+        "ES"
+      ],
+      "url_slug_prefilter": true,
+      "agency_slug_country": "ES",
+      "max_sitemaps": 1,
+      "max_requests": 65,
+      "collection_seconds": 180,
+      "collection_delay": 2,
+      "status": "reviewed-disabled",
+      "reviewed_on": "2026-11-24",
+      "id": "held-adecco-es-jobposting",
+      "company_id": "adecco",
+      "employer": "Adecco España",
+      "employer_tokens": [
+        "adecco"
+      ],
+      "allowed_hosts": [
+        "www.adecco.com"
+      ],
+      "career_url": "https://www.adecco.com/es-es",
+      "sitemaps": [
+        "https://www.adecco.com/sitemap-jobs-spain-es.xml"
+      ],
+      "job_url_pattern": "^https://www\\.adecco\\.com/es-es/ofertas-trabajo/[^/?]+/[^/?]+/?$",
+      "permission_basis": "Public Spain job sitemap, same-host robots and public JSON-LD details; reviewed exact-site and company notices",
+      "review_notes": "Only Spain posting URLs and allowed read-only routes. No credentials or submission."
+    },
+    {
+      "adapter": "employer-sitemap",
+      "enabled": false,
+      "collection_activation_hold": true,
+      "collection_lot": "AGENZIE-ES",
+      "staffing_agency": true,
+      "target_countries": [
+        "ES"
+      ],
+      "url_slug_prefilter": true,
+      "agency_slug_country": "ES",
+      "max_sitemaps": 1,
+      "max_requests": 65,
+      "collection_seconds": 180,
+      "collection_delay": 2,
+      "status": "reviewed-disabled",
+      "reviewed_on": "2026-11-24",
+      "id": "held-grupo-ras-es-jobposting",
+      "company_id": "grupo-ras-espana",
+      "employer": "Grupo RAS España",
+      "employer_tokens": [
+        "grupo ras"
+      ],
+      "allowed_hosts": [
+        "empleo.gruporas.es"
+      ],
+      "career_url": "https://empleo.gruporas.es/jobs",
+      "sitemaps": [
+        "https://empleo.gruporas.es/sitemap.xml"
+      ],
+      "job_url_pattern": "^https://empleo\\.gruporas\\.es/jobs/\\d+-[^/?]+/?$",
+      "published_listing_platform": "teamtailor",
+      "permission_basis": "Tenant robots declares its sitemap and permits job details; reviewed tenant notices and Teamtailor published posting documentation",
+      "review_notes": "Same-host public Teamtailor JobPosting and same-posting application frame. The frame is an advertisement signal and does not establish direct application."
+    }
 ]

@@ -11,7 +11,7 @@ class ClassificationTests(unittest.TestCase):
                 actual=classify_role(row['title'],row.get('text',''),row.get('employment',''))
                 eligibility=None
                 if 'student_eligibility' in row:
-                    eligibility=italian_student_eligibility(row['title'],row.get('text',''))
+                    eligibility=student_eligibility_for_country(row.get('student_country','IT'),row['title'],row.get('text',''),row.get('employment',''))
                     self.assertEqual(eligibility,row['student_eligibility'])
                 self.assertEqual(actual is not None and eligibility!='excluded',row['include'])
                 if row.get('category'): self.assertIn(row['category'],actual['categories'])

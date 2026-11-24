@@ -19,7 +19,7 @@ UNDISCLOSED_AGENCY_CLIENT = re.compile(
 class PageParser(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.language=None;self.scripts=[];self.fragments=[];self.links=[];self._json=False;self._body=[]
+        self.language=None;self.scripts=[];self.fragments=[];self.links=[];self.teamtailor_application_frames=[];self._json=False;self._body=[]
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
         if tag=='html':self.language=a.get('lang')
@@ -27,6 +27,8 @@ class PageParser(HTMLParser):
         if tag=='article' and a.get('data-cmp-contentfragment-model','').endswith('danone-job-model'):
             self.fragments.append({k:v for k,v in a.items() if k in ('title','country','city','locale','posted','jobid','key','description','descriptionheader','positiontype','workfromhome')})
         if tag=='a' and a.get('href'):self.links.append(a['href'])
+        if tag=='turbo-frame' and a.get('id')=='application_form' and a.get('src'):
+            self.teamtailor_application_frames.append(a['src'])
     def handle_data(self,data):
         if self._json:self._body.append(data)
     def handle_endtag(self,tag):
@@ -67,11 +69,27 @@ def italian_agency_slug_candidate(url):
     title = slug_title('/'+slug).casefold()
     return bool(AGENCY_INTERNSHIP_SLUG.search(title) and AGENCY_HR_SLUG.search(title))
 
+SPANISH_AGENCY_STAGE = re.compile(r'\b(?:practic\w*|becari\w*|beca|intern|internship)\b')
+SPANISH_AGENCY_HR = re.compile(
+    r'\b(?:rrhh|rr hh|recursos humanos|recruit\w*|seleccio\w*|talent\w*|nomina\w*|people|personal|formacion)\b'
+)
+
+def spanish_agency_slug_candidate(url):
+    from .classify import fold
+    parts=unquote(urlsplit(url).path).rstrip('/').split('/')
+    slug=parts[-1]
+    if len(parts)>2 and re.fullmatch(r'(?:\d{4,}|\d+-\d+|[0-9a-f]{32}|[0-9a-f-]{36})',slug,re.I):
+        slug=parts[-2]
+    title=fold(slug_title('/'+slug))
+    return bool(SPANISH_AGENCY_STAGE.search(title) and SPANISH_AGENCY_HR.search(title))
+
+
 def sitemap_records(source,client):
     pending=list(source['sitemaps']);seen=set();job_urls=set();pattern=re.compile(source['job_url_pattern'])
     prefilter=source.get('url_slug_prefilter')==True;listed=0
-    matches_slug=italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
-    agency_triage=source.get('italian_agency_slug_triage')
+    country=source.get('agency_slug_country')
+    matches_slug=spanish_agency_slug_candidate if country=='ES' else italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
+    agency_triage=(source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
     lastmods={}
     while pending:
         url=approved(pending.pop(0),source)
@@ -125,7 +143,7 @@ def jobposting_dates(posting,source):
     if input_format and posted:
         try:posted=datetime.strptime(posted.strip(),input_format).date().isoformat()
         except (TypeError,ValueError,AttributeError):posted=None
-    if source.get('italian_agency_slug_triage') and posted and deadline:
+    if (source.get('italian_agency_slug_triage') or source.get('agency_slug_country')) and posted and deadline:
         try:
             start=datetime.fromisoformat(posted.strip().replace('Z','+00:00')).date()
             end=datetime.fromisoformat(deadline.strip().replace('Z','+00:00')).date()
