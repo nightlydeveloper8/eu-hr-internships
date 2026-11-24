@@ -56,6 +56,8 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
 - **Nessun ID esistente deve andare perso.** Gli ID sono hash stabili di fonte e posting; i record che riappaiono si riaprono.
   La chiusura richiede tre snapshot completi mancanti in almeno 48 ore; una fonte fallita o incompleta non conta come assenza.
 - Rispetta crawl delay e budget di richieste. Nei piloti misura sempre richieste GET, byte e tempo.
+- **Host con crawl delay lungo.** Contrassegna la fonte rivista con `slow_collection_lane: true` e specifica `collection_delay` e i budget. Tutte le fonti attive sullo stesso host sono assegnate a `slow-hosts.yml`, alle 03:17 UTC con concorrenza propria e limite di 60 minuti. Oggi la fonte è Gi Group Italia, con triage dalla sitemap e pausa di 120 s.
+  `collect.yml` alle 06:17 UTC importa soltanto l'ultimo artefatto completato di `main` se ha meno di 48 ore, corrisponde alle fonti correnti e porta nuove osservazioni. Il publish procede anche senza artefatto. Gli snapshot separati possono documentare chiusure esplicite. Le assenze contano solo negli inventari completi della raccolta ordinaria.
 - Le prove live vanno in staging (`.staging/`, ignorata da git) o in run `workflow_dispatch`, mai pubblicando su `main`.
 
 ## 5. Regole di dominio (non negoziabili)

@@ -10,11 +10,12 @@ from concurrent.futures import ThreadPoolExecutor,as_completed
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from urllib.parse import urlsplit
-from .pipeline import ROOT,read,write,now,process_source,finalize,deduplicate
+from .pipeline import ROOT,read,write,now,process_source,finalize,deduplicate,validate_catalog
 from .classify import COUNTRIES,canonical_url
 from .runtime import BudgetClient,PageCache
 LOG=logging.getLogger(__name__)
 MAX_SHARD_AGE=timedelta(hours=24)
+MAX_SLOW_STATE_AGE=timedelta(hours=48)
 EURES_RECHECK_AGE=timedelta(hours=24)
 CLOCK_SKEW=timedelta(minutes=5)
 
@@ -35,9 +36,9 @@ def collection_time(value):
     except (AttributeError,TypeError,ValueError) as exc:
         raise ValueError('Invalid timezone-aware collection timestamp') from exc
 
-def validate_shard_times(payload,clock):
+def validate_shard_times(payload,clock,max_age=MAX_SHARD_AGE):
     started=collection_time(payload.get('started_at'));finished=collection_time(payload.get('finished_at'))
-    if started>finished or started<clock-MAX_SHARD_AGE or finished>clock+CLOCK_SKEW:
+    if started>finished or started<clock-max_age or finished>clock+CLOCK_SKEW:
         raise ValueError('Expired, future or reversed shard timestamps; previous catalog retained')
     for part in payload.get('parts',[]):
         checked=collection_time(part.get('report',{}).get('checked_at'))
@@ -92,9 +93,7 @@ def shared_collection_hosts(sources):
     }
 
 
-def source_shard(source, shards, shared_hosts, slow_hosts=()):
-    if any(host in slow_hosts for host in source.get('allowed_hosts', [])):
-        return shards
+def source_shard(source, shards, shared_hosts):
     for host in source.get('allowed_hosts', []):
         if host in shared_hosts:
             return shard_for(shared_hosts[host][0], shards)
@@ -103,16 +102,26 @@ def source_shard(source, shards, shared_hosts, slow_hosts=()):
 
 def fingerprint(sources):return hashlib.sha256(json.dumps(sources,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 
-def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds=None,run_id=None,slow_lane=False):
-    total_shards=shards+int(slow_lane)
-    if shards<1 or not 0<=shard<total_shards:raise ValueError('Invalid shard')
-    run_id=collection_run_id(shards,run_id)
-    companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')]
-    if source_ids and set(source_ids)-{s['id'] for s in enabled}:raise ValueError('Unknown or disabled source IDs: '+str(sorted(set(source_ids)-{s['id'] for s in enabled})))
-    shared_hosts=shared_collection_hosts(enabled)
-    slow_hosts={host for source in enabled if slow_lane and source.get('slow_collection_lane')
+def split_collection_sources(sources):
+    enabled=[source for source in sources if source.get('enabled')]
+    slow_hosts={host for source in enabled if source.get('slow_collection_lane')
                 for host in source['allowed_hosts']}
-    selected=[s for s in enabled if source_shard(s,shards,shared_hosts,slow_hosts)==shard and (not source_ids or s['id'] in source_ids)]
+    regular, slow = [], []
+    for source in enabled:
+        lane = slow if slow_hosts.intersection(source.get('allowed_hosts',())) else regular
+        lane.append(source)
+    return regular, slow
+
+
+def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds=None,run_id=None,slow_lane=False):
+    if shards<1 or not 0<=shard<shards:raise ValueError('Invalid shard')
+    run_id=collection_run_id(shards,run_id)
+    companies,sources=provision_files()
+    regular,slow=split_collection_sources(sources)
+    enabled=slow if slow_lane else regular
+    if source_ids and set(source_ids)-{s['id'] for s in enabled}:raise ValueError('Unknown or disabled source IDs in collection lane: '+str(sorted(set(source_ids)-{s['id'] for s in enabled})))
+    shared_hosts=shared_collection_hosts(enabled)
+    selected=[s for s in enabled if source_shard(s,shards,shared_hosts)==shard and (not source_ids or s['id'] in source_ids)]
     from .employer_resolution import reviewed_source, validate_reviews
     selected_ids={s['id'] for s in selected}
     identity_reviews=[r for r in read(ROOT/'data/employer-identity-reviews.json',[])
@@ -142,7 +151,12 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
             for sid in company.get('source_ids',[]):regional[sid]=min(regional.get(sid,2),priority)
     selected.sort(key=lambda s:(not s.get('slow_collection_lane'),regional.get(s['id'],2),s['id'] not in known,s['adapter']=='universal-employer',-counts.get(s['id'],0),s['id']))
     BudgetClient.set_host_delays({host: delay for host, (anchor, delay) in shared_hosts.items()
-                                  if (shards if host in slow_hosts else shard_for(anchor, shards))==shard})
+                                  if shard_for(anchor, shards)==shard})
+    if slow_lane:
+        for source in selected:
+            if source.get('slow_collection_lane'):
+                BudgetClient.set_host_delays({host:source.get('collection_delay',.5)
+                                              for host in source['allowed_hosts']})
     parts=[]
     company_for={sid:c for c in companies for sid in c.get('source_ids',[])}
     def work(source):
@@ -178,10 +192,10 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
             parts.append(part)
             LOG.info('Shard %s: %s/%s employers; %s %s; %s HR matches',shard,len(parts),len(selected),source['employer'],part['report']['status'],len(part['jobs']))
             # A killed runner leaves a usable diagnostic checkpoint, never a partial catalog.
-            payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=total_shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=sorted(s['id'] for s in selected),parts=parts,complete=len(parts)==len(selected))
+            payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=sorted(s['id'] for s in selected),parts=parts,complete=len(parts)==len(selected))
             write(output or ROOT/'.staging/results'/('shard-'+str(shard)+'.json'),payload)
     if not selected:
-        payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=total_shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=[],parts=[],complete=True)
+        payload=dict(schema_version=1,run_id=run_id,shard=shard,shards=shards,registry_fingerprint=fingerprint(enabled),started_at=stamp,finished_at=now(),expected_source_ids=[],parts=[],complete=True)
         write(output or ROOT/'.staging/results'/('shard-'+str(shard)+'.json'),payload)
     return payload
 
@@ -200,37 +214,72 @@ def employer_report(companies,sources,parts,stamp,catalog_jobs=None):
     countries=[dict(code=code,name=name,companies_identified=sum(code in r['candidate_countries'] for r in rows),states=dict(Counter(r['state'] for r in rows if code in r['candidate_countries']))) for code,name in COUNTRIES.items()]
     return dict(generated_at=stamp,exhaustive=False,summary=summary,country_counting='Candidate country membership; multi-country employers counted once per country. Actual job locations require published evidence.',countries=countries,employers=rows)
 
-def merge(inputs,shards=8,output=ROOT/'data',run_id=None,slow_lane=False):
-    total_shards=shards+int(slow_lane)
+def load_slow_parts(path,sources,prior_report,clock):
+    """Consume an independent snapshot at most once, without gating publish."""
+    if path is None or not path.is_file():
+        return []
+    expected={source['id'] for source in sources}
+    previous={report['id']:report for report in prior_report.get('sources',[])}
+    try:
+        payload=read(path,{})
+        if (payload['schema_version']!=1 or payload['shards']!=1 or payload['shard']!=0
+                or not payload['complete'] or payload['registry_fingerprint']!=fingerprint(sources)):
+            raise ValueError('Wrong schema, incomplete state or changed slow source registry')
+        validate_shard_times(payload,clock,MAX_SLOW_STATE_AGE)
+        parts=payload['parts']
+        ids=[part['report']['id'] for part in parts]
+        if len(ids)!=len(expected) or set(ids)!=expected:
+            raise ValueError('Slow source assignments do not match')
+        accepted=[]
+        for part in parts:
+            report=part['report']
+            last=previous.get(report['id'],{}).get('checked_at')
+            if last and collection_time(report['checked_at'])<=collection_time(last):
+                continue
+            if any(job['source_id']!=report['id'] for job in part['jobs']):
+                raise ValueError('Unexpected source in slow vacancy')
+            validate_catalog(dict(schema_version=1,countries=COUNTRIES,jobs=part['jobs']))
+            # Independent snapshots provide positive observations and explicit
+            # closures. Regular absence accounting uses synchronous inventories.
+            accepted.append(dict(part,closure_eligible=[]))
+        return accepted
+    except (OSError,ValueError,KeyError,TypeError,AttributeError,AssertionError) as exc:
+        LOG.warning('Ignoring unavailable slow-host state: %s',exc)
+        return []
+
+
+def merge(inputs,shards=8,output=ROOT/'data',run_id=None,slow_state=None):
     if shards<1:raise ValueError('Invalid shard count')
     run_id=collection_run_id(shards,run_id);clock=collection_time(now());finished_times=[]
-    companies,sources=provision_files();enabled=[s for s in sources if s.get('enabled')];expected={s['id'] for s in enabled};seen=set();parts=[];payloads=[]
+    companies,sources=provision_files()
+    enabled,slow=split_collection_sources(sources)
+    expected={s['id'] for s in enabled};seen=set();parts=[]
     shared_hosts=shared_collection_hosts(enabled)
-    slow_hosts={host for source in enabled if slow_lane and source.get('slow_collection_lane')
-                for host in source['allowed_hosts']}
-    for i in range(total_shards):
+    for i in range(shards):
         files=list(Path(inputs).rglob('shard-'+str(i)+'.json'))
         if len(files)!=1:raise ValueError('Expected exactly one result for shard '+str(i))
-        p=read(files[0],{});payloads.append(p)
+        p=read(files[0],{})
         if p.get('run_id')!=run_id:raise ValueError('Shard belongs to another collection run; previous catalog retained')
         finished_times.append(validate_shard_times(p,clock))
-        if p.get('shard')!=i or p.get('shards')!=total_shards or not p.get('complete') or p.get('registry_fingerprint')!=fingerprint(enabled):raise ValueError('Incomplete/stale shard '+str(i)+'; previous catalog retained')
-        assigned={s['id'] for s in enabled if source_shard(s,shards,shared_hosts,slow_hosts)==i}
+        if p.get('shard')!=i or p.get('shards')!=shards or not p.get('complete') or p.get('registry_fingerprint')!=fingerprint(enabled):raise ValueError('Incomplete/stale shard '+str(i)+'; previous catalog retained')
+        assigned={s['id'] for s in enabled if source_shard(s,shards,shared_hosts)==i}
         ids=[part['report']['id'] for part in p['parts']]
         if set(ids)!=assigned or len(ids)!=len(set(ids)) or set(ids)&seen:raise ValueError('Missing, duplicate or unexpected employer results in shard '+str(i))
         seen.update(ids);parts.extend(p['parts'])
-    if seen!=expected:raise ValueError('Every enabled employer must be attempted before publishing')
+    if seen!=expected:raise ValueError('Every regular source must be attempted before publishing')
     stamp=max(finished_times).isoformat()
-    result,coverage=finalize(sources,enabled,read(output/'catalog.json',{'jobs':[]}),read(output/'coverage.json',{}),parts,stamp,output)
+    prior_report=read(output/'coverage.json',{})
+    parts.extend(load_slow_parts(slow_state,slow,prior_report,collection_time(stamp)))
+    result,coverage=finalize(sources,enabled+slow,read(output/'catalog.json',{'jobs':[]}),prior_report,parts,stamp,output)
     employers=employer_report(companies,sources,parts,stamp,result['jobs'])
     write(output/'employer-collection.json',employers)
     LOG.info('All-employer collection: %s',employers['summary']);return result,coverage,employers
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('command',choices=['provision','collect','merge']);p.add_argument('--shard',type=int,default=0);p.add_argument('--shards',type=int,default=8);p.add_argument('--workers',type=int,default=6);p.add_argument('--output',type=Path);p.add_argument('--inputs',type=Path,default=ROOT/'.staging/results');p.add_argument('--sources',nargs='+');p.add_argument('--seconds',type=int);p.add_argument('--slow-lane',action='store_true');p.add_argument('--run-id',help='Shared ID for this collection run; defaults to COLLECTOR_RUN_ID');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('command',choices=['provision','collect','merge']);p.add_argument('--shard',type=int,default=0);p.add_argument('--shards',type=int,default=8);p.add_argument('--workers',type=int,default=6);p.add_argument('--output',type=Path);p.add_argument('--inputs',type=Path,default=ROOT/'.staging/results');p.add_argument('--sources',nargs='+');p.add_argument('--seconds',type=int);p.add_argument('--slow-lane',action='store_true',help='Collect only independently scheduled slow hosts');p.add_argument('--slow-state',type=Path,help='Optional independent snapshot to merge');p.add_argument('--run-id',help='Shared ID for this collection run; defaults to COLLECTOR_RUN_ID');a=p.parse_args()
     logging.basicConfig(level=logging.INFO,format='%(asctime)s %(levelname)s %(message)s')
     if a.command=='provision':
         c,s=provision_files();print(len(c),'employers;',sum(x.get('enabled',False) for x in s),'active collectors')
     elif a.command=='collect':collect_shard(a.shard,a.shards,a.workers,a.output,a.sources,a.seconds,a.run_id,slow_lane=a.slow_lane)
-    else:merge(a.inputs,a.shards,a.output or ROOT/'data',a.run_id,slow_lane=a.slow_lane)
+    else:merge(a.inputs,a.shards,a.output or ROOT/'data',a.run_id,slow_state=a.slow_state)
 if __name__=='__main__':main()

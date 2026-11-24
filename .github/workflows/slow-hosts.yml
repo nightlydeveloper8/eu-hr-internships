@@ -1,0 +1,43 @@
+name: Slow employer hosts
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: employer-slow-hosts
+  cancel-in-progress: false
+jobs:
+  snapshot:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      COLLECTOR_RUN_ID: ${{ github.run_id }}/${{ github.run_attempt }}
+      COLLECTOR_CACHE_DIR: .cache/collector
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache/restore@v4
+        with:
+          path: .cache/collector
+          key: employer-slow-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: employer-slow-v1-
+      - name: Collect rate-limited public listings
+        run: python -m collector.daily collect --shards 1 --workers 1 --slow-lane --output .staging/slow-hosts/state.json
+      - uses: actions/cache/save@v4
+        continue-on-error: true
+        with:
+          path: .cache/collector
+          key: employer-slow-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slow-hosts-state
+          path: .staging/slow-hosts/state.json
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 3

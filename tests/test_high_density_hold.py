@@ -49,9 +49,6 @@ class HighDensityHoldTests(unittest.TestCase):
         self.assertEqual(source_shard(reviewed, 16, hosts), shard_for(existing["id"], 16))
         self.assertEqual(source_shard(existing, 16, hosts), shard_for(existing["id"], 16))
 
-        self.assertEqual(source_shard(reviewed,16,hosts,{"www.gigroup.it"}),16)
-        self.assertEqual(source_shard(existing,16,hosts,{"www.gigroup.it"}),16)
-
         host = "www.gigroup.it"
         url = "https://" + host
         with patch.dict("collector.runtime._DELAYS", {}, clear=True), patch.dict(

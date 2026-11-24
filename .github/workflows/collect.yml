@@ -73,7 +73,7 @@ jobs:
           key: employer-pages-v1-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: employer-pages-v1-${{ matrix.shard }}-
       - name: Collect every assigned employer and verify matching links
-        run: python -m collector.daily collect --shard ${{ matrix.shard }} --shards 16 --workers 6 --slow-lane
+        run: python -m collector.daily collect --shard ${{ matrix.shard }} --shards 16 --workers 6
       - name: Save employer page checkpoints for the next morning
         if: always()
         uses: actions/cache/save@v4
@@ -89,49 +89,15 @@ jobs:
           if-no-files-found: error
           include-hidden-files: true
           retention-days: 7
-  collect-slow:
-    needs: test
-    runs-on: ubuntu-24.04
-    timeout-minutes: 36
-    env:
-      COLLECTOR_CACHE_DIR: .cache/collector
-      PYTHONUNBUFFERED: '1'
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Restore slow lane checkpoints
-        uses: actions/cache/restore@v4
-        with:
-          path: .cache/collector
-          key: employer-slow-v1-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: employer-slow-v1-
-      - name: Collect rate-limited public listings
-        run: python -m collector.daily collect --shard 16 --shards 16 --workers 1 --slow-lane
-      - name: Save slow lane checkpoints
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: .cache/collector
-          key: employer-slow-v1-${{ github.run_id }}-${{ github.run_attempt }}
-      - name: Retain slow lane results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: employer-shard-16
-          path: .staging/results/shard-16.json
-          if-no-files-found: error
-          include-hidden-files: true
-          retention-days: 7
   publish:
-    needs: [test, collect, collect-slow]
+    needs: [test, collect]
     if: ${{ always() && needs.test.result == 'success' && !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
       contents: write
       issues: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -142,13 +108,23 @@ jobs:
           pattern: employer-shard-*
           path: .staging/results
           merge-multiple: true
+      - name: Retrieve completed slow-host state if available
+        continue-on-error: true
+        timeout-minutes: 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_id=$(gh run list --workflow slow-hosts.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          if [ -n "$run_id" ]; then
+            gh run download "$run_id" --name slow-hosts-state --dir .staging/slow-hosts
+          fi
       - name: Record per-country metric before this run
         run: python scripts/country_metric.py --json .staging/metrics/country-metric-before.json > /dev/null
       - name: Snapshot published inputs for cycle monitoring
         run: cp data/{catalog,coverage}.json .staging/metrics/
-      - name: Require a result for every employer, merge and validate
+      - name: Require regular shards, merge and validate
         run: |
-          python -m collector.daily merge --shards 16 --slow-lane
+          python -m collector.daily merge --shards 16 --slow-state .staging/slow-hosts/state.json
           touch .staging/metrics/cycle-finalized
           python scripts/company_coverage.py
           python -m collector.pipeline --validate
