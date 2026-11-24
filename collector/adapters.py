@@ -102,8 +102,10 @@ def _record(source, job_id,title,location,text,url,apply=None,**extra):
     if not job_id or not title or not url: raise ValueError('Malformed source record')
     return dict(source_id=source['id'],external_id=str(job_id),employer=source['employer'],title=plain(title),location=plain(location),text=plain(text),url=url,apply_url=apply or url,inventory_evidence='current-employer-feed',**extra)
 
-def collect(source,client):
-    if source.get('collection_activation_hold'):
+def collect(source,client,*,staging=False):
+    held_staging = (staging and source.get('enabled') is False
+                    and source['adapter'] in ('sitemap-jobposting', 'workday'))
+    if source.get('collection_activation_hold') and not held_staging:
         raise ValueError('Source is on collection activation hold: '+source['id'])
     kind,board=source['adapter'],quote(source.get('board',''),safe='')
     out=[]
@@ -133,6 +135,9 @@ def collect(source,client):
             for row in rows:row['external_id']=urlsplit(url).hostname+':'+row['external_id']
             records.extend(rows)
         return records
+    if kind in ('sitemap-jobposting', 'workday'):
+        from .sitemap_jobposting import collect_records
+        return collect_records(source, client)
     if kind=='sf-rmk':
         from .sf_rmk import collect_records
         return collect_records(source,client)
@@ -190,6 +195,9 @@ def collect(source,client):
     return out
 
 def enrich(record,source,client,defer_expiry=False):
+    if source['adapter'] in ('sitemap-jobposting', 'workday'):
+        from .sitemap_jobposting import job_record
+        return job_record(record, source, client)
     if source['adapter']=='sf-rmk':
         from .sf_rmk import job_record
         return job_record(record,source,client)

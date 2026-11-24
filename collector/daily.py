@@ -169,7 +169,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
         if source.get('retry_transient_reads'):
             client.retry_hosts=frozenset(source['allowed_hosts'])
         part=process_source(source,client,stamp,counts.get(source['id'],0),cache=PageCache(source['id']))
-        if (part['report']['status']=='failed' and source['adapter'] not in ('universal-employer','sf-rmk')
+        if (part['report']['status']=='failed' and source['adapter'] not in ('universal-employer','sf-rmk','sitemap-jobposting','workday')
                 and not (source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))
                 and source.get('source_kind')!='public-employment-service' and client.remaining()>15):
             c=company_for.get(source['id'],{});starts=list(dict.fromkeys(u for u in [source.get('career_url'),c.get('website_url')] if u))

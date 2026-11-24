@@ -1,0 +1,4883 @@
+{
+  "CORPORATE-SITEMAP": {
+    "input_rows": 95,
+    "dispositions": {
+      "excluded": 1,
+      "covered": 33,
+      "hold": 61
+    },
+    "projected_shard_budget": {
+      "0": {
+        "sources": 5,
+        "requests": 85,
+        "serial_seconds": 275
+      },
+      "1": {
+        "sources": 6,
+        "requests": 102,
+        "serial_seconds": 330
+      },
+      "2": {
+        "sources": 2,
+        "requests": 34,
+        "serial_seconds": 110
+      },
+      "3": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "4": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "5": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "6": {
+        "sources": 7,
+        "requests": 119,
+        "serial_seconds": 385
+      },
+      "7": {
+        "sources": 5,
+        "requests": 85,
+        "serial_seconds": 275
+      },
+      "8": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "9": {
+        "sources": 3,
+        "requests": 51,
+        "serial_seconds": 165
+      },
+      "10": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "11": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "12": {
+        "sources": 2,
+        "requests": 34,
+        "serial_seconds": 110
+      },
+      "13": {
+        "sources": 6,
+        "requests": 102,
+        "serial_seconds": 330
+      },
+      "14": {
+        "sources": 5,
+        "requests": 85,
+        "serial_seconds": 275
+      },
+      "15": {
+        "sources": 2,
+        "requests": 34,
+        "serial_seconds": 110
+      }
+    },
+    "sources": [
+      {
+        "employer": "Kering",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 70,
+        "csv_requests": 10,
+        "csv_examples": [
+          "https://www.kering.com/fr/talent/offres-d-emploi/europe/saint-laurent-stagiaire-assistante-rh/",
+          "https://www.kering.com/en/talent/job-offers/asia/balenciaga-human-resource-intern/",
+          "https://www.kering.com/jp/talent/job-offers-jp/europe/kering-projet-paiement-monetique-intern/",
+          "https://www.kering.com/jp/talent/job-offers-jp/europe/kering-talent-management-and-analytics-intern-stage/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "www.kering.com",
+        "csv_eu_signal": 0,
+        "disposition": "excluded",
+        "access_review": "excluded",
+        "exclusion_url": "https://www.kering.com/en/legal/",
+        "exclusion_quote": "Use any deep-link, page-scrape, spider, robot, crawl, index, Internet agent or other automatic device"
+      },
+      {
+        "employer": "BMW",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 19,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.bmwgroup.com/job/Regensburg-Praktikant-Personaladministration-und-Vertragsmanagement-(wmx)-BY-93055/1457132",
+          "https://jobs.bmwgroup.com/job/Landshut-Praktikant-HR-Services-(wmx)-BY-84030/1444222233/",
+          "https://jobs.bmwgroup.com/job/München-Praktikant-Recruiting-und-Vertragsmanagement-(wmx)-BY-80809/1457124733/",
+          "https://jobs.bmwgroup.com/job/Leipzig-Praktikant-Personalbetreuung-und-Entgeltabrechnung-(wmx)-SN-04349/1457194433/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.bmwgroup.com",
+        "csv_eu_signal": 10,
+        "disposition": "covered",
+        "source_refs": [
+          "held-sf-rmk-bmw-group"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Richemont",
+        "csv_family": "workday",
+        "csv_slug_signals": 17,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.richemont.com/en/jobs/jr131577/manager-international-learning-development-mwd/",
+          "https://careers.richemont.com/zh-hant/工作/jr135191/talent-acquisition-intern-benelux-nordics/",
+          "https://careers.richemont.com/en/jobs/jr133108/stage-assistant-rh-et-talent-acquisition-campus-hf/",
+          "https://careers.richemont.com/it/opportunita-di-lavoro/jr130713/swiss-talent-acquisition-intern/"
+        ],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 4,
+        "host": "careers.richemont.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-richemont-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Richemont",
+          "career_url": "https://careers.richemont.com",
+          "allowed_hosts": [
+            "careers.richemont.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "allowed",
+          "permission_basis": "Percorso pubblico di recruiting. Pagina legale e footer rivisti: nessun divieto espresso per questo canale. Robots obbligatorio a ogni esecuzione.",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Revisione limitata alle sitemap e ai dettagli anonimi sullo stesso host.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "job_url_pattern": "^/en/[^/]+/jr\\d+/",
+          "access_review_url": "https://careers.richemont.com/en/jobs/"
+        },
+        "robots_url": "https://careers.richemont.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1,
+        "staging_bytes_read": 897832,
+        "staging_recent_scan": {
+          "status": "partial",
+          "checked_at": "2026-11-24T15:15:58.171612+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 13,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": [
+            {
+              "url": "https://careers.richemont.com/en/jobs/jr133108/stage-assistant-rh-et-talent-acquisition-campus-hf/",
+              "error": "HTTP Error 403: Forbidden"
+            },
+            {
+              "url": "https://careers.richemont.com/en/jobs/jr135041/talent-acquisition-europe-intern/",
+              "error": "Sitemap host stopped or request budget exhausted"
+            }
+          ]
+        }
+      },
+      {
+        "employer": "L'Oréal",
+        "csv_family": "radancy",
+        "csv_slug_signals": 12,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.loreal.com/en/job/dusseldorf/praktikum-m-w-d-hr-business-partner-ab-marz-2027/3456/43955561408",
+          "https://careers.loreal.com/en/job/hoofddorp/internships-hr-paid-february-2027/3456/43655304704",
+          "https://careers.loreal.com/en/job/clichy/stage-6-mois-a-partir-de-janvier-2027-projet-transformation-digitale-and-ia-jur",
+          "https://careers.loreal.com/en/job/casablanca/stage-pfe-communication-and-hr-and-employer-branding/3456/46371239168"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.loreal.com",
+        "csv_eu_signal": 4,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-l-oreal"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Danone",
+        "csv_family": "icims",
+        "csv_slug_signals": 9,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.danone.com/en-global/jobs/internship-hr-reporting-data-governance-intern-january-2027-h-f-28600-en-us.ht",
+          "https://careers.danone.com/en-global/jobs/internship-program-danone-in-talent-acquisition-team-29170-en-us.html",
+          "https://careers.danone.com/en-global/jobs/internship-global-hr-talent-analyst-intern-january-2027-h-f-28605-en-us.html",
+          "https://careers.danone.com/en-global/jobs/stage-charge-e-de-formation-projets-rh-janvier-2027-h-f-29216-fr-fr.html"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.danone.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-danone"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Roche",
+        "csv_family": "phenom",
+        "csv_slug_signals": 9,
+        "csv_requests": 12,
+        "csv_examples": [
+          "https://careers.roche.com/es/es/job/202607-118294/People-Relations-Trainee",
+          "https://careers.roche.com/es/es/job/202610-125165/HR-Administrative-Support-Intern",
+          "https://careers.roche.com/global/en/job/ROCHGLOBAL202607118642EXTERNALENGLOBAL/People-Operations-Trainee-Pay-Time-Benefi",
+          "https://careers.roche.com/global/en/job/ROCHGLOBAL202608122317EXTERNALENGLOBAL/Praktikum-im-Bereich-Recruitment-Strategy"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.roche.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-roche"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Mercedes-Benz Group",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 8,
+        "csv_requests": 6,
+        "csv_examples": [
+          "https://jobs.mercedes-benz.com/hu/praktikant*in-hr-prozessmanagement-and-document-lifecycle-mit-schwerpunkt-testing-und-",
+          "https://jobs.mercedes-benz.com/en/praktikant*in-human-resources-247691-mer0004ave",
+          "https://jobs.mercedes-benz.com/en/praktikant*in-personalmanagement-240044-mer00048c9",
+          "https://jobs.mercedes-benz.com/en/intern-human-resources-development-(mfdx)-246791-j000246791"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.mercedes-benz.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-mercedes-benz-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Mercedes-Benz Group",
+          "career_url": "https://jobs.mercedes-benz.com",
+          "allowed_hosts": [
+            "jobs.mercedes-benz.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.mercedes-benz.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Schaeffler",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 8,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.schaeffler.com/job/Kuala-Lumpur-Intern-(HR-Transformation)-52200/1440494333/",
+          "https://jobs.schaeffler.com/job/Höchstadt-Praktikum-im-Personalmanagement-Human-Resources-(dmw)-91315/1383124733/",
+          "https://jobs.schaeffler.com/job/Herzogenaurach-Praktikum-im-Bereich-HR-Business-Partner-Studierendenbetreuung-(mwd)-9107",
+          "https://jobs.schaeffler.com/job/Regensburg-Internship-Project-Management-for-HR-Digital-Transformation-Program-(dfm)-930"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.schaeffler.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "held-sf-rmk-schaeffler-rmk"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Accor",
+        "csv_family": "phenom",
+        "csv_slug_signals": 8,
+        "csv_requests": 6,
+        "csv_examples": [
+          "https://careers.accor.com/global/en/job/stage-ressources-humaines-a-partir-de-janvier-2027-6-mois-h-f-in-sofitel-paris-a",
+          "https://careers.accor.com/global/en/job/hr-trainee-in-mama-shelter-roma-rome-italy-jid-117831",
+          "https://careers.accor.com/global/en/job/stagiaire-ressources-humaines-h-f-nb-in-mama-shelter-paris-east-paris-france-jid",
+          "https://careers.accor.com/global/en/job/practicas-recursos-humanos-so-sotogrande-in-so-sotogrande-spa-and-golf-resort-ho"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.accor.com",
+        "csv_eu_signal": 6,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-accor"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Vinci",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 8,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.vinci.com/en/job/genay/ytd-stage-charge-de-missions-rh-f-h/1440/46209399744",
+          "https://jobs.vinci.com/en/job/salvador/estagiario-a-de-rh-treinamento/1440/46856766144",
+          "https://jobs.vinci.com/en/job/saint-herblain/stagiaire-charge-e-de-missions-rh-f-h/1440/45577915264",
+          "https://jobs.vinci.com/en/job/auvergne-rhone-alpes/charge-e-de-developpement-rh-stagiaire-f-h/1440/46286926144"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.vinci.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-vinci-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Vinci",
+          "career_url": "https://jobs.vinci.com",
+          "allowed_hosts": [
+            "jobs.vinci.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.vinci.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Infineon Technologies",
+        "csv_family": "eightfold",
+        "csv_slug_signals": 7,
+        "csv_requests": 4,
+        "csv_examples": [
+          "https://jobs.infineon.com/careers/job/563808972144483-internship-hr-talent-development-service-melaka?domain=infineon.co",
+          "https://jobs.infineon.com/careers/job/563808972330858-praktikum-global-talent-marketing-and-employer-branding-f-m-div--m",
+          "https://jobs.infineon.com/careers/job/563808972401836-industrial-internship-talent-acquisition-services-melaka?domain=in",
+          "https://jobs.infineon.com/careers/job/563808972373139-hr-er-industrial-trainee-melaka?domain=infineon.com"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.infineon.com",
+        "csv_eu_signal": 1,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-infineon"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Nestlé",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 7,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobdetails.nestle.com/job/Praha-HR-Trainee-Talent-tým/1455940633/",
+          "https://jobdetails.nestle.com/job/Panama-Intern-HR/1445817633/",
+          "https://jobdetails.nestle.com/job/AMSTELVEEN-Stagiair(e)-HR-Learning-&amp;-Development/1451012933/",
+          "https://jobdetails.nestle.com/job/Esplugues-Llobregat-Spain-Youth-Internship-HR-FebruaryMarch-2027-B-08950/1451165033/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobdetails.nestle.com",
+        "csv_eu_signal": 1,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobdetails-nestle-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Nestlé",
+          "career_url": "https://jobdetails.nestle.com",
+          "allowed_hosts": [
+            "jobdetails.nestle.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobdetails.nestle.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Thales",
+        "csv_family": "phenom",
+        "csv_slug_signals": 6,
+        "csv_requests": 12,
+        "csv_examples": [
+          "https://careers.thalesgroup.com/global/en/job/R0344574/STAGE-Assistant-e-RH-F-H",
+          "https://careers.thalesgroup.com/global/en/job/R0344444/STAGE-Compensation-d’une-rotation-par-traitement-IA-sur-capteur-é",
+          "https://careers.thalesgroup.com/global/en/job/R0344097/STAGE-Talent-Acquisition-Partner-F-H",
+          "https://careers.thalesgroup.com/global/en/job/R0339185/Stage-Ressources-humaines"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.thalesgroup.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-thales"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "ING Bank Śląski",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 6,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.ing.com/en/job/frankfurt-am-main/praktikant-payroll-m-w-d/3121/46286546624",
+          "https://careers.ing.com/en/job/frankfurt-am-main/praktikant-human-resources-knowledge-management-w-m-d/3121/46679847040",
+          "https://careers.ing.com/en/job/luxembourg/internship-hr-operations/3121/38478345920",
+          "https://careers.ing.com/en/job/luxembourg/internship-hr-communication-and-intranet/3121/46201154432"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.ing.com",
+        "csv_eu_signal": 6,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-ing"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "ASML",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 6,
+        "csv_requests": 3,
+        "csv_examples": [
+          "https://www.asml.com/en/careers/find-your-job/hr-internship-support-the-internships-office-j00355662",
+          "https://www.asml.com/en/careers/find-your-job/hr-communications-internship-internal-communications-employee-engagement-j",
+          "https://www.asml.com/en/careers/find-your-job/hr--business-administration-internship-early-career-events-programs-and-ta",
+          "https://www.asml.com/en/careers/find-your-job/human-resource-management--business-administration-internship-onboarding-o"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "www.asml.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-asml"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "DHL Group",
+        "csv_family": "phenom",
+        "csv_slug_signals": 5,
+        "csv_requests": 12,
+        "csv_examples": [
+          "https://careers.dhl.com/apac/en/job/DPDHGLOBALAV379260ENAPACEXTERNAL/Trainee-Human-Resources-HR-Systeme-und-Prozesse-m-w",
+          "https://careers.dhl.com/apac/en/job/DPDHGLOBALAV376928ENAPACEXTERNAL/Praktikant-m-w-d-Digitalisierung-Automatisierung-HR",
+          "https://careers.dhl.com/apac/en/job/DPDHGLOBALBR44654ENAPACEXTERNALLUMESSELATAM/ESTAGIARIO-A-DE-RECURSOS-HUMANOS",
+          "https://careers.dhl.com/apac/en/job/DPDHGLOBALAV391943ENAPACEXTERNAL/Intern-HR-Services-Payroll"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.dhl.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-dhl-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "DHL Group",
+          "career_url": "https://careers.dhl.com",
+          "allowed_hosts": [
+            "careers.dhl.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.dhl.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 36
+      },
+      {
+        "employer": "MTU Aero Engines",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 5,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.mtu.de/job/München-Praktikum-HR-Operations-Betreuung-von-Studierenden-(all-genders)-80995/1351647055/",
+          "https://jobs.mtu.de/job/München-Praktikum-Compensation-&amp;-Benefits-mit-Schwerpunkt-HR-Analytics-(all-genders)-80995/1",
+          "https://jobs.mtu.de/job/Nova-Pazova-HR-Intern-Development-area-(all-genders)-22330/1375693455/",
+          "https://jobs.mtu.de/job/München-Praktikum-HR-Operations-Betreuung-von-Auszubildenden-(all-genders)-80995/1377507355/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.mtu.de",
+        "csv_eu_signal": 3,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-mtu-de",
+          "adapter": "sitemap-jobposting",
+          "employer": "MTU Aero Engines",
+          "career_url": "https://jobs.mtu.de",
+          "allowed_hosts": [
+            "jobs.mtu.de"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.mtu.de/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Capgemini",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 5,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.capgemini.com/job/Diegem-Recruiter-Internship-2027/1423271733/",
+          "https://careers.capgemini.com/job/Casablanca-Talent-Acquisition-Internship-Program/1420288633/",
+          "https://careers.capgemini.com/job/Issy-les-Moulineaux-Consultante-Consultant-Transformation-RH-&amp;-Organisation-Stage/",
+          "https://careers.capgemini.com/job/Utrecht-Stage-Learning-&amp;-Development/1215389901/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.capgemini.com",
+        "csv_eu_signal": 1,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-capgemini-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Capgemini",
+          "career_url": "https://careers.capgemini.com",
+          "allowed_hosts": [
+            "careers.capgemini.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.capgemini.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "BASF",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 4,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://basf.jobs/dark_green_agri/job/Limburgerhof-Praktikum-Human-Resource-Management-(mwd)/1445589933/",
+          "https://basf.jobs/TSA/job/Jundiai-Estágio-em-Recursos-Humanos/1452936433/",
+          "https://basf.jobs/dark_blue_SA/job/San-Luis-Potosi-Becarioa-de-Recursos-Humanos/1405691333/",
+          "https://basf.jobs/dark_blue_SA/job/Puebla-Becarioa-de-Recursos-Humanos/1450950433/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "basf.jobs",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-basf-jobs",
+          "adapter": "sitemap-jobposting",
+          "employer": "BASF",
+          "career_url": "https://basf.jobs",
+          "allowed_hosts": [
+            "basf.jobs"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://basf.jobs/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "SAP",
+        "csv_family": "smartrecruiters",
+        "csv_slug_signals": 4,
+        "csv_requests": 8,
+        "csv_examples": [
+          "https://jobs.sap.com/en/jobs/744000161307409/sap-ixp-intern-recruiting-associate-tech-td-limited-full-time/",
+          "https://jobs.sap.com/en/jobs/744000159389405/sap-ixp-intern-tech-recruitment-limited-contract/",
+          "https://jobs.sap.com/en/jobs/744000162101709/sap-ixp-intern-tech-recruiter/",
+          "https://jobs.sap.com/en/jobs/744000161777343/emea-recruitment-admin-intern/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.sap.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-sap"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Volkswagen",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 4,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.volkswagen-group.com/Volkswagen/job/Poznań-Praktyka-projektowa-w-dziale-HR-61-060/1376101733/",
+          "https://jobs.volkswagen-group.com/dxone/job/Wolfsburg-Praktikantin-studentischer-Mitarbeiterin-im-Bereich-HR-Development",
+          "https://jobs.volkswagen-group.com/Porsche-Holding-Austria/job/Salzburg-International-Management-Trainee-HR-(wmd)-5020/13",
+          "https://jobs.volkswagen-group.com/Porsche-Holding-Austria/job/Salzburg-Praktikant-Personaladministration-(wmd)-5020/1453"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.volkswagen-group.com",
+        "csv_eu_signal": 2,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-volkswagen-group-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Volkswagen",
+          "career_url": "https://jobs.volkswagen-group.com",
+          "allowed_hosts": [
+            "jobs.volkswagen-group.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.volkswagen-group.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "TUI",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 4,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.tuigroup.com/en/job/zaventem/stage-hr-support-officer/3116/45699816128",
+          "https://careers.tuigroup.com/en/job/hamburg/praktikant-in-all-gender-hr-and-recruiting/3117/46984938752",
+          "https://careers.tuigroup.com/en/job/ostend/stage-hr-reward/3116/46358220224",
+          "https://careers.tuigroup.com/en/job/rijswijk/stage-payroll/3116/46668620352"
+        ],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "host": "careers.tuigroup.com",
+        "csv_eu_signal": 1,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-tuigroup-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "TUI",
+          "career_url": "https://careers.tuigroup.com",
+          "allowed_hosts": [
+            "careers.tuigroup.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "allowed",
+          "permission_basis": "Percorso pubblico di recruiting. Pagina legale e footer rivisti: nessun divieto espresso per questo canale. Robots obbligatorio a ogni esecuzione.",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Revisione limitata alle sitemap e ai dettagli anonimi sullo stesso host.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "job_url_pattern": "^/en/",
+          "access_review_url": "https://careers.tuigroup.com/en/cookie-notice"
+        },
+        "robots_url": "https://careers.tuigroup.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0,
+        "staging_bytes_read": 39,
+        "staging_recent_scan": {
+          "status": "failed",
+          "checked_at": "2026-11-24T15:15:58.171612+00:00",
+          "error": "Redirect outside approved source scope"
+        }
+      },
+      {
+        "employer": "ABB",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 4,
+        "csv_requests": 12,
+        "csv_examples": [
+          "https://careers.abb/finland/fi/job/JR00053876/Student-Internship-Talent-Acquisition-Tools-Communication-Enablement",
+          "https://careers.abb/global/fr/job/JR00054047/Student-Internship-HR-Intern-with-French",
+          "https://careers.abb/global/fr/job/JR00048512/HR-Operations-Intern-Dutch-Speaker",
+          "https://careers.abb/global/fr/job/JR00054077/Human-Resources-Internship"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.abb",
+        "csv_eu_signal": 1,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-abb"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Randstad",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 4,
+        "csv_requests": 3,
+        "csv_examples": [
+          "https://www.werkenbijrandstad.nl/vacature/1752/recruitment-consultant-trainees-1",
+          "https://www.werkenbijrandstad.nl/vacature/1814/stage-recruitment-en-hr",
+          "https://www.werkenbijrandstad.nl/vacature/1748/recruitment-consultant-finance-trainees",
+          "https://www.werkenbijrandstad.nl/vacature/1749/talent-acquisition-specialist-trainees-1"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "www.werkenbijrandstad.nl",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-randstad-groep-nederland"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Allianz",
+        "csv_family": "phenom",
+        "csv_slug_signals": 3,
+        "csv_requests": 12,
+        "csv_examples": [
+          "https://careers.allianz.com/at/de/job/102253/HR-Analytics-Intern",
+          "https://careers.allianz.com/at/de/job/106397/HRBP-Intern-m-f-d",
+          "https://careers.allianz.com/my/en/job/109994/Summer-2027-People-Culture-Data-Analytics-Internship-Hybrid"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.allianz.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-allianz"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Engie",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 3,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.engie.com/job/Villeneuve-D-Ascq-Stage-Ressources-Humaines-59651/1375706155/",
+          "https://jobs.engie.com/job/Madrid-HR-Digitalization-&amp;-Data-Management-Intern-28042/1367376755/",
+          "https://jobs.engie.com/job/Madrid-Talent-Acquisition-Internship-28042/1369271055/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.engie.com",
+        "csv_eu_signal": 2,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-engie-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Engie",
+          "career_url": "https://jobs.engie.com",
+          "allowed_hosts": [
+            "jobs.engie.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.engie.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Orange",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 3,
+        "csv_requests": 10,
+        "csv_examples": [
+          "https://orange.jobs/gb/en/job/CTS-2026-54906/Stage-3-mois-Conception-et-maquettage-de-nouveaux-services-de-paiement-RSE",
+          "https://orange.jobs/gb/en/job/CTS-2026-55235/Stage-de-Chargé-e-de-Projet-RH-Expérience-salarié-F-H",
+          "https://orange.jobs/gb/en/ace-my-interview/recruiters-expectations-internship-interview"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "orange.jobs",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-orange-jobs",
+          "adapter": "sitemap-jobposting",
+          "employer": "Orange",
+          "career_url": "https://orange.jobs",
+          "allowed_hosts": [
+            "orange.jobs"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://orange.jobs/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 3
+      },
+      {
+        "employer": "Pirelli & C.",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 3,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.pirelli.com/job/Breuberg-Praktikum-Personalentwicklung/1402767933/",
+          "https://jobs.pirelli.com/Italy-062b8d1/job/Milano-Internship-HR-Business-Partner/1418162733/",
+          "https://jobs.pirelli.com/job/Breuberg-Praktikum-Abschlussarbeit-Recruiting/531457401/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.pirelli.com",
+        "csv_eu_signal": 1,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-pirelli"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Philip Morris International",
+        "csv_family": "phenom",
+        "csv_slug_signals": 3,
+        "csv_requests": 11,
+        "csv_examples": [
+          "https://join.pmicareers.com/ua/ua/job/35300/PMI-Internship-Program-Praktikum-im-Bereich-Human-Resouces-People-Culture-M-",
+          "https://join.pmicareers.com/it/it/job/33661/People-and-Culture-Intern-Social-Media-Digital-Marketing",
+          "https://join.pmicareers.com/earlycareers/gb/en/job/35042/People-Culture-Intern"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "join.pmicareers.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-philip-morris-international"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Solvay",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 3,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.solvay.com/job/Portugal-Lisbon-Payroll-Trainee-(FMX)/1370380957/",
+          "https://careers.solvay.com/job/France-La-Rochelle-Stagiaire-Ressources-Humaines-(FHX)/1360251757/",
+          "https://careers.solvay.com/job/Portugal-Lisbon-Talent-Acquisition-Trainee-French-Speaker-(FMX)/1377932957/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.solvay.com",
+        "csv_eu_signal": 3,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-solvay-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Solvay",
+          "career_url": "https://careers.solvay.com",
+          "allowed_hosts": [
+            "careers.solvay.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.solvay.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Adecco Group",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 3,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.adeccogroup.com/en/job/zaltbommel/talent-acquisition-specialist-international-recruitment/37746/10170603",
+          "https://careers.adeccogroup.com/en/job/lisbon/payroll-and-billing-trainee-adecco-portugal-lisboa/37746/102295933200",
+          "https://careers.adeccogroup.com/en/job/ho-chi-minh-city/recruitment-intern/37746/103374274400"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.adeccogroup.com",
+        "csv_eu_signal": 1,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-adecco-group"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Sonova",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 3,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.sonova.com/job/Warszawa-HR-Services-Trainee-with-German/1459371633/",
+          "https://jobs.sonova.com/job/Warszawa-HR-Services-Trainee-with-Italian/1405605633/",
+          "https://jobs.sonova.com/job/Warszawa-HR-Services-Trainee-with-Dutch/1459371933/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.sonova.com",
+        "csv_eu_signal": 3,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-sonova-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Sonova",
+          "career_url": "https://jobs.sonova.com",
+          "allowed_hosts": [
+            "jobs.sonova.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.sonova.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Ahold Delhaize",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 3,
+        "csv_requests": 9,
+        "csv_examples": [
+          "https://careers.aholddelhaize.com/blog/19/24-hours-to-sign-up-for-a-new-future-puck-coorens-international-hr-trainee",
+          "https://careers.aholddelhaize.com/event/24/webinar-international-hr-traineeship",
+          "https://careers.aholddelhaize.com/blog/17/explore-develop-and-grow-matthias-du-mez-international-hr-trainee"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.aholddelhaize.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-aholddelhaize-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Ahold Delhaize",
+          "career_url": "https://careers.aholddelhaize.com",
+          "allowed_hosts": [
+            "careers.aholddelhaize.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.aholddelhaize.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Deutsche Börse",
+        "csv_family": "SF classico",
+        "csv_slug_signals": 2,
+        "csv_requests": 4,
+        "csv_examples": [
+          "https://careers.deutsche-boerse.com/jobs/praktikum-human-relations-fokus-recruiting-w-m-d/b776e14c-ca6c-4a0c-815a-866cd6",
+          "https://careers.deutsche-boerse.com/jobs/intern-human-resources/7a055246-7f09-4e5e-9863-1f601068f5a9"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.deutsche-boerse.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-deutsche-boerse-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Deutsche Börse",
+          "career_url": "https://careers.deutsche-boerse.com",
+          "allowed_hosts": [
+            "careers.deutsche-boerse.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.deutsche-boerse.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Munich Re",
+        "csv_family": "SF classico",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.munichre.com/en/job/dusseldorf/praktikant-recruitingstrategie-m-w-d/3382/45095898432",
+          "https://careers.munichre.com/en/job/dusseldorf/praktikant-human-resources-m-w-d/3382/46474435584"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.munichre.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-munichre-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Munich Re",
+          "career_url": "https://careers.munichre.com",
+          "allowed_hosts": [
+            "careers.munichre.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.munichre.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Bechtle",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.bechtle.com/nl/job/Maastricht-HR-Stagiaire-6211-XX/1373167857/",
+          "https://jobs.bechtle.com/job/Neckarsulm-Praktikant-Personalentwicklung-(wmd)-74172/1376083757/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.bechtle.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-bechtle-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Bechtle",
+          "career_url": "https://jobs.bechtle.com",
+          "allowed_hosts": [
+            "jobs.bechtle.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.bechtle.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Delivery Hero",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 2,
+        "csv_requests": 4,
+        "csv_examples": [
+          "https://careers.deliveryhero.com/job/intern-talent-acquisition-in-yangon-myanmar-jid-10617",
+          "https://careers.deliveryhero.com/job/talent-acquisition-partner-business-and-international-scope-in-barcelona-spain-jid-"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.deliveryhero.com",
+        "csv_eu_signal": 1,
+        "disposition": "covered",
+        "source_refs": [
+          "greenhouse-talentprograms",
+          "greenhouse-catawiki",
+          "greenhouse-hellofresh"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Fraport",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 2,
+        "csv_requests": 4,
+        "csv_examples": [
+          "https://www.jobs-fraport.com/jobs/pflichtpraktikum-im-hr-project-management-culture-transformation-team/d1c34e11-faef-49",
+          "https://www.jobs-fraport.com/jobs/pflichtpraktikum-im-bereich-recruiting-corporate-functions-and-specialist/8785de20-556"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.jobs-fraport.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-jobs-fraport-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Fraport",
+          "career_url": "https://www.jobs-fraport.com",
+          "allowed_hosts": [
+            "www.jobs-fraport.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.jobs-fraport.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Knorr-Bremse",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.knorr-bremse.com/job/München-Pflichtpraktikant-global-HR-Team-(mwd)-80809/1457013333/",
+          "https://careers.knorr-bremse.com/job/München-Mandatory-Internship-Global-HR-Team-(mfd)-80809/1457013233/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.knorr-bremse.com",
+        "csv_eu_signal": 2,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-knorr-bremse-ag"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Bouygues",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.bouygues-construction.com/job/Guyancourt-Global-Talent-Acquisition-Transformation-Analyst-Intern-78-7800",
+          "https://careers.bouygues-construction.com/job/Guyancourt-Global-Talent-Acquisition-Transformation-Analyst-Intern-78-7800"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.bouygues-construction.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-bouygues-construction-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Bouygues",
+          "career_url": "https://careers.bouygues-construction.com",
+          "allowed_hosts": [
+            "careers.bouygues-construction.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.bouygues-construction.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Ferrari",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.ferrari.com/job/Maranello-HR-Technical-Engagement-Activities-Support-Internship-(Maranello)/1368285455/",
+          "https://jobs.ferrari.com/job/Maranello-HR-Technical-Engagement-Activities-Support-Internship-(Maranello)/1368285555/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.ferrari.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-ferrari-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Ferrari",
+          "career_url": "https://jobs.ferrari.com",
+          "allowed_hosts": [
+            "jobs.ferrari.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.ferrari.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Atlas Copco",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 2,
+        "csv_requests": 10,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.atlascopcogroup.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-atlascopcogroup-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Atlas Copco",
+          "career_url": "https://www.atlascopcogroup.com",
+          "allowed_hosts": [
+            "www.atlascopcogroup.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.atlascopcogroup.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Volvo Group",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.volvogroup.com/job/Oostakker-Stage-Learning-&amp;-Development-Support-9041/1346095455/",
+          "https://jobs.volvogroup.com/job/Grover-Intern-People-&amp;-Culture-(Spring-2027)-NC-28086/1375579255/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.volvogroup.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-volvogroup-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Volvo Group",
+          "career_url": "https://jobs.volvogroup.com",
+          "allowed_hosts": [
+            "jobs.volvogroup.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.volvogroup.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "SEB",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://sebgroup.com/about-us/our-locations/international-offices/seb-in-poland/global-business-centre/our-recruitment-p",
+          "https://sebgroup.com/sv/karriar/hitta-ditt-nya-jobb/vara-lediga-tjanster/internship-in-hr-department-486931a5-6fa2-4e4f-"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "sebgroup.com",
+        "csv_eu_signal": 1,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-sebgroup-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "SEB",
+          "career_url": "https://sebgroup.com",
+          "allowed_hosts": [
+            "sebgroup.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://sebgroup.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "HSBC",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://apply.careers.hsbc.com/job/Gurugram-CA-Intern-Finance-Audit-HR-122003/1374533457/",
+          "https://apply.careers.hsbc.com/job/Gurugram-CA-Industrial-Trainee-HR-122003/1377371257/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "apply.careers.hsbc.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-apply-careers-hsbc-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "HSBC",
+          "career_url": "https://apply.careers.hsbc.com",
+          "allowed_hosts": [
+            "apply.careers.hsbc.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://apply.careers.hsbc.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Zurich Insurance Group",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://www.careers.zurich.com/job/Barcelona-Trainee-People-&amp;-Talent/1376894757/",
+          "https://www.careers.zurich.com/job/Wien-Praktikum-im-HR-Bereich-Personaladministration-(mensch)-(TZVZ-ab-30-Std_)/137745"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.careers.zurich.com",
+        "csv_eu_signal": 2,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-careers-zurich-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Zurich Insurance Group",
+          "career_url": "https://www.careers.zurich.com",
+          "allowed_hosts": [
+            "www.careers.zurich.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.careers.zurich.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Kühne + Nagel",
+        "csv_family": "phenom",
+        "csv_slug_signals": 2,
+        "csv_requests": 12,
+        "csv_examples": [
+          "https://jobs.kuehne-nagel.com/belux/nl/job/20766/Human-Resources-Intern",
+          "https://jobs.kuehne-nagel.com/belux/nl/job/19834/Trainee-m-w-d-im-Bereich-Human-Resources"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.kuehne-nagel.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-kuehne-nagel"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Van Lanschot Kempen",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.vanlanschotkempen.com/nl-nl/vacatures/recruitment---stage",
+          "https://careers.vanlanschotkempen.com/en-nl/vacancies/recruitment---internship"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.vanlanschotkempen.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-vanlanschotkempen-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Van Lanschot Kempen",
+          "career_url": "https://careers.vanlanschotkempen.com",
+          "allowed_hosts": [
+            "careers.vanlanschotkempen.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.vanlanschotkempen.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Fresenius Medical Care",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 10,
+        "csv_examples": [
+          "https://jobs.freseniusmedicalcare.com/payroll-intern-with-german/job/9589E76DBF1B2D5E3C17BCF7981DA37A"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.freseniusmedicalcare.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-freseniusmedicalcare-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Fresenius Medical Care",
+          "career_url": "https://jobs.freseniusmedicalcare.com",
+          "allowed_hosts": [
+            "jobs.freseniusmedicalcare.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.freseniusmedicalcare.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Fresenius",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 1,
+        "csv_requests": 4,
+        "csv_examples": [
+          "https://karriere.fresenius.de/job-detail/bbc53c69-8009-517b-90e5-76947f3a5c2a/praktikant-m-w-d-personalmanagement"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "karriere.fresenius.de",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-karriere-fresenius-de",
+          "adapter": "sitemap-jobposting",
+          "employer": "Fresenius",
+          "career_url": "https://karriere.fresenius.de",
+          "allowed_hosts": [
+            "karriere.fresenius.de"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://karriere.fresenius.de/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Henkel",
+        "csv_family": "cornerstone",
+        "csv_slug_signals": 1,
+        "csv_requests": 9,
+        "csv_examples": [
+          "https://www.henkel.com/careers/talent-programs/hr-leadership-trainee-program"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.henkel.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-henkel-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Henkel",
+          "career_url": "https://www.henkel.com",
+          "allowed_hosts": [
+            "www.henkel.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.henkel.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Rheinmetall",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://www.rheinmetall.com/de/job/admin_hr_international__m_w_d_/1181849"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "www.rheinmetall.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-rheinmetall-ag"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Siemens Healthineers",
+        "csv_family": "phenom",
+        "csv_slug_signals": 1,
+        "csv_requests": 11,
+        "csv_examples": [
+          "https://careers.siemens-healthineers.com/es/es/job/R-31767/HR-Intern-Oakville"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.siemens-healthineers.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-siemens-healthineers"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "FUCHS",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.fuchs.com/job/Isando-Johannesburg-HR-Intern-1600/1457640933/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.fuchs.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-fuchs-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "FUCHS",
+          "career_url": "https://jobs.fuchs.com",
+          "allowed_hosts": [
+            "jobs.fuchs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.fuchs.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Nordex",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.nordex-online.com/job/Mutilva-Global-Compensation-&amp;-Benefits-Intern-(mfd)-31192/1449566733/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.nordex-online.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-nordex-online-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Nordex",
+          "career_url": "https://jobs.nordex-online.com",
+          "allowed_hosts": [
+            "jobs.nordex-online.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.nordex-online.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "PUMA",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://about.puma.com/en/jobs/internship-hr-retail-r43389"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "about.puma.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-about-puma-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "PUMA",
+          "career_url": "https://about.puma.com",
+          "allowed_hosts": [
+            "about.puma.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://about.puma.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "thyssenkrupp",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.thyssenkrupp.com/en/job/Praktikum-HR-_-Personalentwicklung-im-Bereich-Ausbildung-m_w_d-|-Start-15.02.2027-E"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.thyssenkrupp.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-thyssenkrupp-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "thyssenkrupp",
+          "career_url": "https://jobs.thyssenkrupp.com",
+          "allowed_hosts": [
+            "jobs.thyssenkrupp.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.thyssenkrupp.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Wacker Chemie",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.wacker.com/job/Charleston-Human-Resources-Intern-TN-37310/1457810033/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.wacker.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-wacker-chemie-ag"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Dassault Systèmes",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 3,
+        "csv_examples": [
+          "https://www.3ds.com/careers/jobs/stage-charge-de-projets-sirh-processus-rh-f-h-550323"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "www.3ds.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-dassault-systemes"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Société Générale",
+        "csv_family": "taleo",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.societegenerale.com/offres-d-emploi/stage-support-onboarding-clients-26000N5G-fr"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.societegenerale.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-societe-generale"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Grifols",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobsearch.grifols.com/job/Curitiba-Paraná-Trainee-HRBP/1456789033/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobsearch.grifols.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobsearch-grifols-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Grifols",
+          "career_url": "https://jobsearch.grifols.com",
+          "allowed_hosts": [
+            "jobsearch.grifols.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobsearch.grifols.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Puig Brands",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.puig.com/job/Paris-Stage-Assistant(e)-RH-(HF)-Janvier-2027/1450381233/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.puig.com",
+        "csv_eu_signal": 1,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-puig-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Puig Brands",
+          "career_url": "https://jobs.puig.com",
+          "allowed_hosts": [
+            "jobs.puig.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.puig.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Sacyr",
+        "csv_family": "teamtailor",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://sacyrpeople.sacyr.com/jobs/8403231-beca-rrhh-generalista"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "sacyrpeople.sacyr.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-sacyrpeople-sacyr-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Sacyr",
+          "career_url": "https://sacyrpeople.sacyr.com",
+          "allowed_hosts": [
+            "sacyrpeople.sacyr.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://sacyrpeople.sacyr.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Demant",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.demant.com/DemantPoland/job/Warszawa-HR-Business-Partner-International-Sales-mazo-00-133/1446562933/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.demant.com",
+        "csv_eu_signal": 1,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-demant-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Demant",
+          "career_url": "https://careers.demant.com",
+          "allowed_hosts": [
+            "careers.demant.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.demant.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Ryanair",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 1,
+        "csv_requests": 10,
+        "csv_examples": [
+          "https://careers.ryanair.com/jobs/practicas-en-recursos-humanos-area-laboral/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.ryanair.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-ryanair-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Ryanair",
+          "career_url": "https://careers.ryanair.com",
+          "allowed_hosts": [
+            "careers.ryanair.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.ryanair.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Kerry Group",
+        "csv_family": "phenom",
+        "csv_slug_signals": 1,
+        "csv_requests": 4,
+        "csv_examples": [
+          "https://jobs.kerry.com/gb/en/job/66944/Estagiario-de-RH-Facilities"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.kerry.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-kerry"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "HubSpot",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://www.hubspot.com/careers-blog/hubspot-internship-recruiting-101-tips-tricks-from-recruiters"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.hubspot.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-hubspot-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "HubSpot",
+          "career_url": "https://www.hubspot.com",
+          "allowed_hosts": [
+            "www.hubspot.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.hubspot.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Erste Group Bank",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://www.erstegroup.com/en/career/positions-offered/job-detail/fh-uni-praktikant-in-projektmanagement-und-hr/35150"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.erstegroup.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-erstegroup-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Erste Group Bank",
+          "career_url": "https://www.erstegroup.com",
+          "allowed_hosts": [
+            "www.erstegroup.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.erstegroup.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "ANDRITZ",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.andritz.com/andritz/job/Weiz-Praktikum-(mwd)-Human-Resources-Styr-8160/1375569557/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.andritz.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-andritz-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "ANDRITZ",
+          "career_url": "https://careers.andritz.com",
+          "allowed_hosts": [
+            "careers.andritz.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.andritz.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Novartis",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://www.novartis.com/careers/career-search/job/details/req-10092435-long-term-po-hr-intern-novartis-kurtkoy-manufact"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.novartis.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-novartis-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Novartis",
+          "career_url": "https://www.novartis.com",
+          "allowed_hosts": [
+            "www.novartis.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.novartis.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "ABN AMRO",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 3,
+        "csv_examples": [
+          "https://www.werkenbijabnamro.nl/vacature/9665/hr-recruitment-intern-1"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.werkenbijabnamro.nl",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-werkenbijabnamro-nl",
+          "adapter": "sitemap-jobposting",
+          "employer": "ABN AMRO",
+          "career_url": "https://www.werkenbijabnamro.nl",
+          "allowed_hosts": [
+            "www.werkenbijabnamro.nl"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.werkenbijabnamro.nl/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "AkzoNobel",
+        "csv_family": "phenom",
+        "csv_slug_signals": 1,
+        "csv_requests": 5,
+        "csv_examples": [
+          "https://careers.akzonobel.com/gb/en/job/ANDANAGB56460EXTERNALENGB/HR-praktikant-inom-Talent-Acquisition"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.akzonobel.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-akzonobel"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "ArcelorMittal",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://projects.arcelormittal.com/careers/our-jobs/stage-human-resources/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "projects.arcelormittal.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-projects-arcelormittal-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "ArcelorMittal",
+          "career_url": "https://projects.arcelormittal.com",
+          "allowed_hosts": [
+            "projects.arcelormittal.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://projects.arcelormittal.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 4
+      },
+      {
+        "employer": "ASR Nederland",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 3,
+        "csv_examples": [
+          "https://www.werkenbijasr.nl/vacatures/260000KD/stage-recruitment"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.werkenbijasr.nl",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-werkenbijasr-nl",
+          "adapter": "sitemap-jobposting",
+          "employer": "ASR Nederland",
+          "career_url": "https://www.werkenbijasr.nl",
+          "allowed_hosts": [
+            "www.werkenbijasr.nl"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.werkenbijasr.nl/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "KPN",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 1,
+        "csv_requests": 9,
+        "csv_examples": [
+          "https://jobs.kpn.com/vacature/2035/meewerkstage-employer-branding-communicatie-bij-kpn"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.kpn.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-kpn-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "KPN",
+          "career_url": "https://jobs.kpn.com",
+          "allowed_hosts": [
+            "jobs.kpn.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.kpn.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Philips",
+        "csv_family": "phenom",
+        "csv_slug_signals": 1,
+        "csv_requests": 4,
+        "csv_examples": [
+          "https://www.careers.philips.com/global/en/job/594564/Internship-HR"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "www.careers.philips.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-philips"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "BAM Group",
+        "csv_family": "phenom",
+        "csv_slug_signals": 1,
+        "csv_requests": 7,
+        "csv_examples": [
+          "https://www.bamcareers.com/global/en/job/17577/Stage-HR-Stagebureau"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "www.bamcareers.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "auto-bam-infra-wegen-regio-oost"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Signify",
+        "csv_family": "phenom",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://www.careers.signify.com/global/en/job/367074/Global-Employer-Branding-Intern"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.careers.signify.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-careers-signify-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Signify",
+          "career_url": "https://www.careers.signify.com",
+          "allowed_hosts": [
+            "www.careers.signify.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.careers.signify.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "TKH Group",
+        "csv_family": "teamtailor",
+        "csv_slug_signals": 1,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.tkh-airportsolutions.com/jobs/8366776-hr-intern"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.tkh-airportsolutions.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-tkh-airportsolutions-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "TKH Group",
+          "career_url": "https://careers.tkh-airportsolutions.com",
+          "allowed_hosts": [
+            "careers.tkh-airportsolutions.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.tkh-airportsolutions.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "RWE",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.rwe.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "held-sf-rmk-rwe-rmk"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "LANXESS",
+        "csv_family": "phenom",
+        "csv_slug_signals": 0,
+        "csv_requests": 5,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "career.lanxess.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-career-lanxess-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "LANXESS",
+          "career_url": "https://career.lanxess.com",
+          "allowed_hosts": [
+            "career.lanxess.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://career.lanxess.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 6
+      },
+      {
+        "employer": "Sanofi",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.sanofi.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-sanofi"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Mapfre",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.mapfre.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-mapfre-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Mapfre",
+          "career_url": "https://jobs.mapfre.com",
+          "allowed_hosts": [
+            "jobs.mapfre.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.mapfre.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Telefónica",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.telefonica.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-telefonica-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Telefónica",
+          "career_url": "https://jobs.telefonica.com",
+          "allowed_hosts": [
+            "jobs.telefonica.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.telefonica.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Tenaris",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "recruitment.tenaris.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-recruitment-tenaris-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Tenaris",
+          "career_url": "https://recruitment.tenaris.com",
+          "allowed_hosts": [
+            "recruitment.tenaris.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://recruitment.tenaris.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "AstraZeneca",
+        "csv_family": "proprio/altro",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "careers.astrazeneca.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-astrazeneca"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Saab",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.saab.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-saab-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Saab",
+          "career_url": "https://www.saab.com",
+          "allowed_hosts": [
+            "www.saab.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.saab.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Corticeira Amorim",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 0,
+        "csv_requests": 7,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.amorim.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-amorim-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Corticeira Amorim",
+          "career_url": "https://www.amorim.com",
+          "allowed_hosts": [
+            "www.amorim.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.amorim.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Dropbox",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.dropbox.jobs",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-dropbox-jobs",
+          "adapter": "sitemap-jobposting",
+          "employer": "Dropbox",
+          "career_url": "https://www.dropbox.jobs",
+          "allowed_hosts": [
+            "www.dropbox.jobs"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.dropbox.jobs/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Citigroup",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.citi.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-citi-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Citigroup",
+          "career_url": "https://jobs.citi.com",
+          "allowed_hosts": [
+            "jobs.citi.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.citi.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Atos",
+        "csv_family": "SF-RMK",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.atos.net",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-atos-net",
+          "adapter": "sitemap-jobposting",
+          "employer": "Atos",
+          "career_url": "https://jobs.atos.net",
+          "allowed_hosts": [
+            "jobs.atos.net"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.atos.net/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 0
+      },
+      {
+        "employer": "Takeda",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "host": "jobs.takeda.com",
+        "csv_eu_signal": 0,
+        "disposition": "covered",
+        "source_refs": [
+          "employer-takeda"
+        ],
+        "coverage_evidence": "data/sources.json: host approvato di una fonte attiva o datore con adattatore sf-rmk"
+      },
+      {
+        "employer": "Melexis",
+        "csv_family": "non_verificato",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "www.melexis.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-www-melexis-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Melexis",
+          "career_url": "https://www.melexis.com",
+          "allowed_hosts": [
+            "www.melexis.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://www.melexis.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      },
+      {
+        "employer": "Givaudan",
+        "csv_family": "phenom",
+        "csv_slug_signals": 0,
+        "csv_requests": 5,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "careers.givaudan.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-careers-givaudan-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Givaudan",
+          "career_url": "https://careers.givaudan.com",
+          "allowed_hosts": [
+            "careers.givaudan.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://careers.givaudan.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 10,
+        "robots_disallowed_sitemaps": 2
+      },
+      {
+        "employer": "Arcadis",
+        "csv_family": "eightfold",
+        "csv_slug_signals": 0,
+        "csv_requests": 4,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 1,
+        "host": "jobs.arcadis.com",
+        "csv_eu_signal": 0,
+        "disposition": "hold",
+        "source": {
+          "id": "held-sitemap-jobposting-jobs-arcadis-com",
+          "adapter": "sitemap-jobposting",
+          "employer": "Arcadis",
+          "career_url": "https://jobs.arcadis.com",
+          "allowed_hosts": [
+            "jobs.arcadis.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "robots_url": "https://jobs.arcadis.com/robots.txt",
+        "robots_http_status": 200,
+        "robots_crawl_delay_seconds": 2.0,
+        "robots_sitemaps_declared": 1
+      }
+    ]
+  },
+  "WORKDAY": {
+    "input_rows": 55,
+    "dispositions": {
+      "hold": 34,
+      "tenant-unresolved": 19
+    },
+    "projected_shard_budget": {
+      "0": {
+        "sources": 3,
+        "requests": 51,
+        "serial_seconds": 165
+      },
+      "1": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "2": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "3": {
+        "sources": 2,
+        "requests": 34,
+        "serial_seconds": 110
+      },
+      "4": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "5": {
+        "sources": 2,
+        "requests": 34,
+        "serial_seconds": 110
+      },
+      "6": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "7": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "8": {
+        "sources": 2,
+        "requests": 34,
+        "serial_seconds": 110
+      },
+      "9": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "10": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "11": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "12": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      },
+      "13": {
+        "sources": 4,
+        "requests": 68,
+        "serial_seconds": 220
+      },
+      "14": {
+        "sources": 2,
+        "requests": 34,
+        "serial_seconds": 110
+      },
+      "15": {
+        "sources": 1,
+        "requests": 17,
+        "serial_seconds": 55
+      }
+    },
+    "sources": [
+      {
+        "employer": "Leonardo",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://leonardocompany.wd3.myworkdayjobs.com/en-US/LeonardoCareerSite",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-leonardocompany-wd3-myworkdayjobs-com-leonardocareersite",
+          "adapter": "workday",
+          "employer": "Leonardo",
+          "career_url": "https://leonardocompany.wd3.myworkdayjobs.com/en-US/LeonardoCareerSite",
+          "allowed_hosts": [
+            "leonardocompany.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "LeonardoCareerSite"
+        },
+        "staging_bytes_read": 112231,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Prysmian",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://prysmiangroup.wd3.myworkdayjobs.com/en-US/Careers",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-prysmiangroup-wd3-myworkdayjobs-com-careers",
+          "adapter": "workday",
+          "employer": "Prysmian",
+          "career_url": "https://prysmiangroup.wd3.myworkdayjobs.com/en-US/Careers",
+          "allowed_hosts": [
+            "prysmiangroup.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Careers"
+        },
+        "staging_bytes_read": 288127,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Snam",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 1,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://snam.wd103.myworkdayjobs.com/en-US/Carriere",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-snam-wd103-myworkdayjobs-com-carriere",
+          "adapter": "workday",
+          "employer": "Snam",
+          "career_url": "https://snam.wd103.myworkdayjobs.com/en-US/Carriere",
+          "allowed_hosts": [
+            "snam.wd103.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Carriere"
+        },
+        "staging_bytes_read": 135,
+        "staging_recent_scan": {
+          "status": "failed",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "error": "No permitted same-host sitemap"
+        }
+      },
+      {
+        "employer": "Brunello Cucinelli",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://brunellocucinelli.wd3.myworkdayjobs.com/en-US/Cucinelli",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-brunellocucinelli-wd3-myworkdayjobs-com-cucinelli",
+          "adapter": "workday",
+          "employer": "Brunello Cucinelli",
+          "career_url": "https://brunellocucinelli.wd3.myworkdayjobs.com/en-US/Cucinelli",
+          "allowed_hosts": [
+            "brunellocucinelli.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Cucinelli"
+        },
+        "staging_bytes_read": 36283,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Lottomatica Group",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://lottomaticagroup.com/it-it/home/careers/entra-in-squadra",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "lottomaticagroup.wd103.myworkdayjobs.com"
+      },
+      {
+        "employer": "Acciona",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [
+          {
+            "employer": "Acciona Energía",
+            "career_url": "https://acciona.wd3.myworkdayjobs.com/es/ACCIONA_Employment_Channel"
+          }
+        ],
+        "csv_career_url": "https://acciona.wd3.myworkdayjobs.com/es/ACCIONA_Employment_Channel",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-acciona-wd3-myworkdayjobs-com-acciona-employment-channel",
+          "adapter": "workday",
+          "employer": "Acciona",
+          "career_url": "https://acciona.wd3.myworkdayjobs.com/es/ACCIONA_Employment_Channel",
+          "allowed_hosts": [
+            "acciona.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "ACCIONA_Employment_Channel"
+        },
+        "staging_bytes_read": 83168,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Amadeus IT Group",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://amadeus.wd502.myworkdayjobs.com/jobs",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-amadeus-wd502-myworkdayjobs-com-jobs",
+          "adapter": "workday",
+          "employer": "Amadeus IT Group",
+          "career_url": "https://amadeus.wd502.myworkdayjobs.com/jobs",
+          "allowed_hosts": [
+            "amadeus.wd502.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "jobs"
+        },
+        "staging_bytes_read": 28395,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Banco Santander",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://santander.wd3.myworkdayjobs.com/en-US/SantanderCareers",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-santander-wd3-myworkdayjobs-com-santandercareers",
+          "adapter": "workday",
+          "employer": "Banco Santander",
+          "career_url": "https://santander.wd3.myworkdayjobs.com/en-US/SantanderCareers",
+          "allowed_hosts": [
+            "santander.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "SantanderCareers"
+        },
+        "staging_bytes_read": 154927,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "BBVA",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://bbva.wd3.myworkdayjobs.com/es/BBVA",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-bbva-wd3-myworkdayjobs-com-bbva",
+          "adapter": "workday",
+          "employer": "BBVA",
+          "career_url": "https://bbva.wd3.myworkdayjobs.com/es/BBVA",
+          "allowed_hosts": [
+            "bbva.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "BBVA"
+        },
+        "staging_bytes_read": 53449,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Enagás",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://enagas.wd3.myworkdayjobs.com/es/Portal_Externo",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-enagas-wd3-myworkdayjobs-com-portal-externo",
+          "adapter": "workday",
+          "employer": "Enagás",
+          "career_url": "https://enagas.wd3.myworkdayjobs.com/es/Portal_Externo",
+          "allowed_hosts": [
+            "enagas.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Portal_Externo"
+        },
+        "staging_bytes_read": 19134,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Ferrovial",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://ferrovial.wd3.myworkdayjobs.com/es/Ferrovial_Career_Site",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-ferrovial-wd3-myworkdayjobs-com-ferrovial-career-site",
+          "adapter": "workday",
+          "employer": "Ferrovial",
+          "career_url": "https://ferrovial.wd3.myworkdayjobs.com/es/Ferrovial_Career_Site",
+          "allowed_hosts": [
+            "ferrovial.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Ferrovial_Career_Site"
+        },
+        "staging_bytes_read": 51574,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Iberdrola",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://iberdrola.wd3.myworkdayjobs.com/es/Iberdrola",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-iberdrola-wd3-myworkdayjobs-com-iberdrola",
+          "adapter": "workday",
+          "employer": "Iberdrola",
+          "career_url": "https://iberdrola.wd3.myworkdayjobs.com/es/Iberdrola",
+          "allowed_hosts": [
+            "iberdrola.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Iberdrola"
+        },
+        "staging_bytes_read": 88864,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 2,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Repsol",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://repsol.wd3.myworkdayjobs.com/es/Repsol",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-repsol-wd3-myworkdayjobs-com-repsol",
+          "adapter": "workday",
+          "employer": "Repsol",
+          "career_url": "https://repsol.wd3.myworkdayjobs.com/es/Repsol",
+          "allowed_hosts": [
+            "repsol.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Repsol"
+        },
+        "staging_bytes_read": 27793,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 2,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Laboratorios Farmacéuticos Rovi",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://rovi.wd3.myworkdayjobs.com/es/ROVI_Careers",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-rovi-wd3-myworkdayjobs-com-rovi-careers",
+          "adapter": "workday",
+          "employer": "Laboratorios Farmacéuticos Rovi",
+          "career_url": "https://rovi.wd3.myworkdayjobs.com/es/ROVI_Careers",
+          "allowed_hosts": [
+            "rovi.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "ROVI_Careers"
+        },
+        "staging_bytes_read": 18915,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:56:31.207940+00:00",
+          "sitemaps_read": 2,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "IAG International Airlines Group",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 6,
+        "priority_it_es": true,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.iairgroup.com/people-and-careers/careers/",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://iaggbs.wd103.myworkdayjobs.com/IAG_Transform/job/Madrid-Spain/Category-Lead_JR100614-1",
+        "source": {
+          "id": "held-workday-iaggbs-wd103-myworkdayjobs-com-iag-transform",
+          "adapter": "workday",
+          "employer": "IAG International Airlines Group",
+          "career_url": "https://iaggbs.wd103.myworkdayjobs.com/IAG_Transform",
+          "allowed_hosts": [
+            "iaggbs.wd103.myworkdayjobs.com"
+          ],
+          "workday_site": "IAG_Transform",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 5734,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 5,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Airbus",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 12,
+        "priority_it_es": false,
+        "csv_alternates": [
+          {
+            "employer": "Airbus",
+            "career_url": "https://ag.wd3.myworkdayjobs.com/fr-FR/Airbus"
+          }
+        ],
+        "csv_career_url": "https://ag.wd3.myworkdayjobs.com/de-DE/Airbus",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-ag-wd3-myworkdayjobs-com-airbus",
+          "adapter": "workday",
+          "employer": "Airbus",
+          "career_url": "https://ag.wd3.myworkdayjobs.com/de-DE/Airbus",
+          "allowed_hosts": [
+            "ag.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Airbus",
+          "employer_aliases": [
+            "2781 Airbus Atlantic"
+          ],
+          "employer_alias_evidence": "https://www.airbus.com/en/products-services/commercial-aircraft/airframes/airbus-atlantic/about-us"
+        },
+        "staging_bytes_read": 537105,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:17:03.483961+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 1,
+          "matching": 1,
+          "verification_states": {
+            "incomplete": 1
+          },
+          "observed_countries": [
+            "FR"
+          ],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "GEA Group",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.gea.com/en/careers/apply-now/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "Heidelberg Materials",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://karriere.heidelbergmaterials.com/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "heidelbergmaterials.wd3.myworkdayjobs.com"
+      },
+      {
+        "employer": "CTS Eventim",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 7,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://careers.eventim.de/",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://eventimgroup.wd3.myworkdayjobs.com/de-DE/career-eventim-de",
+        "source": {
+          "id": "held-workday-eventimgroup-wd3-myworkdayjobs-com-career-eventim-de",
+          "adapter": "workday",
+          "employer": "CTS Eventim",
+          "career_url": "https://eventimgroup.wd3.myworkdayjobs.com/career-eventim-de",
+          "allowed_hosts": [
+            "eventimgroup.wd3.myworkdayjobs.com"
+          ],
+          "workday_site": "career-eventim-de",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 17711,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 6,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Evonik",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.evonik.com/de/karriere.html",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://evonik.wd3.myworkdayjobs.com/en-US/External_Careers/job/Praktikant--m-w-d--Employer-Branding_R5562-3",
+        "source": {
+          "id": "held-workday-evonik-wd3-myworkdayjobs-com-external-careers",
+          "adapter": "workday",
+          "employer": "Evonik",
+          "career_url": "https://evonik.wd3.myworkdayjobs.com/External_Careers",
+          "allowed_hosts": [
+            "evonik.wd3.myworkdayjobs.com"
+          ],
+          "workday_site": "External_Careers",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 117883,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 2,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "KION Group",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.kiongroup.com/en/Careers/Working-at-KION/",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://kiongroup.wd3.myworkdayjobs.com/en-US/KIONGroup/job/HR-Professional-KION-Central-Functions--w-m-d-_JR-0093734-1",
+        "source": {
+          "id": "held-workday-kiongroup-wd3-myworkdayjobs-com-kiongroup",
+          "adapter": "workday",
+          "employer": "KION Group",
+          "career_url": "https://kiongroup.wd3.myworkdayjobs.com/KIONGroup",
+          "allowed_hosts": [
+            "kiongroup.wd3.myworkdayjobs.com"
+          ],
+          "workday_site": "KIONGroup",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 563329,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 2,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Air Liquide",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://airliquidehr.wd3.myworkdayjobs.com/en-US/AirLiquideExternalCareer",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-airliquidehr-wd3-myworkdayjobs-com-airliquideexternalcareer",
+          "adapter": "workday",
+          "employer": "Air Liquide",
+          "career_url": "https://airliquidehr.wd3.myworkdayjobs.com/en-US/AirLiquideExternalCareer",
+          "allowed_hosts": [
+            "airliquidehr.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "AirLiquideExternalCareer"
+        },
+        "staging_bytes_read": 570789,
+        "staging_recent_scan": {
+          "status": "failed",
+          "checked_at": "2026-11-24T14:58:16.650282+00:00",
+          "error": "The read operation timed out"
+        }
+      },
+      {
+        "employer": "Eiffage",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://jobs.eiffage.com/toutes-nos-offres",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://eiffage.wd3.myworkdayjobs.com/en-US/Eiffage_Careers/job/Acheteur-familles---Gnie-Civil---Stage-PFE-F-H_JR2026-5725-1",
+        "source": {
+          "id": "held-workday-eiffage-wd3-myworkdayjobs-com-eiffage-careers",
+          "adapter": "workday",
+          "employer": "Eiffage",
+          "career_url": "https://eiffage.wd3.myworkdayjobs.com/Eiffage_Careers",
+          "allowed_hosts": [
+            "eiffage.wd3.myworkdayjobs.com"
+          ],
+          "workday_site": "Eiffage_Careers",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 49694,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Michelin",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://michelinhr.wd3.myworkdayjobs.com/en-US/michelin",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-michelinhr-wd3-myworkdayjobs-com-michelin",
+          "adapter": "workday",
+          "employer": "Michelin",
+          "career_url": "https://michelinhr.wd3.myworkdayjobs.com/en-US/michelin",
+          "allowed_hosts": [
+            "michelinhr.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "michelin"
+        },
+        "staging_bytes_read": 227770,
+        "staging_recent_scan": {
+          "status": "failed",
+          "checked_at": "2026-11-24T14:58:16.650282+00:00",
+          "error": "The read operation timed out"
+        }
+      },
+      {
+        "employer": "Pernod Ricard",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 12,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://pernodricard.wd3.myworkdayjobs.com/pernod-ricard",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-pernodricard-wd3-myworkdayjobs-com-pernod-ricard",
+          "adapter": "workday",
+          "employer": "Pernod Ricard",
+          "career_url": "https://pernodricard.wd3.myworkdayjobs.com/pernod-ricard",
+          "allowed_hosts": [
+            "pernodricard.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "pernod-ricard",
+          "employer_aliases": [
+            "G.H. MUMM & CIE S.V.C.S."
+          ],
+          "employer_alias_evidence": "https://www.pernod-ricard.com/system/files/2026-10/7%20-%20202526%20Consolidated%20financial%20statements.pdf"
+        },
+        "staging_bytes_read": 1750212,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:17:03.483961+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 1,
+          "matching": 1,
+          "verification_states": {
+            "incomplete": 1
+          },
+          "observed_countries": [
+            "FR"
+          ],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Renault",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 4,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://alliancewd.wd3.myworkdayjobs.com/fr-FR/renault-group-careers",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-alliancewd-wd3-myworkdayjobs-com-renault-group-careers",
+          "adapter": "workday",
+          "employer": "Renault",
+          "career_url": "https://alliancewd.wd3.myworkdayjobs.com/fr-FR/renault-group-careers",
+          "allowed_hosts": [
+            "alliancewd.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "renault-group-careers"
+        },
+        "staging_bytes_read": 292543,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:58:16.650282+00:00",
+          "sitemaps_read": 3,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Unibail-Rodamco-Westfield",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 3,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://urw.wd3.myworkdayjobs.com/urw_career_site",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-urw-wd3-myworkdayjobs-com-urw-career-site",
+          "adapter": "workday",
+          "employer": "Unibail-Rodamco-Westfield",
+          "career_url": "https://urw.wd3.myworkdayjobs.com/urw_career_site",
+          "allowed_hosts": [
+            "urw.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "urw_career_site"
+        },
+        "staging_bytes_read": 140746,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:58:16.650282+00:00",
+          "sitemaps_read": 2,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Sandvik",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.home.sandvik/en/careers",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "GN Store Nord",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 7,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://gn.wd3.myworkdayjobs.com/GN-Careers",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-gn-wd3-myworkdayjobs-com-gn-careers",
+          "adapter": "workday",
+          "employer": "GN Store Nord",
+          "career_url": "https://gn.wd3.myworkdayjobs.com/GN-Careers",
+          "allowed_hosts": [
+            "gn.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "GN-Careers"
+        },
+        "staging_bytes_read": 78773,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:58:16.650282+00:00",
+          "sitemaps_read": 6,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Workday",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 5,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://workday.wd5.myworkdayjobs.com/Workday",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-workday-wd5-myworkdayjobs-com-workday",
+          "adapter": "workday",
+          "employer": "Workday",
+          "career_url": "https://workday.wd5.myworkdayjobs.com/Workday",
+          "allowed_hosts": [
+            "workday.wd5.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "Workday"
+        },
+        "staging_bytes_read": 71571,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:58:16.650282+00:00",
+          "sitemaps_read": 4,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Regeneron",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 10,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://careers.regeneron.com/en/locations/europe/dublin-ireland/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "Citigroup",
+        "csv_family": "workday",
+        "csv_slug_signals": 5,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.citi.com/job/singapore/kyc-operations-analyst-international-personal-banking-wealth-operations/28",
+          "https://jobs.citi.com/job/kowloon/svp-international-personal-banking-advisory-head/287/102161054240",
+          "https://jobs.citi.com/business/custom_fields.ms_level_6/25985%20international%20personal%20bank%20%28ipb%29%20"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://jobs.citi.com/location/poland/5441/798544/2",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "Kyndryl",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.kyndryl.com/pl/pl/careers",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "kyndryl.wd5.myworkdayjobs.com"
+      },
+      {
+        "employer": "Shell",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.shell.pl/o-shell/careers/shell-business-operations.html",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "shell.wd3.myworkdayjobs.com"
+      },
+      {
+        "employer": "Accenture",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 10,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.accenture.com/pl-en/careers/jobsearch",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "Takeda",
+        "csv_family": "workday",
+        "csv_slug_signals": 2,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://jobs.takeda.com/job/zurich/international-medical-information-lead-immunology-f-m-d-hybrid/1113/1034399",
+          "https://jobs.takeda.com/job/boston/2027-summer-internship-program-intern-human-genetics/1113/103712644128"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://jobs.takeda.com",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "AB InBev",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 9,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://europecareers.ab-inbev.com/programmes/internships",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "abinbev.wd1.myworkdayjobs.com"
+      },
+      {
+        "employer": "Richemont",
+        "csv_family": "workday",
+        "csv_slug_signals": 128,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.richemont.com/ko/전체-채용-공고/jr135191/talent-acquisition-intern-benelux-nordics/",
+          "https://careers.richemont.com/it/opportunita-di-lavoro/jr132092/sustainability-transformation-analyst-intern/",
+          "https://careers.richemont.com/en/jobs/jr133548/stage-referent-e-rh-campus-janvier-2027/"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://careers.richemont.com/en/jobs/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "Alcon",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.alcon.com/careers/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "alcon.wd5.myworkdayjobs.com"
+      },
+      {
+        "employer": "Galderma",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.galderma.com/careers",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "galderma.wd3.myworkdayjobs.com"
+      },
+      {
+        "employer": "Logitech",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 12,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://secure.logitech.com/en-ch/careers",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "logitech.wd5.myworkdayjobs.com"
+      },
+      {
+        "employer": "Julius Bär",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.juliusbaer.com/en/careers/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "juliusbaer.wd3.myworkdayjobs.com"
+      },
+      {
+        "employer": "Aegon",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 7,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.aegon.com/careers",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://transamerica.wd5.myworkdayjobs.com/en-US/AegonAM/job/Intermediate-Financial-Systems-Analyst_R20062970-1",
+        "source": {
+          "id": "held-workday-transamerica-wd5-myworkdayjobs-com-aegonam",
+          "adapter": "workday",
+          "employer": "Aegon",
+          "career_url": "https://transamerica.wd5.myworkdayjobs.com/AegonAM",
+          "allowed_hosts": [
+            "transamerica.wd5.myworkdayjobs.com"
+          ],
+          "workday_site": "AegonAM",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 18944,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 6,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "ING Group",
+        "csv_family": "workday",
+        "csv_slug_signals": 14,
+        "csv_requests": 2,
+        "csv_examples": [
+          "https://careers.ing.com/en/pl-hubs-international-talent-programme",
+          "https://careers.ing.com/en/job/frankfurt-am-main/praktikant-human-resources-young-talents-w-m-d/3121/463911584",
+          "https://careers.ing.com/en/job/frankfurt-am-main/trainee-international-talent-programme-finance-w-m-d-in-frank"
+        ],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://careers.ing.com/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "The Magnum Ice Cream Company",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://corporate.magnumicecream.com/en/careers.html",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://tmicc.wd502.myworkdayjobs.com/en-US/Magnum_External_Career_Site/job/Ice-Cream-Company-Headquarters/Business-Intelligence-Intern_R-735",
+        "source": {
+          "id": "held-workday-tmicc-wd502-myworkdayjobs-com-magnum-external-career-site",
+          "adapter": "workday",
+          "employer": "The Magnum Ice Cream Company",
+          "career_url": "https://tmicc.wd502.myworkdayjobs.com/Magnum_External_Career_Site",
+          "allowed_hosts": [
+            "tmicc.wd502.myworkdayjobs.com"
+          ],
+          "workday_site": "Magnum_External_Career_Site",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 34575,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "RELX",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 7,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.relx.com/careers",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://relx.wd3.myworkdayjobs.com/en-US/ElsevierJobs/job/Publisher_R119980",
+        "source": {
+          "id": "held-workday-relx-wd3-myworkdayjobs-com-elsevierjobs",
+          "adapter": "workday",
+          "employer": "RELX",
+          "career_url": "https://relx.wd3.myworkdayjobs.com/ElsevierJobs",
+          "allowed_hosts": [
+            "relx.wd3.myworkdayjobs.com"
+          ],
+          "workday_site": "ElsevierJobs",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 415639,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 6,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Shell",
+        "csv_family": "workday",
+        "csv_slug_signals": 0,
+        "csv_requests": 2,
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://www.shell.com/careers",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato",
+        "csv_tenant_host_hint": "shell.wd3.myworkdayjobs.com"
+      },
+      {
+        "employer": "Universal Music Group",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 7,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://universalmusic.com/careers",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://umusic.wd5.myworkdayjobs.com/en-US/UMGUK/job/Manager--Digital---Artist-Communications_UMG-27853",
+        "source": {
+          "id": "held-workday-umusic-wd5-myworkdayjobs-com-umguk",
+          "adapter": "workday",
+          "employer": "Universal Music Group",
+          "career_url": "https://umusic.wd5.myworkdayjobs.com/UMGUK",
+          "allowed_hosts": [
+            "umusic.wd5.myworkdayjobs.com"
+          ],
+          "workday_site": "UMGUK",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 705193,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 6,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Unilever",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": "non dimostrato",
+        "staging_requests": 0,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://careers.unilever.com/",
+        "disposition": "tenant-unresolved",
+        "access_review": "non dimostrato"
+      },
+      {
+        "employer": "Wolters Kluwer",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://careers.wolterskluwer.com/",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://wk.wd3.myworkdayjobs.com/nl-NL/External/job/Major---Strategic-Account-Executive_R0059389",
+        "source": {
+          "id": "held-workday-wk-wd3-myworkdayjobs-com-external",
+          "adapter": "workday",
+          "employer": "Wolters Kluwer",
+          "career_url": "https://wk.wd3.myworkdayjobs.com/External",
+          "allowed_hosts": [
+            "wk.wd3.myworkdayjobs.com"
+          ],
+          "workday_site": "External",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 251072,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Basic-Fit",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 6,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://jobs.basic-fit.com/nl-nl/home",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://basicfit.wd103.myworkdayjobs.com/nl-NL/BasicFit_Career_Site_NL/job/Hoofddorp/Data-Analyst_R57257-1?source=LinkedIn",
+        "source": {
+          "id": "held-workday-basicfit-wd103-myworkdayjobs-com-basicfit-career-site-nl",
+          "adapter": "workday",
+          "employer": "Basic-Fit",
+          "career_url": "https://basicfit.wd103.myworkdayjobs.com/BasicFit_Career_Site_NL",
+          "allowed_hosts": [
+            "basicfit.wd103.myworkdayjobs.com"
+          ],
+          "workday_site": "BasicFit_Career_Site_NL",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 235207,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 5,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "CTP",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://ctp.eu/careers/",
+        "disposition": "hold",
+        "access_review": "non dimostrato",
+        "csv_tenant_evidence": "https://ctp.wd103.myworkdayjobs.com/CTP_Careers/job/Brno/Project-Controller---Senior_JR163-4",
+        "source": {
+          "id": "held-workday-ctp-wd103-myworkdayjobs-com-ctp-careers",
+          "adapter": "workday",
+          "employer": "CTP",
+          "career_url": "https://ctp.wd103.myworkdayjobs.com/CTP_Careers",
+          "allowed_hosts": [
+            "ctp.wd103.myworkdayjobs.com"
+          ],
+          "workday_site": "CTP_Careers",
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17
+        },
+        "staging_bytes_read": 32281,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T15:07:36.961237+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      },
+      {
+        "employer": "Vopak",
+        "csv_family": "workday",
+        "csv_slug_signals": "non dimostrato",
+        "csv_requests": "non dimostrato",
+        "csv_examples": [],
+        "confirmed_by_workplace_country": {},
+        "staging_requests": 2,
+        "priority_it_es": false,
+        "csv_alternates": [],
+        "csv_career_url": "https://vopak.wd3.myworkdayjobs.com/en-US/CareersAtVopak",
+        "disposition": "hold",
+        "source": {
+          "id": "held-workday-vopak-wd3-myworkdayjobs-com-careersatvopak",
+          "adapter": "workday",
+          "employer": "Vopak",
+          "career_url": "https://vopak.wd3.myworkdayjobs.com/en-US/CareersAtVopak",
+          "allowed_hosts": [
+            "vopak.wd3.myworkdayjobs.com"
+          ],
+          "enabled": false,
+          "collection_activation_hold": true,
+          "access_review": "uncertain",
+          "permission_basis": "non dimostrato",
+          "reviewed_on": "2026-11-24",
+          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
+          "collection_seconds": 55,
+          "collection_delay": 2,
+          "max_requests": 17,
+          "workday_site": "CareersAtVopak"
+        },
+        "staging_bytes_read": 54079,
+        "staging_recent_scan": {
+          "status": "ok",
+          "checked_at": "2026-11-24T14:58:16.650282+00:00",
+          "sitemaps_read": 1,
+          "sitemap_candidates": 0,
+          "matching": 0,
+          "verification_states": {},
+          "observed_countries": [],
+          "page_errors": []
+        }
+      }
+    ]
+  }
+}
