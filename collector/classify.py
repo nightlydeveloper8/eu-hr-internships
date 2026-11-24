@@ -26,7 +26,7 @@ CATEGORIES = {
 }
 PLACEMENT_TITLE = r'\bintern\b|\binternship|\bstag(?:e|es|iair|iaire|ista|io)\b|praktik|placement|tirocin|estagi|practicas|stagiu|meewerkstage|afstudeer'
 STUDENT_PLACEMENT = r'curricular|currently (?:enrolled|pursuing|studying)|enrolled (?:in|at|as)|still (?:a )?student|during your stud|as part of your (?:studies|degree|programme|program)|ingeschreven|studerende|nel corso degli studi|iscritt[oaie] (?:a|al|ad|presso)|convention de stage|pflichtpraktikum|learning agreement|stageovereenkomst|internship agreement|university placement|placement year|sandwich year|in het kader van je (?:studie|opleiding)|im rahmen (?:deines|ihres) studiums'
-STUDENT_JOB = r'werkstud(?:ent|ierende)\w*|working.students?|student(?:ische)? (?:assistant|hilfskraft|aushilfe|job)|studentenjob|studentermedhjaelper'
+STUDENT_JOB = r'werk[ -]?stud(?:ent|ierende)\w*|working.students?|student(?:ische)? (?:assistant|hilfskraft|aushilfe|job)|studentenjob|studentermedhjaelper'
 INTERNSHIP = r'\b(?:meewerk|afstudeer)stage\b|\bintern(?:ship|ships|s)?\b|\btrainee(?:ship)?\b|\bstag(?:e|es|iair|iaire|iaires|eplaats|ista|io)\b|\bpraktik(?:ant|antin|um|a|plads|plats)?\b|praktikant(?:en|er|s|as|ai|e)?\b|praktikum\b|\bwerkstudent\b|working.student|student (?:placement|assistant)|\bpraktijkstage\b|\bpraktyk(?:i|a|ant(?:ka|ki|ow)?)?\b|\bbeca(?:rio|ria)?\b|\btirocin(?:io|ante|anti|i)\b|\bestagi(?:o|os|ari[oa]s?)\b|\bstagi(?:u|ar|ara|ari)\b|\bstazist(?:a|ka|i|ky)\b|\bodborna praxe\b|\bstrucna praksa\b|\bstudentska praksa\b|\ben practicas\b|\bgyakornok|\bπρακτικ|\bстаж|\bpripravnik|\bprakse\b|\bpraktika\b|\bharjoittel'
 # Placement nouns are distinct from Polish 'staz pracy' (work experience).
 POLISH_PLACEMENT = r'\bstaz(?:ysta|ystka|ysci|ystki)\b|(?:^|[|:–—-]\s*)(?:(?:p[łl]atny|letni|wakacyjny|studencki)\s+)?staz\b(?!\s+pracy\b)'
@@ -147,9 +147,34 @@ def excluded_german_title(title):
     ))
 
 
+# Explicit alternatives in titles can advertise multiple contract types.
+TITLE_ALTERNATIVE = re.compile(r'\s*[/|+]\s*|\s+(?:or|ou|oder|of|oppure|o|lub|sau|eller|tai|nebo|albo|vagy|ili|ali|alebo|voi|або|или|η)\s+')
+EXCLUDED_CONTRACT = re.compile(
+    r'\b(?:alternance|alternant\w*|apprentissage|apprenti\w*|apprentice\w*|ausbildung|'
+    r'leerwerk\w*|bbl|contrato de formacion|formacion dual|apprendistat\w*|'
+    r'cdi|cdd|unbefristet\w*|festanstellung|vast dienstverband|'
+    r'permanent(?: contract| employment| position)?|fixed[- ]term(?: contract)?|'
+    r'contrato indefinido|contrat permanent|tempo indeterminato|sem termo|'
+    r'umowa o prace|trainee(?:ship)?|graduate (?:program\w*|scheme))\b'
+)
+PLACEMENT_ALTERNATIVE = re.compile(INTERNSHIP + '|' + PLACEMENT_TITLE + '|' + POLISH_PLACEMENT + r'|\b(?:practicas|practiques)\b')
+
+
+def excluded_placement_title(title):
+    title=fold(plain(title)).replace('ł','l')
+    if re.search(r'\b(?:'+STUDENT_JOB+r')\b',title):
+        return True
+    # German internship descriptions can name apprenticeship recruiting as a specialty.
+    title=re.sub(r'\b(?:schwerpunkt ausbildung|ausbildung mit schwerpunkt)\b',' ',title)
+    marker='\x00'
+    parts=TITLE_ALTERNATIVE.split(EXCLUDED_CONTRACT.sub(marker,title))
+    placements={index for index,part in enumerate(parts) if PLACEMENT_ALTERNATIVE.search(part)}
+    return any(marker in part and placements-{index} for index,part in enumerate(parts))
+
+
 def classify_role(title, text='', employment=''):
     title, text, employment = map(fold,(plain(title),plain(text),plain(employment)))
-    if excluded_german_title(title):return None
+    if excluded_german_title(title) or excluded_placement_title(title):return None
     extra = vocabulary_categories(title, text)
     cats = [k for k,(_,p) in CATEGORIES.items() if re.search(p,title) or k in extra]
     if re.search(r'(?:software|sales|account executive|business development|marketing) (?:engineer|developer|intern|trainee|manager).{0,30}(?:hr|human resources)|(?:hr|human resources) (?:software|saas) (?:engineer|developer|sales)',title): return None
@@ -174,9 +199,6 @@ def classify_role(title, text='', employment=''):
     if re.search(r'\bintern\b',title) and re.search(r'\b(?:jij|jouw|werkervaring|salarisverwerking|medewerkers)\b',text):
         if not re.search(r'\bstag(?:e|iair|iaire|iairs|iaires)|\binternship|\bstudent|\bmeewerk|\bafstudeer|\binschrev',title+' '+text):return None
     # Internal, international and interview must never count as 'intern'.
-    # Part-time student jobs (Werkstudent, working student) are not placements:
-    # they count only when the title also names an internship.
-    if re.search(STUDENT_JOB,title) and not re.search(INTERNSHIP,re.sub(STUDENT_JOB,' ',title)):return None
     signal = re.search(INTERNSHIP,re.sub(STUDENT_JOB,' ',title+' '+employment))
     # Spanish placement titles use 'Prácticas'. A phrase about good practices
     # inside a permanent HR title/description is not a placement signal.

@@ -168,7 +168,7 @@ def sitemap_records(source,client):
         if len(job_urls)>source.get('max_job_urls',20000):raise ValueError('Job URL safety limit; snapshot incomplete')
     if not listed:raise ValueError('No matching job URLs; source layout needs review')
     # Missing old links on a sitemap alone must never close a posting.
-    if agency_triage:
+    if agency_triage and not source.get('slow_collection_lane'):
         # Periodically recheck previously collected postings even if the sitemap
         # stops advertising them. A missing URL alone is not closure evidence.
         job_urls.update(approved(url,source) for url in source.get('known_job_urls',[]) if pattern.search(url))

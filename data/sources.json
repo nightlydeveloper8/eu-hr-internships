@@ -9798,7 +9798,7 @@
     "company_id": "gi-group",
     "employer": "Gi Group",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://www.gigroup.it/orientamento/wikijobs",
       "https://www.gigroup.it"
@@ -48743,7 +48743,8 @@
     "documentation_url": "https://eures.europa.eu/eures-legal-notice_en",
     "access_review": "docs/fonti-pubbliche.md",
     "discovery_scope": "All vacancies coded as internships by national services, plus multilingual HR placement title searches paged while they keep yielding HR internships; final HR internship title and explicit country rules (EU-27 and Switzerland) decide inclusion. Absence never closes a vacancy: only a 404 on the vacancy lookup does.",
-    "collection_seconds": 2700,
+    "collection_delay": 10,
+    "collection_seconds": 900,
     "max_requests": 330,
     "max_known_checks": 40,
     "active_listing_api": true,
@@ -51008,12 +51009,12 @@
     "jobposting_date_format": "%d/%m/%Y",
     "max_sitemaps": 1,
     "max_requests": 17,
-    "collection_seconds": 780,
+    "collection_seconds": 1980,
     "collection_delay": 120,
     "permission_basis": "Robots declares the index and permits public posting details for People Placement; observed same-host JobPosting",
     "reviewed_on": "2026-11-23",
     "status": "reviewed-active",
-    "review_notes": "myGiGroup portal terms prohibit automated searches. This source is scoped to the distinct public job board and uses a 120-second delay on this host. Slow lane rotates up to 15 details subject to the 13-minute budget."
+    "review_notes": "myGiGroup portal terms prohibit automated searches. This source is scoped to the distinct public job board and uses a 120-second delay on this host. The slow lane only reads triaged sitemap candidates, up to 15 details within 33 minutes."
   },
   {
     "id": "held-adecco-it-jobposting",
