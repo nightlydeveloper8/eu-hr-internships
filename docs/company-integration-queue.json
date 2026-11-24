@@ -740,7 +740,8 @@
     "career_url": "https://jobs.nl.adecco.com/openjob/a0wWy000000bW49IAE/apply",
     "source_ids": [
       "auto-adecco",
-      "held-adecco-it-jobposting"
+      "held-adecco-it-jobposting",
+      "held-adecco-es-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -2249,7 +2250,8 @@
     "state": "collection-review-required",
     "career_url": null,
     "source_ids": [
-      "auto-bmw-group"
+      "auto-bmw-group",
+      "held-sf-rmk-bmw-group"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -5154,7 +5156,8 @@
     "state": "collection-review-required",
     "career_url": "https://careers.crif.com/?pk_vid=75d08cc1865ad83e1779803757b6ec17",
     "source_ids": [
-      "auto-crif-s-p-a"
+      "auto-crif-s-p-a",
+      "held-sf-rmk-crif-rmk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -6155,6 +6158,22 @@
       "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
     ],
     "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "deutsche-bahn-ag-de",
+    "name": "Deutsche Bahn AG",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "integration-required",
+    "career_url": "https://db.jobs/de-de",
+    "source_ids": [
+      "held-deutsche-bahn-de-jobposting"
+    ],
+    "access_blocks": [
+      "Read the German sitemap and descriptive vacancy routes only. Missing expiry and unverified application route leave the qualifying listing at lead."
+    ],
+    "next_action": "Review public recruiting system, HTML pagination and permitted rendered pages; implement and run extractor"
   },
   {
     "company_id": "deutsche-pfandbriefbank-ag",
@@ -8141,6 +8160,20 @@
     "career_url": "https://www.werkenbijfletcher.nl/",
     "source_ids": [
       "auto-fletcher-hotels"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "flow-traders",
+    "name": "Flow Traders",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://www.flowtraders.com/careers/",
+    "source_ids": [
+      "greenhouse-flow-traders"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -10796,6 +10829,26 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "hellofresh",
+    "name": "HelloFresh",
+    "candidate_countries": [
+      "DE",
+      "DK",
+      "ES",
+      "FR",
+      "IT",
+      "NL",
+      "SE"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://job-boards.greenhouse.io/hellofresh",
+    "source_ids": [
+      "greenhouse-hellofresh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "helping-hands",
     "name": "Helping Hands",
     "candidate_countries": [
@@ -12513,7 +12566,8 @@
     "state": "collection-review-required",
     "career_url": "https://kpmg.com/it/it/careers.html",
     "source_ids": [
-      "auto-kpmg"
+      "auto-kpmg",
+      "held-sf-rmk-kpmg-italia-rmk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -17442,6 +17496,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "quantum-systems-gmbh",
+    "name": "Quantum Systems GmbH",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collection-review-required",
+    "career_url": null,
+    "source_ids": [
+      "auto-quantum-systems-gmbh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "quobly",
     "name": "Quobly",
     "candidate_countries": [
@@ -17646,7 +17714,9 @@
     "state": "collection-review-required",
     "career_url": "https://www.werkenbijrandstad.nl",
     "source_ids": [
-      "auto-randstad-groep-nederland"
+      "auto-randstad-groep-nederland",
+      "held-randstad-nl-jobposting",
+      "held-tempo-team-nl-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -19269,6 +19339,20 @@
     "career_url": "https://www.scabadvies.nl/werken-bij/",
     "source_ids": [
       "auto-scab"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "schaeffler-rmk",
+    "name": "Schaeffler",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://jobs.schaeffler.com/",
+    "source_ids": [
+      "held-sf-rmk-schaeffler-rmk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -24497,6 +24581,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "youngcapital-nederland",
+    "name": "YoungCapital",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://www.youngcapital.nl/vacatures",
+    "source_ids": [
+      "held-youngcapital-nl-jobposting"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "yource",
     "name": "Yource",
     "candidate_countries": [
@@ -25072,20 +25170,6 @@
     "career_url": "https://www.d-fine.com/karriere/deutschland/uebersicht/",
     "source_ids": [
       "auto-d-fine"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "dbieb",
-    "name": "dbieb",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://www.dbieb.nl/over-ons/werken-bij.html",
-    "source_ids": [
-      "auto-dbieb"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25701,6 +25785,21 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "danish-crown-rmk",
+    "name": "Danish Crown",
+    "candidate_countries": [
+      "DK",
+      "PL"
+    ],
+    "state": "collecting",
+    "career_url": "https://jobs.danishcrown.com/",
+    "source_ids": [
+      "held-sf-rmk-danish-crown-rmk"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "de-wolff-konstruktiebedrijf",
     "name": "De Wolff Konstruktiebedrijf",
     "candidate_countries": [
@@ -25831,15 +25930,15 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "flow-traders",
-    "name": "Flow Traders",
+    "company_id": "festo-rmk",
+    "name": "Festo",
     "candidate_countries": [
       "DE"
     ],
     "state": "collecting",
-    "career_url": "https://www.flowtraders.com/careers/",
+    "career_url": "https://jobs.festo.com/",
     "source_ids": [
-      "greenhouse-flow-traders"
+      "held-sf-rmk-festo-rmk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25854,6 +25953,20 @@
     "career_url": "https://www.focus-entmt.com/en/careers",
     "source_ids": [
       "recruitee-focus-entertainment"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "france-televisions-rmk",
+    "name": "France Télévisions",
+    "candidate_countries": [
+      "FR"
+    ],
+    "state": "collecting",
+    "career_url": "https://recrutement.francetelevisions.fr/",
+    "source_ids": [
+      "held-sf-rmk-france-televisions-rmk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -25974,6 +26087,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "grupo-ras-espana",
+    "name": "Grupo RAS España",
+    "candidate_countries": [
+      "ES"
+    ],
+    "state": "collecting",
+    "career_url": "https://empleo.gruporas.es/jobs",
+    "source_ids": [
+      "held-grupo-ras-es-jobposting"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "guldberg-gmbh",
     "name": "Guldberg GmbH",
     "candidate_countries": [
@@ -26025,26 +26152,6 @@
     "career_url": "https://www.werkenbij.haitsma.nl/",
     "source_ids": [
       "auto-haitsma-beton"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "hellofresh",
-    "name": "HelloFresh",
-    "candidate_countries": [
-      "DE",
-      "DK",
-      "ES",
-      "FR",
-      "IT",
-      "NL",
-      "SE"
-    ],
-    "state": "collecting",
-    "career_url": "https://job-boards.greenhouse.io/hellofresh",
-    "source_ids": [
-      "greenhouse-hellofresh"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26188,6 +26295,20 @@
     "career_url": "https://werkenbijisero.nl",
     "source_ids": [
       "auto-isero"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "jti-rmk",
+    "name": "JTI",
+    "candidate_countries": [
+      "PL"
+    ],
+    "state": "collecting",
+    "career_url": "https://jobs.jti.com/",
+    "source_ids": [
+      "held-sf-rmk-jti-rmk"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26463,6 +26584,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "provinzial-rmk",
+    "name": "Provinzial",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://karriere.provinzial.com/",
+    "source_ids": [
+      "held-sf-rmk-provinzial-rmk"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "qaware",
     "name": "QAware",
     "candidate_countries": [
@@ -26505,15 +26640,29 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "quantum-systems-gmbh",
-    "name": "Quantum Systems GmbH",
+    "company_id": "rwe-rmk",
+    "name": "RWE",
     "candidate_countries": [
       "DE"
     ],
     "state": "collecting",
-    "career_url": null,
+    "career_url": "https://jobs.rwe.com/",
     "source_ids": [
-      "auto-quantum-systems-gmbh"
+      "held-sf-rmk-rwe-rmk"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "randstad-polska-pl",
+    "name": "Randstad Polska",
+    "candidate_countries": [
+      "PL"
+    ],
+    "state": "collecting",
+    "career_url": "https://www.randstad.pl/znajdz-prace/",
+    "source_ids": [
+      "held-randstad-pl-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -27024,6 +27173,20 @@
     "career_url": "https://zvamaatwerk.nl/vacature/",
     "source_ids": [
       "auto-zva-maatwerk"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "dbieb",
+    "name": "dbieb",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://www.dbieb.nl/over-ons/werken-bij.html",
+    "source_ids": [
+      "auto-dbieb"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
