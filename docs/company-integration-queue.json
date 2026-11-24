@@ -1207,7 +1207,8 @@
     "career_url": "https://careers.allianz.com/de/de/Versicherungsmathematik-and-Risikomanagement-Jobs-Deutschland",
     "source_ids": [
       "auto-allianz",
-      "employer-allianz"
+      "employer-allianz",
+      "sitemap-careers-allianz-com"
     ],
     "access_blocks": [
       "Replaced on 2026-11-18 by employer-allianz (sitemap + JobPosting, Phase 3)."
@@ -5331,6 +5332,24 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "dept",
+    "name": "DEPT®",
+    "candidate_countries": [
+      "DE",
+      "DK",
+      "ES",
+      "IE",
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://job-boards.greenhouse.io/dept",
+    "source_ids": [
+      "greenhouse-dept"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "dero-groep",
     "name": "DERO GROEP",
     "candidate_countries": [
@@ -5555,7 +5574,8 @@
     "state": "collection-review-required",
     "career_url": "https://careers.danone.com",
     "source_ids": [
-      "employer-danone"
+      "employer-danone",
+      "sitemap-careers-danone-com"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -6666,20 +6686,6 @@
     "career_url": "https://www.eco-cert.it/lavora-con-noi/",
     "source_ids": [
       "auto-eco-certificazioni-spa"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "edco",
-    "name": "EDCO",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://werkenbijedco.nl/",
-    "source_ids": [
-      "recruitee-edco"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -18411,7 +18417,8 @@
     "career_url": "https://careers.roche.com/global/en/why-join-us",
     "source_ids": [
       "auto-roche",
-      "employer-roche"
+      "employer-roche",
+      "sitemap-careers-roche-com"
     ],
     "access_blocks": [
       "Replaced on 2026-11-18 by employer-roche (sitemap + JobPosting, Phase 3); the automatic crawl found no job inventory."
@@ -18780,7 +18787,8 @@
     "source_ids": [
       "discovery-bg",
       "discovery-cz",
-      "auto-sap"
+      "auto-sap",
+      "sitemap-jobs-sap-com"
     ],
     "access_blocks": [
       "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected.",
@@ -21345,7 +21353,8 @@
     "career_url": "https://careers.thalesgroup.com/global/en",
     "source_ids": [
       "auto-thales",
-      "employer-thales"
+      "employer-thales",
+      "sitemap-careers-thalesgroup-com"
     ],
     "access_blocks": [
       "Replaced on 2026-11-18 by employer-thales (sitemap + JobPosting, Phase 3)."
@@ -24547,20 +24556,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "youngcapital-nederland",
-    "name": "YoungCapital",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://www.youngcapital.nl/vacatures",
-    "source_ids": [
-      "held-youngcapital-nl-jobposting"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "yource",
     "name": "Yource",
     "candidate_countries": [
@@ -25689,24 +25684,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "dept",
-    "name": "DEPT®",
-    "candidate_countries": [
-      "DE",
-      "DK",
-      "ES",
-      "IE",
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://job-boards.greenhouse.io/dept",
-    "source_ids": [
-      "greenhouse-dept"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "dim",
     "name": "DIM",
     "candidate_countries": [
@@ -25789,6 +25766,20 @@
     "career_url": "https://dommelvallei.recruitee.com/",
     "source_ids": [
       "recruitee-dienst-dommelvallei"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "edco",
+    "name": "EDCO",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://werkenbijedco.nl/",
+    "source_ids": [
+      "recruitee-edco"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -27117,6 +27108,20 @@
     "career_url": "https://www.wstweststellingwerf.nl/over-ons/werken-bij-ons/",
     "source_ids": [
       "auto-woningstichting-weststellingwerf"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "youngcapital-nederland",
+    "name": "YoungCapital",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collecting",
+    "career_url": "https://www.youngcapital.nl/vacatures",
+    "source_ids": [
+      "held-youngcapital-nl-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
