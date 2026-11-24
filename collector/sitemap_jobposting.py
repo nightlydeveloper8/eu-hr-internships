@@ -1,5 +1,6 @@
 """Bounded GET-only discovery from reviewed corporate and Workday sitemaps."""
 from datetime import datetime
+from html.parser import HTMLParser
 import re
 from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urljoin, urlsplit, urlunsplit, parse_qs, quote
@@ -86,6 +87,9 @@ def posting_id(url, source):
         values = ids.get(key, [])
         if len(values) == 1 and re.fullmatch(r'[\w-]+', values[0]):
             return values[0].casefold()
+    if source.get('reviewed_listing_layout') == 'mercedes-benz':
+        match = re.search(r'-(mer[0-9a-z]{7}|j\d{9})$', path, re.I)
+        return match[1].casefold() if match else None
     segment = path.rsplit('/', 1)[-1]
     segment = re.sub(r'\.(?:s?html?|aspx?)$', '', segment, flags=re.I)
     segment = re.sub(r'[-_][a-z]{2}[-_][a-z]{2}$', '', segment, flags=re.I)
@@ -107,6 +111,7 @@ class Scan:
         self.blocked = False
         self.observations = []
         self.discovering = True
+        self.retried_rate_limit = False
 
     def scoped(self, url):
         try:
@@ -125,6 +130,16 @@ class Scan:
     def get(self, url, *, robots=False):
         try:
             return self._get_once(url, robots=robots)
+        except HTTPError as exc:
+            retry = getattr(self.client, 'retry_rate_limited_get', None)
+            if (exc.code != 429 or self.source['adapter'] != 'workday'
+                    or self.retried_rate_limit or not callable(retry)
+                    or (self.discovering and self.requests >= MAX_DISCOVERY_REQUESTS)
+                    or self.observations[-1].get('rate_limited_skip')):
+                raise
+            self.retried_rate_limit = True
+            self.blocked = False
+            return self._get_once(url, robots=robots, rate_limit=exc)
         except ScopedRedirect as exc:
             original_id = posting_id(url, self.source)
             target = exc.target
@@ -143,7 +158,7 @@ class Scan:
                 return self._get_once(target, robots=False)
             raise
 
-    def _get_once(self, url, *, robots):
+    def _get_once(self, url, *, robots, rate_limit=None):
         if self.blocked or self.requests >= MAX_REQUESTS:
             raise CollectionBudgetExceeded('Sitemap host stopped or request budget exhausted')
         if not self.scoped(url) or (not robots and not self.permitted(url)):
@@ -159,8 +174,12 @@ class Scan:
         self.requests += 1
         observation = dict(url=url, phase="robots" if robots else "sitemap" if self.discovering else "detail")
         self.observations.append(observation)
+        before = getattr(self.client, 'requests', None)
         try:
-            body, status, final = self.client.request(wire_url, robots=False, attempts=1)
+            if rate_limit:
+                body, status, final = self.client.retry_rate_limited_get(wire_url, rate_limit)
+            else:
+                body, status, final = self.client.request(wire_url, robots=False, attempts=1)
             observation['http'] = status
             if status != 200 or canonical_url(url) != canonical_url(final):
                 raise ValueError('Exact public HTTP 200 response required')
@@ -170,10 +189,12 @@ class Scan:
             raise
         except HTTPError as exc:
             observation['http'] = exc.code
+            if exc.code == 429 and before is not None and self.client.requests == before:
+                observation['rate_limited_skip'] = True
             if exc.code in (401, 403, 429, 451):
                 self.blocked = True
             raise
-        except (URLError, OSError, ValueError) as exc:
+        except (URLError, OSError, ValueError, CollectionBudgetExceeded) as exc:
             observation['error'] = str(exc)[:180]
             raise
         finally:
@@ -262,6 +283,41 @@ def collect_records(source, client):
                                     closure_complete=False))
 
 
+class MercedesListingControl(HTMLParser):
+    """Read the reviewed job-detail component without following its target."""
+    def __init__(self, body):
+        super().__init__()
+        self.targets = set()
+        self.feed(body.decode('utf-8', 'replace'))
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if (tag == 'wb-button' and 'mjp-job-ad__content-tags-join-button' in (attrs.get('class') or '').split()
+                and (attrs.get('aria-label') or '').casefold() in ('bewerben', 'apply', 'apply now')
+                and 'disabled' not in attrs and attrs.get('aria-disabled') != 'true' and attrs.get('href')):
+            self.targets.add(attrs['href'])
+
+
+def mercedes_listing_control(body, url, source, identifier):
+    if urlsplit(url).hostname != 'jobs.mercedes-benz.com' or not identifier:
+        return False
+    if identifier.casefold() != posting_id(url, source):
+        return False
+    targets = MercedesListingControl(body).targets
+    if len(targets) != 1:
+        return False
+    try:
+        target = urlsplit(canonical_url(next(iter(targets))))
+    except ValueError:
+        return False
+    if target.hostname == 'jobs.mercedes-amg.com':
+        return bool(re.fullmatch(r'/job-invite/\d+', target.path))
+    if target.hostname == 'tas-daimler.taleo.net':
+        return (target.path.endswith('/jobapply.ftl') and
+                [value.casefold() for value in parse_qs(target.query).get('job', [])] == [identifier.casefold()])
+    return False
+
+
 def job_record(record, source, client):
     scan = client.sitemap_jobposting_scan
     url = record['url']
@@ -323,4 +379,7 @@ def job_record(record, source, client):
         if re.search(r'\b(?:apply|bewerben|postuler|candidati|candidatar|solliciteer|inscribirse)\b', fold(label))
         for target in (urljoin(url, href),)
     )
+    if source.get('reviewed_listing_layout') == 'mercedes-benz':
+        result['sitemap_jobposting_cta'] |= mercedes_listing_control(
+            body, url, source, result.get('posting_identifier'))
     return result

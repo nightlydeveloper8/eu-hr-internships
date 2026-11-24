@@ -180,7 +180,7 @@ def collect_shard(shard=0,shards=8,workers=6,output=None,source_ids=None,seconds
         report=part['report'];report.update(duration_seconds=round(time.monotonic()-started,2),requests=client.requests,bytes_read=client.bytes,shard=shard)
         # Report the saved same-host attempts only when a rate limit occurred.
         # They are local early exits, not successful HTTP reads or new vacancies.
-        if client.retry_hosts:report['retry_outcomes']=dict(client.retry_outcomes)
+        if client.retry_hosts or client.retry_outcomes:report['retry_outcomes']=dict(client.retry_outcomes)
         if client.rate_limited_skips:report['rate_limited_skips']=client.rate_limited_skips
         return part
     with ThreadPoolExecutor(max_workers=workers) as pool:

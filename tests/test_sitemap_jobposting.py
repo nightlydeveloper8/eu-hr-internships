@@ -1,7 +1,10 @@
 import json
 import unittest
 
-from collector.adapters import ScopedRedirect
+from collector.adapters import ScopedRedirect, Client
+from collector.runtime import BudgetClient, CollectionBudgetExceeded, _RATE_LIMITED_HOSTS
+from unittest.mock import patch
+from urllib.error import HTTPError
 from collector.pipeline import process_source
 from collector.sitemap_jobposting import collect_records
 
@@ -107,6 +110,66 @@ class SitemapJobPostingTest(unittest.TestCase):
         result = collect_records(source(adapter='workday', workday_site='Example'), client)
         self.assertEqual([row['external_id'] for row in result], ['JR000123'])
         self.assertEqual(client.requests, [HOST + '/robots.txt', jobs])
+
+    def test_mercedes_current_listing_uses_published_button_without_fetching_it(self):
+        host = 'https://jobs.mercedes-benz.com'
+        url = host + '/de/praktikant-personalmanagement-123456-mer0004a24'
+        localized = url.replace('/de/', '/en/')
+        post = {'@type': 'JobPosting', 'title': 'Praktikant Personalmanagement (Pflichtpraktikum)',
+                'description': 'Sie sind immatrikuliert. Human Resources und Personalmanagement.',
+                'datePosted': '2026-11-01', 'identifier': {'value': 'mer0004a24'},
+                'jobLocation': {'address': {'addressCountry': 'DE', 'addressLocality': 'Stuttgart'}}}
+        target = 'https://tas-daimler.taleo.net/careersection/ex/jobapply.ftl?job=MER0004A24'
+        html = ('<script type="application/ld+json">' + json.dumps(post) + '</script>'
+                '<wb-button aria-label="Bewerben" class="mjp-job-ad__content-tags-join-button" href="'
+                + target + '">Bewerben</wb-button>')
+        cfg = source(career_url=host, allowed_hosts=['jobs.mercedes-benz.com'],
+                     reviewed_listing_layout='mercedes-benz')
+        for markup, expected in ((html, 'open'), (html.replace('MER0004A24', 'MER0004A25'), 'unverified'),
+                                 (html.replace('<wb-button', '<wb-button disabled'), 'unverified')):
+            with self.subTest(expected=expected):
+                client = FixtureClient({host + '/robots.txt': b'User-agent: *',
+                                        host + '/sitemap.xml': sitemap('urlset', 'url', [url, localized]),
+                                        url: markup.encode()})
+                job, = process_source(cfg, client, STAMP, staging=True)['jobs']
+                self.assertEqual(job['status'], expected)
+                self.assertNotIn('application_verification', job)
+                self.assertEqual(client.requests, [host + '/robots.txt', host + '/sitemap.xml', url])
+
+    def test_workday_backoff_honors_retry_after_and_counts_both_gets(self):
+        host = 'workday-backoff.test'
+        root = 'https://' + host
+        robots = root + '/robots.txt'
+        jobs = root + '/jobs.xml'
+        cfg = source(career_url=root, allowed_hosts=[host], adapter='workday', workday_site='Example')
+        requests = []
+
+        def response(_client, url, **_kwargs):
+            requests.append(url)
+            if len(requests) == 1:
+                raise HTTPError(url, 429, 'Too Many Requests', {'Retry-After': '75'}, None)
+            if url == robots:
+                return f'Sitemap: {jobs}'.encode(), 200, url
+            return sitemap('urlset', 'url', []), 200, url
+
+        self.addCleanup(_RATE_LIMITED_HOSTS.discard, host)
+        with patch.object(Client, 'request', response):
+            client = BudgetClient(seconds=90, max_requests=3, delay=0)
+            with patch.object(client, 'pause') as pause:
+                self.assertEqual(collect_records(cfg, client), [])
+            pause.assert_called_once_with(75)
+            self.assertEqual(requests, [robots, robots, jobs])
+            self.assertEqual(client.requests, 3)
+            self.assertEqual(client.retry_outcomes['http-429'], 1)
+            self.assertNotIn(host, _RATE_LIMITED_HOSTS)
+
+        requests.clear()
+        with patch.object(Client, 'request', response):
+            client = BudgetClient(seconds=20, max_requests=3, delay=0)
+            with self.assertRaises(CollectionBudgetExceeded):
+                collect_records(cfg, client)
+            self.assertEqual(requests, [robots])
+            self.assertIn(host, _RATE_LIMITED_HOSTS)
 
     def test_uncertain_access_makes_no_requests(self):
         client = FixtureClient({})

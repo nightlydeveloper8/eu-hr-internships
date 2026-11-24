@@ -2,12 +2,37 @@
   "CORPORATE-SITEMAP": {
     "input_rows": 95,
     "dispositions": {
-      "excluded": 2,
+      "excluded": 3,
       "covered": 33,
-      "hold": 60
+      "hold": 59
     },
     "projected_shard_budget": {
-      "0": {
+      "8": {
+        "sources": 4,
+        "requests": 1048,
+        "serial_seconds": 285
+      },
+      "10": {
+        "sources": 4,
+        "requests": 1048,
+        "serial_seconds": 220
+      },
+      "7": {
+        "sources": 5,
+        "requests": 1310,
+        "serial_seconds": 275
+      },
+      "6": {
+        "sources": 7,
+        "requests": 1834,
+        "serial_seconds": 385
+      },
+      "3": {
+        "sources": 4,
+        "requests": 1048,
+        "serial_seconds": 220
+      },
+      "14": {
         "sources": 5,
         "requests": 1310,
         "serial_seconds": 275
@@ -17,72 +42,47 @@
         "requests": 1310,
         "serial_seconds": 275
       },
-      "2": {
-        "sources": 2,
-        "requests": 524,
-        "serial_seconds": 110
-      },
-      "3": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 220
-      },
-      "4": {
-        "sources": 1,
-        "requests": 262,
-        "serial_seconds": 55
-      },
-      "5": {
-        "sources": 1,
-        "requests": 262,
-        "serial_seconds": 55
-      },
-      "6": {
-        "sources": 7,
-        "requests": 1834,
-        "serial_seconds": 385
-      },
-      "7": {
-        "sources": 5,
-        "requests": 1310,
-        "serial_seconds": 275
-      },
-      "8": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 220
-      },
-      "9": {
-        "sources": 3,
-        "requests": 786,
-        "serial_seconds": 165
-      },
-      "10": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 220
+      "13": {
+        "sources": 6,
+        "requests": 1572,
+        "serial_seconds": 330
       },
       "11": {
         "sources": 4,
         "requests": 1048,
         "serial_seconds": 220
       },
-      "12": {
-        "sources": 2,
-        "requests": 524,
-        "serial_seconds": 110
-      },
-      "13": {
-        "sources": 6,
-        "requests": 1572,
-        "serial_seconds": 330
-      },
-      "14": {
+      "0": {
         "sources": 5,
         "requests": 1310,
         "serial_seconds": 275
       },
+      "9": {
+        "sources": 2,
+        "requests": 524,
+        "serial_seconds": 110
+      },
+      "5": {
+        "sources": 1,
+        "requests": 262,
+        "serial_seconds": 55
+      },
       "15": {
+        "sources": 2,
+        "requests": 524,
+        "serial_seconds": 110
+      },
+      "4": {
+        "sources": 1,
+        "requests": 262,
+        "serial_seconds": 55
+      },
+      "2": {
+        "sources": 2,
+        "requests": 524,
+        "serial_seconds": 110
+      },
+      "12": {
         "sources": 2,
         "requests": 524,
         "serial_seconds": 110
@@ -107,7 +107,9 @@
         "disposition": "excluded",
         "access_review": "excluded",
         "exclusion_url": "https://www.kering.com/en/legal/",
-        "exclusion_quote": "Use any deep-link, page-scrape, spider, robot, crawl, index, Internet agent or other automatic device"
+        "exclusion_quote": "Use any deep-link, page-scrape, spider, robot, crawl, index, Internet agent or other automatic device",
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24"
       },
       {
         "employer": "BMW",
@@ -145,27 +147,7 @@
         "staging_requests": 4,
         "host": "careers.richemont.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-richemont-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Richemont",
-          "career_url": "https://careers.richemont.com",
-          "allowed_hosts": [
-            "careers.richemont.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Percorso pubblico di recruiting. Pagina legale e footer rivisti: nessun divieto espresso per questo canale. Robots obbligatorio a ogni esecuzione.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Revisione limitata alle sitemap e ai dettagli anonimi sullo stesso host.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262,
-          "job_url_pattern": "^/en/[^/]+/jr\\d+/",
-          "access_review_url": "https://careers.richemont.com/en/jobs/"
-        },
+        "disposition": "excluded",
         "robots_url": "https://careers.richemont.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
@@ -189,7 +171,11 @@
               "error": "Sitemap host stopped or request budget exhausted"
             }
           ]
-        }
+        },
+        "excluded_on": "2026-11-24",
+        "access_review": "excluded",
+        "exclusion_url": "https://careers.richemont.com/en/jobs/jr133108/stage-assistant-rh-et-talent-acquisition-campus-hf/",
+        "exclusion_quote": "HTTP 403 sul dettaglio pubblico il 24 novembre 2026. Sospeso fino a verifica di accesso sullo stesso percorso."
       },
       {
         "employer": "L'Oréal",
@@ -284,7 +270,7 @@
           "permission_basis": "Avviso legale applicabile al dominio e condizioni carriere rivisti. Nessun divieto espresso per letture di sitemap e annunci pubblici consentiti da robots.",
           "reviewed_on": "2026-11-24",
           "review_notes": "Solo sitemap e annunci pubblici sullo stesso host. Account e candidatura fuori perimetro.",
-          "collection_seconds": 55,
+          "collection_seconds": 120,
           "collection_delay": 2,
           "max_requests": 262,
           "access_review_url": "https://group.mercedes-benz.com/provider/",
@@ -295,7 +281,8 @@
             "Mercedes-Benz Tech Innovation GmbH",
             "Mercedes-AMG GmbH"
           ],
-          "employer_alias_evidence": "https://group.mercedes-benz.com/documents/investors/reports/annual-report/mercedes-benz/mercedes-benz-annual-report-2025-incl-combined-management-report-mbg-ag.pdf"
+          "employer_alias_evidence": "https://group.mercedes-benz.com/documents/investors/reports/annual-report/mercedes-benz/mercedes-benz-annual-report-2025-incl-combined-management-report-mbg-ag.pdf",
+          "reviewed_listing_layout": "mercedes-benz"
         },
         "robots_url": "https://jobs.mercedes-benz.com/robots.txt",
         "robots_http_status": 200,
@@ -2999,90 +2986,91 @@
   "WORKDAY": {
     "input_rows": 55,
     "dispositions": {
-      "hold": 49,
+      "hold": 48,
       "tenant-unresolved": 3,
+      "excluded": 1,
       "duplicate-tenant": 1
     },
     "projected_shard_budget": {
-      "0": {
+      "11": {
         "sources": 4,
         "requests": 1048,
-        "serial_seconds": 220
+        "serial_seconds": 380
       },
       "1": {
         "sources": 4,
         "requests": 1048,
-        "serial_seconds": 220
-      },
-      "2": {
-        "sources": 1,
-        "requests": 262,
-        "serial_seconds": 55
+        "serial_seconds": 380
       },
       "3": {
-        "sources": 3,
-        "requests": 786,
-        "serial_seconds": 165
+        "sources": 2,
+        "requests": 524,
+        "serial_seconds": 190
       },
       "4": {
         "sources": 2,
         "requests": 524,
-        "serial_seconds": 110
+        "serial_seconds": 190
       },
-      "5": {
-        "sources": 3,
-        "requests": 786,
-        "serial_seconds": 165
+      "13": {
+        "sources": 4,
+        "requests": 1048,
+        "serial_seconds": 380
+      },
+      "14": {
+        "sources": 1,
+        "requests": 262,
+        "serial_seconds": 95
+      },
+      "2": {
+        "sources": 1,
+        "requests": 262,
+        "serial_seconds": 95
       },
       "6": {
         "sources": 3,
         "requests": 786,
-        "serial_seconds": 165
+        "serial_seconds": 285
+      },
+      "5": {
+        "sources": 2,
+        "requests": 524,
+        "serial_seconds": 190
       },
       "7": {
-        "sources": 5,
-        "requests": 1310,
-        "serial_seconds": 275
+        "sources": 4,
+        "requests": 1048,
+        "serial_seconds": 380
+      },
+      "15": {
+        "sources": 1,
+        "requests": 262,
+        "serial_seconds": 95
+      },
+      "0": {
+        "sources": 3,
+        "requests": 786,
+        "serial_seconds": 285
       },
       "8": {
         "sources": 2,
         "requests": 524,
-        "serial_seconds": 110
+        "serial_seconds": 190
       },
-      "9": {
+      "12": {
         "sources": 1,
         "requests": 262,
-        "serial_seconds": 55
+        "serial_seconds": 95
       },
       "10": {
         "sources": 1,
         "requests": 262,
-        "serial_seconds": 55
+        "serial_seconds": 95
       },
-      "11": {
-        "sources": 5,
-        "requests": 1310,
-        "serial_seconds": 275
-      },
-      "12": {
-        "sources": 2,
-        "requests": 524,
-        "serial_seconds": 110
-      },
-      "13": {
-        "sources": 7,
-        "requests": 1834,
-        "serial_seconds": 385
-      },
-      "14": {
-        "sources": 3,
-        "requests": 786,
-        "serial_seconds": 165
-      },
-      "15": {
-        "sources": 3,
-        "requests": 786,
-        "serial_seconds": 165
+      "9": {
+        "sources": 1,
+        "requests": 262,
+        "serial_seconds": 95
       }
     },
     "sources": [
@@ -3112,7 +3100,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "LeonardoCareerSite"
@@ -3155,7 +3143,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "Careers"
@@ -3198,17 +3186,19 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
-          "workday_site": "Carriere"
+          "workday_site": "Carriere",
+          "slow_collection_lane": true
         },
         "staging_bytes_read": 135,
         "staging_recent_scan": {
           "status": "failed",
           "checked_at": "2026-11-24T14:56:31.207940+00:00",
           "error": "No permitted same-host sitemap"
-        }
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Brunello Cucinelli",
@@ -3236,7 +3226,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "Cucinelli"
@@ -3291,10 +3281,12 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
-        }
+          "max_requests": 262,
+          "slow_collection_lane": true
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Acciona",
@@ -3327,7 +3319,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "ACCIONA_Employment_Channel"
@@ -3370,7 +3362,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "jobs"
@@ -3413,7 +3405,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "SantanderCareers"
@@ -3456,7 +3448,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "BBVA"
@@ -3499,7 +3491,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "Portal_Externo"
@@ -3542,7 +3534,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "Ferrovial_Career_Site"
@@ -3585,7 +3577,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "Iberdrola"
@@ -3628,7 +3620,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "Repsol"
@@ -3671,7 +3663,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "ROVI_Careers"
@@ -3717,9 +3709,10 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 262,
+          "slow_collection_lane": true
         },
         "staging_bytes_read": 5734,
         "staging_recent_scan": {
@@ -3731,7 +3724,8 @@
           "verification_states": {},
           "observed_countries": [],
           "page_errors": []
-        }
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Airbus",
@@ -3764,7 +3758,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "Airbus",
@@ -3828,7 +3822,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -3884,7 +3878,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -3918,7 +3912,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -3963,7 +3957,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -4008,7 +4002,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -4050,7 +4044,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "AirLiquideExternalCareer"
@@ -4091,7 +4085,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -4133,7 +4127,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "michelin"
@@ -4171,7 +4165,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "pernod-ricard",
@@ -4222,7 +4216,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "renault-group-careers"
@@ -4265,7 +4259,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "urw_career_site"
@@ -4347,7 +4341,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "GN-Careers"
@@ -4390,10 +4384,11 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
-          "workday_site": "Workday"
+          "workday_site": "Workday",
+          "slow_collection_lane": true
         },
         "staging_bytes_read": 71571,
         "staging_recent_scan": {
@@ -4405,7 +4400,8 @@
           "verification_states": {},
           "observed_countries": [],
           "page_errors": []
-        }
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Regeneron",
@@ -4448,14 +4444,16 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "employer_aliases": [
             "Regeneron Ireland"
           ],
-          "employer_alias_evidence": "https://careers.regeneron.com/en/locations/europe/dublin-ireland/"
-        }
+          "employer_alias_evidence": "https://careers.regeneron.com/en/locations/europe/dublin-ireland/",
+          "slow_collection_lane": true
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Citigroup",
@@ -4525,7 +4523,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -4585,7 +4583,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -4631,10 +4629,12 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
-        }
+          "max_requests": 262,
+          "slow_collection_lane": true
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Takeda",
@@ -4676,7 +4676,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -4718,8 +4718,8 @@
         "priority_it_es": false,
         "csv_alternates": [],
         "csv_career_url": "https://careers.richemont.com/en/jobs/",
-        "disposition": "hold",
-        "access_review": "non dimostrato",
+        "disposition": "excluded",
+        "access_review": "excluded",
         "tenant_discovery": {
           "observed_sites": [
             "broadbean_external"
@@ -4730,28 +4730,9 @@
             200
           ]
         },
-        "source": {
-          "id": "held-workday-richemont-wd3-myworkdayjobs-com-broadbean-external",
-          "adapter": "workday",
-          "employer": "Richemont",
-          "career_url": "https://richemont.wd3.myworkdayjobs.com/broadbean_external",
-          "workday_site": "broadbean_external",
-          "allowed_hosts": [
-            "richemont.wd3.myworkdayjobs.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
-          "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262,
-          "employer_aliases": [
-            "IT13 PGI S.p.A."
-          ],
-          "employer_alias_evidence": "https://www.richemont.com/media/ue1bjrjv/richemont-fy25-annual-report-en.pdf"
-        }
+        "excluded_on": "2026-11-24",
+        "exclusion_url": "https://careers.richemont.com/en/jobs/jr133108/stage-assistant-rh-et-talent-acquisition-campus-hf/",
+        "exclusion_quote": "HTTP 403 sul dettaglio pubblico il 24 novembre 2026. Sospeso fino a verifica di accesso sullo stesso percorso."
       },
       {
         "employer": "Alcon",
@@ -4791,10 +4772,12 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
-        }
+          "max_requests": 262,
+          "slow_collection_lane": true
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Galderma",
@@ -4836,7 +4819,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -4879,10 +4862,12 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
-        }
+          "max_requests": 262,
+          "slow_collection_lane": true
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Julius Bär",
@@ -4936,7 +4921,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -4970,9 +4955,10 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 262,
+          "slow_collection_lane": true
         },
         "staging_bytes_read": 18944,
         "staging_recent_scan": {
@@ -4984,7 +4970,8 @@
           "verification_states": {},
           "observed_countries": [],
           "page_errors": []
-        }
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "ING Group",
@@ -5033,14 +5020,15 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "employer_aliases": [
             "ING Luxembourg SA",
             "ING DIBA AG"
           ],
-          "employer_alias_evidence": "https://ing.com/binaries/content/assets/documents/annual-reports/2025-ing-groep-nv-annual-report.pdf"
+          "employer_alias_evidence": "https://ing.com/binaries/content/assets/documents/annual-reports/2025-ing-groep-nv-annual-report.pdf",
+          "slow_collection_lane": true
         }
       },
       {
@@ -5072,7 +5060,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -5117,7 +5105,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -5186,7 +5174,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -5247,7 +5235,7 @@
           "access_review": "uncertain",
           "review_notes": "Site name osservato in una sitemap dichiarata dal robots del tenant. Solo staging.",
           "permission_basis": "Termini Workday del 23 novembre per sitemap e dettagli ammessi.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         }
@@ -5281,7 +5269,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262
         },
@@ -5326,9 +5314,10 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 262,
+          "slow_collection_lane": true
         },
         "staging_bytes_read": 235207,
         "staging_recent_scan": {
@@ -5340,7 +5329,8 @@
           "verification_states": {},
           "observed_countries": [],
           "page_errors": []
-        }
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "CTP",
@@ -5371,9 +5361,10 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Sito Workday identificato da un esempio del censimento. Perimetro di raccolta in staging.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 262,
+          "slow_collection_lane": true
         },
         "staging_bytes_read": 32281,
         "staging_recent_scan": {
@@ -5385,7 +5376,8 @@
           "verification_states": {},
           "observed_countries": [],
           "page_errors": []
-        }
+        },
+        "slow_lane_review": "Due HTTP 429 nella prova di attivazione del 24 novembre 2026. Resta in hold."
       },
       {
         "employer": "Vopak",
@@ -5413,7 +5405,7 @@
           "permission_basis": "non dimostrato",
           "reviewed_on": "2026-11-24",
           "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "collection_seconds": 95,
           "collection_delay": 2,
           "max_requests": 262,
           "workday_site": "CareersAtVopak"
