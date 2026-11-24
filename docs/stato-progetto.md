@@ -1,5 +1,12 @@
 # Stato di ripresa — People Placement
 
+## 24 novembre 2026 — idoneità italiana e verifica delle agenzie
+[Dossier e titoli](fonti-ad-alta-densita-2026-11.md) · [PR #138](https://github.com/nightlydeveloper8/eu-hr-internships/pull/138). Classificati tutti i 177 candidati, inclusi i 50 dettagli Gi Group. Idoneità studentesca e livello di prova distinti.
+Replay staging 937 → 1.043 ID, zero persi. Italia 27 → 112 aperti, 85 current listing, zero dirette. Recall 0/70 → 15/70. I 27 EURES storici non sono riclassificati.
+Valutazione 117 casi e zero errori, 53 test Node e build passati. Il runtime end-to-end sarà misurato al primo ciclo attivo.
+Rollout autorizzato per Randstad, Synergie, Gi Group e Adecco. Manpower Italia resta esclusa. Gi Group condivide lo shard 4 e la cadenza di 120 s con il crawler esistente, con due dettagli al massimo per ciclo.
+Baseline: 944 ID, 423 stage aperti in 13 paesi, 27 in Italia, 54 dirette, 29m29s. Dopo il publish verificare almeno 85 stage italiani e ripristinare l’hold delle quattro fonti in caso di durata oltre 45 minuti, timeout di shard o ID perso. [Run di riferimento](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45348134293).
+
 ## 23 novembre 2026 — benchmark di recall HR parziale
 [Rapporto](recall-benchmark-2026-11.md) e [campione](recall-gold-set-2026-11.csv): 16/220 schede attuali, 1 IT e 15 DE, tutte assenti dallo snapshot `8f15504`.
 Staging: 35 GET, 7.785.625 byte, 20,069 secondi HTTP. Recall nazionale e candidature v2 non dimostrato.

@@ -63,6 +63,11 @@ def provision(companies,sources):
             continue
         active=[by_id[s] for s in company.get('source_ids',[]) if s in by_id and by_id[s].get('enabled')]
         if active:continue
+        # A source-only agency rollback must not create a generic crawler.
+        if any(by_id[s].get('collection_lot')=='IT-agenzie'
+               and by_id[s].get('collection_activation_hold')
+               for s in company.get('source_ids',[]) if s in by_id):
+            continue
         starts=list(dict.fromkeys(canonical_url(u) for u in [company.get('career_url'),company.get('website_url')] if u))
         if not starts:raise ValueError('Employer has no public starting URL: '+company['id'])
         sid='auto-'+company['id']
