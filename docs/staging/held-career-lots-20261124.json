@@ -4,14 +4,10 @@
     "dispositions": {
       "excluded": 3,
       "covered": 33,
-      "hold": 59
+      "production-rollout": 2,
+      "hold": 57
     },
     "projected_shard_budget": {
-      "8": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 285
-      },
       "10": {
         "sources": 4,
         "requests": 1048,
@@ -27,15 +23,15 @@
         "requests": 1834,
         "serial_seconds": 385
       },
+      "8": {
+        "sources": 3,
+        "requests": 786,
+        "serial_seconds": 165
+      },
       "3": {
         "sources": 4,
         "requests": 1048,
         "serial_seconds": 220
-      },
-      "14": {
-        "sources": 5,
-        "requests": 1310,
-        "serial_seconds": 275
       },
       "1": {
         "sources": 5,
@@ -76,6 +72,11 @@
         "sources": 1,
         "requests": 262,
         "serial_seconds": 55
+      },
+      "14": {
+        "sources": 4,
+        "requests": 1048,
+        "serial_seconds": 220
       },
       "2": {
         "sources": 2,
@@ -255,39 +256,12 @@
         "staging_requests": 1,
         "host": "jobs.mercedes-benz.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-mercedes-benz-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Mercedes-Benz Group",
-          "career_url": "https://jobs.mercedes-benz.com",
-          "allowed_hosts": [
-            "jobs.mercedes-benz.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Avviso legale applicabile al dominio e condizioni carriere rivisti. Nessun divieto espresso per letture di sitemap e annunci pubblici consentiti da robots.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Solo sitemap e annunci pubblici sullo stesso host. Account e candidatura fuori perimetro.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 262,
-          "access_review_url": "https://group.mercedes-benz.com/provider/",
-          "employer_aliases": [
-            "Mercedes-Benz AG",
-            "Mercedes-Benz Group AG",
-            "Mercedes-Benz Manufacturing Hungary Kft.",
-            "Mercedes-Benz Tech Innovation GmbH",
-            "Mercedes-AMG GmbH"
-          ],
-          "employer_alias_evidence": "https://group.mercedes-benz.com/documents/investors/reports/annual-report/mercedes-benz/mercedes-benz-annual-report-2025-incl-combined-management-report-mbg-ag.pdf",
-          "reviewed_listing_layout": "mercedes-benz"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.mercedes-benz.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "registered_source_id": "held-sitemap-jobposting-jobs-mercedes-benz-com"
       },
       {
         "employer": "Schaeffler",
@@ -710,27 +684,7 @@
         "staging_requests": 3,
         "host": "careers.tuigroup.com",
         "csv_eu_signal": 1,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-tuigroup-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "TUI",
-          "career_url": "https://careers.tuigroup.com",
-          "allowed_hosts": [
-            "careers.tuigroup.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Percorso pubblico di recruiting. Pagina legale e footer rivisti: nessun divieto espresso per questo canale. Robots obbligatorio a ogni esecuzione.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Revisione limitata alle sitemap e ai dettagli anonimi sullo stesso host.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262,
-          "job_url_pattern": "^/en/",
-          "access_review_url": "https://careers.tuigroup.com/en/cookie-notice"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.tuigroup.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
@@ -740,7 +694,8 @@
           "status": "failed",
           "checked_at": "2026-11-24T15:15:58.171612+00:00",
           "error": "Redirect outside approved source scope"
-        }
+        },
+        "registered_source_id": "held-sitemap-jobposting-careers-tuigroup-com"
       },
       {
         "employer": "ABB",

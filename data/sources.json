@@ -51537,5 +51537,61 @@
     "reviewed_on": "2026-11-24",
     "permission_basis": "Same-host robots and public SF-RMK job sitemap and detail routes; applicable public notice reviewed: https://jobs.schaeffler.com/content/Nutzungsbedingungen/?locale=de_DE",
     "review_notes": "Limited to public vacancy routes, sitemap and robots. The observed vacancy-specific CTA is a listing signal only."
+  },
+  {
+    "id": "held-sitemap-jobposting-jobs-mercedes-benz-com",
+    "adapter": "sitemap-jobposting",
+    "employer": "Mercedes-Benz Group",
+    "career_url": "https://jobs.mercedes-benz.com",
+    "allowed_hosts": [
+      "jobs.mercedes-benz.com"
+    ],
+    "enabled": true,
+    "collection_activation_hold": false,
+    "access_review": "allowed",
+    "permission_basis": "Avviso legale applicabile al dominio e condizioni carriere rivisti. Nessun divieto espresso per letture di sitemap e annunci pubblici consentiti da robots.",
+    "reviewed_on": "2026-11-24",
+    "review_notes": "Solo sitemap e annunci pubblici sullo stesso host. Account e candidatura fuori perimetro.",
+    "collection_seconds": 120,
+    "collection_delay": 2,
+    "max_requests": 262,
+    "access_review_url": "https://group.mercedes-benz.com/provider/",
+    "employer_aliases": [
+      "Mercedes-Benz AG",
+      "Mercedes-Benz Group AG",
+      "Mercedes-Benz Manufacturing Hungary Kft.",
+      "Mercedes-Benz Tech Innovation GmbH",
+      "Mercedes-AMG GmbH"
+    ],
+    "employer_alias_evidence": "https://group.mercedes-benz.com/documents/investors/reports/annual-report/mercedes-benz/mercedes-benz-annual-report-2025-incl-combined-management-report-mbg-ag.pdf",
+    "reviewed_listing_layout": "mercedes-benz",
+    "collection_lot": "CORPORATE-SITEMAP",
+    "target_countries": [
+      "DE",
+      "HU"
+    ],
+    "company_id": "mercedes-benz-group-ag"
+  },
+  {
+    "id": "held-sitemap-jobposting-careers-tuigroup-com",
+    "adapter": "sitemap-jobposting",
+    "employer": "TUI",
+    "career_url": "https://careers.tuigroup.com",
+    "allowed_hosts": [
+      "careers.tuigroup.com"
+    ],
+    "enabled": true,
+    "collection_activation_hold": false,
+    "access_review": "allowed",
+    "permission_basis": "Percorso pubblico di recruiting. Pagina legale e footer rivisti: nessun divieto espresso per questo canale. Robots obbligatorio a ogni esecuzione.",
+    "reviewed_on": "2026-11-24",
+    "review_notes": "Revisione limitata alle sitemap e ai dettagli anonimi sullo stesso host.",
+    "collection_seconds": 55,
+    "collection_delay": 2,
+    "max_requests": 262,
+    "job_url_pattern": "^/en/",
+    "access_review_url": "https://careers.tuigroup.com/en/cookie-notice",
+    "collection_lot": "CORPORATE-SITEMAP",
+    "target_countries": []
   }
 ]

@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 24 novembre 2026 — Rollout corporate della PR #142
+Il maintainer ha autorizzato Mercedes-Benz Group e TUI. Workday e 57 fonti corporate restano in hold. Kering esclusa e Richemont sospesa.
+[Simulazione](staging/held-career-activation-simulation-20261124.md): 578 → 589 aperti, +9 DE e +2 HU, 13 nuovi ID, zero persi. [Coda delle 57 fonti](corporate-da-rivedere.csv) con segnali storici del censimento.
+Verificare il primo publish e applicare il rientro autorizzato se la raccolta supera 45 minuti, uno shard va in timeout o si perde un ID.
+
 ## 24 novembre 2026 — raccolta indipendente per gli host lenti
 
 Gi Group passa dalla corsia critica di collect.yml a slow-hosts.yml, con cadenza invariata di 120 s, cron alle 03:17 UTC, timeout di 60 minuti e artefatto valido per 48 ore. Il publish delle 06:17 UTC continua con o senza uno snapshot recente.
