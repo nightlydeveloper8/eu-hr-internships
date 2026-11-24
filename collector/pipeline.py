@@ -290,9 +290,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     if isinstance(exc,ApplicationClosed):verified_closed_urls.add(record['url']);continue
                     page_errors.append(dict(url=record['url'],error=str(exc)[:180]))
                     from .runtime import CollectionBudgetExceeded
-                    if isinstance(exc,CollectionBudgetExceeded):
-                        detail_attempts-=1
-                        break
+                    if isinstance(exc,CollectionBudgetExceeded):break
                     if agency_sitemap and detail_limit:
                         snapshot[record['url']]=dict(lastmod=hint,checked_at=stamp)
                     continue
@@ -471,7 +469,7 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
     ineligible_student_urls={canonical_url(url) for p in parts for url in p['report'].get('ineligible_student_urls',[])}
     from .classify import excluded_german_title, excluded_placement_title
     from .sf_rmk import remove_repeated_text
-    rmk_sources={source['id'] for source in registry if source['adapter']=='sf-rmk'}
+    rmk_sources={source['id'] for source in registry if source.get('adapter')=='sf-rmk'}
     for job in jobs:
         if job['source_id'] in rmk_sources:
             job['title']=remove_repeated_text(job['title'])
