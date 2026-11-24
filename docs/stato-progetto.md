@@ -1,5 +1,11 @@
 # Stato di ripresa — People Placement
 
+## 24 novembre 2026 — raccolta indipendente per gli host lenti
+
+Gi Group passa dalla corsia critica di collect.yml a slow-hosts.yml, con cadenza invariata di 120 s, cron alle 03:17 UTC, timeout di 60 minuti e artefatto valido per 48 ore. Il publish delle 06:17 UTC continua con o senza uno snapshot recente.
+Verifiche locali su stato assente, scaduto e riusato, conservazione ID e provisioning idempotente. Baseline [35m30s](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45387756065), 1.104 ID e 578 stage aperti.
+Prossimo passo: dispatch della corsia lenta e verifica del primo publish che consuma l’artefatto, con obiettivo sotto 26 minuti.
+
 **24 novembre 2026.** Correzioni alla raccolta sulla [baseline da 23m21s](https://github.com/nightlydeveloper8/eu-hr-internships/actions/runs/45380157707). Gi Group usa solo la fonte sitemap nella corsia parallela, con 120 s fra richieste, fino a 15 dettagli e 33 minuti di budget. Il merge riclassifica i titoli misti conservando gli ID e normalizza il testo duplicato di SF-RMK. EURES conserva il tetto di 330: con i 10 s del robots.txt applicati esplicitamente, 600 e 900 richiedono rispettivamente almeno 99m50s e 149m50s per raggiungere il tetto. Il budget della fonte è 15 minuti per lasciare margine al resto dello shard. Verificare il prossimo publish e ripristinare le modifiche se il ciclo supera 45 minuti, uno shard va in timeout o si perde un ID.
 
 **24 novembre 2026.** [Rollout #139](diario/operations/rollout-139-20261124.md), configurazione autorizzata per 16 fonti. Prossimo controllo sul primo publish, con confronto degli ID, qualità dei titoli e durata degli shard.
