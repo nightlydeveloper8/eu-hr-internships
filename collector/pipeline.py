@@ -317,6 +317,7 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None):
                     filter_reasons['italian-student-eligibility-excluded']+=1
                     if text_observation.get('kind')!='cache':
                         ineligible_italian_urls.add(allowed_url(record['url'],source))
+                    continue
             elif len(countries)==1 and source.get('agency_slug_country')==countries[0]:
                 eligibility=student_eligibility_for_country(countries[0],record['title'],record['text'],record.get('employment',''))
                 if eligibility=='excluded':

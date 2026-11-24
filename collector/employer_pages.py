@@ -110,6 +110,20 @@ def german_hr_stage_slug_candidate(url):
                 and not GERMAN_NON_STAGE.search(title))
 
 
+POLISH_STAGE = re.compile(r'\b(?:staz(?:yst\w*|u)?|praktyk\w*|intern|internship)\b')
+POLISH_HR = re.compile(
+    r'\b(?:hr|human resources|zasob\w* ludzk\w*|rekrut\w*|recruit\w*|kadry|kadr\w*|'
+    r'plac\w*|talent acquisition|people|payroll)\b'
+)
+
+
+def polish_agency_slug_candidate(url):
+    from .classify import fold
+    slug = urlsplit(url).path.rstrip('/').rsplit('/', 1)[-1]
+    title = fold(slug_title('/' + slug)).replace('ł', 'l')
+    return bool(POLISH_STAGE.search(title) and POLISH_HR.search(title))
+
+
 def decompress_sitemap(body):
     if not body.startswith(b'\x1f\x8b'):
         return body
@@ -125,7 +139,7 @@ def sitemap_records(source,client):
     prefilter=source.get('url_slug_prefilter')==True;listed=0
     country=source.get('agency_slug_country')
     matches_slug = {'ES': spanish_agency_slug_candidate, 'NL': dutch_agency_slug_candidate,
-                    'DE': german_hr_stage_slug_candidate}.get(country)
+                    'DE': german_hr_stage_slug_candidate, 'PL': polish_agency_slug_candidate}.get(country)
     if matches_slug is None:
         matches_slug = italian_agency_slug_candidate if source.get('italian_agency_slug_triage') else slug_prefilter
     agency_triage=(source.get('italian_agency_slug_triage') or source.get('agency_slug_country'))

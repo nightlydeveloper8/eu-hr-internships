@@ -51248,5 +51248,40 @@
     "reviewed_on": "2026-11-24",
     "permission_basis": "Same-host robots declares the German sitemap index and permits public JobPosting details. Career portal legal notice reviewed: https://db.jobs/de-de/Impressum-5555662",
     "review_notes": "Read the German sitemap and descriptive vacancy routes only. Missing expiry and unverified application route leave the qualifying listing at lead."
+  },
+  {
+    "id": "held-randstad-pl-jobposting",
+    "company_id": "randstad-polska-pl",
+    "employer": "Randstad Polska",
+    "employer_tokens": [
+      "randstad"
+    ],
+    "adapter": "employer-sitemap",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "collection_lot": "AGENZIE-PL",
+    "staffing_agency": true,
+    "target_countries": [
+      "PL"
+    ],
+    "allowed_hosts": [
+      "www.randstad.pl"
+    ],
+    "career_url": "https://www.randstad.pl/znajdz-prace/",
+    "sitemaps": [
+      "https://www.randstad.pl/sitemaps/jobs/sitemap-jobdetails.xml",
+      "https://www.randstad.pl/sitemaps/jobs/sitemap-jobdetails-internal.xml"
+    ],
+    "job_url_pattern": "^https://www\\.randstad\\.pl/(?:znajdz-prace|kariera-w-randstad/obecnie-poszukujemy)/[^/?]+_\\d+/?$",
+    "url_slug_prefilter": true,
+    "agency_slug_country": "PL",
+    "max_sitemaps": 2,
+    "max_requests": 40,
+    "collection_seconds": 180,
+    "collection_delay": 2,
+    "status": "reviewed-disabled",
+    "reviewed_on": "2026-11-24",
+    "permission_basis": "Polish robots permits its declared job sitemaps and public JSON-LD detail paths; scoped to the site notices linked by the Polish public site.",
+    "review_notes": "One canonical Polish path per vacancy. Locale aliases and any robots-disallowed application routes are excluded from the trial."
   }
 ]
