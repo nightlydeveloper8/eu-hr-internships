@@ -28,6 +28,7 @@ class AllEmployerTests(unittest.TestCase):
    'randstad-italia-spa':'held-randstad-it-jobposting',
    'synergie-italia':'held-synergie-it-jobposting',
   }
+  parallel_sitemaps={'accor':'sitemap-careers-accor-com','bosch':'sitemap-jobs-bosch-de'}
   # An explicitly held, reviewed source is deliberately NOT collected:
   # assert zero enabled sources only under the fail-closed activation hold.
   for company in c:
@@ -49,6 +50,13 @@ class AllEmployerTests(unittest.TestCase):
     if company_id not in {'gi-group','synergie-italia'}:
      expected.add('auto-'+company_id)
     self.assertEqual(active,expected,company_id)
+   elif company['id'] in parallel_sitemaps:
+    sitemap_id=parallel_sitemaps[company['id']]
+    expected={'auto-'+company['id']}
+    if sitemap_id in enabled:
+     self.assertEqual(enabled[sitemap_id]['adapter'],'sitemap-jobposting')
+     expected.add(sitemap_id)
+    self.assertEqual(active,expected,company['id'])
    elif not rollout:self.assertEqual(len(active),1,company['id'])
    else:self.assertLessEqual(len(active),1,company['id'])
   self.assertEqual(provision(c,s),(c,s))

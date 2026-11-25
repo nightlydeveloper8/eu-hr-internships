@@ -3299,7 +3299,7 @@
     "company_id": "asml",
     "employer": "ASML",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://www.asml.com/en/careers"
     ],
@@ -3316,7 +3316,7 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "superseded"
   },
   {
     "id": "auto-asmpt-gmbh-co-kg",
@@ -12199,7 +12199,7 @@
     "company_id": "knorr-bremse-ag",
     "employer": "Knorr Bremse AG",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://careers.knorr-bremse.com?locale=en_US"
     ],
@@ -12216,7 +12216,7 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending"
+    "status": "superseded"
   },
   {
     "id": "auto-kpit-technologies-gmbh",
@@ -12482,7 +12482,7 @@
     "company_id": "l-oreal",
     "employer": "L’Oréal",
     "adapter": "universal-employer",
-    "enabled": true,
+    "enabled": false,
     "start_urls": [
       "https://careers.loreal.com/fr/emploi/paris/stage-rh-6-mois-de-janvier-a-juin-2027-region-parisienne-master-1-ou-2-1700-brut-mensuels-nombreuse/3456/36074467072",
       "https://careers.loreal.com/en/job/clichy/stage-6-mois-a-partir-de-janvier-2027-projet-transformation-digitale-and-ia-juridique-rh/3456/46447903872",
@@ -12503,7 +12503,7 @@
     "max_navigation_depth": 3,
     "max_render_pages": 4,
     "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
-    "status": "automatic-collection-pending",
+    "status": "superseded",
     "known_job_urls": [
       "https://careers.loreal.com/fr/emploi/paris/stage-rh-6-mois-de-janvier-a-juin-2027-region-parisienne-master-1-ou-2-1700-brut-mensuels-nombreuse/3456/36074467072",
       "https://careers.loreal.com/en/job/clichy/stage-6-mois-a-partir-de-janvier-2027-projet-transformation-digitale-and-ia-juridique-rh/3456/46447903872",
@@ -49619,7 +49619,7 @@
     "id": "employer-ing",
     "employer": "ING",
     "adapter": "employer-sitemap",
-    "enabled": true,
+    "enabled": false,
     "career_url": "https://careers.ing.com",
     "sitemaps": [
       "https://careers.ing.com/sitemap.xml"
@@ -49667,7 +49667,8 @@
     "max_requests": 260,
     "reviewed_on": "2026-11-18",
     "permission_basis": "Official employer career site (Radancy); robots.txt allows job pages and lists the sitemap; only schema.org JobPosting data is read; robots checked every run",
-    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting."
+    "discovery_scope": "Phase 3 (JobPosting only): every job URL in the reviewed sitemap is listed, but only pages whose URL title already names an HR internship are read; each page is then classified on its JobPosting title and description. Internships whose URL title lacks the HR or placement term are a coverage gap. Sitemap absence never closes a posting.",
+    "status": "superseded"
   },
   {
     "id": "employer-societe-generale",
@@ -51877,10 +51878,10 @@
     "career_url": "https://careers.loreal.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
-    "enabled": false,
-    "collection_activation_hold": true,
+    "review_notes": "Rollout approved by maintainer on 2026-11-25 after evidence of current listings on the official detail pages.",
+    "reviewed_on": "2026-11-25",
+    "enabled": true,
+    "collection_activation_hold": false,
     "collection_seconds": 120,
     "max_requests": 90,
     "collection_delay": 2,
@@ -51892,7 +51893,10 @@
       "L'Oreal"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "active",
+    "reviewed_application_reference_hosts": [
+      "careers-apply.loreal.com"
+    ]
   },
   {
     "employer": "Accor",
@@ -51907,10 +51911,10 @@
     "career_url": "https://careers.accor.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
-    "enabled": false,
-    "collection_activation_hold": true,
+    "review_notes": "Rollout approved by maintainer on 2026-11-25 after evidence of current listings on the official detail pages.",
+    "reviewed_on": "2026-11-25",
+    "enabled": true,
+    "collection_activation_hold": false,
     "collection_seconds": 120,
     "max_requests": 90,
     "collection_delay": 2,
@@ -51918,7 +51922,8 @@
       "auto-accor"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "active",
+    "reviewed_listing_layout": "vacancy-workflow"
   },
   {
     "employer": "Infineon",
@@ -51961,8 +51966,8 @@
     "career_url": "https://jobs.infineon.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
+    "review_notes": "Il dettaglio europeo osservato non espone un JobPosting utilizzabile.",
+    "reviewed_on": "2026-11-25",
     "enabled": false,
     "collection_activation_hold": true,
     "collection_seconds": 120,
@@ -52015,10 +52020,10 @@
     "career_url": "https://careers.ing.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
-    "enabled": false,
-    "collection_activation_hold": true,
+    "review_notes": "Rollout approved by maintainer on 2026-11-25 after evidence of current listings on the official detail pages.",
+    "reviewed_on": "2026-11-25",
+    "enabled": true,
+    "collection_activation_hold": false,
     "collection_seconds": 120,
     "max_requests": 90,
     "collection_delay": 2,
@@ -52030,7 +52035,10 @@
       "ING Bank"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "active",
+    "reviewed_application_reference_hosts": [
+      "ing.wd3.myworkdayjobs.com"
+    ]
   },
   {
     "employer": "ASML",
@@ -52045,10 +52053,10 @@
     "career_url": "https://www.asml.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
-    "enabled": false,
-    "collection_activation_hold": true,
+    "review_notes": "Rollout approved by maintainer on 2026-11-25 after evidence of current listings on the official detail pages.",
+    "reviewed_on": "2026-11-25",
+    "enabled": true,
+    "collection_activation_hold": false,
     "collection_seconds": 120,
     "max_requests": 90,
     "collection_delay": 2,
@@ -52056,7 +52064,11 @@
       "auto-asml"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "active",
+    "reviewed_listing_layout": "next-workday",
+    "reviewed_application_reference_hosts": [
+      "asml.wd3.myworkdayjobs.com"
+    ]
   },
   {
     "employer": "ABB",
@@ -52099,8 +52111,8 @@
     "career_url": "https://careers.abb",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
+    "review_notes": "Le schede osservate dichiarano la vacancy non disponibile.",
+    "reviewed_on": "2026-11-25",
     "enabled": false,
     "collection_activation_hold": true,
     "collection_seconds": 120,
@@ -52135,8 +52147,8 @@
     "career_url": "https://join.pmicareers.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
+    "review_notes": "Candidato extraeuropeo e inventario incompleto.",
+    "reviewed_on": "2026-11-25",
     "enabled": false,
     "collection_activation_hold": true,
     "collection_seconds": 120,
@@ -52171,8 +52183,8 @@
     "career_url": "https://careers.adeccogroup.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
+    "review_notes": "Paese e identità societaria incompleti nel dettaglio.",
+    "reviewed_on": "2026-11-25",
     "enabled": false,
     "collection_activation_hold": true,
     "collection_seconds": 120,
@@ -52201,8 +52213,8 @@
     "career_url": "https://jobs.pirelli.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
+    "review_notes": "Paese e CTA della vacancy non confermati.",
+    "reviewed_on": "2026-11-25",
     "enabled": false,
     "collection_activation_hold": true,
     "collection_seconds": 120,
@@ -52227,12 +52239,13 @@
       "careers.knorr-bremse.com"
     ],
     "career_url": "https://careers.knorr-bremse.com",
+    "reviewed_rmk_dates": true,
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
-    "enabled": false,
-    "collection_activation_hold": true,
+    "review_notes": "Rollout approved by maintainer on 2026-11-25 after evidence of current listings on the official detail pages.",
+    "reviewed_on": "2026-11-25",
+    "enabled": true,
+    "collection_activation_hold": false,
     "collection_seconds": 120,
     "max_requests": 90,
     "collection_delay": 2,
@@ -52240,7 +52253,7 @@
       "auto-knorr-bremse-ag"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "active"
   },
   {
     "employer": "Kuehne+Nagel",
@@ -52283,8 +52296,8 @@
     "career_url": "https://jobs.kuehne-nagel.com",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
+    "review_notes": "Candidato extraeuropeo e inventario incompleto.",
+    "reviewed_on": "2026-11-25",
     "enabled": false,
     "collection_activation_hold": true,
     "collection_seconds": 120,
@@ -52309,8 +52322,8 @@
     "career_url": "https://www.werkenbijrandstad.nl",
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
-    "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
-    "reviewed_on": "2026-11-24",
+    "review_notes": "La CTA punta a un’ancora e il modulo non è presente nel documento statico.",
+    "reviewed_on": "2026-11-25",
     "enabled": false,
     "collection_activation_hold": true,
     "collection_seconds": 120,
@@ -53164,5 +53177,106 @@
     "replaces_source_ids": [],
     "collection_lot": "CORPORATE-SITEMAP-TERMS",
     "status": "migration-review-required"
+  },
+  {
+    "id": "sitemap-jobs-bosch-de",
+    "company_id": "bosch",
+    "employer": "Bosch",
+    "adapter": "sitemap-jobposting",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "career_url": "https://jobs.bosch.de",
+    "allowed_hosts": [
+      "jobs.bosch.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "access_review": "allowed",
+    "reviewed_on": "2026-11-25",
+    "permission_basis": "Public official Bosch career portal. Exact-host robots, sitemap and details only. Outbound application references are parsed from the official detail.",
+    "review_notes": "Rollout approved by maintainer on 2026-11-25 after evidence of current listings on the official detail pages.",
+    "reviewed_listing_layout": "bosch",
+    "require_employer_identity": true,
+    "employer_aliases": [
+      "Robert Bosch GmbH",
+      "Bosch Rexroth AG",
+      "Bosch Rexroth",
+      "BSH Hausgeräte GmbH",
+      "BSH Home Appliances",
+      "Bosch Sicherheitssysteme GmbH",
+      "Bosch Sicherheitssysteme Montage und Service GmbH",
+      "Robert Bosch Smart Home GmbH",
+      "Robert Bosch Fahrzeugelektrik Eisenach GmbH",
+      "Robert Bosch Elektronik GmbH"
+    ],
+    "max_requests": 90,
+    "collection_seconds": 120,
+    "collection_delay": 2,
+    "status": "active"
+  },
+  {
+    "id": "sitemap-jobs-bosch-com",
+    "company_id": "bosch",
+    "employer": "Bosch",
+    "adapter": "sitemap-jobposting",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://jobs.bosch.com",
+    "allowed_hosts": [
+      "jobs.bosch.com"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "access_review": "allowed",
+    "reviewed_on": "2026-11-25",
+    "permission_basis": "Public official Bosch career portal. Exact-host robots, sitemap and details only. Outbound application references are parsed from the official detail.",
+    "review_notes": "Nessuna scheda HR europea osservata nelle sitemap lette.",
+    "reviewed_listing_layout": "bosch",
+    "require_employer_identity": true,
+    "employer_aliases": [
+      "Robert Bosch GmbH",
+      "Bosch Rexroth AG",
+      "Bosch Rexroth",
+      "BSH Hausgeräte GmbH",
+      "BSH Home Appliances",
+      "Bosch Sicherheitssysteme GmbH",
+      "Bosch Sicherheitssysteme Montage und Service GmbH",
+      "Robert Bosch Smart Home GmbH",
+      "Robert Bosch Fahrzeugelektrik Eisenach GmbH",
+      "Robert Bosch Elektronik GmbH"
+    ],
+    "max_requests": 90,
+    "collection_seconds": 120,
+    "collection_delay": 2
   }
 ]
