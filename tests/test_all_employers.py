@@ -22,6 +22,9 @@ class AllEmployerTests(unittest.TestCase):
  def test_all_real_employers_have_reviewed_collector_counts_and_assignment_is_idempotent(self):
   c,s=provision(read(ROOT/'data/companies.json',[]),read(ROOT/'data/sources.json',[]));self.assertGreaterEqual(len(c),842)
   enabled={x['id']:x for x in s if x.get('enabled')}
+  retired={x['id'] for x in s if x.get('status')=='disabled-after-14-empty-cycles'}
+  self.assertTrue(all(sid.startswith(('auto-', 'employer-')) for sid in retired))
+  self.assertTrue(retired.isdisjoint(enabled))
   agency_sources={
    'adecco':'held-adecco-it-jobposting',
    'gi-group':'held-gi-group-it-jobposting',
@@ -40,7 +43,7 @@ class AllEmployerTests(unittest.TestCase):
     self.assertEqual(len(active),0,company['id'])
     held_disabled={src['id'] for src in s if not src.get('enabled')
                    and src.get('company_id')==company['id']}
-    self.assertTrue(bool(held_disabled.intersection(company['source_ids'])),company['id'])
+    self.assertTrue(bool((held_disabled | retired).intersection(company['source_ids'])),company['id'])
    elif company['id'] in agency_sources:
     company_id=company['id']
     agency_source=agency_sources[company_id]
@@ -49,14 +52,14 @@ class AllEmployerTests(unittest.TestCase):
     expected={agency_source} if agency_source in enabled else set()
     if company_id not in {'gi-group','synergie-italia'}:
      expected.add('auto-'+company_id)
-    self.assertEqual(active,expected,company_id)
+    self.assertEqual(active,expected-retired,company_id)
    elif company['id'] in parallel_sitemaps:
     sitemap_id=parallel_sitemaps[company['id']]
     expected={'auto-'+company['id']}
     if sitemap_id in enabled:
      self.assertEqual(enabled[sitemap_id]['adapter'],'sitemap-jobposting')
      expected.add(sitemap_id)
-    self.assertEqual(active,expected,company['id'])
+    self.assertEqual(active,expected-retired,company['id'])
    elif not rollout:self.assertEqual(len(active),1,company['id'])
    else:self.assertLessEqual(len(active),1,company['id'])
   self.assertEqual(provision(c,s),(c,s))
