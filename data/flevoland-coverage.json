@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-25T19:10:01.630221+00:00",
+  "generated_at": "2026-11-25T19:46:03.396533+00:00",
   "province": "Flevoland",
   "region_code": "NL23",
   "exhaustive": false,
@@ -17,12 +17,12 @@
     "below_threshold": 0,
     "municipalities": 6,
     "municipalities_with_qualified_employers": 0,
-    "configured": 19,
-    "attempted_recently": 19,
+    "configured": 4,
+    "attempted_recently": 4,
     "collection_states": {
-      "partial": 11,
-      "discovery-incomplete": 7,
-      "blocked-or-failed": 1
+      "unconfigured": 15,
+      "discovery-incomplete": 1,
+      "partial": 3
     },
     "qualified_collection_states": {},
     "verified_hr_internships": 1,
@@ -40,7 +40,7 @@
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 1,
+        "unconfigured": 1,
         "discovery-incomplete": 1
       },
       "company_ids": [
@@ -62,7 +62,7 @@
       "below_threshold": 0,
       "collection_states": {
         "partial": 2,
-        "discovery-incomplete": 1
+        "unconfigured": 1
       },
       "company_ids": [
         "gemeente-dronten",
@@ -81,8 +81,8 @@
       "size_unknown": 4,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2,
-        "discovery-incomplete": 2
+        "partial": 1,
+        "unconfigured": 3
       },
       "company_ids": [
         "farm-dairy",
@@ -102,9 +102,7 @@
       "size_unknown": 3,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1,
-        "partial": 1,
-        "blocked-or-failed": 1
+        "unconfigured": 3
       },
       "company_ids": [
         "gemeente-noordoostpolder",
@@ -123,8 +121,7 @@
       "size_unknown": 4,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 2,
-        "discovery-incomplete": 2
+        "unconfigured": 4
       },
       "company_ids": [
         "kramer-fish-group",
@@ -144,7 +141,7 @@
       "size_unknown": 3,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 3
+        "unconfigured": 3
       },
       "company_ids": [
         "gemeente-zeewolde",
@@ -181,20 +178,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-alfen"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:14.851964+00:00",
-      "public_job_records": 5,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-alfen",
-          "message": "[{'url': 'https://alfen.com/werken-bij', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://alfen.com/werken-bij/vacatures/lead-platform-architect-energy-storage-systems-(ess)-1285810/solliciteren', 'error': 'HTTP Error 404: Not Found'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-almere",
@@ -228,7 +218,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:42.397698+00:00",
+      "last_attempt_at": "2026-11-25T19:31:34.136047+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -270,7 +260,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:14.851964+00:00",
+      "last_attempt_at": "2026-11-25T19:30:35.160761+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -307,13 +297,11 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-marfo"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:20.171680+00:00",
-      "public_job_records": 3,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -344,20 +332,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-farm-dairy"
-      ],
-      "state": "discovery-incomplete",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:44.714475+00:00",
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-farm-dairy",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "giant-europe",
@@ -386,20 +367,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-giant-europe"
-      ],
-      "state": "discovery-incomplete",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:38.232657+00:00",
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-giant-europe",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "meerpaal",
@@ -433,7 +407,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:36.145437+00:00",
+      "last_attempt_at": "2026-11-25T19:30:24.747678+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -470,20 +444,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-gemeente-dronten"
-      ],
-      "state": "discovery-incomplete",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:15.239166+00:00",
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-dronten",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "hlb-group",
@@ -517,7 +484,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:14.851964+00:00",
+      "last_attempt_at": "2026-11-25T19:30:35.160761+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [
         "36be83296822b67167cb"
@@ -551,20 +518,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-smt-netherlands"
-      ],
-      "state": "discovery-incomplete",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:17.316664+00:00",
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-smt-netherlands",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "groothuisbouw",
@@ -593,20 +553,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-groothuisbouw"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:42.397698+00:00",
-      "public_job_records": 6,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-groothuisbouw",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-noordoostpolder",
@@ -635,20 +588,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-gemeente-noordoostpolder"
-      ],
-      "state": "blocked-or-failed",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:22.623587+00:00",
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-noordoostpolder",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "sea-fresh",
@@ -677,20 +623,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-sea-fresh"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:50.940661+00:00",
-      "public_job_records": 5,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-sea-fresh",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "urker-zalmhuys",
@@ -719,20 +658,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-urker-zalmhuys"
-      ],
-      "state": "discovery-incomplete",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:42.397698+00:00",
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-urker-zalmhuys",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "neerlandia-urk",
@@ -761,13 +693,11 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-neerlandia-urk"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:50.940661+00:00",
-      "public_job_records": 6,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -798,20 +728,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-kramer-fish-group"
-      ],
-      "state": "discovery-incomplete",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:52:20.951399+00:00",
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-kramer-fish-group",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "van-amersfoort-racing",
@@ -840,20 +763,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-van-amersfoort-racing"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:14.851964+00:00",
-      "public_job_records": 2,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-van-amersfoort-racing",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "royal-herkel",
@@ -882,20 +798,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-royal-herkel"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:52:20.951399+00:00",
-      "public_job_records": 1,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-royal-herkel",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-zeewolde",
@@ -924,20 +833,13 @@
           "checked_on": "2026-11-07"
         }
       ],
-      "source_ids": [
-        "auto-gemeente-zeewolde"
-      ],
-      "state": "partial",
-      "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T18:51:52.333683+00:00",
-      "public_job_records": 2,
+      "source_ids": [],
+      "state": "unconfigured",
+      "attempted_recently": false,
+      "last_attempt_at": null,
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-zeewolde",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     }
   ],
   "verified_hr_internship_ids": [
