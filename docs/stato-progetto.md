@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 25 novembre 2026 — PAESI-PICCOLI
+
+[Registro del lotto](staging/paesi-piccoli-20261125.md). Replay live su ec2b201 con BYD e JKS, DK 0 → 6 e HU 3 → 5 aperti, 1.205 → 1.215 ID, zero persi. Stima 24m34s. Randstad PL già attivo, otto schede correnti al controllo.
+Prossimo passo: verificare il primo publish e rientrare oltre 45 minuti, al timeout di uno shard o alla perdita di un ID. Restano gli host residui e l'integrazione dei candidati universitari, D rinviato.
+
 ## 25 novembre 2026 — Revisione dei termini corporate e schede essenziali
 Il titolo misto Volkswagen conserva l’ID nel replay storico ed è escluso. Dieci host TLS su dieci leggibili dalla CI Python 3.12. Thyssenkrupp recupera l’XML e resta in hold per identità del datore. Erste resta in hold per XML troncato.
 [Riesame e stato dei 17 host](staging/corporate-terms-revision-20261125.md). Replay 584 → 599 aperti, 18 nuovi ID, zero ID persi e nessun titolo escluso. 17 fonti attive, 21 in hold. Stima 28m38s.
