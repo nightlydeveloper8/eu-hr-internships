@@ -445,7 +445,8 @@
     "state": "collection-review-required",
     "career_url": "https://www.asml.com/en/careers",
     "source_ids": [
-      "auto-asml"
+      "auto-asml",
+      "sitemap-www-asml-com"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -669,7 +670,8 @@
     "state": "collection-review-required",
     "career_url": "https://careers.smartrecruiters.com/AccorCorpo",
     "source_ids": [
-      "auto-accor"
+      "auto-accor",
+      "sitemap-careers-accor-com"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -3066,20 +3068,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "blackwave-gmbh",
-    "name": "Blackwave GmbH",
-    "candidate_countries": [
-      "DE"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://blackwave.com/career",
-    "source_ids": [
-      "auto-blackwave-gmbh"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "bloezem",
     "name": "Bloezem",
     "candidate_countries": [
@@ -3405,12 +3393,15 @@
       "discovery-de",
       "discovery-hu",
       "discovery-ro",
-      "auto-bosch"
+      "auto-bosch",
+      "sitemap-jobs-bosch-de",
+      "sitemap-jobs-bosch-com"
     ],
     "access_blocks": [
       "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected.",
       "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected.",
-      "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
+      "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected.",
+      "Nessuna scheda HR europea osservata nelle sitemap lette."
     ],
     "next_action": "Check source completeness, country coverage and freshness"
   },
@@ -7155,24 +7146,6 @@
     "access_blocks": [
       "SmartRecruiters robots disallows automated access; Ashby robots responds 401. Conservative policy blocks collection; seek provider permission before enabling."
     ],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "emma-the-sleep-company",
-    "name": "Emma – The Sleep Company",
-    "candidate_countries": [
-      "DE",
-      "ES",
-      "FR",
-      "IT",
-      "PT"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://jobs.lever.co/emma-sleep",
-    "source_ids": [
-      "lever-emma-sleep"
-    ],
-    "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
@@ -12845,20 +12818,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "knorr-bremse-ag",
-    "name": "Knorr Bremse AG",
-    "candidate_countries": [
-      "DE"
-    ],
-    "state": "collection-review-required",
-    "career_url": "https://careers.knorr-bremse.com/?locale=en_US",
-    "source_ids": [
-      "auto-knorr-bremse-ag"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "koninklijke-damstra-installatiegroep",
     "name": "Koninklijke Damstra Installatiegroep",
     "candidate_countries": [
@@ -13854,7 +13813,8 @@
     "career_url": "https://careers.loreal.com/",
     "source_ids": [
       "discovery-fr",
-      "auto-l-oreal"
+      "auto-l-oreal",
+      "sitemap-careers-loreal-com"
     ],
     "access_blocks": [
       "Homepage candidate: HTTP validation report is separate. API/terms/robots extraction review required before enabling. No listings collected."
@@ -20777,6 +20737,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "synergie-italia",
+    "name": "Synergie Italia",
+    "candidate_countries": [
+      "IT"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://www.synergie-italia.it/candidato/offerte-di-lavoro",
+    "source_ids": [
+      "held-synergie-it-jobposting"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "synlab-medical-s-r-l",
     "name": "Synlab Medical S.R.L.",
     "candidate_countries": [
@@ -24556,6 +24530,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "youngcapital-nederland",
+    "name": "YoungCapital",
+    "candidate_countries": [
+      "NL"
+    ],
+    "state": "collection-review-required",
+    "career_url": "https://www.youngcapital.nl/vacatures",
+    "source_ids": [
+      "held-youngcapital-nl-jobposting"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "yource",
     "name": "Yource",
     "candidate_countries": [
@@ -25611,6 +25599,20 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
+    "company_id": "blackwave-gmbh",
+    "name": "Blackwave GmbH",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://blackwave.com/career",
+    "source_ids": [
+      "auto-blackwave-gmbh"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
     "company_id": "bloomwell-group-de",
     "name": "Bloomwell Group",
     "candidate_countries": [
@@ -25812,6 +25814,24 @@
     "career_url": "https://werkenbijedco.nl/",
     "source_ids": [
       "recruitee-edco"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "emma-the-sleep-company",
+    "name": "Emma – The Sleep Company",
+    "candidate_countries": [
+      "DE",
+      "ES",
+      "FR",
+      "IT",
+      "PT"
+    ],
+    "state": "collecting",
+    "career_url": "https://jobs.lever.co/emma-sleep",
+    "source_ids": [
+      "lever-emma-sleep"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26300,6 +26320,21 @@
     "career_url": "https://jobs.jti.com/",
     "source_ids": [
       "held-sf-rmk-jti-rmk"
+    ],
+    "access_blocks": [],
+    "next_action": "Check source completeness, country coverage and freshness"
+  },
+  {
+    "company_id": "knorr-bremse-ag",
+    "name": "Knorr Bremse AG",
+    "candidate_countries": [
+      "DE"
+    ],
+    "state": "collecting",
+    "career_url": "https://careers.knorr-bremse.com/?locale=en_US",
+    "source_ids": [
+      "auto-knorr-bremse-ag",
+      "sitemap-careers-knorr-bremse-com"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
@@ -26883,20 +26918,6 @@
     "next_action": "Check source completeness, country coverage and freshness"
   },
   {
-    "company_id": "synergie-italia",
-    "name": "Synergie Italia",
-    "candidate_countries": [
-      "IT"
-    ],
-    "state": "collecting",
-    "career_url": "https://www.synergie-italia.it/candidato/offerte-di-lavoro",
-    "source_ids": [
-      "held-synergie-it-jobposting"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
     "company_id": "thermo-fisher-scientific",
     "name": "Thermo Fisher Scientific",
     "candidate_countries": [
@@ -27122,20 +27143,6 @@
     "career_url": "https://www.wstweststellingwerf.nl/over-ons/werken-bij-ons/",
     "source_ids": [
       "auto-woningstichting-weststellingwerf"
-    ],
-    "access_blocks": [],
-    "next_action": "Check source completeness, country coverage and freshness"
-  },
-  {
-    "company_id": "youngcapital-nederland",
-    "name": "YoungCapital",
-    "candidate_countries": [
-      "NL"
-    ],
-    "state": "collecting",
-    "career_url": "https://www.youngcapital.nl/vacatures",
-    "source_ids": [
-      "held-youngcapital-nl-jobposting"
     ],
     "access_blocks": [],
     "next_action": "Check source completeness, country coverage and freshness"
