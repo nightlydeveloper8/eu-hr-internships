@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-25T07:54:22.154201+00:00",
+  "generated_at": "2026-11-25T17:28:16.505221+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -22,14 +22,14 @@
     "collection_states": {
       "discovery-incomplete": 14,
       "blocked-or-failed": 3,
-      "partial": 12,
-      "collected": 2
+      "partial": 11,
+      "collected": 3
     },
     "qualified_collection_states": {
       "discovery-incomplete": 12,
       "blocked-or-failed": 3,
-      "partial": 10,
-      "collected": 2
+      "partial": 9,
+      "collected": 3
     },
     "verified_hr_internships": 1,
     "verified_hr_internships_qualified_employers": 1
@@ -71,7 +71,8 @@
       "below_threshold": 0,
       "collection_states": {
         "discovery-incomplete": 3,
-        "partial": 8
+        "partial": 7,
+        "collected": 1
       },
       "company_ids": [
         "belsimpel-gomibo-group",
@@ -282,7 +283,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:51.301123+00:00",
+      "last_attempt_at": "2026-11-25T17:09:54.816556+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -324,7 +325,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:23.569686+00:00",
+      "last_attempt_at": "2026-11-25T17:09:29.588215+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -366,7 +367,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:42.244025+00:00",
+      "last_attempt_at": "2026-11-25T17:09:30.960079+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -410,13 +411,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:45.208195+00:00",
-      "public_job_records": 17,
+      "last_attempt_at": "2026-11-25T17:09:50.397074+00:00",
+      "public_job_records": 16,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-rijksuniversiteit-groningen-campus-fryslan",
-          "message": "[{'url': 'https://www.rug.nl/cf/over-campus-fryslan/vacatures/!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.rug.nl/careerservices/vacatures/!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.rug.nl/fse/meet-the-faculty/vacatures/vacatures/careerpaths/promotion-procedures/general-information/criteria-and-exceptions!sso', 'error': 'Remote end closed connection without response'}]"
+          "message": "[{'url': 'https://www.rug.nl/cf/over-campus-fryslan/vacatures/!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.rug.nl/fse/meet-the-faculty/vacatures/vacatures/careerpaths/criteria/career-path-in-research/assistant-professor-2!sso', 'error': 'Remote end closed connection without response'}, {'url': 'https://www.rug.nl/fse/meet-the-faculty/vacatures/vacatures/careerpaths/criteria/career-path-in-research/tenure/criteria-for-tenure!sso', 'error': 'Remote end closed connection without response'}]"
         }
       ]
     },
@@ -450,19 +451,14 @@
       "source_ids": [
         "auto-hanos"
       ],
-      "state": "partial",
+      "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:16.174557+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-25T17:09:26.748952+00:00",
+      "public_job_records": 3,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
       ],
-      "errors": [
-        {
-          "source_id": "auto-hanos",
-          "message": "[{'url': 'https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/vacatures/meewerkstage-hr-eindhoven-2727929', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/werkgebieden/HR', 'error': 'robots.txt unavailable: 403'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "ikea-ingka-group",
@@ -496,8 +492,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:46.427928+00:00",
-      "public_job_records": 6,
+      "last_attempt_at": "2026-11-25T17:09:51.959846+00:00",
+      "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -538,8 +534,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:18.637153+00:00",
-      "public_job_records": 17,
+      "last_attempt_at": "2026-11-25T17:09:31.228434+00:00",
+      "public_job_records": 21,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -591,7 +587,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:50.934359+00:00",
+      "last_attempt_at": "2026-11-25T17:09:28.061741+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -635,7 +631,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:11.216072+00:00",
+      "last_attempt_at": "2026-11-25T17:09:25.908133+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -672,15 +668,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:13.168892+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-25T17:09:25.178777+00:00",
+      "public_job_records": 37,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-belsimpel-gomibo-group",
-          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "veiligheidsregio-groningen",
@@ -715,10 +706,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:13.168892+00:00",
-      "public_job_records": 12,
+      "last_attempt_at": "2026-11-25T17:09:25.178777+00:00",
+      "public_job_records": 11,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-veiligheidsregio-groningen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-groningen",
@@ -752,13 +748,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:42.244025+00:00",
-      "public_job_records": 22,
+      "last_attempt_at": "2026-11-25T17:09:30.960079+00:00",
+      "public_job_records": 26,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-gemeente-groningen",
-          "message": "[{'url': 'https://gemeente.groningen.nl', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijgroningen.nl/vacatures/pdf/print/beleidsadviseur-wonen-en-zorg-392998', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://www.werkenbijgroningen.nl/vacatures/pdf/print/beleidsadviseur-wonen-en-zorg-392998\", waitin'}]"
+          "message": "[{'url': 'https://gemeente.groningen.nl', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijgroningen.nl/vacatures/pdf/print/allround-medewerker-begraafplaatsen--393109', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://www.werkenbijgroningen.nl/vacatures/pdf/print/allround-medewerker-begraafplaatsen--393109\",'}, {'url': 'https://www.werkenbijgroningen.nl/vacatures/pdf/print/adviseur-ecologie-392739', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://www.werkenbijgroningen.nl/vacatures/pdf/print/adviseur-ecologie-392739\", waiting until \"dom'}]"
         }
       ]
     },
@@ -794,7 +790,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:19.448335+00:00",
+      "last_attempt_at": "2026-11-25T17:09:33.880998+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -831,7 +827,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:23.569686+00:00",
+      "last_attempt_at": "2026-11-25T17:09:29.588215+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -873,7 +869,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:11.216072+00:00",
+      "last_attempt_at": "2026-11-25T17:09:25.908133+00:00",
       "public_job_records": 13,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -932,7 +928,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:11.216072+00:00",
+      "last_attempt_at": "2026-11-25T17:09:25.908133+00:00",
       "public_job_records": 13,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -980,8 +976,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:46.427928+00:00",
-      "public_job_records": 9,
+      "last_attempt_at": "2026-11-25T17:09:51.959846+00:00",
+      "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -1017,7 +1013,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:46.427928+00:00",
+      "last_attempt_at": "2026-11-25T17:09:51.959846+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1059,7 +1055,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:42.244025+00:00",
+      "last_attempt_at": "2026-11-25T17:09:30.960079+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1096,7 +1092,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:04.136610+00:00",
+      "last_attempt_at": "2026-11-25T17:09:54.771322+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1138,7 +1134,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:23.569686+00:00",
+      "last_attempt_at": "2026-11-25T17:09:29.588215+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1202,7 +1198,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:46.427928+00:00",
+      "last_attempt_at": "2026-11-25T17:09:51.959846+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1244,7 +1240,7 @@
       ],
       "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:46.427928+00:00",
+      "last_attempt_at": "2026-11-25T17:09:51.959846+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1319,7 +1315,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:50.934359+00:00",
+      "last_attempt_at": "2026-11-25T17:09:28.061741+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1372,13 +1368,13 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:45.208195+00:00",
+      "last_attempt_at": "2026-11-25T17:09:50.397074+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-solidus",
-          "message": "[{'url': 'https://solidus.com/careers?job_locations=germany', 'error': 'HTTP Error 500: Internal Server Error'}]"
+          "message": "[{'url': 'https://solidus.com/sitemap_index.xml', 'error': 'HTTP Error 500: Internal Server Error'}]"
         }
       ]
     },
@@ -1414,8 +1410,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:04.136610+00:00",
-      "public_job_records": 60,
+      "last_attempt_at": "2026-11-25T17:09:54.771322+00:00",
+      "public_job_records": 63,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1478,7 +1474,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:12.137257+00:00",
+      "last_attempt_at": "2026-11-25T17:09:55.320410+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1520,13 +1516,13 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:34:50.934359+00:00",
+      "last_attempt_at": "2026-11-25T17:09:28.061741+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-nedmag",
-          "message": "[{'url': 'https://www.nedmag.nl/sites/default/files/2024-08/Nedmag%20%20Veendam%20%28vacatures%29%20%281%29.pdf', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://www.nedmag.nl/sites/default/files/2024-08/Nedmag%20%20Veendam%20%28vacatures%29%20%281%29.p'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -1562,7 +1558,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:11.216072+00:00",
+      "last_attempt_at": "2026-11-25T17:09:25.908133+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1599,7 +1595,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:13.168892+00:00",
+      "last_attempt_at": "2026-11-25T17:09:25.178777+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1641,7 +1637,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T07:35:19.448335+00:00",
+      "last_attempt_at": "2026-11-25T17:09:33.880998+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
