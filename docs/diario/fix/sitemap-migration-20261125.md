@@ -1,6 +1,5 @@
-## 25 novembre 2026 — Correzioni piattaforme sitemap in staging
+## 25 novembre 2026 — Rollout delle sei sitemap verificate
 
-[Replay e titoli](staging/sitemap-platform-replay-20261125.md) su `a2274be`. 589 → 642 aperti visibili, 1.170 ID conservati e stima 26m02s. Bosch DE 25 current listing, Bosch globale 0 osservati.
-Incluso il titolo L’Oréal di sviluppo HR. I titoli misti con impiego studentesco restano esclusi. Python 3.12 625 test, Node 54, valutazione 160 senza errori.
-Il gate resta chiuso sui dettagli senza prova sufficiente. Nessuna PR, pubblicazione o disattivazione. Completare le prove di identità, sede e disponibilità prima di ripetere il replay.
-[Misura dei 14 cicli e prime 50 fonti](migrazione-sitemap-candidati.csv) disponibile per il lotto subordinato al publish.
+[Replay e titoli](staging/sitemap-rollout-20261125.md) su `a2274be`. 589 → 642 aperti visibili, 1.170 ID conservati, stima 24m02s. Bosch DE 25 current listing.
+Otto host in hold con motivi nel registro. Accor e Bosch mantengono i crawler di copertura distinta. [Diagnosi](staging/sitemap-platform-replay-20261125.md).
+Controllare publish e durata. Rientro oltre 45 minuti, timeout, perdita di ID o calo oltre il 3% al netto della freschezza.
