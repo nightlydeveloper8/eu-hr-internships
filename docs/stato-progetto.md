@@ -1,5 +1,10 @@
 # Stato di ripresa — People Placement
 
+## 25 novembre 2026 — Revisione dei termini corporate e schede essenziali
+Preparati i 38 host ammessi. Sette fonti con current listing attive, 31 in hold, cinque vincoli non commerciali e sette esclusioni permanenti registrate.
+[Replay per host e paese](staging/corporate-terms-rollout-20261125.md): 584 → 600 aperti, 18 nuovi ID complessivi, zero persi, nessun titolo escluso. Stima 28m38s. Schede corporate con soli metadati e link alla fonte.
+Verificare il primo publish. Rientro autorizzato oltre 45 minuti, al timeout di uno shard o alla perdita di un ID.
+
 ## 24 novembre 2026 — Migrazione delle sitemap corporate già ammesse
 Replay dei 17 host su 8b7f061. Attivate cinque sitemap e sostituiti i cinque collector dello stesso host. Le altre 12 fonti nuove restano in hold e i collector precedenti restano attivi.
 [Rapporto di staging](staging/corporate-sitemap-migration-20261124.md): 589 → 602 aperti, due nuovi ID, zero ID persi, nessun titolo escluso. Stima conservativa 27m52s.

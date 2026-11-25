@@ -4,6 +4,14 @@ const visibleCatalogJob = job => job.student_eligibility !== 'excluded' && !unre
 export function agencyClientLabel(job) {
   return job.agency_client === 'non indicato' ? `Client not disclosed (via ${job.employer})` : '';
 }
+export function corporateListingMetadata(job, source) {
+  if (publicEmploymentListing(job) || source?.source_kind === 'public-employment-service'
+      || source?.staffing_agency || job.agency_client) return null;
+  const corporate = source || ['sitemap-jobposting','sf-rmk','employer-sitemap','employer-index','universal-employer'].includes(job.source_type);
+  if (!corporate) return null;
+  return {title: job.title, employer: job.employer, city: job.city,
+          countries: job.countries || [], publishedAt: job.published_at, url: safeUrl(job.url)};
+}
 export function studentEligibilityLabel(job) {
   return job.student_eligibility === 'not_stated' ? 'Student eligibility not stated – check with the employer' : '';
 }

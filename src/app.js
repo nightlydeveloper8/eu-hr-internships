@@ -1,11 +1,11 @@
-import { agencyClientLabel, studentEligibilityLabel, adLanguageLabel, adLanguageName, START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
+import { corporateListingMetadata, agencyClientLabel, studentEligibilityLabel, adLanguageLabel, adLanguageName, START_WINDOW, LONG_ENOUGH, STUDENT_PLACEMENT, durationCompatibility, showDurationFilter, readFilterParams, publishedStart, applicationDeadline, evidenceSummary, matches, rankJobs, stale, safeUrl, languageInfo, verifiedJob, verificationMessage, applicationConfirmed, publicEmploymentListing, evidenceLevel, opportunityCounts, unverifiedFallback, shareableFilterParams, countryCounts, countryLanguageCounts, catalogueAdLanguages, languageBreakdown, PERMIT_NOTES } from './logic.js';
 import { drawMap, describeCountry, describeLanguages, countryFacts } from './map.js';
 
 const $ = id => document.getElementById(id);
 const defaults = {q:'',country:'',region:'',category:'',workplace:'',english:false,englishOnly:false,ad:'',type:'',workMode:'',start:'',duration:'',hideUnknownTiming:false,unverified:false,applicationConfirmed:false,saved:false,mode:'nl',sort:'relevance'};
 const advancedKeys = ['region','type','workMode','ad','english','englishOnly','unverified'];
 const filters = {...defaults};
-let catalog, coverage, registry, geography, limit = 20, saved = new Set(), persistent = true, mapView, counts = {}, languageCounts = {};
+let catalog, coverage, registry, geography, sourceRegistry, limit = 20, saved = new Set(), persistent = true, mapView, counts = {}, languageCounts = {};
 try { const stored = JSON.parse(localStorage.getItem('people-placement:saved') || '[]'); if (Array.isArray(stored)) saved = new Set(stored.filter(x => typeof x === 'string')); } catch { persistent = false; }
 const bindings = {'search':'q','country':'country','region':'region','category':'category','workplace-language':'workplace','english':'english','english-only':'englishOnly','ad-language':'ad','type':'type','work-mode':'workMode','start-window':'start','duration':'duration','hide-unknown-timing':'hideUnknownTiming','include-unverified':'unverified','sort':'sort'};
 const motion = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
@@ -43,6 +43,7 @@ const EVIDENCE = {
   lead: {label:'Lead to check', cta:'Check at employer'},
 };
 function card(job) {
+  const corporate = corporateListingMetadata(job, sourceRegistry.get(job.source_id));
   const level = evidenceLevel(job);
   const isPublic = publicEmploymentListing(job);
   const confirmed = applicationConfirmed(job);
@@ -61,9 +62,9 @@ function card(job) {
   }
   org.append(company);
   const agencyLabel = agencyClientLabel(job);
-  if (agencyLabel) org.append(el('p','job-employer-note',agencyLabel));
+  if (!corporate && agencyLabel) org.append(el('p','job-employer-note',agencyLabel));
   const eligibilityLabel = studentEligibilityLabel(job);
-  if (eligibilityLabel) org.append(el('p','job-employer-note',eligibilityLabel));
+  if (!corporate && eligibilityLabel) org.append(el('p','job-employer-note',eligibilityLabel));
   const where = [job.city, ...(job.countries || []).map(c => catalog.countries[c] || c)].filter(Boolean);
   org.append(el('p','job-location',[...new Set(where)].join(' · ')));
   heading.append(org);
@@ -73,7 +74,13 @@ function card(job) {
   bookmark.addEventListener('click',()=>save(job.id,bookmark,job.title));
   heading.append(bookmark); article.append(heading);
 
-  const h3 = el('h3','job-title'); const titleLink = el('a','',job.title); titleLink.href = safeUrl(job.url) || '#'; titleLink.target = '_blank'; titleLink.rel = 'noopener noreferrer'; h3.append(titleLink); article.append(h3);
+  const h3 = el('h3','job-title'); const titleLink = el('a','',job.title); titleLink.href = (corporate ? corporate.url : safeUrl(job.url)) || '#'; titleLink.target = '_blank'; titleLink.rel = 'noopener noreferrer'; h3.append(titleLink); article.append(h3);
+
+  if (corporate) {
+    const posted = shortDate(corporate.publishedAt);
+    article.append(el('p','posted',posted ? `Posted ${posted}` : 'Publication date not stated'));
+    return article;
+  }
 
   const meta = [catalog.categories[job.category]];
   const start = publishedStart(job);
@@ -357,6 +364,7 @@ async function init(){try {
   const responses=await Promise.all(['catalog','coverage','sources','geography'].map(name=>fetch(`./data/${name}.json`,{cache:'no-cache'})));
   if(responses.some(r=>!r.ok))throw new Error('Data could not be loaded');
   [catalog,coverage,registry,geography]=await Promise.all(responses.map(r=>r.json()));
+  sourceRegistry = new Map(registry.map(source => [source.id, source]));
   if(catalog.schema_version!==1||!Array.isArray(catalog.jobs))throw new Error('Unsupported dataset');
   if (showDurationFilter(catalog.jobs)) {
     option($('duration'), LONG_ENOUGH, STUDENT_PLACEMENT.durationLabel);
