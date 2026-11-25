@@ -1,10 +1,5 @@
 # Stato di ripresa — People Placement
 
-## 25 novembre 2026 — PAESI-PICCOLI, verifica preliminare università
-
-[Registro della verifica](staging/paesi-piccoli-20261125.md) su main `ec2b201`, 1.205 ID e 644 stage aperti. Robots verificati su 15 portali universitari, con stop per risposta 404 al Politecnico di Sofia. Individuati quattro candidati da approfondire in AT, EE e LT. Nessuna fonte registrata o attivata.
-Prossimo passo: completare accesso, verifica candidature e adattatore universitario, poi C, A e D. Simulazione e gate di merge pendenti.
-
 ## 25 novembre 2026 — Revisione dei termini corporate e schede essenziali
 Il titolo misto Volkswagen conserva l’ID nel replay storico ed è escluso. Dieci host TLS su dieci leggibili dalla CI Python 3.12. Thyssenkrupp recupera l’XML e resta in hold per identità del datore. Erste resta in hold per XML troncato.
 [Riesame e stato dei 17 host](staging/corporate-terms-revision-20261125.md). Replay 584 → 599 aperti, 18 nuovi ID, zero ID persi e nessun titolo escluso. 17 fonti attive, 21 in hold. Stima 28m38s.

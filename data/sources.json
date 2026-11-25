@@ -56466,5 +56466,71 @@
     "max_requests": 90,
     "collection_seconds": 120,
     "collection_delay": 2
+  },
+  {
+    "id": "paesi-piccoli-byd-hungary",
+    "employer": "BYD Hungary",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "collection_lot": "PAESI-PICCOLI",
+    "career_url": "https://careers-hun.byd.com/",
+    "allowed_hosts": [
+      "careers-hun.byd.com"
+    ],
+    "target_countries": [
+      "HU"
+    ],
+    "employer_tokens": [
+      "byd"
+    ],
+    "sitemaps": [
+      "https://careers-hun.byd.com/sitemap.xml"
+    ],
+    "job_url_pattern": "^https://careers-hun\\.byd\\.com/jobs/\\d+-[^/?]+/?$",
+    "agency_slug_country": "HU",
+    "published_listing_platform": "teamtailor",
+    "url_slug_prefilter": true,
+    "max_sitemaps": 1,
+    "collection_seconds": 60,
+    "max_requests": 15,
+    "collection_delay": 2,
+    "reviewed_on": "2026-11-25",
+    "permission_basis": "Exact-host robots declares the public Teamtailor sitemap; reviewed recruitment privacy notice and public JobPosting scope",
+    "review_notes": "Read only the public, same-host Teamtailor job details in the sitemap. The matching frame supports a current listing, without a direct-application claim. Geographic scope verified in the structured workplace address.",
+    "status": "reviewed-active"
+  },
+  {
+    "id": "paesi-piccoli-jks-dk",
+    "employer": "JKS",
+    "adapter": "employer-sitemap",
+    "enabled": true,
+    "collection_activation_hold": false,
+    "collection_lot": "PAESI-PICCOLI",
+    "career_url": "https://www.jks.dk/jobs",
+    "allowed_hosts": [
+      "www.jks.dk"
+    ],
+    "target_countries": [
+      "DK"
+    ],
+    "employer_tokens": [
+      "jks"
+    ],
+    "sitemaps": [
+      "https://www.jks.dk/Sitemap.xml"
+    ],
+    "job_url_pattern": "^https://www\\.jks\\.dk/jobs/(?![^/?]+-155081/?$)[^/?]+-\\d+/?$",
+    "agency_slug_country": "DK",
+    "staffing_agency": true,
+    "url_slug_prefilter": true,
+    "max_sitemaps": 1,
+    "collection_seconds": 100,
+    "max_requests": 40,
+    "collection_delay": 2,
+    "reviewed_on": "2026-11-25",
+    "permission_basis": "Exact-host robots declares and allows the sitemap and public JobPosting routes. JKS site notices reviewed.",
+    "review_notes": "Same-host public JobPosting only. Hjorring 155081 omitted because the newer spring 2027 posting overlaps its location and intake.",
+    "status": "reviewed-active"
   }
 ]
