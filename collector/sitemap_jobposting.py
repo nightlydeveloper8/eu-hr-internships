@@ -230,6 +230,26 @@ def locations(root, child):
                     yield loc.text.strip()
 
 
+def parse_sitemap(raw, *, discard_broken_alternates=False):
+    body = decompress_sitemap(raw)
+    if b'<!DOCTYPE' in body.replace(b'\0', b'').upper():
+        raise ValueError('DOCTYPE not permitted in sitemap')
+    try:
+        return ET.fromstring(body)
+    except ET.ParseError as error:
+        if len(raw) >= 20_000_000:
+            raise ValueError('Sitemap reached the 20 MB transport limit; inventory incomplete') from error
+        if not discard_broken_alternates:
+            raise
+        # The reviewed feed emits unescaped quotes in optional xhtml alternates.
+        # Preserve loc nodes verbatim and continue to require a complete XML tree.
+        repaired, removed = re.subn(
+            rb'(?m)^[ \t]*<xhtml:link[ \t]+rel="alternate"[^\r\n]*?/>[ \t]*\r?$', b'', body)
+        if not removed:
+            raise
+        return ET.fromstring(repaired)
+
+
 def collect_records(source, client):
     scan = Scan(source, client)
     client.sitemap_jobposting_observations = scan.observations
@@ -254,10 +274,8 @@ def collect_records(source, client):
             continue
         seen.add(sitemap)
         try:
-            body = decompress_sitemap(scan.get(sitemap))
-            if b'<!DOCTYPE' in body.replace(b'\0', b'').upper():
-                raise ValueError('DOCTYPE not permitted in sitemap')
-            root = ET.fromstring(body)
+            root = parse_sitemap(scan.get(sitemap),
+                                 discard_broken_alternates=source.get('discard_broken_sitemap_alternates', False))
         except (CollectionBudgetExceeded, OSError, ValueError, ET.ParseError) as exc:
             errors.append(dict(url=sitemap, error=str(exc)[:180]))
             if isinstance(exc, CollectionBudgetExceeded):

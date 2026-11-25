@@ -4,8 +4,8 @@
     "dispositions": {
       "excluded": 10,
       "covered": 33,
-      "production-rollout": 9,
-      "hold": 43
+      "production-rollout": 19,
+      "hold": 33
     },
     "projected_shard_budget": {
       "7": {
@@ -441,32 +441,12 @@
         "staging_requests": 1,
         "host": "careers.dhl.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-dhl-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "DHL Group",
-          "career_url": "https://careers.dhl.com",
-          "allowed_hosts": [
-            "careers.dhl.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.dhl.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 36
+        "robots_sitemaps_declared": 36,
+        "registered_source_id": "held-sitemap-jobposting-careers-dhl-com"
       },
       {
         "employer": "MTU Aero Engines",
@@ -483,34 +463,12 @@
         "staging_requests": 1,
         "host": "jobs.mtu.de",
         "csv_eu_signal": 3,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-mtu-de",
-          "adapter": "sitemap-jobposting",
-          "employer": "MTU Aero Engines",
-          "career_url": "https://jobs.mtu.de",
-          "allowed_hosts": [
-            "jobs.mtu.de"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "ammessa solo per uso non commerciale (termini: divieto di uso commerciale); da rivedere in caso di monetizzazione",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "reviewed_rmk_dates": true,
-          "reviewed_rmk_redirects": true,
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.mtu.de/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-mtu-de"
       },
       {
         "employer": "Capgemini",
@@ -850,32 +808,12 @@
         "staging_requests": 1,
         "host": "careers.solvay.com",
         "csv_eu_signal": 3,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-solvay-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Solvay",
-          "career_url": "https://careers.solvay.com",
-          "allowed_hosts": [
-            "careers.solvay.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "ammessa solo per uso non commerciale (termini: divieto di uso commerciale); da rivedere in caso di monetizzazione",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.solvay.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-solvay-com"
       },
       {
         "employer": "Adecco Group",
@@ -911,34 +849,12 @@
         "staging_requests": 1,
         "host": "jobs.sonova.com",
         "csv_eu_signal": 3,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-sonova-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Sonova",
-          "career_url": "https://jobs.sonova.com",
-          "allowed_hosts": [
-            "jobs.sonova.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "reviewed_rmk_dates": true,
-          "reviewed_rmk_redirects": true,
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.sonova.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-sonova-com"
       },
       {
         "employer": "Ahold Delhaize",
@@ -1034,32 +950,12 @@
         "staging_requests": 1,
         "host": "careers.munichre.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-munichre-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Munich Re",
-          "career_url": "https://careers.munichre.com",
-          "allowed_hosts": [
-            "careers.munichre.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "ammessa solo per uso non commerciale (termini: divieto di uso commerciale); da rivedere in caso di monetizzazione",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.munichre.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-munichre-com"
       },
       {
         "employer": "Bechtle",
@@ -1293,32 +1189,12 @@
         "staging_requests": 1,
         "host": "jobs.volvogroup.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-volvogroup-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Volvo Group",
-          "career_url": "https://jobs.volvogroup.com",
-          "allowed_hosts": [
-            "jobs.volvogroup.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.volvogroup.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-volvogroup-com"
       },
       {
         "employer": "SEB",
@@ -1357,34 +1233,12 @@
         "staging_requests": 1,
         "host": "apply.careers.hsbc.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-apply-careers-hsbc-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "HSBC",
-          "career_url": "https://apply.careers.hsbc.com",
-          "allowed_hosts": [
-            "apply.careers.hsbc.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "reviewed_rmk_dates": true,
-          "reviewed_rmk_redirects": true,
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://apply.careers.hsbc.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-apply-careers-hsbc-com"
       },
       {
         "employer": "Zurich Insurance Group",
@@ -1559,32 +1413,12 @@
         "staging_requests": 1,
         "host": "www.henkel.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-www-henkel-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Henkel",
-          "career_url": "https://www.henkel.com",
-          "allowed_hosts": [
-            "www.henkel.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://www.henkel.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "registered_source_id": "held-sitemap-jobposting-www-henkel-com"
       },
       {
         "employer": "Rheinmetall",
@@ -1676,32 +1510,12 @@
         "staging_requests": 1,
         "host": "about.puma.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-about-puma-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "PUMA",
-          "career_url": "https://about.puma.com",
-          "allowed_hosts": [
-            "about.puma.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://about.puma.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "registered_source_id": "held-sitemap-jobposting-about-puma-com"
       },
       {
         "employer": "thyssenkrupp",
@@ -1729,13 +1543,14 @@
           "access_review": "allowed",
           "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "review_notes": "Rimosse soltanto le annotazioni XHTML opzionali non valide. Loc, XML completo e robots restano obbligatori.",
           "collection_seconds": 120,
           "collection_delay": 2,
           "max_requests": 90,
           "replaces_source_ids": [],
           "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
+          "status": "migration-review-required",
+          "discard_broken_sitemap_alternates": true
         },
         "robots_url": "https://jobs.thyssenkrupp.com/robots.txt",
         "robots_http_status": 200,
@@ -1907,34 +1722,12 @@
         "staging_requests": 1,
         "host": "careers.demant.com",
         "csv_eu_signal": 1,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-demant-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Demant",
-          "career_url": "https://careers.demant.com",
-          "allowed_hosts": [
-            "careers.demant.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "allowed",
-          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
-          "collection_seconds": 120,
-          "collection_delay": 2,
-          "max_requests": 90,
-          "replaces_source_ids": [],
-          "reviewed_rmk_dates": true,
-          "reviewed_rmk_redirects": true,
-          "collection_lot": "CORPORATE-SITEMAP-TERMS",
-          "status": "migration-review-required"
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.demant.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-demant-com"
       },
       {
         "employer": "Ryanair",
@@ -2026,7 +1819,7 @@
           "access_review": "allowed",
           "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "review_notes": "Hold: XML troncato al limite di trasporto di 20 MB. Nessun inventario XML completo osservato.",
           "collection_seconds": 120,
           "collection_delay": 2,
           "max_requests": 90,

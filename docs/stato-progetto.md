@@ -1,8 +1,8 @@
 # Stato di ripresa — People Placement
 
 ## 25 novembre 2026 — Revisione dei termini corporate e schede essenziali
-Preparati i 38 host ammessi. Sette fonti con current listing attive, 31 in hold, cinque vincoli non commerciali e sette esclusioni permanenti registrate.
-[Replay per host e paese](staging/corporate-terms-rollout-20261125.md): 584 → 600 aperti, 18 nuovi ID complessivi, zero persi, nessun titolo escluso. Stima 28m38s. Schede corporate con soli metadati e link alla fonte.
+Il titolo misto Volkswagen conserva l’ID nel replay storico ed è escluso. Dieci host TLS su dieci leggibili dalla CI Python 3.12. Thyssenkrupp recupera l’XML e resta in hold per identità del datore. Erste resta in hold per XML troncato.
+[Riesame e stato dei 17 host](staging/corporate-terms-revision-20261125.md). Replay 584 → 599 aperti, 18 nuovi ID, zero ID persi e nessun titolo escluso. 17 fonti attive, 21 in hold. Stima 28m38s.
 Verificare il primo publish. Rientro autorizzato oltre 45 minuti, al timeout di uno shard o alla perdita di un ID.
 
 ## 24 novembre 2026 — Migrazione delle sitemap corporate già ammesse
