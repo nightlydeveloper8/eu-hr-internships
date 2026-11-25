@@ -1,3 +1,4 @@
+import gzip
 import json
 import unittest
 
@@ -6,7 +7,7 @@ from collector.runtime import BudgetClient, CollectionBudgetExceeded, _RATE_LIMI
 from unittest.mock import patch
 from urllib.error import HTTPError
 from collector.pipeline import process_source
-from collector.sitemap_jobposting import collect_records, phenom_listing, danone_posting, candidate
+from collector.sitemap_jobposting import collect_records, phenom_listing, danone_posting, candidate, parse_sitemap, locations
 
 HOST = 'https://careers.example.org'
 POSTING = HOST + '/en/jobs/hr-intern-12345'
@@ -201,6 +202,18 @@ class SitemapJobPostingTest(unittest.TestCase):
         url = HOST+'/jobs/stage-rh-29216-fr-fr.html'
         self.assertIsNone(danone_posting(body, url.replace('29216','29217')))
         self.assertEqual(danone_posting(body, url)['identifier'], '29216')
+
+    def test_tolerant_sitemap_preserves_locations_and_rejects_truncation(self):
+        valid = ('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                 'xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>'+POSTING+'</loc>\n'
+                 '<xhtml:link rel="alternate" href="https://careers.example.org/"quoted"/" />\n'
+                 '</url></urlset>').encode('utf-8-sig')
+        self.assertEqual(list(locations(parse_sitemap(gzip.compress(valid),
+                          discard_broken_alternates=True), 'url')), [POSTING])
+        with self.assertRaisesRegex(ValueError,'DOCTYPE'):
+            parse_sitemap(b'<!DOCTYPE sitemap>'+valid, discard_broken_alternates=True)
+        with self.assertRaisesRegex(ValueError,'20 MB transport limit'):
+            parse_sitemap(b'<urlset>'+b' '*20_000_000, discard_broken_alternates=True)
 
     def test_uncertain_access_makes_no_requests(self):
         client = FixtureClient({})

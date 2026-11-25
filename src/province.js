@@ -1,4 +1,4 @@
-import {adLanguageLabel, verifiedJob, provincialJobs, evidenceSummary} from './logic.js';
+import {corporateListingMetadata, adLanguageLabel, verifiedJob, provincialJobs, evidenceSummary} from './logic.js';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
 const labels = {'collected':'Observed inventory read','partial':'Partial reading','discovery-incomplete':'Discovery incomplete','blocked-or-failed':'Blocked / failed','not-recently-checked':'No recent check','unconfigured':'Needs integration'};
 const date = value => value ? new Date(value).toLocaleString('en-GB', {timeZone:'Europe/Amsterdam'}) : 'Not yet checked';
@@ -13,12 +13,13 @@ const link = (url, text) => /^https:\/\//.test(url || '') ? `<a href="${escape(u
 const province = document.body.dataset.province || 'friesland';
 const select = suffix => document.querySelector(`#${province}-${suffix}`);
 try {
-  const responses = await Promise.all([`${province}-coverage`,'catalog'].map(async name => {
+  const responses = await Promise.all([`${province}-coverage`,'catalog','sources'].map(async name => {
     const response = await fetch(`./data/${name}.json`);
     if (!response.ok) throw new Error('Data temporarily unavailable');
     return response.json();
   }));
-  const [report, catalog] = responses;
+  const [report, catalog, sources] = responses;
+  const registry = new Map(sources.map(source => [source.id, source]));
   const ids = new Set(report.verified_hr_internship_ids);
   const jobs = catalog.jobs.filter(job => ids.has(job.id) && verifiedJob(job));
   select('summary').textContent = `${jobs.length} verified HR internships · ${report.summary.qualified_employers} employers with documented size · ${report.summary.size_unknown} candidates awaiting size checks · ${report.summary.attempted_recently}/${report.summary.employers} employer sites with a collection attempt within 48 hours. Updated ${date(report.generated_at)}.`;
@@ -31,7 +32,15 @@ try {
     };
     const visible = provincialJobs(catalog.jobs, report, filters);
     if (select('job-count')) select('job-count').textContent = `${visible.filter(job=>verifiedJob(job)).length} verified · ${visible.filter(job=>!verifiedJob(job)).length} unverified opportunities shown.`;
-    select('jobs').innerHTML = visible.map(job => `<article class="job-card employer-card"><p class="eyebrow">${escape(job.city)} · ${verifiedJob(job) ? 'Verified' : 'Unverified opportunity'}</p><p>${escape(evidenceSummary(job))}</p><h3>${escape(job.title)}</h3><p>${escape(job.employer)}</p><p>${link(job.url,'Read the internship')} · ${link(job.apply_url,'Application entry')}</p><p>Advertisement: ${escape(adLanguageLabel(job.advertisement_language, catalog.languages))}. Workplace languages: ${job.workplace_languages?.length ? job.workplace_languages.map(language => `${escape(catalog.languages[language.code] || language.code)} (${escape(language.requirement)})`).join('; ') : 'Unknown; confirm with the employer'}.</p>${job.intake ? `<p>Published start: ${escape(job.intake.published_start || 'Not specified; confirm with the employer')}.</p>` : ''}<p>Student enrolment: ${escape(job.enrollment || 'Not documented; check the original requirements')}.</p>${job.workplace_languages?.length ? `<details><summary>Language evidence</summary>${job.workplace_languages.map(language => `<p>${escape(language.evidence)}</p>`).join('')}<p>English alone: ${job.language_requirements?.english_sufficiency === 'documented' ? 'Explicitly documented' : 'Unknown'}.</p></details>` : ''}<p class="input-note">Verification: ${date(job.last_verified_at)}</p></article>`).join('') || '<p>No internships match these filters.</p>';
+    select('jobs').innerHTML = visible.map(job => {
+      const corporate = corporateListingMetadata(job, registry.get(job.source_id));
+      if (corporate) {
+        const place = [...new Set([corporate.city, ...corporate.countries.map(code => catalog.countries[code] || code)].filter(Boolean))].join(' · ');
+        const posted = corporate.publishedAt ? date(corporate.publishedAt) : 'Publication date not stated';
+        return `<article class="job-card employer-card"><h3>${link(corporate.url, corporate.title)}</h3><p>${escape(corporate.employer)}</p><p>${escape(place)}</p><p>${escape(posted)}</p></article>`;
+      }
+      return `<article class="job-card employer-card"><p class="eyebrow">${escape(job.city)} · ${verifiedJob(job) ? 'Verified' : 'Unverified opportunity'}</p><p>${escape(evidenceSummary(job))}</p><h3>${escape(job.title)}</h3><p>${escape(job.employer)}</p><p>${link(job.url,'Read the internship')} · ${link(job.apply_url,'Application entry')}</p><p>Advertisement: ${escape(adLanguageLabel(job.advertisement_language, catalog.languages))}. Workplace languages: ${job.workplace_languages?.length ? job.workplace_languages.map(language => `${escape(catalog.languages[language.code] || language.code)} (${escape(language.requirement)})`).join('; ') : 'Unknown; confirm with the employer'}.</p>${job.intake ? `<p>Published start: ${escape(job.intake.published_start || 'Not specified; confirm with the employer')}.</p>` : ''}<p>Student enrolment: ${escape(job.enrollment || 'Not documented; check the original requirements')}.</p>${job.workplace_languages?.length ? `<details><summary>Language evidence</summary>${job.workplace_languages.map(language => `<p>${escape(language.evidence)}</p>`).join('')}<p>English alone: ${job.language_requirements?.english_sufficiency === 'documented' ? 'Explicitly documented' : 'Unknown'}.</p></details>` : ''}<p class="input-note">Verification: ${date(job.last_verified_at)}</p></article>`;
+    }).join('') || '<p>No internships match these filters.</p>';
   }
   for (const suffix of ['unverified','job-search','ad-language','workplace-language']) select(suffix)?.addEventListener('input', renderJobs);
   renderJobs();

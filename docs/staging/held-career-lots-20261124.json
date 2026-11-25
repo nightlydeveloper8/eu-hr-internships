@@ -2,91 +2,81 @@
   "CORPORATE-SITEMAP": {
     "input_rows": 95,
     "dispositions": {
-      "excluded": 3,
+      "excluded": 10,
       "covered": 33,
-      "production-rollout": 2,
-      "hold": 57
+      "production-rollout": 19,
+      "hold": 33
     },
     "projected_shard_budget": {
-      "10": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 220
-      },
       "7": {
-        "sources": 5,
-        "requests": 1310,
-        "serial_seconds": 275
+        "sources": 4,
+        "requests": 360,
+        "serial_seconds": 480
       },
       "6": {
         "sources": 7,
-        "requests": 1834,
-        "serial_seconds": 385
-      },
-      "8": {
-        "sources": 3,
-        "requests": 786,
-        "serial_seconds": 165
-      },
-      "3": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 220
+        "requests": 1318,
+        "serial_seconds": 580
       },
       "1": {
-        "sources": 5,
-        "requests": 1310,
-        "serial_seconds": 275
+        "sources": 4,
+        "requests": 532,
+        "serial_seconds": 415
+      },
+      "10": {
+        "sources": 2,
+        "requests": 180,
+        "serial_seconds": 240
       },
       "13": {
-        "sources": 6,
-        "requests": 1572,
-        "serial_seconds": 330
+        "sources": 5,
+        "requests": 622,
+        "serial_seconds": 535
       },
       "11": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 220
+        "sources": 3,
+        "requests": 270,
+        "serial_seconds": 360
+      },
+      "3": {
+        "sources": 3,
+        "requests": 270,
+        "serial_seconds": 360
       },
       "0": {
-        "sources": 5,
-        "requests": 1310,
-        "serial_seconds": 275
+        "sources": 3,
+        "requests": 270,
+        "serial_seconds": 360
       },
       "9": {
         "sources": 2,
-        "requests": 524,
-        "serial_seconds": 110
-      },
-      "5": {
-        "sources": 1,
-        "requests": 262,
-        "serial_seconds": 55
+        "requests": 180,
+        "serial_seconds": 240
       },
       "15": {
         "sources": 2,
-        "requests": 524,
-        "serial_seconds": 110
+        "requests": 352,
+        "serial_seconds": 175
       },
-      "4": {
-        "sources": 1,
-        "requests": 262,
-        "serial_seconds": 55
-      },
-      "14": {
-        "sources": 4,
-        "requests": 1048,
-        "serial_seconds": 220
+      "8": {
+        "sources": 2,
+        "requests": 352,
+        "serial_seconds": 175
       },
       "2": {
         "sources": 2,
-        "requests": 524,
-        "serial_seconds": 110
+        "requests": 352,
+        "serial_seconds": 175
+      },
+      "14": {
+        "sources": 3,
+        "requests": 614,
+        "serial_seconds": 230
       },
       "12": {
-        "sources": 2,
-        "requests": 524,
-        "serial_seconds": 110
+        "sources": 1,
+        "requests": 262,
+        "serial_seconds": 55
       }
     },
     "sources": [
@@ -366,29 +356,12 @@
         "staging_requests": 1,
         "host": "jobdetails.nestle.com",
         "csv_eu_signal": 1,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobdetails-nestle-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Nestlé",
-          "career_url": "https://jobdetails.nestle.com",
-          "allowed_hosts": [
-            "jobdetails.nestle.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobdetails.nestle.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobdetails-nestle-com"
       },
       {
         "employer": "Thales",
@@ -468,29 +441,12 @@
         "staging_requests": 1,
         "host": "careers.dhl.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-dhl-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "DHL Group",
-          "career_url": "https://careers.dhl.com",
-          "allowed_hosts": [
-            "careers.dhl.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.dhl.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 36
+        "robots_sitemaps_declared": 36,
+        "registered_source_id": "held-sitemap-jobposting-careers-dhl-com"
       },
       {
         "employer": "MTU Aero Engines",
@@ -507,29 +463,12 @@
         "staging_requests": 1,
         "host": "jobs.mtu.de",
         "csv_eu_signal": 3,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-mtu-de",
-          "adapter": "sitemap-jobposting",
-          "employer": "MTU Aero Engines",
-          "career_url": "https://jobs.mtu.de",
-          "allowed_hosts": [
-            "jobs.mtu.de"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.mtu.de/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-mtu-de"
       },
       {
         "employer": "Capgemini",
@@ -546,29 +485,12 @@
         "staging_requests": 1,
         "host": "careers.capgemini.com",
         "csv_eu_signal": 1,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-capgemini-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Capgemini",
-          "career_url": "https://careers.capgemini.com",
-          "allowed_hosts": [
-            "careers.capgemini.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.capgemini.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-capgemini-com"
       },
       {
         "employer": "BASF",
@@ -596,13 +518,18 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "reviewed_rmk_dates": true,
+          "reviewed_rmk_redirects": true,
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://basf.jobs/robots.txt",
         "robots_http_status": 200,
@@ -645,29 +572,12 @@
         "staging_requests": 1,
         "host": "jobs.volkswagen-group.com",
         "csv_eu_signal": 2,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-volkswagen-group-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Volkswagen",
-          "career_url": "https://jobs.volkswagen-group.com",
-          "allowed_hosts": [
-            "jobs.volkswagen-group.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.volkswagen-group.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-volkswagen-group-com"
       },
       {
         "employer": "TUI",
@@ -784,13 +694,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://jobs.engie.com/robots.txt",
         "robots_http_status": 200,
@@ -822,13 +735,19 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "ammessa solo per uso non commerciale (termini: divieto di uso commerciale); da rivedere in caso di monetizzazione",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "employer_aliases": [
+            "Orange SA"
+          ],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://orange.jobs/robots.txt",
         "robots_http_status": 200,
@@ -889,29 +808,12 @@
         "staging_requests": 1,
         "host": "careers.solvay.com",
         "csv_eu_signal": 3,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-solvay-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Solvay",
-          "career_url": "https://careers.solvay.com",
-          "allowed_hosts": [
-            "careers.solvay.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.solvay.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-solvay-com"
       },
       {
         "employer": "Adecco Group",
@@ -947,29 +849,12 @@
         "staging_requests": 1,
         "host": "jobs.sonova.com",
         "csv_eu_signal": 3,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-sonova-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Sonova",
-          "career_url": "https://jobs.sonova.com",
-          "allowed_hosts": [
-            "jobs.sonova.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.sonova.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-sonova-com"
       },
       {
         "employer": "Ahold Delhaize",
@@ -996,13 +881,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://careers.aholddelhaize.com/robots.txt",
         "robots_http_status": 200,
@@ -1033,13 +921,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://careers.deutsche-boerse.com/robots.txt",
         "robots_http_status": 200,
@@ -1059,29 +950,12 @@
         "staging_requests": 1,
         "host": "careers.munichre.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-munichre-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Munich Re",
-          "career_url": "https://careers.munichre.com",
-          "allowed_hosts": [
-            "careers.munichre.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.munichre.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-munichre-com"
       },
       {
         "employer": "Bechtle",
@@ -1107,13 +981,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://jobs.bechtle.com/robots.txt",
         "robots_http_status": 200,
@@ -1165,13 +1042,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://www.jobs-fraport.com/robots.txt",
         "robots_http_status": 200,
@@ -1221,13 +1101,18 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "reviewed_rmk_dates": true,
+          "reviewed_rmk_redirects": true,
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://careers.bouygues-construction.com/robots.txt",
         "robots_http_status": 200,
@@ -1247,29 +1132,12 @@
         "staging_requests": 1,
         "host": "jobs.ferrari.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-ferrari-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Ferrari",
-          "career_url": "https://jobs.ferrari.com",
-          "allowed_hosts": [
-            "jobs.ferrari.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.ferrari.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-ferrari-com"
       },
       {
         "employer": "Atlas Copco",
@@ -1292,13 +1160,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://www.atlascopcogroup.com/robots.txt",
         "robots_http_status": 200,
@@ -1318,29 +1189,12 @@
         "staging_requests": 1,
         "host": "jobs.volvogroup.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-volvogroup-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Volvo Group",
-          "career_url": "https://jobs.volvogroup.com",
-          "allowed_hosts": [
-            "jobs.volvogroup.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.volvogroup.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-volvogroup-com"
       },
       {
         "employer": "SEB",
@@ -1355,29 +1209,16 @@
         "staging_requests": 1,
         "host": "sebgroup.com",
         "csv_eu_signal": 1,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-sebgroup-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "SEB",
-          "career_url": "https://sebgroup.com",
-          "allowed_hosts": [
-            "sebgroup.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "excluded",
         "robots_url": "https://sebgroup.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24",
+        "exclusion_reason": "uso solo privato",
+        "access_review": "excluded",
+        "access_evidence": "Revisione esterna del maintainer, 24 novembre 2026."
       },
       {
         "employer": "HSBC",
@@ -1392,29 +1233,12 @@
         "staging_requests": 1,
         "host": "apply.careers.hsbc.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-apply-careers-hsbc-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "HSBC",
-          "career_url": "https://apply.careers.hsbc.com",
-          "allowed_hosts": [
-            "apply.careers.hsbc.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://apply.careers.hsbc.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-apply-careers-hsbc-com"
       },
       {
         "employer": "Zurich Insurance Group",
@@ -1440,13 +1264,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://www.careers.zurich.com/robots.txt",
         "robots_http_status": 200,
@@ -1496,13 +1323,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://careers.vanlanschotkempen.com/robots.txt",
         "robots_http_status": 200,
@@ -1521,29 +1351,16 @@
         "staging_requests": 1,
         "host": "jobs.freseniusmedicalcare.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-freseniusmedicalcare-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Fresenius Medical Care",
-          "career_url": "https://jobs.freseniusmedicalcare.com",
-          "allowed_hosts": [
-            "jobs.freseniusmedicalcare.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "excluded",
         "robots_url": "https://jobs.freseniusmedicalcare.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24",
+        "exclusion_reason": "vietato ogni ulteriore uso",
+        "access_review": "excluded",
+        "access_evidence": "Revisione esterna del maintainer, 24 novembre 2026."
       },
       {
         "employer": "Fresenius",
@@ -1568,13 +1385,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://karriere.fresenius.de/robots.txt",
         "robots_http_status": 200,
@@ -1593,29 +1413,12 @@
         "staging_requests": 1,
         "host": "www.henkel.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-www-henkel-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Henkel",
-          "career_url": "https://www.henkel.com",
-          "allowed_hosts": [
-            "www.henkel.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://www.henkel.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "registered_source_id": "held-sitemap-jobposting-www-henkel-com"
       },
       {
         "employer": "Rheinmetall",
@@ -1665,29 +1468,16 @@
         "staging_requests": 1,
         "host": "jobs.fuchs.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-fuchs-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "FUCHS",
-          "career_url": "https://jobs.fuchs.com",
-          "allowed_hosts": [
-            "jobs.fuchs.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "excluded",
         "robots_url": "https://jobs.fuchs.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24",
+        "exclusion_reason": "divieti di automazione e text and data mining nel gruppo",
+        "access_review": "excluded",
+        "access_evidence": "Revisione esterna del maintainer, 24 novembre 2026."
       },
       {
         "employer": "Nordex",
@@ -1701,29 +1491,12 @@
         "staging_requests": 1,
         "host": "jobs.nordex-online.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-nordex-online-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Nordex",
-          "career_url": "https://jobs.nordex-online.com",
-          "allowed_hosts": [
-            "jobs.nordex-online.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.nordex-online.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-nordex-online-com"
       },
       {
         "employer": "PUMA",
@@ -1737,29 +1510,12 @@
         "staging_requests": 1,
         "host": "about.puma.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-about-puma-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "PUMA",
-          "career_url": "https://about.puma.com",
-          "allowed_hosts": [
-            "about.puma.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://about.puma.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "registered_source_id": "held-sitemap-jobposting-about-puma-com"
       },
       {
         "employer": "thyssenkrupp",
@@ -1784,13 +1540,17 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Rimosse soltanto le annotazioni XHTML opzionali non valide. Loc, XML completo e robots restano obbligatori.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required",
+          "discard_broken_sitemap_alternates": true
         },
         "robots_url": "https://jobs.thyssenkrupp.com/robots.txt",
         "robots_http_status": 200,
@@ -1874,13 +1634,18 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "reviewed_rmk_dates": true,
+          "reviewed_rmk_redirects": true,
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://jobsearch.grifols.com/robots.txt",
         "robots_http_status": 200,
@@ -1899,29 +1664,12 @@
         "staging_requests": 1,
         "host": "jobs.puig.com",
         "csv_eu_signal": 1,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-jobs-puig-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Puig Brands",
-          "career_url": "https://jobs.puig.com",
-          "allowed_hosts": [
-            "jobs.puig.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://jobs.puig.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-jobs-puig-com"
       },
       {
         "employer": "Sacyr",
@@ -1946,13 +1694,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://sacyrpeople.sacyr.com/robots.txt",
         "robots_http_status": 200,
@@ -1971,29 +1722,12 @@
         "staging_requests": 1,
         "host": "careers.demant.com",
         "csv_eu_signal": 1,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-demant-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Demant",
-          "career_url": "https://careers.demant.com",
-          "allowed_hosts": [
-            "careers.demant.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.demant.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-demant-com"
       },
       {
         "employer": "Ryanair",
@@ -2007,29 +1741,16 @@
         "staging_requests": 1,
         "host": "careers.ryanair.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-ryanair-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Ryanair",
-          "career_url": "https://careers.ryanair.com",
-          "allowed_hosts": [
-            "careers.ryanair.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "excluded",
         "robots_url": "https://careers.ryanair.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24",
+        "exclusion_reason": "divieto di screen scraping",
+        "access_review": "excluded",
+        "access_evidence": "Revisione esterna del maintainer, 24 novembre 2026."
       },
       {
         "employer": "Kerry Group",
@@ -2061,29 +1782,16 @@
         "staging_requests": 1,
         "host": "www.hubspot.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-www-hubspot-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "HubSpot",
-          "career_url": "https://www.hubspot.com",
-          "allowed_hosts": [
-            "www.hubspot.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "excluded",
         "robots_url": "https://www.hubspot.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24",
+        "exclusion_reason": "divieto di sistemi automatizzati",
+        "access_review": "excluded",
+        "access_evidence": "Revisione esterna del maintainer, 24 novembre 2026."
       },
       {
         "employer": "Erste Group Bank",
@@ -2108,13 +1816,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Hold: XML troncato al limite di trasporto di 20 MB. Nessun inventario XML completo osservato.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://www.erstegroup.com/robots.txt",
         "robots_http_status": 200,
@@ -2133,29 +1844,12 @@
         "staging_requests": 1,
         "host": "careers.andritz.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-careers-andritz-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "ANDRITZ",
-          "career_url": "https://careers.andritz.com",
-          "allowed_hosts": [
-            "careers.andritz.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "production-rollout",
         "robots_url": "https://careers.andritz.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "registered_source_id": "held-sitemap-jobposting-careers-andritz-com"
       },
       {
         "employer": "Novartis",
@@ -2169,29 +1863,16 @@
         "staging_requests": 1,
         "host": "www.novartis.com",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-www-novartis-com",
-          "adapter": "sitemap-jobposting",
-          "employer": "Novartis",
-          "career_url": "https://www.novartis.com",
-          "allowed_hosts": [
-            "www.novartis.com"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "excluded",
         "robots_url": "https://www.novartis.com/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 0
+        "robots_sitemaps_declared": 0,
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24",
+        "exclusion_reason": "vietata la ripubblicazione",
+        "access_review": "excluded",
+        "access_evidence": "Revisione esterna del maintainer, 24 novembre 2026."
       },
       {
         "employer": "ABN AMRO",
@@ -2205,29 +1886,16 @@
         "staging_requests": 1,
         "host": "www.werkenbijabnamro.nl",
         "csv_eu_signal": 0,
-        "disposition": "hold",
-        "source": {
-          "id": "held-sitemap-jobposting-www-werkenbijabnamro-nl",
-          "adapter": "sitemap-jobposting",
-          "employer": "ABN AMRO",
-          "career_url": "https://www.werkenbijabnamro.nl",
-          "allowed_hosts": [
-            "www.werkenbijabnamro.nl"
-          ],
-          "enabled": false,
-          "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
-          "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
-          "collection_delay": 2,
-          "max_requests": 262
-        },
+        "disposition": "excluded",
         "robots_url": "https://www.werkenbijabnamro.nl/robots.txt",
         "robots_http_status": 200,
         "robots_crawl_delay_seconds": 2.0,
-        "robots_sitemaps_declared": 1
+        "robots_sitemaps_declared": 1,
+        "exclusion_permanent": true,
+        "excluded_on": "2026-11-24",
+        "exclusion_reason": "vietato uso commerciale o pubblico",
+        "access_review": "excluded",
+        "access_evidence": "Revisione esterna del maintainer, 24 novembre 2026."
       },
       {
         "employer": "AkzoNobel",
@@ -2270,13 +1938,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://projects.arcelormittal.com/robots.txt",
         "robots_http_status": 200,
@@ -2306,13 +1977,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://www.werkenbijasr.nl/robots.txt",
         "robots_http_status": 200,
@@ -2342,13 +2016,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://jobs.kpn.com/robots.txt",
         "robots_http_status": 200,
@@ -2414,13 +2091,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://www.careers.signify.com/robots.txt",
         "robots_http_status": 200,
@@ -2450,13 +2130,16 @@
           ],
           "enabled": false,
           "collection_activation_hold": true,
-          "access_review": "uncertain",
-          "permission_basis": "non dimostrato",
+          "access_review": "allowed",
+          "permission_basis": "Revisione esterna dei termini del 24 novembre 2026 confermata dal maintainer. Solo robots, sitemap e annunci pubblici consentiti.",
           "reviewed_on": "2026-11-24",
-          "review_notes": "Inventario del maintainer. Verifica di robots e termini per il percorso non dimostrata.",
-          "collection_seconds": 55,
+          "review_notes": "Percorso pubblico ammesso dal maintainer. Robots e crawl delay verificati a ogni raccolta.",
+          "collection_seconds": 120,
           "collection_delay": 2,
-          "max_requests": 262
+          "max_requests": 90,
+          "replaces_source_ids": [],
+          "collection_lot": "CORPORATE-SITEMAP-TERMS",
+          "status": "migration-review-required"
         },
         "robots_url": "https://careers.tkh-airportsolutions.com/robots.txt",
         "robots_http_status": 200,
