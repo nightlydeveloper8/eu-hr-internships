@@ -265,6 +265,16 @@ def student_eligibility_for_country(country, title, text='', employment=''):
         return None
     # Polish ł is a letter, not a combining accent. Normalise it only here.
     title_and_type=fold(plain(title)+' '+plain(employment)).replace('ł','l')
+    if country == 'DE':
+        # In an HR internship, coordinated HR functions describe the work.
+        # Keep employmentType intact because it can specify an apprenticeship.
+        normalized_title = fold(plain(title))
+        if re.search(r'\b(?:pflicht)?praktikum\b', normalized_title):
+            normalized_title = re.sub(
+                r'\b(personalentwicklung\s*,|(?:technische\s+)?weiterbildung\s+(?:und|&))'
+                r'\s*ausbildung(?=\s*(?:[,(&]|und\b|$))',
+                r'\1', normalized_title)
+        title_and_type = normalized_title + ' ' + fold(plain(employment))
     description=fold(plain(text)).replace('ł','l')
     excluded, confirmed=LOCAL_STUDENT_RULES[country]
     restriction_scope=title_and_type+'. '+description if country in ('ES','PL') else title_and_type

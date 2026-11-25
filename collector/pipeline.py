@@ -411,6 +411,8 @@ def process_source(source,client,stamp,prev_count=0,verify=True,cache=None,*,sta
             if intake:staged[-1]['intake']=intake
             if sitemap_jobposting and record.get('identity_aliases'):
                 staged[-1]['identity_aliases'] = record['identity_aliases']
+            if record.get('employer_subsidiary'):
+                staged[-1]['employer_subsidiary'] = record['employer_subsidiary']
             if eligibility:staged[-1]['student_eligibility']=eligibility
             if source.get('staffing_agency') and record.get('agency_client')=='non indicato':
                 staged[-1].update(employer=source['employer'],agency_client='non indicato')

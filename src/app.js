@@ -63,6 +63,7 @@ function card(job) {
   org.append(company);
   const agencyLabel = agencyClientLabel(job);
   if (!corporate && agencyLabel) org.append(el('p','job-employer-note',agencyLabel));
+  if (job.employer_subsidiary) org.append(el('p','job-employer-note',job.employer_subsidiary));
   const eligibilityLabel = studentEligibilityLabel(job);
   if (!corporate && eligibilityLabel) org.append(el('p','job-employer-note',eligibilityLabel));
   const where = [job.city, ...(job.countries || []).map(c => catalog.countries[c] || c)].filter(Boolean);

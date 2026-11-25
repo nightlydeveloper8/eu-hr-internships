@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 from .adapters import AGENT, ScopedRedirect
 from .applications import ensure_open_document
-from .classify import canonical_url, fold, plain
+from .classify import canonical_url, country_codes, fold, plain
 from .employer_pages import PageParser, decompress_sitemap, slug_title
 from .runtime import CollectionBudgetExceeded
 from .ownership import employer_matches
@@ -396,6 +396,107 @@ def phenom_listing(body, result, hosts):
         return False
 
 
+
+BOSCH_HOSTS = {'jobs.bosch.de', 'jobs.bosch.com'}
+
+
+def next_page_props(body):
+    scripts = re.findall(r'<script\b[^>]*\bid=["\']__NEXT_DATA__["\'][^>]*>(.*?)</script>',
+                         body.decode('utf-8', 'replace'), re.I | re.S)
+    if len(scripts) != 1:
+        return {}
+    try:
+        props = json.loads(scripts[0])['props']['pageProps']
+        return props if isinstance(props, dict) else {}
+    except (KeyError, TypeError, ValueError):
+        return {}
+
+
+def next_workday_posting(body, doc, source, url, stable):
+    """Read a public Next.js detail backed by a Workday requisition."""
+    job = next_page_props(body).get('jobData')
+    if not isinstance(job, dict) or not stable or job.get('status') != 'Open':
+        return None
+    title, identifier = job.get('displayJobTitle'), job.get('id')
+    detail, target = job.get('detailPageUrl'), job.get('applyUrl')
+    if not all(isinstance(value, str) for value in (title, identifier, detail, target)):
+        return None
+    if (re.sub(r'-', '', identifier).casefold() != stable.replace('-', '')
+            or canonical_url(detail) != canonical_url(url)
+            or fold(plain(title)) not in {fold(plain(heading)) for heading in doc.h1}
+            or not any(href == target and 'apply' in fold(label) for href, label, _ in doc.links)
+            or not reference_cta(target, identifier, source.get('reviewed_application_reference_hosts', []))):
+        return None
+    return dict(title=title, description=job.get('descriptionExternal'), identifier=identifier,
+                hiringOrganization={'name': source['employer']},
+                datePosted=job.get('datePosted'),
+                validThrough=None if job.get('postingExpirationDate') == 'None' else job.get('postingExpirationDate'),
+                jobLocation={'address': {'addressLocality': job.get('city'), 'addressCountry': job.get('country')}})
+
+
+def reference_cta(target, identifier, hosts):
+    parsed = urlsplit(target)
+    if parsed.scheme != 'https' or parsed.netloc not in hosts or not identifier:
+        return False
+    if parsed.hostname.endswith('.myworkdayjobs.com'):
+        match = WORKDAY.fullmatch(parsed.path.removesuffix('/apply'))
+        return bool(parsed.path.endswith('/apply') and match and match['id'].casefold() == identifier.casefold())
+    return (bool(re.fullmatch(r'/job/applicationmethods/?', parsed.path, re.I))
+            and parse_qs(parsed.query).get('jobId') == [identifier])
+
+
+def workflow_posting(post, doc, scan, stable):
+    """Validate a vacancy workflow link and its structured locality suffix."""
+    if (not stable or not stable.isdecimal() or len(doc.canonical_links) != 1
+            or canonical_url(urljoin(doc.url, doc.canonical_links[0])) != canonical_url(doc.url)):
+        return post, False
+    cta = any(scan.scoped(target) and urlsplit(target).path.endswith('/Workflow')
+              and parse_qs(urlsplit(target).query).get('vacancyId') == [stable]
+              and 'apply' in fold(label)
+              for href, label, _ in doc.links for target in [urljoin(doc.url, href)])
+    places = post.get('jobLocation')
+    if not cta or not isinstance(places, list) or len(places) != 1:
+        return post, cta
+    address = places[0].get('address', {}) if isinstance(places[0], dict) else {}
+    if not isinstance(address, dict):
+        return post, cta
+    locality = address.get('addressLocality', '')
+    if not address.get('addressCountry') and isinstance(locality, str) and ',' in locality:
+        city, _, country = locality.rpartition(',')
+        if country_codes('', country.strip()):
+            post = dict(post, jobLocation=[{'address': dict(address, addressCountry=country.strip(),
+                                                            addressLocality=city.strip())}])
+    return post, cta
+
+
+def bosch_listing(doc, body, posting, stable):
+    """Match the hiring portal's primary vacancy to its visible outbound CTA."""
+    identifier = posting.get('identifier')
+    organization = posting.get('hiringOrganization')
+    if (not stable or not isinstance(identifier, dict)
+            or str(identifier.get('value', '')).casefold() != stable
+            or not isinstance(organization, dict)):
+        return False
+    try:
+        job = next_page_props(body)['job']['data']
+        target = job['applicationUrl']
+        application = urlsplit(target)
+        reference = str(job['idFS'])
+        return (job['online'] is True
+                and job['source'] == 'bosch_smartrecruiters'
+                and job['idClient'].casefold() == stable
+                and fold(plain(job['title'])) == fold(plain(posting.get('title')))
+                and fold(plain(job['company'])) == fold(plain(organization.get('name')))
+                and application.scheme == 'https'
+                and application.netloc == 'jobs.smartrecruiters.com'
+                and bool(re.fullmatch(r'/BoschGroup/' + re.escape(reference) + r'-[^/]+', application.path))
+                and reference.isascii() and reference.isdecimal()
+                and any(href == target and re.search(r'\b(?:bewerben|apply|postuler)\b', fold(label))
+                        for href, label, _ in doc.links))
+    except (AttributeError, KeyError, TypeError, ValueError):
+        return False
+
+
 def job_record(record, source, client):
     scan = client.sitemap_jobposting_scan
     url = record['url']
@@ -411,7 +512,11 @@ def job_record(record, source, client):
         raise
     posts = doc.jobposts()
     layout = url if source.get('reviewed_rmk_layout') == 'bmw-de' and path_match(url) else None
-    microdata = PostingMarkup(body).posting(layout, doc.h1) if not posts else None
+    headings = doc.h1
+    if (source.get('reviewed_rmk_dates') and not headings and doc.canonical_links
+            and doc.meta.get('og:title') and doc.meta['og:title'] == doc.meta.get('twitter:title')):
+        headings = [doc.meta['og:title']]
+    microdata = PostingMarkup(body).posting(layout, headings) if not posts else None
     scan.observations[-1]['markup'] = ('json-ld' if posts else 'microdata' if microdata else 'none')
     post = posts[0] if len(posts) == 1 else microdata
     danone = not post and not posts and source.get('reviewed_listing_layout') == 'danone'
@@ -419,9 +524,17 @@ def job_record(record, source, client):
         post = danone_posting(body, url)
         if post:
             scan.observations[-1]['markup'] = 'danone-structured-fragment'
+    stable = posting_id(url, source)
+    layout = source.get('reviewed_listing_layout')
+    next_workday = None
+    if not post and not posts and layout == 'next-workday':
+        next_workday = next_workday_posting(body, doc, source, url, stable)
+        post = next_workday
     if not post:
         raise ValueError('No unique JobPosting')
-    stable = posting_id(url, source)
+    workflow_cta = False
+    if layout == 'vacancy-workflow':
+        post, workflow_cta = workflow_posting(post, doc, scan, stable)
     links = list(doc.canonical_links) + ([post['url']] if post.get('url') else [])
     for link in links:
         target = urljoin(url, link)
@@ -462,12 +575,22 @@ def job_record(record, source, client):
         if re.search(r'\b(?:apply|bewerben|postuler|candidati|candidatar|solliciteer|inscribirse)\b', fold(label))
         for target in (urljoin(url, href),)
     )
-    reference_hosts = source.get('reviewed_application_reference_hosts', [])
-    if stable and reference_hosts:
+    result['sitemap_jobposting_cta'] |= bool(next_workday) or workflow_cta
+    if stable and stable.isdecimal() and source.get('reviewed_rmk_dates') and doc.canonical_links:
         result['sitemap_jobposting_cta'] |= any(
-            urlsplit(href).scheme == 'https' and urlsplit(href).hostname in reference_hosts
-            and shares_identifier(dict(result, external_id=stable), href)
+            scan.scoped(target) and re.fullmatch(
+                r'/(?:talentcommunity/apply|applybutton)/' + stable + '/?', urlsplit(target).path)
+            for href, _, _ in doc.links for target in [urljoin(url, href)])
+    reference_hosts = source.get('reviewed_application_reference_hosts', [])
+    if reference_hosts:
+        result['sitemap_jobposting_cta'] |= any(
+            reference_cta(href, identifier, reference_hosts)
+            or (stable and urlsplit(href).scheme == 'https' and urlsplit(href).netloc in reference_hosts
+                and shares_identifier(dict(result, external_id=stable), href))
             for href,label,_ in doc.links if re.search(r'\b(?:apply|bewerben|postuler)\b', fold(label)))
+    if source.get('reviewed_listing_layout') == 'bosch' and scan.host in BOSCH_HOSTS:
+        result['sitemap_jobposting_cta'] = bosch_listing(doc, body, post, stable)
+        result.update(employer_subsidiary=result['employer'], employer=source['employer'])
     sources_for_alias = source.get('replaces_source_ids', [])
     if identifier:
         result['identity_aliases'] = [f'posting:{previous}:{identifier}' for previous in sources_for_alias]

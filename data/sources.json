@@ -51892,7 +51892,10 @@
       "L'Oreal"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "migration-review-required",
+    "reviewed_application_reference_hosts": [
+      "careers-apply.loreal.com"
+    ]
   },
   {
     "employer": "Accor",
@@ -51918,7 +51921,8 @@
       "auto-accor"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "migration-review-required",
+    "reviewed_listing_layout": "vacancy-workflow"
   },
   {
     "employer": "Infineon",
@@ -52030,7 +52034,10 @@
       "ING Bank"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "migration-review-required",
+    "reviewed_application_reference_hosts": [
+      "ing.wd3.myworkdayjobs.com"
+    ]
   },
   {
     "employer": "ASML",
@@ -52056,7 +52063,11 @@
       "auto-asml"
     ],
     "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
-    "status": "migration-review-required"
+    "status": "migration-review-required",
+    "reviewed_listing_layout": "next-workday",
+    "reviewed_application_reference_hosts": [
+      "asml.wd3.myworkdayjobs.com"
+    ]
   },
   {
     "employer": "ABB",
@@ -52227,6 +52238,7 @@
       "careers.knorr-bremse.com"
     ],
     "career_url": "https://careers.knorr-bremse.com",
+    "reviewed_rmk_dates": true,
     "access_review": "allowed",
     "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
     "review_notes": "Previous collector kept: current listing not demonstrated by the staged sitemap replay.",
@@ -53164,5 +53176,105 @@
     "replaces_source_ids": [],
     "collection_lot": "CORPORATE-SITEMAP-TERMS",
     "status": "migration-review-required"
+  },
+  {
+    "id": "sitemap-jobs-bosch-de",
+    "company_id": "bosch",
+    "employer": "Bosch",
+    "adapter": "sitemap-jobposting",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://jobs.bosch.de",
+    "allowed_hosts": [
+      "jobs.bosch.de"
+    ],
+    "target_countries": [
+      "DE"
+    ],
+    "access_review": "allowed",
+    "reviewed_on": "2026-11-25",
+    "permission_basis": "Public official Bosch career portal. Exact-host robots, sitemap and details only. Outbound application references are parsed from the official detail.",
+    "review_notes": "Official legal notice: https://jobs.bosch.com/de/rechtliche-hinweise/. No automated-access ban stated. Commercial reuse requires permission. Only listing metadata and official detail URL are retained. Held for migration gate.",
+    "reviewed_listing_layout": "bosch",
+    "require_employer_identity": true,
+    "employer_aliases": [
+      "Robert Bosch GmbH",
+      "Bosch Rexroth AG",
+      "Bosch Rexroth",
+      "BSH Hausgeräte GmbH",
+      "BSH Home Appliances",
+      "Bosch Sicherheitssysteme GmbH",
+      "Bosch Sicherheitssysteme Montage und Service GmbH",
+      "Robert Bosch Smart Home GmbH",
+      "Robert Bosch Fahrzeugelektrik Eisenach GmbH",
+      "Robert Bosch Elektronik GmbH"
+    ],
+    "max_requests": 90,
+    "collection_seconds": 120,
+    "collection_delay": 2
+  },
+  {
+    "id": "sitemap-jobs-bosch-com",
+    "company_id": "bosch",
+    "employer": "Bosch",
+    "adapter": "sitemap-jobposting",
+    "enabled": false,
+    "collection_activation_hold": true,
+    "career_url": "https://jobs.bosch.com",
+    "allowed_hosts": [
+      "jobs.bosch.com"
+    ],
+    "target_countries": [
+      "AT",
+      "BE",
+      "BG",
+      "HR",
+      "CY",
+      "CZ",
+      "DK",
+      "EE",
+      "FI",
+      "FR",
+      "DE",
+      "GR",
+      "HU",
+      "IE",
+      "IT",
+      "LV",
+      "LT",
+      "LU",
+      "MT",
+      "NL",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "SI",
+      "ES",
+      "SE",
+      "CH",
+      "GB"
+    ],
+    "access_review": "allowed",
+    "reviewed_on": "2026-11-25",
+    "permission_basis": "Public official Bosch career portal. Exact-host robots, sitemap and details only. Outbound application references are parsed from the official detail.",
+    "review_notes": "Official legal notice: https://jobs.bosch.com/de/rechtliche-hinweise/. No automated-access ban stated. Commercial reuse requires permission. Only listing metadata and official detail URL are retained. Held for migration gate.",
+    "reviewed_listing_layout": "bosch",
+    "require_employer_identity": true,
+    "employer_aliases": [
+      "Robert Bosch GmbH",
+      "Bosch Rexroth AG",
+      "Bosch Rexroth",
+      "BSH Hausgeräte GmbH",
+      "BSH Home Appliances",
+      "Bosch Sicherheitssysteme GmbH",
+      "Bosch Sicherheitssysteme Montage und Service GmbH",
+      "Robert Bosch Smart Home GmbH",
+      "Robert Bosch Fahrzeugelektrik Eisenach GmbH",
+      "Robert Bosch Elektronik GmbH"
+    ],
+    "max_requests": 90,
+    "collection_seconds": 120,
+    "collection_delay": 2
   }
 ]
