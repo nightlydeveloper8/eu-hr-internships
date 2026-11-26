@@ -240,6 +240,23 @@ class WeeklyDiscoveryTests(unittest.TestCase):
     def test_replay_transport_uses_twelve_gets_even_if_source_budget_is_higher(self):
         self.assertEqual(discovery.ReplayClient(dict(REVIEWED, max_requests=100)).max_requests, 12)
 
+    def test_replay_reports_missing_date_title_and_live_read_as_distinct_gaps(self):
+        catalog = {'jobs': []}
+        part = {'jobs': [{'id': 'candidate', 'url': 'https://example.com/jobs/hr-internship',
+                          'title': 'HR internship', 'countries': ['NL']}],
+                'report': {'status': 'partial', 'candidate_filter_reasons': {'not-hr-student-role': 1},
+                           'page_errors': [{'error': 'request timeout'}]}}
+        with patch.object(discovery, 'finalize', return_value=(catalog, {})):
+            _, report = discovery.simulate(REVIEWED, [REVIEWED], catalog, STAMP, [],
+                                           (part, 30, 4, 100, 0.1))
+        self.assertFalse(report['current'])
+        self.assertFalse(report['budget'])
+        self.assertEqual(report['gaps'], {
+            'Titolo non HR o stage non ammissibile': 1,
+            'Annuncio o inventario non leggibile nella verifica live': 1,
+            'Data di pubblicazione o scadenza assente': 1,
+        })
+
     def test_funnel_counts_platforms_with_candidates_and_explains_evidence(self):
         hosts = {'example.com': {'migration': {'old'}}, 'unknown.example': {'migration': set()}}
         rows = {
