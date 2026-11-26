@@ -45,11 +45,21 @@ def discover_channels(company,client):
         if not any((x['adapter'],x['board'])==(entry['adapter'],entry['board']) for x in channels):channels.append(entry)
     return channels
 
+def company_name_index(companies):
+    index = {}
+    for company in companies:
+        for name in {company_key(name) for name in [company['name'], *company.get('aliases', [])]}:
+            index.setdefault(name, []).append(company)
+    return index
+
+
 def region_codes_for_job(job,companies):
     # Assign only a matching observed workplace city; never infer all offices from an employer name.
     city=fold(job.get('city') or '');employer=company_key(job['employer']);codes=set()
-    for company in companies:
-        if employer not in {company_key(n) for n in [company['name']]+company.get('aliases',[])}:continue
+    matches = companies.get(employer, []) if isinstance(companies, dict) else (
+        company for company in companies
+        if employer in {company_key(n) for n in [company['name'], *company.get('aliases', [])]})
+    for company in matches:
         for place in company.get('workplaces',[]):
             if not place.get('city'):continue
             if place.get('location_confidence')!='confirmed' or place['country'] not in job['countries']:continue

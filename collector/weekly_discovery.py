@@ -2,12 +2,16 @@
 
 import argparse
 from collections import Counter, defaultdict
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import csv
 from datetime import datetime
+from hashlib import sha256
+import json
+import time
 from pathlib import Path
 import re
 from tempfile import TemporaryDirectory
+from urllib.error import HTTPError
 from urllib.parse import unquote, urlsplit
 from xml.etree.ElementTree import ParseError
 from zoneinfo import ZoneInfo
@@ -24,7 +28,9 @@ STATE = ROOT / 'data/discovery-activations.json'
 SOURCES = ROOT / 'data/sources.json'
 STAGING = ROOT / 'docs/staging'
 WEEKLY_LIMIT = 20
+SHARDS = 16
 EXCLUDED = {
+    'linkedin.com', 'indeed.com', 'infojobs.net', 'infojobs.it', 'glassdoor.com',
     'kering.com', 'richemont.com', 'ryanair.com', 'hubspot.com', 'sebgroup.com',
     'werkenbijabnamro.nl', 'freseniusmedicalcare.com', 'novartis.com', 'jobs.fuchs.com',
     'michaelpage.pt', 'grafton.cz', 'grafton.sk', 'grafton.com', 'smartrecruiters.com',
@@ -129,14 +135,25 @@ def slug_candidate(url):
     return not APPLICATION_ROUTE.search(path) and candidate(slug_title('/' + slug.replace('_', '-')))
 
 
-def probe(host, hints, exclusions):
-    if not re.fullmatch(r'[a-z0-9-]+(?:\.[a-z0-9-]+)+', host) or any(
-            host == domain or host.endswith('.' + domain) for domain in exclusions):
+def fingerprint(value):
+    return sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()
+
+
+def membership(host):
+    return int(sha256(host.encode()).hexdigest()[:8], 16) % SHARDS
+
+
+def probe(host, hints, exclusions, cached=None):
+    if (not re.fullmatch(r'[a-z0-9-]+(?:\.[a-z0-9-]+)+', host)
+            or any(host == domain or host.endswith('.' + domain) for domain in exclusions)
+            or re.search(r'(?:^|\.)(?:linkedin|indeed|infojobs|glassdoor)\.[a-z.]+$', host)):
         return {'reason': 'Host escluso o non valido', 'requests': 0}
     client = BudgetClient(seconds=30, max_requests=2, delay=2)
     scan = Scan(dict(career_url=f'https://{host}/', allowed_hosts=[host],
                      adapter='sitemap-jobposting', access_review='allowed'), client)
+    started = time.monotonic()
     result = {'platform': hints.get('platform_hint')}
+    cached = cached or {}
     try:
         advertised = scan.preflight()
         ready = [url for url in {*advertised, *hints['maps']} if scan.permitted(url)]
@@ -145,13 +162,34 @@ def probe(host, hints, exclusions):
             result['reason'] = 'Sitemap non consentita'
         else:
             url = min(ready, key=lambda item: (item not in hints['maps'], not JOB_MAP.search(item), item))
-            doc = parse_sitemap(scan.get(url))
+            robots_key = fingerprint(scan.rules)
+            known = cached.get('sitemap') == url and cached.get('robots_key') == robots_key
+            client.conditional_get_headers = {
+                header: cached['validators'][key] for key, header in
+                (('ETag', 'If-None-Match'), ('Last-Modified', 'If-Modified-Since'))
+                if known and cached.get('validators', {}).get(key)
+            }
+            try:
+                content = scan.get(url, follow_redirects=False)
+            except HTTPError as error:
+                if error.code != 304 or not client.conditional_get_headers or not cached.get('signature'):
+                    raise
+                return dict(cached, robots=True, cache_hit=True, requests=client.requests,
+                            bytes=client.bytes, seconds=round(time.monotonic() - started, 3))
+            signature = fingerprint([robots_key, url, sha256(content).hexdigest()])
+            result.update(robots_key=robots_key, signature=signature,
+                          validators=getattr(client, 'response_validators', {}))
+            if known and signature == cached.get('signature') and cached.get('sitemap'):
+                return dict(cached, validators=result['validators'], robots=True, cache_hit=True, requests=client.requests,
+                            bytes=client.bytes, seconds=round(time.monotonic() - started, 3))
+            doc = parse_sitemap(content)
             kind = doc.tag.rsplit('}', 1)[-1]
             if kind not in ('urlset', 'sitemapindex'):
                 raise ValueError('Unknown sitemap format')
             children = {item for item in locations(doc, 'sitemap') if scan.permitted(item)}
-            slugs = {item for item in locations(doc, 'url') if scan.permitted(item) and slug_candidate(item)}
-            result.update(sitemap=url, children=len(children), candidates=len(slugs))
+            urls = list(locations(doc, 'url'))
+            slugs = {item for item in urls if slug_candidate(item) and scan.permitted(item)}
+            result.update(sitemap=url, children=len(children), candidates=len(slugs), urls=len(urls))
             if not result['platform']:
                 if host.endswith('.teamtailor.com'):
                     result['platform'] = 'teamtailor'
@@ -160,8 +198,25 @@ def probe(host, hints, exclusions):
             result['reason'] = ('Indice con sitemap figlie' if children else
                                 'Slug stage HR trovati' if slugs else 'Nessuno slug stage HR nella sitemap letta')
     except (OSError, ValueError, ParseError, CollectionBudgetExceeded) as error:
+        if isinstance(error, HTTPError):
+            result['http_error'] = error.code
         result['reason'] = f'Preflight incompleto ({type(error).__name__})'
-    return dict(result, requests=client.requests)
+    return dict(result, requests=client.requests, bytes=client.bytes,
+                seconds=round(time.monotonic() - started, 3))
+
+
+def scan_hosts(hosts, exclusions, cached=None, checkpoint=None):
+    cached = cached or {}
+    results = {}
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        futures = {pool.submit(probe, host, hints, exclusions, cached[host])
+                   if host in cached else pool.submit(probe, host, hints, exclusions): host
+                   for host, hints in hosts.items()}
+        for future in as_completed(futures):
+            results[futures[future]] = future.result()
+            if checkpoint and len(results) % 8 == 0:
+                write(checkpoint, results)
+    return results
 
 
 def current(job, stamp):
@@ -231,9 +286,15 @@ class ReplayClient(BudgetClient):
         return self.rules is not None and self.scan.scoped(url) and robots_allows(self.rules, url)
 
 
-def simulate(source, registry, catalog, stamp, parts):
+def collect_replay(source, stamp):
     client = ReplayClient(source)
+    started = time.monotonic()
     part = process_source(source, client, stamp)
+    return part, client.remaining(), client.requests, client.bytes, round(time.monotonic() - started, 3)
+
+
+def simulate(source, registry, catalog, stamp, parts, collected=None):
+    part, remaining, requests, size, seconds = collected or collect_replay(source, stamp)
     report = part['report']
     registry = [item for item in registry if item['id'] != source['id']] + [source]
     with TemporaryDirectory() as output:
@@ -246,15 +307,15 @@ def simulate(source, registry, catalog, stamp, parts):
         excluded=any(report.get('candidate_filter_reasons', {}).get(reason) for reason in excluded_reasons)
         or any(excluded_placement_title(job['title']) or job.get('student_eligibility') == 'excluded'
                      or ('DE' in job['countries'] and excluded_german_title(job['title'])) for job in part['jobs']),
-        budget=bool(client.remaining() and report['status'] in ('ok', 'partial')
+        budget=bool(remaining and report['status'] in ('ok', 'partial')
                     and not report.get('page_errors') and not report.get('sitemap_errors')),
         current=any(current(job, stamp) and job.get('last_verified_at') == stamp
                     and canonical_url(job['url']) in staged_urls for job in result['jobs']),
-        requests=client.requests, bytes=client.bytes,
+        requests=requests, bytes=size, seconds=seconds,
     )
 
 
-def stage(sources, catalog, state, stamp, baseline):
+def stage(sources, catalog, state, stamp, baseline, observations=None, replay_cache=None):
     week = week_for(stamp)
     entries = state.get(week, {})
     rolled_back = {sid for records in state.values() for sid, item in records.items() if item.get('rollback')}
@@ -275,66 +336,95 @@ def stage(sources, catalog, state, stamp, baseline):
                 proof[platform(source)].add(host_of(source))
     estimate = baseline + sum(entry['after']['collection_seconds'] for entry in entries.values()
                               if not entry.get('rollback'))
-    reports, parts = {}, []
+    parallel_replays = observations is not None
+    observations = scan_hosts(hosts, exclusions) if observations is None else observations
+    replay_cache = {} if replay_cache is None else replay_cache
+    reports, parts, pending = {}, [], []
     changed = False
-    with ThreadPoolExecutor(max_workers=24) as pool:
-        futures = {host: pool.submit(probe, host, hints, exclusions) for host, hints in hosts.items()}
-        for host in sorted(hosts):
-            observed = reports[host] = futures[host].result()
-            if not (observed.get('candidates') or observed.get('children')):
-                continue
-            hints = hosts[host]
-            prior = [registry[sid] for sid in hints['migration']
-                     if sid in registry and registry[sid]['adapter'] == 'universal-employer']
-            templates = [source for sid, source in hints['templates'].items()
-                         if not registry.get(sid, {}).get('enabled')]
-            if len(templates) != 1 or len(prior) > 1:
-                observed['reason'] = ('Fonte già attiva' if active[host] and not prior
-                                      else 'Termini, piattaforma o configurazione da rivedere')
-                continue
-            template = templates[0]
-            sid = prior[0]['id'] if prior else template['id']
-            previous = registry.get(sid)
-            if active[host] - {sid} or sid in entries or sid in rolled_back or (
-                    previous and previous.get('status') == 'discovery-rollback-hold'):
-                observed['reason'] = 'Host già coperto o rientrato in hold'
-                continue
-            if (set(template['allowed_hosts']) != {host} or template.get('slow_collection_lane')
-                    or not all(isinstance(template.get(key), (int, float)) and template[key] > 0
-                               for key in ('collection_delay', 'collection_seconds', 'max_requests'))):
-                observed['reason'] = 'Budget o perimetro dell’adattatore da rivedere'
-                continue
-            source = dict(template, id=sid, enabled=True, collection_activation_hold=False,
-                          status='reviewed-active')
-            if prior:
-                source['company_id'] = prior[0]['company_id']
-                source['source_id_aliases'] = sorted({sid, template['id']})
-            # Keep the previous source ID and every company reference in place.
-            if source.get('company_id') in held_companies:
-                observed['reason'] = 'Datore in hold nel registro aziende'
-                continue
-            adapter_platform = platform(template)
-            observed['platform'] = adapter_platform
+    for host in sorted(hosts):
+        observed = reports[host] = dict(observations.get(host, {'reason': 'Shard mancante'}))
+        if not (observed.get('candidates') or observed.get('children')):
+            continue
+        hints = hosts[host]
+        prior = [registry[sid] for sid in hints['migration']
+                 if sid in registry and registry[sid]['adapter'] == 'universal-employer']
+        templates = [source for sid, source in hints['templates'].items()
+                     if not registry.get(sid, {}).get('enabled')]
+        if len(templates) != 1 or len(prior) > 1:
+            hint = str(observed.get('platform') or '').lower()
+            if active[host] and not prior:
+                observed['reason'] = 'Fonte già attiva'
+            elif hint not in ('', 'non_verificato', 'proprio/altro') and not (proof[hint] - {host, None}):
+                observed['reason'] = 'Piattaforma senza prova in produzione su un altro host'
+            else:
+                observed['reason'] = 'Termini o configurazione da rivedere'
+            continue
+        template = templates[0]
+        sid = prior[0]['id'] if prior else template['id']
+        previous = registry.get(sid)
+        if active[host] - {sid} or sid in entries or sid in rolled_back or (
+                previous and previous.get('status') == 'discovery-rollback-hold'):
+            observed['reason'] = 'Host già coperto o rientrato in hold'
+            continue
+        if (set(template['allowed_hosts']) != {host} or template.get('slow_collection_lane')
+                or not all(isinstance(template.get(key), (int, float)) and template[key] > 0
+                           for key in ('collection_delay', 'collection_seconds', 'max_requests'))):
+            observed['reason'] = 'Budget o perimetro dell’adattatore da rivedere'
+            continue
+        source = dict(template, id=sid, enabled=True, collection_activation_hold=False,
+                      status='reviewed-active')
+        if prior:
+            source['company_id'] = prior[0]['company_id']
+            source['source_id_aliases'] = sorted({sid, template['id']})
+        # Keep the previous source ID and every company reference in place.
+        if source.get('company_id') in held_companies:
+            observed['reason'] = 'Datore in hold nel registro aziende'
+            continue
+        adapter_platform = platform(template)
+        observed['platform'] = adapter_platform
+        # A stable index does not attest that its child sitemaps are unchanged.
+        replay_key = (fingerprint([observed['signature'], source])
+                      if observed.get('signature') and not observed.get('children') else None)
+        has_proof = bool(adapter_platform and proof[adapter_platform] - {host, None})
+        reason = gate(observed, has_proof, True, len(entries), estimate + source['collection_seconds'])
+        if reason:
+            observed['reason'] = reason
+        elif replay_key and replay_cache.get(host, {}).get('key') == replay_key:
+            observed.update(reason=replay_cache[host]['reason'], replay_cache_hit=True,
+                            replay=replay_cache[host]['replay'])
+        else:
+            pending.append((host, observed, source, previous, bool(prior), replay_key))
+
+    # Fetch independent hosts concurrently. The finalizer and weekly limits
+    # still run in a single deterministic order over all accepted parts.
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        futures = {host: pool.submit(collect_replay, source, stamp)
+                   for host, _, source, _, _, _ in pending} if parallel_replays else {}
+        for host, observed, source, previous, migration, replay_key in pending:
             next_estimate = estimate + source['collection_seconds']
-            params = (observed, bool(adapter_platform and proof[adapter_platform] - {host, None}),
-                      True, len(entries), next_estimate)
+            params = (observed, True, True, len(entries), next_estimate)
             reason = gate(*params)
             if not reason:
                 try:
-                    part, replay = simulate(source, list(registry.values()), catalog, stamp, parts)
+                    replay_args = (futures[host].result(),) if host in futures else ()
+                    part, replay = simulate(source, list(registry.values()), catalog, stamp, parts, *replay_args)
                 except (OSError, ValueError, CollectionBudgetExceeded):
                     observed['reason'] = 'Replay del catalogo fallito'
                     continue
                 observed['replay'] = replay
                 reason = gate(*params, replay)
+                if replay_key and reason and replay['budget'] and not replay['lost']:
+                    replay_cache[host] = dict(key=replay_key, reason=reason, replay=replay)
             if reason:
                 observed['reason'] = reason
                 continue
+            sid = source['id']
             entries[sid] = dict(before=previous, after=source, host=host, at=stamp)
             registry[sid] = source
             parts.append(part)
             estimate = next_estimate
-            observed['reason'] = 'Attivata'
+            replay_cache.pop(host, None)
+            observed.update(reason='Attivata', source_id=sid, migration=migration)
             changed = True
     if changed:
         state[week] = entries
@@ -437,9 +527,50 @@ def report_text(entries, observations, audit_report):
     return '\n'.join(lines)
 
 
+def funnel_bucket(row):
+    reason = row['reason']
+    replay = row.get('replay')
+    if reason == 'Attivata':
+        return 'Superato'
+    if reason == 'Host escluso o non valido':
+        return 'Esclusione registrata o host non valido'
+    if reason == 'Shard mancante':
+        return reason
+    if not row.get('robots') or reason == 'Sitemap non consentita':
+        return 'Robots non letto o percorso negato'
+    if not row.get('sitemap') or row.get('urls') == row.get('children') == 0:
+        return 'Sitemap assente, vuota o non leggibile'
+    if not row.get('candidates') and not row.get('children'):
+        return 'Zero slug candidati'
+    if replay:
+        failed = [label for label, failed in (('ID persi', replay['lost']),
+                  ('titoli esclusi', replay['excluded']), ('budget o lettura incompleta', not replay['budget']),
+                  ('livello di prova', not replay['current'])) if failed]
+        if failed:
+            return 'Replay fallito · ' + ', '.join(failed)
+    return reason
+
+
+def funnel(sources, observations):
+    hosts, _ = inventory(sources)
+    totals = Counter(funnel_bucket(row) for row in observations.values())
+    migrations = Counter(funnel_bucket(observations[host]) for host, hints in hosts.items()
+                         for _ in hints['migration'])
+    lines = ['### Imbuto', '| Passaggio | Host | Fonti di migrazione |', '| --- | ---: | ---: |']
+    for key in sorted(totals.keys() | migrations.keys()):
+        lines.append(f'| {key} | {totals[key]} | {migrations[key]} |')
+    lines.append(f'| Totale | {sum(totals.values())} | {sum(migrations.values())} |')
+    lines.append(f"Cache sitemap: {sum(bool(row.get('cache_hit')) for row in observations.values())} host. "
+                 f"Cache replay: {sum(bool(row.get('replay_cache_hit')) for row in observations.values())} host.")
+    return '\n'.join(lines)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline-seconds', type=int)
+    parser.add_argument('--scan-shard', type=int, choices=range(SHARDS))
+    parser.add_argument('--scans', type=Path)
+    parser.add_argument('--cache', type=Path)
     parser.add_argument('--audit-event', type=Path)
     parser.add_argument('--run-sources', type=Path)
     parser.add_argument('--before', type=Path)
@@ -448,6 +579,16 @@ def main():
     args = parser.parse_args()
     sources, state = read(SOURCES, []), read(STATE, {})
     stamp = now()
+    cache = read(args.cache, {}) if args.cache else {}
+    if args.scan_shard is not None:
+        hosts, exclusions = inventory(sources)
+        shard = {host: hints for host, hints in hosts.items() if membership(host) == args.scan_shard}
+        observations = scan_hosts(shard, exclusions, cache, args.output)
+        write(args.output, observations)
+        if args.cache:
+            cache.update({host: row for host, row in observations.items() if row.get('sitemap')})
+            write(args.cache, cache)
+        return
     if args.audit_event:
         event = read(args.audit_event, {})
         sources, audits, changed = audit(sources, state, event, read(args.before, {}),
@@ -460,10 +601,24 @@ def main():
     else:
         if args.baseline_seconds is None or args.baseline_seconds < 0:
             parser.error('A recent collection duration is required')
+        scans = None
+        if args.scans:
+            scans = {}
+            for file in sorted(args.scans.glob('scan-*.json')):
+                scans.update(read(file, {}))
+        original = sources
+        if scans is not None:
+            expected, _ = inventory(sources)
+            scans = {host: scans.get(host, {'reason': 'Shard mancante'}) for host in expected}
+            write(args.output, {week_for(stamp): dict(funnel=funnel(sources, scans),
+                  hold='\nReplay in corso o interrotto. Consultare gli artefatti per shard.')})
         sources, observations, changed = stage(sources, read(ROOT / 'data/catalog.json', {}),
-                                               state, stamp, args.baseline_seconds)
+                                               state, stamp, args.baseline_seconds, scans, cache)
+        if args.cache:
+            write(args.cache, cache)
         week = week_for(stamp)
         reports = {week: dict(activation=report_text(state.get(week, {}), None, None),
+                              funnel=funnel(original, observations),
                               hold=report_text({}, observations, None).split('### Fonti in attesa di decisione', 1)[1])}
         write(args.output.parent / 'observations.json', observations)
     if changed:

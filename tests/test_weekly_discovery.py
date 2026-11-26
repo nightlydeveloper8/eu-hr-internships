@@ -1,4 +1,5 @@
 from datetime import datetime
+from urllib.error import HTTPError
 import unittest
 from unittest.mock import patch
 
@@ -117,6 +118,38 @@ class WeeklyDiscoveryTests(unittest.TestCase):
             result = discovery.probe('example.com', {'maps': set()}, set())
         self.assertEqual(requests, ['https://example.com/robots.txt', OBSERVATION['sitemap']])
         self.assertEqual(result['candidates'], 1)
+
+    def test_unchanged_sitemap_revalidates_robots_and_skips_parsing(self):
+        robots = b'User-agent: *\nSitemap: https://example.com/sitemap.xml'
+        mime = b'<urlset><url><loc>https://example.com/jobs/hr-internship</loc></url></urlset>'
+        calls = []
+        client = discovery.BudgetClient(seconds=10, max_requests=2)
+        def get(url, **kwargs):
+            calls.append(url)
+            client.requests += 1
+            if url.endswith('robots.txt'):
+                return robots, 200, url
+            if getattr(client, 'conditional_get_headers', {}).get('If-None-Match'):
+                raise HTTPError(url, 304, 'Not modified', None, None)
+            client.response_validators = {'ETag': '"original"'}
+            return mime, 200, url
+        with (patch.object(discovery, 'BudgetClient', return_value=client),
+              patch.object(client, 'request', side_effect=get)):
+            hints = {'maps': set()}
+            first = discovery.probe('example.com', hints, set())
+            client.requests = 0
+            with patch.object(discovery, 'parse_sitemap', side_effect=AssertionError('cached')):
+                cached = discovery.probe('example.com', hints, set(), first)
+        self.assertEqual(calls, ['https://example.com/robots.txt', OBSERVATION['sitemap']] * 2)
+        self.assertTrue(cached['cache_hit'])
+        self.assertEqual(cached['signature'], first['signature'])
+        self.assertEqual(cached['candidates'], 1)
+
+    def test_funnel_preserves_partial_indexes_and_lists_failed_conditions(self):
+        indexed = dict(OBSERVATION, candidates=0, children=8, urls=0, reason='Termini da rivedere')
+        self.assertEqual(discovery.funnel_bucket(indexed), 'Termini da rivedere')
+        failed = dict(OBSERVATION, replay=dict(REPLAY, budget=False, current=False), reason='Replay fallito')
+        self.assertIn('budget o lettura incompleta, livello di prova', discovery.funnel_bucket(failed))
 
     def test_inventory_has_curated_inputs(self):
         hosts, exclusions = discovery.inventory([])

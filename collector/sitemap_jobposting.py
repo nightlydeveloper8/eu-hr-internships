@@ -137,7 +137,7 @@ class Scan:
     def permitted(self, url):
         return self.scoped(url) and robots_allows(self.rules, url) and robots_allows(self.rules, canonical_url(url))
 
-    def get(self, url, *, robots=False):
+    def get(self, url, *, robots=False, follow_redirects=True):
         try:
             return self._get_once(url, robots=robots)
         except HTTPError as exc:
@@ -151,6 +151,8 @@ class Scan:
             self.blocked = False
             return self._get_once(url, robots=robots, rate_limit=exc)
         except ScopedRedirect as exc:
+            if not follow_redirects:
+                raise
             original_id = posting_id(url, self.source)
             target = exc.target
             old_rmk = path_match(url) if (self.source.get('reviewed_rmk_layout') or self.source.get('reviewed_rmk_redirects')) else None

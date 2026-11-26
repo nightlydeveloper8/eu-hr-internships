@@ -491,8 +491,8 @@ def finalize(registry,selected,prior,prior_report,parts,stamp,output):
             job['student_eligibility']='excluded'
         if canonical_url(job['url']) in explicitly_closed:
             job['status']='closed';job['closure_reason']='Official recruiting page explicitly disables applications';job['verification']=dict(state='closed',checked_at=stamp,policy_version=2,reason=job['closure_reason'])
-    from .company_registry import region_codes_for_job
-    companies=read(ROOT/'data/companies.json',[])
+    from .company_registry import company_name_index,region_codes_for_job
+    companies=company_name_index(read(ROOT/'data/companies.json',[]))
     for job in jobs:job['region_codes']=region_codes_for_job(job,companies)
     # Preserve historical verification when API is present but this run's vacancy/application read is temporarily blocked.
     old={j['id']:j for j in prior['jobs']}
