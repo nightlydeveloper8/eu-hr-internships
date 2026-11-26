@@ -48,6 +48,7 @@ class Client:
         # Accept, even at a lower weight. Document requests must prefer HTML;
         # explicit JSON readers below retain their API representation.
         headers={'User-Agent':AGENT,'Accept':accept or 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8'}
+        headers.update(getattr(self, 'conditional_get_headers', {}))
         if body is not None: headers['Content-Type']=content_type or 'application/json'
         if robots and not self.permitted(url): raise ValueError('robots.txt disallows '+url)
         for attempt in range(attempts):
@@ -56,6 +57,9 @@ class Client:
             try:
                 with build_opener(CheckedRedirect(self,robots)).open(Request(url,data=body,headers=headers,method=method),timeout=timeout) as response:
                     if urlsplit(response.url).scheme != 'https': raise ValueError('Unsafe redirect')
+                    if getattr(self, 'conditional_get_headers', None) is not None:
+                        self.response_validators = {key: response.headers[key]
+                                                    for key in ('ETag', 'Last-Modified') if key in response.headers}
                     return response.read(20_000_000), response.status, response.url
             except HTTPError as exc:
                 if exc.code not in (429,500,502,503,504) or attempt==attempts-1: raise
