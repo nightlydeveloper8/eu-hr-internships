@@ -210,7 +210,8 @@ def probe(host, hints, exclusions, cached=None):
         cached = {}
     stamp = now()
     week = week_for(stamp)
-    if (cached.get('robots_denied') or cached.get('robots_attempts', 0) >= 3
+    if ((cached.get('robots_denied') and not cached.get('sitemap'))
+            or cached.get('robots_attempts', 0) >= 3
             or cached.get('robots_week') == week):
         return dict(cached, requests=0, bytes=0, seconds=0, cache_hit=True)
 
@@ -248,7 +249,8 @@ def probe(host, hints, exclusions, cached=None):
         if raw in seen:
             continue
         seen.add(raw)
-        known = cached.get('sitemap') == raw and cached.get('robots_key') == robots_key
+        known = (cached.get('sitemap') == raw and cached.get('robots_key') == robots_key
+                 and not cached.get('sitemap_errors') and not cached.get('access_stop'))
         client.conditional_get_headers = {
             header: cached['validators'][key] for key, header in
             (('ETag', 'If-None-Match'), ('Last-Modified', 'If-Modified-Since'))
@@ -277,6 +279,9 @@ def probe(host, hints, exclusions, cached=None):
             errors.append('Sitemap vuota')
             continue
         if 'sitemap' not in result:
+            if errors:
+                result['fallback_errors'] = errors[:]
+                errors.clear()
             result.update(sitemap=raw, signature=signature, validators=validators,
                           lastmod=max((item.text.strip() for item in doc.iter()
                                        if item.tag.rsplit('}', 1)[-1] == 'lastmod' and item.text), default=None))
