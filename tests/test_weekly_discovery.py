@@ -87,6 +87,37 @@ class WeeklyDiscoveryTests(unittest.TestCase):
                 self.assertEqual(discovery.rollback(result, entries, reason, 123), (result, False))
         self.assertEqual(discovery.collection_result(2700, False, baseline, baseline), '')
 
+    def test_audit_only_rolls_back_sources_in_the_collection_snapshot(self):
+        activated = dict(REVIEWED, enabled=True)
+        state = {WEEK: {'reviewed': {'before': None, 'after': activated}}}
+        catalog = {'jobs': [{'id': 'retained'}]}
+        event = {'id': 123, 'run_started_at': STAMP, 'updated_at': '2026-11-26T09:20:00+00:00',
+                 'conclusion': 'failure', 'jobs': [{'conclusion': 'timed_out'}]}
+        result, _, changed = discovery.audit([activated], state, event, catalog, [], None, STAMP)
+        self.assertFalse(changed)
+        self.assertEqual(result, [activated])
+        result, reports, changed = discovery.audit(
+            result, state, event, catalog, [activated], None, STAMP)
+        self.assertTrue(changed)
+        self.assertFalse(result[0]['enabled'])
+        self.assertTrue(reports[WEEK]['timeout'])
+        self.assertFalse(discovery.audit(result, state, event, catalog, [activated], None, STAMP)[2])
+
+    def test_probe_respects_two_gets_and_excludes_disallowed_details(self):
+        maps = b'<urlset><url><loc>https://example.com/jobs/hr-internship</loc></url><url><loc>https://example.com/private/hr-internship</loc></url></urlset>'
+        robots = b'User-agent: *\nDisallow: /private/\nSitemap: https://example.com/sitemap.xml'
+        client = discovery.BudgetClient(seconds=10, max_requests=2)
+        requests = []
+        def get(url, **kwargs):
+            requests.append(url)
+            client.requests += 1
+            return (robots if url.endswith('robots.txt') else maps), 200, url
+        with (patch.object(discovery, 'BudgetClient', return_value=client),
+              patch.object(client, 'request', side_effect=get)):
+            result = discovery.probe('example.com', {'maps': set()}, set())
+        self.assertEqual(requests, ['https://example.com/robots.txt', OBSERVATION['sitemap']])
+        self.assertEqual(result['candidates'], 1)
+
     def test_inventory_has_curated_inputs(self):
         hosts, exclusions = discovery.inventory([])
         self.assertEqual(len({sid for hints in hosts.values() for sid in hints['migration']}), 203)

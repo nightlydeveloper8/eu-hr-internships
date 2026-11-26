@@ -133,7 +133,8 @@ def probe(host, hints, exclusions):
                      adapter='sitemap-jobposting', access_review='allowed'), client)
     result = {'platform': hints.get('platform_hint')}
     try:
-        ready = [url for url in scan.preflight() if scan.permitted(url)]
+        advertised = scan.preflight()
+        ready = [url for url in {*advertised, *hints['maps']} if scan.permitted(url)]
         result['robots'] = True
         if not ready:
             result['reason'] = 'Sitemap non consentita'
@@ -146,6 +147,11 @@ def probe(host, hints, exclusions):
             children = {item for item in locations(doc, 'sitemap') if scan.permitted(item)}
             slugs = {item for item in locations(doc, 'url') if scan.permitted(item) and slug_candidate(item)}
             result.update(sitemap=url, children=len(children), candidates=len(slugs))
+            if not result['platform']:
+                if host.endswith('.teamtailor.com'):
+                    result['platform'] = 'teamtailor'
+                elif any(rule == ('disallow', '/applybutton/') for rule in scan.rules):
+                    result['platform'] = 'sf-rmk'
             result['reason'] = ('Indice con sitemap figlie' if children else
                                 'Slug stage HR trovati' if slugs else 'Nessuno slug stage HR nella sitemap letta')
     except (OSError, ValueError, ParseError, CollectionBudgetExceeded) as error:
