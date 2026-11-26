@@ -63,6 +63,26 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
   `collect.yml` alle 06:17 UTC importa soltanto l'ultimo artefatto completato di `main` se ha meno di 48 ore, corrisponde alle fonti correnti e porta nuove osservazioni. Il publish procede anche senza artefatto. Gli snapshot separati possono documentare chiusure esplicite. Le assenze contano solo negli inventari completi della raccolta ordinaria.
 - Le prove live vanno in staging (`.staging/`, ignorata da git) o in run `workflow_dispatch`, mai pubblicando su `main`.
 
+### Autorizzazione permanente alla scoperta settimanale
+
+Il maintainer autorizza `discovery.yml` a migrare o attivare fino a 20 fonti per settimana ISO
+(ora Europe/Amsterdam). L’adattatore e la piattaforma devono avere un esito positivo in
+produzione su un altro sito. L’host deve servire un robots.txt leggibile che consenta tutti
+i percorsi usati. Sono esclusi gli host e i gruppi con restrizioni registrate e i percorsi
+vietati dai termini. Termini incerti e piattaforme nuove restano in hold per il maintainer.
+
+Il preflight usa al massimo due GET per host, per robots.txt e una sitemap. L’eventuale
+simulazione usa il budget dell’adattatore rivisto e deve conservare tutti gli ID, escludere
+i titoli non ammissibili e confermare almeno uno stage europeo con prova current listing.
+Una migrazione conserva l’ID di fonte già registrato. La stima complessiva di `collect.yml`
+deve essere inferiore a 35 minuti. L’issue settimanale registra attivazioni, hold motivati
+e aggiunte osservate per paese.
+
+La raccolta successiva controlla ID, tempo e timeout di shard. In caso di perdita di ID,
+durata oltre 45 minuti o timeout, le nuove configurazioni della settimana tornano in hold.
+Per le migrazioni si ripristina la configurazione precedente. Il rientro compare nella
+stessa issue e una nuova attivazione dopo il rientro richiede il maintainer.
+
 ## 5. Regole di dominio (non negoziabili)
 
 - **Solo stage/placement per studenti con un ruolo HR.** Esclusi: Werkstudent/working student/lavori part-time per studenti;
