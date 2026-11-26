@@ -66,17 +66,23 @@ People Placement (https://people-placement-eu.pages.dev/) è un sito statico, se
 ### Autorizzazione permanente alla scoperta settimanale
 
 Il maintainer autorizza `discovery.yml` a migrare o attivare fino a 20 fonti per settimana ISO
-(ora Europe/Amsterdam). L’adattatore e la piattaforma devono avere un esito positivo in
-produzione su un altro sito. L’host deve servire un robots.txt leggibile che consenta tutti
-i percorsi usati. Sono esclusi gli host e i gruppi con restrizioni registrate e i percorsi
-vietati dai termini. Termini incerti e piattaforme nuove restano in hold per il maintainer.
+(ora Europe/Amsterdam), con durata stimata di `collect.yml` sotto 35 minuti. L’host deve
+servire un robots.txt leggibile che consenta i percorsi usati. Sono esclusi host e gruppi
+con restrizioni registrate e percorsi vietati dai termini.
 
-Il preflight usa al massimo due GET per host, per robots.txt e una sitemap. L’eventuale
-simulazione usa il budget dell’adattatore rivisto e deve conservare tutti gli ID, escludere
-i titoli non ammissibili e confermare almeno uno stage europeo con prova current listing.
-Una migrazione conserva l’ID di fonte già registrato. La stima complessiva di `collect.yml`
-deve essere inferiore a 35 minuti. L’issue settimanale registra attivazioni, hold motivati
-e aggiunte osservate per paese.
+Le nuove fonti richiedono termini rivisti, esito positivo della piattaforma e dell’adattatore
+su un altro sito, slug candidati e replay con almeno uno stage europeo current listing.
+Per le migrazioni delle 203 fonti censite serve un adattatore della piattaforma già in
+produzione, senza soglia di slug, stage correnti o livello di prova. Conservare l’ID di
+fonte e i riferimenti esistenti come alias. Un crawler generico disabilitato resta disabilitato
+dopo la migrazione. Entrambi i replay devono conservare gli ID e scartare titoli esclusi.
+
+Il controllo di variazione usa due GET per host, robots e sitemap. Al primo passaggio
+o dopo una modifica, ricerca delle sitemap e discesa nelle foglie entro 12 GET totali.
+Anche il replay usa al massimo 12 GET. Un divieto robots resta in cache. Se robots
+non è leggibile si ritenta la settimana successiva per al massimo tre tentativi complessivi,
+poi la fonte resta in hold con motivo. L’issue riporta l’imbuto separato, le piattaforme
+senza adattatore in produzione e le aggiunte osservate per paese.
 
 La raccolta successiva controlla ID, tempo e timeout di shard. In caso di perdita di ID,
 durata oltre 45 minuti o timeout, le nuove configurazioni della settimana tornano in hold.

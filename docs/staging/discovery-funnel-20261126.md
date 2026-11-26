@@ -19,3 +19,30 @@ Robots: 322 non letti, 72 senza sitemap consentita. Il controllo è corretto. I 
 Lo zero da slug è corretto per la sola sitemap letta. Il conteggio non prova che il sito o il mercato siano privi di stage. Gli indici con foglie non lette sono parziali. Il blocco di revisione è corretto quando mancano termini, configurazione o esito su un altro sito. L'artefatto storico registra un motivo misto per 770 host, 759 senza piattaforma identificata con precisione e quattro con indizio Phenom o Radancy senza prova positiva distinta nella baseline. Non si può isolare il numero effettivo fermato soltanto dal requisito di piattaforma. Il nuovo report distingue le cause quando i segnali lo consentono. Mantenere la copertura esistente per 105 host evita doppioni o riattivazioni in hold.
 
 Dei 21 replay, zero hanno perso ID, zero hanno registrato titoli esclusi, 12 hanno fallito il controllo aggregato di budget o lettura e tutti e 20 i respinti erano sotto current listing. Otto sono stati respinti solo per prova insufficiente. L'unica migrazione simulata non aveva una scheda current listing. Girteka ha superato il replay con 3 GET e 109.715 byte. Il push è stato respinto e il retry ha raggiunto il timeout. Il primo tentativo registra 3.686 GET di preflight e 147 GET di replay, 12.369.940 byte di replay. I byte di preflight non sono nell'artefatto storico.
+
+## Dettaglio dei 20 replay respinti
+
+Nel primo artefatto il passo preciso sotto il livello current listing non è osservabile. Il nuovo replay registra per host l’eventuale errore di lettura, il filtro del titolo, la data assente o il motivo di verifica già restituito dall’adattatore. Nessuna data o idoneità viene inferita.
+
+| Host | Esito storico |
+| --- | --- |
+| `basf.jobs` | Budget o lettura incompleta e livello di prova insufficiente |
+| `careers.aholddelhaize.com` | Livello di prova insufficiente |
+| `careers.bouygues-construction.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `careers.deutsche-boerse.com` | Livello di prova insufficiente |
+| `careers.tkh-airportsolutions.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `careers.vanlanschotkempen.com` | Livello di prova insufficiente |
+| `jobs.bechtle.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `jobs.bosch.com` | Livello di prova insufficiente |
+| `jobs.engie.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `jobs.kpn.com` | Livello di prova insufficiente |
+| `jobs.kuehne-nagel.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `jobs.pirelli.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `karriere.fresenius.de` | Budget o lettura incompleta e livello di prova insufficiente |
+| `orange.jobs` | Budget o lettura incompleta e livello di prova insufficiente |
+| `www.atlascopcogroup.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `www.careers.signify.com` | Livello di prova insufficiente |
+| `www.careers.zurich.com` | Budget o lettura incompleta e livello di prova insufficiente |
+| `www.jobs-fraport.com` | Livello di prova insufficiente |
+| `www.werkenbijasr.nl` | Budget o lettura incompleta e livello di prova insufficiente |
+| `www.werkenbijrandstad.nl` | Livello di prova insufficiente |

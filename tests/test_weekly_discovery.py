@@ -151,6 +151,126 @@ class WeeklyDiscoveryTests(unittest.TestCase):
         failed = dict(OBSERVATION, replay=dict(REPLAY, budget=False, current=False), reason='Replay fallito')
         self.assertIn('budget o lettura incompleta, livello di prova', discovery.funnel_bucket(failed))
 
+    def test_migration_gate_needs_no_slug_or_listing_but_checks_replay(self):
+        empty_site = {'robots': True, 'candidates': 0}
+        no_listing = dict(REPLAY, current=False)
+        self.assertEqual(discovery.gate(empty_site, True, False, 0, 1200, no_listing, migration=True), '')
+        self.assertTrue(discovery.gate(empty_site, True, True, 0, 1200, no_listing))
+        for update in ({'lost': ['old']}, {'excluded': True}, {'budget': False}):
+            self.assertTrue(discovery.gate(empty_site, True, True, 0, 1200,
+                                           dict(no_listing, **update), migration=True))
+        for update in ({'robots_denied': True}, {'access_stop': 403}):
+            self.assertTrue(discovery.gate(dict(empty_site, **update), True, True, 0, 1200,
+                                           no_listing, migration=True))
+        self.assertTrue(discovery.gate(empty_site, False, True, 0, 1200, no_listing, migration=True))
+
+    def test_migration_is_applied_without_slug_or_current_listing(self):
+        previous = dict(REVIEWED, id='auto-employer', adapter='universal-employer', enabled=True)
+        production = dict(REVIEWED, id='production', enabled=True, career_url='https://another.example/',
+                          allowed_hosts=['another.example'])
+        hosts = {'example.com': {'migration': {previous['id']}, 'templates': {REVIEWED['id']: REVIEWED}}}
+        no_listing = dict(REPLAY, current=False)
+        with (patch.object(discovery, 'inventory', return_value=(hosts, set())),
+              patch.object(discovery, 'probe', return_value=dict(OBSERVATION, candidates=0)),
+              patch.object(discovery, 'simulate', return_value=({}, no_listing))):
+            sources, reports, changed = discovery.stage([previous, production], {'jobs': []}, {}, STAMP, 1200)
+        self.assertTrue(changed)
+        self.assertEqual(reports['example.com']['reason'], 'Migrata')
+        self.assertEqual(sources[0]['source_id_aliases'], ['auto-employer', 'reviewed'])
+
+    def test_platform_route_is_prepared_for_an_existing_official_host(self):
+        previous = dict(REVIEWED, id='generic', adapter='universal-employer')
+        robots = [('disallow', '/applybutton/'), ('disallow', '/talentcommunity/')]
+        name, confirmed = discovery.platform_signal('example.com', robots, [], None)
+        self.assertEqual((name, confirmed), ('sf-rmk', True))
+        source = discovery.migration_adapter(previous, dict(
+            OBSERVATION, platform=name, platform_confirmed=confirmed))
+        self.assertEqual(source['adapter'], 'sf-rmk')
+        self.assertEqual(source['id'], 'generic')
+        self.assertEqual(source['allowed_hosts'], ['example.com'])
+        self.assertIsNone(discovery.migration_adapter(dict(previous, allowed_hosts=[]), dict(
+            OBSERVATION, platform=name, platform_confirmed=confirmed)))
+
+    def test_first_probe_falls_back_and_prioritizes_job_leaves_within_twelve_gets(self):
+        base = 'https://example.com'
+        known = base + '/absent.xml'
+        preferred = base + '/sitemap-jobs.xml'
+        other = [base + f'/sitemap-general-{i}.xml' for i in range(14)]
+        children = ''.join(f'<sitemap><loc>{url}</loc></sitemap>' for url in [*other, preferred])
+        documents = {
+            base + '/robots.txt': b'User-agent: *\nSitemap: https://example.com/absent.xml',
+            base + '/sitemap_index.xml': f'<sitemapindex>{children}</sitemapindex>'.encode(),
+            preferred: b'<urlset><url><loc>https://example.com/jobs/hr-internship</loc></url></urlset>',
+        }
+        calls = []
+        client = discovery.BudgetClient(seconds=60, max_requests=12)
+        def get(url, **kwargs):
+            calls.append(url)
+            client.requests += 1
+            if url in (known, base + '/sitemap.xml'):
+                raise HTTPError(url, 404, 'missing', None, None)
+            return documents.get(url, b'<urlset/>'), 200, url
+        with (patch.object(discovery, 'BudgetClient', return_value=client),
+              patch.object(client, 'request', side_effect=get)):
+            result = discovery.probe('example.com', {'maps': set()}, set())
+        self.assertEqual(calls[:5], [base + '/robots.txt', known, base + '/sitemap.xml',
+                                     base + '/sitemap_index.xml', preferred])
+        self.assertEqual(len(calls), 12)
+        self.assertEqual(result['candidates'], 1)
+        self.assertGreater(result['children'], 0)
+
+    def test_robots_failure_counts_weeks_and_denial_is_cached_separately(self):
+        hints = {'maps': set()}
+        with patch.object(discovery.Scan, 'preflight', side_effect=OSError('network')) as fetch:
+            result = {}
+            for week in ('2026-11-12T09:00:00+00:00', '2026-11-19T09:00:00+00:00', STAMP):
+                with patch.object(discovery, 'now', return_value=week):
+                    result = discovery.probe('example.com', hints, set(), result)
+                    cached = discovery.probe('example.com', hints, set(), result)
+                    self.assertTrue(cached['cache_hit'])
+            self.assertEqual(result['robots_attempts'], 3)
+            self.assertEqual(fetch.call_count, 3)
+        with patch.object(discovery.Scan, 'preflight', return_value=['https://example.com/sitemap.xml']):
+            with patch.object(discovery.Scan, 'permitted', return_value=False):
+                denied = discovery.probe('example.com', hints, set())
+        self.assertTrue(denied['robots_denied'])
+        self.assertNotIn('robots_attempts', denied)
+        self.assertTrue(discovery.probe('example.com', hints, set(), denied)['cache_hit'])
+
+    def test_replay_transport_uses_twelve_gets_even_if_source_budget_is_higher(self):
+        self.assertEqual(discovery.ReplayClient(dict(REVIEWED, max_requests=100)).max_requests, 12)
+
+    def test_replay_reports_missing_date_title_and_live_read_as_distinct_gaps(self):
+        catalog = {'jobs': []}
+        part = {'jobs': [{'id': 'candidate', 'url': 'https://example.com/jobs/hr-internship',
+                          'title': 'HR internship', 'countries': ['NL']}],
+                'report': {'status': 'partial', 'candidate_filter_reasons': {'not-hr-student-role': 1},
+                           'page_errors': [{'error': 'request timeout'}]}}
+        with patch.object(discovery, 'finalize', return_value=(catalog, {})):
+            _, report = discovery.simulate(REVIEWED, [REVIEWED], catalog, STAMP, [],
+                                           (part, 30, 4, 100, 0.1))
+        self.assertFalse(report['current'])
+        self.assertFalse(report['budget'])
+        self.assertEqual(report['gaps'], {
+            'Titolo non HR o stage non ammissibile': 1,
+            'Annuncio o inventario non leggibile nella verifica live': 1,
+            'Data di pubblicazione o scadenza assente': 1,
+        })
+
+    def test_funnel_counts_platforms_with_candidates_and_explains_evidence(self):
+        hosts = {'example.com': {'migration': {'old'}}, 'unknown.example': {'migration': set()}}
+        rows = {
+            'example.com': dict(OBSERVATION, reason='Replay fallito',
+                                replay=dict(REPLAY, current=False, gaps={'Data assente': 2})),
+            'unknown.example': dict(OBSERVATION, reason='Piattaforma non in produzione · unknown',
+                                    unsupported_platform='unknown'),
+        }
+        with patch.object(discovery, 'inventory', return_value=(hosts, set())):
+            funnel = discovery.funnel([], rows)
+        self.assertIn('Replay fallito · livello di prova | 1 | 1', funnel)
+        self.assertIn('unknown · 1 host', funnel)
+        self.assertIn('example.com · Data assente (2)', funnel)
+
     def test_inventory_has_curated_inputs(self):
         hosts, exclusions = discovery.inventory([])
         self.assertEqual(len({sid for hints in hosts.values() for sid in hints['migration']}), 203)
