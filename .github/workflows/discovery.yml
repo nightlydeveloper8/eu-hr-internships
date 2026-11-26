@@ -44,7 +44,8 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: discovery-scan-${{ github.run_attempt }}-${{ matrix.shard }}
+          name: discovery-scan-${{ matrix.shard }}
+          overwrite: true
           path: .staging/scan-${{ matrix.shard }}.json
           include-hidden-files: true
           if-no-files-found: error
@@ -72,7 +73,7 @@ jobs:
         continue-on-error: true
         if: github.event_name != 'workflow_run'
         with:
-          pattern: discovery-scan-${{ github.run_attempt }}-*
+          pattern: discovery-scan-*
           path: ${{ runner.temp }}/discovery/scans
           merge-multiple: true
       - uses: actions/cache@v4
