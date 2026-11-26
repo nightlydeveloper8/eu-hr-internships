@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T13:01:21.923645+00:00",
+  "generated_at": "2026-11-26T13:24:09.574588+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -20,15 +20,15 @@
     "configured": 12,
     "attempted_recently": 12,
     "collection_states": {
-      "partial": 6,
-      "discovery-incomplete": 3,
+      "partial": 7,
       "unconfigured": 28,
+      "discovery-incomplete": 2,
       "collected": 3
     },
     "qualified_collection_states": {
-      "partial": 4,
-      "discovery-incomplete": 2,
+      "partial": 5,
       "unconfigured": 19,
+      "discovery-incomplete": 1,
       "collected": 2
     },
     "verified_hr_internships": 2,
@@ -46,7 +46,7 @@
       "size_unknown": 0,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1,
+        "partial": 1,
         "unconfigured": 2
       },
       "company_ids": [
@@ -322,13 +322,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:22.657138+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-26T13:07:54.611704+00:00",
+      "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-center-parcs",
-          "message": "[{'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+          "message": "[{'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4654111-stage-recruitment-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: The read operation timed out'}, {'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4690253-stagiair-learning-development-februari-2027-5563-vb-westerhoven', 'error': 'Vacancy verification: Time budget exhausted; checkpoint retained'}]"
         }
       ]
     },
@@ -362,15 +362,15 @@
       "source_ids": [
         "auto-landal"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:21.004376+00:00",
-      "public_job_records": 0,
+      "last_attempt_at": "2026-11-26T13:08:04.563316+00:00",
+      "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-landal",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr-corporate-recruitment/JR104108', 'error': 'Vacancy verification: Application link lacks a matching vacancy identifier'}, {'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360', 'error': 'Vacancy verification: HTTP Error 429: Host rate-limited earlier in this collection process'}, {'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr-employer-branding/JR104107', 'error': 'Vacancy verification: HTTP Error 429: Host rate-limited earlier in this collection process'}]"
         }
       ]
     },
@@ -418,8 +418,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:58.424188+00:00",
-      "public_job_records": 41,
+      "last_attempt_at": "2026-11-26T13:08:12.109996+00:00",
+      "public_job_records": 67,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -531,8 +531,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:01.783643+00:00",
-      "public_job_records": 9,
+      "last_attempt_at": "2026-11-26T13:08:05.363224+00:00",
+      "public_job_records": 11,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -725,7 +725,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:26.521454+00:00",
+      "last_attempt_at": "2026-11-26T13:08:16.192061+00:00",
       "public_job_records": 8,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -797,8 +797,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:58.439081+00:00",
-      "public_job_records": 85,
+      "last_attempt_at": "2026-11-26T13:07:48.917366+00:00",
+      "public_job_records": 86,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -1080,7 +1080,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:59.227938+00:00",
+      "last_attempt_at": "2026-11-26T13:08:14.625445+00:00",
       "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1302,7 +1302,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:40.373641+00:00",
+      "last_attempt_at": "2026-11-26T13:07:49.600521+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1414,7 +1414,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:22.657138+00:00",
+      "last_attempt_at": "2026-11-26T13:07:54.611704+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [
         "0d026302ba6f8aedd558"
@@ -1453,7 +1453,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:01.783643+00:00",
+      "last_attempt_at": "2026-11-26T13:08:05.363224+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1495,7 +1495,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:58.439081+00:00",
+      "last_attempt_at": "2026-11-26T13:07:48.917366+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [
         "95dca55a4e83f8016444"
@@ -1570,7 +1570,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:58.439081+00:00",
+      "last_attempt_at": "2026-11-26T13:07:48.917366+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": []

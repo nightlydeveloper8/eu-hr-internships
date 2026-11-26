@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T13:01:21.825857+00:00",
+  "generated_at": "2026-11-26T13:24:09.511947+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -21,14 +21,12 @@
     "attempted_recently": 7,
     "collection_states": {
       "unconfigured": 24,
-      "collected": 1,
-      "partial": 4,
+      "partial": 5,
       "discovery-incomplete": 2
     },
     "qualified_collection_states": {
       "unconfigured": 21,
-      "collected": 1,
-      "partial": 4,
+      "partial": 5,
       "discovery-incomplete": 1
     },
     "verified_hr_internships": 1,
@@ -69,8 +67,7 @@
       "below_threshold": 0,
       "collection_states": {
         "unconfigured": 7,
-        "collected": 1,
-        "partial": 3
+        "partial": 4
       },
       "company_ids": [
         "belsimpel-gomibo-group",
@@ -416,14 +413,19 @@
       "source_ids": [
         "auto-hanos"
       ],
-      "state": "collected",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:58.424188+00:00",
-      "public_job_records": 3,
+      "last_attempt_at": "2026-11-26T13:08:12.109996+00:00",
+      "public_job_records": 2,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
       ],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-hanos",
+          "message": "[{'url': 'https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/vacatures/meewerkstage-hr-eindhoven-2727929', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/werkgebieden/HR', 'error': 'robots.txt unavailable: 403'}]"
+        }
+      ]
     },
     {
       "company_id": "ikea-ingka-group",
@@ -457,7 +459,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:31.676754+00:00",
+      "last_attempt_at": "2026-11-26T13:08:18.332913+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -499,7 +501,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:40.373641+00:00",
+      "last_attempt_at": "2026-11-26T13:07:49.600521+00:00",
       "public_job_records": 21,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -624,13 +626,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:05.523709+00:00",
+      "last_attempt_at": "2026-11-26T13:07:44.903502+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-belsimpel-gomibo-group",
-          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbijbelsimpel.nl/ons_verhaal.html', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -980,7 +982,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:45:22.657138+00:00",
+      "last_attempt_at": "2026-11-26T13:07:54.611704+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1052,10 +1054,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:56.779861+00:00",
+      "last_attempt_at": "2026-11-26T13:08:05.569049+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-royal-bodewes",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "royal-avebe",
@@ -1422,15 +1429,10 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T12:44:53.459517+00:00",
+      "last_attempt_at": "2026-11-26T13:07:46.977018+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-mobacc-group",
-          "message": "[{'url': 'https://www.mobacc.com/careers-sitemap.xml', 'error': 'The read operation timed out'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-pekela",
