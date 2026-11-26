@@ -68,5 +68,36 @@
     "praktika.ut.ee": [
       "Rocket Nova"
     ]
-  }
+  },
+  "reviewed_sources": [
+    {
+      "id": "paesi-piccoli-girteka-lt",
+      "employer": "Girteka",
+      "adapter": "sf-rmk",
+      "career_url": "https://careers.girteka.eu/",
+      "allowed_hosts": [
+        "careers.girteka.eu"
+      ],
+      "sitemaps": [
+        "https://careers.girteka.eu/sitemap.xml"
+      ],
+      "target_countries": [
+        "LT"
+      ],
+      "collection_delay": 2,
+      "collection_seconds": 45,
+      "max_requests": 12,
+      "enabled": false,
+      "collection_activation_hold": true,
+      "access_review": "allowed",
+      "reviewed_on": "2026-11-26",
+      "permission_basis": "Reviewed Girteka public career routes, candidate privacy policy and legal notices. Same-host robots and current listing evidence are checked live.",
+      "review_notes": "Public sitemap and exact-host SAP RMK vacancy pages only. Legal notices concern carriage, purchases and partners. The careers portal and candidate policy give no known prohibition for these public reads. No requests to application routes.",
+      "review_urls": [
+        "https://careers.girteka.eu/",
+        "https://www.girteka.eu/legal-notices-policies/",
+        "https://www.girteka.eu/candidate-policies/"
+      ]
+    }
+  ]
 }

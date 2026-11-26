@@ -74,6 +74,11 @@ def inventory(sources):
     small = read(STAGING / 'paesi-piccoli-discovery.json', {})
     for host in (*small['part_a'], *small['universities'], *AGENCY_HOSTS):
         hosts[host]['platform_hint'] = small['part_a'].get(host)
+    for source in small.get('reviewed_sources', []):
+        entry = hosts[host_of(source)]
+        entry['maps'].update(source.get('sitemaps', []))
+        if source.get('access_review') == 'allowed' and source.get('reviewed_on') and source.get('permission_basis'):
+            entry['templates'][source['id']] = source
     for company in read(ROOT / 'data/companies.json', []):
         host = urlsplit(company.get('career_url') or company.get('website_url') or '').hostname
         if host:
