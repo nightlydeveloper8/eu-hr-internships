@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T09:19:14.171184+00:00",
+  "generated_at": "2026-11-26T13:01:21.825857+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -22,13 +22,14 @@
     "collection_states": {
       "unconfigured": 24,
       "collected": 1,
-      "partial": 5,
-      "discovery-incomplete": 1
+      "partial": 4,
+      "discovery-incomplete": 2
     },
     "qualified_collection_states": {
       "unconfigured": 21,
       "collected": 1,
-      "partial": 5
+      "partial": 4,
+      "discovery-incomplete": 1
     },
     "verified_hr_internships": 1,
     "verified_hr_internships_qualified_employers": 1
@@ -213,7 +214,7 @@
       "below_threshold": 0,
       "collection_states": {
         "unconfigured": 2,
-        "partial": 1
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "de-zijlen",
@@ -417,7 +418,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T09:03:21.500197+00:00",
+      "last_attempt_at": "2026-11-26T12:44:58.424188+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
@@ -456,7 +457,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T09:06:10.990855+00:00",
+      "last_attempt_at": "2026-11-26T12:45:31.676754+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -498,7 +499,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T09:03:21.650849+00:00",
+      "last_attempt_at": "2026-11-26T12:45:40.373641+00:00",
       "public_job_records": 21,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -623,13 +624,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T09:04:53.343965+00:00",
-      "public_job_records": 72,
+      "last_attempt_at": "2026-11-26T12:45:05.523709+00:00",
+      "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-belsimpel-gomibo-group",
-          "message": "[{'url': 'https://werkenbijbelsimpel.nl/ons_verhaal.html', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime/nl', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbijbelsimpel.nl/ons_verhaal.html', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -977,17 +978,12 @@
       "source_ids": [
         "auto-de-zijlen"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T09:04:50.534374+00:00",
-      "public_job_records": 1,
+      "last_attempt_at": "2026-11-26T12:45:22.657138+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-de-zijlen",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "stichting-vredewold",
@@ -1056,15 +1052,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T09:09:19.310136+00:00",
+      "last_attempt_at": "2026-11-26T12:44:56.779861+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-royal-bodewes",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "royal-avebe",
@@ -1431,10 +1422,15 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T09:06:50.607692+00:00",
+      "last_attempt_at": "2026-11-26T12:44:53.459517+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-mobacc-group",
+          "message": "[{'url': 'https://www.mobacc.com/careers-sitemap.xml', 'error': 'The read operation timed out'}]"
+        }
+      ]
     },
     {
       "company_id": "gemeente-pekela",
