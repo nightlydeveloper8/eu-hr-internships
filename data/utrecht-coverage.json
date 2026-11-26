@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-25T22:23:08.193250+00:00",
+  "generated_at": "2026-11-26T07:51:46.167391+00:00",
   "province": "Utrecht",
   "region_code": "NL35",
   "exhaustive": false,
@@ -20,8 +20,9 @@
     "configured": 19,
     "attempted_recently": 19,
     "collection_states": {
-      "partial": 15,
+      "blocked-or-failed": 1,
       "unconfigured": 32,
+      "partial": 14,
       "discovery-incomplete": 2,
       "collected": 2
     },
@@ -378,8 +379,9 @@
       "size_unknown": 6,
       "below_threshold": 0,
       "collection_states": {
-        "partial": 4,
-        "unconfigured": 4
+        "blocked-or-failed": 1,
+        "unconfigured": 4,
+        "partial": 3
       },
       "company_ids": [
         "bcn",
@@ -553,15 +555,15 @@
       "source_ids": [
         "sitemap-careers-danone-com"
       ],
-      "state": "partial",
+      "state": "blocked-or-failed",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:08:02.032627+00:00",
-      "public_job_records": 7,
+      "last_attempt_at": "2026-11-26T07:35:23.009676+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "sitemap-careers-danone-com",
-          "message": "[{'url': 'https://careers.danone.com/en-global/jobs/intern-hr-29435-en-us.html', 'error': 'Explicit workplace country outside scope or missing'}]"
+          "message": "The read operation timed out"
         }
       ]
     },
@@ -633,7 +635,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:27.101509+00:00",
+      "last_attempt_at": "2026-11-26T07:35:38.557769+00:00",
       "public_job_records": 68,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -783,7 +785,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:50.377723+00:00",
+      "last_attempt_at": "2026-11-26T07:35:25.866047+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -862,8 +864,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:33.434723+00:00",
-      "public_job_records": 3,
+      "last_attempt_at": "2026-11-26T07:35:34.418492+00:00",
+      "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -940,15 +942,10 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:08:11.783255+00:00",
+      "last_attempt_at": "2026-11-26T07:36:19.320130+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-leusden",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-lopik",
@@ -1194,7 +1191,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:29.776474+00:00",
+      "last_attempt_at": "2026-11-26T07:41:56.098322+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1306,7 +1303,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:30.975420+00:00",
+      "last_attempt_at": "2026-11-26T07:36:07.163890+00:00",
       "public_job_records": 26,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1394,7 +1391,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:08:11.783255+00:00",
+      "last_attempt_at": "2026-11-26T07:36:19.320130+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1543,7 +1540,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:59.718923+00:00",
+      "last_attempt_at": "2026-11-26T07:36:45.547750+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1585,7 +1582,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:49.144331+00:00",
+      "last_attempt_at": "2026-11-26T07:35:31.485617+00:00",
       "public_job_records": 14,
       "verified_hr_internship_ids": [
         "feeafd529fbb03b9a107"
@@ -1624,7 +1621,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:49.144331+00:00",
+      "last_attempt_at": "2026-11-26T07:35:31.485617+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1661,7 +1658,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:30.975420+00:00",
+      "last_attempt_at": "2026-11-26T07:36:07.163890+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [
         "4f1b149f7c7d6bd1b6fe"
@@ -1701,8 +1698,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:33.434723+00:00",
-      "public_job_records": 13,
+      "last_attempt_at": "2026-11-26T07:35:34.418492+00:00",
+      "public_job_records": 12,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1778,13 +1775,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:50.377723+00:00",
+      "last_attempt_at": "2026-11-26T07:35:25.866047+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-domino-s-pizza-netherlands",
-          "message": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-global-sustainability-0', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe', 'error': 'Reviewed visible vacancy title/description missing'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-crm-marketing-feb-26', 'error': 'Visible vacancy workplace requires review'}]"
+          "message": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe', 'error': 'Reviewed visible vacancy title/description missing'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-global-sustainability-0', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux', 'error': 'Visible vacancy workplace requires review'}]"
         }
       ]
     },
@@ -1820,7 +1817,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:28.616855+00:00",
+      "last_attempt_at": "2026-11-26T07:37:05.317922+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1863,7 +1860,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:50.941149+00:00",
+      "last_attempt_at": "2026-11-26T07:35:33.432886+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1942,7 +1939,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:50.941149+00:00",
+      "last_attempt_at": "2026-11-26T07:35:33.432886+00:00",
       "public_job_records": 122,
       "verified_hr_internship_ids": [
         "68bbbe8c4218385f7c9d"
@@ -2127,7 +2124,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:28.128341+00:00",
+      "last_attempt_at": "2026-11-26T07:36:49.148613+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2323,7 +2320,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:27.101509+00:00",
+      "last_attempt_at": "2026-11-26T07:35:38.557769+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [

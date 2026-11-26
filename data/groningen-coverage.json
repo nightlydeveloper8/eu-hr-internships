@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-25T22:23:08.058748+00:00",
+  "generated_at": "2026-11-26T07:51:45.958433+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -22,13 +22,14 @@
     "collection_states": {
       "unconfigured": 24,
       "collected": 1,
-      "partial": 5,
-      "discovery-incomplete": 1
+      "partial": 3,
+      "discovery-incomplete": 3
     },
     "qualified_collection_states": {
       "unconfigured": 21,
       "collected": 1,
-      "partial": 5
+      "partial": 3,
+      "discovery-incomplete": 2
     },
     "verified_hr_internships": 1,
     "verified_hr_internships_qualified_employers": 1
@@ -69,7 +70,8 @@
       "collection_states": {
         "unconfigured": 7,
         "collected": 1,
-        "partial": 3
+        "partial": 2,
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "belsimpel-gomibo-group",
@@ -213,7 +215,7 @@
       "below_threshold": 0,
       "collection_states": {
         "unconfigured": 2,
-        "partial": 1
+        "discovery-incomplete": 1
       },
       "company_ids": [
         "de-zijlen",
@@ -417,7 +419,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:27.101509+00:00",
+      "last_attempt_at": "2026-11-26T07:35:38.557769+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
@@ -456,8 +458,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:08:02.032627+00:00",
-      "public_job_records": 3,
+      "last_attempt_at": "2026-11-26T07:35:23.009676+00:00",
+      "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -498,13 +500,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:49.144331+00:00",
-      "public_job_records": 21,
+      "last_attempt_at": "2026-11-26T07:35:31.485617+00:00",
+      "public_job_records": 20,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-fotofabriek",
-          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/schoonmaakmedewerker-284', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
+          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/tijdelijke-productietopper-282', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
         }
       ]
     },
@@ -621,17 +623,12 @@
       "source_ids": [
         "auto-belsimpel-gomibo-group"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:32.323715+00:00",
-      "public_job_records": 1,
+      "last_attempt_at": "2026-11-26T07:35:36.705037+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-belsimpel-gomibo-group",
-          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime/nl', 'error': 'HTTP Error 404: Not Found'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "veiligheidsregio-groningen",
@@ -977,10 +974,10 @@
       "source_ids": [
         "auto-de-zijlen"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:50.941149+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-26T07:35:33.432886+00:00",
+      "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1056,7 +1053,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:28.128341+00:00",
+      "last_attempt_at": "2026-11-26T07:36:49.148613+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1431,10 +1428,15 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-25T22:07:28.616855+00:00",
+      "last_attempt_at": "2026-11-26T07:37:05.317922+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-mobacc-group",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-pekela",
