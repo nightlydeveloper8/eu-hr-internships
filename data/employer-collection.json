@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-11-26T07:51:18.662242+00:00",
+  "generated_at": "2026-11-26T09:18:50.739162+00:00",
   "exhaustive": false,
   "summary": {
-    "not-attempted": 1589,
-    "partial": 173,
+    "not-attempted": 1590,
+    "partial": 176,
     "discovery-incomplete": 70,
-    "collected": 82,
-    "blocked-or-failed": 11,
+    "collected": 81,
+    "blocked-or-failed": 8,
     "verified-empty": 3,
     "companies": 1928,
     "configured": 339,
-    "attempted": 339
+    "attempted": 338
   },
   "country_counting": "Candidate country membership; multi-country employers counted once per country. Actual job locations require published evidence.",
   "countries": [
@@ -28,7 +28,7 @@
       "companies_identified": 13,
       "states": {
         "not-attempted": 4,
-        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
         "partial": 2,
         "collected": 6
       }
@@ -99,8 +99,7 @@
         "partial": 17,
         "not-attempted": 96,
         "collected": 15,
-        "blocked-or-failed": 1,
-        "discovery-incomplete": 1
+        "discovery-incomplete": 2
       }
     },
     {
@@ -111,8 +110,8 @@
         "not-attempted": 196,
         "discovery-incomplete": 12,
         "collected": 31,
-        "partial": 24,
-        "blocked-or-failed": 3,
+        "partial": 25,
+        "blocked-or-failed": 2,
         "verified-empty": 1
       }
     },
@@ -147,11 +146,10 @@
       "name": "Italy",
       "companies_identified": 327,
       "states": {
-        "not-attempted": 305,
+        "not-attempted": 306,
         "collected": 8,
-        "discovery-incomplete": 5,
-        "partial": 8,
-        "blocked-or-failed": 1
+        "discovery-incomplete": 6,
+        "partial": 7
       }
     },
     {
@@ -193,10 +191,10 @@
       "companies_identified": 1223,
       "states": {
         "not-attempted": 999,
-        "partial": 131,
-        "discovery-incomplete": 50,
+        "partial": 133,
+        "discovery-incomplete": 51,
         "collected": 33,
-        "blocked-or-failed": 9,
+        "blocked-or-failed": 6,
         "verified-empty": 1
       }
     },
@@ -207,7 +205,7 @@
       "states": {
         "not-attempted": 5,
         "partial": 3,
-        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
         "collected": 2,
         "verified-empty": 1
       }
@@ -252,10 +250,10 @@
       "name": "Spain",
       "companies_identified": 21,
       "states": {
-        "collected": 8,
-        "partial": 3,
+        "collected": 7,
+        "partial": 4,
         "not-attempted": 9,
-        "blocked-or-failed": 1
+        "discovery-incomplete": 1
       }
     },
     {
@@ -332,10 +330,10 @@
         "auto-50-mobiel"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 8,
       "matching_hr_positions": 0,
-      "pages_read": 8,
+      "pages_read": 10,
       "pending_urls": 0,
       "errors": [
         {
@@ -492,7 +490,7 @@
         "auto-ab-texel"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 60,
       "matching_hr_positions": 0,
       "pages_read": 9,
@@ -516,11 +514,11 @@
         "auto-ab-vakwerk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 16,
-      "pending_urls": 2258,
+      "pending_urls": 2259,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -547,16 +545,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "source_ids": [
         "auto-abiant-uitzendbureau"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
+      "public_job_records": 9,
       "matching_hr_positions": 0,
       "pages_read": 40,
-      "pending_urls": 848,
+      "pending_urls": 832,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -605,15 +603,15 @@
         "auto-accenture-dienstleistungen-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 36,
-      "pending_urls": 1270,
+      "pages_read": 58,
+      "pending_urls": 1228,
       "errors": [
         {
           "source_id": "auto-accenture-dienstleistungen-gmbh",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://accenture.wd103.myworkdayjobs.com/AccentureCareers/userHome&', 'error': 'HTTP Error 429: Too Many Requests'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -647,11 +645,11 @@
         "sitemap-careers-accor-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 19,
       "matching_hr_positions": 9,
-      "pages_read": 15,
-      "pending_urls": 2264,
+      "pages_read": 16,
+      "pending_urls": 2194,
       "errors": [
         {
           "source_id": "auto-accor",
@@ -692,11 +690,11 @@
         "auto-acquario"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
-      "public_job_records": 4,
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
+      "public_job_records": 2,
       "matching_hr_positions": 0,
-      "pages_read": 18,
-      "pending_urls": 584,
+      "pages_read": 17,
+      "pending_urls": 590,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -763,7 +761,7 @@
         "held-adecco-it-jobposting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 47,
       "pages_read": 0,
@@ -838,7 +836,7 @@
         "auto-adriaan-van-den-heuvel-makelaars-en-adviseurs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -884,7 +882,7 @@
         "greenhouse-adyen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 241,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -1226,15 +1224,15 @@
         "auto-akkodis"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 3,
-      "pending_urls": 2021,
+      "pages_read": 8,
+      "pending_urls": 2041,
       "errors": [
         {
           "source_id": "auto-akkodis",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://www.akkodis.com/en-us/careers/jobs/telecom-network-engineer-houston/us_en_6_971574_1635226', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://www.akkodis.com/en-us/careers/jobs/product-development-engineer-transmission-livonia/us_en_6_971649_1647498', 'error': 'The read operation timed out'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -1488,8 +1486,8 @@
         "auto-all-in-group-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
-      "public_job_records": 73,
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
+      "public_job_records": 71,
       "matching_hr_positions": 1,
       "pages_read": 4,
       "pending_urls": 0,
@@ -1546,7 +1544,7 @@
         "auto-alliade"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 43,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -1582,7 +1580,7 @@
         "sitemap-careers-allianz-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 2,
       "pages_read": 0,
@@ -1725,7 +1723,7 @@
         "auto-altarea"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 1,
       "pages_read": 29,
@@ -1733,7 +1731,7 @@
       "errors": [
         {
           "source_id": "auto-altarea",
-          "error": "[{'url': 'https://jobs.smartrecruiters.com/ALTAREA/744000156361909-stage-charge-de-projets-developpement-rh-f-h', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/ALTAREA/postings?limit=100&offset=0'}, {'url': 'https://jobs.smartrecruiters.com/external-referrals/company/ALTAREA/publication/3f1737a5-cfac-4355-8a88-b40e0a6da626?dcr_ci=ALTAREA', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/external-referrals/postings?limit=100&offset=0'}, {'url': 'https://jobs.smartrecruiters.com/external-referrals/company/ALTAREA/publication/3f1737a5-cfac-4355-8a88-b40e0a6da626?dcr_ci=ALTAREA', 'error': 'HTTP Error 403: Forbidden'}]"
+          "error": "[{'url': 'https://jobs.smartrecruiters.com/ALTAREA/744000156361909-stage-charge-de-projets-developpement-rh-f-h', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/ALTAREA/postings?limit=100&offset=0'}, {'url': 'https://jobs.smartrecruiters.com/external-referrals/company/ALTAREA/publication/d4cc0a57-0a41-4049-884b-0a2dbebcf965?dcr_ci=ALTAREA', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/external-referrals/postings?limit=100&offset=0'}, {'url': 'https://jobs.smartrecruiters.com/external-referrals/company/ALTAREA/publication/d4cc0a57-0a41-4049-884b-0a2dbebcf965?dcr_ci=ALTAREA', 'error': 'HTTP Error 403: Forbidden'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -1840,7 +1838,7 @@
         "amazon-hr-internships"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 31,
       "matching_hr_positions": 31,
       "pages_read": 0,
@@ -1949,7 +1947,7 @@
         "auto-anew-flooring"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -2075,15 +2073,15 @@
         "auto-apotheekhoudende-huisartsenpraktijk-comello"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 37,
-      "pending_urls": 193,
+      "pages_read": 26,
+      "pending_urls": 173,
       "errors": [
         {
           "source_id": "auto-apotheekhoudende-huisartsenpraktijk-comello",
-          "error": "[{'url': 'https://www.huisartsberlikum.nl/', 'error': '<urlopen error timed out>'}, {'url': 'https://www.huisartsberlikum.nl', 'error': '<urlopen error timed out>'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -2167,7 +2165,7 @@
         "auto-arbodienst-medprevent"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -2242,11 +2240,11 @@
         "auto-areajob-spa"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
-      "public_job_records": 6,
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
+      "public_job_records": 7,
       "matching_hr_positions": 0,
-      "pages_read": 35,
-      "pending_urls": 324,
+      "pages_read": 30,
+      "pending_urls": 335,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -2414,7 +2412,7 @@
         "sitemap-www-asml-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 3,
       "pages_read": 0,
@@ -2489,15 +2487,15 @@
         "auto-aspiag-service-s-r-l"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
-      "pages_read": 22,
-      "pending_urls": 2092,
+      "pages_read": 20,
+      "pending_urls": 2108,
       "errors": [
         {
           "source_id": "auto-aspiag-service-s-r-l",
-          "error": "[{'url': 'https://despar.intervieweb.it/app.php?opmode=guest&module=register&act1=applyLinkedin&IdAnnuncio=11998&back=0', 'error': 'robots.txt disallows redirect https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=7o84fyd402yi&redirect_uri=https%3A%2F%2Fdespar.intervieweb.it%2Fapp.php%3'}, {'url': 'https://despar.intervieweb.it/app.php?opmode=guest&module=CompanyAutocomplete&action=geolocation_get_postal_codes&ajax=1&back=0&CSRFToken=303fb4320433faf3&CSRFHash=ae95d298a18f305722b866eb4080b79a8a453b27df4637c664afab9d6944b1f2', 'error': 'HTTP Error 422: Unprocessable Entity'}, {'url': 'https://despar.intervieweb.it/app.php?opmode=guest&module=CompanyAutocomplete&ajax=1&action=geolocation_get_postal_codes&CSRFToken=303fb4320433faf3&CSRFHash=05bae510de10bd2f93e85032eb78c3e3bcf4ac6e53f64ee179d3f1457f4f2c76', 'error': 'HTTP Error 422: Unprocessable Entity'}]"
+          "error": "[{'url': 'https://despar.intervieweb.it/app.php?opmode=guest&module=CompanyAutocomplete&action=geolocation_get_postal_codes&ajax=1&back=0&CSRFToken=1e5bebaafb92136d&CSRFHash=a6090c765bf1c97b65ce1c7964b492d60638474a84710de9b0a33fea7700d177', 'error': 'HTTP Error 422: Unprocessable Entity'}, {'url': 'https://despar.intervieweb.it/app.php?opmode=guest&module=CompanyAutocomplete&ajax=1&action=geolocation_get_postal_codes&CSRFToken=1e5bebaafb92136d&CSRFHash=1f3607dedbf604aef3a3e350b1a7cbdf5e9ad6bc7872323e092d362bdbe03232', 'error': 'HTTP Error 422: Unprocessable Entity'}, {'url': 'https://despar.intervieweb.it/app.php?opmode=guest&module=CompanyAutocomplete&ajax=1&action=geolocation_get_dynamic_levels&CSRFToken=1e5bebaafb92136d&CSRFHash=c8a1ec522dc1885ef074619c66a1e265bd3c5379747288e531914ac8a74f61f7', 'error': 'HTTP Error 422: Unprocessable Entity'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -2778,11 +2776,11 @@
         "auto-axs-logistiek"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
-      "public_job_records": 16,
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
+      "public_job_records": 29,
       "matching_hr_positions": 4,
-      "pages_read": 18,
-      "pending_urls": 601,
+      "pages_read": 28,
+      "pending_urls": 589,
       "errors": [
         {
           "source_id": "auto-axs-logistiek",
@@ -2974,7 +2972,7 @@
         "auto-bagels-beans"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -3015,12 +3013,17 @@
         "auto-baker-tilly"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 70,
-      "pending_urls": 720,
-      "errors": [],
+      "pending_urls": 738,
+      "errors": [
+        {
+          "source_id": "auto-baker-tilly",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -3034,7 +3037,7 @@
         "auto-bakker-vakkeuken"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 10,
@@ -3126,7 +3129,7 @@
         "auto-balink-glas-en-aluminium"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -3150,15 +3153,15 @@
         "auto-bam-infra-wegen-regio-oost"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
-      "public_job_records": 24,
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
+      "public_job_records": 6,
       "matching_hr_positions": 2,
-      "pages_read": 11,
-      "pending_urls": 177,
+      "pages_read": 48,
+      "pending_urls": 65,
       "errors": [
         {
           "source_id": "auto-bam-infra-wegen-regio-oost",
-          "error": "[{'url': 'https://www.bamcareers.com/nl/nl/job/27902/Meewerkstage-HR-Business-Partner', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://www.bamcareers.com/uk/en/flexible-working-at-bam', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "[{'url': 'https://www.bamcareers.com/nl/nl/job/27902/Meewerkstage-HR-Business-Partner', 'error': 'HTTP Error 410: Gone'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -3208,7 +3211,7 @@
         "employer-bas-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -3538,7 +3541,7 @@
         "employer-bd"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -3613,10 +3616,10 @@
         "auto-bentacera"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 37,
       "matching_hr_positions": 0,
-      "pages_read": 22,
+      "pages_read": 21,
       "pending_urls": 0,
       "errors": [],
       "next_attempt": "next daily run"
@@ -3870,15 +3873,15 @@
         "auto-bibliotheken-noord-fryslan"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 33,
-      "pending_urls": 1021,
+      "pages_read": 27,
+      "pending_urls": 1041,
       "errors": [
         {
           "source_id": "auto-bibliotheken-noord-fryslan",
-          "error": "[{'url': 'https://noorderlink.nl/vacature/85025-medewerker-schoonmaak-5-gemeente-groningen', 'error': 'HTTP Error 410: Gone'}]"
+          "error": "[{'url': 'https://www.werkenbijgroningen.nl/vacatures/pdf/print/consulent-budgetbeheer-fase-1--381714', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://www.werkenbijgroningen.nl/vacatures/pdf/print/consulent-budgetbeheer-fase-1--381714\", waiti'}, {'url': 'https://www.werkenbijgroningen.nl/vacatures/pdf/print/stagiaire-consulent-inkomen-295569', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://www.werkenbijgroningen.nl/vacatures/pdf/print/stagiaire-consulent-inkomen-295569\", waiting '}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -3911,7 +3914,7 @@
         "auto-biemans-accountants-en-belastingadviseurs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -4174,15 +4177,15 @@
         "held-sf-rmk-bmw-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 23,
       "matching_hr_positions": 24,
       "pages_read": 2,
-      "pending_urls": 291,
+      "pending_urls": 297,
       "errors": [
         {
           "source_id": "auto-bmw-group",
-          "error": "[{'url': 'https://www.bmwgroup.jobs/de/en/jobfinder/job-description-copy.200020.html', 'error': 'Vacancy verification: Time budget exhausted; checkpoint retained'}, {'url': 'https://www.bmwgroup.jobs/de/en/jobfinder/job-description-copy.201520.html', 'error': 'Vacancy verification: Time budget exhausted; checkpoint retained'}, {'url': 'https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.197182.html', 'error': 'Vacancy verification: Time budget exhausted; checkpoint retained'}]"
+          "error": "[{'url': 'https://www.bmwgroup.jobs/de/en/jobfinder/job-description-copy.200020.html', 'error': 'Vacancy verification: Application link lacks a matching vacancy identifier'}, {'url': 'https://www.bmwgroup.jobs/de/en/jobfinder/job-description-copy.201520.html', 'error': 'Vacancy verification: Application link lacks a matching vacancy identifier'}, {'url': 'https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.197182.html', 'error': 'Vacancy verification: Application link lacks a matching vacancy identifier'}]"
         },
         {
           "source_id": "held-sf-rmk-bmw-group",
@@ -4202,7 +4205,7 @@
         "auto-bodega-y-tapas-sneek"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -4328,7 +4331,7 @@
         "auto-bol-adviseurs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 31,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -4509,15 +4512,15 @@
         "sitemap-jobs-bosch-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 27,
       "matching_hr_positions": 27,
-      "pages_read": 27,
-      "pending_urls": 709,
+      "pages_read": 38,
+      "pending_urls": 689,
       "errors": [
         {
           "source_id": "auto-bosch",
-          "error": "[{'url': 'https://jobs.smartrecruiters.com/BoschGroup/744000156530740-internship-in-human-resources-', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -4857,11 +4860,11 @@
         "auto-brandweer-fryslan"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
-      "public_job_records": 17,
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
+      "public_job_records": 10,
       "matching_hr_positions": 0,
-      "pages_read": 21,
-      "pending_urls": 200,
+      "pages_read": 14,
+      "pending_urls": 191,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -5148,15 +5151,15 @@
         "auto-bvng"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
-      "public_job_records": 20,
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
+      "public_job_records": 15,
       "matching_hr_positions": 0,
-      "pages_read": 23,
-      "pending_urls": 887,
+      "pages_read": 18,
+      "pending_urls": 895,
       "errors": [
         {
           "source_id": "auto-bvng",
-          "error": "[{'url': 'https://bvng.nl/vacatures/intern/recruiter', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://bvng.nl/vacatures/zorg/verpleegkundige', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://bvng.nl/vacatures/beleid-management/management', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "[{'url': 'https://bvng.nl/vacatures/intern/recruiter', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://bvng.nl/vacatures/beleid-management/management', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://bvng.nl/vacatures/beleid-management/projecten-programmas', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -5478,7 +5481,7 @@
         "personio-xml-carpus-partner-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 12,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -5602,8 +5605,8 @@
         "greenhouse-catawiki"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
-      "public_job_records": 32,
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
+      "public_job_records": 30,
       "matching_hr_positions": 0,
       "pages_read": 0,
       "pending_urls": 0,
@@ -5689,7 +5692,7 @@
         "auto-cbo-meilan"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -5713,10 +5716,10 @@
         "auto-cbs-corporate-business-solutions-unternehmensberatung-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 29,
+      "pages_read": 37,
       "pending_urls": 487,
       "errors": [],
       "next_attempt": "next daily run"
@@ -5817,7 +5820,7 @@
         "auto-center-parcs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 28,
       "matching_hr_positions": 3,
       "pages_read": 2,
@@ -5858,11 +5861,11 @@
         "auto-centraal-beheer-achmea"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
-      "public_job_records": 2,
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
+      "public_job_records": 8,
       "matching_hr_positions": 2,
-      "pages_read": 70,
-      "pending_urls": 180,
+      "pages_read": 60,
+      "pending_urls": 200,
       "errors": [
         {
           "source_id": "auto-centraal-beheer-achmea",
@@ -5882,15 +5885,15 @@
         "auto-centraal-justitieel-incassobureau-cjib"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 2,
-      "pages_read": 25,
-      "pending_urls": 2305,
+      "pages_read": 24,
+      "pending_urls": 2285,
       "errors": [
         {
           "source_id": "auto-centraal-justitieel-incassobureau-cjib",
-          "error": "[{'url': 'https://www.werkenvoornederland.nl/vacatures/mbo-stage-hrm-32-36-uur-RO-2026-6360', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -6147,10 +6150,10 @@
         "auto-chr-mayr-gmbh-co-kg"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 37,
+      "pages_read": 38,
       "pending_urls": 0,
       "errors": [
         {
@@ -6239,10 +6242,10 @@
         "auto-citema-group-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 9,
+      "pages_read": 8,
       "pending_urls": 0,
       "errors": [
         {
@@ -6331,7 +6334,7 @@
         "auto-cloud86"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 4,
@@ -6576,11 +6579,11 @@
         "auto-conet-holding-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 211,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 15,
       "matching_hr_positions": 0,
-      "pages_read": 24,
-      "pending_urls": 36,
+      "pages_read": 26,
+      "pending_urls": 115,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -6901,7 +6904,7 @@
         "auto-countus-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 27,
@@ -6977,7 +6980,7 @@
         "held-sf-rmk-crif-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 40,
       "matching_hr_positions": 1,
       "pages_read": 33,
@@ -6985,7 +6988,7 @@
       "errors": [
         {
           "source_id": "auto-crif-s-p-a",
-          "error": "[{'url': 'https://career5.successfactors.eu/career?company=C0001203592P&lang=en_US&requestParams=O53c1ZASsayjpG4T%2Fj8p%2Fdjg7J142m1R0UoCQRS9aaamlBL01i%2FI7tpK0UOJoAkFgthLD9u4e9OR%0AaWaduaYR9EX1EdEX1GM%2FED30D40W5GIDMzD3nDn3nDuPX5AxGsojdssqE%2BKicsrM8JzFmez788vu%0A1WsaUk3YFIpFTRaS0m3I01CjGSoRzeLjE5iv4jRnz5LdBYJ1wwknGnYuzxaqgslBpUuay8HR09vF%0Ax%2BfefSsFMIstfY0ACHKh4CipHU3G8ADpn3pupPrGm2KfoBwyjagDWwk0jgOeIGZct%2Ba5BAWjQs5E%0APY7FXQK%2FZsKgxe3zDo9RcInL%2BEZLqYGwhK1QaY2CEVcySJoputXqwb7j%2BzXfsa22uGlLQi2Z6BnU%0A%2F3XLhuomZvLPScqqNBzHcT2n6h96nZVr%2FjelNMt62%2FPQzGbi4cKYne98oImWKINel6BkP2VaF6ip%0AoZERRqu%2BZt%2FVVYk2&login_ns=register&career_ns=job_application&career_job_req_id=11621&jobPipeline=Google&clientId=jobs2web&_s.crb=tF2n%2B6jgLiTisUdoViF9JD%2BZS4RtmpmJTFHLQErSt%2B0%3D', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?company=C0001203592P&lang=en_US&requestParams=O53c1ZASsayjpG4T%2Fj8p%2Fdjg7J142m1R0UoCQRS9aaamlBL01i%2FI7tpK0UOJoAkFgt'}, {'url': 'https://career5.successfactors.eu/career?company=C0001203592P&amp%3Blang=en_US&amp%3BrequestParams=O53c1ZASsayjpG4T%2Fj8p%2Fdjg7J142m1R0UoCQRS9aaamlBL01i%2FI7tpK0UOJoAkFgthLD9u4e9OR%0AaWaduaYR9EX1EdEX1GM%2FED30D40W5GIDMzD3nDn3nDuPX5AxGsojdssqE%2BKicsrM8JzFmez788vu%0A1WsaUk3YFIpFTRaS0m3I01CjGSoRzeLjE5iv4jRnz5LdBYJ1wwknGnYuzxaqgslBpUuay8HR09vF%0Ax%2BfefSsFMIstfY0ACHKh4CipHU3G8ADpn3pupPrGm2KfoBwyjagDWwk0jgOeIGZct%2Ba5BAWjQs5E%0APY7FXQK%2FZsKgxe3zDo9RcInL%2BEZLqYGwhK1QaY2CEVcySJoputXqwb7j%2BzXfsa22uGlLQi2Z6BnU%0A%2F3XLhuomZvLPScqqNBzHcT2n6h96nZVr%2FjelNMt62%2FPQzGbi4cKYne98oImWKINel6BkP2VaF6ip%0AoZERRqu%2BZt%2FVVYk2&amp%3Blogin_ns=register&amp%3Bcareer_ns=job_application&amp%3Bcareer_job_req_id=11621&amp%3BjobPipeline=Google&amp%3BclientId=jobs2web&amp%3B_s.crb=tF2n%2B6jgLiTisUdoViF9JD%2BZS4RtmpmJTFHLQErSt%2B0%3D', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?company=C0001203592P&amp%3Blang=en_US&amp%3BrequestParams=O53c1ZASsayjpG4T%2Fj8p%2Fdjg7J142m1R0UoCQRS9aaamlBL01i%2FI7t'}, {'url': 'https://career5.successfactors.eu', 'error': 'robots.txt disallows https://career5.successfactors.eu'}]"
+          "error": "Public source access blocked; no inventory established; no bypass attempted"
         }
       ],
       "next_attempt": "next daily run"
@@ -7069,7 +7072,7 @@
         "auto-customs-knowledge"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -7173,11 +7176,11 @@
         "auto-daf-trucks"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 2,
-      "pages_read": 43,
-      "pending_urls": 151,
+      "pages_read": 55,
+      "pending_urls": 125,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -7192,7 +7195,7 @@
         "auto-damen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
       "pages_read": 4,
@@ -7216,7 +7219,7 @@
         "auto-damen-shiprepair-harlingen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -7241,12 +7244,12 @@
         "NL",
         "PL"
       ],
-      "state": "blocked-or-failed",
+      "state": "discovery-incomplete",
       "source_ids": [
         "sitemap-careers-danone-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 7,
       "pages_read": 0,
@@ -7254,7 +7257,7 @@
       "errors": [
         {
           "source_id": "sitemap-careers-danone-com",
-          "error": "The read operation timed out"
+          "error": "[{'url': 'https://careers.danone.com/en-global/stage-charge-e-de-formation-projets-rh-janvier-2027-h-f-29216-fr-fr.html', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers.danone.com/en-global/praktikum-hr-management-m-w-d-fokus-recruiting-28915-de-de.html', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers.danone.com/en-global/intern-hr-29435-en-us.html', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -7287,15 +7290,15 @@
         "auto-dassault-systemes"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 4,
-      "pages_read": 37,
-      "pending_urls": 845,
+      "pages_read": 26,
+      "pending_urls": 868,
       "errors": [
         {
           "source_id": "auto-dassault-systemes",
-          "error": "[{'url': 'https://www.3ds.com/careers/jobs/stage-specialiste-de-la-gestion-des-remunerations-ventes-services-emea-f-h-550162', 'error': 'Vacancy verification: Application page does not identify the same vacancy'}, {'url': 'https://www.3ds.com/careers/jobs/stage-charge-de-projets-sirh-processus-rh-f-h-550323', 'error': 'Vacancy verification: Application page does not identify the same vacancy'}, {'url': 'https://www.3ds.com/careers/jobs/stage-communication-marque-employeur-f-h-549331', 'error': 'Vacancy verification: Application page does not identify the same vacancy'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -7549,7 +7552,7 @@
         "auto-de-enk-groen-golf"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -7743,11 +7746,11 @@
         "auto-de-mandemakers-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 26,
-      "pending_urls": 566,
+      "pages_read": 13,
+      "pending_urls": 577,
       "errors": [
         {
           "source_id": "auto-de-mandemakers-groep",
@@ -7869,11 +7872,11 @@
         "auto-de-vries-scheepsbouw-makkum"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 69,
-      "pending_urls": 475,
+      "pages_read": 59,
+      "pending_urls": 502,
       "errors": [
         {
           "source_id": "auto-de-vries-scheepsbouw-makkum",
@@ -7978,11 +7981,11 @@
         "auto-defensie"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 29,
-      "pending_urls": 388,
+      "pages_read": 30,
+      "pending_urls": 364,
       "errors": [
         {
           "source_id": "auto-defensie",
@@ -8096,8 +8099,8 @@
         "greenhouse-dept"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 200,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 201,
       "matching_hr_positions": 0,
       "pages_read": 0,
       "pending_urls": 0,
@@ -8234,12 +8237,17 @@
         "auto-dgmr"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 0,
-      "pages_read": 6,
+      "pages_read": 3,
       "pending_urls": 0,
-      "errors": [],
+      "errors": [
+        {
+          "source_id": "auto-dgmr",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -8270,7 +8278,7 @@
         "recruitee-dienst-dommelvallei"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -8289,7 +8297,7 @@
         "auto-digidays"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -8349,7 +8357,7 @@
         "greenhouse-dim"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 26,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -8453,7 +8461,7 @@
         "auto-dmt-environmental-technology"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -8564,12 +8572,17 @@
         "auto-donker-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 122,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 202,
       "matching_hr_positions": 0,
-      "pages_read": 37,
-      "pending_urls": 61,
-      "errors": [],
+      "pages_read": 4,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-donker-groep",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -8736,15 +8749,15 @@
         "auto-driessen-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
-      "public_job_records": 1,
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
+      "public_job_records": 2,
       "matching_hr_positions": 0,
-      "pages_read": 51,
-      "pending_urls": 435,
+      "pages_read": 41,
+      "pending_urls": 343,
       "errors": [
         {
           "source_id": "auto-driessen-groep",
-          "error": "[{'url': 'https://www.driessen.nl/vacature/stuur-een-email/51276', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51274', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51264', 'error': 'Access challenge; no bypass attempted'}]"
+          "error": "[{'url': 'https://www.driessen.nl/vacature/stuur-een-email/51329', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51330', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51327', 'error': 'Access challenge; no bypass attempted'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -8760,15 +8773,15 @@
         "auto-driessen-uitzendbureau"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
-      "public_job_records": 2,
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
+      "public_job_records": 3,
       "matching_hr_positions": 0,
-      "pages_read": 43,
-      "pending_urls": 383,
+      "pages_read": 48,
+      "pending_urls": 412,
       "errors": [
         {
           "source_id": "auto-driessen-uitzendbureau",
-          "error": "[{'url': 'https://www.driessen.nl/vacature/stuur-een-email/51256', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51242', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51027', 'error': 'Access challenge; no bypass attempted'}]"
+          "error": "[{'url': 'https://www.driessen.nl/vacature/stuur-een-email/51329', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51330', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.driessen.nl/vacature/stuur-een-email/51327', 'error': 'Access challenge; no bypass attempted'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -8818,7 +8831,7 @@
         "personio-xml-drive-consulting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 21,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -8854,7 +8867,7 @@
         "auto-dsm-firmenich"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -8963,10 +8976,10 @@
         "auto-dven-accountants-adviesgroep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 9,
       "matching_hr_positions": 0,
-      "pages_read": 10,
+      "pages_read": 8,
       "pending_urls": 0,
       "errors": [
         {
@@ -8987,7 +9000,7 @@
         "auto-dynergie-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -9113,15 +9126,15 @@
         "auto-econvert-water-energy-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 4,
-      "pages_read": 66,
-      "pending_urls": 2,
+      "pages_read": 14,
+      "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-econvert-water-energy-b-v",
-          "error": "[{'url': 'https://eu.jobs.saur.com/fr/jobs/8526463-cdd-ingenieur-hydraulique-f-m-x-agen-47', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://eu.jobs.saur.com/fr/jobs/8477422-e26-electrotechnicien-f-m-x-choisy-au-bac-60', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://eu.jobs.saur.com/fr/jobs/8465934-operateur-gestion-des-reseaux-f-m-x-saint-andre-la-reunion-974', 'error': 'HTTP Error 410: Gone'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -9137,7 +9150,7 @@
         "recruitee-edco"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 25,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -9377,11 +9390,11 @@
         "auto-elevation-group-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
-      "pages_read": 28,
-      "pending_urls": 0,
+      "pages_read": 45,
+      "pending_urls": 171,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -9447,10 +9460,10 @@
         "auto-elis-cleanroom"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
-      "public_job_records": 96,
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
+      "public_job_records": 94,
       "matching_hr_positions": 0,
-      "pages_read": 14,
+      "pages_read": 15,
       "pending_urls": 0,
       "errors": [
         {
@@ -9509,7 +9522,7 @@
         "lever-emma-sleep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 75,
       "matching_hr_positions": 2,
       "pages_read": 0,
@@ -9630,7 +9643,7 @@
         "personio-xml-enforto-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -9717,7 +9730,7 @@
         "auto-ennatuurlijk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 15,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -9736,7 +9749,7 @@
         "auto-ennov"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -9999,15 +10012,15 @@
         "auto-etos"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
-      "public_job_records": 211,
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
+      "public_job_records": 10,
       "matching_hr_positions": 0,
-      "pages_read": 13,
-      "pending_urls": 0,
+      "pages_read": 27,
+      "pending_urls": 395,
       "errors": [
         {
           "source_id": "auto-etos",
-          "error": "[{'url': 'https://careers.aholddelhaize.nl/vacancies/global-brands/ahold-delhaize-1', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werk.etos.nl/vacature/4884/aankomend-verkoper-1434', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "[{'url': 'https://careers.aholddelhaize.nl/vacancies/global-brands/ahold-delhaize-1', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werk.etos.nl/vacature/4884/aankomend-verkoper-1434', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werk.etos.nl/vacature/4945/vulploegmedewerker-1039', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -10159,11 +10172,11 @@
         "auto-european-investment-bank"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
-      "pages_read": 25,
-      "pending_urls": 1005,
+      "pages_read": 23,
+      "pending_urls": 1010,
       "errors": [
         {
           "source_id": "auto-european-investment-bank",
@@ -10268,15 +10281,15 @@
         "auto-expert-meijer-groep-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
-      "public_job_records": 90,
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
+      "public_job_records": 89,
       "matching_hr_positions": 0,
-      "pages_read": 24,
-      "pending_urls": 23,
+      "pages_read": 33,
+      "pending_urls": 122,
       "errors": [
         {
           "source_id": "auto-expert-meijer-groep-b-v",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://www.werkenbijexpert.nl/resources/privacy-bij-werkenbijExpert-DEF.pdf', 'error': 'HTTP Error 404: 404 Page Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -10309,11 +10322,11 @@
         "auto-ey"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 70,
-      "pending_urls": 205,
+      "pending_urls": 183,
       "errors": [
         {
           "source_id": "auto-ey",
@@ -10469,15 +10482,15 @@
         "auto-farmakander"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 0,
-      "pages_read": 18,
+      "pages_read": 8,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-farmakander",
-          "error": "[{'url': 'https://myhrabc.wd5.myworkdayjobs.com/Global/job/Reading-PA/Ambulatory-Clinical-Pharmacist---Internal-Medicine_R2615639', 'error': 'HTTP Error 429: Too Many Requests'}, {'url': 'https://myhrabc.wd5.myworkdayjobs.com/Global/job/Burlington-ON/Field---Infusion-Nurse--RPN-LPN----12-Month-Contract_R2620543', 'error': 'HTTP Error 429: Host rate-limited earlier in this collection process'}, {'url': 'https://myhrabc.wd5.myworkdayjobs.com/Global/job/Remote-ON/Field---Infusion-Nurse--RPN-LPN-_R2620498', 'error': 'HTTP Error 429: Host rate-limited earlier in this collection process'}]"
+          "error": "[{'url': 'https://myhrabc.wd5.myworkdayjobs.com/Global/siteMap.xml', 'error': 'HTTP Error 429: Too Many Requests'}, {'url': 'https://myhrabc.wd5.myworkdayjobs.com/en-US/Distribution/job/Director--Voice-of-Customer-Health-System-Insights_R2619292', 'error': 'HTTP Error 429: Host rate-limited earlier in this collection process'}, {'url': 'https://myhrabc.wd5.myworkdayjobs.com/en-US/Distribution/job/Advisor--Strategy---Business-Development_R2618447', 'error': 'HTTP Error 429: Host rate-limited earlier in this collection process'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -10595,7 +10608,7 @@
         "auto-fev-consulting-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -10857,8 +10870,8 @@
         "greenhouse-flow-traders"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 44,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 43,
       "matching_hr_positions": 0,
       "pages_read": 0,
       "pending_urls": 0,
@@ -10876,11 +10889,11 @@
         "auto-flynth-adviseurs-en-accountants"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 29,
-      "pending_urls": 2010,
+      "pages_read": 26,
+      "pending_urls": 2017,
       "errors": [
         {
           "source_id": "auto-flynth-adviseurs-en-accountants",
@@ -10951,7 +10964,7 @@
         "recruitee-focus-entertainment"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 6,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -11123,15 +11136,15 @@
         "auto-forvis-mazars"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
-      "public_job_records": 138,
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
+      "public_job_records": 28,
       "matching_hr_positions": 0,
       "pages_read": 19,
-      "pending_urls": 1,
+      "pending_urls": 123,
       "errors": [
         {
           "source_id": "auto-forvis-mazars",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://careers-nl.forvismazars.com/over-forvis-mazars/werken-bij-ons', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers-nl.forvismazars.com?page_id=4035', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers-nl.forvismazars.com?page_id=4820', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -11317,7 +11330,7 @@
         "auto-fries-trading"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -11443,15 +11456,15 @@
         "auto-frisius-mc"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
-      "public_job_records": 43,
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
+      "public_job_records": 45,
       "matching_hr_positions": 0,
-      "pages_read": 9,
+      "pages_read": 10,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-frisius-mc",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://www.werkenbijfrisiusmc.nl/vacatures/058-2861260', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenbijfrisiusmc.nl/vacatures/058-2868259.', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenbijfrisiusmc.nl/vacatures/058-2863271.', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -11722,7 +11735,7 @@
         "employer-sitemap-gac-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -12341,7 +12354,7 @@
         "auto-ggd-fryslan"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 9,
       "matching_hr_positions": 0,
       "pages_read": 4,
@@ -12394,22 +12407,17 @@
       "candidate_countries": [
         "IT"
       ],
-      "state": "partial",
+      "state": "not-attempted",
       "source_ids": [
         "held-gi-group-it-jobposting"
       ],
-      "attempted": true,
-      "checked_at": "2026-11-26T04:14:52.793281+00:00",
-      "public_job_records": 7,
+      "attempted": false,
+      "checked_at": null,
+      "public_job_records": 0,
       "matching_hr_positions": 20,
       "pages_read": 0,
       "pending_urls": 0,
-      "errors": [
-        {
-          "source_id": "held-gi-group-it-jobposting",
-          "error": "[{'url': 'https://www.gigroup.it/offerte-lavoro-dettaglio/mestre-venezia-recruitment-consultant-internship/A1752', 'error': 'Vacancy verification: Slow lane checks the public listing only'}, {'url': 'https://www.gigroup.it/offerte-lavoro-dettaglio/milano-payroll-specialist-in-stage/1406845', 'error': 'Vacancy verification: Slow lane checks the public listing only'}, {'url': 'https://www.gigroup.it/offerte-lavoro-dettaglio/milano-stage-in-ricerca-e-selezione-del-personale-per-la-sede-di-milano/1397839', 'error': 'Vacancy verification: Slow lane checks the public listing only'}]"
-        }
-      ],
+      "errors": [],
       "next_attempt": "next daily run"
     },
     {
@@ -12559,12 +12567,17 @@
         "auto-gr-peelgemeenten"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 19,
       "matching_hr_positions": 0,
-      "pages_read": 5,
+      "pages_read": 4,
       "pending_urls": 0,
-      "errors": [],
+      "errors": [
+        {
+          "source_id": "auto-gr-peelgemeenten",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -12799,10 +12812,10 @@
         "auto-grunecker-patent-und-rechtsanwalte-partg-mbb"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 53,
+      "pages_read": 62,
       "pending_urls": 0,
       "errors": [
         {
@@ -13180,8 +13193,8 @@
         "auto-haitsma-beton"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
-      "public_job_records": 149,
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
+      "public_job_records": 148,
       "matching_hr_positions": 1,
       "pages_read": 0,
       "pending_urls": 0,
@@ -13301,11 +13314,11 @@
         "auto-headhuntersteam"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 46,
-      "pending_urls": 998,
+      "pages_read": 43,
+      "pending_urls": 1004,
       "errors": [
         {
           "source_id": "auto-headhuntersteam",
@@ -13433,8 +13446,8 @@
         "greenhouse-hellofresh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 355,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 354,
       "matching_hr_positions": 0,
       "pages_read": 0,
       "pending_urls": 0,
@@ -13469,7 +13482,7 @@
         "auto-helwa-wafelbakkerij"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -13488,16 +13501,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "source_ids": [
         "auto-henri-willig-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
+      "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 6,
-      "pending_urls": 14,
+      "pages_read": 5,
+      "pending_urls": 51,
       "errors": [
         {
           "source_id": "auto-henri-willig-groep",
@@ -13670,15 +13683,15 @@
         "auto-hitachi-energy"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
-      "public_job_records": 4,
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
+      "public_job_records": 6,
       "matching_hr_positions": 0,
-      "pages_read": 10,
-      "pending_urls": 1967,
+      "pages_read": 12,
+      "pending_urls": 1965,
       "errors": [
         {
           "source_id": "auto-hitachi-energy",
-          "error": "[{'url': 'https://hitachi.wd1.myworkdayjobs.com/hitachi/job/Mount-Pleasant-Pennsylvania-United-States-of-America/XMLNAME-3rd-Shift-Assembler---Material-Handler_R0142895/apply?source=hitachienergy', 'error': 'robots.txt unavailable: 429'}, {'url': 'https://www.hitachienergy.com/ca/en/careers/open-jobs/details/JID3-214002', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://www.hitachienergy.com/ca/en/careers/open-jobs/details/JID3-214031', 'error': 'HTTP Error 410: Gone'}]"
+          "error": "[{'url': 'https://hitachi.wd1.myworkdayjobs.com/hitachi/job/Maneja-Gujarat-India/Engineering-Quality-Specialist_R0123332/apply?source=hitachienergy', 'error': 'robots.txt unavailable: 429'}, {'url': 'https://www.hitachienergy.com/ca/en/careers/open-jobs/details/JID3-214438', 'error': 'HTTP Error 410: Gone'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -13694,7 +13707,7 @@
         "auto-hk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 8,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -13752,7 +13765,7 @@
         "auto-hoekstra-transport"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -13907,7 +13920,7 @@
         "auto-horjus-paneel-en-meubel"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -14067,15 +14080,15 @@
         "auto-hti-leitner-prinoth-demaclenko-skadii-troyer-leitwind"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 0,
-      "pages_read": 18,
-      "pending_urls": 0,
+      "pages_read": 44,
+      "pending_urls": 3,
       "errors": [
         {
           "source_id": "auto-hti-leitner-prinoth-demaclenko-skadii-troyer-leitwind",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://jobs.hti.global/job/Alle-Standorte-Praktikum/557798301', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.hti.global/job/Herdwangen-Initiativbewerbung-Deutschland/968084701', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.hti.global/job/Tutti-i-luoghi-Tirocinio/557798201', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -14125,7 +14138,7 @@
         "auto-huhtamaki"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -14302,7 +14315,7 @@
         "greenhouse-talentprograms"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 14,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -14338,7 +14351,7 @@
         "auto-hytrans-systems-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -14413,7 +14426,7 @@
         "auto-icit"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 7,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -14539,7 +14552,7 @@
         "personio-xml-ifp-consulting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -14745,7 +14758,7 @@
         "auto-illwerke-vkw-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 16,
       "matching_hr_positions": 0,
       "pages_read": 34,
@@ -14786,11 +14799,11 @@
         "auto-imc"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
-      "public_job_records": 32,
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
+      "public_job_records": 22,
       "matching_hr_positions": 0,
-      "pages_read": 40,
-      "pending_urls": 1247,
+      "pages_read": 30,
+      "pending_urls": 1228,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -14839,11 +14852,11 @@
         "auto-infineon-technologies-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 5,
-      "pending_urls": 295,
+      "pages_read": 7,
+      "pending_urls": 294,
       "errors": [
         {
           "source_id": "auto-infineon-technologies-ag",
@@ -14880,7 +14893,7 @@
         "auto-ing-ferrari-s-p-a"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 12,
@@ -15125,15 +15138,15 @@
         "auto-interlogement-93"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
-      "pages_read": 4,
+      "pages_read": 3,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-interlogement-93",
-          "error": "[{'url': 'https://jobs.smartrecruiters.com/Interlogement93/744000152430750-stage-charge-e-de-mission-developpement-rh', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/Interlogement93/postings?limit=100&offset=0'}, {'url': 'https://careers.smartrecruiters.com/Interlogement93', 'error': 'HTTP Error 429: Too Many Requests'}, {'url': 'https://help.smartrecruiters.com/Getting_Started/Platform/Supported_Web_Browsers&quot;%7D%7D', 'error': 'robots.txt disallows https://help.smartrecruiters.com/Getting_Started/Platform/Supported_Web_Browsers&quot;%7D%7D'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -15557,15 +15570,15 @@
         "auto-jam"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
-      "public_job_records": 181,
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
+      "public_job_records": 55,
       "matching_hr_positions": 0,
-      "pages_read": 33,
-      "pending_urls": 50,
+      "pages_read": 47,
+      "pending_urls": 364,
       "errors": [
         {
           "source_id": "auto-jam",
-          "error": "[{'url': 'https://www.jongerenarbeidsmarkt.nl/nl/vacatures/parttime/uden', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.jongerenarbeidsmarkt.nl/nl/vacatures/parttime/drunen', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.jongerenarbeidsmarkt.nl/nl/vacatures/parttime/rosmalen', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "[{'url': 'https://www.jongerenarbeidsmarkt.nl/nl/vacatures/postcode/vianen/afstand/20/inkoop-planning', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.jamwerkt.nl/vacatures/12949-vakantiewerk-orderpicker-bij-een-parfumwinkel-in-eindhoven-tijdelijk', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -15658,15 +15671,15 @@
         "auto-jde-peet-s"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 2,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 4,
       "matching_hr_positions": 3,
-      "pages_read": 43,
-      "pending_urls": 23,
+      "pages_read": 41,
+      "pending_urls": 2,
       "errors": [
         {
           "source_id": "auto-jde-peet-s",
-          "error": "[{'url': 'https://careers.smartrecruiters.com/JACOBSDOUWEEGBERTS', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/JACOBSDOUWEEGBERTS/postings?limit=100&offset=0'}, {'url': 'https://www.welcometothejungle.com/fr/companies/jacobs-douwe-egberts', 'error': 'HTTP Error 403: Forbidden'}, {'url': 'https://help.smartrecruiters.com/Getting_Started/Platform/Supported_Web_Browsers&quot;%7D%7D', 'error': 'robots.txt disallows https://help.smartrecruiters.com/Getting_Started/Platform/Supported_Web_Browsers&quot;%7D%7D'}]"
+          "error": "[{'url': 'https://jobs.smartrecruiters.com/external-referrals/company/JACOBSDOUWEEGBERTS/publication/6aa3da19-159b-40f8-8a06-5977376ae2d2?dcr_ci=JACOBSDOUWEEGBERTS', 'error': 'HTTP Error 403: Forbidden'}, {'url': 'https://careers.smartrecruiters.com/JACOBSDOUWEEGBERTS', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/JACOBSDOUWEEGBERTS/postings?limit=100&offset=0'}, {'url': 'https://www.welcometothejungle.com/fr/companies/jacobs-douwe-egberts', 'error': 'HTTP Error 403: Forbidden'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -15682,7 +15695,7 @@
         "auto-jember-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -15905,16 +15918,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "blocked-or-failed",
+      "state": "discovery-incomplete",
       "source_ids": [
         "auto-jumbo-supermarkten"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 0,
-      "pending_urls": 193,
+      "pages_read": 2,
+      "pending_urls": 141,
       "errors": [
         {
           "source_id": "auto-jumbo-supermarkten",
@@ -15934,7 +15947,7 @@
         "auto-junction-creative-digital-agency"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 6,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -16094,7 +16107,7 @@
         "auto-kenonz"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 1,
       "pages_read": 8,
@@ -16305,7 +16318,7 @@
         "auto-km-yachtbuilders"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -16346,7 +16359,7 @@
         "sitemap-careers-knorr-bremse-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 2,
       "pages_read": 0,
@@ -16433,7 +16446,7 @@
         "auto-koninklijke-utermohlen-nv"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -16525,7 +16538,7 @@
         "auto-korte-friesland-bv"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -16566,7 +16579,7 @@
         "held-sf-rmk-kpmg-italia-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -16704,15 +16717,15 @@
         "auto-krones-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 80,
       "matching_hr_positions": 1,
-      "pages_read": 16,
-      "pending_urls": 112,
+      "pages_read": 13,
+      "pending_urls": 107,
       "errors": [
         {
           "source_id": "auto-krones-ag",
-          "error": "[{'url': 'https://www.krones.com/de/karriere/stellenausschreibung?job=639', 'error': 'Vacancy verification: Application link lacks a matching vacancy identifier'}]"
+          "error": "Public source access blocked; no inventory established; no bypass attempted"
         }
       ],
       "next_attempt": "next daily run"
@@ -16813,10 +16826,10 @@
         "auto-kus-e-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
-      "public_job_records": 10,
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
+      "public_job_records": 9,
       "matching_hr_positions": 0,
-      "pages_read": 21,
+      "pages_read": 22,
       "pending_urls": 0,
       "errors": [
         {
@@ -16854,7 +16867,7 @@
         "auto-kwant-controls"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 4,
@@ -16895,7 +16908,7 @@
         "sitemap-careers-loreal-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 12,
       "matching_hr_positions": 12,
       "pages_read": 0,
@@ -16999,11 +17012,11 @@
         "auto-landal"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 5,
       "pages_read": 2,
-      "pending_urls": 681,
+      "pending_urls": 643,
       "errors": [
         {
           "source_id": "auto-landal",
@@ -17091,7 +17104,7 @@
         "auto-laride"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 8,
       "matching_hr_positions": 0,
       "pages_read": 13,
@@ -17302,10 +17315,10 @@
         "auto-leger-des-heils"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
-      "public_job_records": 216,
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
+      "public_job_records": 218,
       "matching_hr_positions": 0,
-      "pages_read": 12,
+      "pages_read": 33,
       "pending_urls": 0,
       "errors": [
         {
@@ -17326,11 +17339,11 @@
         "auto-lego"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 40,
-      "pending_urls": 90,
+      "pages_read": 43,
+      "pending_urls": 85,
       "errors": [
         {
           "source_id": "auto-lego",
@@ -17350,11 +17363,11 @@
         "auto-lesaffre"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
-      "public_job_records": 18,
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
+      "public_job_records": 25,
       "matching_hr_positions": 4,
-      "pages_read": 50,
-      "pending_urls": 481,
+      "pages_read": 37,
+      "pending_urls": 862,
       "errors": [
         {
           "source_id": "auto-lesaffre",
@@ -17391,7 +17404,7 @@
         "employer-sitemap-leyton"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -17410,17 +17423,12 @@
         "auto-lidl"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 31,
-      "pending_urls": 1272,
-      "errors": [
-        {
-          "source_id": "auto-lidl",
-          "error": "[{'url': 'https://career5.successfactors.eu/career?company=lidlstiftuP2&amp%3Blang=nl_NL&amp%3BnavBarLevel=MY_PROFILE&amp%3Brcm_site_locale=nl_NL&amp%3BbrandUrl=nl', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?company=lidlstiftuP2&amp%3Blang=nl_NL&amp%3BnavBarLevel=MY_PROFILE&amp%3Brcm_site_locale=nl_NL&amp%3BbrandUrl=nl'}]"
-        }
-      ],
+      "pages_read": 28,
+      "pending_urls": 1257,
+      "errors": [],
       "next_attempt": "next daily run"
     },
     {
@@ -17434,15 +17442,15 @@
         "auto-lidl-italia"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 29,
-      "pending_urls": 370,
+      "pages_read": 53,
+      "pending_urls": 223,
       "errors": [
         {
           "source_id": "auto-lidl-italia",
-          "error": "[{'url': 'https://careers.lidl/lidl/lidl-international/settings/website-settings/footer/headlines-for-footer-items/international-career-opportunities', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://career5.successfactors.eu/career?company=lidlstiftuP2&lang=it_IT&navBarLevel=MY_PROFILE&rcm_site_locale=it_IT&brandUrl=it', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?company=lidlstiftuP2&lang=it_IT&navBarLevel=MY_PROFILE&rcm_site_locale=it_IT&brandUrl=it'}, {'url': 'https://lavoro.lidl.it/asset/download/123624/file/Dichiarazione%20di%20Accessibilit%C3%A0_lavoro.lidl.it.pdf?version=2', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://lavoro.lidl.it/asset/download/123624/file/Dichiarazione%20di%20Accessibilit%C3%A0_lavoro.li'}]"
+          "error": "[{'url': 'https://lavoro.lidl.it/asset/download/123624/file/Dichiarazione%20di%20Accessibilit%C3%A0_lavoro.lidl.it.pdf?version=2', 'error': 'Rendered read: Page.goto: Download is starting\\nCall log:\\n  - navigating to \"https://lavoro.lidl.it/asset/download/123624/file/Dichiarazione%20di%20Accessibilit%C3%A0_lavoro.li'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -17458,15 +17466,15 @@
         "auto-liebherr"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
-      "pages_read": 25,
-      "pending_urls": 2028,
+      "pages_read": 38,
+      "pending_urls": 1992,
       "errors": [
         {
           "source_id": "auto-liebherr",
-          "error": "[{'url': 'https://career5.successfactors.eu/career?career_company=LiMySLive&lang=en_US&company=LiMySLive&loginFlowRequired=true&_s.crb=swfvjcg16ZHtAUyaDqC%2FPkAfzHg%3D', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?career_company=LiMySLive&lang=en_US&company=LiMySLive&loginFlowRequired=true&_s.crb=swfvjcg16ZHtAUyaDqC%2FPkAfzHg%3D'}, {'url': 'https://career5.successfactors.eu/career?career_company=LiMySLive&amp%3Blang=en_US&amp%3Bcompany=LiMySLive&amp%3BloginFlowRequired=true&amp%3B_s.crb=swfvjcg16ZHtAUyaDqC%2FPkAfzHg%3D', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?career_company=LiMySLive&amp%3Blang=en_US&amp%3Bcompany=LiMySLive&amp%3BloginFlowRequired=true&amp%3B_s.crb=swfvjcg16Z'}, {'url': 'https://career5.successfactors.eu/career?career_company=LiMySLive%5Cu0026lang%3Den_US%5Cu0026company%3DLiMySLive%5Cu0026site%3D%5Cu0026loginFlowRequired%3Dtrue%5Cu0026_s.crb%3Dswfvjcg16ZHtAUyaDqC%2FPkAfzHg%3D', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?career_company=LiMySLive%5Cu0026lang%3Den_US%5Cu0026company%3DLiMySLive%5Cu0026site%3D%5Cu0026loginFlowRequired%3Dtrue'}]"
+          "error": "[{'url': 'https://career5.successfactors.eu/career?company=LiMySLive%5Cu0026career_job_req_id%3D84591%5Cu0026career_ns%3Djob_application%5Cu0026lang%3Dde_DE', 'error': 'robots.txt disallows https://career5.successfactors.eu/career?company=LiMySLive%5Cu0026career_job_req_id%3D84591%5Cu0026career_ns%3Djob_application%5Cu0026lang%3Dde_DE'}, {'url': 'https://www.liebherr.com//www.facebook.com/LiebherrKarriere', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.liebherr.com/en-de/careers/job-vacancies-3364212?removed', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -17720,7 +17728,7 @@
         "auto-ltb-schilders"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 0,
       "pages_read": 9,
@@ -17875,16 +17883,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "source_ids": [
         "auto-machine-en-apparatenbouw-berco-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
-      "public_job_records": 3,
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
+      "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 20,
-      "pending_urls": 543,
+      "pages_read": 21,
+      "pending_urls": 539,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -18056,7 +18064,7 @@
         "lever-malt"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 33,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -18092,11 +18100,11 @@
         "auto-manpower"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
-      "public_job_records": 19,
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
+      "public_job_records": 17,
       "matching_hr_positions": 2,
-      "pages_read": 29,
-      "pending_urls": 1975,
+      "pages_read": 32,
+      "pending_urls": 1946,
       "errors": [
         {
           "source_id": "auto-manpower",
@@ -18150,15 +18158,15 @@
         "auto-markteffect"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 38,
+      "pages_read": 52,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-markteffect",
-          "error": "[{'url': 'https://assets.cdn.personio.de/career-site/header/174407/324134/112942ea40d4f8cdf3a532332acb9ec7jpg', 'error': 'robots.txt disallows https://assets.cdn.personio.de/career-site/header/174407/324134/112942ea40d4f8cdf3a532332acb9ec7jpg'}, {'url': 'https://assets.cdn.personio.de/logos/174407/324134/social/5e60f6cab09922139e5a016bf744e4c8.png%5C', 'error': 'robots.txt disallows https://assets.cdn.personio.de/logos/174407/324134/social/5e60f6cab09922139e5a016bf744e4c8.png%5C'}, {'url': 'https://assets.cdn.personio.de/rebrand/favicon.svg%5C', 'error': 'robots.txt disallows https://assets.cdn.personio.de/rebrand/favicon.svg%5C'}]"
+          "error": "[{'url': 'https://assets.cdn.personio.de/career-site/header/174407/324134/112942ea40d4f8cdf3a532332acb9ec7jpg', 'error': 'robots.txt disallows https://assets.cdn.personio.de/career-site/header/174407/324134/112942ea40d4f8cdf3a532332acb9ec7jpg'}, {'url': 'https://assets.cdn.personio.de/logos/174407/324134/social/5e60f6cab09922139e5a016bf744e4c8.png%5C', 'error': 'robots.txt disallows https://assets.cdn.personio.de/logos/174407/324134/social/5e60f6cab09922139e5a016bf744e4c8.png%5C'}, {'url': 'https://assets.cdn.personio.de/build/client/img/brandmark.png%5C', 'error': 'robots.txt disallows https://assets.cdn.personio.de/build/client/img/brandmark.png%5C'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -18293,7 +18301,7 @@
         "auto-max-planck-institut-fur-plasmaphysik-ipp"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 36,
@@ -18317,11 +18325,11 @@
         "auto-max-streicher-gmbh-co-kg-aa"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 43,
-      "pending_urls": 39,
+      "pages_read": 29,
+      "pending_urls": 45,
       "errors": [
         {
           "source_id": "auto-max-streicher-gmbh-co-kg-aa",
@@ -18494,7 +18502,7 @@
         "auto-mediahuis-nederland"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 43,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -18620,7 +18628,7 @@
         "personio-xml-menlo-systems-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 8,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -18775,7 +18783,7 @@
         "auto-mf-horeca"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 38,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -18867,7 +18875,7 @@
         "personio-xml-micronova-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -19264,11 +19272,11 @@
         "auto-movacolor-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 17,
-      "pending_urls": 4,
+      "pages_read": 13,
+      "pending_urls": 12,
       "errors": [
         {
           "source_id": "auto-movacolor-b-v",
@@ -19390,15 +19398,15 @@
         "auto-mtu-aero-engines"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 2,
-      "pages_read": 44,
-      "pending_urls": 1071,
+      "pages_read": 41,
+      "pending_urls": 1068,
       "errors": [
         {
           "source_id": "auto-mtu-aero-engines",
-          "error": "[{'url': 'https://www.mtu.de/de/karriere/jobboerse/stellenanzeige/industriemechaniker-manuelle-reparatur-all-genders', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.mtu.de/mtupolska/career/online-job-market/job-posting/sales-manager-asia-parts-repair-services-all-genders', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "[{'url': 'https://www.mtu.de/mtupolska/career/online-job-market/s/all/all/all/all/', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}, {'url': 'https://www.mtu.de/de/karriere/jobboerse/stellenanzeige/spezialist-exportkontrolle-all-genders', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -19431,7 +19439,7 @@
         "recruitee-multifix"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 7,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -19450,7 +19458,7 @@
         "employer-multraship"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 15,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -19542,7 +19550,7 @@
         "auto-mynaric-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 30,
       "matching_hr_positions": 1,
       "pages_read": 13,
@@ -19566,7 +19574,7 @@
         "auto-n-xt-accountants-en-adviseurs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -19760,12 +19768,17 @@
         "auto-neways-electronics-international-n-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 9,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 103,
       "matching_hr_positions": 0,
-      "pages_read": 30,
-      "pending_urls": 191,
-      "errors": [],
+      "pages_read": 37,
+      "pending_urls": 44,
+      "errors": [
+        {
+          "source_id": "auto-neways-electronics-international-n-v",
+          "error": "[{'url': 'https://careers.newayselectronics.com/nl/job/account-engineer-2', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -19779,17 +19792,12 @@
         "auto-neways-leeuwarden"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
-      "public_job_records": 8,
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
+      "public_job_records": 7,
       "matching_hr_positions": 0,
-      "pages_read": 22,
-      "pending_urls": 220,
-      "errors": [
-        {
-          "source_id": "auto-neways-leeuwarden",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ],
+      "pages_read": 21,
+      "pending_urls": 233,
+      "errors": [],
       "next_attempt": "next daily run"
     },
     {
@@ -19803,15 +19811,15 @@
         "auto-newtone"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 1,
-      "pages_read": 43,
-      "pending_urls": 483,
+      "pages_read": 40,
+      "pending_urls": 491,
       "errors": [
         {
           "source_id": "auto-newtone",
-          "error": "[{'url': 'https://www.werkenbijnewtone.nl/vacatures/payroll-specialist-intern-eindhoven-4628526101-5042441101/solliciteer', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -19929,7 +19937,7 @@
         "auto-nimble-institute-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -19965,7 +19973,7 @@
         "auto-noardling-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 11,
       "matching_hr_positions": 0,
       "pages_read": 16,
@@ -20006,12 +20014,17 @@
         "auto-noorderbreedte"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 123,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 126,
       "matching_hr_positions": 0,
-      "pages_read": 41,
-      "pending_urls": 1,
-      "errors": [],
+      "pages_read": 9,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-noorderbreedte",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -20212,7 +20225,7 @@
         "auto-nxtgen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -20440,15 +20453,15 @@
         "auto-omrin"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
-      "public_job_records": 11,
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
+      "public_job_records": 14,
       "matching_hr_positions": 0,
-      "pages_read": 30,
-      "pending_urls": 289,
+      "pages_read": 34,
+      "pending_urls": 326,
       "errors": [
         {
           "source_id": "auto-omrin",
-          "error": "[{'url': 'https://www.werkenbijomrin.nl?page_id=2719', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenbijomrin.nl/vacatures/page/11?hoursperweek=14-28', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenbijomrin.nl/vacatures/page/11?hoursperweek=5-ploegendienst', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "[{'url': 'https://www.werkenbijomrin.nl/vacatures/page/12?hoursperweek=14-28', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenbijomrin.nl/vacatures/page/12?hoursperweek=5-ploegendienst', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenbijomrin.nl/vacatures/page/12?hoursperweek=16-uur', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -20532,10 +20545,10 @@
         "auto-oosterwolde-plastic-industrie-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 1,
-      "pages_read": 30,
+      "pages_read": 28,
       "pending_urls": 0,
       "errors": [],
       "next_attempt": "next daily run"
@@ -20653,7 +20666,7 @@
         "auto-opnieuw"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -21102,12 +21115,17 @@
         "auto-patyna"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 81,
       "matching_hr_positions": 0,
-      "pages_read": 24,
+      "pages_read": 5,
       "pending_urls": 0,
-      "errors": [],
+      "errors": [
+        {
+          "source_id": "auto-patyna",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -21362,11 +21380,11 @@
         "auto-philip-morris-international"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
-      "public_job_records": 149,
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
+      "public_job_records": 106,
       "matching_hr_positions": 1,
-      "pages_read": 45,
-      "pending_urls": 187,
+      "pages_read": 52,
+      "pending_urls": 168,
       "errors": [
         {
           "source_id": "auto-philip-morris-international",
@@ -21386,7 +21404,7 @@
         "employer-philips"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -21514,8 +21532,8 @@
         "lever-pigment"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 128,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 129,
       "matching_hr_positions": 0,
       "pages_read": 0,
       "pending_urls": 0,
@@ -21635,7 +21653,7 @@
         "auto-pizzeria-ristorante-la-gondola"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -21761,7 +21779,7 @@
         "auto-polem-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -21887,7 +21905,7 @@
         "auto-post-cleaning-schoonmaak"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -21962,7 +21980,7 @@
         "auto-pranger-rosier-installaties"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 77,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -22003,7 +22021,7 @@
         "auto-priore-accountants-belastingadviseurs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -22095,15 +22113,15 @@
         "auto-prodrive-technologies"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
-      "public_job_records": 51,
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
+      "public_job_records": 53,
       "matching_hr_positions": 0,
       "pages_read": 9,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-prodrive-technologies",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://careers.prodrive-technologies.com/nl/nl/vacatures?page=1', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers.prodrive-technologies.com/nl/nl/vacatures?page=2', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers.prodrive-technologies.com/nl/nl/vacatures?page=3', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -22187,7 +22205,7 @@
         "recruitee-protiviti-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 7,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -22240,12 +22258,17 @@
         "auto-prowurk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 12,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 3,
       "matching_hr_positions": 1,
-      "pages_read": 46,
-      "pending_urls": 824,
-      "errors": [],
+      "pages_read": 29,
+      "pending_urls": 849,
+      "errors": [
+        {
+          "source_id": "auto-prowurk",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -22259,7 +22282,7 @@
         "recruitee-psv"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 13,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -22346,7 +22369,7 @@
         "personio-xml-qaware"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -22402,7 +22425,7 @@
         "personio-xml-qplix-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 26,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -22438,8 +22461,8 @@
         "auto-quantum-systems-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
-      "public_job_records": 205,
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
+      "public_job_records": 204,
       "matching_hr_positions": 1,
       "pages_read": 5,
       "pending_urls": 0,
@@ -22496,7 +22519,7 @@
         "personio-xml-qwitto-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -22534,15 +22557,15 @@
         "held-tempo-team-nl-jobposting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 9,
-      "pages_read": 39,
-      "pending_urls": 1152,
+      "pages_read": 33,
+      "pending_urls": 1129,
       "errors": [
         {
           "source_id": "auto-randstad-groep-nederland",
-          "error": "[{'url': 'https://www.tempo-team.nl/vacatures/756793/stagiair%28e%29-hr-tempo-team', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://www.tempo-team.nl/vacatures/757451/heftruckchauffeur-logistiek-dagdienst', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://www.tempo-team.nl/vacatures/757390/consulent-invordering', 'error': 'HTTP Error 410: Gone'}]"
+          "error": "[{'url': 'https://www.tempo-team.nl/vacatures/756793/stagiair%28e%29-hr-tempo-team', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://www.tempo-team.nl/vacatures/757513/financieel-administratief-medewerker', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://www.tempo-team.nl/vacatures/744944/warehouse-employee', 'error': 'HTTP Error 410: Gone'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -22559,11 +22582,11 @@
         "held-randstad-it-jobposting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 32,
-      "pages_read": 12,
-      "pending_urls": 2104,
+      "pages_read": 8,
+      "pending_urls": 2077,
       "errors": [
         {
           "source_id": "auto-randstad-italia-spa",
@@ -22684,16 +22707,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "source_ids": [
         "auto-recreatiebedrijf-de-blikvaart"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
-      "public_job_records": 5,
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
+      "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 24,
-      "pending_urls": 585,
+      "pages_read": 21,
+      "pending_urls": 581,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -22759,7 +22782,7 @@
         "auto-recreatieschap-marrekrite"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -22812,15 +22835,15 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "source_ids": [
         "auto-recruitmenthuis"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
+      "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 5,
+      "pages_read": 4,
       "pending_urls": 0,
       "errors": [
         {
@@ -22998,11 +23021,11 @@
         "auto-reply-deutschland-se"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
-      "public_job_records": 21,
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
+      "public_job_records": 15,
       "matching_hr_positions": 0,
       "pages_read": 70,
-      "pending_urls": 383,
+      "pending_urls": 389,
       "errors": [
         {
           "source_id": "auto-reply-deutschland-se",
@@ -23306,20 +23329,20 @@
       "candidate_countries": [
         "DE"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "source_ids": [
         "auto-rheinmetall-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 13,
       "matching_hr_positions": 0,
-      "pages_read": 41,
-      "pending_urls": 1552,
+      "pages_read": 27,
+      "pending_urls": 1528,
       "errors": [
         {
           "source_id": "auto-rheinmetall-ag",
-          "error": "[{'url': 'https://www.rheinmetall.com/de/karriere/uebersicht-karriere', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}]"
+          "error": "[{'url': 'https://www.rheinmetall.com/de/karriere/uebersicht-karriere', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}, {'url': 'https://www.rheinmetall.com/de/karriere/uebersicht-karriere', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -23483,16 +23506,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "blocked-or-failed",
+      "state": "partial",
       "source_ids": [
         "auto-rituals"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
+      "public_job_records": 13,
       "matching_hr_positions": 0,
       "pages_read": 0,
-      "pending_urls": 94,
+      "pending_urls": 15,
       "errors": [
         {
           "source_id": "auto-rituals",
@@ -23546,7 +23569,7 @@
         "sitemap-careers-roche-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 2,
       "pages_read": 0,
@@ -23554,7 +23577,7 @@
       "errors": [
         {
           "source_id": "sitemap-careers-roche-com",
-          "error": "[{'url': 'https://careers.roche.com/global/en/job/ROCHGLOBAL202610125780EXTERNALENGLOBAL/Talent-Acquisition-Intern', 'error': 'Explicit workplace country outside scope or missing'}, {'url': 'https://careers.roche.com/global/en/job/ROCHGLOBAL202611129779EXTERNALENGLOBAL/2027-Summer-Intern-Personalized-Healthcare-Solutions-PHCS-International-Business-Team', 'error': 'Explicit workplace country outside scope or missing'}, {'url': 'https://careers.roche.com/fr/fr/job/202610-125780/Talent-Acquisition-Intern', 'error': 'Explicit workplace country outside scope or missing'}]"
+          "error": "[{'url': 'https://careers.roche.com/global/en/job/ROCHGLOBAL202610125780EXTERNALENGLOBAL/Talent-Acquisition-Intern', 'error': 'Explicit workplace country outside scope or missing'}, {'url': 'https://careers.roche.com/global/en/job/ROCHGLOBAL202611130082EXTERNALENGLOBAL/2027-Summer-Intern-Molecular-Lab-Research-and-Early-Development-MLRED-Oncology-and-Genomics-Molecular-Personalize-Healthcare-Solutions-O-G-mPHCS-Subchapter', 'error': 'Explicit workplace country outside scope or missing'}, {'url': 'https://careers.roche.com/global/en/job/ROCHGLOBAL202611129779EXTERNALENGLOBAL/2027-Summer-Intern-Personalized-Healthcare-Solutions-PHCS-International-Business-Team', 'error': 'Explicit workplace country outside scope or missing'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -23604,11 +23627,11 @@
         "auto-roland-berger"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 42,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 47,
       "matching_hr_positions": 1,
-      "pages_read": 43,
-      "pending_urls": 989,
+      "pages_read": 48,
+      "pending_urls": 899,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -23725,7 +23748,7 @@
         "auto-royal-a-ware"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 68,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -23851,7 +23874,7 @@
         "auto-royal-vriesco-a-house-of-happiness"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 14,
@@ -24142,7 +24165,7 @@
         "auto-salomon"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 4,
       "pages_read": 27,
@@ -24252,7 +24275,7 @@
         "sitemap-jobs-sap-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 3,
       "pages_read": 0,
@@ -24310,7 +24333,7 @@
         "auto-scab"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -24419,10 +24442,10 @@
         "auto-schoonmaakbedrijf-landman-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 7,
+      "pages_read": 6,
       "pending_urls": 0,
       "errors": [
         {
@@ -24477,15 +24500,15 @@
         "auto-scoreplay"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
-      "pages_read": 2,
+      "pages_read": 1,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-scoreplay",
-          "error": "[{'url': 'https://jobs.ashbyhq.com/scoreplay/2b9ef38c-01b0-468f-b66c-eee5fdedc6bd', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -24501,11 +24524,11 @@
         "auto-script"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
-      "public_job_records": 3,
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
+      "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 18,
-      "pending_urls": 456,
+      "pages_read": 16,
+      "pending_urls": 458,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -24605,11 +24628,11 @@
         "auto-securitas"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
-      "public_job_records": 6,
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
+      "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 69,
-      "pending_urls": 671,
+      "pages_read": 58,
+      "pending_urls": 680,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -24658,7 +24681,7 @@
         "auto-sekuer-notarissen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -24823,7 +24846,7 @@
         "auto-sfc-energy-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 37,
@@ -24893,11 +24916,11 @@
         "auto-sia"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 2,
-      "pages_read": 43,
-      "pending_urls": 993,
+      "pages_read": 62,
+      "pending_urls": 974,
       "errors": [
         {
           "source_id": "auto-sia",
@@ -24934,11 +24957,11 @@
         "auto-sietzema-techniek"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 0,
       "pages_read": 3,
-      "pending_urls": 31,
+      "pending_urls": 35,
       "errors": [
         {
           "source_id": "auto-sietzema-techniek",
@@ -24958,7 +24981,7 @@
         "auto-sijperda-verhuur"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -24994,7 +25017,7 @@
         "auto-silver-atena-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 30,
       "matching_hr_positions": 0,
       "pages_read": 11,
@@ -25154,7 +25177,7 @@
         "auto-smartwares-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 24,
@@ -25178,15 +25201,15 @@
         "auto-smcp"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
-      "pages_read": 56,
-      "pending_urls": 225,
+      "pages_read": 52,
+      "pending_urls": 226,
       "errors": [
         {
           "source_id": "auto-smcp",
-          "error": "[{'url': 'https://jobs.smartrecruiters.com/SMCP/744000150973440--janvier-2027-stage-rh-charge-e-de-recrutement-h-f', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/SMCP/postings?limit=100&offset=0'}, {'url': 'https://jobs.smartrecruiters.com/external-referrals/company/SMCP/publication/b412d8a0-9d79-438e-9a4d-f9dce69627ea?dcr_ci=SMCP', 'error': 'Feed: robots.txt disallows https://api.smartrecruiters.com/v1/companies/external-referrals/postings?limit=100&offset=0'}, {'url': 'https://jobs.smartrecruiters.com/external-referrals/company/SMCP/publication/b412d8a0-9d79-438e-9a4d-f9dce69627ea?dcr_ci=SMCP', 'error': 'HTTP Error 403: Forbidden'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -25202,7 +25225,7 @@
         "auto-smi-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 9,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -25260,15 +25283,15 @@
         "auto-smollan"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 36,
+      "pages_read": 39,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-smollan",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "error": "[{'url': 'https://jobs.hamiltonbright.nl/jobs/8473050-merchandiser', 'error': 'HTTP Error 410: Gone'}, {'url': 'https://app.teamtailor.com/companies/XVIaIo7cc0g@eu/dashboard', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -25352,7 +25375,7 @@
         "recruitee-social-deal-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 37,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -25592,7 +25615,7 @@
         "employer-sitemap-spark-cleantech"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 15,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -25645,11 +25668,11 @@
         "auto-spie-nederland"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 37,
-      "pending_urls": 443,
+      "pages_read": 34,
+      "pending_urls": 413,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -25664,7 +25687,7 @@
         "auto-spimed-ai"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -25909,12 +25932,17 @@
         "auto-staatsbosbeheer"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 21,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 54,
       "matching_hr_positions": 0,
-      "pages_read": 22,
-      "pending_urls": 17,
-      "errors": [],
+      "pages_read": 19,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-staatsbosbeheer",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -26030,7 +26058,7 @@
         "auto-startel-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 0,
       "pages_read": 5,
@@ -26717,11 +26745,11 @@
         "auto-talan"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 68,
       "matching_hr_positions": 0,
       "pages_read": 70,
-      "pending_urls": 205,
+      "pending_urls": 137,
       "errors": [
         {
           "source_id": "auto-talan",
@@ -26932,11 +26960,11 @@
         "auto-technicum"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
-      "public_job_records": 39,
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
+      "public_job_records": 41,
       "matching_hr_positions": 3,
       "pages_read": 46,
-      "pending_urls": 390,
+      "pending_urls": 386,
       "errors": [
         {
           "source_id": "auto-technicum",
@@ -27177,7 +27205,7 @@
         "sitemap-careers-thalesgroup-com"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 3,
       "pages_read": 0,
@@ -27235,10 +27263,10 @@
         "auto-the-schippers-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 45,
       "matching_hr_positions": 0,
-      "pages_read": 27,
+      "pages_read": 30,
       "pending_urls": 0,
       "errors": [
         {
@@ -27361,15 +27389,15 @@
         "auto-thuiszorg-het-friese-land"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 58,
       "matching_hr_positions": 0,
-      "pages_read": 27,
-      "pending_urls": 30,
+      "pages_read": 14,
+      "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-thuiszorg-het-friese-land",
-          "error": "[{'url': 'https://werkenbij.revalidatie-friesland.nl/o/stagiaire-fysiotherapie-beetsterzwaag', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://werkenbij.revalidatie-friesland.nl/o/muziektherapeut-kinderrevalidatie-1', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -27414,16 +27442,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "discovery-incomplete",
+      "state": "blocked-or-failed",
       "source_ids": [
         "auto-tilburg-university"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 91,
-      "pages_read": 70,
-      "pending_urls": 62,
+      "pages_read": 0,
+      "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-tilburg-university",
@@ -27511,7 +27539,7 @@
         "auto-timmerfabriek-de-jong-woudsend"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 6,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -27620,7 +27648,7 @@
         "personio-xml-tng-technology-consulting-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 16,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -27695,7 +27723,7 @@
         "auto-topwindows"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 4,
@@ -27765,22 +27793,17 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "blocked-or-failed",
+      "state": "partial",
       "source_ids": [
         "auto-traffic-company"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 3,
       "matching_hr_positions": 0,
-      "pages_read": 0,
-      "pending_urls": 326,
-      "errors": [
-        {
-          "source_id": "auto-traffic-company",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ],
+      "pages_read": 23,
+      "pending_urls": 349,
+      "errors": [],
       "next_attempt": "next daily run"
     },
     {
@@ -27811,7 +27834,7 @@
         "auto-travyk-online-marketing-bureau"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -27852,7 +27875,7 @@
         "auto-tres"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 4,
@@ -28114,7 +28137,7 @@
         "employer-tyche-bank"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 6,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -28229,7 +28252,7 @@
         "employer-unilever"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 259,
       "matching_hr_positions": 2,
       "pages_read": 0,
@@ -28372,7 +28395,7 @@
         "auto-urban-care-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 7,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -28391,7 +28414,7 @@
         "personio-xml-usd-ag"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 9,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -28546,7 +28569,7 @@
         "auto-van-campen-dijkstra"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -28706,7 +28729,7 @@
         "auto-van-der-weerd-installatietechniek"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -28849,7 +28872,7 @@
         "auto-van-oers"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -28890,15 +28913,15 @@
         "auto-van-wijnen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 2,
-      "pages_read": 21,
-      "pending_urls": 192,
+      "pages_read": 16,
+      "pending_urls": 207,
       "errors": [
         {
           "source_id": "auto-van-wijnen",
-          "error": "[{'url': 'https://werkenbij.vanwijnen.nl/vacatures/stagiair-bedrijfskunde-hr-stages-baarn', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.vanwijnen.nl/', 'error': 'robots.txt disallows https://www.vanwijnen.nl'}, {'url': 'https://www.vanwijnen.nl', 'error': 'robots.txt disallows https://www.vanwijnen.nl'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -28948,11 +28971,11 @@
         "auto-vandoren"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 42,
       "matching_hr_positions": 1,
-      "pages_read": 20,
-      "pending_urls": 0,
+      "pages_read": 31,
+      "pending_urls": 7,
       "errors": [
         {
           "source_id": "auto-vandoren",
@@ -28989,7 +29012,7 @@
         "employer-var-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 73,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -29076,7 +29099,7 @@
         "auto-vdbkeuring"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 4,
@@ -29239,7 +29262,7 @@
         "lever-veepee"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 84,
       "matching_hr_positions": 2,
       "pages_read": 0,
@@ -29326,7 +29349,7 @@
         "recruitee-veldsink-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 76,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -29549,7 +29572,7 @@
         "auto-verhoeven-international"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 0,
       "pages_read": 6,
@@ -29726,11 +29749,11 @@
         "auto-vinted"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 6,
-      "pending_urls": 1111,
+      "pages_read": 7,
+      "pending_urls": 1109,
       "errors": [
         {
           "source_id": "auto-vinted",
@@ -29784,7 +29807,7 @@
         "auto-visser-bv"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 10,
@@ -29927,7 +29950,7 @@
         "employer-sitemap-vlisco-netherlands-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -30044,17 +30067,22 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "source_ids": [
         "auto-voort"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
-      "public_job_records": 3,
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
+      "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 19,
-      "pending_urls": 2376,
-      "errors": [],
+      "pages_read": 16,
+      "pending_urls": 2367,
+      "errors": [
+        {
+          "source_id": "auto-voort",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -30068,10 +30096,10 @@
         "auto-vorm4"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
-      "public_job_records": 3,
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
+      "public_job_records": 2,
       "matching_hr_positions": 0,
-      "pages_read": 2,
+      "pages_read": 3,
       "pending_urls": 0,
       "errors": [
         {
@@ -30517,7 +30545,7 @@
         "auto-wesselman"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 43,
       "matching_hr_positions": 0,
       "pages_read": 16,
@@ -30609,7 +30637,7 @@
         "auto-whisper-power"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 28,
@@ -30667,7 +30695,7 @@
         "auto-wierenga-de-graaf"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 59,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -31060,16 +31088,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "source_ids": [
         "auto-wrk-frl"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
-      "public_job_records": 3,
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
+      "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 20,
-      "pending_urls": 562,
+      "pages_read": 16,
+      "pending_urls": 563,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -31271,11 +31299,11 @@
         "auto-yobbers"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 41,
       "matching_hr_positions": 2,
-      "pages_read": 13,
-      "pending_urls": 777,
+      "pages_read": 6,
+      "pending_urls": 779,
       "errors": [
         {
           "source_id": "auto-yobbers",
@@ -31295,12 +31323,17 @@
         "auto-yource"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
-      "public_job_records": 41,
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
+      "public_job_records": 44,
       "matching_hr_positions": 0,
-      "pages_read": 43,
-      "pending_urls": 46,
-      "errors": [],
+      "pages_read": 39,
+      "pending_urls": 0,
+      "errors": [
+        {
+          "source_id": "auto-yource",
+          "error": "[{'url': 'https://www.yource.work/werken-in-marokko', 'error': 'Access challenge; no bypass attempted'}, {'url': 'https://www.yource.work/werken-in-marokko?cta=menu-links', 'error': 'Access challenge; no bypass attempted'}]"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -31399,15 +31432,15 @@
         "auto-zefir"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
-      "pages_read": 3,
+      "pages_read": 2,
       "pending_urls": 0,
       "errors": [
         {
           "source_id": "auto-zefir",
-          "error": "[{'url': 'https://jobs.ashbyhq.com/zefir/020d001f-d716-494e-aa99-3a7335360518', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -31559,11 +31592,11 @@
         "auto-zijlstra-bouw-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 0,
-      "pages_read": 28,
-      "pending_urls": 505,
+      "pages_read": 29,
+      "pending_urls": 497,
       "errors": [],
       "next_attempt": "next daily run"
     },
@@ -31663,11 +31696,11 @@
         "auto-zuken-gmbh"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 5,
-      "pending_urls": 40,
+      "pending_urls": 39,
       "errors": [
         {
           "source_id": "auto-zuken-gmbh",
@@ -31755,7 +31788,7 @@
         "auto-hanos"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 2,
       "pages_read": 1,
@@ -31774,7 +31807,7 @@
         "auto-ikea-ingka-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -31798,8 +31831,8 @@
         "auto-fotofabriek"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
-      "public_job_records": 20,
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
+      "public_job_records": 21,
       "matching_hr_positions": 1,
       "pages_read": 3,
       "pending_urls": 0,
@@ -31851,17 +31884,22 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "source_ids": [
         "auto-belsimpel-gomibo-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
+      "public_job_records": 72,
       "matching_hr_positions": 0,
-      "pages_read": 37,
-      "pending_urls": 45,
-      "errors": [],
+      "pages_read": 39,
+      "pending_urls": 11,
+      "errors": [
+        {
+          "source_id": "auto-belsimpel-gomibo-group",
+          "error": "[{'url': 'https://werkenbijbelsimpel.nl/ons_verhaal.html', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime/nl', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -32006,16 +32044,16 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "source_ids": [
         "auto-de-zijlen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
-      "public_job_records": 0,
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
+      "public_job_records": 1,
       "matching_hr_positions": 0,
-      "pages_read": 17,
-      "pending_urls": 61,
+      "pages_read": 19,
+      "pending_urls": 18,
       "errors": [
         {
           "source_id": "auto-de-zijlen",
@@ -32052,7 +32090,7 @@
         "auto-royal-bodewes"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 0,
       "pages_read": 7,
@@ -32195,17 +32233,12 @@
         "auto-mobacc-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
-      "pages_read": 6,
+      "pages_read": 7,
       "pending_urls": 0,
-      "errors": [
-        {
-          "source_id": "auto-mobacc-group",
-          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ],
+      "errors": [],
       "next_attempt": "next daily run"
     },
     {
@@ -32270,10 +32303,10 @@
         "auto-gemeente-assen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
-      "public_job_records": 9,
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
+      "public_job_records": 10,
       "matching_hr_positions": 0,
-      "pages_read": 5,
+      "pages_read": 4,
       "pending_urls": 0,
       "errors": [
         {
@@ -32362,7 +32395,7 @@
         "auto-gemeente-meppel"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 8,
       "matching_hr_positions": 0,
       "pages_read": 10,
@@ -32403,7 +32436,7 @@
         "auto-gemeente-noordenveld"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 83,
       "matching_hr_positions": 0,
       "pages_read": 11,
@@ -32546,7 +32579,7 @@
         "auto-unigarant"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 1,
@@ -32633,11 +32666,11 @@
         "auto-doc-kaas-b-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 12,
-      "pending_urls": 2013,
+      "pending_urls": 2045,
       "errors": [
         {
           "source_id": "auto-doc-kaas-b-v",
@@ -32691,7 +32724,7 @@
         "auto-skk-kozijnwacht"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -32710,7 +32743,7 @@
         "auto-nncz"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -32734,7 +32767,7 @@
         "auto-ziengs-schoenen"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -32770,7 +32803,7 @@
         "auto-scania"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -32891,7 +32924,7 @@
         "auto-gemeente-de-bilt"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 13,
@@ -32932,10 +32965,10 @@
         "auto-gemeente-houten"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 4,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 3,
       "matching_hr_positions": 0,
-      "pages_read": 9,
+      "pages_read": 10,
       "pending_urls": 0,
       "errors": [
         {
@@ -32973,12 +33006,17 @@
         "auto-gemeente-leusden"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
-      "pages_read": 29,
-      "pending_urls": 2300,
-      "errors": [],
+      "pages_read": 28,
+      "pending_urls": 2310,
+      "errors": [
+        {
+          "source_id": "auto-gemeente-leusden",
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -33094,7 +33132,7 @@
         "auto-gemeente-stichtse-vecht"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 0,
       "pages_read": 15,
@@ -33152,7 +33190,7 @@
         "auto-gemeente-vijfheerenlanden"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 26,
       "matching_hr_positions": 0,
       "pages_read": 4,
@@ -33193,7 +33231,7 @@
         "auto-gemeente-woerden"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 0,
       "pages_read": 15,
@@ -33268,7 +33306,7 @@
         "auto-defabrique-holding"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -33292,7 +33330,7 @@
         "auto-koninklijke-remia-c-v"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 14,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -33311,7 +33349,7 @@
         "auto-trunkrs"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 6,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -33330,7 +33368,7 @@
         "auto-as-watson-benelux"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 3,
       "pages_read": 1,
@@ -33349,11 +33387,11 @@
         "auto-sopra-steria"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
-      "public_job_records": 12,
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
+      "public_job_records": 15,
       "matching_hr_positions": 2,
-      "pages_read": 26,
-      "pending_urls": 620,
+      "pages_read": 25,
+      "pending_urls": 610,
       "errors": [
         {
           "source_id": "auto-sopra-steria",
@@ -33390,7 +33428,7 @@
         "auto-domino-s-pizza-netherlands"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -33398,7 +33436,7 @@
       "errors": [
         {
           "source_id": "auto-domino-s-pizza-netherlands",
-          "error": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe', 'error': 'Reviewed visible vacancy title/description missing'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-global-sustainability-0', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux', 'error': 'Visible vacancy workplace requires review'}]"
+          "error": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-crm-marketing-feb-26', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-global-sustainability-0', 'error': 'Visible vacancy workplace requires review'}]"
         }
       ],
       "next_attempt": "next daily run"
@@ -33414,7 +33452,7 @@
         "auto-hb-rts"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 2,
       "pages_read": 1,
@@ -33438,7 +33476,7 @@
         "auto-afas-software"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -33479,8 +33517,8 @@
         "auto-berenschot"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
-      "public_job_records": 122,
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
+      "public_job_records": 123,
       "matching_hr_positions": 1,
       "pages_read": 15,
       "pending_urls": 0,
@@ -33571,7 +33609,7 @@
         "auto-onvz"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 0,
       "pages_read": 9,
@@ -33663,10 +33701,10 @@
         "auto-van-walraven"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 0,
-      "pages_read": 9,
+      "pages_read": 10,
       "pending_urls": 0,
       "errors": [
         {
@@ -33755,7 +33793,7 @@
         "auto-gemeente-almere"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 8,
@@ -33779,7 +33817,7 @@
         "auto-provincie-flevoland"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 10,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -33854,7 +33892,7 @@
         "auto-meerpaal"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 6,
       "matching_hr_positions": 0,
       "pages_read": 3,
@@ -33895,7 +33933,7 @@
         "auto-hlb-group"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 2,
       "matching_hr_positions": 1,
       "pages_read": 3,
@@ -34147,20 +34185,20 @@
       "candidate_countries": [
         "NL"
       ],
-      "state": "partial",
+      "state": "discovery-incomplete",
       "source_ids": [
         "auto-webo"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
-      "public_job_records": 6,
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
+      "public_job_records": 0,
       "matching_hr_positions": 1,
-      "pages_read": 50,
-      "pending_urls": 96,
+      "pages_read": 11,
+      "pending_urls": 140,
       "errors": [
         {
           "source_id": "auto-webo",
-          "error": "[{'url': 'https://www.webo.nl/vacatures/stage-hrm', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://gawerkenbij.nl/vacatures/pluriton/06-45287704', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://gawerkenbij.nl/vacatures/pluriton/06-16362670', 'error': 'HTTP Error 404: Not Found'}]"
+          "error": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ],
       "next_attempt": "next daily run"
@@ -34176,7 +34214,7 @@
         "recruitee-sas-look-up-space"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 7,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34195,7 +34233,7 @@
         "recruitee-monsterscore"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 9,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34214,7 +34252,7 @@
         "recruitee-ibexa"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34233,7 +34271,7 @@
         "recruitee-gerard-bertrand"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 27,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34252,7 +34290,7 @@
         "recruitee-skytree"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34266,17 +34304,22 @@
       "candidate_countries": [
         "ES"
       ],
-      "state": "collected",
+      "state": "partial",
       "source_ids": [
         "index-bsh-es"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:26.917121+00:00",
-      "public_job_records": 18,
+      "checked_at": "2026-11-26T09:03:28.990706+00:00",
+      "public_job_records": 17,
       "matching_hr_positions": 1,
       "pages_read": 1,
       "pending_urls": 0,
-      "errors": [],
+      "errors": [
+        {
+          "source_id": "index-bsh-es",
+          "error": "[{'url': 'https://jobs.bsh-group.de/46112-practicas-recursos-humanos-formacion/de/job.html', 'error': 'HTTP Error 502: Bad Gateway'}]"
+        }
+      ],
       "next_attempt": "next daily run"
     },
     {
@@ -34290,7 +34333,7 @@
         "recruitee-hotel-twentyseven"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 22,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34309,7 +34352,7 @@
         "recruitee-bundl"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 6,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34328,7 +34371,7 @@
         "recruitee-franklin-institute"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 12,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34347,7 +34390,7 @@
         "recruitee-ampelmann-nl"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 3,
       "matching_hr_positions": 0,
       "pages_read": 1,
@@ -34366,7 +34409,7 @@
         "recruitee-batch-vigo-groep"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:41:56.098322+00:00",
+      "checked_at": "2026-11-26T09:03:23.171098+00:00",
       "public_job_records": 101,
       "matching_hr_positions": 2,
       "pages_read": 1,
@@ -34385,7 +34428,7 @@
         "recruitee-batch-chr-haute-senne"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:25.866047+00:00",
+      "checked_at": "2026-11-26T09:03:26.945189+00:00",
       "public_job_records": 22,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34404,7 +34447,7 @@
         "recruitee-batch-abrio"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 18,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34440,7 +34483,7 @@
         "recruitee-peripass-be"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 16,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34459,7 +34502,7 @@
         "greenhouse-fanatics-collectibles-gb"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 224,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34478,7 +34521,7 @@
         "recruitee-aquablu-nl"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:28.842736+00:00",
+      "checked_at": "2026-11-26T09:05:58.282109+00:00",
       "public_job_records": 12,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34497,7 +34540,7 @@
         "recruitee-zeromotorcycles-nl"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:45.547750+00:00",
+      "checked_at": "2026-11-26T09:05:32.244380+00:00",
       "public_job_records": 5,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34516,7 +34559,7 @@
         "recruitee-werkenbijyouvia-nl"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34535,7 +34578,7 @@
         "recruitee-mercedes-benz-io-pt"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 1,
       "pages_read": 1,
@@ -34554,7 +34597,7 @@
         "personio-ten23-health-ch"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:07.163890+00:00",
+      "checked_at": "2026-11-26T09:05:58.383469+00:00",
       "public_job_records": 17,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34573,7 +34616,7 @@
         "personio-watson-farley-williams-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 15,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34592,7 +34635,7 @@
         "personio-studyflix-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 17,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34611,7 +34654,7 @@
         "personio-bloomwell-group-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 16,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34630,7 +34673,7 @@
         "personio-vamo-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 12,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34649,7 +34692,7 @@
         "personio-reformer-club-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:54.684609+00:00",
+      "checked_at": "2026-11-26T09:05:08.068966+00:00",
       "public_job_records": 9,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34668,7 +34711,7 @@
         "personio-wilken-software-group-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:36.705037+00:00",
+      "checked_at": "2026-11-26T09:04:53.343965+00:00",
       "public_job_records": 38,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34687,7 +34730,7 @@
         "personio-avantgarde-de"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:31.485617+00:00",
+      "checked_at": "2026-11-26T09:03:21.650849+00:00",
       "public_job_records": 101,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34723,7 +34766,7 @@
         "held-synergie-it-jobposting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:33.432886+00:00",
+      "checked_at": "2026-11-26T09:04:50.534374+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 20,
       "pages_read": 0,
@@ -34742,7 +34785,7 @@
         "held-grupo-ras-es-jobposting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 19,
       "pages_read": 0,
@@ -34761,7 +34804,7 @@
         "held-youngcapital-nl-jobposting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:19.320130+00:00",
+      "checked_at": "2026-11-26T09:05:02.354367+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34797,7 +34840,7 @@
         "held-randstad-pl-jobposting"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 8,
       "pages_read": 0,
@@ -34816,7 +34859,7 @@
         "held-sf-rmk-festo-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 4,
       "pages_read": 0,
@@ -34835,7 +34878,7 @@
         "held-sf-rmk-provinzial-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:23.009676+00:00",
+      "checked_at": "2026-11-26T09:06:10.990855+00:00",
       "public_job_records": 4,
       "matching_hr_positions": 4,
       "pages_read": 0,
@@ -34854,7 +34897,7 @@
         "held-sf-rmk-france-televisions-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34874,7 +34917,7 @@
         "held-sf-rmk-danish-crown-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:38.557769+00:00",
+      "checked_at": "2026-11-26T09:03:21.500197+00:00",
       "public_job_records": 1,
       "matching_hr_positions": 1,
       "pages_read": 0,
@@ -34893,7 +34936,7 @@
         "held-sf-rmk-jti-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:35:34.418492+00:00",
+      "checked_at": "2026-11-26T09:05:41.555087+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -34912,7 +34955,7 @@
         "held-sf-rmk-rwe-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:36:49.148613+00:00",
+      "checked_at": "2026-11-26T09:09:19.310136+00:00",
       "public_job_records": 0,
       "matching_hr_positions": 0,
       "pages_read": 0,
@@ -34931,7 +34974,7 @@
         "held-sf-rmk-schaeffler-rmk"
       ],
       "attempted": true,
-      "checked_at": "2026-11-26T07:37:05.317922+00:00",
+      "checked_at": "2026-11-26T09:06:50.607692+00:00",
       "public_job_records": 8,
       "matching_hr_positions": 8,
       "pages_read": 0,
