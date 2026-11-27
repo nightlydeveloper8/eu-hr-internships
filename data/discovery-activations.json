@@ -35,6 +35,128 @@
       "host": "careers.girteka.eu",
       "at": "2026-11-26T13:03:10.618468+00:00",
       "verified_run": 45825716843
+    },
+    "employer-sitemap-leyton": {
+      "before": {
+        "id": "employer-sitemap-leyton",
+        "employer": "Leyton",
+        "adapter": "employer-sitemap",
+        "enabled": true,
+        "career_url": "https://leytonglobal-france.teamtailor.com/jobs",
+        "allowed_hosts": [
+          "leytonglobal-france.teamtailor.com"
+        ],
+        "target_countries": [
+          "FR"
+        ],
+        "reviewed_on": "2026-11-05",
+        "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+        "discovery_scope": "All matching job URLs in the reviewed sitemap scope are inventoried and every page is read before HR/internship filtering, including opaque job identifiers. Unlisted URLs and unsupported page formats remain coverage gaps. Sitemap absence never closes jobs.",
+        "sitemaps": [
+          "https://leytonglobal-france.teamtailor.com/sitemap.xml"
+        ],
+        "job_url_pattern": "^https://leytonglobal\\-france\\.teamtailor\\.com/(?:[a-z]{2}/)?jobs/\\d+-"
+      },
+      "after": {
+        "id": "employer-sitemap-leyton",
+        "employer": "Leyton",
+        "career_url": "https://leytonglobal-france.teamtailor.com/jobs",
+        "allowed_hosts": [
+          "leytonglobal-france.teamtailor.com"
+        ],
+        "sitemaps": [
+          "https://leytonglobal-france.teamtailor.com/sitemap.xml"
+        ],
+        "target_countries": [
+          "FR"
+        ],
+        "max_requests": 12,
+        "collection_seconds": 90,
+        "collection_delay": 2,
+        "permission_basis": "Official employer career channel and public listed jobs; robots checked each run",
+        "discovery_platform": "teamtailor",
+        "access_review": "allowed",
+        "reviewed_on": "2026-11-27",
+        "review_notes": "Existing registered host migrated to its observed platform. Public exact-host routes and live robots only.",
+        "adapter": "employer-sitemap",
+        "published_listing_platform": "teamtailor",
+        "job_url_pattern": "^https://leytonglobal\\-france\\.teamtailor\\.com/jobs/\\d+-[^/?]+/?$",
+        "url_slug_prefilter": true,
+        "enabled": true,
+        "collection_activation_hold": false,
+        "status": "reviewed-active",
+        "source_id_aliases": [
+          "employer-sitemap-leyton"
+        ]
+      },
+      "host": "leytonglobal-france.teamtailor.com",
+      "at": "2026-11-27T07:57:24.609941+00:00",
+      "migration": true
+    },
+    "auto-randstad-groep-nederland": {
+      "before": {
+        "id": "auto-randstad-groep-nederland",
+        "company_id": "randstad-groep-nederland",
+        "employer": "Randstad Groep Nederland",
+        "adapter": "universal-employer",
+        "enabled": true,
+        "start_urls": [
+          "https://www.tempo-team.nl/vacatures/756793/stagiair%28e%29-hr-tempo-team",
+          "https://www.werkenbijrandstad.nl"
+        ],
+        "career_url": "https://www.werkenbijrandstad.nl",
+        "allowed_hosts": [
+          "www.tempo-team.nl",
+          "www.werkenbijrandstad.nl"
+        ],
+        "target_countries": [
+          "NL"
+        ],
+        "max_pages": 70,
+        "max_requests": 110,
+        "collection_seconds": 120,
+        "max_navigation_depth": 3,
+        "max_render_pages": 4,
+        "permission_basis": "Declared official website/career page and observed public recruiting links; robots checked at runtime; no authentication or challenge bypass",
+        "status": "automatic-collection-pending"
+      },
+      "after": {
+        "employer": "Randstad Groep Nederland",
+        "target_countries": [
+          "NL"
+        ],
+        "id": "auto-randstad-groep-nederland",
+        "adapter": "sitemap-jobposting",
+        "allowed_hosts": [
+          "www.werkenbijrandstad.nl"
+        ],
+        "career_url": "https://www.werkenbijrandstad.nl",
+        "access_review": "allowed",
+        "permission_basis": "Previously permitted employer host, confirmed by maintainer on 2026-11-24. Exact-host public robots, sitemap and job details only.",
+        "review_notes": "La CTA punta a un’ancora e il modulo non è presente nel documento statico.",
+        "reviewed_on": "2026-11-25",
+        "enabled": true,
+        "collection_activation_hold": false,
+        "collection_seconds": 120,
+        "max_requests": 90,
+        "collection_delay": 2,
+        "replaces_source_ids": [
+          "auto-randstad-groep-nederland"
+        ],
+        "employer_aliases": [
+          "Randstad Nederland"
+        ],
+        "collection_lot": "CORPORATE-SITEMAP-MIGRATION",
+        "status": "reviewed-active",
+        "company_id": "randstad-groep-nederland",
+        "source_id_aliases": [
+          "auto-randstad-groep-nederland",
+          "sitemap-www-werkenbijrandstad-nl"
+        ]
+      },
+      "host": "www.werkenbijrandstad.nl",
+      "at": "2026-11-27T07:57:24.609941+00:00",
+      "migration": true
     }
   }
 }
