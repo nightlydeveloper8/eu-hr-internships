@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T13:24:09.640201+00:00",
+  "generated_at": "2026-11-27T07:48:33.223587+00:00",
   "province": "Utrecht",
   "region_code": "NL35",
   "exhaustive": false,
@@ -20,10 +20,9 @@
     "configured": 19,
     "attempted_recently": 19,
     "collection_states": {
-      "blocked-or-failed": 1,
+      "discovery-incomplete": 3,
       "unconfigured": 32,
       "partial": 14,
-      "discovery-incomplete": 2,
       "collected": 2
     },
     "qualified_collection_states": {
@@ -379,7 +378,7 @@
       "size_unknown": 6,
       "below_threshold": 0,
       "collection_states": {
-        "blocked-or-failed": 1,
+        "discovery-incomplete": 1,
         "unconfigured": 4,
         "partial": 3
       },
@@ -555,15 +554,15 @@
       "source_ids": [
         "sitemap-careers-danone-com"
       ],
-      "state": "blocked-or-failed",
+      "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:18.332913+00:00",
+      "last_attempt_at": "2026-11-27T07:32:36.892410+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "sitemap-careers-danone-com",
-          "message": "The read operation timed out"
+          "message": "[{'url': 'https://careers.danone.com/en-global/stage-charge-e-de-formation-projets-rh-janvier-2027-h-f-29216-fr-fr.html', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers.danone.com/en-global/praktikum-hr-management-m-w-d-fokus-recruiting-28915-de-de.html', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://careers.danone.com/en-global/intern-hr-29435-en-us.html', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -635,7 +634,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:12.109996+00:00",
+      "last_attempt_at": "2026-11-27T07:32:43.698368+00:00",
       "public_job_records": 67,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -785,7 +784,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:22.325703+00:00",
+      "last_attempt_at": "2026-11-27T07:32:16.771727+00:00",
       "public_job_records": 10,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -864,8 +863,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:14.625445+00:00",
-      "public_job_records": 4,
+      "last_attempt_at": "2026-11-27T07:32:45.519674+00:00",
+      "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -942,15 +941,10 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:05.363224+00:00",
+      "last_attempt_at": "2026-11-27T07:32:42.627507+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-leusden",
-          "message": "[{'url': 'https://www.gemeentebanen.nl/vacatures?page=9', 'error': 'HTTP Error 500: Internal Server Error'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-lopik",
@@ -1196,15 +1190,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:46.451382+00:00",
+      "last_attempt_at": "2026-11-27T07:32:54.175128+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-stichtse-vecht",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-utrechtse-heuvelrug",
@@ -1308,7 +1297,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:16.192061+00:00",
+      "last_attempt_at": "2026-11-27T07:32:19.553377+00:00",
       "public_job_records": 26,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1396,8 +1385,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:05.363224+00:00",
-      "public_job_records": 18,
+      "last_attempt_at": "2026-11-27T07:32:42.627507+00:00",
+      "public_job_records": 8,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1545,7 +1534,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:48.917366+00:00",
+      "last_attempt_at": "2026-11-27T07:32:12.618468+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1587,7 +1576,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:49.600521+00:00",
+      "last_attempt_at": "2026-11-27T07:32:13.290113+00:00",
       "public_job_records": 14,
       "verified_hr_internship_ids": [
         "feeafd529fbb03b9a107"
@@ -1626,7 +1615,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:49.600521+00:00",
+      "last_attempt_at": "2026-11-27T07:32:13.290113+00:00",
       "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1663,7 +1652,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:16.192061+00:00",
+      "last_attempt_at": "2026-11-27T07:32:19.553377+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [
         "4f1b149f7c7d6bd1b6fe"
@@ -1703,8 +1692,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:14.625445+00:00",
-      "public_job_records": 8,
+      "last_attempt_at": "2026-11-27T07:32:45.519674+00:00",
+      "public_job_records": 16,
       "verified_hr_internship_ids": [],
       "errors": [
         {
@@ -1780,13 +1769,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:22.325703+00:00",
+      "last_attempt_at": "2026-11-27T07:32:16.771727+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-domino-s-pizza-netherlands",
-          "message": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-benelux', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe', 'error': 'Reviewed visible vacancy title/description missing'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-crm-marketing-feb-26', 'error': 'Visible vacancy workplace requires review'}]"
+          "message": "[{'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-global-sustainability-0', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/stage-crm-marketing-feb-26', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbijdominos.nl/hoofdkantoor/internship-procurement-europe', 'error': 'Reviewed visible vacancy title/description missing'}]"
         }
       ]
     },
@@ -1822,7 +1811,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:46.977018+00:00",
+      "last_attempt_at": "2026-11-27T07:32:11.256681+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1865,13 +1854,13 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:54.611704+00:00",
+      "last_attempt_at": "2026-11-27T07:32:36.092907+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-afas-software",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://www.afas.nl', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}, {'url': 'https://www.werkenbijafas.nl/job/afstudeer-stages-bim', 'error': 'HTTP Error 404: Not Found'}, {'url': 'https://www.werkenbijafas.nl/job/allround-geluidstechnicus', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -1944,7 +1933,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:54.611704+00:00",
+      "last_attempt_at": "2026-11-27T07:32:36.092907+00:00",
       "public_job_records": 122,
       "verified_hr_internship_ids": [
         "68bbbe8c4218385f7c9d"
@@ -2129,7 +2118,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:05.569049+00:00",
+      "last_attempt_at": "2026-11-27T07:32:43.569409+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -2325,13 +2314,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:12.109996+00:00",
+      "last_attempt_at": "2026-11-27T07:32:43.698368+00:00",
       "public_job_records": 18,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-van-walraven",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://app.teamtailor.com/companies/of4jPZyuqjY/jobs/5789759/edit/06%20%E2%80%93%2042%2056%2047%2063%5C', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}, {'url': 'https://www.vanwalraven.com', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://app.teamtailor.com/companies/of4jPZyuqjY@eu/dashboard', 'error': 'Rendered read: Locator.click: Timeout 4000ms exceeded.\\nCall log:\\n  - waiting for get_by_role(\"button\", name=re.compile(r\"^(?:load more|show more|more jobs|next|next page|see m'}]"
         }
       ]
     },

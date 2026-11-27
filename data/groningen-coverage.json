@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-26T13:24:09.511947+00:00",
+  "generated_at": "2026-11-27T07:48:33.040228+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -415,7 +415,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:12.109996+00:00",
+      "last_attempt_at": "2026-11-27T07:32:43.698368+00:00",
       "public_job_records": 2,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
@@ -423,7 +423,7 @@
       "errors": [
         {
           "source_id": "auto-hanos",
-          "message": "[{'url': 'https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/vacatures/meewerkstage-hr-eindhoven-2727929', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/werkgebieden/HR', 'error': 'robots.txt unavailable: 403'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -459,13 +459,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:18.332913+00:00",
-      "public_job_records": 5,
+      "last_attempt_at": "2026-11-27T07:32:36.892410+00:00",
+      "public_job_records": 7,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-ikea-ingka-group",
-          "message": "[{'url': 'https://jobs.ikea.com/en/job/groningen/hr-stagiair-e-rcmp-ikea/24107/102759645920', 'error': 'Vacancy verification: robots.txt disallows https://ikea.avature.net/nl_NL/External/JobDetail?jobId=375629&source=Talent+Brew+Career+Page'}, {'url': 'https://jobs.ikea.com/en/job/groningen/traineeship/24107/97141074352', 'error': 'No supported JobPosting structured data; no page-text guessing'}]"
+          "message": "[{'url': 'https://jobs.ikea.com/en/job/groningen/hr-stagiair-e-rcmp-ikea/24107/102759645920', 'error': 'Vacancy verification: robots.txt disallows https://ikea.avature.net/nl_NL/External/JobDetail?jobId=375629&source=Talent+Brew+Career+Page'}, {'url': 'https://jobs.ikea.com/en/job/groningen/teamleader-sales-keukenverkoop/24107/99171135488', 'error': 'No supported JobPosting structured data; no page-text guessing'}, {'url': 'https://jobs.ikea.com/en/job/groningen/traineeship/24107/97141074352', 'error': 'No supported JobPosting structured data; no page-text guessing'}]"
         }
       ]
     },
@@ -501,13 +501,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:49.600521+00:00",
+      "last_attempt_at": "2026-11-27T07:32:13.290113+00:00",
       "public_job_records": 21,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-fotofabriek",
-          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/tijdelijke-productietopper-282', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
+          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/schoonmaakmedewerker-284', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
         }
       ]
     },
@@ -626,15 +626,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:44.903502+00:00",
+      "last_attempt_at": "2026-11-27T07:32:17.067236+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-belsimpel-gomibo-group",
-          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}]"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "veiligheidsregio-groningen",
@@ -982,7 +977,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:54.611704+00:00",
+      "last_attempt_at": "2026-11-27T07:32:36.092907+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1054,7 +1049,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:08:05.569049+00:00",
+      "last_attempt_at": "2026-11-27T07:32:43.569409+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1429,10 +1424,15 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-26T13:07:46.977018+00:00",
+      "last_attempt_at": "2026-11-27T07:32:11.256681+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-mobacc-group",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "gemeente-pekela",
