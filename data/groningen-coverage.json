@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-27T07:48:33.040228+00:00",
+  "generated_at": "2026-11-27T08:17:39.760977+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -21,12 +21,14 @@
     "attempted_recently": 7,
     "collection_states": {
       "unconfigured": 24,
-      "partial": 5,
+      "collected": 1,
+      "partial": 4,
       "discovery-incomplete": 2
     },
     "qualified_collection_states": {
       "unconfigured": 21,
-      "partial": 5,
+      "collected": 1,
+      "partial": 4,
       "discovery-incomplete": 1
     },
     "verified_hr_internships": 1,
@@ -67,7 +69,8 @@
       "below_threshold": 0,
       "collection_states": {
         "unconfigured": 7,
-        "partial": 4
+        "collected": 1,
+        "partial": 3
       },
       "company_ids": [
         "belsimpel-gomibo-group",
@@ -413,19 +416,14 @@
       "source_ids": [
         "auto-hanos"
       ],
-      "state": "partial",
+      "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T07:32:43.698368+00:00",
-      "public_job_records": 2,
+      "last_attempt_at": "2026-11-27T08:01:49.351115+00:00",
+      "public_job_records": 3,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
       ],
-      "errors": [
-        {
-          "source_id": "auto-hanos",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "ikea-ingka-group",
@@ -459,7 +457,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T07:32:36.892410+00:00",
+      "last_attempt_at": "2026-11-27T08:02:03.285648+00:00",
       "public_job_records": 7,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -501,13 +499,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T07:32:13.290113+00:00",
+      "last_attempt_at": "2026-11-27T08:02:21.571613+00:00",
       "public_job_records": 21,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-fotofabriek",
-          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/schoonmaakmedewerker-284', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
+          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/tijdelijke-productietopper-282', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
         }
       ]
     },
@@ -626,10 +624,15 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T07:32:17.067236+00:00",
+      "last_attempt_at": "2026-11-27T08:02:12.670148+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-belsimpel-gomibo-group",
+          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}]"
+        }
+      ]
     },
     {
       "company_id": "veiligheidsregio-groningen",
@@ -977,7 +980,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T07:32:36.092907+00:00",
+      "last_attempt_at": "2026-11-27T08:02:22.612145+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1049,7 +1052,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T07:32:43.569409+00:00",
+      "last_attempt_at": "2026-11-27T08:02:20.903769+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1424,15 +1427,10 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T07:32:11.256681+00:00",
+      "last_attempt_at": "2026-11-27T08:02:16.911684+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-mobacc-group",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-pekela",
