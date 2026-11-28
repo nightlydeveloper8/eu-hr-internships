@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-27T08:17:39.859656+00:00",
+  "generated_at": "2026-11-28T07:41:47.044154+00:00",
   "province": "Drenthe",
   "region_code": "NL13",
   "exhaustive": false,
@@ -20,15 +20,15 @@
     "configured": 12,
     "attempted_recently": 12,
     "collection_states": {
-      "discovery-incomplete": 3,
-      "partial": 6,
+      "partial": 7,
       "unconfigured": 28,
+      "discovery-incomplete": 2,
       "collected": 3
     },
     "qualified_collection_states": {
-      "discovery-incomplete": 2,
-      "partial": 4,
+      "partial": 5,
       "unconfigured": 19,
+      "discovery-incomplete": 1,
       "collected": 2
     },
     "verified_hr_internships": 2,
@@ -114,7 +114,7 @@
       "size_unknown": 2,
       "below_threshold": 0,
       "collection_states": {
-        "discovery-incomplete": 1,
+        "partial": 1,
         "unconfigured": 4
       },
       "company_ids": [
@@ -320,15 +320,15 @@
       "source_ids": [
         "auto-center-parcs"
       ],
-      "state": "discovery-incomplete",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:22.612145+00:00",
-      "public_job_records": 0,
+      "last_attempt_at": "2026-11-28T07:25:37.513732+00:00",
+      "public_job_records": 23,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-center-parcs",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4653111-stage-internal-communications-and-employee-engagement-officer-februari-2027-2909-lk-capelle-aan-den-ijssel', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}, {'url': 'https://jobs.workatcenterparcs.com/nl/annonce/4639045-stage-hr-februari-2027-de-eemhof-3896-ld-zeewolde', 'error': 'Vacancy verification: No available vacancy-specific application entry established'}]"
         }
       ]
     },
@@ -364,13 +364,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:25.266054+00:00",
-      "public_job_records": 5,
+      "last_attempt_at": "2026-11-28T07:25:57.888498+00:00",
+      "public_job_records": 6,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-landal",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+          "message": "[{'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr-corporate-recruitment/JR104108', 'error': 'Vacancy verification: Application link lacks a matching vacancy identifier'}, {'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr/JR104360', 'error': 'Vacancy verification: HTTP Error 429: Host rate-limited earlier in this collection process'}, {'url': 'https://jobs.landal.com/nl-nl/vacatures/stage-hr-employer-branding/JR104107', 'error': 'Vacancy verification: HTTP Error 429: Host rate-limited earlier in this collection process'}]"
         }
       ]
     },
@@ -418,7 +418,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:49.351115+00:00",
+      "last_attempt_at": "2026-11-28T07:25:56.874216+00:00",
       "public_job_records": 67,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -531,13 +531,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:54.715828+00:00",
-      "public_job_records": 12,
+      "last_attempt_at": "2026-11-28T07:25:59.562337+00:00",
+      "public_job_records": 11,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-gemeente-assen",
-          "message": "[{'url': 'https://www.assen.nl', 'error': 'robots.txt unavailable: 403'}]"
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
         }
       ]
     },
@@ -725,15 +725,10 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:58.422569+00:00",
+      "last_attempt_at": "2026-11-28T07:25:56.515206+00:00",
       "public_job_records": 8,
       "verified_hr_internship_ids": [],
-      "errors": [
-        {
-          "source_id": "auto-gemeente-meppel",
-          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
-        }
-      ]
+      "errors": []
     },
     {
       "company_id": "gemeente-midden-drenthe",
@@ -802,8 +797,8 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:57.605000+00:00",
-      "public_job_records": 87,
+      "last_attempt_at": "2026-11-28T07:25:53.664504+00:00",
+      "public_job_records": 91,
       "verified_hr_internship_ids": [],
       "errors": []
     },
@@ -1085,7 +1080,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:49.368869+00:00",
+      "last_attempt_at": "2026-11-28T07:25:53.942473+00:00",
       "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": []
@@ -1307,7 +1302,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:21.571613+00:00",
+      "last_attempt_at": "2026-11-28T07:26:05.118005+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1419,7 +1414,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:22.612145+00:00",
+      "last_attempt_at": "2026-11-28T07:25:37.513732+00:00",
       "public_job_records": 3,
       "verified_hr_internship_ids": [
         "0d026302ba6f8aedd558"
@@ -1458,13 +1453,13 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:54.715828+00:00",
+      "last_attempt_at": "2026-11-28T07:25:59.562337+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-nncz",
-          "message": "[{'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-thuiszorg-def', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verpleegkundige-schots-19-11-26', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-schots-19-11-26', 'error': 'Visible vacancy workplace requires review'}]"
+          "message": "[{'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/assistent-wonen-en-zorg', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verzorgende-ig-thuiszorg-def', 'error': 'Visible vacancy workplace requires review'}, {'url': 'https://werkenbij.nncz.nl/algemene-vacaturebeschrijving/verpleegkundige-schots-19-11-26', 'error': 'Visible vacancy workplace requires review'}]"
         }
       ]
     },
@@ -1500,7 +1495,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:57.605000+00:00",
+      "last_attempt_at": "2026-11-28T07:25:53.664504+00:00",
       "public_job_records": 4,
       "verified_hr_internship_ids": [
         "95dca55a4e83f8016444"
@@ -1575,7 +1570,7 @@
       ],
       "state": "collected",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:57.605000+00:00",
+      "last_attempt_at": "2026-11-28T07:25:53.664504+00:00",
       "public_job_records": 5,
       "verified_hr_internship_ids": [],
       "errors": []

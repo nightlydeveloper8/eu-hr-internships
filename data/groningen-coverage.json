@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-27T08:17:39.760977+00:00",
+  "generated_at": "2026-11-28T07:41:46.943289+00:00",
   "province": "Groningen",
   "region_code": "NL11",
   "exhaustive": false,
@@ -21,14 +21,12 @@
     "attempted_recently": 7,
     "collection_states": {
       "unconfigured": 24,
-      "collected": 1,
-      "partial": 4,
+      "partial": 5,
       "discovery-incomplete": 2
     },
     "qualified_collection_states": {
       "unconfigured": 21,
-      "collected": 1,
-      "partial": 4,
+      "partial": 5,
       "discovery-incomplete": 1
     },
     "verified_hr_internships": 1,
@@ -69,8 +67,7 @@
       "below_threshold": 0,
       "collection_states": {
         "unconfigured": 7,
-        "collected": 1,
-        "partial": 3
+        "partial": 4
       },
       "company_ids": [
         "belsimpel-gomibo-group",
@@ -416,14 +413,19 @@
       "source_ids": [
         "auto-hanos"
       ],
-      "state": "collected",
+      "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:01:49.351115+00:00",
-      "public_job_records": 3,
+      "last_attempt_at": "2026-11-28T07:25:56.874216+00:00",
+      "public_job_records": 2,
       "verified_hr_internship_ids": [
         "9f900cc9419de8ce264a"
       ],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-hanos",
+          "message": "[{'url': 'https://www.werkenbijhanos.nl/vacatures/hr-stagiair-groningen-2801404', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/vacatures/meewerkstage-hr-eindhoven-2727929', 'error': 'robots.txt unavailable: 403'}, {'url': 'https://www.werkenbijhanos.nl/werkgebieden/HR', 'error': 'robots.txt unavailable: 403'}]"
+        }
+      ]
     },
     {
       "company_id": "ikea-ingka-group",
@@ -457,7 +459,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:03.285648+00:00",
+      "last_attempt_at": "2026-11-28T07:25:49.788568+00:00",
       "public_job_records": 7,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -499,13 +501,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:21.571613+00:00",
+      "last_attempt_at": "2026-11-28T07:26:05.118005+00:00",
       "public_job_records": 21,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-fotofabriek",
-          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/tijdelijke-productietopper-282', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
+          "message": "[{'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/operator-sign-263', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/continuous-improvement-engineer-212', 'error': 'Reviewed Odoo vacancy title/description missing'}, {'url': 'https://www.werkenbijfotofabriek.nl/jobs/detail/schoonmaakmedewerker-284', 'error': 'Reviewed Odoo vacancy title/description missing'}]"
         }
       ]
     },
@@ -624,13 +626,13 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:12.670148+00:00",
-      "public_job_records": 1,
+      "last_attempt_at": "2026-11-28T07:25:52.680823+00:00",
+      "public_job_records": 9,
       "verified_hr_internship_ids": [],
       "errors": [
         {
           "source_id": "auto-belsimpel-gomibo-group",
-          "message": "[{'url': 'https://jobs.werkenbijbelsimpel.nl/vacature-traineeship-management-teamleider-operations-fulltime', 'error': 'HTTP Error 404: Not Found'}]"
+          "message": "[{'url': 'https://werkenbijbelsimpel.nl/ons_verhaal.html', 'error': 'HTTP Error 404: Not Found'}]"
         }
       ]
     },
@@ -980,10 +982,15 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:22.612145+00:00",
+      "last_attempt_at": "2026-11-28T07:25:37.513732+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
-      "errors": []
+      "errors": [
+        {
+          "source_id": "auto-de-zijlen",
+          "message": "No verified job inventory or explicit empty vacancy list found; discovery continues automatically"
+        }
+      ]
     },
     {
       "company_id": "stichting-vredewold",
@@ -1052,7 +1059,7 @@
       ],
       "state": "partial",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:20.903769+00:00",
+      "last_attempt_at": "2026-11-28T07:25:30.610245+00:00",
       "public_job_records": 1,
       "verified_hr_internship_ids": [],
       "errors": [
@@ -1427,7 +1434,7 @@
       ],
       "state": "discovery-incomplete",
       "attempted_recently": true,
-      "last_attempt_at": "2026-11-27T08:02:16.911684+00:00",
+      "last_attempt_at": "2026-11-28T07:25:57.824234+00:00",
       "public_job_records": 0,
       "verified_hr_internship_ids": [],
       "errors": []
